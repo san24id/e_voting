@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('Dashboard/dashboard');
+		$data['active1'] = 'active';
+		$this->load->view('User/dashboard', $data);
 	}
 }
