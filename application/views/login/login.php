@@ -6,7 +6,7 @@
 	<base href="<?php echo base_url() ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?=base_url('assets/login/images/sip2.png');?>"/>
+	<link rel="icon" type="image/png" href="assets/user/images/menu_app_logo2.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -53,7 +53,7 @@
 					<div class="row">
 						<center>
 							<div class="col-md-6">
-								<img width="250px" src="<?=base_url('assets/login/images/sip3.png');?>" >
+								<img width="200px" src="<?=base_url('assets/user/images/login_app_logo.png');?>" >
 							</div>
 						</center>
 					</div>
@@ -77,7 +77,8 @@
 				<div class="row">
 					<div class="contact100-form-checkbox">
 							<i class="fa fa-address-book" aria-hidden="true" style="color: #fff;"></i>
-							<a href="register" class="txt1">Register</a>  <font color="#FFF">&nbsp;&nbsp;|&nbsp;&nbsp;</font> <a class="txt1" href="#" data-toggle="modal" data-target="#myModal">
+							<!-- <a href="register" class="txt1">Register</a>  <font color="#FFF">&nbsp;&nbsp;|&nbsp;&nbsp;</font>  -->
+							<a class="txt1" href="#" data-toggle="modal" data-target="#myModal">
 							Forgot Password?
 						</a>
 						</label>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Dashboard</title>
-  <link rel="icon" type="image/png" href="<?base_url('assets/images/menu_app_logo2.png');?>"/>
+  <link rel="icon" type="image/png" href="assets/user/images/menu_app_logo2.png')"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -129,9 +129,8 @@
     <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
-      <!-- logo for regular state and mobile devices -->
-     
-      <span><img width="60px" height="35px;" src="<?=base_url('assets/images/login_app_logo.png');?>" /></span>
+      <!-- logo for regular state and mobile devices -->     
+      <span><img width="60px" height="35px;" src="<?=base_url('assets/user/images/login_app_logo.png');?>" /></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
