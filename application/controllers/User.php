@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class User extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,6 +22,6 @@ class Dashboard extends CI_Controller {
 	{
 		$data['active1'] = 'active';
 		
-		$this->load->view('akses/admin/dashboard', $data);
+		$this->load->view('akses/user/dashboard', $data);
 	}
 }
