@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		$data['active1'] = 'active';
-		$this->load->view('User/dashboard', $data);
+		
+		$this->load->view('akses/user/dashboard', $data);
 	}
 }
