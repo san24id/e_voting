@@ -8,26 +8,26 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="assets/user/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="assets/user/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/admin/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="assets/user/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="assets/admin/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="assets/user/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="assets/admin/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="assets/user/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="assets/admin/dist/css/skins/_all-skins.min.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="assets/user/bower_components/morris.js/morris.css">
+  <link rel="stylesheet" href="assets/admin/bower_components/morris.js/morris.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="assets/user/bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="assets/admin/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="assets/user/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="assets/admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="assets/user/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="assets/admin/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="assets/user/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -130,7 +130,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->     
-      <span><img width="60px" height="35px;" src="<?=base_url('assets/user/images/login_app_logo.png');?>" /></span>
+      <span><img width="60px" height="35px;" src="<?=base_url('assets/admin/images/login_app_logo.png');?>" /></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -155,7 +155,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="assets/user/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -168,7 +168,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="assets/user/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="assets/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -180,7 +180,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="assets/user/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="assets/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -192,7 +192,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="assets/user/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="assets/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -204,7 +204,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="assets/user/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="assets/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -341,13 +341,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="assets/user/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="assets/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="assets/user/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -395,7 +395,7 @@
       <!-- Sidebar user panel -->
       <!-- <div class="user-panel">
         <div class="pull-left image">
-          <img src="assets/user/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="assets/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -580,10 +580,10 @@
           </ul>
         </li>
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        <li class="header">LABELS</li>
+        <!-- <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -707,7 +707,7 @@
             <div class="box-body chat" id="chat-box">
               <!-- chat item -->
               <div class="item">
-                <img src="assets/user/dist/img/user4-128x128.jpg" alt="user image" class="online">
+                <img src="assets/admin/dist/img/user4-128x128.jpg" alt="user image" class="online">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -734,7 +734,7 @@
               <!-- /.item -->
               <!-- chat item -->
               <div class="item">
-                <img src="assets/user/dist/img/user3-128x128.jpg" alt="user image" class="offline">
+                <img src="assets/admin/dist/img/user3-128x128.jpg" alt="user image" class="offline">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -749,7 +749,7 @@
               <!-- /.item -->
               <!-- chat item -->
               <div class="item">
-                <img src="assets/user/dist/img/user2-160x160.jpg" alt="user image" class="offline">
+                <img src="assets/admin/dist/img/user2-160x160.jpg" alt="user image" class="offline">
 
                 <p class="message">
                   <a href="#" class="name">

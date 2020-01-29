@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 	// function __construct(){
 	// 	parent::__construct();		
 	// 	$this->load->model('Login_model');
-	// 	$this->load->model('User_model');
+	// 	$this->load->model('Home_model');
  
 	// }
 
@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 
 //                 if($status == 1){
 //                     if($status1 != 1){
-//                         redirect('User');
+//                         redirect('Home');
 //                     }else{
 //                         echo $this->session->set_flashdata('msg','block');
 //                         redirect($url);
@@ -167,7 +167,7 @@ class Login extends CI_Controller {
 
 //             $this->Login_model->update_status($_POST['username']);
             
-//             redirect('User');
+//             redirect('Home');
 
 //         }else{  // jika username dan password tidak ditemukan atau salah
 //                             echo $this->session->set_flashdata('msg','invalid');
