@@ -6,7 +6,7 @@
 	<base href="<?php echo base_url() ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="assets/user/images/menu_app_logo2.png"/>
+	<link rel="icon" type="image/png" href="assets/login/images/menu_app_logo2.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -53,7 +53,7 @@
 					<div class="row">
 						<center>
 							<div class="col-md-6">
-								<img width="200px" src="<?=base_url('assets/user/images/login_app_logo.png');?>" >
+								<img width="250px" src="<?=base_url('assets/login/images/menu_app_logo2.png');?>" >
 							</div>
 						</center>
 					</div>

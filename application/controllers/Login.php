@@ -32,10 +32,10 @@ class Login extends CI_Controller {
 		$this->load->view('login/login');
 	}
 
-// 	public function loginadm()
-// 	{
-// 		$this->load->view('login/login_adm');
-// 	}
+	public function loginadm()
+	{
+		$this->load->view('login/login_adm');
+	}
 
 
 // 	public function auth(){

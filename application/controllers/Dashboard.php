@@ -21,7 +21,8 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		$data['active1'] = 'active';
-		
-		$this->load->view('akses/admin/dashboard', $data);
+
+		$this->load->view('akses/admin/header_portal', $data);
+		$this->load->view('akses/admin/dashboard_admin', $data);
 	}
 }
