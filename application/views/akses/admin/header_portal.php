@@ -122,7 +122,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="Admin" class="logo">
+    <a href="Dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->
@@ -208,8 +208,8 @@
       <ul class="sidebar-menu">        
         <?php 
          // if($this->session->userdata("role") == 2){ ?>
-               <li class=""><a href="dashboard"><i class="glyphicon glyphicon-blackboard"></i><span>Dashboard</span></a></li>
-               <li class=""><a href=""><i class="glyphicon glyphicon-hdd"></i><span>Data Pengajuan</span></a></li>
+               <li class="<?php echo $active1?>"><a href="dashboard"><i class="glyphicon glyphicon-blackboard"></i><span>Dashboard</span></a></li>
+               <li class="<?php echo $active2?>"><a href="dashboard/payment"><i class="glyphicon glyphicon-hdd"></i><span>Data Pengajuan</span></a></li>
                <li class="header">Konten</li>
                <!-- <li class=""><a href=""><i class="glyphicon glyphicon-folder-open"></i><span>High</span></a></li>
                <li class=""><a href=""><i class="glyphicon glyphicon-folder-open"></i><span>Medium</span></a></li>

@@ -21,8 +21,25 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		$data['active1'] = 'active';
+		$data['active2'] = '';
 
 		$this->load->view('akses/admin/header_portal', $data);
 		$this->load->view('akses/admin/dashboard_admin', $data);
+	}
+
+	public function payment()
+	{
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		
+
+		// $data['profil'] = $this->Dashboard_model->getProfilProjek($_GET['filter_status']);
+		// $data['user'] = $this->Dashboard_model->getuser();
+		// $data['adminpii'] = $this->Dashboard_model->getadminpii();
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->get_t_status_projek();
+
+		$this->load->view('akses/admin/header_portal', $data);
+        $this->load->view('akses/admin/payment', $data);
 	}
 }
