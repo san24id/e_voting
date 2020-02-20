@@ -26,6 +26,26 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
 	}
+	
+	public function form_add()
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
+
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['kementerian'] = $this->Home_model->getKementerian();
+		// $data['lpnk'] = $this->Home_model->getNonKementrian();
+		// $data['provinsi'] = $this->Home_model->getProvinsi();
+		// $data['kota'] = $this->Home_model->getKota();	
+		// $data['kabupaten'] = $this->Home_model->getKabupaten();	
+		// $data['assesment'] = $this->Home_model->assesment();
+		// $data['cn_assesment'] = $this->Home_model->cn_assesment();
+		// $data['noass'] = $this->Home_model->getno();
+
+		$this->load->view('akses/user/header_user', $data);	
+        $this->load->view('akses/user/form_pengajuan', $data);
+	}
 
 	public function myprofile()
 	{

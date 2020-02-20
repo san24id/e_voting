@@ -61,7 +61,7 @@ function acakangka($panjang)
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">Buat Akun Baru</h2>
+                    <h2 class="title">Create New Account</h2>
                     
                    <?php if (validation_errors()) { ?>
                     <div style="background: orange; color: white; padding: 5px; padding-left: 25px; padding-top: 15px; margin-bottom: 15px;">

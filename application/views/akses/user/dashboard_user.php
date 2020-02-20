@@ -1,10 +1,9 @@
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Pengajuan Projek
+        Data Pengajuan Payment
         <small> <a href="Home/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;New Data Entry</button></a></small>
       </h1>
     </section>

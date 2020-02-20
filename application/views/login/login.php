@@ -62,8 +62,7 @@
 						Log in
 					</span>
 
-					<div class="row">
-
+				<div class="row">
 					<div class="wrap-input100 validate-input col-md-6" data-validate = "Enter username">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
