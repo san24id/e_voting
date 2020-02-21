@@ -9,7 +9,7 @@
         </section>
         <!-- Main content -->
         <form id="form" method="post" action="Home/action_addprofil">
-<!--           <input type="hidden" name="next" value="draft" id="subaction"> -->
+
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -20,7 +20,7 @@
                   </div>  
                   
                     <div class="box-body">
-                        <div class="form-row">
+                      <div class="form-row">
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>
                              <input type="text" class="form-control" placeholder="dd/mm/yyyy" readonly>
@@ -45,6 +45,7 @@
                             <label for="inputPassword4">Jabatan</label>
                             <input type="text" class="form-control" id="inputPassword4" placeholder="Jabatan" readonly>
                         </div>
+                      </div>
                     </div>
                 </div>    
 
@@ -57,32 +58,32 @@
                     <div class="form-group">
                         <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>
                         <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Enter Text" >
+                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>
                         <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Enter Text" >
+                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>
                         <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Enter Text" >
+                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label>
                         <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Enter Text" >
+                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor5"></i></label>
                         <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Enter Text" >
+                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor6"></i></label>
                         <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Enter Text" >
+                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
                     </div>
                   </div>                  
                 </div>
@@ -115,35 +116,36 @@
                     </div>
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
                     <button type="submit" class="btn btn-primary">Save</button>
-                </div>  
-
-                
-             </div>                       
+                  </div>
+                </div>                  
+              </div>                       
             </div>
+          </section>  
 
-            </form>
+        </form>
         <!-- /.content -->
       </div>
 
     <!-- jQuery 2.2.3 -->
-    <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
-    <script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
     <!-- DataTables -->
-    <script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <!-- SlimScroll -->
-    <script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
-    <script src="assets/dashboard/plugins/fastclick/fastclick.js"></script>
+<script src="assets/dashboard/plugins/fastclick/fastclick.js"></script>
     <!-- AdminLTE App -->
-    <script src="assets/dashboard/dist/js/app.min.js"></script>
+<script src="assets/dashboard/dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="assets/dashboard/dist/js/demo.js"></script>
-    <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
+<script src="assets/dashboard/dist/js/demo.js"></script>
+<script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
     <!-- Select2 -->
-    <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>      
+<script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>      
+
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">
