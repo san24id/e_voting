@@ -1,5 +1,3 @@
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -24,8 +22,8 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>1. Nomor Registrasi</label>
-                  <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>">
-                  <input type="text" class="form-control" name="nomor_user" value="<?php echo $row->nomor_user; ?>" readonly>
+                  <input type="hidden" name="id_user" value="">
+                  <input type="text" class="form-control" name="nomor_user" value="" readonly>
                 </div>
                 <div class="form-group">
                   <label>2. NIK</label>

@@ -155,7 +155,9 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/dashboard/dist/img/avatar5.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $this->session->userdata("nama_user"); ?></span>
+              <span class="hidden-xs">
+              <!-- <?php echo $this->session->userdata("nama_user"); ?> -->
+              </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -163,7 +165,7 @@
                 <img src="assets/dashboard/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                   <?php echo $this->session->userdata("nama_user"); ?>
+                   <!-- <?php echo $this->session->userdata("nama_user"); ?> -->
                 </p>
               </li>
               <!-- Menu Body -->
@@ -183,9 +185,9 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <!-- <div class="pull-left">
                   <a href="Home/myprofile" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                </div> -->
                 <div class="pull-right">
                   <a href="login/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
@@ -212,7 +214,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="<?php echo $active1?>"><a href="Home"><i class="glyphicon glyphicon-inbox"></i><span>Data Pengajuan</a></span></li>
-        <li class="<?php echo $active2?>"><a href="Home/myprofile"><i class="glyphicon glyphicon-user"></i><span>Profile</a></span></li>
+        <!-- <li class="<?php echo $active2?>"><a href="Home/myprofile"><i class="glyphicon glyphicon-user"></i><span>Profile</a></span></li> -->
       </ul>
     </section>
     <!-- /.sidebar -->
