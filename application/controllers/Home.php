@@ -47,6 +47,26 @@ class Home extends CI_Controller {
         $this->load->view('akses/user/form_pengajuan', $data);
 	}
 
+	public function formfinished()
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$this->load->view('akses/user/header_user', $data);	
+       	$this->load->view('akses/user/form_finished', $data);
+
+		// if($this->Home_model->getIdProfilProjekUser($idp, $sid) == TRUE){
+			
+		// 	$this->load->view('akses/user/header_user', $data);	
+       	// 	$this->load->view('akses/user/form_finished', $data);
+
+		// }else{
+		// 	redirect('Home');
+		// }
+	}
+
 	public function myprofile()
 	{
 		$data['active1'] = '';
