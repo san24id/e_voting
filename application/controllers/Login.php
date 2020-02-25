@@ -20,15 +20,15 @@ class Login extends CI_Controller {
 	 */
 
 
-	// function __construct(){
-	// 	parent::__construct();		
-	// 	$this->load->model('Login_model');
-	// 	$this->load->model('Home_model');
+	function __construct(){
+		parent::__construct();		
+		$this->load->model('Login_model');
+		$this->load->model('Home_model');
  
-	// }
+	}
 
 	public function index()
-	{
+	{		
 		$this->load->view('login/login');
 	}
 
@@ -38,45 +38,45 @@ class Login extends CI_Controller {
 	}
 
 
-// 	public function auth(){
-//         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
-//         $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
+	public function auth(){
+        $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
+        $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
  
-//         $cek_login=$this->Login_model->auth_user($username,$password);
+        $cek_login=$this->Login_model->auth_user($username,$password);
 
-//         session_start();
+        session_start();
  
-//        if($cek_login->num_rows() > 0){
-//                foreach ($cek_login->result() as $row) {
-//                		$sess_data['id_user'] = $row->id_user;
-//                		$sess_data['nomor_user'] = $row->nomor_user;
-//                		$sess_data['nama_user'] = $row->nama_user;
-//                     $sess_data['status'] = $row->status;
-//                     $status = $row->status;
-//                     $status1 = $row->status_1;
-// 					$this->session->set_userdata($sess_data);
-// 				}
+       if($cek_login->num_rows() > 0){
+               foreach ($cek_login->result() as $row) {
+               		$sess_data['id_user'] = $row->id_user;
+               		// $sess_data['nomor_user'] = $row->nomor_user;
+               		$sess_data['nama_user'] = $row->nama_user;
+                    $sess_data['status'] = $row->status;
+                    $status = $row->status;
+                    $status1 = $row->status_1;
+					$this->session->set_userdata($sess_data);
+				}
 
-//                 if($status == 1){
-//                     if($status1 != 1){
-//                         redirect('Home');
-//                     }else{
-//                         echo $this->session->set_flashdata('msg','block');
-//                         redirect($url);
-//                     }
-//                 }else{
-//                             $url=base_url();
-//                             echo $this->session->set_flashdata('msg','status_0');
-//                             redirect($url);
-//                 }
+                if($status == 1){
+                    if($status1 != 1){
+                        redirect('Home');
+                    }else{
+                        echo $this->session->set_flashdata('msg','block');
+                        redirect($url);
+                    }
+                }else{
+                            $url=base_url();
+                            echo $this->session->set_flashdata('msg','status_0');
+                            redirect($url);
+                }
 
-//         }else{  // jika username dan password tidak ditemukan atau salah
-//                             $url=base_url();
-//                             echo $this->session->set_flashdata('msg','invalid');
-//                             redirect($url);
-//             }
+        }else{  // jika username dan password tidak ditemukan atau salah
+                            $url=base_url();
+                            echo $this->session->set_flashdata('msg','invalid');
+                            redirect($url);
+            }
  
-//     }
+    }
 
 
 //     public function authadm(){
@@ -144,39 +144,39 @@ class Login extends CI_Controller {
 
 
 
-//     public function loginconfirm()
-//     {
-//         $this->load->view('login/login_confirm');
-//     }
+    public function loginconfirm()
+    {
+        $this->load->view('login/login_confirm');
+    }
 
-//     function auth_confirm(){
-//         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
-//         $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
+    function auth_confirm(){
+        $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
+        $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
  
-//         $cek_login=$this->Login_model->auth_user($username,$password);
+        $cek_login=$this->Login_model->auth_user($username,$password);
 
-//         session_start();
+        session_start();
  
-//        if($cek_login->num_rows() > 0){
-//                foreach ($cek_login->result() as $row) {
-//                     $sess_data['id_user'] = $row->id_user;
-//                     $sess_data['nomor_user'] = $row->nomor_user;
-//                     $sess_data['nama_user'] = $row->nama_user;
-//                     $this->session->set_userdata($sess_data);
-//                 }
+       if($cek_login->num_rows() > 0){
+               foreach ($cek_login->result() as $row) {
+                    $sess_data['id_user'] = $row->id_user;
+                    // $sess_data['nomor_user'] = $row->nomor_user;
+                    $sess_data['nama_user'] = $row->nama_user;
+                    $this->session->set_userdata($sess_data);
+                }
 
-//             $this->Login_model->update_status($_POST['username']);
+            $this->Login_model->update_status($_POST['username']);
             
-//             redirect('Home');
+            redirect('Home');
 
-//         }else{  // jika username dan password tidak ditemukan atau salah
-//                             echo $this->session->set_flashdata('msg','invalid');
-//                             redirect('Login/loginconfirm');
-//                     }
+        }else{  // jika username dan password tidak ditemukan atau salah
+                            echo $this->session->set_flashdata('msg','invalid');
+                            redirect('Login/loginconfirm');
+                    }
 
 
  
-//     }
+    }
 
 
 //     public function fpasword(){
@@ -263,11 +263,11 @@ class Login extends CI_Controller {
 //     }
 
 
-//     public function logout(){
-//         $this->session->sess_destroy();
-//         $url=base_url('');
-//         redirect($url);
-//     }
+    public function logout(){
+        $this->session->sess_destroy();
+        $url=base_url('');
+        redirect($url);
+    }
 
 //     public function logoutadm(){
 //         $this->session->sess_destroy();

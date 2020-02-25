@@ -162,9 +162,9 @@
                             <br>Jabatan
                         </div>  
                   </div>
-                  
+                    <hr style=" border: 1px solid #000;">
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Print</button>  
+                    <button class="btn btn-primary" onclick="printThis()">Print</button>
                   
                 </div>
 
@@ -215,6 +215,11 @@
 </div>
 <!-- ./wrapper -->
 
+<script>
+function printThis() {
+  window.print();
+}
+</script>
     <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
