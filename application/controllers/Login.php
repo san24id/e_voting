@@ -49,9 +49,12 @@ class Login extends CI_Controller {
        if($cek_login->num_rows() > 0){
                foreach ($cek_login->result() as $row) {
                		$sess_data['id_user'] = $row->id_user;
-               		// $sess_data['nomor_user'] = $row->nomor_user;
+                    // $sess_data['nomor_user'] = $row->nomor_user;
+                    $sess_data['jabatan'] = $row->jabatan;
+                    $sess_data['divisi'] = $row->divisi;                       
                		$sess_data['nama_user'] = $row->nama_user;
                     $sess_data['status'] = $row->status;
+                    
                     $status = $row->status;
                     $status1 = $row->status_1;
 					$this->session->set_userdata($sess_data);
@@ -162,6 +165,8 @@ class Login extends CI_Controller {
                     $sess_data['id_user'] = $row->id_user;
                     // $sess_data['nomor_user'] = $row->nomor_user;
                     $sess_data['nama_user'] = $row->nama_user;
+                    $sess_data['jabatan'] = $row->jabatan;
+                    $sess_data['divisi'] = $row->divisi;
                     $this->session->set_userdata($sess_data);
                 }
 

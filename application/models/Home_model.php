@@ -9,8 +9,7 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    var $table ="t_payment";
-
+    var $table ="t_payment";  
     public function buat_kode()  {
         
 
@@ -29,7 +28,7 @@ class Home_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-        $kodejadi = "ODJ-9921-".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+        $kodejadi = "SP3/PII/Payment/".$kodemax;    // hasilnya ODJ-9921-0001 dst.
         return $kodejadi;  
   }
 

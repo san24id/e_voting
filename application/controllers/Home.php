@@ -72,13 +72,7 @@ class Home extends CI_Controller {
 		$data['active1'] = 'active';
 		$data['active2'] = '';
 		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
-
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['kementerian'] = $this->Home_model->getKementerian();
-		// $data['lpnk'] = $this->Home_model->getNonKementrian();
-		// $data['provinsi'] = $this->Home_model->getProvinsi();
-		// $data['kota'] = $this->Home_model->getKota();	
-		// $data['kabupaten'] = $this->Home_model->getKabupaten();	
+		
 		$data['payment'] = $this->Home_model->payment();
 		$data['surat'] = $this->Home_model->buat_kode();
 		// $data['cn_assesment'] = $this->Home_model->cn_assesment();

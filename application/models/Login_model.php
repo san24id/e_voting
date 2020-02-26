@@ -17,31 +17,31 @@ class Login_model extends CI_Model{
         return $query;
     }
 
-    function insert_regist($regist){
+    // function insert_regist($regist){
 
-        $nik =addslashes($regist['nik']);
-        $foto =addslashes($regist['foto']);
-        $nama_user =addslashes($regist['nama_user']);
-        $instansi = addslashes($regist['instansi']);
-        $jabatan = addslashes($regist['jabatan']);
-        $email = addslashes($regist['email']);
-        $telepon = addslashes($regist['telepon']);
-        $username = addslashes($regist['username']);
-        $password = addslashes($regist['password']);
-
-
-        $sql = $this->db->query("INSERT INTO `t_user`(`nomor_user`, `nik`, `foto`, `nama_user`, `instansi`, `jabatan`, `email`, `telepon`, `username`, `password`, `log_create`, `log_update`) VALUES ( '$nomor_user', '$nik', '$foto', '$nama_user','$instansi','$jabatan','$email','$telepon','$username',md5('$password'),NOW(), NOW())");
+    //     $nik =addslashes($regist['nik']);
+    //     $foto =addslashes($regist['foto']);
+    //     $nama_user =addslashes($regist['nama_user']);
+    //     $instansi = addslashes($regist['instansi']);
+    //     $jabatan = addslashes($regist['jabatan']);
+    //     $email = addslashes($regist['email']);
+    //     $telepon = addslashes($regist['telepon']);
+    //     $username = addslashes($regist['username']);
+    //     $password = addslashes($regist['password']);
 
 
-        $nomor_user = 'SIP'.date('dmY').$this->db->insert_id();
+    //     $sql = $this->db->query("INSERT INTO `t_user`(`nomor_user`, `nik`, `foto`, `nama_user`, `instansi`, `jabatan`, `email`, `telepon`, `username`, `password`, `log_create`, `log_update`) VALUES ( '$nomor_user', '$nik', '$foto', '$nama_user','$instansi','$jabatan','$email','$telepon','$username',md5('$password'),NOW(), NOW())");
+
+
+    //     $nomor_user = 'SIP'.date('dmY').$this->db->insert_id();
         
-        $rid = $this->db->insert_id();
+    //     $rid = $this->db->insert_id();
 
-        $sql = $this->db->query("UPDATE t_user SET nomor_user = '$nomor_user' WHERE id_user = '$rid'");
+    //     $sql = $this->db->query("UPDATE t_user SET nomor_user = '$nomor_user' WHERE id_user = '$rid'");
 
-        return $sql;
+    //     return $sql;
 
-    }
+    // }
 
 
     function update_status($user){
