@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nomor Surat</label>
-                            <input type="text" class="form-control" placeholder="Nomor Surat" readonly>
+                            <input type="text" name="nomor_surat" class="form-control" value="<?= $surat; ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Jabatan</label>

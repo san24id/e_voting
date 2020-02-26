@@ -50,6 +50,7 @@ class Home extends CI_Controller {
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		// $data['sektor'] = $this->Home_model->getSektor();
 		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
@@ -79,6 +80,7 @@ class Home extends CI_Controller {
 		// $data['kota'] = $this->Home_model->getKota();	
 		// $data['kabupaten'] = $this->Home_model->getKabupaten();	
 		$data['payment'] = $this->Home_model->payment();
+		$data['surat'] = $this->Home_model->buat_kode();
 		// $data['cn_assesment'] = $this->Home_model->cn_assesment();
 		// $data['noass'] = $this->Home_model->getno();
 
