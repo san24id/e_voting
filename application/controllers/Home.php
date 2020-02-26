@@ -120,6 +120,9 @@ class Home extends CI_Controller {
 
 		$sid = $this->session->userdata("id_user");
 
+		$data['payment'] = $this->Home_model->payment();
+		$data['surat'] = $this->Home_model->buat_kode();
+
 		$this->load->view('akses/user/header_user', $data);	
        	$this->load->view('akses/user/form_finished', $data);
 

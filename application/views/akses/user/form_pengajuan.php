@@ -39,14 +39,12 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Divisi</label>
-                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata("divisi"); ?>" placeholder="Divisi" readonly>
-                            
+                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata("divisi") ?>" placeholder="Divisi" readonly>                            
                         </div>
                         <div class="form-group col-md-6">
                             <label>Jabatan</label>
                             <input type="text" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>" placeholder="Jabatan" readonly>
-                        </div>
-                      
+                        </div>                      
                     </div>
                 </div>    
 

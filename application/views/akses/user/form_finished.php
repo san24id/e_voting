@@ -40,29 +40,29 @@
                   
                     <div class="box-body">
                       <div class="form-row">
-                        <div class="form-group col-md-6">
+                      <div class="form-group col-md-6">
                              <label>Tanggal</label>
-                             <input type="text" class="form-control" placeholder="dd/mm/yyyy" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Divisi</label>
-                            <input type="text" class="form-control" placeholder="Divisi" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Hari</label>
-                            <input type="text" class="form-control" placeholder="Hari" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Nama Pemohon</label>
-                            <input type="text" class="form-control" placeholder="Pemohon" readonly>
+                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("d-m-Y"); ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nomor Surat</label>
-                            <input type="text" class="form-control" placeholder="Nomor Surat" readonly>
+                            <input type="text" name="nomor_surat" class="form-control" value="<?= $surat; ?>" readonly>                            
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Hari</label>
+                            <input type="text" class="form-control" value="<?php echo date("l");?>" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Nama Pemohon</label>
+                            <input type="text" name="nama_user" class="form-control" value="<?php echo $this->session->userdata('nama_user') ?>" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Divisi</label>
+                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata("divisi") ?>" placeholder="Divisi" readonly>                            
                         </div>
                         <div class="form-group col-md-6">
                             <label>Jabatan</label>
-                            <input type="text" class="form-control" placeholder="Jabatan" readonly>
+                            <input type="text" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>" placeholder="Jabatan" readonly>
                         </div>
                       
                     </div>
@@ -149,8 +149,8 @@
                             <br>
                             <br>
                             <br>
-                            <br>Nama Pemohon
-                            <br>Jabatan
+                            <br><?php echo $this->session->userdata('nama_user') ?>
+                            <br><?php echo $this->session->userdata('jabatan') ?>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Approval</label>
