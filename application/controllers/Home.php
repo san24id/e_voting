@@ -18,15 +18,54 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct(){
+		parent::__construct();
+        
+        $this->load->model('Home_model');
+        // $this->load->model('Dashboard_model');
+
+        $sid = $this->session->userdata("id_user");
+
+        $this->load->library('session');
+ 		
+ 		if ($this->session->userdata('id_user')) {
+
+
+		}else{
+
+        	$this->session->sess_destroy();
+			redirect('login', 'refresh');
+		}
+
+	}
+
 	public function index()
 	{
+		$sid = $this->session->userdata("id_user");
+
 		$data['active1'] = 'active';
 		$data['active2'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
 	}
 	
+	public function submitted()
+	{
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+		$data['active4'] = '';
+		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
+		$this->load->view('akses/user/header_user');	
+        $this->load->view('akses/user/submitted_user', $data);
+	}
+
 	public function form_add()
 	{
 		$data['active1'] = 'active';
@@ -39,7 +78,7 @@ class Home extends CI_Controller {
 		// $data['provinsi'] = $this->Home_model->getProvinsi();
 		// $data['kota'] = $this->Home_model->getKota();	
 		// $data['kabupaten'] = $this->Home_model->getKabupaten();	
-		// $data['assesment'] = $this->Home_model->assesment();
+		$data['payment'] = $this->Home_model->payment();
 		// $data['cn_assesment'] = $this->Home_model->cn_assesment();
 		// $data['noass'] = $this->Home_model->getno();
 
@@ -47,12 +86,43 @@ class Home extends CI_Controller {
         $this->load->view('akses/user/form_pengajuan', $data);
 	}
 
+	public function form_edit($idp)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		
+		$sid = $this->session->userdata("id_user");
+
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['kementerian'] = $this->Home_model->getKementerian();
+		// $data['lpnk'] = $this->Home_model->getNonKementrian();
+		// $data['provinsi'] = $this->Home_model->getProvinsi();
+		// $data['kota'] = $this->Home_model->getKota();	
+		// $data['kabupaten'] = $this->Home_model->getKabupaten();	
+		// $data['kotakabu'] = $this->Home_model->getKotaKabu();
+		// $data['assesment'] = $this->Home_model->assesment();
+		// $data['cn_assesment'] = $this->Home_model->cn_assesment();	
+		// $data['profil'] = $this->Home_model->getIdProfilProjek($idp);
+		// $data['profilus'] = $this->Home_model->getIdProfilProjekUser($idp, $sid);
+		// $data['skor'] = $this->Home_model->getskor($idp);
+		// $data['noass'] = $this->Home_model->gett($idp);
+
+		// if($this->Home_model->getIdProfilProjekUser($idp, $sid) == TRUE){
+			
+		// 	$this->load->view('akses/user/header_user', $data);	
+        // 	$this->load->view('akses/user/form_pengajuan_edit', $data);
+
+		// }else{
+		// 	redirect('Home');
+		// }	
+	}
+
 	public function formfinished()
 	{
 		$data['active1'] = 'active';
 		$data['active2'] = '';
 
-		// $sid = $this->session->userdata("id_user");
+		$sid = $this->session->userdata("id_user");
 
 		$this->load->view('akses/user/header_user', $data);	
        	$this->load->view('akses/user/form_finished', $data);

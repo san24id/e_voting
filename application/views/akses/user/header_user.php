@@ -156,7 +156,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/dashboard/dist/img/avatar5.png" class="user-image" alt="User Image">
               <span class="hidden-xs">
-              <!-- <?php echo $this->session->userdata("nama_user"); ?> -->
+              <?php echo $this->session->userdata("nama_user"); ?>
               </span>
             </a>
             <ul class="dropdown-menu">
@@ -165,7 +165,7 @@
                 <img src="assets/dashboard/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                   <!-- <?php echo $this->session->userdata("nama_user"); ?> -->
+                   <?php echo $this->session->userdata("nama_user"); ?>
                 </p>
               </li>
               <!-- Menu Body -->

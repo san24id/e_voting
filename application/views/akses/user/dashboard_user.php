@@ -40,13 +40,13 @@
                 <tr>
                   <th>NO.</th>
                   <th>Status</th>
-                  <th>Penanggung Jawab</th>
-                  <th>Kategori</th>
-                  <th>Sektor</th>
-                  <th>Nama Proyek</th>
-                  <th>Lokasi</th>
-                  <th>Estimasi Nilai</th>
-                  <th>Log Update</th>
+                  <th>Nomor Surat</th>
+                  <th>Divisi</th>
+                  <th>Jabatan</th>
+                  <th>Nama Penerima</th>
+                  <th>Bank Account</th>
+                  <th>Estimasi Pembayaran</th>
+                  <!-- <th>Log Update</th> -->
                   <th>Action</th>
                 </tr>
                 </thead>

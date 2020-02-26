@@ -2,12 +2,12 @@
 error_reporting(0);
 class Home_model extends CI_Model{   
 
-    // public function assesment() {
-    //     $sql = "SELECT * FROM `t_assessment`";
+    public function payment() {
+        $sql = "SELECT * FROM `t_payment`";
                 
-    //     $query = $this->db->query($sql)->result();
-    //     return $query;
-    // }
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
 
     // public function cn_assesment() {
     //     $sql = "SELECT * FROM `t_assessment`";
