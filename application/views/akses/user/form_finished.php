@@ -111,30 +111,26 @@
                   <div class="box-header with-border">
                     <h3 class="box-title">Data Penerima Pembayaran</h3>
                   </div>
-
                   <div class="box-body">  
-                    <div class="form-group">
-                        <label>Nama Penerima :</label>
-                        <select name="bank" class="form-control" readonly>
+                  <div class="form-group">
+                        <label>Bank Account</label>
+                        <select name="akun_bank" class="form-control">
                             <option value="1">Choose</option>
-                            <option value="2">BCA</option>
-                            <option value="3">Mandiri</option>
-                            <option value="4">BNI</option>
-                            <option value="5">BRI</option>
+                            <option value="BCA">BCA</option>
+                            <option value="Mandiri">Mandiri</option>
+                            <option value="BNI">BNI</option>
+                            <option value="BRI">BRI</option>
                             <option value="6">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Bank Account</label>
-                        <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Auto" readonly>
+                        <label>Nama Penerima:</label>
+                        <input type="text" class="form-control" name="penerima" placeholder="Auto" readonly>
                     </div>
                     <div class="form-group">
                         <label>No. Rekening</label>
-                        <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Auto" readonly>
-                    </div>             
-                </div>                  
+                        <input type="text" class="form-control" name="no_rekening" value="" placeholder="Auto" readonly>
+                    </div>                  
 
                 <div class="box">
                   <div class="box-header with-border">
