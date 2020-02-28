@@ -8,8 +8,7 @@
           </h1>
         </section>
         <!-- Main content -->
-        <form id="form" method="post" action="Home/action_addppayment">
-
+        <form id="form" method="post" action="Home/addpayment">
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -23,7 +22,7 @@
                       <div class="form-row">
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>
-                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("d-m-Y"); ?>" readonly>
+                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("Y-m-d", strtotime($row->tanggal)); ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nomor Surat</label>
@@ -31,7 +30,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Hari</label>
-                            <input type="text" class="form-control" value="<?php echo date("l");?>" readonly>
+                            <input type="text" name="hari" class="form-control" value="<?php echo date("l");?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nama Pemohon</label>
@@ -39,11 +38,11 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Divisi</label>
-                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata("divisi") ?>" placeholder="Divisi" readonly>                            
+                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata('divisi') ?>" readonly>                            
                         </div>
                         <div class="form-group col-md-6">
                             <label>Jabatan</label>
-                            <input type="text" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>" placeholder="Jabatan" readonly>
+                            <input type="text" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>" readonly>
                         </div>                      
                     </div>
                 </div>    
@@ -55,34 +54,28 @@
 
                   <div class="box-body">
                     <div class="form-group">
-                        <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
+                        <label>Label 1: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>                        
+                        <textarea type="text" class="form-control" name="label1" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
+                        <label>Label 2: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>                        
+                        <textarea type="text" class="form-control" name="label2" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
+                        <label>Label 3: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
+                        <textarea type="text" class="form-control" name="label3" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
+                        <label>Label 4: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label>                        
+                        <textarea type="text" class="form-control" name="label4" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor5"></i></label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
+                        <label>Label 5: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor5"></i></label>                        
+                        <textarea type="text" class="form-control" name="label5" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor6"></i></label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text"></textarea>
+                        <label>Label 6: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor6"></i></label>                        
+                        <textarea type="text" class="form-control" name="label6" placeholder="Enter Text"></textarea>
                     </div>
                                     
                 </div>
@@ -91,34 +84,32 @@
                   <div class="box-header with-border">
                     <h3 class="box-title">Data Penerima Pembayaran</h3>
                   </div>
-
                   <div class="box-body">  
-                    <div class="form-group">
-                        <label>Nama Penerima :</label>
-                        <select name="bank" class="form-control">
+                  <div class="form-group">
+                        <label>Bank Account</label>
+                        <select name="akun_bank" class="form-control">
                             <option value="1">Choose</option>
-                            <option value="2">BCA</option>
-                            <option value="3">Mandiri</option>
-                            <option value="4">BNI</option>
-                            <option value="5">BRI</option>
+                            <option value="BCA">BCA</option>
+                            <option value="Mandiri">Mandiri</option>
+                            <option value="BNI">BNI</option>
+                            <option value="BRI">BRI</option>
                             <option value="6">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Bank Account</label>
-                        <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Auto" readonly>
+                        <label>Nama Penerima:</label>
+                        <input type="text" class="form-control" name="penerima" placeholder="Auto">
                     </div>
                     <div class="form-group">
                         <label>No. Rekening</label>
-                        <input type="hidden" name="" value="">
-                        <input type="text" class="form-control" name="" value="" placeholder="Auto" readonly>
+                        <input type="text" class="form-control" name="no_rekening" value="" placeholder="Auto">
                     </div>
+
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
                     <button type="submit" class="btn btn-primary">Save</button>
+                    
                   </div>
-                </div>                  
-                                   
+                </div>                                                 
             </div>
           </section>  
 

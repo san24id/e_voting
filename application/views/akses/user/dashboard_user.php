@@ -8,7 +8,6 @@
       </h1>
     </section>
 
-    <!-- Main content -->
     <section class="content">
       <!-- Info boxes -->
       <div class="row">
@@ -19,72 +18,43 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="table-responsive">
-                <div style="float: right;">
-                  <select id="filter_status" class="form-control">
-                    <option value="0">All</option>
-                    <?php 
-                      foreach ($statusinf as $key => $value)
-                      {
-                    ?>
-                    <option value="<?php echo $value->id; ?>" 
-                      <?php echo ($_GET['filter_status'] == $value->id) ? 'selected' : ''; ?>
-                      ><?php echo $value->status_user; ?></option>
-                    <?php
-                      }
-                    ?>
-                  </select>
-                </div>
-
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Status</th>
+                  <th>Tanggal</th>
                   <th>Nomor Surat</th>
                   <th>Divisi</th>
                   <th>Jabatan</th>
-                  <th>Nama Penerima</th>
                   <th>Bank Account</th>
-                  <th>Estimasi Pembayaran</th>
-                  <!-- <th>Log Update</th> -->
+                  <th>Nama Penerima</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  <!-- <?php 
+                  <?php 
                     $i = 1;
-                    foreach ($profil as $row){
-                   ?> -->
+                    foreach ($payment as $row){
+                   ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>
-                  <td>  
-                        <?php 
-                          if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
-                          }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
-                          }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/verified.png'>";
-                          }
-                        ?> 
-                  </td>
-                  <td><?php echo $row->nama_pj; ?></td>
-                  <td><?php echo $row->nama_kategori; ?></td>
-                  <td><?php echo $row->nama_sektor; ?></td>
-                  <td><?php echo $row->nama_projek; ?></td>
-                  <td><?php echo $row->lokasi ?></td>
-                  <td><?php echo $row->estimasi; ?></td>
-                  <td><?php echo date("d-m-Y H:i:s", strtotime($row->log_update)); ?></td>
+                  <td><?php echo $i++; ?></td>                  
+                  <td><?php echo date("d-m-Y", strtotime($row->tanggal)); ?></td>
+                  <td><?php echo $row->nomor_surat; ?></td>
+                  <td><?php echo $row->divisi; ?></td>
+                  <td><?php echo $row->jabatan; ?></td>
+                  <td><?php echo $row->akun_bank; ?></td>
+                  <td><?php echo $row->penerima; ?></td>
                   <td>
                     <?php if($row->status == 1){ ?>
                             <a href="Home/form_edit/<?php echo $row->id_projek; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
                     <?php }else if($row->status == 2){ ?>
                             <a href="Home/nextinclomplete2/<?php echo $row->id_projek; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
                     <?php }else { ?>
-                            <a href="Home/formfinished/<?php echo $row->id_projek; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                            <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     <?php } ?>
                   </td>
-                </tr>
+      
+                  </tr>
               <?php  } ?>
               </tbody>
               </table>
@@ -95,8 +65,8 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->
-      </div>
-
+      </div>  
+    
       <div class="row">
         <div class="col-xs-12 col-md-4">
           <!-- /.box -->
@@ -201,8 +171,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dashboard/dist/js/demo.js"></script>
 
-<!-- <script>
-  $(function () {
+<script>
+$(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
       "paging": true,
@@ -213,54 +183,6 @@
       "autoWidth": false
     });
   });
-
-
-    function view_daily($id)
-    {
-
-
-        $.ajax({
-         type : 'post',
-         url : 'Report/getreport/'+$id,
-        success: function(data)
-        {
-            $('.fetched-data').html(data);//menampilkan data ke dalam modal
-            $('#modal_view').modal('show'); // show bootstrap modal when complete loaded
-
-        }
-      });
-    }
-
-    function delete_daily($id)
-    {
-      if(confirm('Are you sure delete this data?'))
-      {
-        // ajax delete data from database
-          $.ajax({
-            url : "<?php echo site_url('dashboard/remove_daily')?>/"+ $id,
-            type: "POST",
-            dataType: "JSON",
-            success: function(data)
-            {
-               
-               location.reload();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error deleting');
-            }
-        });
-
-      }
-    }
-
-    $('#filter_status').on('change', function(){
-      if ( $(this).val() == 0 ) {
-        window.location = "<?php echo site_url('home')?>";
-      }else{
-        window.location = "<?php echo site_url('home')?>?filter_status="+$(this).val();
-      }
-    }); -->
 
 </script>
 </body>
