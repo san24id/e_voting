@@ -31,7 +31,6 @@ class Home extends CI_Controller {
  		
  		if ($this->session->userdata('id_user')) {
 
-
 		}else{
 
         	$this->session->sess_destroy();
@@ -103,7 +102,7 @@ class Home extends CI_Controller {
 			'no_rekening' => $_POST['no_rekening']
 		);
 
-		$this->session->set_flashdata('success', 'Berhasil disimpan');
+		// $this->session->set_flashdata('success', 'Berhasil disimpan');
 		$this->Home_model->addpayment($add);
 			
 		redirect('Home');
