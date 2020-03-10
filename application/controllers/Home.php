@@ -26,7 +26,7 @@ class Home extends CI_Controller {
         // $this->load->model('Dashboard_model');
 
         $sid = $this->session->userdata("id_user");
-		$this->load->library('form_validation');
+		
         $this->load->library('session');
  		
  		if ($this->session->userdata('id_user')) {
@@ -49,7 +49,7 @@ class Home extends CI_Controller {
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		// $data['sektor'] = $this->Home_model->getSektor();
 		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
-		$data['payment'] = $this->Home_model->payment();
+		$data['payment'] = $this->Home_model->payment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/user/header_user', $data);

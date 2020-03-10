@@ -9,6 +9,8 @@
         </section>
         <!-- Main content -->
         <form id="form" method="post" action="Home/addpayment">
+           <input type="hidden" name="id_user" id="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">
+           
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -19,7 +21,7 @@
                   </div>  
                   
                     <div class="box-body">
-                      <div class="form-row">
+                      <div class="form-row">                                                                     
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>
                              <input type="text" name="tanggal" class="form-control" value="<?php echo date("Y-m-d", strtotime($row->tanggal)); ?>" readonly>

@@ -2,8 +2,8 @@
 error_reporting(0);
 class Home_model extends CI_Model{   
 
-    public function payment() {
-        $sql = "SELECT * FROM `t_payment`";
+    public function payment($sid=0) {
+        $sql = "SELECT * FROM `t_payment` WHERE id_user = '$sid'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -33,9 +33,9 @@ class Home_model extends CI_Model{
     }
 
     function addpayment($add){
-        $sql = "INSERT INTO `t_payment` (id_payment, nomor_surat, nama_user, tanggal, hari, divisi, jabatan, label1, label2,
+        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, nama_user, tanggal, hari, divisi, jabatan, label1, label2,
         label3, label4, label5, label6, penerima, akun_bank, no_rekening) 
-        VALUES ('".$add['id_payment']."','".$add['nomor_surat']."','".$add['nama_user']."','".$add['tanggal']."','".$add['hari']."',
+        VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['nama_user']."','".$add['tanggal']."','".$add['hari']."',
         '".$add['divisi']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."','".$add['label3']."','".$add['label4']."',
         '".$add['label5']."','".$add['label6']."','".$add['penerima']."','".$add['akun_bank']."','".$add['no_rekening']."')";
         
