@@ -9,7 +9,7 @@
         </section>
         <!-- Main content -->
         <form id="form" method="post" action="Home/addpayment">
-           <input type="hidden" name="id_user" id="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">
+           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">
            
           <section class="content">
             <div class="row">

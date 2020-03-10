@@ -85,6 +85,7 @@ class Home extends CI_Controller {
 	public function addpayment(){
 		$add = array(
 			
+			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'nama_user' => $_POST['nama_user'],
 			'tanggal' => $_POST['tanggal'],
