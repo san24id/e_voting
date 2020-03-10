@@ -24,7 +24,7 @@
                       <div class="form-row">                                                                     
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>
-                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("Y-m-d", strtotime($row->tanggal)); ?>" readonly>
+                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("Y-m-d"); ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nomor Surat</label>

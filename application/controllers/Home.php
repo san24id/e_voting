@@ -73,7 +73,7 @@ class Home extends CI_Controller {
 		$data['active2'] = '';
 		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
 		
-		$data['payment'] = $this->Home_model->payment();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		// $data['cn_assesment'] = $this->Home_model->cn_assesment();
 		// $data['noass'] = $this->Home_model->getno();
@@ -180,7 +180,7 @@ class Home extends CI_Controller {
 
 		$sid = $this->session->userdata("id_user");
 
-		$data['payment'] = $this->Home_model->payment();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/user/header_user', $data);	
