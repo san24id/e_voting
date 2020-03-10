@@ -18,6 +18,24 @@ class Dashboard extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct(){
+		parent::__construct();
+		$this->load->model('Dashboard_model');
+		$this->load->model('Home_model');
+		$this->load->library('Pdf');
+
+		// $sid = $this->session->userdata("username");
+
+		// $this->load->library('session');
+ 		
+ 		// if ($this->session->userdata('username')) {
+ 			
+		// }else{
+		// 	redirect('login/loginadm', 'refresh');
+		// }
+	}
+
 	public function index()
 	{
 		$data['active1'] = 'active';
@@ -34,7 +52,7 @@ class Dashboard extends CI_Controller {
 		
 
 		// $data['profil'] = $this->Dashboard_model->getProfilProjek($_GET['filter_status']);
-		// $data['user'] = $this->Dashboard_model->getuser();
+		$data['payment'] = $this->Dashboard_model->payment();
 		// $data['adminpii'] = $this->Dashboard_model->getadminpii();
 		// $data['sektor'] = $this->Home_model->getSektor();
 		// $data['statusinf'] = $this->Dashboard_model->get_t_status_projek();
