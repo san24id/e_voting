@@ -2,7 +2,7 @@
 error_reporting(0);
 class Home_model extends CI_Model{   
 
-    public function payment($sid=0) {
+    public function getPayment($sid=0) {
         $sql = "SELECT * FROM `t_payment` WHERE id_user = '$sid'";
                 
         $query = $this->db->query($sql)->result();
