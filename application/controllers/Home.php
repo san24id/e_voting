@@ -174,14 +174,14 @@ class Home extends CI_Controller {
 		// }	
 	}
 
-	public function formfinished()
+	public function formfinished($id_payment)
 	{
 		$data['active1'] = 'active';
 		$data['active2'] = '';
 
 		$sid = $this->session->userdata("id_user");
 
-		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/user/header_user', $data);	

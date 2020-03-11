@@ -9,6 +9,12 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getform($id_payment) {
+        $sql = "SELECT * FROM `t_payment` WHERE id_payment = '$id_payment'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
     var $table ="t_payment";  
     public function buat_kode()  {
         
@@ -46,7 +52,7 @@ class Home_model extends CI_Model{
 
     function updatepayment($upd){
         $sql = "UPDATE `t_payment` SET `label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`label3`='".$upd['label3']."',
-        `label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`penerima`='".$upd['penerima']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',
+        `label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`penerima`='".$upd['penerima']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."'
         WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);

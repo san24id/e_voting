@@ -36,8 +36,8 @@
                 <div class="box">
                   <div class="box-header with-border">
                     <center><h3 class="box-title">Data Pengajuan SP3</h3></center>
-                  </div>  
-                  
+                  </div>                    
+                    <input type="hidden" name="id_payment" class="form-control" value="<?php echo $get->id_payment?>" readonly> 
                     <div class="box-body">
                       <div class="form-row">
                       <div class="form-group col-md-6">
@@ -114,13 +114,14 @@
                   <div class="box-body">  
                   <div class="form-group">
                         <label>Bank Account</label>
+                        
                         <select name="akun_bank" class="form-control">
-                            <option value="1">Choose</option>
-                            <option value="BCA">BCA</option>
-                            <option value="Mandiri">Mandiri</option>
-                            <option value="BNI">BNI</option>
-                            <option value="BRI">BRI</option>
-                            <option value="6">Other</option>
+                            <option value="1" <?php echo $get->akun_bank==1? 'selected':''?> >Choose</option>
+                            <option value="BCA" <?php echo $get->akun_bank==BCA? 'selected':''?> >BCA</option>
+                            <option value="Mandiri" <?php echo $get->akun_bank==Mandiri? 'selected':''?> >Mandiri</option>
+                            <option value="BNI" <?php echo $get->akun_bank==BNI? 'selected':''?> >BNI</option>
+                            <option value="BRI" <?php echo $get->akun_bank==BRI? 'selected':''?> >BRI</option>
+                            <option value="6" <?php echo $get->akun_bank==6? 'selected':''?> >Other</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -159,7 +160,8 @@
                         </div>  
                   </div>
                     <hr style=" border: 1px solid #000;">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
+                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>
+                    <button type="submit" class="btn btn-default">Save</button>
                     <button class="btn btn-primary" onclick="printThis()">Print</button>
                   
                 </div>

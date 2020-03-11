@@ -35,7 +35,7 @@
                   <?php 
                     $i = 1;
                     foreach ($payment as $row){
-                   ?>
+                  ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
                   <td><?php echo date("d-m-Y", strtotime($row->tanggal)); ?></td>
@@ -45,15 +45,8 @@
                   <td><?php echo $row->akun_bank; ?></td>
                   <td><?php echo $row->penerima; ?></td>
                   <td>
-                    <?php if($row->status == 1){ ?>
-                            <a href="Home/form_edit/<?php echo $row->id_projek; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                    <?php }else if($row->status == 2){ ?>
-                            <a href="Home/nextinclomplete2/<?php echo $row->id_projek; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                    <?php }else { ?>
-                            <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                    <?php } ?>
-                  </td>
-      
+                    <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                  </td>      
                   </tr>
               <?php  } ?>
               </tbody>
