@@ -27,8 +27,8 @@
           </h1>
         </section>
         <!-- Main content -->
-        <!-- <form id="form" method="post" action="Home/action_addppayment"> -->
-
+        <form id="form" method="post" action="Home/updatepayment">
+          <?php foreach ($payment as $get){ ?>          
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -42,27 +42,27 @@
                       <div class="form-row">
                       <div class="form-group col-md-6">
                              <label>Tanggal</label>
-                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("d-m-Y"); ?>" readonly>
+                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->tanggal)); ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nomor Surat</label>
-                            <input type="text" name="nomor_surat" class="form-control" value="<?= $surat; ?>" readonly>                            
+                            <input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat?>" readonly>                            
                         </div>
                         <div class="form-group col-md-6">
                             <label>Hari</label>
-                            <input type="text" class="form-control" value="<?php echo date("l");?>" readonly>
+                            <input type="text" class="form-control" value="<?php echo $get->hari?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nama Pemohon</label>
-                            <input type="text" name="nama_user" class="form-control" value="<?php echo $this->session->userdata('nama_user') ?>" readonly>
+                            <input type="text" name="nama_user" class="form-control" value="<?php echo $get->nama_user ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Divisi</label>
-                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata("divisi") ?>" placeholder="Divisi" readonly>                            
+                            <input type="text" name="divisi" class="form-control" value="<?php echo $get->divisi?>" readonly>                            
                         </div>
                         <div class="form-group col-md-6">
                             <label>Jabatan</label>
-                            <input type="text" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>" placeholder="Jabatan" readonly>
+                            <input type="text" name="jabatan" class="form-control" value="<?php echo $get->jabatan ?>" readonly>
                         </div>
                       
                     </div>
@@ -77,32 +77,32 @@
                     <div class="form-group">
                         <label>Label : </label>
                         <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text" readonly ></textarea>
+                        <textarea type="text" class="form-control" name="label1"><?php echo $get->label1?></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : </label>
                         <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text" readonly ></textarea>
+                        <textarea type="text" class="form-control" name="label2"><?php echo $get->label2?></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : </label>
                         <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text" readonly></textarea>
+                        <textarea type="text" class="form-control" name="label3"><?php echo $get->label3?></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : </label>
                         <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text" readonly></textarea>
+                        <textarea type="text" class="form-control" name="label4"><?php echo $get->label4?></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : </label>
                         <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text" readonly></textarea>
+                        <textarea type="text" class="form-control" name="label5"><?php echo $get->label5?></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label : </i></label>
                         <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="" value="" placeholder="Enter Text" readonly></textarea>
+                        <textarea type="text" class="form-control" name="label6"><?php echo $get->label6?></textarea>
                     </div>
                                     
                 </div>
@@ -125,11 +125,11 @@
                     </div>
                     <div class="form-group">
                         <label>Nama Penerima:</label>
-                        <input type="text" class="form-control" name="penerima" placeholder="Auto" readonly>
+                        <input type="text" class="form-control" name="penerima" value="<?php echo $get->penerima?>"readonly>
                     </div>
                     <div class="form-group">
                         <label>No. Rekening</label>
-                        <input type="text" class="form-control" name="no_rekening" value="" placeholder="Auto" readonly>
+                        <input type="text" class="form-control" name="no_rekening" value="<?php echo $get->no_rekening?>" readonly>
                     </div>                  
 
                 <div class="box">
@@ -145,8 +145,8 @@
                             <br>
                             <br>
                             <br>
-                            <br><?php echo $this->session->userdata('nama_user') ?>
-                            <br><?php echo $this->session->userdata('jabatan') ?>
+                            <br><?php echo $get->nama_user?>
+                            <br><?php echo $get->jabatan?>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Approval</label>
@@ -166,7 +166,7 @@
 
             </div>
           </section>  
-
+          <?php } ?>     
         <!-- </form> -->
         <!-- /.content -->
       </div>
