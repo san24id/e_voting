@@ -34,7 +34,7 @@ class Home_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-        $kodejadi = "SP3/PII/Payment/".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+        $kodejadi = "SP3/CSF/SPPP/".$kodemax;    // hasilnya ODJ-9921-0001 dst.
         return $kodejadi;  
     }
 

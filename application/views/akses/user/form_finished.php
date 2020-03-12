@@ -135,7 +135,7 @@
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Approval</h3>
+                    <h3 class="box-title">Permintaan Permohonan</h3>
                   </div>
 
                   <div class="box-body">
@@ -150,7 +150,7 @@
                             <br><?php echo $get->jabatan?>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Approval</label>
+                            <label>Menyetujui,</label>
                             <br>
                             <br>
                             <br>
@@ -161,9 +161,8 @@
                   </div>
                     <hr style=" border: 1px solid #000;">
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>
-                    <button type="submit" class="btn btn-default">Save</button>
-                    <button class="btn btn-primary" onclick="printThis()">Print</button>
-                  
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary btn-sm">Print</button> 
                 </div>
 
             </div>
@@ -212,7 +211,81 @@
 
 </div>
 <!-- ./wrapper -->
+<div class="modal fade" id="modalNext" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="col-xs-12">
+                <!-- /.box -->
+                <div class="box">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                      <input type="hidden" name="id_payment" value="<?php echo $get->id_payment; ?>" />
+                      <input type="hidden" name="id_user" value="<?php echo $get->id_user; ?>" />
+                      <div class="box-body">
+                          <div id="printThis">
+                          <h5>
+                            <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
+                            <br>
+                            <br>
+                            <center><b><u><font size="+1" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
+                          <br>
+                          <center><b><font size="3" style="font-family: calibri;">No   : <?php echo $get->nomor_surat;?> &nbsp; No ARF/ASF   : </font></b></center>   
+                          <br>
+                          <!-- <center><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon) &nbsp; (dilengkapi oleh CSF, coret salah satu)</font></i></b></center> -->
+                          
+                          <p align="justify" style="font-family: sans-serif;">PT Penjaminan Infrastruktur Indonesia (Persero) akan mereview dan menindaklanjuti dokumen yang telah Saudara sampaikan. <br><br>
+                              PT Penjaminan Infrastruktur Indonesia (Persero) akan menghubungi saudara jika pengecekan telah selesai.</p>
+                          <br>
+                          <hr style=" border: 1px solid #000;">
+                            <center><b><font size="+1" style="font-family: sans-serif;">Rekomendasi Penilaian:</font></b></center>
 
+                        <table class="table table-bordered table-striped" style="font-family: sans-serif;">
+                          <tbody>
+                            <?php 
+                              $i = 1;
+                              foreach ($getrespon as $res) {
+                              ?>
+                            <tr>
+                              <td><?=$i++;?></td>
+                              <td><?php echo $res->respon; ?></td>
+                            </tr>
+                            <?php }  ?>
+                          </tbody>
+                        </table>
+                          <br>
+                        <table width="100%">
+                        <tbody>
+                            <tr>
+                              <td><center><a href="http://kpsrb.bappenas.go.id/ppptoolkit/tentang-kpbu/" target="blank"><img src="assets/dashboard/images/bappneas.png" width="70%" /></a></center></td>
+                              <td><center><a href="http://www.iigf.co.id/id/" target="blank"><img src="assets/dashboard/images/pii.png" width="70%" /></a></center></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <hr style=" border: 1px solid #000;">
+                        <img src="assets/dashboard/images/FooterHyperlink.png" width="100%">
+
+                          <center><b><font style="font-family: sans-serif;">Sekretariat:</font></b></center>
+                          <br>
+                          <center><p style="font-family: sans-serif;">Capital Place Building, 7-8th Floor, Jl. Jenderal Gatot Subroto Kav.18 Jakarta Selatan, DKI Jakarta </p></center>
+                          <center><p style="font-family: sans-serif;">Email : info.pppindonesia@gmail.com </p></center>
+                      </h5>
+                    </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="printThis()">Print</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 <script>
 function printThis() {
   window.print();
