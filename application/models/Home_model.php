@@ -15,9 +15,9 @@ class Home_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
-    var $table ="t_payment";  
-    public function buat_kode()  {
-        
+
+    var $table ="t_payment";
+    public function buat_kode()  {     
 
         $this->db->select('RIGHT(t_payment.nomor_surat,4) as kode', FALSE);
         $this->db->order_by('nomor_surat','DESC');    

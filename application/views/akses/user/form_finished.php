@@ -146,8 +146,8 @@
                             <br>
                             <br>
                             <br>
-                            <br><?php echo $get->nama_user?>
-                            <br><?php echo $get->jabatan?>
+                            <br>Nama : &nbsp; <?php echo $get->nama_user?>
+                            <br>Jabatan : &nbsp;<?php echo $get->jabatan?>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Menyetujui,</label>
@@ -155,14 +155,14 @@
                             <br>
                             <br>
                             <br>
-                            <br>Nama Approval
-                            <br>Jabatan
+                            <br>Nama :
+                            <br>Jabatan :
                         </div>  
                   </div>
                     <hr style=" border: 1px solid #000;">
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>
                     <button type="submit" class="btn btn-success">Save</button>
-                    <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary btn-sm">Print</button> 
+                    <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">Print</button> 
                 </div>
 
             </div>
@@ -232,27 +232,24 @@
                             <br>
                             <br>
                             <center><b><u><font size="+1" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
-                          <br>
                           <center><b><font size="3" style="font-family: calibri;">No   : <?php echo $get->nomor_surat;?> &nbsp; No ARF/ASF   : </font></b></center>   
                           <br>
                           <!-- <center><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon) &nbsp; (dilengkapi oleh CSF, coret salah satu)</font></i></b></center> -->
-                          
-                          <p align="justify" style="font-family: sans-serif;">PT Penjaminan Infrastruktur Indonesia (Persero) akan mereview dan menindaklanjuti dokumen yang telah Saudara sampaikan. <br><br>
-                              PT Penjaminan Infrastruktur Indonesia (Persero) akan menghubungi saudara jika pengecekan telah selesai.</p>
+                          <p> Dari   :</p>
+                          <p>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->nama_user;?></p>
+                          <!-- <p align="justify" style="font-family: sans-serif;">PT Penjaminan Infrastruktur Indonesia (Persero) akan mereview dan menindaklanjuti dokumen yang telah Saudara sampaikan. <br><br>
+                              PT Penjaminan Infrastruktur Indonesia (Persero) akan menghubungi saudara jika pengecekan telah selesai.</p> -->
                           <br>
                           <hr style=" border: 1px solid #000;">
-                            <center><b><font size="+1" style="font-family: sans-serif;">Rekomendasi Penilaian:</font></b></center>
+                          <!-- <center><b><font size="+1" style="font-family: sans-serif;">Rekomendasi Penilaian:</font></b></center> -->
+                          
 
                         <table class="table table-bordered table-striped" style="font-family: sans-serif;">
                           <tbody>
-                            <?php 
-                              $i = 1;
-                              foreach ($getrespon as $res) {
-                              ?>
-                            <tr>
-                              <td><?=$i++;?></td>
-                              <td><?php echo $res->respon; ?></td>
-                            </tr>
+                            <?php foreach ($payment as $print) { ?>
+                            <tr><td>Penerima : &nbsp; <?php echo $print->penerima; ?></td></tr>
+                            <tr><td>Account Bank : &nbsp; <?php echo $print->akun_bank; ?></td></tr>
+                            <tr><td>Rekening : &nbsp; <?php echo $print->no_rekening; ?></td></tr>
                             <?php }  ?>
                           </tbody>
                         </table>
@@ -268,10 +265,10 @@
                         <hr style=" border: 1px solid #000;">
                         <img src="assets/dashboard/images/FooterHyperlink.png" width="100%">
 
-                          <center><b><font style="font-family: sans-serif;">Sekretariat:</font></b></center>
+                          <!-- <center><b><font style="font-family: sans-serif;">Sekretariat:</font></b></center>
                           <br>
                           <center><p style="font-family: sans-serif;">Capital Place Building, 7-8th Floor, Jl. Jenderal Gatot Subroto Kav.18 Jakarta Selatan, DKI Jakarta </p></center>
-                          <center><p style="font-family: sans-serif;">Email : info.pppindonesia@gmail.com </p></center>
+                          <center><p style="font-family: sans-serif;">Email : info.pppindonesia@gmail.com </p></center> -->
                       </h5>
                     </div>
                       </div>
