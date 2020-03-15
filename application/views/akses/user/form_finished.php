@@ -241,10 +241,21 @@
                               PT Penjaminan Infrastruktur Indonesia (Persero) akan menghubungi saudara jika pengecekan telah selesai.</p> -->
                           <br>
                           <hr style=" border: 1px solid #000;">
+                          <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p> 
                           <!-- <center><b><font size="+1" style="font-family: sans-serif;">Rekomendasi Penilaian:</font></b></center> -->
                           
+                        <table class="table table-bordered table-striped" style="font-family: calibri;">
+                          <tbody>
+                            <?php foreach ($payment as $ket) { ?>
+                            <tr><td><b>Tujuan Penggunaan : </b><?php echo $ket->label1; ?></td></tr>
+                            <tr><td><b>Jumlah : </b>IDR &nbsp; <?php echo $ket->label2; ?></td></tr>
+                            <tr><td><b>Perkiraan Tanggal : </b> &nbsp; <?php echo $ket->label3; ?></td></tr>
+                            <tr><td><b>Penyedia Barang / Jasa Penerima Pembayaran : </b> &nbsp; <?php echo $ket->label4; ?></td></tr>
 
-                        <table class="table table-bordered table-striped" style="font-family: sans-serif;">
+                            <?php } ?>
+                          </tbody>
+                        </table>
+                        <table class="table table-bordered table-striped" style="font-family: calibri;">
                           <tbody>
                             <?php foreach ($payment as $print) { ?>
                             <tr><td>Penerima : &nbsp; <?php echo $print->penerima; ?></td></tr>
@@ -257,15 +268,23 @@
                         <table width="100%">
                         <tbody>
                             <tr>
-                              <td><center><a href="http://kpsrb.bappenas.go.id/ppptoolkit/tentang-kpbu/" target="blank"><img src="assets/dashboard/images/bappneas.png" width="70%" /></a></center></td>
-                              <td><center><a href="http://www.iigf.co.id/id/" target="blank"><img src="assets/dashboard/images/pii.png" width="70%" /></a></center></td>
+                            <td>Pemohon, </td>
+                            <td>Menyetujui, </td></tr>
+                            <td>                            
+                            <td></tr>
+                            <td>Nama : &nbsp; <?php echo $get->nama_user?></td></tr>
+                            <td>Jabatan : &nbsp;<?php echo $get->jabatan?></td>
+                            <td>
+                            <td></tr>
+                            <td>Nama Approval : </td></tr>
+                            <td>Jabatan : </td>  
+                            <td>
                             </tr>
-                          </tbody>
+                        </tbody>
                         </table>
                         <hr style=" border: 1px solid #000;">
-                        <img src="assets/dashboard/images/FooterHyperlink.png" width="100%">
-
-                          <!-- <center><b><font style="font-family: sans-serif;">Sekretariat:</font></b></center>
+                        <!-- <img src="assets/dashboard/images/FooterHyperlink.png" width="100%">
+                          <center><b><font style="font-family: sans-serif;">Sekretariat:</font></b></center>
                           <br>
                           <center><p style="font-family: sans-serif;">Capital Place Building, 7-8th Floor, Jl. Jenderal Gatot Subroto Kav.18 Jakarta Selatan, DKI Jakarta </p></center>
                           <center><p style="font-family: sans-serif;">Email : info.pppindonesia@gmail.com </p></center> -->
