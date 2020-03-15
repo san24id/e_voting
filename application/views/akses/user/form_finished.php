@@ -228,67 +228,131 @@
                       <div class="box-body">
                           <div id="printThis">
                           <h5>
-                            <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
+                            <br>
+                            <left><img src="assets/dashboard/images/logo.png" width="180px" alt="Logo Images"></left>
                             <br>
                             <br>
                             <center><b><u><font size="+1" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
-                          <center><b><font size="3" style="font-family: calibri;">No   : <?php echo $get->nomor_surat;?> &nbsp; No ARF/ASF   : </font></b></center>   
+                            <table width="100%">
+                          <tbody>
+                            <tr>
+                              <td>
+                              <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $get->nomor_surat;?></b></td>
+                              <td><b>No ARF/ASF   :</b></td>
+                            </tr> 
+                            <!-- <tr>
+                              <td>
+                              <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
+                              <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
+                            </tr>                                                    -->
+                          </tbody>
+                          </table>  
                           <br>
-                          <!-- <center><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon) &nbsp; (dilengkapi oleh CSF, coret salah satu)</font></i></b></center> -->
+                          <table width="100%">
+                          <tbody>
+                            <tr>
+                              <td>Kepada : </td>
+                              <td align="right">Tanggal : <?php echo date("d-M-Y", strtotime($get->tanggal)); ?></td>
+                            </tr>                                                    
+                          </tbody>
+                          </table>
                           <p> Dari   :</p>
                           <p>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->nama_user;?></p>
-                          <!-- <p align="justify" style="font-family: sans-serif;">PT Penjaminan Infrastruktur Indonesia (Persero) akan mereview dan menindaklanjuti dokumen yang telah Saudara sampaikan. <br><br>
-                              PT Penjaminan Infrastruktur Indonesia (Persero) akan menghubungi saudara jika pengecekan telah selesai.</p> -->
+                          <p>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->divisi;?></p>
                           <br>
                           <hr style=" border: 1px solid #000;">
                           <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p> 
-                          <!-- <center><b><font size="+1" style="font-family: sans-serif;">Rekomendasi Penilaian:</font></b></center> -->
                           
-                        <table class="table table-bordered table-striped" style="font-family: calibri;">
-                          <tbody>
-                            <?php foreach ($payment as $ket) { ?>
-                            <tr><td><b>Tujuan Penggunaan : </b><?php echo $ket->label1; ?></td></tr>
-                            <tr><td><b>Jumlah : </b>IDR &nbsp; <?php echo $ket->label2; ?></td></tr>
-                            <tr><td><b>Perkiraan Tanggal : </b> &nbsp; <?php echo $ket->label3; ?></td></tr>
-                            <tr><td><b>Penyedia Barang / Jasa Penerima Pembayaran : </b> &nbsp; <?php echo $ket->label4; ?></td></tr>
+                          <table class="table table-bordered table-striped" style="font-family: calibri;">
+                            <tbody>
+                              <?php foreach ($payment as $ket) { ?>
+                              <tr><td><b>Tujuan Penggunaan : </b><?php echo $ket->label1; ?></td></tr>
+                              <tr><td><b>Jumlah : </b>IDR &nbsp; <?php echo $ket->label2; ?></td></tr>
+                              <tr><td><b>Perkiraan Tanggal : </b> &nbsp; <?php echo $ket->label3; ?></td></tr>
+                              <tr><td><b>Penyedia Barang / Jasa Penerima Pembayaran : </b> &nbsp; <?php echo $ket->label4; ?></td></tr>
 
-                            <?php } ?>
-                          </tbody>
-                        </table>
-                        <table class="table table-bordered table-striped" style="font-family: calibri;">
+                              <?php } ?>
+                            </tbody>
+                          </table>
+                          <table class="table table-bordered table-striped" style="font-family: calibri;">
+                            <tbody>
+                              <?php foreach ($payment as $print) { ?>
+                              <tr><td>Penerima : &nbsp; <?php echo $print->penerima; ?></td></tr>
+                              <tr><td>Account Bank : &nbsp; <?php echo $print->akun_bank; ?></td></tr>
+                              <tr><td>Rekening : &nbsp; <?php echo $print->no_rekening; ?></td></tr>
+                              <?php }  ?>
+                            </tbody>
+                          </table>
+                            <br>
+                          <table width="100%">
                           <tbody>
-                            <?php foreach ($payment as $print) { ?>
-                            <tr><td>Penerima : &nbsp; <?php echo $print->penerima; ?></td></tr>
-                            <tr><td>Account Bank : &nbsp; <?php echo $print->akun_bank; ?></td></tr>
-                            <tr><td>Rekening : &nbsp; <?php echo $print->no_rekening; ?></td></tr>
-                            <?php }  ?>
+                              <tr>
+                                <td>Pemohon, <br><br><br><br><br><br></td>
+                                <td>Menyetujui, <br><br><br><br><br><br></td>
+                              </tr>
+                              <tr>
+                                <td>Nama : &nbsp; <?php echo $get->nama_user?></td>
+                                <td>Nama Approval : </td>
+                              </tr>
+                              <tr>
+                                <td>Jabatan : &nbsp; <?php echo $get->jabatan?></td>
+                                <td>Jabatan : &nbsp; </td>
+                              </tr>                            
                           </tbody>
-                        </table>
-                          <br>
-                        <table width="100%">
-                        <tbody>
-                            <tr>
-                            <td>Pemohon, </td>
-                            <td>Menyetujui, </td></tr>
-                            <td>                            
-                            <td></tr>
-                            <td>Nama : &nbsp; <?php echo $get->nama_user?></td></tr>
-                            <td>Jabatan : &nbsp;<?php echo $get->jabatan?></td>
-                            <td>
-                            <td></tr>
-                            <td>Nama Approval : </td></tr>
-                            <td>Jabatan : </td>  
-                            <td>
-                            </tr>
-                        </tbody>
-                        </table>
-                        <hr style=" border: 1px solid #000;">
-                        <!-- <img src="assets/dashboard/images/FooterHyperlink.png" width="100%">
-                          <center><b><font style="font-family: sans-serif;">Sekretariat:</font></b></center>
-                          <br>
-                          <center><p style="font-family: sans-serif;">Capital Place Building, 7-8th Floor, Jl. Jenderal Gatot Subroto Kav.18 Jakarta Selatan, DKI Jakarta </p></center>
-                          <center><p style="font-family: sans-serif;">Email : info.pppindonesia@gmail.com </p></center> -->
-                      </h5>
+                          </table>
+                          </h5>
+                          <hr style=" border: 1px solid #000;">
+                          <h6>
+                          <table class="table table-bordered table-striped" style="font-family: calibri;">
+                          <tbody>
+                              <tr>
+                                <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
+                              </tr>
+                              <tr>
+                                <td><center><b>Jenis Pajak </b></center></td>
+                                <td><center><b>Tarif </b></center></td>
+                                <td width="100"><center><b>DPP </b></center></td>
+                                <td width="100"><center><b>Gross Up </b></center>  </td>
+                                <td><center><b>Pajak Terhitung </b></center>  </td>
+                              </tr>
+                              <tr>
+                                <td>PPh Pasal 21/26</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>PPh Pasal 22</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>PPh Pasal 23/26</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>PPh Pasal 4(2)</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>PPN WAPU/PPN Offshore</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>                                                          
+                          </tbody>
+                          </table>
+                        </h6>
                     </div>
                       </div>
                   </div>
