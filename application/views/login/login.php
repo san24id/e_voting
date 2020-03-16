@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+	<title>Login | Payment Request</title>
 	<meta charset="UTF-8">
 	<base href="<?php echo base_url() ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +53,7 @@
 					<div class="row">
 						<center>
 							<div class="col-md-6">
-								<img width="250px" src="<?=base_url('assets/login/images/menu_app_logo2.png');?>" >
+								<img width="250px" src="<?=base_url('assets/login/images/menu_app_logo1.png');?>" >
 							</div>
 						</center>
 					</div>

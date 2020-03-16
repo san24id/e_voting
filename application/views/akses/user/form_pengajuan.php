@@ -56,30 +56,29 @@
 
                   <div class="box-body">
                     <div class="form-group">
-                        <label>Label 1: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>                        
+                        <label>Tujuan Penggunaan : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>                        
                         <textarea type="text" class="form-control" name="label1" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label 2: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>                        
+                        <label>Jumlah : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>                        
                         <textarea type="text" class="form-control" name="label2" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label 3: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
+                        <label>Perkiraan Tanggal : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
                         <textarea type="text" class="form-control" name="label3" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label 4: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label>                        
+                        <label>Penyedia Barang / Jasa Penerima Pembayaran : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label>                        
                         <textarea type="text" class="form-control" name="label4" placeholder="Enter Text"></textarea>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Label 5: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor5"></i></label>                        
                         <textarea type="text" class="form-control" name="label5" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Label 6: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor6"></i></label>                        
                         <textarea type="text" class="form-control" name="label6" placeholder="Enter Text"></textarea>
-                    </div>
-                                    
+                    </div> -->                                    
                 </div>
 
                 <div class="box">

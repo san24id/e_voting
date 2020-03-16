@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login CSF</title>
+	<title>Login CSF | Payment Request</title>
 	<meta charset="UTF-8">
 	<base href="<?php echo base_url() ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

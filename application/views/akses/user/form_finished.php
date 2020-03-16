@@ -75,26 +75,26 @@
 
                   <div class="box-body">
                     <div class="form-group">
-                        <label>Label : </label>
+                        <label>Tujuan Penggunaan :</label>
                         <input type="hidden" name="" value="">
                         <textarea type="text" class="form-control" name="label1"><?php echo $get->label1?></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : </label>
+                        <label>Jumlah : </label>
                         <input type="hidden" name="" value="">
                         <textarea type="text" class="form-control" name="label2"><?php echo $get->label2?></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : </label>
+                        <label>Perkiraan Tanggal : </label>
                         <input type="hidden" name="" value="">
                         <textarea type="text" class="form-control" name="label3"><?php echo $get->label3?></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label : </label>
+                        <label>Penyedia Barang / Jasa Penerima Pembayaran : </label>
                         <input type="hidden" name="" value="">
                         <textarea type="text" class="form-control" name="label4"><?php echo $get->label4?></textarea>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Label : </label>
                         <input type="hidden" name="" value="">
                         <textarea type="text" class="form-control" name="label5"><?php echo $get->label5?></textarea>
@@ -103,8 +103,7 @@
                         <label>Label : </i></label>
                         <input type="hidden" name="" value="">
                         <textarea type="text" class="form-control" name="label6"><?php echo $get->label6?></textarea>
-                    </div>
-                                    
+                    </div> -->                                   
                 </div>
 
                 <div class="box">
