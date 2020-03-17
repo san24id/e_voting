@@ -22,7 +22,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            DATA PAYMENT
+            EDIT DATA PAYMENT
             <small></small>
           </h1>
         </section>
@@ -110,6 +110,7 @@
                   <div class="box-header with-border">
                     <h3 class="box-title">Data Penerima Pembayaran</h3>
                   </div>
+                  
                   <div class="box-body">  
                   <div class="form-group">
                         <label>Bank Account</label>
@@ -163,7 +164,6 @@
                     <button type="submit" class="btn btn-success">Save</button>
                     <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">Print</button> 
                 </div>
-
             </div>
           </section>  
           <?php } ?>     
