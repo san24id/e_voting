@@ -250,7 +250,7 @@
                           <table width="100%">
                           <tbody>
                             <tr>
-                              <td>Kepada : </td>
+                              <td>Kepada : Divisi CSF</td>
                               <td align="right">Tanggal : <?php echo date("d-M-Y", strtotime($get->tanggal)); ?></td>
                             </tr>                                                    
                           </tbody>
@@ -267,18 +267,23 @@
                               <?php foreach ($payment as $ket) { ?>
                               <tr><td><b>Tujuan Penggunaan : </b><?php echo $ket->label1; ?></td></tr>
                               <tr><td><b>Jumlah : </b>IDR &nbsp; <?php echo $ket->label2; ?></td></tr>
-                              <tr><td><b>Perkiraan Tanggal : </b> &nbsp; <?php echo $ket->label3; ?></td></tr>
-                              <tr><td><b>Penyedia Barang / Jasa Penerima Pembayaran : </b> &nbsp; <?php echo $ket->label4; ?></td></tr>
-
+                              <tr><td><b>Perkiraan Tanggal : </b> &nbsp; <?php echo $ket->label3; ?><br>
+                              <b>Selesai Pekerjaan/Terima Barang</b> (Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td></tr>                              
                               <?php } ?>
                             </tbody>
                           </table>
                           <table class="table table-bordered table-striped" style="font-family: calibri;">
                             <tbody>
+                              <b><p>Penyedia Barang / Jasa Penerima Pembayaran</p></b>
                               <?php foreach ($payment as $print) { ?>
-                              <tr><td>Penerima : &nbsp; <?php echo $print->penerima; ?></td></tr>
-                              <tr><td>Account Bank : &nbsp; <?php echo $print->akun_bank; ?></td></tr>
-                              <tr><td>Rekening : &nbsp; <?php echo $print->no_rekening; ?></td></tr>
+                              <tr>
+                                <td>Nama : &nbsp; <?php echo $print->penerima;?></td>
+                                <td>Bank : &nbsp; <?php echo $print->akun_bank;?></td>
+                              </tr>
+                              <tr>
+                                <td>Kode Vendor : &nbsp; <?php echo $print->vendor;?></td>
+                                <td>Nomor Rekening : &nbsp; <?php echo $print->no_rekening; ?></td>
+                              </tr>
                               <?php }  ?>
                             </tbody>
                           </table>

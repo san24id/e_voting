@@ -44,24 +44,24 @@ class Login_model extends CI_Model{
     // }
 
 
-    function update_status($user){
-        $sql = "UPDATE `t_user` SET `status`=1, log_update = NOW() WHERE username = '$user'";
-        $query = $this->db->query($sql);
+    // function update_status($user){
+    //     $sql = "UPDATE `t_user` SET `status`=1, log_update = NOW() WHERE username = '$user'";
+    //     $query = $this->db->query($sql);
 
-        return $query;
-    }
+    //     return $query;
+    // }
 
-    function update_fpassword($addfp){
+    // function update_fpassword($addfp){
 
-        $sql = "UPDATE `t_user` SET password = md5('".$addfp['password']."'), `status`='".$addfp['status']."', log_update = NOW() WHERE email = '".$addfp['email']."'";
-        $query = $this->db->query($sql);
+    //     $sql = "UPDATE `t_user` SET password = md5('".$addfp['password']."'), `status`='".$addfp['status']."', log_update = NOW() WHERE email = '".$addfp['email']."'";
+    //     $query = $this->db->query($sql);
 
-        return $query;
-    }
+    //     return $query;
+    // }
 
-    function auth_email($addfp){
-        $query=$this->db->query("SELECT * FROM t_user WHERE email = '".$addfp['email']."' LIMIT 1")->result();
-        return $query;
-    }
+    // function auth_email($addfp){
+    //     $query=$this->db->query("SELECT * FROM t_user WHERE email = '".$addfp['email']."' LIMIT 1")->result();
+    //     return $query;
+    // }
 
 }
