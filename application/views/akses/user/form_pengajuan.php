@@ -20,8 +20,15 @@
                     <center><h3 class="box-title">Data Pengajuan SP3</h3></center>
                   </div>  
                   
-                    <div class="box-body">
-                      <div class="form-row">                                                                     
+                    <div class="box-body">                      
+                      <div class="form-row">                  
+                        <div class="form-group">
+                            <label>Jenis Pembayaran (pilih salah satu)</label><br>
+                            <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance">Uang Muka/Advance</label>
+                            <input type="checkbox" name="jenis_pembayaran" value="Permintaan Uang Muka/Request">Permintaan Uang Muka/Request</label>
+                            <input type="checkbox" name="jenis_pembayaran" value="Pertanggung Jawaban Uang Muka/Settlement">Pertanggung Jawaban Uang Muka/Settlement</label>                            
+                            <input type="checkbox" name="jenis_pembayaran" value="Non-Uang Muka/Non-Advance">Non-Uang Muka/Non-Advance</label>
+                        </div>                                                                       
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>
                              <input type="text" name="tanggal" class="form-control" value="<?php echo date("Y-m-d"); ?>" readonly>
@@ -83,7 +90,7 @@
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Data Penerima Pembayaran</h3>
+                    <h3 class="box-title">Data Penerima Pembayaran <br> <i>(diisi dengan mengacu pada vendor master data-Procurement)</i></h3>
                   </div>
                   <div class="box-body">  
                   <div class="form-group">
@@ -100,6 +107,10 @@
                     <div class="form-group">
                         <label>Nama Penerima:</label>
                         <input type="text" class="form-control" name="penerima" placeholder="Auto">
+                    </div>
+                    <div class="form-group">
+                        <label>Kode Vendor</label>
+                        <input type="text" class="form-control" name="vendor" value="" placeholder="Auto">
                     </div>
                     <div class="form-group">
                         <label>No. Rekening</label>

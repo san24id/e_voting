@@ -40,6 +40,13 @@
                     <input type="hidden" name="id_payment" class="form-control" value="<?php echo $get->id_payment?>" readonly> 
                     <div class="box-body">
                       <div class="form-row">
+                      <div class="form-group">
+                            <label>Jenis Pembayaran (pilih salah satu)</label>
+                            <!-- <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance" <?php echo $get->jenis_pembayaran==UangMuka/Advance? 'selected':''?> >Uang Muka/Advance</label>
+                            <input type="checkbox" name="jenis_pembayaran" value="Permintaan Uang Muka/Request" <?php echo $get->jenis_pembayaran==PermintaanUangMuka/Request? 'selected':''?> >Permintaan Uang Muka/Request</label>
+                            <input type="checkbox" name="jenis_pembayaran" value="Pertanggung Jawaban Uang Muka/Settlement" <?php echo $get->jenis_pembayaran==PertanggungJawabanUangMuka/Settlement? 'selected':''?> >Pertanggung Jawaban Uang Muka/Settlement</label>                            
+                            <input type="checkbox" name="jenis_pembayaran" value="Non-Uang Muka/Non-Advance" <?php echo $get->jenis_pembayaran==Non-UangMuka/Non-Advance? 'selected':''?> >Non-Uang Muka/Non-Advance</label> -->
+                        </div>
                       <div class="form-group col-md-6">
                              <label>Tanggal</label>
                              <input type="text" name="tanggal" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->tanggal)); ?>" readonly>
@@ -113,8 +120,7 @@
                   
                   <div class="box-body">  
                   <div class="form-group">
-                        <label>Bank Account</label>
-                        
+                        <label>Bank Account</label>                        
                         <select name="akun_bank" class="form-control">
                             <option value="1" <?php echo $get->akun_bank==1? 'selected':''?> >Choose</option>
                             <option value="BCA" <?php echo $get->akun_bank==BCA? 'selected':''?> >BCA</option>
@@ -127,6 +133,10 @@
                     <div class="form-group">
                         <label>Nama Penerima:</label>
                         <input type="text" class="form-control" name="penerima" value="<?php echo $get->penerima?>"readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Kode Vendor:</label>
+                        <input type="text" class="form-control" name="vendor" value="<?php echo $get->vendor?>"readonly>
                     </div>
                     <div class="form-group">
                         <label>No. Rekening</label>
@@ -228,8 +238,7 @@
                           <div id="printThis">
                           <h5>
                             <br>
-                            <left><img src="assets/dashboard/images/logo.png" width="180px" alt="Logo Images"></left>
-                            <br>
+                            <left><img src="assets/dashboard/images/logo.png" width="140px" alt="Logo Images"></left>
                             <br>
                             <center><b><u><font size="+1" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
                             <table width="100%">
@@ -258,21 +267,32 @@
                           <p> Dari   :</p>
                           <p>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->nama_user;?></p>
                           <p>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->divisi;?></p>
-                          <br>
+                                                    
                           <hr style=" border: 1px solid #000;">
-                          <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p> 
-                          
-                          <table class="table table-bordered table-striped" style="font-family: calibri;">
+                                                     
+                          <table class="table" style="font-family: calibri;">
                             <tbody>
+                            <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                               <?php foreach ($payment as $ket) { ?>
-                              <tr><td><b>Tujuan Penggunaan : </b><?php echo $ket->label1; ?></td></tr>
-                              <tr><td><b>Jumlah : </b>IDR &nbsp; <?php echo $ket->label2; ?></td></tr>
-                              <tr><td><b>Perkiraan Tanggal : </b> &nbsp; <?php echo $ket->label3; ?><br>
-                              <b>Selesai Pekerjaan/Terima Barang</b> (Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td></tr>                              
+                              <tr>
+                                <td><b>Tujuan Penggunaan :</b></td>
+                                <td><?php echo $ket->label1; ?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Jumlah :</b></td>
+                                <td>IDR &nbsp; <?php echo $ket->label2; ?></td>
+                              </tr>
+                              <tr>
+                                <td><b>Perkiraan Tanggal :</b></td>
+                                <td><?php echo $ket->label3; ?></td>     
+                              </tr>
+                              <!-- <tr>
+                                <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> (Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
+                              </tr>                               -->
                               <?php } ?>
                             </tbody>
                           </table>
-                          <table class="table table-bordered table-striped" style="font-family: calibri;">
+                          <table class="table" style="font-family: calibri;">
                             <tbody>
                               <b><p>Penyedia Barang / Jasa Penerima Pembayaran</p></b>
                               <?php foreach ($payment as $print) { ?>
@@ -282,7 +302,10 @@
                               </tr>
                               <tr>
                                 <td>Kode Vendor : &nbsp; <?php echo $print->vendor;?></td>
-                                <td>Nomor Rekening : &nbsp; <?php echo $print->no_rekening; ?></td>
+                                <td>Nomor Rekening : &nbsp; <?php echo $print->no_rekening; ?></td>                                
+                              </tr>
+                              <tr>
+                                <td colspan="2"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
                               </tr>
                               <?php }  ?>
                             </tbody>
@@ -307,7 +330,7 @@
                           </h5>
                           <hr style=" border: 1px solid #000;">
                           <h6>
-                          <table class="table table-bordered table-striped" style="font-family: calibri;">
+                          <table class="table table-bordered table-striped" style="font-family: calibri;" width="50%">
                           <tbody>
                               <tr>
                                 <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>

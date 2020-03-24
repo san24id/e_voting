@@ -213,6 +213,7 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
+        <li class="<?php echo $active2?>"><a href="#"><i class="glyphicon glyphicon-inbox"></i><span>Dashboard User</a></span></li>
         <li class="<?php echo $active1?>"><a href="Home"><i class="glyphicon glyphicon-inbox"></i><span>Data Pengajuan</a></span></li>
         <!-- <li class="<?php echo $active2?>"><a href="Home/myprofile"><i class="glyphicon glyphicon-user"></i><span>Profile</a></span></li> -->
       </ul>

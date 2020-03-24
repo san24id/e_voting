@@ -85,8 +85,9 @@ class Home extends CI_Controller {
 	public function addpayment(){
 		$add = array(
 			
-			'id_user' => $_POST['id_user'],
+			'id_payment' => $_POST['id_payment'],
 			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $_POST['jenis_pembayaran'],
 			'nama_user' => $_POST['nama_user'],
 			'tanggal' => $_POST['tanggal'],
 			'hari' => $_POST['hari'],
@@ -99,13 +100,42 @@ class Home extends CI_Controller {
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
 			'penerima' => $_POST['penerima'],
+			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
-			'no_rekening' => $_POST['no_rekening']
+			'no_rekening' => $_POST['no_rekening'],
 		);
 
 		// $this->session->set_flashdata('success', 'Berhasil disimpan');
 		$this->Home_model->addpayment($add);
 			
+		redirect('Home');
+	}
+
+	public function updatepayment(){
+		$upd = array(
+
+			'id_payment' => $_POST['id_payment'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $_POST['jenis_pembayaran'],
+			'nama_user' => $_POST['nama_user'],
+			'tanggal' => $_POST['tanggal'],
+			'hari' => $_POST['hari'],
+			'divisi' => $_POST['divisi'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'label3' => $_POST['label3'],
+			'label4' => $_POST['label4'],
+			'label5' => $_POST['label5'],
+			'label6' => $_POST['label6'],
+			'penerima' => $_POST['penerima'],
+			'vendor' => $_POST['vendor'],
+			'akun_bank' => $_POST['akun_bank'],
+			'no_rekening' => $_POST['no_rekening'],
+		);
+
+		$this->Home_model->updatepayment($upd);
+
 		redirect('Home');
 	}
 
@@ -117,32 +147,6 @@ class Home extends CI_Controller {
 
 	}
 
-	public function updatepayment(){
-		$upd = array(
-
-			'id_payment' => $_POST['id_payment'],
-			'nomor_surat' => $_POST['nomor_surat'],
-			'nama_user' => $_POST['nama_user'],
-			'tanggal' => $_POST['tanggal'],
-			'hari' => $_POST['hari'],
-			'divisi' => $_POST['divisi'],
-			'jabatan' => $_POST['jabatan'],
-			'label1' => $_POST['label1'],
-			'label2' => $_POST['label2'],
-			'label3' => $_POST['label3'],
-			'label4' => $_POST['label4'],
-			'label5' => $_POST['label5'],
-			'label6' => $_POST['label6'],
-			'penerima' => $_POST['penerima'],
-			'akun_bank' => $_POST['akun_bank'],
-			'no_rekening' => $_POST['no_rekening'],
-		);
-
-		$this->Home_model->updatepayment($upd);
-
-		redirect('Home');
-	}
-	
 	public function form_edit($idp)
 	{
 		$data['active1'] = 'active';
