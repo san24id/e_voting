@@ -40,12 +40,12 @@
                     <input type="hidden" name="id_payment" class="form-control" value="<?php echo $get->id_payment?>" readonly> 
                     <div class="box-body">
                       <div class="form-row">
-                      <div class="form-group">
-                            <label>Jenis Pembayaran (pilih salah satu)</label>
-                            <!-- <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance" <?php echo $get->jenis_pembayaran==UangMuka/Advance? 'selected':''?> >Uang Muka/Advance</label>
-                            <input type="checkbox" name="jenis_pembayaran" value="Permintaan Uang Muka/Request" <?php echo $get->jenis_pembayaran==PermintaanUangMuka/Request? 'selected':''?> >Permintaan Uang Muka/Request</label>
-                            <input type="checkbox" name="jenis_pembayaran" value="Pertanggung Jawaban Uang Muka/Settlement" <?php echo $get->jenis_pembayaran==PertanggungJawabanUangMuka/Settlement? 'selected':''?> >Pertanggung Jawaban Uang Muka/Settlement</label>                            
-                            <input type="checkbox" name="jenis_pembayaran" value="Non-Uang Muka/Non-Advance" <?php echo $get->jenis_pembayaran==Non-UangMuka/Non-Advance? 'selected':''?> >Non-Uang Muka/Non-Advance</label> -->
+                      <div class="form-group col-md-12">
+                            <label>Jenis Pembayaran (pilih salah satu)</label><br>
+                            <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance" <?php echo $get->jenis_pembayaran=="Uang Muka/Advance"? 'checked':''?> >Uang Muka/Advance</label><br>
+                            <input type="checkbox" name="jenis_pembayaran" value="Permintaan Uang Muka/Request" <?php echo $get->jenis_pembayaran=="Permintaan Uang Muka/Request"? 'checked':''?> >Permintaan Uang Muka/Request</label><br>
+                            <input type="checkbox" name="jenis_pembayaran" value="Pertanggung Jawaban Uang Muka/Settlement" <?php echo $get->jenis_pembayaran=="Pertanggung Jawaban Uang Muka/Settlement"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement</label><br>                            
+                            <input type="checkbox" name="jenis_pembayaran" value="Non-Uang Muka/Non-Advance" <?php echo $get->jenis_pembayaran=="Non-Uang Muka/Non-Advance"? 'checked':''?> >Non-Uang Muka/Non-Advance</label><br>
                         </div>
                       <div class="form-group col-md-6">
                              <label>Tanggal</label>
@@ -252,18 +252,41 @@
                               <td>
                               <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
                               <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
-                            </tr>                                                    -->
+                            </tr>-->
                           </tbody>
                           </table>  
                           <br>
+
                           <table width="100%">
-                          <tbody>
                             <tr>
+                                <td><b>Jenis Pembayaran (pilih salah satu)</b></td>
+                                <td>
+                                  <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance" <?php echo $get->jenis_pembayaran=="Uang Muka/Advance"? 'checked':''?> disabled>Uang Muka/Advance</label>
+                                </td>
+                                <td>
+                                  <input type="checkbox" name="jenis_pembayaran" value="Pertanggung Jawaban Uang Muka/Settlement" <?php echo $get->jenis_pembayaran=="Pertanggung Jawaban Uang Muka/Settlement"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement</label>                       
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td></td>
+                                <td>
+                                  <input type="checkbox" name="jenis_pembayaran" value="Permintaan Uang Muka/Request" <?php echo $get->jenis_pembayaran=="Permintaan Uang Muka/Request"? 'checked':''?> disabled>Permintaan Uang Muka/Request</label>
+                                </td>
+                                <td>
+                                  <input type="checkbox" name="jenis_pembayaran" value="Non-Uang Muka/Non-Advance" <?php echo $get->jenis_pembayaran=="Non-Uang Muka/Non-Advance"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance</label>
+                                </td>
+                            </tr>                       
+                          </table>
+
+                          <table width="100%">
+                          <tbody>                            
+                             <tr>
                               <td>Kepada : Divisi CSF</td>
                               <td align="right">Tanggal : <?php echo date("d-M-Y", strtotime($get->tanggal)); ?></td>
                             </tr>                                                    
                           </tbody>
                           </table>
+
                           <p> Dari   :</p>
                           <p>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->nama_user;?></p>
                           <p>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->divisi;?></p>
@@ -330,7 +353,7 @@
                           </h5>
                           <hr style=" border: 1px solid #000;">
                           <h6>
-                          <table class="table table-bordered table-striped" style="font-family: calibri;" width="50%">
+                          <table class="table table-bordered table-striped" style="font-family: calibri;" width="100%">
                           <tbody>
                               <tr>
                                 <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
