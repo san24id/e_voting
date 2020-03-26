@@ -55,17 +55,6 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
 	}
-	
-	public function submitted()
-	{
-		$data['active1'] = '';
-		$data['active2'] = 'active';
-		$data['active3'] = '';
-		$data['active4'] = '';
-		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
-		$this->load->view('akses/user/header_user');	
-        $this->load->view('akses/user/submitted_user', $data);
-	}
 
 	public function form_add()
 	{
@@ -86,6 +75,7 @@ class Home extends CI_Controller {
 		$add = array(
 			
 			'id_payment' => $_POST['id_payment'],
+			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'jenis_pembayaran' => $_POST['jenis_pembayaran'],
 			'nama_user' => $_POST['nama_user'],
@@ -115,6 +105,7 @@ class Home extends CI_Controller {
 		$upd = array(
 
 			'id_payment' => $_POST['id_payment'],
+			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'jenis_pembayaran' => $_POST['jenis_pembayaran'],
 			'nama_user' => $_POST['nama_user'],
@@ -185,7 +176,7 @@ class Home extends CI_Controller {
 
 		$sid = $this->session->userdata("id_user");
 
-		$data['payment'] = $this->Home_model->getform($id_payment);
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/user/header_user', $data);	
@@ -219,6 +210,16 @@ class Home extends CI_Controller {
         $this->load->view('akses/user/profil', $data);
 	} 
 
+	// public function submitted()
+	// {
+	// 	$data['active1'] = '';
+	// 	$data['active2'] = 'active';
+	// 	$data['active3'] = '';
+	// 	$data['active4'] = '';
+	// 	//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
+	// 	$this->load->view('akses/user/header_user');	
+    //     $this->load->view('akses/user/submitted_user', $data);
+	// }
 
 	// public function updatemyprofil(){
 

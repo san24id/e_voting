@@ -43,7 +43,7 @@ class Home_model extends CI_Model{
         label3, label4, label5, label6, penerima, vendor, akun_bank, no_rekening) 
         VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['nama_user']."','".$add['tanggal']."','".$add['hari']."',
         '".$add['divisi']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."','".$add['label3']."','".$add['label4']."',
-        '".$add['label5']."','".$add['label6']."','".$add['penerima']."','".$add['vendor']."''".$add['akun_bank']."','".$add['no_rekening']."')";
+        '".$add['label5']."','".$add['label6']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."')";
         
         $query = $this->db->query($sql);
 

@@ -23,6 +23,7 @@
                 <tr>
                   <th>NO.</th>
                   <th>Tanggal</th>
+                  <th>Jenis Pembayaran</th>
                   <th>Nomor Surat</th>
                   <th>Divisi</th>
                   <th>Jabatan</th>
@@ -39,6 +40,7 @@
                 <tr>
                   <td><?php echo $i++; ?></td>                  
                   <td><?php echo date("d-m-Y", strtotime($row->tanggal)); ?></td>
+                  <td><?php echo $row->jenis_pembayaran; ?></td>
                   <td><?php echo $row->nomor_surat; ?></td>
                   <td><?php echo $row->divisi; ?></td>
                   <td><?php echo $row->jabatan; ?></td>

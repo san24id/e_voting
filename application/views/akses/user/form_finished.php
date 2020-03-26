@@ -28,7 +28,7 @@
         </section>
         <!-- Main content -->
         <form id="form" method="post" action="Home/updatepayment">
-          <?php foreach ($payment as $get){ ?>          
+          <?php foreach ($ppayment as $get){ ?>          
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -71,109 +71,102 @@
                             <label>Jabatan</label>
                             <input type="text" name="jabatan" class="form-control" value="<?php echo $get->jabatan ?>" readonly>
                         </div>
-                      
+                      </div>                    
                     </div>
-                </div>    
 
-                <div class="box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Detail Pengajuan</h3>
-                  </div>  
+                    <div class="box">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">Detail Pengajuan</h3>
+                      </div>  
 
-                  <div class="box-body">
-                    <div class="form-group">
-                        <label>Tujuan Penggunaan :</label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="label1"><?php echo $get->label1?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Jumlah : </label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="label2"><?php echo $get->label2?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Perkiraan Tanggal : </label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="label3"><?php echo $get->label3?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Penyedia Barang / Jasa Penerima Pembayaran : </label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="label4"><?php echo $get->label4?></textarea>
-                    </div>
-                    <!-- <div class="form-group">
-                        <label>Label : </label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="label5"><?php echo $get->label5?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Label : </i></label>
-                        <input type="hidden" name="" value="">
-                        <textarea type="text" class="form-control" name="label6"><?php echo $get->label6?></textarea>
-                    </div> -->                                   
-                </div>
-
-                <div class="box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Data Penerima Pembayaran</h3>
-                  </div>
-                  
-                  <div class="box-body">  
-                  <div class="form-group">
-                        <label>Bank Account</label>                        
-                        <select name="akun_bank" class="form-control">
-                            <option value="1" <?php echo $get->akun_bank==1? 'selected':''?> >Choose</option>
-                            <option value="BCA" <?php echo $get->akun_bank==BCA? 'selected':''?> >BCA</option>
-                            <option value="Mandiri" <?php echo $get->akun_bank==Mandiri? 'selected':''?> >Mandiri</option>
-                            <option value="BNI" <?php echo $get->akun_bank==BNI? 'selected':''?> >BNI</option>
-                            <option value="BRI" <?php echo $get->akun_bank==BRI? 'selected':''?> >BRI</option>
-                            <option value="6" <?php echo $get->akun_bank==6? 'selected':''?> >Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Nama Penerima:</label>
-                        <input type="text" class="form-control" name="penerima" value="<?php echo $get->penerima?>"readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>Kode Vendor:</label>
-                        <input type="text" class="form-control" name="vendor" value="<?php echo $get->vendor?>"readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>No. Rekening</label>
-                        <input type="text" class="form-control" name="no_rekening" value="<?php echo $get->no_rekening?>" readonly>
-                    </div>                  
-
-                <div class="box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Permintaan Permohonan</h3>
-                  </div>
-
-                  <div class="box-body">
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Pemohon, </label>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>Nama : &nbsp; <?php echo $get->nama_user?>
-                            <br>Jabatan : &nbsp;<?php echo $get->jabatan?>
+                      <div class="box-body">
+                        <div class="form-group">
+                            <label>Tujuan Penggunaan :</label>                        
+                            <textarea type="text" class="form-control" name="label1"><?php echo $get->label1?></textarea>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label>Menyetujui,</label>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>Nama :
-                            <br>Jabatan :
-                        </div>  
-                  </div>
-                    <hr style=" border: 1px solid #000;">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">Print</button> 
-                </div>
+                        <div class="form-group">
+                            <label>Jumlah : </label>                        
+                            <textarea type="text" class="form-control" name="label2"><?php echo $get->label2?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Perkiraan Tanggal : </label>                        
+                            <textarea type="text" class="form-control" name="label3"><?php echo $get->label3?></textarea>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Penyedia Barang / Jasa Penerima Pembayaran : </label>                        
+                            <textarea type="text" class="form-control" name="label4"><?php echo $get->label4?></textarea>
+                        </div> -->
+                        <!-- <div class="form-group">
+                            <label>Label : </label>
+                            <input type="hidden" name="" value="">
+                            <textarea type="text" class="form-control" name="label5"><?php echo $get->label5?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Label : </i></label>
+                            <input type="hidden" name="" value="">
+                            <textarea type="text" class="form-control" name="label6"><?php echo $get->label6?></textarea>
+                        </div> -->                                 
+                    
+                    <div class="box">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">Data Penerima Pembayaran <br> <i>(diisi dengan mengacu pada vendor master data-Procurement)</i></h3>
+                      </div>                  
+                      <div class="box-body">
+                        <h5 class="box-title"><b>Penyedia Barang / Jasa Penerima Pembayaran :</b></h5>  
+                      <div class="form-group">
+                            <label>Bank Account</label>                        
+                            <select name="akun_bank" class="form-control">
+                                <option value="1" <?php echo $get->akun_bank==1? 'selected':''?> >Choose</option>
+                                <option value="BCA" <?php echo $get->akun_bank==BCA? 'selected':''?> >BCA</option>
+                                <option value="Mandiri" <?php echo $get->akun_bank==Mandiri? 'selected':''?> >Mandiri</option>
+                                <option value="BNI" <?php echo $get->akun_bank==BNI? 'selected':''?> >BNI</option>
+                                <option value="BRI" <?php echo $get->akun_bank==BRI? 'selected':''?> >BRI</option>
+                                <option value="6" <?php echo $get->akun_bank==6? 'selected':''?> >Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Penerima:</label>
+                            <input type="text" class="form-control" name="penerima" value="<?php echo $get->penerima?>"readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Kode Vendor:</label>
+                            <input type="text" class="form-control" name="vendor" value="<?php echo $get->vendor?>"readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>No. Rekening</label>
+                            <input type="text" class="form-control" name="no_rekening" value="<?php echo $get->no_rekening?>" readonly>
+                        </div>                  
+
+                    <div class="box">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">Permintaan Permohonan</h3>
+                      </div>
+                      <div class="box-body">
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Pemohon, </label>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>Nama : &nbsp; <?php echo $get->nama_user?>
+                                <br>Jabatan : &nbsp;<?php echo $get->jabatan?>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Menyetujui,</label>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>Nama :
+                                <br>Jabatan :
+                            </div>  
+                      </div>
+                        <hr style=" border: 1px solid #000;">
+                        <a class="btn btn-warning" href="Home" role="button">Cancel</a>
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">Print</button> 
+                    </div>
             </div>
           </section>  
           <?php } ?>     
@@ -296,7 +289,7 @@
                           <table class="table" style="font-family: calibri;">
                             <tbody>
                             <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
-                              <?php foreach ($payment as $ket) { ?>
+                              <?php foreach ($ppayment as $ket) { ?>
                               <tr>
                                 <td><b>Tujuan Penggunaan :</b></td>
                                 <td><?php echo $ket->label1; ?></td>
@@ -318,7 +311,7 @@
                           <table class="table" style="font-family: calibri;">
                             <tbody>
                               <b><p>Penyedia Barang / Jasa Penerima Pembayaran</p></b>
-                              <?php foreach ($payment as $print) { ?>
+                              <?php foreach ($ppayment as $print) { ?>
                               <tr>
                                 <td>Nama : &nbsp; <?php echo $print->penerima;?></td>
                                 <td>Bank : &nbsp; <?php echo $print->akun_bank;?></td>

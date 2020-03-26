@@ -9,7 +9,7 @@
         </section>
         <!-- Main content -->
         <form id="form" method="post" action="Home/addpayment">
-           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">
+          <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">
            
           <section class="content">
             <div class="row">
@@ -22,7 +22,7 @@
                   
                     <div class="box-body">                      
                       <div class="form-row">                  
-                        <div class="form-group">
+                        <div class="form-group col-md-12">
                             <label>Jenis Pembayaran (pilih salah satu)</label><br>
                             <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance">Uang Muka/Advance</label><br>
                             <input type="checkbox" name="jenis_pembayaran" value="Permintaan Uang Muka/Request">Permintaan Uang Muka/Request</label><br>
@@ -71,13 +71,13 @@
                         <textarea type="text" class="form-control" name="label2" placeholder="Enter Text"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Perkiraan Tanggal : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
+                        <label>Perkiraan Tanggal Selesai Pekerjaan/Terima Barang (Hanya diisi untuk jenis pembayaran Permintaan Uang Muka/Request) : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
                         <textarea type="text" class="form-control" name="label3" placeholder="Enter Text"></textarea>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Penyedia Barang / Jasa Penerima Pembayaran : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label>                        
                         <textarea type="text" class="form-control" name="label4" placeholder="Enter Text"></textarea>
-                    </div>
+                    </div> -->
                     <!-- <div class="form-group">
                         <label>Label 5: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor5"></i></label>                        
                         <textarea type="text" class="form-control" name="label5" placeholder="Enter Text"></textarea>
@@ -93,6 +93,7 @@
                     <h3 class="box-title">Data Penerima Pembayaran <br> <i>(diisi dengan mengacu pada vendor master data-Procurement)</i></h3>
                   </div>
                   <div class="box-body">  
+                    <h5 class="box-title"><b>Penyedia Barang / Jasa Penerima Pembayaran :</b></h5>
                   <div class="form-group">
                         <label>Bank Account</label>
                         <select name="akun_bank" class="form-control">
