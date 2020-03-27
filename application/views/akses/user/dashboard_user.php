@@ -3,8 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Pengajuan Payment
-        <small> <a href="Home/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;New Data Entry</button></a></small>
+        Data Pengajuan Payment        
       </h1>
     </section>
 

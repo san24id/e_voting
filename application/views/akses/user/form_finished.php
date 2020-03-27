@@ -91,21 +91,22 @@
                         <div class="form-group">
                             <label>Perkiraan Tanggal : </label>                        
                             <textarea type="text" class="form-control" name="label3"><?php echo $get->label3?></textarea>
-                        </div>
-                        <!-- <div class="form-group">
-                            <label>Penyedia Barang / Jasa Penerima Pembayaran : </label>                        
-                            <textarea type="text" class="form-control" name="label4"><?php echo $get->label4?></textarea>
-                        </div> -->
-                        <!-- <div class="form-group">
-                            <label>Label : </label>
-                            <input type="hidden" name="" value="">
-                            <textarea type="text" class="form-control" name="label5"><?php echo $get->label5?></textarea>
-                        </div>
+                        </div>    
                         <div class="form-group">
-                            <label>Label : </i></label>
-                            <input type="hidden" name="" value="">
-                            <textarea type="text" class="form-control" name="label6"><?php echo $get->label6?></textarea>
-                        </div> -->                                 
+                            <label>Lampiran Dokumen Pendukung (Pilih dan Tandai jika ada) <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label><br>                        
+                            <input type="checkbox" name="label4" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)" <?php echo $get->label4=="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)"? 'checked':''?> >Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
+                            <input type="checkbox" name="label4" value=", Berita Acara Pemeriksaan (BAP)" <?php echo $get->label4==", Berita Acara Pemeriksaan (BAP)"? 'checked':''?> >Berita Acara Pemeriksaan (BAP)</input><br>
+                            <input type="checkbox" name="label4" value=", Berita Acara Pemeriksaan (BAST)" <?php echo $get->label4==", Berita Acara Pemeriksaan (BAST)"? 'checked':''?> >Berita Acara Pemeriksaan (BAST)</input><br>                            
+                            <input type="checkbox" name="label4" value=", Bukti Penerimaan Jasa/Barang (Delivery Order)" <?php echo $get->label4==", Bukti Penerimaan Jasa/Barang (Delivery Order)"? 'checked':''?> >Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                            <input type="checkbox" name="label4" value=", Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $get->label4==", Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> >Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
+                            <input type="checkbox" name="label4" value=", Copy PO/SPK" <?php echo $get->label4==", Copy PO/SPK"? 'checked':''?> >Copy PO/SPK</input><br>
+                            <input type="checkbox" name="label4" value=", Copy Kontrak/Perjanjian" <?php echo $get->label4==", Copy Kontrak/Perjanjian"? 'checked':''?> >Copy Kontrak/Perjanjian</input><br>                            
+                            <input type="checkbox" name="label4" value=", Faktur Pajak Rangkap 2" <?php echo $get->label4==", Faktur Pajak Rangkap 2"? 'checked':''?> >Faktur Pajak Rangkap 2</input><br>                        
+                            <input type="checkbox" name="label4" value=", Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $get->label4==", Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> >Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                            <input type="checkbox" name="label4" value=", NPWP (Jika kode vendor tidak tersedia)" <?php echo $get->label4==", NPWP (Jika kode vendor tidak tersedia)"? 'checked':''?> >NPWP (Jika kode vendor tidak tersedia)</input><br>
+                            <input type="checkbox" name="label4" value=", Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $get->label4==", Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                        </div>
+                       </div>
                     
                     <div class="box">
                       <div class="box-header with-border">
@@ -135,6 +136,29 @@
                         <div class="form-group">
                             <label>No. Rekening</label>
                             <input type="text" class="form-control" name="no_rekening" value="<?php echo $get->no_rekening?>" readonly>
+                        </div>                                 
+                    </div>
+
+                    <div class="box">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</h3>
+                      </div>  
+                      <div class="box-body">
+                        <div class="form-group">
+                          <label>Nomor ARF terkait</label>
+                          <input type="text" class="form-control" name="label5" value="<?php echo $get->label5?>">
+                          <input type="checkbox" name="label5" value=",&nbsp;Lampiran copy ARF tersedia">Lampiran copy ARF tersedia</input>
+                        </div>
+                        <div class="form-group">
+                          <label>Perhitungan Penggunaan Uang Muka :</label><br>
+                          <label>Jumlah Biaya :</label>
+                          <input type="text" class="form-control" name="label6" value="<?php echo $get->label6?>"></input>
+                        
+                          <label>Jumlah Uang Muka :</label>
+                          <input type="text" class="form-control" name="label7" value="<?php echo $get->label7?>"></input>
+
+                          <label>Selisih Kurang/Lebih :</label>
+                          <input type="text" class="form-control" name="label8" value="<?php echo $get->label8?>"></input>
                         </div>                  
 
                     <div class="box">
@@ -234,7 +258,8 @@
                             <left><img src="assets/dashboard/images/logo.png" width="140px" alt="Logo Images"></left>
                             <br>
                             <center><b><u><font size="+1" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
-                            <table width="100%">
+                          </h5>
+                          <table width="100%">
                           <tbody>
                             <tr>
                               <td>
@@ -247,8 +272,7 @@
                               <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
                             </tr>-->
                           </tbody>
-                          </table>  
-                          <br>
+                          </table>
 
                           <table width="100%">
                             <tr>
@@ -273,26 +297,31 @@
 
                           <table width="100%">
                           <tbody>                            
-                             <tr>
+                            <tr>
                               <td>Kepada : Divisi CSF</td>
                               <td align="right">Tanggal : <?php echo date("d-M-Y", strtotime($get->tanggal)); ?></td>
-                            </tr>                                                    
+                            </tr>
+                            <tr>
+                              <td>Dari : </td>
+                            </tr>             
+                            <tr>
+                              <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->nama_user;?></td>
+                            </tr> 
+                            <tr>
+                              <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->divisi;?></td>
+                            </tr>                                                   
                           </tbody>
                           </table>
-
-                          <p> Dari   :</p>
-                          <p>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->nama_user;?></p>
-                          <p>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->divisi;?></p>
                                                     
                           <hr style=" border: 1px solid #000;">
                                                      
-                          <table class="table" style="font-family: calibri;">
+                          <table style="font-family: calibri;">
                             <tbody>
                             <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                               <?php foreach ($ppayment as $ket) { ?>
                               <tr>
                                 <td><b>Tujuan Penggunaan :</b></td>
-                                <td><?php echo $ket->label1; ?></td>
+                                <td>&nbsp; <?php echo $ket->label1; ?></td>
                               </tr>
                               <tr>
                                 <td><b>Jumlah :</b></td>
@@ -300,7 +329,7 @@
                               </tr>
                               <tr>
                                 <td><b>Perkiraan Tanggal :</b></td>
-                                <td><?php echo $ket->label3; ?></td>     
+                                <td>&nbsp; <?php echo $ket->label3; ?></td>     
                               </tr>
                               <!-- <tr>
                                 <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> (Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
@@ -308,7 +337,8 @@
                               <?php } ?>
                             </tbody>
                           </table>
-                          <table class="table" style="font-family: calibri;">
+
+                          <table style="font-family: calibri;">
                             <tbody>
                               <b><p>Penyedia Barang / Jasa Penerima Pembayaran</p></b>
                               <?php foreach ($ppayment as $print) { ?>
@@ -326,12 +356,44 @@
                               <?php }  ?>
                             </tbody>
                           </table>
-                            <br>
+
                           <table width="100%">
+                            <tr>
+                                <td><b>Lampiran Dokumen Pendukung</b></td>
+                                <td>
+                                  <?php if($get->label4){
+                                    echo $get->label4;
+                                  }?>
+                                <td>
+                            <tr>      
+                          </table>
+
+                          <table style="font-family: calibri;" width="125%">
+                            <tbody>
+                              <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
+                              <?php foreach ($ppayment as $print) { ?>
+                              <tr>
+                                <td>Nomor ARF terkait : &nbsp; <?php echo $print->label5;?></td>
+                              </tr>
+                              <tr>
+                                <td>Perhitungan Penggunaan Uang Muka :</td>
+                              </tr>
+                              <tr?>  
+                                <td>Jumlah Biaya : &nbsp; <?php echo $print->label6;?></td>
+                              </tr>
+                                <td>Jumlah Uang Muka : &nbsp; <?php echo $print->label7; ?></td>     
+                              <tr>
+                                <td>Selisih Kurang/Lebih : &nbsp; <?php echo $print->label8; ?></td>                                
+                              </tr>                              
+                              <?php }  ?>
+                            </tbody>
+                          </table>
+                          <br>
+                          <table width="120%">
                           <tbody>
                               <tr>
-                                <td>Pemohon, <br><br><br><br><br><br></td>
-                                <td>Menyetujui, <br><br><br><br><br><br></td>
+                                <td>Pemohon, <br><br><br></td>
+                                <td>Menyetujui, <br><br><br></td>
                               </tr>
                               <tr>
                                 <td>Nama : &nbsp; <?php echo $get->nama_user?></td>
@@ -344,9 +406,9 @@
                           </tbody>
                           </table>
                           </h5>
-                          <hr style=" border: 1px solid #000;">
+                          <hr style=" border: 0.5px solid #000;">
                           <h6>
-                          <table class="table table-bordered table-striped" style="font-family: calibri;" width="100%">
+                          <table style="font-family: calibri;" width="100%">
                           <tbody>
                               <tr>
                                 <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>

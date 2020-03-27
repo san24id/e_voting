@@ -24,10 +24,10 @@
                       <div class="form-row">                  
                         <div class="form-group col-md-12">
                             <label>Jenis Pembayaran (pilih salah satu)</label><br>
-                            <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance">Uang Muka/Advance</label><br>
-                            <input type="checkbox" name="jenis_pembayaran" value="Permintaan Uang Muka/Request">Permintaan Uang Muka/Request</label><br>
-                            <input type="checkbox" name="jenis_pembayaran" value="Pertanggung Jawaban Uang Muka/Settlement">Pertanggung Jawaban Uang Muka/Settlement</label><br>                            
-                            <input type="checkbox" name="jenis_pembayaran" value="Non-Uang Muka/Non-Advance">Non-Uang Muka/Non-Advance</label><br>
+                            <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance">Uang Muka/Advance</input><br>
+                            <input type="checkbox" name="jenis_pembayaran" value=",&nbsp;Permintaan Uang Muka/Request">Permintaan Uang Muka/Request</input><br>
+                            <input type="checkbox" name="jenis_pembayaran" value=",&nbsp;Pertanggung Jawaban Uang Muka/Settlement">Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                            <input type="checkbox" name="jenis_pembayaran" value=",&nbsp;Non-Uang Muka/Non-Advance">Non-Uang Muka/Non-Advance</input><br>
                         </div>                                                                       
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>
@@ -64,28 +64,30 @@
                   <div class="box-body">
                     <div class="form-group">
                         <label>Tujuan Penggunaan : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>                        
-                        <textarea type="text" class="form-control" name="label1" placeholder="Enter Text"></textarea>
+                        <textarea type="text" class="form-control" name="label1" placeholder="Enter Text" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Jumlah : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>                        
-                        <textarea type="text" class="form-control" name="label2" placeholder="Enter Text"></textarea>
+                        <textarea type="text" class="form-control" name="label2" placeholder="Enter Text" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Perkiraan Tanggal Selesai Pekerjaan/Terima Barang (Hanya diisi untuk jenis pembayaran Permintaan Uang Muka/Request) : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
-                        <textarea type="text" class="form-control" name="label3" placeholder="Enter Text"></textarea>
-                    </div>
-                    <!-- <div class="form-group">
-                        <label>Penyedia Barang / Jasa Penerima Pembayaran : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label>                        
-                        <textarea type="text" class="form-control" name="label4" placeholder="Enter Text"></textarea>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <label>Label 5: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor5"></i></label>                        
-                        <textarea type="text" class="form-control" name="label5" placeholder="Enter Text"></textarea>
+                        <textarea type="text" class="form-control" name="label3" placeholder="Enter Text" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Label 6: <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor6"></i></label>                        
-                        <textarea type="text" class="form-control" name="label6" placeholder="Enter Text"></textarea>
-                    </div> -->                                    
+                        <label>Lampiran Dokumen Pendukung (Pilih dan Tandai jika ada) <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label><br>                        
+                        <input type="checkbox" name="label4" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)">Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
+                        <input type="checkbox" name="label4" value=", Berita Acara Pemeriksaan (BAP)">Berita Acara Pemeriksaan (BAP)</input><br>
+                        <input type="checkbox" name="label4" value=", Berita Acara Pemeriksaan (BAST)">Berita Acara Pemeriksaan (BAST)</input><br>                            
+                        <input type="checkbox" name="label4" value=", Bukti Penerimaan Jasa/Barang (Delivery Order)">Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                        <input type="checkbox" name="label4" value=", Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)">Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
+                        <input type="checkbox" name="label4" value=", Copy PO/SPK">Copy PO/SPK</input><br>
+                        <input type="checkbox" name="label4" value=", Copy Kontrak/Perjanjian">Copy Kontrak/Perjanjian</input><br>                            
+                        <input type="checkbox" name="label4" value=", Faktur Pajak Rangkap 2">Faktur Pajak Rangkap 2</input><br>                        
+                        <input type="checkbox" name="label4" value=", Form DGT-1 & COD (Jika kode vendor tidak tersedia)">Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                        <input type="checkbox" name="label4" value=", NPWP (Jika kode vendor tidak tersedia)">NPWP (Jika kode vendor tidak tersedia)</input><br>
+                        <input type="checkbox" name="label4" value=", Lainnya (Jika ada) : Rincian Pengeluaran">Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                    </div>                                                      
                 </div>
 
                 <div class="box">
@@ -94,7 +96,7 @@
                   </div>
                   <div class="box-body">  
                     <h5 class="box-title"><b>Penyedia Barang / Jasa Penerima Pembayaran :</b></h5>
-                  <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label>Bank Account</label>
                         <select name="akun_bank" class="form-control">
                             <option value="1">Choose</option>
@@ -105,21 +107,44 @@
                             <option value="6">Other</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label>Nama Penerima:</label>
-                        <input type="text" class="form-control" name="penerima" placeholder="Auto">
+                        <input type="text" class="form-control" name="penerima" placeholder="Enter Text" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label>Kode Vendor</label>
-                        <input type="text" class="form-control" name="vendor" value="" placeholder="Auto">
+                        <input type="text" class="form-control" name="vendor" placeholder="Enter Text" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Nomor Rekening</label>
+                        <input type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required>
+                    </div>                                 
+                </div>
+
+                <div class="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</h3>
+                  </div>  
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label>Nomor ARF terkait</label>
+                      <input type="text" class="form-control" name="label5" placeholder="Enter Text">
+                      <input type="checkbox" name="label5" value=",&nbsp;Lampiran copy ARF tersedia">Lampiran copy ARF tersedia</input>
                     </div>
                     <div class="form-group">
-                        <label>No. Rekening</label>
-                        <input type="text" class="form-control" name="no_rekening" value="" placeholder="Auto">
-                    </div>
+                      <label>Perhitungan Penggunaan Uang Muka :</label><br>
+                      <label>Jumlah Biaya :</label>
+                      <input type="text" class="form-control" name="label6" placeholder="Enter Text"></input>
+                    
+                      <label>Jumlah Uang Muka :</label>
+                      <input type="text" class="form-control" name="label7" placeholder="Enter Text"></input>
 
+                      <label>Selisih Kurang/Lebih :</label>
+                      <input type="text" class="form-control" name="label8" placeholder="Enter Text"></input>
+                    </div>
+                    
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                     
                   </div>
                 </div>                                                 

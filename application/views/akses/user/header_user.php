@@ -213,9 +213,10 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="<?php echo $active2?>"><a href="#"><i class="glyphicon glyphicon-inbox"></i><span>Dashboard User</a></span></li>
-        <li class="<?php echo $active1?>"><a href="Home"><i class="glyphicon glyphicon-inbox"></i><span>Data Pengajuan</a></span></li>
-        <!-- <li class="<?php echo $active2?>"><a href="Home/myprofile"><i class="glyphicon glyphicon-user"></i><span>Profile</a></span></li> -->
+        <li class="<?php echo $active2?>"><a href="#"><i class="glyphicon glyphicon-inbox"></i><span>My Dashboard</a></span></li>
+        <li class="<?php echo $active1?>"><a href="Home"><i class="glyphicon glyphicon-inbox"></i><span>My Report</a></span></li>
+        <li class="<?php echo $active3?>"><a href="#"><i class="glyphicon glyphicon-user"></i><span>My Inbox</a></span></li>
+        <li> <a href="Home/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
