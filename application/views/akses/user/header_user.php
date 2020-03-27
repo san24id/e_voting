@@ -213,10 +213,13 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="<?php echo $active2?>"><a href="#"><i class="glyphicon glyphicon-inbox"></i><span>My Dashboard</a></span></li>
-        <li class="<?php echo $active1?>"><a href="Home"><i class="glyphicon glyphicon-inbox"></i><span>My Report</a></span></li>
-        <li class="<?php echo $active3?>"><a href="#"><i class="glyphicon glyphicon-user"></i><span>My Inbox</a></span></li>
-        <li> <a href="Home/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></li>
+        <li class="<?php echo $active1?>"><a href="Home"><i class="glyphicon glyphicon-inbox"></i><span>My Dashboard</a></span></li>
+        <li class="<?php echo $active2?>"><a href="Home/my_report"><i class="glyphicon glyphicon-inbox"></i><span>My Report</a></span></li>
+        <li class="<?php echo $active3?>"><a href="Home/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</a></span></li>
+        <br>
+        <br>
+        <br>
+        <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>
       </ul>
     </section>
     <!-- /.sidebar -->

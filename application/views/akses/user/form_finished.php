@@ -103,7 +103,7 @@
                             <input type="checkbox" name="label4" value=", Copy Kontrak/Perjanjian" <?php echo $get->label4==", Copy Kontrak/Perjanjian"? 'checked':''?> >Copy Kontrak/Perjanjian</input><br>                            
                             <input type="checkbox" name="label4" value=", Faktur Pajak Rangkap 2" <?php echo $get->label4==", Faktur Pajak Rangkap 2"? 'checked':''?> >Faktur Pajak Rangkap 2</input><br>                        
                             <input type="checkbox" name="label4" value=", Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $get->label4==", Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> >Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
-                            <input type="checkbox" name="label4" value=", NPWP (Jika kode vendor tidak tersedia)" <?php echo $get->label4==", NPWP (Jika kode vendor tidak tersedia)"? 'checked':''?> >NPWP (Jika kode vendor tidak tersedia)</input><br>
+                            <input type="checkbox" name="label4" value=", NPWP" <?php echo $get->label4==", NPWP (Jika kode vendor tidak tersedia)"? 'checked':''?> >NPWP (Jika kode vendor tidak tersedia)</input><br>
                             <input type="checkbox" name="label4" value=", Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $get->label4==", Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
                         </div>
                        </div>
@@ -315,7 +315,7 @@
                                                     
                           <hr style=" border: 1px solid #000;">
                                                      
-                          <table style="font-family: calibri;">
+                          <table style="font-family: calibri;" width="100%">
                             <tbody>
                             <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                               <?php foreach ($ppayment as $ket) { ?>
@@ -338,7 +338,7 @@
                             </tbody>
                           </table>
 
-                          <table style="font-family: calibri;">
+                          <table style="font-family: calibri;" width="100%">
                             <tbody>
                               <b><p>Penyedia Barang / Jasa Penerima Pembayaran</p></b>
                               <?php foreach ($ppayment as $print) { ?>
@@ -357,14 +357,14 @@
                             </tbody>
                           </table>
 
-                          <table width="100%">
+                          <table>
                             <tr>
-                                <td><b>Lampiran Dokumen Pendukung</b></td>
-                                <td>
+                                <td><b>Lampiran Dokumen Pendukung :</b></td>
+                                <td>&nbsp;
                                   <?php if($get->label4){
                                     echo $get->label4;
                                   }?>
-                                <td>
+                                </td>
                             <tr>      
                           </table>
 
@@ -392,8 +392,8 @@
                           <table width="120%">
                           <tbody>
                               <tr>
-                                <td>Pemohon, <br><br><br></td>
-                                <td>Menyetujui, <br><br><br></td>
+                                <td>Pemohon, <br><br><br><br></td>
+                                <td>Menyetujui, <br><br><br><br></td>
                               </tr>
                               <tr>
                                 <td>Nama : &nbsp; <?php echo $get->nama_user?></td>

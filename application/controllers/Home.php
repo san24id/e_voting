@@ -45,6 +45,7 @@ class Home extends CI_Controller {
 
 		$data['active1'] = 'active';
 		$data['active2'] = '';
+		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		// $data['sektor'] = $this->Home_model->getSektor();
@@ -53,13 +54,51 @@ class Home extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/user/header_user', $data);
-		$this->load->view('akses/user/dashboard_user', $data);
+		$this->load->view('akses/user/dashboard', $data);
+	}
+
+	public function my_report()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/my_report', $data);
+	}
+
+	public function my_inbox()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = '';
+		$data['active3'] = 'active';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/my_inbox', $data);
 	}
 
 	public function form_add()
 	{
-		$data['active1'] = 'active';
-		$data['active2'] = '';
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
 		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
 		
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -146,6 +185,7 @@ class Home extends CI_Controller {
 	{
 		$data['active1'] = 'active';
 		$data['active2'] = '';
+		$data['active3'] = '';
 		
 		$sid = $this->session->userdata("id_user");
 
@@ -175,8 +215,9 @@ class Home extends CI_Controller {
 
 	public function formfinished($id_payment)
 	{
-		$data['active1'] = 'active';
-		$data['active2'] = '';
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
 
 		$sid = $this->session->userdata("id_user");
 
@@ -196,23 +237,23 @@ class Home extends CI_Controller {
 		// }
 	}
 
-	public function myprofile()
-	{
-		$data['active1'] = '';
-		$data['active2'] = 'active';
-		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
+	// public function myprofile()
+	// {
+	// 	$data['active1'] = '';
+	// 	$data['active2'] = 'active';
+	// 	//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
 
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['kementerian'] = $this->Home_model->getKementerian();
-		// $data['lpnk'] = $this->Home_model->getNonKementrian();
-		// $data['provinsi'] = $this->Home_model->getProvinsi();
-		// $data['kota'] = $this->Home_model->getKota();	
-		// $data['kabupaten'] = $this->Home_model->getKabupaten();	
-		// $data['profil'] = $this->Home_model->getProfilId();
+	// 	// $data['sektor'] = $this->Home_model->getSektor();
+	// 	// $data['kementerian'] = $this->Home_model->getKementerian();
+	// 	// $data['lpnk'] = $this->Home_model->getNonKementrian();
+	// 	// $data['provinsi'] = $this->Home_model->getProvinsi();
+	// 	// $data['kota'] = $this->Home_model->getKota();	
+	// 	// $data['kabupaten'] = $this->Home_model->getKabupaten();	
+	// 	// $data['profil'] = $this->Home_model->getProfilId();
 
-		$this->load->view('akses/user/header_user', $data);		
-        $this->load->view('akses/user/profil', $data);
-	} 
+	// 	$this->load->view('akses/user/header_user', $data);		
+    //     $this->load->view('akses/user/profil', $data);
+	// } 
 
 	// public function submitted()
 	// {

@@ -85,7 +85,7 @@
                         <input type="checkbox" name="label4" value=", Copy Kontrak/Perjanjian">Copy Kontrak/Perjanjian</input><br>                            
                         <input type="checkbox" name="label4" value=", Faktur Pajak Rangkap 2">Faktur Pajak Rangkap 2</input><br>                        
                         <input type="checkbox" name="label4" value=", Form DGT-1 & COD (Jika kode vendor tidak tersedia)">Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
-                        <input type="checkbox" name="label4" value=", NPWP (Jika kode vendor tidak tersedia)">NPWP (Jika kode vendor tidak tersedia)</input><br>
+                        <input type="checkbox" name="label4" value=", NPWP">NPWP (Jika kode vendor tidak tersedia)</input><br>
                         <input type="checkbox" name="label4" value=", Lainnya (Jika ada) : Rincian Pengeluaran">Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
                     </div>                                                      
                 </div>
