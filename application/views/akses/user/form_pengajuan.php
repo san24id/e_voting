@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label>Perkiraan Tanggal Selesai Pekerjaan/Terima Barang (Hanya diisi untuk jenis pembayaran Permintaan Uang Muka/Request) : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
-                        <textarea type="text" class="form-control" name="label3" placeholder="Enter Text" required></textarea>
+                        <input type="date" class="form-control" name="label3" placeholder="Enter Text" required></input>
                     </div>
                     <div class="form-group">
                         <label>Lampiran Dokumen Pendukung (Pilih dan Tandai jika ada) <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label><br>                        

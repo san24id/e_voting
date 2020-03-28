@@ -215,8 +215,8 @@ class Home extends CI_Controller {
 
 	public function formfinished($id_payment)
 	{
-		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['active1'] = 'active';
+		$data['active2'] = '';
 		$data['active3'] = '';
 
 		$sid = $this->session->userdata("id_user");
