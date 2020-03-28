@@ -212,9 +212,26 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="<?php echo $active1?>"><a href="Home"><i class="glyphicon glyphicon-inbox"></i><span>My Dashboard</a></span></li>
-        <li class="<?php echo $active2?>"><a href="Home/my_report"><i class="glyphicon glyphicon-inbox"></i><span>My Report</a></span></li>
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="<?php echo $active1?>"><a href="Home"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+        <li class="treeview">
+          <a href="Home/my_report">
+            <i class="glyphicon glyphicon-inbox"></i>
+            <span>My Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href=""><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+          </ul>  
+        </li>
+        
         <li class="<?php echo $active3?>"><a href="Home/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</a></span></li>
         <br>
         <br>

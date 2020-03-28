@@ -167,7 +167,7 @@ class Home extends CI_Controller {
 			'akun_bank' => $_POST['akun_bank'],
 			'no_rekening' => $_POST['no_rekening'],
 		);
-
+		
 		$this->Home_model->updatepayment($upd);
 
 		redirect('Home');

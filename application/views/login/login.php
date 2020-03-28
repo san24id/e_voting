@@ -3610,7 +3610,7 @@ iframe {
 		<div class="container-login100" style="background-image: url('assets/login/images/bg-01.jpg');">
 			<div class="wrap-login100">
 			<div class="login100-pic js-tilt" data-tilt>
-				<img width="250px" src="<?=base_url('assets/login/images/menu_app_logo1.png');?>" alt="IMG">
+				<img width="100%" src="<?=base_url('assets/login/images/menu_app_logo1.png');?>" alt="IMG">
 			</div>
 				<form class="login100-form validate-form" action="<?php echo site_url().'Login/auth'?>"  method="post">
 					<span class="login100-form-title p-b-34 p-t-27">

@@ -24,10 +24,10 @@
                       <div class="form-row">                  
                         <div class="form-group col-md-12">
                             <label>Jenis Pembayaran (pilih salah satu)</label><br>
-                            <input type="checkbox" name="jenis_pembayaran" value="Uang Muka/Advance">Uang Muka/Advance</input><br>
-                            <input type="checkbox" name="jenis_pembayaran" value=",&nbsp;Permintaan Uang Muka/Request">Permintaan Uang Muka/Request</input><br>
-                            <input type="checkbox" name="jenis_pembayaran" value=",&nbsp;Pertanggung Jawaban Uang Muka/Settlement">Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
-                            <input type="checkbox" name="jenis_pembayaran" value=",&nbsp;Non-Uang Muka/Non-Advance">Non-Uang Muka/Non-Advance</input><br>
+                            <input type="checkbox" name="[jenis_pembayaran]" value="Uang Muka/Advance">Uang Muka/Advance</input><br>
+                            <input type="checkbox" name="[jenis_pembayaran]" value="Permintaan Uang Muka/Request">Permintaan Uang Muka/Request</input><br>
+                            <input type="checkbox" name="[jenis_pembayaran]" value="Pertanggung Jawaban Uang Muka/Settlement">Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                            <input type="checkbox" name="[jenis_pembayaran]" value="Non-Uang Muka/Non-Advance">Non-Uang Muka/Non-Advance</input><br>
                         </div>                                                                       
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>
@@ -76,17 +76,17 @@
                     </div>
                     <div class="form-group">
                         <label>Lampiran Dokumen Pendukung (Pilih dan Tandai jika ada) <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label><br>                        
-                        <input type="checkbox" name="label4" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)">Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
-                        <input type="checkbox" name="label4" value=", Berita Acara Pemeriksaan (BAP)">Berita Acara Pemeriksaan (BAP)</input><br>
-                        <input type="checkbox" name="label4" value=", Berita Acara Pemeriksaan (BAST)">Berita Acara Pemeriksaan (BAST)</input><br>                            
-                        <input type="checkbox" name="label4" value=", Bukti Penerimaan Jasa/Barang (Delivery Order)">Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
-                        <input type="checkbox" name="label4" value=", Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)">Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
-                        <input type="checkbox" name="label4" value=", Copy PO/SPK">Copy PO/SPK</input><br>
-                        <input type="checkbox" name="label4" value=", Copy Kontrak/Perjanjian">Copy Kontrak/Perjanjian</input><br>                            
-                        <input type="checkbox" name="label4" value=", Faktur Pajak Rangkap 2">Faktur Pajak Rangkap 2</input><br>                        
-                        <input type="checkbox" name="label4" value=", Form DGT-1 & COD (Jika kode vendor tidak tersedia)">Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
-                        <input type="checkbox" name="label4" value=", NPWP">NPWP (Jika kode vendor tidak tersedia)</input><br>
-                        <input type="checkbox" name="label4" value=", Lainnya (Jika ada) : Rincian Pengeluaran">Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                        <input type="checkbox" name="[label4]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)">Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
+                        <input type="checkbox" name="[label4]" value="Berita Acara Pemeriksaan (BAP)">Berita Acara Pemeriksaan (BAP)</input><br>
+                        <input type="checkbox" name="[label4]" value="Berita Acara Pemeriksaan (BAST)">Berita Acara Pemeriksaan (BAST)</input><br>                            
+                        <input type="checkbox" name="[label4]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)">Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                        <input type="checkbox" name="[label4]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)">Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
+                        <input type="checkbox" name="[label4]" value="Copy PO/SPK">Copy PO/SPK</input><br>
+                        <input type="checkbox" name="[label4]" value="Copy Kontrak/Perjanjian">Copy Kontrak/Perjanjian</input><br>                            
+                        <input type="checkbox" name="[label4]" value="Faktur Pajak Rangkap 2">Faktur Pajak Rangkap 2</input><br>                        
+                        <input type="checkbox" name="[label4]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)">Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                        <input type="checkbox" name="[label4]" value="NPWP">NPWP (Jika kode vendor tidak tersedia)</input><br>
+                        <input type="checkbox" name="[label4]" value="Lainnya (Jika ada) : Rincian Pengeluaran">Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
                     </div>                                                      
                 </div>
 
@@ -128,8 +128,8 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label>Nomor ARF terkait</label>
-                      <input type="text" class="form-control" name="label5" placeholder="Enter Text">
-                      <input type="checkbox" name="label5" value=",&nbsp;Lampiran copy ARF tersedia">Lampiran copy ARF tersedia</input>
+                      <input type="text" class="form-control" name="[label5]" placeholder="Enter Text">
+                      <input type="checkbox" name="[label5]" value="Lampiran copy ARF tersedia">Lampiran copy ARF tersedia</input>
                     </div>
                     <div class="form-group">
                       <label>Perhitungan Penggunaan Uang Muka :</label><br>
@@ -213,7 +213,29 @@
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>      
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
+
+<!-- <script type="text/javascript">
+    $('form').submit(function(e) {
+        e.preventDefault();
+
+       var jenis_pembayaran = $("input[name='jenis_pembayaran']").val();
+       var label1 = $("textarea[name='label1']").val();
+
+        $.ajax({
+           url: '/ajax-requestPost',
+           type: 'POST',
+           data: {jenis_pembayaran: jenis_pembayaran, label1: label1},
+           error: function() {
+              alert('Something is wrong');
+           },
+           success: function(data) {                
+                alert("Record added successfully");  
+           }
+        });
+
+
+    });  -->
 
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
