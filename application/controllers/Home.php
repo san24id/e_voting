@@ -111,12 +111,26 @@ class Home extends CI_Controller {
 	}
 
 	public function addpayment(){
+		$c_jp = count($_POST['jenis_pembayaran']);
+		$jenis_pembayaran = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$jenis_pembayaran .= $_POST['jenis_pembayaran'][$i].";";
+		}
+
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$label4 .= $_POST['label4'][$i].";";
+		}
+
+		// echo $jenis_pembayaran;
+		// var_dump(count($_POST['jenis_pembayaran']));exit;
 		$add = array(
 			
 			'id_payment' => $_POST['id_payment'],
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
-			'jenis_pembayaran' => $_POST['jenis_pembayaran'],
+			'jenis_pembayaran' => $jenis_pembayaran,
 			'nama_user' => $_POST['nama_user'],
 			'tanggal' => $_POST['tanggal'],
 			'hari' => $_POST['hari'],
@@ -125,30 +139,44 @@ class Home extends CI_Controller {
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
 			'label3' => $_POST['label3'],
-			'label4' => $_POST['label4'],
+			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
 			'penerima' => $_POST['penerima'],
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
 			'no_rekening' => $_POST['no_rekening'],
 		);
 
-		// $this->session->set_flashdata('success', 'Berhasil disimpan');
+		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
 		$this->Home_model->addpayment($add);
 			
 		redirect('Home');
 	}
 
 	public function updatepayment(){
+		$c_jp = count($_POST['jenis_pembayaran']);
+		$jenis_pembayaran = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$jenis_pembayaran .= $_POST['jenis_pembayaran'][$i].";";
+		}
+
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$label4 .= $_POST['label4'][$i].";";
+		}
+		// echo $label4;
+		// var_dump(count($_POST['label$label4']));exit;
 		$upd = array(
 
 			'id_payment' => $_POST['id_payment'],
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
-			'jenis_pembayaran' => $_POST['jenis_pembayaran'],
+			'jenis_pembayaran' => $jenis_pembayaran,
 			'nama_user' => $_POST['nama_user'],
 			'tanggal' => $_POST['tanggal'],
 			'hari' => $_POST['hari'],
@@ -157,17 +185,19 @@ class Home extends CI_Controller {
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
 			'label3' => $_POST['label3'],
-			'label4' => $_POST['label4'],
+			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
 			'penerima' => $_POST['penerima'],
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
 			'no_rekening' => $_POST['no_rekening'],
 		);
 		
+		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
 		$this->Home_model->updatepayment($upd);
 
 		redirect('Home');

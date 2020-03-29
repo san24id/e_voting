@@ -1,3 +1,8 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/snap.svg/0.1.0/snap.svg-min.js"></script>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -75,13 +80,11 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-md-4">
-                  <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                    <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                    <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                    <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                    <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                    <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                  <ul data-pie-id="svg" class="chart-legend clearfix">
+                    <li data-value="60"><i class="fa fa-circle-o text-red"></i>&nbsp;Direct Payment (DP)</li>
+                    <li data-value="5"><i class="fa fa-circle-o text-green"></i>&nbsp;Advance Request</li>
+                    <li data-value="20"><i class="fa fa-circle-o text-yellow"></i>&nbsp;Advance Settlement</li>
+                    <li data-value="50"><i class="fa fa-circle-o text-blue"></i>&nbsp;Non Advance</li>                    
                   </ul>
                 </div>
                 <!-- /.col -->
@@ -128,13 +131,22 @@
                     <tbody>
                     <?php 
                         $i = 1;
-                        foreach ($payment as $row){
-                    ?>
+                        foreach ($payment as $row){                          
+                        // $c_jp = count($row->jenis_pembayaran);
+                        $test1 = $row->jenis_pembayaran;                        
+                        $test2 = explode(";", $test1);
+                        $test3 = count($test2);                        
+                        ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td></td>                  
-                    <td><?php echo $row->label3; ?></td>
-                    <td><?php echo $row->jenis_pembayaran; ?></td>
+                    <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                    <td><?php                     
+                        for($a=0; $a<$test3; $a++){
+                          if($test2[$a]){
+                            echo $test2[$a]."<br>";
+                          }
+                        }  ?></td>
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->divisi; ?></td>
                     <td><?php echo $row->jabatan; ?></td>

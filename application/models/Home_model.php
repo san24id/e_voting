@@ -40,11 +40,11 @@ class Home_model extends CI_Model{
 
     function addpayment($add){
         $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, nama_user, tanggal, hari, divisi, jabatan, label1, label2,
-        label3, label4, label5, label6, label7, label8, penerima, vendor, akun_bank, no_rekening) 
+        label3, label4, label5, label6, label7, label8, label9, penerima, vendor, akun_bank, no_rekening) 
         VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['nama_user']."',
         '".$add['tanggal']."','".$add['hari']."','".$add['divisi']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."',
         '".$add['label3']."','".$add['label4']."','".$add['label5']."','".$add['label6']."','".$add['label7']."','".$add['label8']."',
-        '".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."')";
+        '".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."')";
         
         $query = $this->db->query($sql);
 
@@ -52,9 +52,9 @@ class Home_model extends CI_Model{
     }
 
     function updatepayment($upd){
-        $sql = "UPDATE `t_payment` SET `label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`label3`='".$upd['label3']."',
+        $sql = "UPDATE `t_payment` SET `jenis_pembayaran`='".$upd['jenis_pembayaran']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`label3`='".$upd['label3']."',
         `label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',
-        `label8`='".$upd['label8']."',`penerima`='".$upd['penerima']."',`vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',
+        `label8`='".$upd['label8']."',`label9`='".$upd['label9']."',`penerima`='".$upd['penerima']."',`vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',
         `no_rekening`='".$upd['no_rekening']."'
         WHERE `id_payment`='".$upd['id_payment']."'"; 
         
