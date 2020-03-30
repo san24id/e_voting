@@ -22,6 +22,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getTotal(){
+        $dvs = $this->session->userdata('divisi');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE divisi='$dvs' AND id_user='$usr'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getform($id_payment) {
         $sql = "SELECT * FROM `t_payment` WHERE id_payment = '$id_payment'";
                 

@@ -48,6 +48,7 @@ class Home extends CI_Controller {
 		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['grafik'] = $this->Home_model->get_grafik($divisi);
 		$data['payment'] = $this->Home_model->getPayment($sid);

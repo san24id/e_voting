@@ -8,7 +8,6 @@
   
   <link rel="icon" type="image/png" href="<?=base_url('assets/login/images/menu_app_logo2.png');?>"/>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="assets/dashboard/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -190,7 +189,7 @@
                   <a href="Home/myprofile" class="btn btn-default btn-flat">Profile</a>
                 </div> -->
                 <div class="pull-right">
-                  <a href="login/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="login/logout" class="btn btn-success btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -208,6 +207,7 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
+
       <!-- Sidebar user panel -->
 
       </form>

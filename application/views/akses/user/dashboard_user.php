@@ -1,8 +1,3 @@
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/snap.svg/0.1.0/snap.svg-min.js"></script>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -15,12 +10,13 @@
     <section class="content">
         <!-- Info boxes -->
         <div class="row">
+        <?php foreach ($tot_pay_req as $tot_req) { ?>
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
                 <div class="info-box-content">
-                <span class="info-box-number"><center>108</center></span>
+                <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
                 <span class="info-box-text"><center>Total Payment Request</center></span>                
                 </div>
                 <!-- /.info-box-content -->
@@ -28,6 +24,8 @@
             <!-- /.info-box -->
             </div>
             <!-- /.col -->
+        <?php } ?>    
+
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fa fa-plus-square"></i></span>
@@ -39,7 +37,7 @@
                 <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
-            </div>
+            </div>            
             <!-- /.col -->
             <!-- fix for small devices only -->
             <div class="clearfix visible-sm-block"></div>
@@ -128,8 +126,8 @@
                     <th>Tanggal</th>
                     <th>Jenis Pembayaran</th>
                     <th>Nomor Surat</th>
-                    <th>Divisi</th>
-                    <th>Jabatan</th>
+                    <th>Description</th>
+                    <th>Pemohon</th>
                     <th>Bank Account</th>
                     <th>Nama Penerima</th>
                     <th>Submitted Date</th>
@@ -156,8 +154,8 @@
                           }
                         }  ?></td>
                     <td><?php echo $row->nomor_surat; ?></td>
-                    <td><?php echo $row->divisi; ?></td>
-                    <td><?php echo $row->jabatan; ?></td>
+                    <td><?php echo $row->label1; ?></td>
+                    <td><?php echo $row->nama_user; ?></td>
                     <td><?php echo $row->akun_bank; ?></td>
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
