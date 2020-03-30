@@ -23,10 +23,10 @@
                       <div class="form-row">                  
                         <div class="form-group col-md-12">
                             <label>Jenis Pembayaran (pilih salah satu)</label><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Uang Muka/Advance">Uang Muka/Advance</input><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Permintaan Uang Muka/Request">Permintaan Uang Muka/Request</input><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Pertanggung Jawaban Uang Muka/Settlement">Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Non-Uang Muka/Non-Advance">Non-Uang Muka/Non-Advance</input><br>
+                            <input type="checkbox" name="jenis_pembayaran[]" value="1">Uang Muka/Advance</input><br>
+                            <input type="checkbox" name="jenis_pembayaran[]" value="2">Permintaan Uang Muka/Request</input><br>
+                            <input type="checkbox" name="jenis_pembayaran[]" value="3">Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                            <input type="checkbox" name="jenis_pembayaran[]" value="4">Non-Uang Muka/Non-Advance</input><br>
                         </div>                                                                       
                         <div class="form-group col-md-6">
                              <label>Tanggal</label>

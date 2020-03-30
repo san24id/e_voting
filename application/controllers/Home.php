@@ -48,13 +48,13 @@ class Home extends CI_Controller {
 		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['grafik'] = $this->Home_model->get_grafik($divisi);
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/user/header_user', $data);
-		$this->load->view('akses/user/dashboard', $data);
+		$this->load->view('akses/user/dashboard_user', $data);
 	}
 
 	public function my_report()
@@ -73,6 +73,114 @@ class Home extends CI_Controller {
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/my_report', $data);
+	}
+
+	public function dp()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/list_dp', $data);
+	}
+
+	public function ar()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/list_ar', $data);
+	}
+
+	public function asr()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/list_asr', $data);
+	}
+
+	public function lop()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/list_lop', $data);
+	}
+
+	public function op()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/list_op', $data);
+	}
+
+	public function dr()
+	{
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/list_dr', $data);
 	}
 
 	public function my_inbox()

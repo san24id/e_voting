@@ -3,7 +3,20 @@ error_reporting(0);
 class Home_model extends CI_Model{   
 
     public function getPayment($sid=0) {
-        $sql = "SELECT * FROM `t_payment` WHERE id_user = '$sid'";
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE id_user = '$sid'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVPayment() {
+        $dvs = $this->session->userdata('divisi');
+        $usr = $this->session->userdata('id_user');
+        // $sql = "SELECT * FROM (SELECT b.dsc, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+        //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$test' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
+
+        $sql = "SELECT * FROM (SELECT b.dsc, a.id_user, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.id_user = '$usr'
+                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$dvs' AND otr.id_user = '$usr' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -36,6 +49,15 @@ class Home_model extends CI_Model{
         $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
         $kodejadi = "SP3/CSF/SPPP/".$kodemax;    // hasilnya ODJ-9921-0001 dst.
         return $kodejadi;  
+    }
+
+    function get_grafik(){
+        // $sql = "SELECT * FROM (SELECT b.jenis_pembayaran, COUNT(a.jenis_pembayaran) AS jmlpembayaran, substr(b.jenis_pembayaran, 14) as npembayaran FROM t_payment a RIGHT JOIN t_pembayaran
+        // b ON a.jenis_pembayaran = b.id_pay GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.jenis_pembayaran != '' AND otr.jmlpembayaran != 0 AND otr.jenis_pembayaran IS NOT NULL";
+
+        // $query = $this->db->query($sql)->result();
+        // return $query;
+
     }
 
     function addpayment($add){

@@ -224,12 +224,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+            <li><a href="Home/dp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li><a href="Home/ar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li><a href="Home/asr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li><a href="Home/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
+            <li><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
         

@@ -37,7 +37,6 @@ class Login extends CI_Controller {
 		$this->load->view('login/login_adm');
 	}
 
-
 	public function auth(){
         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
         $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
@@ -75,77 +74,71 @@ class Login extends CI_Controller {
 
         }else{  // jika username dan password tidak ditemukan atau salah
                             $url=base_url();
-                            echo $this->session->set_flashdata('msg','invalid');
+                            echo $this->session->set_flashdata('msg','Invalid username or password');
                             redirect($url);
             }
  
     }
 
-
-//     public function authadm(){
-//         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
-//         $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
+    public function authadm(){
+        $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
+        $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
  
-//         $cek_login=$this->Login_model->auth_admin($username,$password);
+        $cek_login=$this->Login_model->auth_admin($username,$password);
 
-//         session_start();
- 
-       
-//         if($cek_login->num_rows() > 0){
-//                 $data=$cek_login->row_array();
-
-//                 	$this->session->set_userdata('id_adm',$data['id_adm']);
-//                     $this->session->set_userdata('display_name',$data['display_name']);
-//                     $this->session->set_userdata('username',$data['username']);
-//                     $this->session->set_userdata('role',$data['role']);
-
-//                     if($this->session->userdata("role") == 1){
-//                          redirect('SuperAdm');
-//                     }else{
-//                         redirect('Dashboard');
-//                     }
- 
-//         }else{  // jika username dan password tidak ditemukan atau salah
-//                             $url=base_url('login/loginadm');
-//                             echo $this->session->set_flashdata('msg','Invalid username or password');
-//                             redirect($url);
-//                     }
-//     }
-
-
-//     public function authldap(){
-
-//         $username=htmlspecialchars($this->uri->segment(3,TRUE),ENT_QUOTES);
- 
-//         $cek_login=$this->Login_model->auth_ldap($username);
-
-
-//         session_start();
+        session_start();
  
        
-//         if($cek_login->num_rows() > 0){
-//                 $data=$cek_login->row_array();
+        if($cek_login->num_rows() > 0){
+                $data=$cek_login->row_array();
 
-//                     $this->session->set_userdata('id_adm',$data['id_adm']);
-//                     $this->session->set_userdata('display_name',$data['display_name']);
-//                     $this->session->set_userdata('username',$data['username']);
-//                     $this->session->set_userdata('role',$data['role']);
+                	$this->session->set_userdata('id_adm',$data['id_adm']);
+                    $this->session->set_userdata('display_name',$data['display_name']);
+                    $this->session->set_userdata('username',$data['username']);
+                    $this->session->set_userdata('role',$data['role']);
 
-//                     if($this->session->userdata("role") == 1){
-//                          redirect('SuperAdm');
-//                     }else{
-//                         redirect('Dashboard');
-//                     }
+                    if($this->session->userdata("role") == 1){
+                         redirect('SuperAdm');
+                    }else{
+                        redirect('Dashboard');
+                    }
  
-//         }else{  // jika username dan password tidak ditemukan atau salah
-//                             $url=base_url('login/loginadm');
-//                             echo $this->session->set_flashdata('msg','Invalid username or password');
-//                             redirect($url);
-//                     }
+        }else{  // jika username dan password tidak ditemukan atau salah
+                            $url=base_url('login/loginadm');
+                            echo $this->session->set_flashdata('msg','Invalid username or password');
+                            redirect($url);
+                    }
+    }
 
-//     }
+    public function authldap(){
 
+        $username=htmlspecialchars($this->uri->segment(3,TRUE),ENT_QUOTES);
+ 
+        $cek_login=$this->Login_model->auth_ldap($username);
 
+        session_start(); 
+       
+        if($cek_login->num_rows() > 0){
+                $data=$cek_login->row_array();
+
+                    $this->session->set_userdata('id_user',$data['id_user']);
+                    $this->session->set_userdata('display_name',$data['display_name']);
+                    $this->session->set_userdata('username',$data['username']);
+                    $this->session->set_userdata('role',$data['role']);
+
+                    if($this->session->userdata("role") == 1){
+                         redirect('SuperAdm');
+                    }else{
+                        redirect('Dashboard');
+                    }
+ 
+        }else{  // jika username dan password tidak ditemukan atau salah
+                            $url=base_url('login');
+                            echo $this->session->set_flashdata('msg','Invalid username or password');
+                            redirect($url);
+                    }
+
+    }
 
     public function loginconfirm()
     {
@@ -183,89 +176,88 @@ class Login extends CI_Controller {
  
     }
 
+    public function fpasword(){
+        $addfp = array(
+            'email' => $_POST['email'],
+            'password' => $_POST['password'],
+            'status' => $_POST['status']
+        );
 
-//     public function fpasword(){
-//         $addfp = array(
-//             'email' => $_POST['email'],
-//             'password' => $_POST['password'],
-//             'status' => $_POST['status']
-//         );
+       $cek_mail =  $this->Login_model->auth_email($addfp);
 
-//        $cek_mail =  $this->Login_model->auth_email($addfp);
+        foreach ($cek_mail as $val) {
+            $username = $val->username;
+            $status1 = $val->status_1;
+        }
 
-//         foreach ($cek_mail as $val) {
-//             $username = $val->username;
-//             $status1 = $val->status_1;
-//         }
+        if($status1 != 1){
 
-//         if($status1 != 1){
-
-//         if($cek_mail == TRUE){
-//                  // Load PHPMailer library
-//         $this->load->library('phpmailer_lib');
+        if($cek_mail == TRUE){
+                 // Load PHPMailer library
+        $this->load->library('phpmailer_lib');
         
-//         // PHPMailer object
-//         $mail = $this->phpmailer_lib->load();
+        // PHPMailer object
+        $mail = $this->phpmailer_lib->load();
         
-//         // SMTP configuration
-//         $mail->isSMTP();
-//         $mail->Host     = 'ssl://smtp.gmail.com:465';
-//         $mail->SMTPAuth = true;
-//         $mail->Username = 'iigfirisk@gmail.com';
-//         $mail->Password = 'R15k.2017';
-//         //$mail->SMTPSecure = 'tls';
-//         //$mail->Port     = 587;
+        // SMTP configuration
+        $mail->isSMTP();
+        $mail->Host     = 'ssl://smtp.gmail.com:465';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'iigfirisk@gmail.com';
+        $mail->Password = 'R15k.2017';
+        //$mail->SMTPSecure = 'tls';
+        //$mail->Port     = 587;
         
-//         $mail->setFrom('iigfirisk@gmail.com', 'PII SIP');
-//         //$mail->addReplyTo('');
+        $mail->setFrom('iigfirisk@gmail.com', 'PII CSF');
+        //$mail->addReplyTo('');
         
-//         // Add a recipient
-//         $mail->addAddress($_POST['email']);
+        // Add a recipient
+        $mail->addAddress($_POST['email']);
         
-//         // Add cc or bcc 
-//         //$mail->addCC('cc@example.com');
-//         //$mail->addBCC('bcc@example.com');
+        // Add cc or bcc 
+        //$mail->addCC('cc@example.com');
+        //$mail->addBCC('bcc@example.com');
         
-//         // Email subject
-//         $mail->Subject = 'Forget Your Password SIP Application';
+        // Email subject
+        $mail->Subject = 'Forget Your Password Payment Request Application';
         
-//         // Set email format to HTML
-//         $mail->isHTML(true);
+        // Set email format to HTML
+        $mail->isHTML(true);
         
-//         // Email body content
-//         $mailContent = "username&nbsp;:&nbsp;".$username."<br>new password&nbsp;:&nbsp;". $_POST['password']." <p>Konfirmasi Lupa Password dengan Link Berikut : <a href='http://application.iigf.co.id/pii_sip/login/loginconfirm'>Konfirmasi Login</a></p>";
-//         $mail->Body = $mailContent;
+        // Email body content
+        $mailContent = "username&nbsp;:&nbsp;".$username."<br>new password&nbsp;:&nbsp;". $_POST['password']." <p>Konfirmasi Lupa Password dengan Link Berikut : <a href='http://application.iigf.co.id/pii_csf/login/loginconfirm'>Konfirmasi Login</a></p>";
+        $mail->Body = $mailContent;
         
-//         // Send email
-//         if(!$mail->send()){
-//             //echo 'Message could not be sent.';
-//             //echo 'Mailer Error: ' . $mail->ErrorInfo;
-//              $url=base_url();
-//              echo $this->session->set_flashdata('msg','gagal');
-//              redirect($url);
-//         }else{
+        // Send email
+        if(!$mail->send()){
+            //echo 'Message could not be sent.';
+            //echo 'Mailer Error: ' . $mail->ErrorInfo;
+             $url=base_url();
+             echo $this->session->set_flashdata('msg','gagal');
+             redirect($url);
+        }else{
 
-//             $this->Login_model->update_fpassword($addfp);
-//             redirect('Login/forgotpassword');
-//         }
-//         }else{
-//               $url=base_url();
-//               echo $this->session->set_flashdata('msg','terdaftar');
-//               redirect($url);
-//         }
-//         }else{
-//                 $url=base_url();
-//                 echo $this->session->set_flashdata('msg','block');
-//                 redirect($url);
-//         }
-
-
-//     }
+            $this->Login_model->update_fpassword($addfp);
+            redirect('Login/forgotpassword');
+        }
+        }else{
+              $url=base_url();
+              echo $this->session->set_flashdata('msg','terdaftar');
+              redirect($url);
+        }
+        }else{
+                $url=base_url();
+                echo $this->session->set_flashdata('msg','block');
+                redirect($url);
+        }
 
 
-//     public function forgotpassword(){
-//         $this->load->view('login/forgot_login');
-//     }
+    }
+
+
+    public function forgotpassword(){
+        $this->load->view('login/forgot_login');
+    }
 
 
     public function logout(){

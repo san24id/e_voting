@@ -33,8 +33,8 @@
                 <span class="info-box-icon bg-yellow"><i class="fa fa-plus-square"></i></span>
 
                 <div class="info-box-content">
-                <span class="info-box-text">Total Outstanding Payment Request</span>
-                <span class="info-box-number">20</span>
+                <span class="info-box-number"><center>20</center></span>
+                <span class="info-box-text"><center>Total Outstanding Payment Request</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -49,8 +49,8 @@
                 <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
 
                 <div class="info-box-content">
-                <span class="info-box-text">Total Draft</span>
-                <span class="info-box-number">5</span>
+                <span class="info-box-number"><center>5</center></span>
+                <span class="info-box-text"><center>Total Draft</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -61,7 +61,7 @@
         <!-- Info boxes -->
         <div class="box box-default">
             <div class="box-header with-border">
-              <h3 class="box-title">Browser Usage</h3>
+              <h3 class="box-title">Payment Request Usage</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -72,36 +72,44 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="row">
-                <div class="col-md-8">
-                  <div class="chart-responsive">
-                    <canvas id="pieChart" height="150"></canvas>
+
+                <div class="col-md-6">
+              <!-- USERS LIST -->
+              <div class="box box-success">
+                <div class="box-header with-border">
+
+                  <div class="box-tools pull-right">
+                    <span class="label label-success"></span>
                   </div>
-                  <!-- ./chart-responsive -->
                 </div>
-                <!-- /.col -->
-                <div class="col-md-4">
-                  <ul data-pie-id="svg" class="chart-legend clearfix">
-                    <li data-value="60"><i class="fa fa-circle-o text-red"></i>&nbsp;Direct Payment (DP)</li>
-                    <li data-value="5"><i class="fa fa-circle-o text-green"></i>&nbsp;Advance Request</li>
-                    <li data-value="20"><i class="fa fa-circle-o text-yellow"></i>&nbsp;Advance Settlement</li>
-                    <li data-value="50"><i class="fa fa-circle-o text-blue"></i>&nbsp;Non Advance</li>                    
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+                    <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+                  <!-- /.users-list -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer text-center">
+                 
+                </div>
+                <!-- /.box-footer -->
+              </div>
+              <!--/.box -->
+            </div>
+            <div class="col-md-4">
+                  <ul class="chart-legend clearfix">
+                    <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
+                    <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
+                    <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
+                    <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
                   </ul>
                 </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
             </div>
-            <!-- /.box-body -->
-            <!-- <div class="box-footer no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">United States of America
-                  <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-                <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-                </li>
-                <li><a href="#">China
-                  <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
-              </ul>
-            </div> -->
+          </div>  
             <!-- /.footer -->
         </div>
 
@@ -133,7 +141,7 @@
                         $i = 1;
                         foreach ($payment as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->jenis_pembayaran;                        
+                        $test1 = $row->dsc;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
@@ -289,6 +297,46 @@ $(function () {
     });
   });
 
+  Highcharts.chart('pieChart', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: 'Jumlah Data Payment Request Divisi'
+      },
+      credits: {
+          enabled: false
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.y}</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.y}'
+              }
+          }
+      },
+      series: [{
+          name: 'Total',
+          colorByPoint: true,
+          data: [
+
+            <?php foreach ($pembayaran as $key) { ?>
+              {
+                name: '<?php echo $key->dsc; ?>',
+                y: <?php echo $key->jmlpembayaran; ?>
+              },
+            <?php } ?>
+              ]
+      }]
+  });
 </script>
 </body>
 </html>

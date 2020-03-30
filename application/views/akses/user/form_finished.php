@@ -52,29 +52,29 @@
                           $test3 = count($test2);
                                  
                           for($i=0; $i<$test3; $i++){
-                            if($test2[$i] == 'Uang Muka/Advance'){
-                              $xxi1 .= "Uang Muka/Advance";
+                            if($test2[$i] == '1'){
+                              $xxi1 .= "1";
                             }
                             
-                            if($test2[$i] == 'Permintaan Uang Muka/Request'){
-                              $xxi2 .= "Permintaan Uang Muka/Request";
+                            if($test2[$i] == '2'){
+                              $xxi2 .= "2";
                             }
                             
-                            if($test2[$i] == 'Pertanggung Jawaban Uang Muka/Settlement'){
-                              $xxi3 .= "Pertanggung Jawaban Uang Muka/Settlement";
+                            if($test2[$i] == '3'){
+                              $xxi3 .= "3";
                             }
                             
-                            if($test2[$i] == 'Non-Uang Muka/Non-Advance'){
-                              $xxi4 .= "Non-Uang Muka/Non-Advance";
+                            if($test2[$i] == '4'){
+                              $xxi4 .= "4";
                             }
                           }
                       ?>
                       <div class="form-group col-md-12">
                             <label>Jenis Pembayaran (pilih salah satu)</label><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Uang Muka/Advance" <?php echo $xxi1=="Uang Muka/Advance"? 'checked':''?> >Uang Muka/Advance</label><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Permintaan Uang Muka/Request" <?php echo $xxi2=="Permintaan Uang Muka/Request"? 'checked':''?> >Permintaan Uang Muka/Request</label><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Pertanggung Jawaban Uang Muka/Settlement" <?php echo $xxi3=="Pertanggung Jawaban Uang Muka/Settlement"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement</label><br>                            
-                            <input type="checkbox" name="jenis_pembayaran[]" value="Non-Uang Muka/Non-Advance" <?php echo $xxi4=="Non-Uang Muka/Non-Advance"? 'checked':''?> >Non-Uang Muka/Non-Advance</label><br>
+                            <input type="checkbox" name="jenis_pembayaran[]" value="1" <?php echo $xxi1=="1"? 'checked':''?> >Uang Muka/Advance</label><br>
+                            <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request</label><br>
+                            <input type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement</label><br>                            
+                            <input type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Non-Uang Muka/Non-Advance</label><br>
                         </div>
                       <div class="form-group col-md-6">
                              <label>Tanggal</label>
@@ -357,19 +357,19 @@
                             <tr>
                                 <td><b>Jenis Pembayaran (pilih salah satu)</b></td>
                                 <td>
-                                  <input type="checkbox" name="jenis_pembayaran[]" value="Uang Muka/Advance" <?php echo $xxi1=="Uang Muka/Advance"? 'checked':''?> disabled>Uang Muka/Advance</label>
+                                  <input type="checkbox" name="jenis_pembayaran[]" value="1" <?php echo $xxi1=="1"? 'checked':''?> disabled>Uang Muka/Advance</label>
                                 </td>
                                 <td>
-                                  <input type="checkbox" name="jenis_pembayaran[]" value="Permintaan Uang Muka/Request" <?php echo $xxi2=="Permintaan Uang Muka/Request"? 'checked':''?> disabled>Permintaan Uang Muka/Request</label>                     
+                                  <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request</label>                     
                                 </td>
                             </tr>    
                             <tr>
                                 <td></td>
                                 <td>
-                                  <input type="checkbox" name="jenis_pembayaran[]" value="Pertanggung Jawaban Uang Muka/Settlement" <?php echo $xxi3=="Pertanggung Jawaban Uang Muka/Settlement"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement</label>
+                                  <input type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement</label>
                                 </td>
                                 <td>
-                                  <input type="checkbox" name="jenis_pembayaran[]" value="Non-Uang Muka/Non-Advance" <?php echo $xxi4=="Non-Uang Muka/Non-Advance"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance</label>
+                                  <input type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance</label>
                                 </td>
                             </tr>                       
                           </table>
