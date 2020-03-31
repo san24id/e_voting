@@ -160,7 +160,7 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <a href=""><button class="btn btn-primary btn-sm">View</button></a>                    
                     </td>      
                     </tr>
                 <?php  } ?>
@@ -176,7 +176,7 @@
         </div>  
         
         <div class="row">
-            <div class="col-xs-12 col-md-4">
+            <div class="col-md-3 col-sm-6 col-xs-12">
             <!-- /.box -->
             <div class="box">
                 <!-- /.box-header -->

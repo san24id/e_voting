@@ -216,7 +216,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="<?php echo $active1?>"><a href="Home"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         <li class="treeview">
-          <a href="Home/my_report">
+          <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
             <span>My Report</span>
             <span class="pull-right-container">

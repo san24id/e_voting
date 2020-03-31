@@ -38,26 +38,119 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		
 		$data['active1'] = 'active';
 		$data['active2'] = '';
+		$data['active3'] = '';
 
-		$this->load->view('akses/admin/header_portal', $data);
-		$this->load->view('akses/admin/dashboard_admin', $data);
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['payment'] = $this->Dashboard_model->payment();
+
+		$this->load->view('akses/admin/header_csf', $data);
+		$this->load->view('akses/admin/dashboard_csf', $data);
 	}
 
-	public function payment()
+	public function dp()
 	{
+		
 		$data['active1'] = '';
 		$data['active2'] = 'active';
-		
+		$data['active3'] = '';
 
-		// $data['profil'] = $this->Dashboard_model->getProfilProjek($_GET['filter_status']);
-		$data['payment'] = $this->Dashboard_model->payment();
-		// $data['adminpii'] = $this->Dashboard_model->getadminpii();
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->get_t_status_projek();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
 
-		$this->load->view('akses/admin/header_portal', $data);
-        $this->load->view('akses/admin/payment', $data);
+		$this->load->view('akses/admin/header_csf', $data);
+		$this->load->view('akses/admin/list_dp', $data);
+	}
+
+	public function ar()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/admin/header_csf', $data);
+		$this->load->view('akses/admin/list_ar', $data);
+	}
+
+	public function asr()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/admin/header_csf', $data);
+		$this->load->view('akses/admin/list_asr', $data);
+	}
+
+	public function lop()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/admin/header_csf', $data);
+		$this->load->view('akses/admin/list_lop', $data);
+	}
+
+	public function op()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/admin/header_csf', $data);
+		$this->load->view('akses/admin/list_op', $data);
+	}
+
+	public function dr()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		// $data['sektor'] = $this->Home_model->getSektor();
+		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/admin/header_csf', $data);
+		$this->load->view('akses/admin/list_dr', $data);
 	}
 }

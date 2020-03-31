@@ -60,16 +60,7 @@ class Home_model extends CI_Model{
         $kodejadi = "SP3/CSF/SPPP/".$kodemax;    // hasilnya ODJ-9921-0001 dst.
         return $kodejadi;  
     }
-
-    function get_grafik(){
-        // $sql = "SELECT * FROM (SELECT b.jenis_pembayaran, COUNT(a.jenis_pembayaran) AS jmlpembayaran, substr(b.jenis_pembayaran, 14) as npembayaran FROM t_payment a RIGHT JOIN t_pembayaran
-        // b ON a.jenis_pembayaran = b.id_pay GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.jenis_pembayaran != '' AND otr.jmlpembayaran != 0 AND otr.jenis_pembayaran IS NOT NULL";
-
-        // $query = $this->db->query($sql)->result();
-        // return $query;
-
-    }
-
+    
     function addpayment($add){
         $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, nama_user, tanggal, hari, divisi, jabatan, label1, label2,
         label3, label4, label5, label6, label7, label8, label9, penerima, vendor, akun_bank, no_rekening) 

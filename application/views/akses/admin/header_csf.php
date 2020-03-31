@@ -208,16 +208,49 @@
       <ul class="sidebar-menu">        
         <?php 
          // if($this->session->userdata("role") == 2){ ?>
-               <li class="<?php echo $active1?>"><a href="dashboard"><i class="glyphicon glyphicon-blackboard"></i><span>Dashboard</span></a></li>
-               <li class="<?php echo $active2?>"><a href="dashboard/payment"><i class="glyphicon glyphicon-hdd"></i><span>Data Pengajuan</span></a></li>
-               <li class="header">Konten</li>
-               <!-- <li class=""><a href=""><i class="glyphicon glyphicon-folder-open"></i><span>High</span></a></li>
-               <li class=""><a href=""><i class="glyphicon glyphicon-folder-open"></i><span>Medium</span></a></li>
-               <li class=""><a href=""><i class="glyphicon glyphicon-folder-open"></i><span>Low</span></a></li>
-               <li class=""><a href=""><i class="glyphicon glyphicon-folder-open"></i><span>Kembali</span></a></li>
-               <li class="header">Other</li>
-               <li class=""><a href=""><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
-
+               <li class="<?php echo $active1?>"><a href="Dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+        <li class="treeview">
+          <a href="">
+            <i class="glyphicon glyphicon-inbox"></i>
+            <span>My Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Dashboard/dp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li><a href="Dashboard/ar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li><a href="Dashboard/asr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li><a href="Dashboard/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
+            <li><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+          </ul>  
+        </li>
+        <li class=""><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-console"></i><span>Monitoring</a></span></li>
+        <li class="treeview">
+          <a href="">
+            <i class="glyphicon glyphicon-console"></i>
+            <span>Monitoring Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Dashboard/or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li>
+            <li><a href="Dashboard/upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
+            <li><a href="Dashboard/upf"><i class="fa fa-circle-o"></i>List of Under Processing (Finance)</a></li>
+            <li><a href="Dashboard/wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
+            <li><a href="Dashboard/wfv"><i class="fa fa-circle-o"></i>List of Waiting for Verification</a></li>
+            <li><a href="Dashboard/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
+            <li><a href="Dashboard/wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
+            <li><a href="Dashboard/pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
+          </ul>  
+        </li>
+        <li class=""><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
+        <br>
+        <br>
+        <br>
+        
         <?php 
             // }else{ ?>
                <!-- <li class=""><a href="dashboard"><i class="glyphicon glyphicon-blackboard"></i><span>Dashboard</span></a></li>
@@ -226,6 +259,7 @@
                <li class=""><a href="admin/datauser"><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
         <?php 
             // } ?>
+        <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>    
       </ul>
     </section>
     <!-- /.sidebar -->
