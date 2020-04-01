@@ -1,11 +1,6 @@
 <?php
 class Login_model extends CI_Model{
-    //cek nip dan password dosen
-    function auth_admin($username,$password){
-        $query=$this->db->query("SELECT * FROM t_adminpii WHERE username='$username' AND password=md5('$password') LIMIT 1");
-        return $query;
-    }
- 
+     
     //cek nim dan password mahasiswa
     function auth_user($username,$password){
         $query=$this->db->query("SELECT * FROM t_user WHERE username='$username' AND password= md5('$password') LIMIT 1");
@@ -13,7 +8,7 @@ class Login_model extends CI_Model{
     }
 
     function auth_ldap($username){
-        $query=$this->db->query("SELECT * FROM t_adminpii WHERE username='$username' LIMIT 1");
+        $query=$this->db->query("SELECT * FROM m_user WHERE username='$username' LIMIT 1");
         return $query;
     }
 

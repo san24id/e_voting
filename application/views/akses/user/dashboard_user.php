@@ -43,17 +43,18 @@
             <div class="clearfix visible-sm-block"></div>
 
             <div class="col-md-3 col-sm-6 col-xs-12">
+            <?php foreach ($draft as $tot_draft) { ?>
             <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
-
                 <div class="info-box-content">
-                <span class="info-box-number"><center>5</center></span>
+                <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
                 <span class="info-box-text"><center>Total Draft</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
-            </div>            
+            </div>
+            <?php } ?>            
         </div>
         
         <!-- Info boxes -->
@@ -145,14 +146,24 @@
                         ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
-                    <td></td>                  
+                    <td><?php 
+                          if($row->status == 1){
+                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
+                          }else if($row->status == 2){
+                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
+                          }else if($row->status >= 3){
+                             echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                          }
+                        ?>
+                    </td>                  
                     <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
                             echo $test2[$a]."<br>";
                           }
-                        }  ?></td>
+                        }  ?>
+                    </td>
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->nama_user; ?></td>
@@ -303,7 +314,7 @@ $(function () {
           type: 'pie'
       },
       title: {
-          text: 'Jumlah Data Payment Request Divisi'
+          text: 'Jumlah Data Payment Request / Divisi'
       },
       credits: {
           enabled: false

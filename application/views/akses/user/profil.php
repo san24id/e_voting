@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Profil Saya
+        My Profile
         <small></small>
       </h1>
     </section>
@@ -18,59 +18,39 @@
             <!-- /.box-header -->
             <div class="box-body">
               <form role="form" method="post" action="Home/updatemyprofil">
-                <!-- <?php foreach ($profil as $row):?> -->
+                <?php foreach ($profil as $row):?>
+                <input type="hidden" name="id_user" value="<?php echo $this->session->userdata('id_user') ?>">
               <div class="box-body">
                 <div class="form-group">
-                  <label>1. Nomor Registrasi</label>
-                  <input type="hidden" name="id_user" value="">
-                  <input type="text" class="form-control" name="nomor_user" value="" readonly>
-                </div>
-                <div class="form-group">
-                  <label>2. NIK</label>
-                  <input type="hidden" name="nik" value="<?php echo $row->nik; ?>">
-                  <input type="text" class="form-control" name="nik" value="<?php echo $row->nik; ?>" readonly>
-                </div>
-                <div class="form-group">
-                  <label>3. Foto NIK</label><p></p>
-                  <a href="<?php echo 'foto/'.$row->foto; ?>" target="_blank"><button type="button" class="btn btn-default btn-sm">Download File <?php echo $row->foto; ?></button></a>
-                  <!-- <img src="<?php echo base_url('foto/'.$row->foto.'');?>" height="180px" width="400px">">
-                  <input type="file" class="form-control" name="foto" value="<?php echo $row->foto; ?>" readonly> -->
-                </div>                
-                <div class="form-group">
-                  <label>4. Nama Lengkap :</label>
+                  <label>1. Nama Lengkap :</label>
                   <input type="text" class="form-control" name="nama_user" required="required" value="<?php echo $row->nama_user; ?>">
                 </div>            
                 <div class="form-group">
-                  <label>5. Instansi :</label>
-                  <input type="text" class="form-control" name="instansi" required="required" value="<?php echo $row->instansi; ?>">
+                  <label>2. Divisi :</label>
+                  <input type="text" class="form-control" name="divisi" required="required" value="<?php echo $row->divisi; ?>">
                 </div>
                 <div class="form-group">
-                  <label>6. Jabatan :</label>
+                  <label>3. Jabatan :</label>
                   <input type="text" class="form-control" name="jabatan" required="required" value="<?php echo $row->jabatan; ?>">
-                </div>
-                <div class="form-group">                 
-                  <label>7. Nomor Telepon :</label>
-                  <input type="text" class="form-control" onkeypress="return wajibAngka(event)" name="telepon" required="required" value="<?php echo $row->telepon; ?>">
-                </div>
+                </div>                
                 <div class="form-group">
-                  <label>8. Alamat Email :</label>
+                  <label>4. Alamat Email :</label>
                   <input type="text" class="form-control" name="email" value="<?php echo $row->email; ?>" readonly>                
                 </div>
                 <div class="form-group">
-                  <label>9. Username :</label>
+                  <label>5. Username :</label>
                   <input type="text" class="form-control" name="username" value="<?php echo $row->username; ?>" readonly>
                 </div>
                 <div class="form-group">
-                  <label>10. Ubah Password</label>
+                  <label>6. Ubah Password</label>
+                </div>               
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="Password Lama">
                 </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password_baru" placeholder="Password Baru (minimal 6 karakter)">
+                </div>    
                
-                <div class="form-group">
-                  <input type="text" class="form-control" name="password" placeholder="Password Lama">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="password_baru" placeholder="Password Baru (minimal 6 karakter)">
-                </div>              
-
               <script type="text/javascript">
                     function wajibAngka(evt) {
                     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -78,7 +58,6 @@
                     return false;
                    }
               </script>
-
 
         <button type="submit" class="btn btn-primary">Save</button>
     <?php endforeach; ?>

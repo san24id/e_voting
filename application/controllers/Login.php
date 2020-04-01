@@ -32,10 +32,10 @@ class Login extends CI_Controller {
 		$this->load->view('login/login');
 	}
 
-	public function loginadm()
-	{
-		$this->load->view('login/login_adm');
-	}
+	// public function loginadm()
+	// {
+	// 	$this->load->view('login/login_adm');
+	// }
 
 	public function auth(){
         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
@@ -53,6 +53,7 @@ class Login extends CI_Controller {
                     $sess_data['divisi'] = $row->divisi;                       
                		$sess_data['nama_user'] = $row->nama_user;
                     $sess_data['status'] = $row->status;
+                    $sess_data['role_id'] = $row->role_id;
                     
                     $status = $row->status;
                     $status1 = $row->status_1;
@@ -72,7 +73,7 @@ class Login extends CI_Controller {
                             redirect($url);
                 }
 
-        }else{  // jika username dan password tidak ditemukan atau salah
+                }else{  // jika username dan password tidak ditemukan atau salah
                             $url=base_url();
                             echo $this->session->set_flashdata('msg','Invalid username or password');
                             redirect($url);
@@ -103,7 +104,7 @@ class Login extends CI_Controller {
                         redirect('Dashboard');
                     }
  
-        }else{  // jika username dan password tidak ditemukan atau salah
+                    }else{  // jika username dan password tidak ditemukan atau salah
                             $url=base_url('login/loginadm');
                             echo $this->session->set_flashdata('msg','Invalid username or password');
                             redirect($url);
@@ -132,7 +133,7 @@ class Login extends CI_Controller {
                         redirect('Dashboard');
                     }
  
-        }else{  // jika username dan password tidak ditemukan atau salah
+                    }else{  // jika username dan password tidak ditemukan atau salah
                             $url=base_url('login');
                             echo $this->session->set_flashdata('msg','Invalid username or password');
                             redirect($url);
@@ -171,8 +172,6 @@ class Login extends CI_Controller {
                             echo $this->session->set_flashdata('msg','invalid');
                             redirect('Login/loginconfirm');
                     }
-
-
  
     }
 

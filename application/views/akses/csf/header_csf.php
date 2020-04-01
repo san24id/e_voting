@@ -238,7 +238,7 @@
           <ul class="treeview-menu">
             <li><a href="Dashboard/or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li>
             <li><a href="Dashboard/upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
-            <li><a href="Dashboard/upf"><i class="fa fa-circle-o"></i>List of Under Processing (Finance)</a></li>
+            <li><a href="Dashboard/upf"><i class="fa fa-circle-o"></i>List of Under <br>Processing (Finance)</a></li>
             <li><a href="Dashboard/wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
             <li><a href="Dashboard/wfv"><i class="fa fa-circle-o"></i>List of Waiting for Verification</a></li>
             <li><a href="Dashboard/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>

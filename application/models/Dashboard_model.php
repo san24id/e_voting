@@ -3,7 +3,7 @@ error_reporting(0);
 class Dashboard_model extends CI_Model{
 
     public function payment() {
-        $sql = "SELECT * FROM `t_payment`";
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -12,6 +12,14 @@ class Dashboard_model extends CI_Model{
     public function getTotal(){
 
         $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getTotalDraft(){
+
+        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment";
                 
         $query = $this->db->query($sql)->result();
         return $query;

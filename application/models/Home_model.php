@@ -32,6 +32,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getTotalDraft(){
+        $dvs = $this->session->userdata('divisi');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment WHERE divisi='$dvs' AND id_user='$usr'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getform($id_payment) {
         $sql = "SELECT * FROM `t_payment` WHERE id_payment = '$id_payment'";
                 
@@ -63,11 +73,11 @@ class Home_model extends CI_Model{
     
     function addpayment($add){
         $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, nama_user, tanggal, hari, divisi, jabatan, label1, label2,
-        label3, label4, label5, label6, label7, label8, label9, penerima, vendor, akun_bank, no_rekening) 
+        label3, label4, label5, label6, label7, label8, label9, penerima, vendor, akun_bank, no_rekening, status) 
         VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['nama_user']."',
         '".$add['tanggal']."','".$add['hari']."','".$add['divisi']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."',
         '".$add['label3']."','".$add['label4']."','".$add['label5']."','".$add['label6']."','".$add['label7']."','".$add['label8']."',
-        '".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."')";
+        '".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."','".$add['status']."')";
         
         $query = $this->db->query($sql);
 
@@ -90,6 +100,34 @@ class Home_model extends CI_Model{
     // VALUES ('SPK/PII/Payment/00003', 'Mutiara', '2020-02-28', 'Friday', 'Admin', 'Admin', 'qwee', '232qq', '121q', '121wqw', '1232ew', '23123d', 'Denbe', 'Mandiri', '200293133');
     function deletepayment($id){
         $sql = "DELETE FROM `t_payment` WHERE `t_payment`.`id_payment` = $id";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    public function getProfilId(){
+
+    	$id_user = $this->session->userdata("id_user");
+
+		$this->db->where('id_user', $id_user);
+		$result = $this->db->get('t_user')->result(); // Tampilkan semua data kota berdasarkan id provinsi
+		
+		return $result; 
+    }
+
+    public function update_myprofil($myprofil){
+        $sql = "UPDATE `t_user` SET `nama_user`='".$myprofil['nama_user']."',`divisi`='".$myprofil['divisi']."',`jabatan`='".$myprofil['jabatan']."',
+                `email` = '".$myprofil['email']."', `log_update`= NOW() WHERE id_user = '".$myprofil['id_user']."'";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    public function update_myprofilpass($myprofil){
+        $sql = "UPDATE `t_user` SET `nama_user`='".$myprofil['nama_user']."',`divisi`='".$myprofil['divisi']."',`jabatan`='".$myprofil['jabatan']."',
+                `email` = '".$myprofil['email']."', `password`=md5('".$myprofil['password_baru']."'), `log_update`= NOW() WHERE id_user = '".$myprofil['id_user']."'";
 
         $query = $this->db->query($sql);
 

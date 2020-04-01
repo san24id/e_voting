@@ -185,9 +185,9 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <!-- <div class="pull-left">
+                <div class="pull-left">
                   <a href="Home/myprofile" class="btn btn-default btn-flat">Profile</a>
-                </div> -->
+                </div>
                 <div class="pull-right">
                   <a href="login/logout" class="btn btn-success btn-flat">Sign out</a>
                 </div>

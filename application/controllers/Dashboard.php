@@ -44,12 +44,13 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		$data['draft'] = $this->Dashboard_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['payment'] = $this->Dashboard_model->payment();
 
-		$this->load->view('akses/admin/header_csf', $data);
-		$this->load->view('akses/admin/dashboard_csf', $data);
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/dashboard_csf', $data);
 	}
 
 	public function dp()
@@ -65,8 +66,8 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
-		$this->load->view('akses/admin/header_csf', $data);
-		$this->load->view('akses/admin/list_dp', $data);
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_dp', $data);
 	}
 
 	public function ar()
@@ -82,8 +83,8 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
-		$this->load->view('akses/admin/header_csf', $data);
-		$this->load->view('akses/admin/list_ar', $data);
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_ar', $data);
 	}
 
 	public function asr()
@@ -99,8 +100,8 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
-		$this->load->view('akses/admin/header_csf', $data);
-		$this->load->view('akses/admin/list_asr', $data);
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_asr', $data);
 	}
 
 	public function lop()
@@ -116,8 +117,8 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
-		$this->load->view('akses/admin/header_csf', $data);
-		$this->load->view('akses/admin/list_lop', $data);
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_lop', $data);
 	}
 
 	public function op()
@@ -133,8 +134,8 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
-		$this->load->view('akses/admin/header_csf', $data);
-		$this->load->view('akses/admin/list_op', $data);
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_op', $data);
 	}
 
 	public function dr()
@@ -150,7 +151,7 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
-		$this->load->view('akses/admin/header_csf', $data);
-		$this->load->view('akses/admin/list_dr', $data);
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_dr', $data);
 	}
 }
