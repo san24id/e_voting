@@ -55,11 +55,15 @@ class SuperAdm extends CI_Controller {
 	public function addstaff(){
 		$add = array(
 
+			'id_role_app' => $_POST['id_role_app'],
 			'display_name' => $_POST['display_name'],
 			'email' => $_POST['email'],
 			'username' =>  $_POST['username'],
 			'password' =>  $_POST['password'],
-			'role' =>  $_POST['role']
+			'role_id' =>  $_POST['role_id'],
+			'division_id' => $_POST['division_id'],
+			'role_status' => $_POST['role_status'],
+			'status' => $POST['status']
 		);
 
 		$this->SuperAdm_model->addstaff($add);
@@ -78,6 +82,7 @@ class SuperAdm extends CI_Controller {
 	public function updatestaff(){
 		$upd = array(
 			'id_user' => $_POST['id_user'],
+			'id_role_app' => $_POST['id_role_app'],
 			'display_name' => $_POST['display_name'],
 			'email' => $_POST['email'],
 			'username' =>  $_POST['username'],
@@ -85,7 +90,7 @@ class SuperAdm extends CI_Controller {
 			'role_id' =>  $_POST['role_id'],
 			'division_id' => $_POST['division_id'],
 			'role_status' => $_POST['role_status'],
-			'status' => $POST['status'],
+			'status' => $POST['status']
 		);
 
 		$this->SuperAdm_model->updatestaff($upd);

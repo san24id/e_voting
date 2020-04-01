@@ -1,4 +1,3 @@
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -30,6 +29,7 @@
                   <th>Email</th>
                   <th>Username</th>
                   <th>Role</th>
+                  <th>Jabatan</th>
                   <th>Divisi</th>
                   <th>Status</th>
                   <th>Action</th>
@@ -45,6 +45,18 @@
                   <td><?php echo $row->display_name; ?></td>
                   <td><?php echo $row->email; ?></td>
                   <td><?php echo $row->username; ?></td>
+                  <td><?php if($row->id_role_app == 1){
+                              echo "Administrator";
+                            }else if($row->id_role_app == 2){
+                              echo "Admin CSF";
+                            }else if($row->id_role_app == 3){
+                              echo "User";
+                            }else if($row->id_role_app == 4){
+                              echo "Approval";
+                            }else if($row->id_role_app == 5){
+                              echo "TRI";                            
+                            } ?>
+                  </td>
                   <td><?php if($row->role_id == 1){
                               echo "Administrator";
                             }else if($row->role_id == 2){
@@ -54,21 +66,22 @@
                             }else if($row->role_id == 4){
                               echo "Division Head";
                             }else if($row->role_id == 5){
-                              echo "PIC";
+                              echo "PIC"; 
                             }else if($row->role_id == 6){
-                                echo "Direksi CEO";
+                                echo "Direksi CEO"; 
                             }else if($row->role_id == 7){
-                                echo "Direksi RAC";
+                                echo "Direksi RAC"; 
                             }else if($row->role_id == 8){
-                                    echo "Direksi COO"; 
+                                echo "Direksi COO";
                             }else if($row->role_id == 9){
-                                    echo "Direksi CFO";      
+                                echo "Direksi CFO";
+
                             } ?>
                   </td>
                   <td><?php echo $row->division_id; ?></td>
                   <td><?php echo $row->role_status; ?> </td>
                   <td>
-                    <?php if($row->role_id == 1){ ?>
+                    <?php if($row->id_role_app == 1){ ?>
                       <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_user; ?>">Ubah</button>
                     <?php }else{ ?>
                       <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_user; ?>">Ubah</button>
@@ -172,18 +185,29 @@
                   <th>Role</th>
                   <td>:</td>
                   <td>
-                    <select name="role_id" class="form-control">
+                    <select name="id_role_app" class="form-control">
                          <option value="1">Administrator</option>
                          <option value="2">Admin CSF</option>
                          <option value="3">User</option>
-                         <option value="4">Division Head</option>
-                         <option value="5">PIC</option>
-                         <option value="6">Direksi CEO</option>                      
-                         <option value="7">Direksi RAC</option>                      
-                         <option value="8">Direksi COO</option> 
-                         <option value="9">Direksi CFO</option>                    
+                         <option value="4">Approval</option>
+                         <option value="5">TRI</option>
+                                     
                     </select>
                       <input type="hidden" name="password" class="form form-control" value="123456">
+                  </td>
+                </tr>
+                <tr>
+                  <th>Jabatan</th>
+                  <td>:</td>
+                  <td><select name="role_id" class="form-control">
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>   
                   </td>
                 </tr>
                 <tr>
@@ -191,10 +215,12 @@
                   <td>:</td>
                   <td><input type="text" name="role_status" class="form-control"></td>
                 </tr>
-                <tr>
-                  <th>Aktif</th>
-                  <td>:</td>
+                <tr>                  
                   <td><input type="hidden" name="status" value="1" class="form-control"></td>
+                  <td><input type="hidden" name="created_by" value="Sistem" class="form-control"></td>
+                  <td><input type="hidden" name="created_date" value="<?php echo date("Y-m-d"); ?>" class="form-control"></td>
+                  <input type="hidden" name="password" class="form form-control" value="123456">
+
                 </tr>
              </table>
           </h5>
@@ -243,75 +269,156 @@
                   <td>:</td>
                   <td><input type="text" name="username" class="form-control" value="<?php echo $row->username; ?>"></td>
                 </tr>
-                <?php if($row->role != 1){ ?>
+                <?php if($row->id_role_app != 1){ ?>
                 <tr>
                   <th>Role</th>
                   <td>:</td>
                   <td>
-                  <select name="role" class="form-control">                    
-                    <?php if($row->role_id == 2){ ?>                         
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option>
-                    <?php }else if($row->role_id == 3){ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option> 
-                    <?php }else if($row->role_id == 4){ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option>                       
-                    <?php }else if($row->role_id == 5){ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option> 
-                    <?php }else if($row->role_id == 6){ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option>
-                    <?php }else if($row->role_id == 7){ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option>
-                    <?php }else if($row->role_id == 8){ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option>
-                    <?php }else if($row->role_id == 9){ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option>                                   
+                  <select name="id_role_app" class="form-control">                    
+                    <?php if($row->id_role_app == 2){ ?>                         
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Approval</option>
+                       <option value="5">TRI</option>
+                       <!-- <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>   --> 
+                    <?php }else if($row->id_role_app == 3){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Approval</option>
+                       <option value="5">TRI</option>
+                       <!-- <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>   -->  
+                    <?php }else if($row->id_role_app == 4){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Approval</option>
+                       <option value="5">TRI</option>
+                       <!-- <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>   -->                       
+                    <?php }else if($row->id_role_app == 5){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Approval</option>
+                       <option value="5">TRI</option>
+                       <!-- <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>   -->                    
                     <?php }else{ ?>
-                       <option value="2">Admin</option>
-                       <option value="3">Admin Approval PB</option>
-                       <option value="4">Admin Approval GC</option>
-                       <option value="5">Admin User PB</option>
-                       <option value="6">Admin User GC</option>  
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Approval</option>
+                       <option value="5">TRI</option>
+                       <!-- <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>   -->
                     <?php } ?>
-                  </select>
-                      <input type="hidden" name="password" class="form form-control" value="admin">
+                  </select>                      
                   </td>
-                </tr>
+                </tr>                 
                 <tr>
                   <th>Divisi</th>
                   <td>:</td>
                   <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id; ?>"></td>
+                </tr>
+                <?php if($row->role_id != 1){ ?>
+                <tr>
+                  <th>Role</th>
+                  <td>:</td>
+                  <td>
+                  <select name="role_id" class="form-control">                    
+                    <?php if($row->role_id == 2){ ?>                         
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>   
+                    <?php }else if($row->role_id == 3){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>    
+                    <?php }else if($row->role_id == 4){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>                         
+                    <?php }else if($row->role_id == 5){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>
+                    <?php }else if($row->role_id == 6){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>
+                    <?php }else if($row->role_id == 7){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>    
+                    <?php }else if($row->role_id == 8){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>  
+                    <?php }else if($row->role_id == 9){ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>                
+                    <?php }else{ ?>
+                       <option value="2">Admin CSF</option>
+                       <option value="3">User</option>
+                       <option value="4">Division Head</option>
+                       <option value="5">PIC</option>
+                       <option value="6">Direksi CEO</option>
+                       <option value="7">Direksi RAC</option>
+                       <option value="8">Direksi COO</option>
+                       <option value="9">Direksi CFO</option>                         
+                    <?php }} ?>
+                </select>
+                </td>
                 </tr>
                 <tr>
                   <th>Status</th>
