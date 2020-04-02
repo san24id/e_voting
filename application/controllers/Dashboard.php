@@ -27,13 +27,13 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("username");
 
-		// $this->load->library('session');
+		$this->load->library('session');
  		
- 		// if ($this->session->userdata('username')) {
+ 		if ($this->session->userdata('id_role_app') == 2) {
  			
-		// }else{
-		// 	redirect('login/loginadm', 'refresh');
-		// }
+		}else{
+			redirect('login/logout', 'refresh');
+		}
 	}
 
 	public function index()

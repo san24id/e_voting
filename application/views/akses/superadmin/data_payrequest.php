@@ -219,6 +219,9 @@
                   <td><input type="hidden" name="status" value="1" class="form-control"></td>
                   <td><input type="hidden" name="created_by" value="Sistem" class="form-control"></td>
                   <td><input type="hidden" name="created_date" value="<?php echo date("Y-m-d"); ?>" class="form-control"></td>
+                  <td><input type="hidden" name="status_login" value="0" class="form-control"></td>
+                  <td><input type="hidden" name="status_mail1" value="0" class="form-control"></td>
+                  <td><input type="hidden" name="status_mail2" value="0" class="form-control"></td>
                   <input type="hidden" name="password" class="form form-control" value="123456">
 
                 </tr>
@@ -248,6 +251,7 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Ubah Staff</h4>
+           
         </div>
         <div class="modal-body">
           <h5>
@@ -276,46 +280,46 @@
                   <td>
                   <select name="id_role_app" class="form-control">                    
                     <?php if($row->id_role_app == 2){ ?>                         
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Approval</option>
-                       <option value="5">TRI</option>
+                       <option value="2"<?php echo $row->id_role_app==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3" <?php echo $row->id_role_app==3? 'selected':''?>>User</option>
+                       <option value="4" <?php echo $row->id_role_app==4? 'selected':''?>>Approval</option>
+                       <option value="5"<?php echo $row->id_role_app==5? 'selected':''?>>TRI</option>
                        <!-- <option value="6">Direksi CEO</option>
                        <option value="7">Direksi RAC</option>
                        <option value="8">Direksi COO</option>
                        <option value="9">Direksi CFO</option>   --> 
                     <?php }else if($row->id_role_app == 3){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Approval</option>
-                       <option value="5">TRI</option>
+                       <option value="2"<?php echo $row->id_role_app==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3" <?php echo $row->id_role_app==3? 'selected':''?>>User</option>
+                       <option value="4" <?php echo $row->id_role_app==4? 'selected':''?>>Approval</option>
+                       <option value="5"<?php echo $row->id_role_app==5? 'selected':''?>>TRI</option>
                        <!-- <option value="6">Direksi CEO</option>
                        <option value="7">Direksi RAC</option>
                        <option value="8">Direksi COO</option>
                        <option value="9">Direksi CFO</option>   -->  
                     <?php }else if($row->id_role_app == 4){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Approval</option>
-                       <option value="5">TRI</option>
+                       <option value="2"<?php echo $row->id_role_app==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3" <?php echo $row->id_role_app==3? 'selected':''?>>User</option>
+                       <option value="4" <?php echo $row->id_role_app==4? 'selected':''?>>Approval</option>
+                       <option value="5"<?php echo $row->id_role_app==5? 'selected':''?>>TRI</option>
                        <!-- <option value="6">Direksi CEO</option>
                        <option value="7">Direksi RAC</option>
                        <option value="8">Direksi COO</option>
                        <option value="9">Direksi CFO</option>   -->                       
                     <?php }else if($row->id_role_app == 5){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Approval</option>
-                       <option value="5">TRI</option>
+                       <option value="2"<?php echo $row->id_role_app==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3" <?php echo $row->id_role_app==3? 'selected':''?>>User</option>
+                       <option value="4" <?php echo $row->id_role_app==4? 'selected':''?>>Approval</option>
+                       <option value="5"<?php echo $row->id_role_app==5? 'selected':''?>>TRI</option>
                        <!-- <option value="6">Direksi CEO</option>
                        <option value="7">Direksi RAC</option>
                        <option value="8">Direksi COO</option>
                        <option value="9">Direksi CFO</option>   -->                    
                     <?php }else{ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Approval</option>
-                       <option value="5">TRI</option>
+                       <option value="2"<?php echo $row->id_role_app==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3" <?php echo $row->id_role_app==3? 'selected':''?>>User</option>
+                       <option value="4" <?php echo $row->id_role_app==4? 'selected':''?>>Approval</option>
+                       <option value="5"<?php echo $row->id_role_app==5? 'selected':''?>>TRI</option>
                        <!-- <option value="6">Direksi CEO</option>
                        <option value="7">Direksi RAC</option>
                        <option value="8">Direksi COO</option>
@@ -331,91 +335,91 @@
                 </tr>
                 <?php if($row->role_id != 1){ ?>
                 <tr>
-                  <th>Role</th>
+                  <th>Jabatan</th>
                   <td>:</td>
                   <td>
                   <select name="role_id" class="form-control">                    
                     <?php if($row->role_id == 2){ ?>                         
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>   
+                       <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>   
                     <?php }else if($row->role_id == 3){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>    
+                       <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>  
                     <?php }else if($row->role_id == 4){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>                         
+                       <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>                        
                     <?php }else if($row->role_id == 5){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>
+                       <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>  
                     <?php }else if($row->role_id == 6){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>
+                       <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>  
                     <?php }else if($row->role_id == 7){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>    
+                       <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>  
                     <?php }else if($row->role_id == 8){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>  
+                      <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>  
                     <?php }else if($row->role_id == 9){ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>                
+                      <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>                  
                     <?php }else{ ?>
-                       <option value="2">Admin CSF</option>
-                       <option value="3">User</option>
-                       <option value="4">Division Head</option>
-                       <option value="5">PIC</option>
-                       <option value="6">Direksi CEO</option>
-                       <option value="7">Direksi RAC</option>
-                       <option value="8">Direksi COO</option>
-                       <option value="9">Direksi CFO</option>                         
+                       <option value="2"<?php echo $row->role_id==2? 'selected':''?>>Admin CSF</option>
+                       <option value="3"<?php echo $row->role_id==3? 'selected':''?>>User</option>
+                       <option value="4"<?php echo $row->role_id==4? 'selected':''?>>Division Head</option>
+                       <option value="5"<?php echo $row->role_id==5? 'selected':''?>>PIC</option>
+                       <option value="6"<?php echo $row->role_id==6? 'selected':''?>>Direksi CEO</option>
+                       <option value="7"<?php echo $row->role_id==7? 'selected':''?>>Direksi RAC</option>
+                       <option value="8"<?php echo $row->role_id==8? 'selected':''?>>Direksi COO</option>
+                       <option value="9"<?php echo $row->role_id==9? 'selected':''?>>Direksi CFO</option>                         
                     <?php }} ?>
                 </select>
                 </td>
@@ -425,12 +429,19 @@
                   <td>:</td>
                   <td><input type="text" name="role_status" class="form-control" value="<?php echo $row->role_status; ?>"></td>
                 </tr>
+                <tr>
+                  <th>Aktif</th>
+                  <td>:</td>
+                  <td><input type="checkbox" name="status" value="1" <?php echo $row->$status==1? 'checked':''?> >Ya</label><br>
+                      <input type="checkbox" name="status" value="0" <?php echo $row->$status==0? 'checked':''?> >Tidak</label><br>
+                  </td>
+                </tr>
               <?php } ?>
              </table>
           </h5>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" id="rubah">Save</button>
+          <button type="submit" class="btn btn-success rubah" >Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </form>
         </div>
@@ -450,7 +461,7 @@
       <div class="modal-footer">
       <form id="deleted" method="post" action="superadm/deletestaff">
           <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>">
-          <button type="submit" class="btn btn-success" id="bye">Yes</button>
+          <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
       </div>
@@ -490,7 +501,7 @@
   $("#nambah").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          url: "<?php echo base_url("index.php/superadm/addstaff"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/addstaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#acc").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#tambah").modal('hide'); // Sembunyikan loadingnya   
@@ -500,10 +511,10 @@
       });
     });
 
-  $("#rubah").on('click', function(){
+  $(".rubah").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          url: "<?php echo base_url("index.php/superadm/updatestaff"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/updatestaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#ganti").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#ubah").modal('hide'); // Sembunyikan loadingnya   
@@ -513,10 +524,10 @@
       });
   });  
 
-  $("#bye").on('click', function(){
+  $(".bye").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#deleted").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#hapus").modal('hide'); // Sembunyikan loadingnya   

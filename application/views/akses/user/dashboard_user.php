@@ -9,22 +9,21 @@
 
     <section class="content">
         <!-- Info boxes -->
-        <div class="row">
-        <?php foreach ($tot_pay_req as $tot_req) { ?>
+        <div class="row">        
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
+            <?php foreach ($tot_pay_req as $tot_req) { ?>
                 <span class="info-box-icon bg-aqua"><i class="ion ion-ios-plus-outline"></i></span>
-
                 <div class="info-box-content">
                 <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
                 <span class="info-box-text"><center>Total Payment Request</center></span>                
                 </div>
                 <!-- /.info-box-content -->
+            <?php } ?>    
             </div>
             <!-- /.info-box -->
             </div>
             <!-- /.col -->
-        <?php } ?>    
 
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
@@ -42,19 +41,19 @@
             <!-- fix for small devices only -->
             <div class="clearfix visible-sm-block"></div>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <?php foreach ($draft as $tot_draft) { ?>
+            <div class="col-md-3 col-sm-6 col-xs-12">            
             <div class="info-box">
+              <?php foreach ($draft as $tot_draft) { ?>
                 <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
                 <div class="info-box-content">
-                <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
-                <span class="info-box-text"><center>Total Draft</center></span>
+                  <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
+                  <span class="info-box-text"><center>Total Draft</center></span>
                 </div>
                 <!-- /.info-box-content -->
+              <?php } ?>  
             </div>
             <!-- /.info-box -->
             </div>
-            <?php } ?>            
         </div>
         
         <!-- Info boxes -->

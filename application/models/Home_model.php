@@ -10,33 +10,37 @@ class Home_model extends CI_Model{
     }
 
     public function getVPayment() {
-        $dvs = $this->session->userdata('divisi');
+        $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
         // $sql = "SELECT * FROM (SELECT b.dsc, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
         //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$test' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
 
-        $sql = "SELECT * FROM (SELECT b.dsc, a.id_user, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.id_user = '$usr'
-                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$dvs' AND otr.id_user = '$usr' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
-                
+        $sql = "SELECT * FROM (SELECT b.dsc, a.id_user, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.id_user = '$usr'
+                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
+               
+            //    var_dump($dvs);exit;
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
     public function getTotal(){
-        $dvs = $this->session->userdata('divisi');
+        $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE divisi='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND id_user='$usr'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
     public function getTotalDraft(){
-        $dvs = $this->session->userdata('divisi');
+        $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment WHERE divisi='$dvs' AND id_user='$usr'";
+        $sql = "SELECT * FROM (SELECT b.status_laporan, a.id_user, a.division_id, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
+                a.status = b.id_status AND a.id_user = '$usr' AND a.status = '1'
+                GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' 
+                AND otr.totaldraft != 0 AND otr.status_laporan IS NOT NULL";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -72,10 +76,10 @@ class Home_model extends CI_Model{
     }
     
     function addpayment($add){
-        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, nama_user, tanggal, hari, divisi, jabatan, label1, label2,
+        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, hari, division_id, jabatan, label1, label2,
         label3, label4, label5, label6, label7, label8, label9, penerima, vendor, akun_bank, no_rekening, status) 
-        VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['nama_user']."',
-        '".$add['tanggal']."','".$add['hari']."','".$add['divisi']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."',
+        VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['display_name']."',
+        '".$add['tanggal']."','".$add['hari']."','".$add['division_id']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."',
         '".$add['label3']."','".$add['label4']."','".$add['label5']."','".$add['label6']."','".$add['label7']."','".$add['label8']."',
         '".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."','".$add['status']."')";
         
@@ -117,8 +121,8 @@ class Home_model extends CI_Model{
     }
 
     public function update_myprofil($myprofil){
-        $sql = "UPDATE `t_user` SET `nama_user`='".$myprofil['nama_user']."',`divisi`='".$myprofil['divisi']."',`jabatan`='".$myprofil['jabatan']."',
-                `email` = '".$myprofil['email']."', `log_update`= NOW() WHERE id_user = '".$myprofil['id_user']."'";
+        $sql = "UPDATE `m_user` SET `display_name`='".$myprofil['display_name']."',`division_id`='".$myprofil['division_id']."',`jabatan`='".$myprofil['jabatan']."',
+                `email` = '".$myprofil['email']."', `created_date`= NOW() WHERE id_user = '".$myprofil['id_user']."'";
 
         $query = $this->db->query($sql);
 
@@ -126,8 +130,8 @@ class Home_model extends CI_Model{
     }
 
     public function update_myprofilpass($myprofil){
-        $sql = "UPDATE `t_user` SET `nama_user`='".$myprofil['nama_user']."',`divisi`='".$myprofil['divisi']."',`jabatan`='".$myprofil['jabatan']."',
-                `email` = '".$myprofil['email']."', `password`=md5('".$myprofil['password_baru']."'), `log_update`= NOW() WHERE id_user = '".$myprofil['id_user']."'";
+        $sql = "UPDATE `m_user` SET `display_name`='".$myprofil['display_name']."',`division_id`='".$myprofil['division_id']."',`jabatan`='".$myprofil['jabatan']."',
+                `email` = '".$myprofil['email']."', `password`=md5('".$myprofil['password_baru']."'), `created_date`= NOW() WHERE id_user = '".$myprofil['id_user']."'";
 
         $query = $this->db->query($sql);
 

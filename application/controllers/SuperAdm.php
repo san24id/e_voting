@@ -27,13 +27,13 @@ class SuperAdm extends CI_Controller {
 		$this->load->model('SuperAdm_model');
 		$this->load->library('Pdf');
 
-		// $this->load->library('session');
+		$this->load->library('session');
  		
- 		// if ($this->session->userdata('id_adm')) {
+ 		if ($this->session->userdata('id_role_app') == 1) {
  			
-		// }else{
-		// 	redirect('login//loginadm', 'refresh');
-		// }
+		}else{
+			redirect('login/logout', 'refresh');
+		}
 	}
 
 	public function index()
@@ -63,7 +63,13 @@ class SuperAdm extends CI_Controller {
 			'role_id' =>  $_POST['role_id'],
 			'division_id' => $_POST['division_id'],
 			'role_status' => $_POST['role_status'],
-			'status' => $POST['status']
+			'created_by' => $POST['created_by'],
+			'created_date' => $_POST['created_date'],
+			'status' => $POST['status'],
+			'status_login' => $POST['status_login'],
+			'status_mail1' => $POST['status_mail1'],
+			'status_mail2' => $POST['status_mail2']
+
 		);
 
 		$this->SuperAdm_model->addstaff($add);
@@ -89,48 +95,13 @@ class SuperAdm extends CI_Controller {
 			'password' =>  $_POST['password'],
 			'role_id' =>  $_POST['role_id'],
 			'division_id' => $_POST['division_id'],
-			'role_status' => $_POST['role_status'],
-			'status' => $POST['status']
+			'role_status' => $_POST['role_status'],			
+			'status' => $_POST['status']
 		);
 
 		$this->SuperAdm_model->updatestaff($upd);
 
 		redirect('SuperAdm');
 	}
-		
-	public function user(){
-		$data['data_user'] = 'active';
-		$data['active2'] = '';
-		$data['active3'] = '';
-
-		$data['user'] = $this->SuperAdm_model->getuser();
-		
-		$this->load->view('akses/admin/header_admin', $data);
-		$this->load->view('akses/admin/user_superadm', $data);
-	}
-
-	public function updateuser(){
-		$upd = array(
-			'id_user' => $_POST['id_user'],
-			'nomor_user' => $_POST['nomor_user'],
-			'nik' => $_POST['nik'],
-			'foto' => $_POST['foto'],
-			'nama_user' =>  $_POST['nama_user'],
-			'instansi' =>  $_POST['instansi'],
-			'jabatan' =>  $_POST['jabatan'],
-			'email' => $_POST['email'],
-			'telepon' => $_POST['telepon'],
-			'username' => $_POST['username'],			
-			'status' => $_POST['status']
-			// 'status_1' => $_POST['status_1'],
-			// 'log_create' => $_POST['log_create'],
-			// 'log_update' => $_POST['log_update'],
-			// 'last_login' => $_POST['last_login']
-		);
-
-		$this->SuperAdm_model->updateuser($upd);
-
-		redirect('SuperAdm/user');
-	}
-
+	
 }

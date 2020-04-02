@@ -156,7 +156,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/dashboard/dist/img/avatar5.png" class="user-image" alt="User Image">
               <span class="hidden-xs">
-              <?php echo $this->session->userdata("nama_user"); ?>
+              <?php echo $this->session->userdata("display_name"); ?>
               </span>
             </a>
             <ul class="dropdown-menu">
@@ -165,7 +165,7 @@
                 <img src="assets/dashboard/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                   <?php echo $this->session->userdata("nama_user"); ?>
+                   <?php echo $this->session->userdata("display_name"); ?>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -186,7 +186,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="Home/myprofile" class="btn btn-default btn-flat">Profile</a>
+                  <a href="Home/myprofile" class="btn btn-primary btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="login/logout" class="btn btn-success btn-flat">Sign out</a>

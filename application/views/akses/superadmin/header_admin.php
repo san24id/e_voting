@@ -90,7 +90,7 @@
                    
                 </div>
                 <div class="pull-right">
-                  <a href="login/logoutadm" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="login/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

@@ -49,20 +49,34 @@ class Login extends CI_Controller {
                foreach ($cek_login->result() as $row) {
                		$sess_data['id_user'] = $row->id_user;
                     // $sess_data['nomor_user'] = $row->nomor_user;
-                    $sess_data['jabatan'] = $row->jabatan;
-                    $sess_data['divisi'] = $row->divisi;                       
-               		$sess_data['nama_user'] = $row->nama_user;
-                    $sess_data['status'] = $row->status;
                     $sess_data['role_id'] = $row->role_id;
+                    $sess_data['division_id'] = $row->division_id;                       
+               		$sess_data['display_name'] = $row->display_name;
+                    $sess_data['status'] = $row->status;
+                    $sess_data['id_role_app'] = $row->id_role_app;
+
+                    // console.log($row->division_id);
                     
                     $status = $row->status;
                     $status1 = $row->status_1;
+                    $akses = $row->id_role_app;
 					$this->session->set_userdata($sess_data);
 				}
 
                 if($status == 1){
                     if($status1 != 1){
-                        redirect('Home');
+                        // User
+                        if($akses == 3){
+                            redirect('Home');
+                        }else if($akses == 1){
+                            redirect('SuperAdm');
+                        }else if($akses == 2){
+                            redirect('Dashboard');
+                        }else if($akses == 4){
+                            redirect('Approval');
+                        }else if($akses == 5){
+                            redirect('Tri'); 
+                        }                        
                     }else{
                         echo $this->session->set_flashdata('msg','block');
                         redirect($url);
@@ -81,36 +95,6 @@ class Login extends CI_Controller {
  
     }
 
-    public function authadm(){
-        $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
-        $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
- 
-        $cek_login=$this->Login_model->auth_admin($username,$password);
-
-        session_start();
- 
-       
-        if($cek_login->num_rows() > 0){
-                $data=$cek_login->row_array();
-
-                	$this->session->set_userdata('id_adm',$data['id_adm']);
-                    $this->session->set_userdata('display_name',$data['display_name']);
-                    $this->session->set_userdata('username',$data['username']);
-                    $this->session->set_userdata('role',$data['role']);
-
-                    if($this->session->userdata("role") == 1){
-                         redirect('SuperAdm');
-                    }else{
-                        redirect('Dashboard');
-                    }
- 
-                    }else{  // jika username dan password tidak ditemukan atau salah
-                            $url=base_url('login/loginadm');
-                            echo $this->session->set_flashdata('msg','Invalid username or password');
-                            redirect($url);
-                    }
-    }
-
     public function authldap(){
 
         $username=htmlspecialchars($this->uri->segment(3,TRUE),ENT_QUOTES);
@@ -125,14 +109,19 @@ class Login extends CI_Controller {
                     $this->session->set_userdata('id_user',$data['id_user']);
                     $this->session->set_userdata('display_name',$data['display_name']);
                     $this->session->set_userdata('username',$data['username']);
-                    $this->session->set_userdata('role',$data['role']);
+                    $this->session->set_userdata('id_role_app',$data['id_role_app']);
 
-                    if($this->session->userdata("role") == 1){
+                    if($this->session->userdata("id_role_app") == 1){
                          redirect('SuperAdm');
-                    }else{
+                    }else if($this->session->userdata("id_role_app") == 2){
                         redirect('Dashboard');
-                    }
- 
+                    }else if($this->session->userdata("id_role_app") == 3){
+                        redirect('Home');
+                    }else if($this->session->userdata("id_role_app") == 4){
+                        redirect('Approval');
+                    }else if($this->session->userdata("id_role_app") == 5){
+                        redirect('Tri');    
+                    }    
                     }else{  // jika username dan password tidak ditemukan atau salah
                             $url=base_url('login');
                             echo $this->session->set_flashdata('msg','Invalid username or password');

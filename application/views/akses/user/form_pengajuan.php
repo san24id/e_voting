@@ -42,11 +42,11 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Nama Pemohon</label>
-                            <input type="text" name="nama_user" class="form-control" value="<?php echo $this->session->userdata('nama_user') ?>" readonly>
+                            <input type="text" name="nama_user" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Divisi</label>
-                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata('divisi') ?>" readonly>                            
+                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata('division_id') ?>" readonly>                            
                         </div>
                         <div class="form-group col-md-6">
                             <label>Jabatan</label>

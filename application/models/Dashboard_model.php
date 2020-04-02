@@ -19,7 +19,9 @@ class Dashboard_model extends CI_Model{
 
     public function getTotalDraft(){
 
-        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment";
+        $sql = "SELECT * FROM (SELECT b.status_laporan, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
+                a.status = b.id_status AND a.status = '1' GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.totaldraft != 0 
+                AND otr.status_laporan IS NOT NULL";
                 
         $query = $this->db->query($sql)->result();
         return $query;
