@@ -115,7 +115,7 @@ class Home_model extends CI_Model{
     	$id_user = $this->session->userdata("id_user");
 
 		$this->db->where('id_user', $id_user);
-		$result = $this->db->get('t_user')->result(); // Tampilkan semua data kota berdasarkan id provinsi
+		$result = $this->db->get('m_user')->result(); // Tampilkan semua data kota berdasarkan id provinsi
 		
 		return $result; 
     }
