@@ -148,7 +148,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/admin/dist/img/avatar5.png" class="user-image" alt="User Image">
-              <!-- <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span> -->
+              <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -156,7 +156,7 @@
                 <img src="assets/admin/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                 <!-- <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span> -->
+                 <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -180,8 +180,8 @@
                    
                 </div>
                 <div class="pull-right">
-                  <a href="http://application.iigf.co.id/portal" class="btn btn-default btn-flat">Kembali ke portal</a>
-                  <!-- <a href="login/loginadm" class="btn btn-default btn-flat">Logout</a> -->
+                  <!-- <a href="http://application.iigf.co.id/portal" class="btn btn-success btn-flat">Kembali ke portal</a> -->
+                  <a href="login/logout" class="btn btn-success btn-flat">Logout</a>
                 </div>
               </li>
             </ul>

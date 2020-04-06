@@ -51,6 +51,7 @@ class Home extends CI_Controller {
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['dp'] = $this->Home_model->getVdp();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -87,6 +88,7 @@ class Home extends CI_Controller {
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		// $data['sektor'] = $this->Home_model->getSektor();
 		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['dp'] = $this->Home_model->getVdp();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 

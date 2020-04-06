@@ -23,6 +23,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getVdp(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT * FROM t_payment WHERE jenis_pembayaran like '%1%' AND id_user='$usr' AND division_id='$dvs'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getTotal(){
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
@@ -115,7 +125,7 @@ class Home_model extends CI_Model{
     	$id_user = $this->session->userdata("id_user");
 
 		$this->db->where('id_user', $id_user);
-		$result = $this->db->get('t_user')->result(); // Tampilkan semua data kota berdasarkan id provinsi
+		$result = $this->db->get('m_user')->result(); // Tampilkan semua data kota berdasarkan id provinsi
 		
 		return $result; 
     }

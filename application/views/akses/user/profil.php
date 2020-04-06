@@ -23,15 +23,15 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>1. Nama Lengkap :</label>
-                  <input type="text" class="form-control" name="nama_user" required="required" value="<?php echo $row->nama_user; ?>">
+                  <input type="text" class="form-control" name="display_name" required="required" value="<?php echo $row->display_name; ?>">
                 </div>            
                 <div class="form-group">
                   <label>2. Divisi :</label>
-                  <input type="text" class="form-control" name="divisi" required="required" value="<?php echo $row->divisi; ?>">
+                  <input type="text" class="form-control" name="division_id" required="required" value="<?php echo $row->division_id; ?>">
                 </div>
                 <div class="form-group">
                   <label>3. Jabatan :</label>
-                  <input type="text" class="form-control" name="jabatan" required="required" value="<?php echo $row->jabatan; ?>">
+                  <input type="text" class="form-control" name="role_status" required="required" value="<?php echo $row->role_status; ?>">
                 </div>                
                 <div class="form-group">
                   <label>4. Alamat Email :</label>

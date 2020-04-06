@@ -73,9 +73,8 @@
 				<div class="row">
 					<div class="contact100-form-checkbox">
 							<i class="fa fa-address-book" aria-hidden="true" style="color: #fff;"></i>
-							<a href="register" class="txt1">Register</a>  <font color="#FFF">&nbsp;&nbsp;|&nbsp;&nbsp;</font> <a class="txt1" href="#" data-toggle="modal" data-target="#myModal">
-							Forgot Password?
-						</a>
+							<a href="register" class="txt1">Register</a>  <font color="#FFF">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+							<a class="txt1" href="#" data-toggle="modal" data-target="#myModal">Forgot Password?</a>
 						</label>
 					</div>
 

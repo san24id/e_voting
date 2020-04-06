@@ -3617,14 +3617,14 @@ iframe {
 						Log in
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+					<div class="wrap-input100 validate-input" data-validate = "Enter username" style="color: #fff;">
+						<input class="input100" type="text" name="username" placeholder="Username" >
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 						
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
+					<div class="wrap-input100 validate-input" data-validate="Enter password" style="color: #fff;">
+						<input class="input100" type="password" name="password" placeholder="Password" >
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 						
 					</div>
@@ -3633,9 +3633,7 @@ iframe {
 					<div class="contact100-form-checkbox">
 							<i class="fa fa-address-book" aria-hidden="true" style="color: #fff;"></i>
 							<!-- <a href="register" class="txt1">Register</a>  <font color="#FFF">&nbsp;&nbsp;|&nbsp;&nbsp;</font>  -->
-							<a class="txt1" href="#" data-toggle="modal" data-target="#myModal">
-							Forgot Password?
-						</a>
+							<a class="txt1" href="#" data-toggle="modal" data-target="#myModal" style="color: #fff;">Forgot Password?</a>
 						</label>
 					</div>
 
