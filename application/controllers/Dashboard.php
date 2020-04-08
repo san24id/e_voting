@@ -67,6 +67,32 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/payment', $data);
 	}
 
+	public function accept(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 2,
+			'handled_by' => $_POST['handled_by']
+		);
+
+		$this->Dashboard_model->updateaccept($upd);
+
+		redirect('Dashboard');
+	}
+
+	public function rejected(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 3,
+			'note' => $_POST['note']
+		);
+
+		$this->Dashboard_model->updaterejected($upd);
+
+		redirect('Dashboard');
+	}
+
 	public function dp()
 	{
 		

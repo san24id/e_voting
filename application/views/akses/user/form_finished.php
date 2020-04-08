@@ -384,10 +384,10 @@
                               <td>Dari : </td>
                             </tr>             
                             <tr>
-                              <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->nama_user;?></td>
+                              <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->display_name;?></td>
                             </tr> 
                             <tr>
-                              <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->divisi;?></td>
+                              <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->division_id;?></td>
                             </tr>                                                   
                           </tbody>
                           </table>

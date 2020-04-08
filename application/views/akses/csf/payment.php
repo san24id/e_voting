@@ -329,7 +329,7 @@
       </div>
       <div class="modal-footer">
       <form id="rejected" method="post" action="dashboard/rejected">
-          <input type="hidden" name="status" value="3">                
+          <input type="hidden" name="status">                
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
@@ -346,7 +346,7 @@ function printThis() {
 $(".reject").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/dashboard/rejected"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#rejected").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#reject").modal('hide'); // Sembunyikan loadingnya   

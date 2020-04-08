@@ -151,7 +151,7 @@
                           }else if($row->status == 2){
                              echo "<img src='assets/dashboard/images/legend/submit.png'>";
                           }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                             echo "<img src='assets/dashboard/images/legend/default.png'>";
                           }
                         ?>
                     </td>                  
@@ -170,10 +170,12 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>                    
+                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary">Edit</button></a> 
+                        <?php if($row->status == 3){ ?>
+                        <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger">Delete</button></a>
                     </td>      
                     </tr>
-                <?php  } ?>
+                <?php  }} ?>
                 </tbody>
                 </table>
                 </div>
@@ -209,12 +211,12 @@
                     <tr>
                     <td>2</td>
                     <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                    <td>Submitted</td>
+                    <td>Accepted</td>
                     </tr>
                     <tr>
                     <td>3</td>
                     <td><img src="assets/dashboard/images/legend/verified.png"></td>
-                    <td>Paid</td>
+                    <td>Rejected</td>
                     </tr>
                 </tbody>
                 </table>

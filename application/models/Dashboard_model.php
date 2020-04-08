@@ -17,6 +17,22 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    public function updateaccept($upd){
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    public function updaterejected($upd){
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."', `note`='".$upd['note']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
     public function getTotalDraft(){
 
         $sql = "SELECT * FROM (SELECT b.status_laporan, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 

@@ -152,7 +152,7 @@
                           }else if($row->status == 2){
                              echo "<img src='assets/dashboard/images/legend/submit.png'>";
                           }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                             echo "<img src='assets/dashboard/images/legend/default.png'>";
                           }
                         ?>
                     </td>                  
@@ -171,12 +171,34 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="dashboard/form_sp3<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                        <button type="submit" class="btn btn-success">Accept</button>
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $get->id_payment; ?>" class="btn btn-danger">Reject</button>                     
+                        <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php if($row->status == 1){ ?>
+                        <button type="button" data-toggle="modal" data-target="#accept<?php echo $get->id_payment; ?>" class="btn btn-success">Accept</button>   
+                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>                     
                     </td>      
                     </tr>
-                <?php  } ?>
+                    <!--.Modal-->
+
+                    
+                    <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">                                        
+                        <div class="modal-body">
+                        <form id="rejected" method="post" action="dashboard/rejected">
+                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini :  <?=$row->nomor_surat?></p>
+                          <label>Notes :</label>                
+                          <input type="text" name="note"></input>
+                        </div>
+                        <div class="modal-footer">                        
+                            <button type="submit" class="btn btn-success bye">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php  }} ?>
                 </tbody>
                 </table>
                 </div>
@@ -212,12 +234,12 @@
                     <tr>
                     <td>2</td>
                     <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                    <td>Submitted</td>
+                    <td>Accepted</td>
                     </tr>
                     <tr>
                     <td>3</td>
-                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
-                    <td>Paid</td>
+                    <td><img src="assets/dashboard/images/legend/Default.png"></td>
+                    <td>Rejected</td>
                     </tr>
                 </tbody>
                 </table>
@@ -273,24 +295,7 @@
 </div>
 <!-- ./wrapper -->
 <!----.Modal -->
-<div class="modal fade" id="reject<?php echo $get->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
 
-      <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan me-rejected Form ini :  <?=$row->nomor_surat?></p>
-       <label>Notes :</label>                
-       <input type="text" name="note"></input>
-      </div>
-      <div class="modal-footer">
-      <form id="rejected" method="post" action="dashboard/rejected">
-          <button type="submit" class="btn btn-success bye">Yes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
