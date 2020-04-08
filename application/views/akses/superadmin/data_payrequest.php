@@ -506,7 +506,7 @@
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#tambah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Create Admin success')
+              alert('Create User success')
           }      
       });
     });
@@ -519,7 +519,7 @@
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#ubah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Update Admin success')
+              alert('Update User success')
           }      
       });
   });  
@@ -532,7 +532,7 @@
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#hapus").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Deleted Admin success')
+              alert('Deleted User success')
           }      
       });
   });  

@@ -20,7 +20,7 @@ class SuperAdm_model extends CI_model {
     }
     
     public function updatestaff($upd){
-        $sql = "UPDATE `m_user` SET `id_role_app`='".$upd['id_role_app']."',`display_name`='".$upd['display_name']."',`role_id`='".$upd['role_id']."',`division_id`='".$upd['division_id']."',
+        $sql = "UPDATE `m_user` SET `id_role_app`='".$upd['id_role_app']."',`display_name`='".$upd['display_name']."',`username`='".$upd['username']."',`role_id`='".$upd['role_id']."',`division_id`='".$upd['division_id']."',
                 `role_status`='".$upd['role_status']."',`email` = '".$upd['email']."',`status` = '".$upd['status']."' WHERE id_user = '".$upd['id_user']."'";
 
         $query = $this->db->query($sql);

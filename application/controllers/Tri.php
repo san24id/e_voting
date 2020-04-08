@@ -23,6 +23,6 @@ class Tri extends CI_Controller {
     public function index(){
 
         $this->load->view('akses/tri/header_tri', $data);
-		$this->load->view('akses/tri/dashboard_tri', $data);
+		// $this->load->view('akses/tri/dashboard_tri', $data);
     }
 }    

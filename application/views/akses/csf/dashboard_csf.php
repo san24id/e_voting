@@ -171,7 +171,9 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href=""><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <a href="dashboard/form_sp3<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <button type="submit" class="btn btn-success">Accept</button>
+                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $get->id_payment; ?>" class="btn btn-danger">Reject</button>                     
                     </td>      
                     </tr>
                 <?php  } ?>
@@ -268,10 +270,27 @@
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
- 
-
 </div>
 <!-- ./wrapper -->
+<!----.Modal -->
+<div class="modal fade" id="reject<?php echo $get->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+       <p align="justify">Apa kamu yakin akan me-rejected Form ini :  <?=$row->nomor_surat?></p>
+       <label>Notes :</label>                
+       <input type="text" name="note"></input>
+      </div>
+      <div class="modal-footer">
+      <form id="rejected" method="post" action="dashboard/rejected">
+          <button type="submit" class="btn btn-success bye">Yes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -346,6 +365,19 @@ $(function () {
               ]
       }]
   });
+
+$(".reject").on('click', function(){
+      $.ajax({        
+          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
+          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
+          data: $("#rejected").serialize(), // data yang akan dikirim ke file yang dituju        
+          success: function(response){ // Ketika proses pengiriman berhasil          
+              $("#reject").modal('hide'); // Sembunyikan loadingnya   
+               location.reload();       
+              alert('Rejected success')
+          }      
+      });
+  });    
 </script>
 </body>
 </html>

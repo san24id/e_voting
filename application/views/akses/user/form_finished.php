@@ -251,7 +251,7 @@
                                 <br>
                                 <br>
                                 <br>
-                                <br>Nama : &nbsp; <?php echo $get->nama_user?>
+                                <br>Nama : &nbsp; <?php echo $get->display_name?>
                                 <br>Jabatan : &nbsp;<?php echo $get->jabatan?>
                             </div>
                             <div class="form-group col-md-6">
@@ -267,7 +267,7 @@
                         <hr style=" border: 1px solid #000;">
                         <a class="btn btn-warning" href="Home" role="button">Cancel</a>
                         <button type="submit" class="btn btn-success">Save</button>
-                        <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">Print</button> 
+                        <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button> 
                     </div>
             </div>
           </section>  
@@ -475,7 +475,7 @@
                                 <td>Menyetujui, <br><br><br><br></td>
                               </tr>
                               <tr>
-                                <td>Nama : &nbsp; <?php echo $get->nama_user?></td>
+                                <td>Nama : &nbsp; <?php echo $get->display_name?></td>
                                 <td>Nama Approval : </td>
                               </tr>
                               <tr>

@@ -165,12 +165,12 @@
                     </td>
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->label1; ?></td>
-                    <td><?php echo $row->nama_user; ?></td>
+                    <td><?php echo $row->display_name; ?></td>
                     <td><?php echo $row->akun_bank; ?></td>
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>                    
                     </td>      
                     </tr>
                 <?php  } ?>

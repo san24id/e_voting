@@ -33,7 +33,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="Dashboard" class="logo">
+    <a href="Approval" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->
@@ -59,7 +59,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/admin/dist/img/avatar5.png" class="user-image" alt="User Image">
-              <!-- <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span> -->
+              <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -67,7 +67,7 @@
                 <img src="assets/admin/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                 <!-- <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span> -->
+                 <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -91,8 +91,8 @@
                    
                 </div>
                 <div class="pull-right">
-                  <a href="http://application.iigf.co.id/portal" class="btn btn-default btn-flat">Kembali ke portal</a>
-                  <!-- <a href="login/loginadm" class="btn btn-default btn-flat">Logout</a> -->
+                  <!-- <a href="http://application.iigf.co.id/portal" class="btn btn-success btn-flat">Kembali ke portal</a> -->
+                  <a href="login/logout" class="btn btn-success btn-flat">Logout</a>
                 </div>
               </li>
             </ul>
@@ -153,7 +153,7 @@
                <li class=""><a href="admin/datauser"><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
         <?php 
             // } ?>
-        <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>    
+        <!-- <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>     -->
       </ul>
     </section>
     <!-- /.sidebar -->

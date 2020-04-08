@@ -47,10 +47,24 @@ class Dashboard extends CI_Controller {
 		$data['draft'] = $this->Dashboard_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['payment'] = $this->Dashboard_model->payment();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/dashboard_csf', $data);
+	}
+
+	public function form_sp3($id_payment){
+
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/payment', $data);
 	}
 
 	public function dp()
