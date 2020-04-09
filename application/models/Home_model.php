@@ -72,7 +72,8 @@ class Home_model extends CI_Model{
     }
 
     var $table ="t_payment";
-    public function buat_kode()  {     
+    public function buat_kode()  {   
+        $dvs = $this->session->userdata('division_id');  
 
         $this->db->select('RIGHT(t_payment.nomor_surat,4) as kode', FALSE);
         $this->db->order_by('nomor_surat','DESC');    
@@ -89,7 +90,7 @@ class Home_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-        $kodejadi = "SP3/CSF/SPPP/".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+        $kodejadi = $kodemax."/$dvs/SPPP/".date('my');    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
     

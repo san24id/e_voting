@@ -175,13 +175,36 @@
                     <td>
                         <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php if($row->status == 1){ ?>
-                        <button type="button" data-toggle="modal" data-target="#accept<?php echo $get->id_payment; ?>" class="btn btn-success">Accept</button>   
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>                     
+                        <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>   
+                        <button type="button" data-toggle="modal" data-tarrow="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>                     
                     </td>      
                     </tr>
                     <!--.Modal-->
+                    <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">                                        
+                        <div class="modal-body">
+                        <form id="accepted" method="post" action="dashboard/accepted">
+                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                          <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
+                          <label>Kepada :</label>                        
+                          <select class="form-control" name="handled_by">
+                            <option>--- Choose ---</option>
+                        <?php foreach ($csf as $get) {?>
+                            <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                        <?php } ?>
+                        </select>
 
-                    
+                        </div>
+                        <div class="modal-footer">                        
+                            <button type="submit" class="btn btn-success bye">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                     <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
@@ -217,8 +240,7 @@
             <!-- /.box -->
             <div class="box">
                 <!-- /.box-header -->
-                <div class="box-body">
-                
+                <div class="box-body">                
                     <table id="" class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -382,6 +404,19 @@ $(".reject").on('click', function(){
               $("#reject").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
               alert('Rejected success')
+          }      
+      });
+  });    
+
+  $(".accept").on('click', function(){
+      $.ajax({        
+          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
+          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
+          data: $("#accepted").serialize(), // data yang akan dikirim ke file yang dituju        
+          success: function(response){ // Ketika proses pengiriman berhasil          
+              $("#accept").modal('hide'); // Sembunyikan loadingnya   
+               location.reload();       
+              alert('Accepted success')
           }      
       });
   });    
