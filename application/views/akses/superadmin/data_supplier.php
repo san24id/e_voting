@@ -134,7 +134,7 @@
         </div>
         <div class="modal-body">
           <h5>
-            <form id="acc" method="post" action="superadm/addstaff">
+            <form id="acc" method="post" action="superadm/addsupplier">
              <table class="table">
                 <tr>
                   <th>Kode Supplier</th>
