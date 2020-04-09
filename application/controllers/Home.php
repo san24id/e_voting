@@ -197,7 +197,7 @@ class Home extends CI_Controller {
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['rejected'] = $this->Home_model->getRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 

@@ -129,6 +129,7 @@
                     <th>Nomor Surat</th>
                     <th>Description</th>
                     <th>Pemohon</th>
+                    <th>Divisi</th>
                     <th>Bank Account</th>
                     <th>Nama Penerima</th>
                     <th>Submitted Date</th>
@@ -167,6 +168,7 @@
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
+                    <td><?php echo $row->division_id; ?></td>
                     <td><?php echo $row->akun_bank; ?></td>
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>

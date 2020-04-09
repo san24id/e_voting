@@ -4,7 +4,6 @@
     <section class="content-header">
       <h1>
         LIST OF REJECTED
-        <!-- <small> <a href="Home/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;New Data Entry</button></a></small> -->
       </h1>
     </section>
 
@@ -34,22 +33,22 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    // foreach ($payment as $row){
+                    foreach ($rejected as $row){
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
                   <td> </td>
                   <td> </td>
                   <td> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
+                  <td><?php echo $row->label1;?> </td>
+                  <td><?php echo $row->display_name;?> </td>
+                  <td><?php echo $row->note;?> </td>
                   <td>
-                    <!-- <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Clear</button></a>
-                    <a href="Home/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                     -->
+                    <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
+                    <a href="Home/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                   </td>      
                   </tr>
-
+                    <?php } ?>      
               </tbody>
               </table>
             </div>

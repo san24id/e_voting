@@ -54,6 +54,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getRejected(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql ="SELECT * FROM t_payment WHERE status='3' AND division_id='$dvs' AND id_user='$usr'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getform($id_payment) {
         $sql = "SELECT * FROM `t_payment` WHERE id_payment = '$id_payment'";
                 

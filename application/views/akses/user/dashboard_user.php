@@ -215,7 +215,7 @@
                     </tr>
                     <tr>
                     <td>3</td>
-                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
+                    <td><img src="assets/dashboard/images/legend/default.png"></td>
                     <td>Rejected</td>
                     </tr>
                 </tbody>
