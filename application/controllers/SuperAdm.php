@@ -43,11 +43,7 @@ class SuperAdm extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['profil'] = $this->SuperAdm_model->getProfilId();
-		$data['draft'] = $this->Dashboard_model->getTotalDraft();
-		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
-		$data['payment'] = $this->Dashboard_model->payment();
-
+		
 		$this->load->view('akses/superadmin/header_admin', $data);
         $this->load->view('akses/superadmin/data_payrequest', $data);
 	}
@@ -103,5 +99,64 @@ class SuperAdm extends CI_Controller {
 
 		redirect('SuperAdm');
 	}
+
+	public function supplier(){
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['supplier'] = $this->SuperAdm_model->getSupplier();
+
+		$this->load->view('akses/superadmin/header_admin', $data);
+        $this->load->view('akses/superadmin/data_supplier', $data);
+	}
 	
+	public function addsupplier(){
+		$add = array(
+
+			'kode_supplier' => $_POST['kode_supplier'],
+			'nama_supplier' => $_POST['nama_supplier'],
+			'npwp' => $_POST['npwp'],
+			'badan_usaha' =>  $_POST['badan_usaha'],
+			'pic' =>  $_POST['pic'],
+			'direktur' =>  $_POST['direktur'],
+			'alamat' => $_POST['alamat'],
+			'telepon' => $_POST['telepon'],
+			'nama_bank' => $_POST['nama_bank'],
+			'no_rek' => $POST['no_rek']
+			
+		);
+
+		$this->SuperAdm_model->addsupplier($add);
+
+		redirect('SuperAdm/supplier');
+	}
+
+	public function deletesupplier(){
+
+		$this->SuperAdm_model->deletesupplier($_POST['id_supplier']);
+
+		redirect('SuperAdm/supplier');
+
+	}
+
+	public function updatesupplier(){
+		$upd = array(
+			'id_supplier' => $_POST['id_supplier'],
+			'kode_supplier' => $_POST['kode_supplier'],
+			'nama_supplier' => $_POST['nama_supplier'],
+			'npwp' => $_POST['npwp'],
+			'badan_usaha' =>  $_POST['badan_usaha'],
+			'pic' =>  $_POST['pic'],
+			'direktur' =>  $_POST['direktur'],
+			'alamat' => $_POST['alamat'],
+			'telepon' => $_POST['telepon'],
+			'nama_bank' => $_POST['nama_bank'],
+			'no_rek' => $POST['no_rek']
+		);
+
+		$this->SuperAdm_model->updatesupplier($upd);
+
+		redirect('SuperAdm/supplier');
+	}
 }
