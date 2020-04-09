@@ -123,6 +123,7 @@ class SuperAdm extends CI_Controller {
 			'alamat' => $_POST['alamat'],
 			'telepon' => $_POST['telepon'],
 			'nama_bank' => $_POST['nama_bank'],
+			'mata_uang' => $_POST['mata_uang'],
 			'no_rek' => $POST['no_rek']
 			
 		);
@@ -152,6 +153,7 @@ class SuperAdm extends CI_Controller {
 			'alamat' => $_POST['alamat'],
 			'telepon' => $_POST['telepon'],
 			'nama_bank' => $_POST['nama_bank'],
+			'mata_uang' => $_POST['mata_uang'],
 			'no_rek' => $POST['no_rek']
 		);
 

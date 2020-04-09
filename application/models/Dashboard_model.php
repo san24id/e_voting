@@ -53,4 +53,12 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
+
+    function getAdminCSF() {
+        $sql = "SELECT * FROM `m_user` WHERE id_role_app = '2' AND role_id < 4;";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+
+    }
 }

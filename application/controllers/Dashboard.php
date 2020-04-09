@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Home_model');
 		$this->load->library('Pdf');
 
-		// $sid = $this->session->userdata("username");
+		$sid = $this->session->userdata("username");
 
 		$this->load->library('session');
  		
@@ -38,12 +38,14 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		$sid = $this->session->userdata("username");
 		
 		$data['active1'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Dashboard_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
@@ -60,6 +62,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Home_model->buat_kode();
 

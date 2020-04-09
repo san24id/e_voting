@@ -87,7 +87,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong>Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -182,6 +182,11 @@
                   <td><input type="text" name="nama_bank" class="form-control"></td>
                 </tr>
                 <tr>
+                  <th>Mata Uang</th>
+                  <td>:</td>
+                  <td><input type="text" name="mata_uang" class="form-control"></td>
+                </tr>
+                <tr>
                   <th>No. Rekening</th>
                   <td>:</td>
                   <td><input type="text" name="no_rekening" class="form-control"></td>
@@ -264,6 +269,11 @@
                 <th>Nama Bank</th>
                 <td>:</td>
                 <td><input type="text" name="nama_bank" class="form-control" value="<?php echo $row->nama_bank; ?>"></td>
+            </tr>
+            <tr>
+                <th>Mata Uang</th>
+                <td>:</td>
+                <td><input type="text" name="mata_uang" class="form-control" value="<?php echo $row->mata_uang; ?>"></td>
             </tr>
             <tr>
                 <th>No. Rekening</th>

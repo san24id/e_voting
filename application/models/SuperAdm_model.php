@@ -46,9 +46,9 @@ class SuperAdm_model extends CI_model {
     }
 
     function addsupplier($add){
-        $sql = "INSERT INTO `m_supplier` (id_supplier, kode_supplier, nama_supplier, npwp, badan_usaha, pic, direktur, alamat, telepon, nama_bank, no_rek) VALUES 
+        $sql = "INSERT INTO `m_supplier` (id_supplier, kode_supplier, nama_supplier, npwp, badan_usaha, pic, direktur, alamat, telepon, nama_bank, mata_uang, no_rek) VALUES 
                 ('".$add['id_supplier']."','".$add['kode_supplier']."','".$add['nama_supplier']."','".$add['npwp']."','".$add['badan_usaha']."','".$add['pic']."',
-                '".$add['direktur']."','".$add['alamat']."','".$add['telepon']."','".$add['nama_bank']."','".$add['no_rek']."')"; 
+                '".$add['direktur']."','".$add['alamat']."','".$add['telepon']."','".$add['nama_bank']."','".$add['mata_uang']."','".$add['no_rek']."')"; 
 
         $query = $this->db->query($sql);
 
@@ -57,7 +57,7 @@ class SuperAdm_model extends CI_model {
      function updatesupplier($upd){
         $sql = "UPDATE `m_supplier` SET `kode_supplier`='".$upd['kode_supplier']."',`nama_supplier`='".$upd['nama_supplier']."',`npwp`='".$upd['npwp']."',
                 `badan_usaha`='".$upd['badan_usaha']."',`pic`='".$upd['pic']."',`direktur`='".$upd['direktur']."',`alamat` = '".$upd['alamat']."',
-                `telepon` = '".$upd['telepon']."',`nama_bank` = '".$upd['nama_bank']."',`no_rek` = '".$upd['no_rek']."' WHERE id_supplier = '".$upd['id_supplier']."'";
+                `telepon` = '".$upd['telepon']."',`nama_bank` = '".$upd['nama_bank']."',`mata_uang` = '".$upd['mata_uang']."',`no_rek` = '".$upd['no_rek']."' WHERE id_supplier = '".$upd['id_supplier']."'";
        
        $query = $this->db->query($sql);
 
