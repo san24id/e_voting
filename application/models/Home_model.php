@@ -25,7 +25,30 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT * FROM t_payment WHERE jenis_pembayaran like '%1%' AND id_user='$usr' AND division_id='$dvs'";
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%1%' 
+        AND id_user = '$usr' AND division_id='$dvs' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVar(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
+        AND id_user = '$usr' AND division_id='$dvs' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVasr(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
+        AND id_user = '$usr' AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -64,6 +87,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    function notifRejected(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as totrejected FROM t_payment WHERE division_id='$dvs' AND id_user='$usr' AND status='3'";
+        $count_rejected = $this->db->query($sql)->result();
+        
+        return $count_rejected;
+
+    }    
     public function getform($id_payment) {
         $sql = "SELECT * FROM `t_payment` WHERE id_payment = '$id_payment'";
                 

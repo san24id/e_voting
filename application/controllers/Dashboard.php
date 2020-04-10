@@ -88,7 +88,8 @@ class Dashboard extends CI_Controller {
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
 			'status' => 3,
-			'note' => $_POST['note']
+			'note' => $_POST['note'],
+			'handled_by' => $_POST['handled_by']
 		);
 
 		$this->Dashboard_model->updaterejected($upd);

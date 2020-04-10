@@ -203,15 +203,7 @@
 
     </nav>
   </header>
-
-  <?php
-        $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
-
-        $sql = "SELECT COUNT(status) as totrejected FROM t_payment WHERE status='3' AND division_id='$dvs' AND id_user='$usr'";
-        $count_rejected = $this->db->query($sql)->num_rows();
-
-  ?>
+  
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -241,8 +233,9 @@
             <li><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        
-        <li class="<?php echo $active3?>"><a href="Home/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $count_rejected; ?></small></a></li>
+        <?php foreach ($reject as $notif) { ?>
+        <li class="<?php echo $active3?>"><a href="Home/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+        <?php } ?>
         <br>
         <br>
         <br>

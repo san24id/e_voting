@@ -48,6 +48,7 @@ class Home extends CI_Controller {
 		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
@@ -68,9 +69,7 @@ class Home extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -86,10 +85,8 @@ class Home extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
-		$data['dp'] = $this->Home_model->getVdp();
+		$data['directpayment'] 	= $this->Home_model->getVdp();	
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -105,9 +102,8 @@ class Home extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['advancerequest'] = $this->Home_model->getVar();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -124,8 +120,8 @@ class Home extends CI_Controller {
 		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['settlement'] = $this->Home_model->getVasr();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -141,9 +137,7 @@ class Home extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -160,8 +154,7 @@ class Home extends CI_Controller {
 		$data['active3'] = '';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -179,7 +172,7 @@ class Home extends CI_Controller {
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['statusinf'] = $this->Dashboard_model->getstatuscount();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -196,7 +189,7 @@ class Home extends CI_Controller {
 		$data['active3'] = 'active';
 
 		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['rejected'] = $this->Home_model->getRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -205,14 +198,31 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/my_inbox', $data);
 	}
 
+	public function form_view($id_payment)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$sid = $this->session->userdata("id_user");
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		
+		$this->load->view('akses/user/header_user', $data);	
+        $this->load->view('akses/user/form_view', $data);
+	}
+
 	public function form_add()
 	{
-		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['active1'] = 'active';
+		$data['active2'] = '';
 		$data['active3'] = '';
 
 		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
-		
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		// $data['cn_assesment'] = $this->Home_model->cn_assesment();
@@ -324,38 +334,6 @@ class Home extends CI_Controller {
 
 	}
 
-	public function form_edit($idp)
-	{
-		$data['active1'] = 'active';
-		$data['active2'] = '';
-		$data['active3'] = '';
-		
-		$sid = $this->session->userdata("id_user");
-
-		// $data['sektor'] = $this->Home_model->getSektor();
-		// $data['kementerian'] = $this->Home_model->getKementerian();
-		// $data['lpnk'] = $this->Home_model->getNonKementrian();
-		// $data['provinsi'] = $this->Home_model->getProvinsi();
-		// $data['kota'] = $this->Home_model->getKota();	
-		// $data['kabupaten'] = $this->Home_model->getKabupaten();	
-		// $data['kotakabu'] = $this->Home_model->getKotaKabu();
-		// $data['assesment'] = $this->Home_model->assesment();
-		// $data['cn_assesment'] = $this->Home_model->cn_assesment();	
-		// $data['profil'] = $this->Home_model->getIdProfilProjek($idp);
-		// $data['profilus'] = $this->Home_model->getIdProfilProjekUser($idp, $sid);
-		// $data['skor'] = $this->Home_model->getskor($idp);
-		// $data['noass'] = $this->Home_model->gett($idp);
-
-		// if($this->Home_model->getIdProfilProjekUser($idp, $sid) == TRUE){
-			
-		// 	$this->load->view('akses/user/header_user', $data);	
-        // 	$this->load->view('akses/user/form_pengajuan_edit', $data);
-
-		// }else{
-		// 	redirect('Home');
-		// }	
-	}
-
 	public function formfinished($id_payment)
 	{
 		$data['active1'] = 'active';
@@ -386,6 +364,7 @@ class Home extends CI_Controller {
 		$data['active2'] = '';
 
 		$data['profil'] = $this->Home_model->getProfilId();
+		$data['reject'] = $this->Home_model->notifRejected();
 
 		$this->load->view('akses/user/header_user', $data);		
         $this->load->view('akses/user/profil', $data);

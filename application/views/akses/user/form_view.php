@@ -266,12 +266,11 @@
                       </div>
                         <hr style=" border: 1px solid #000;">
                         <a class="btn btn-warning" href="Home" role="button">Back</a>
-                        <?php if($row->status == 1){ ?>
-                        <button type="button" data-toggle="modal" data-target="#accept<?php echo $get->id_payment; ?>" class="btn btn-success">Accept</button>
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $get->id_payment; ?>" class="btn btn-danger">Reject</button> 
+                        <!-- <button type="button" data-toggle="modal" data-target="#accept<?php echo $get->id_payment; ?>" class="btn btn-success">Accept</button>
+                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $get->id_payment; ?>" class="btn btn-danger">Reject</button>  -->
                     </div>
             </div>
-          <?php }} ?>
+          <?php } ?>
           </section>  
         </form>       
         <!-- </form> -->
@@ -380,6 +379,7 @@ $(".accept").on('click', function(){
           }      
       });
   });
+
 
 $(".reject").on('click', function(){
       $.ajax({        
