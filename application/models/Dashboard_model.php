@@ -26,7 +26,8 @@ class Dashboard_model extends CI_Model{
     }
 
     public function updaterejected($upd){
-        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`note`='".$upd['note']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`note`='".$upd['note']."',`rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."'
+                WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 

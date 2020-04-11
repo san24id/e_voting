@@ -37,8 +37,8 @@
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
-                  <td></td>
-                  <td><?php echo $row->handled_by; ?>  </td>
+                  <td><?php echo $row->rejected_date; ?></td>
+                  <td><?php echo $row->rejected_by; ?>  </td>
                   <td><?php echo $row->division_id; ?> </td>
                   <td><?php echo $row->label1;?> </td>
                   <td><?php echo $row->display_name;?> </td>

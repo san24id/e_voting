@@ -213,7 +213,8 @@
                           <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
                           <label>Notes :</label>                
                           <input type="text" name="note"></input>
-                          <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          <input type="text" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">  
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
