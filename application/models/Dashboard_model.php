@@ -62,4 +62,15 @@ class Dashboard_model extends CI_Model{
         return $query;
 
     }
+
+    function getmyTask() {
+        $usr= $this->session->userdata("username");
+
+        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr'";
+        // var_dump($sql);exit;
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+
+    }
 }

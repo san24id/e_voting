@@ -49,6 +49,7 @@ class Login extends CI_Controller {
                foreach ($cek_login->result() as $row) {
                		$sess_data['id_user'] = $row->id_user;
                     // $sess_data['nomor_user'] = $row->nomor_user;
+                    $sess_data['username'] = $row->username;
                     $sess_data['role_id'] = $row->role_id;
                     $sess_data['division_id'] = $row->division_id;                       
                		$sess_data['display_name'] = $row->display_name;
@@ -68,12 +69,16 @@ class Login extends CI_Controller {
                         // User
                         if($akses == 3){
                             redirect('Home');
+                        // SuperAdmin    
                         }else if($akses == 1){
                             redirect('SuperAdm');
+                        // Admin CSF    
                         }else if($akses == 2){
                             redirect('Dashboard');
+                        // Approval    
                         }else if($akses == 4){
                             redirect('Approval');
+                        // TRI                                
                         }else if($akses == 5){
                             redirect('Tri'); 
                         }                        

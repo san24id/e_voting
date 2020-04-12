@@ -208,7 +208,7 @@
       <ul class="sidebar-menu">        
         <?php 
          // if($this->session->userdata("role") == 2){ ?>
-               <li class="<?php echo $active1?>"><a href="Dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+               <li class="<?php echo $dashboard?>"><a href="Dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
@@ -226,7 +226,7 @@
             <li><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        <li class=""><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-console"></i><span>Monitoring</a></span></li>
+        <li class="<?php echo $monitoring?>"><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-console"></i><span>Monitoring</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-console"></i>
@@ -246,7 +246,8 @@
             <li><a href="Dashboard/pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
           </ul>  
         </li>
-        <li class=""><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
+        <li class="<?php echo $task?>"><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>My Task</a></span></li>
+        <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
         <br>
         <br>
         <br>
