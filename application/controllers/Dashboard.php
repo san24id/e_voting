@@ -192,6 +192,8 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 

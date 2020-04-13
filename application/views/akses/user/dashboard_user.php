@@ -1,3 +1,14 @@
+<style type="text/css">
+   .satu { border: 5px solid purple; }
+   .dua { border: 5px dotted green; }
+   .tiga { border: 5px dashed blue; }
+   .empat { border: 5px double blue; }
+   .lima { border: 5px solid orange; }
+   .enam { border: 5px groove green; }
+   .tujuh { border: 5px solid green; }
+   	
+</style>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -12,14 +23,14 @@
         <div class="row">        
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-            <?php foreach ($tot_pay_req as $tot_req) { ?>
                 <span class="info-box-icon bg-aqua"><i class="ion ion-ios-plus-outline"></i></span>
                 <div class="info-box-content">
+                <?php foreach ($tot_pay_req as $tot_req) { ?>
                 <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
-                <span class="info-box-text"><center>Total Payment Request</center></span>                
+                <span class="info-box-text"><center>Total Payment Request</center></span>     
+                <?php } ?>    
                 </div>
                 <!-- /.info-box-content -->
-            <?php } ?>    
             </div>
             <!-- /.info-box -->
             </div>
@@ -41,74 +52,93 @@
             <!-- fix for small devices only -->
             <div class="clearfix visible-sm-block"></div>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">            
+            <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-              <?php foreach ($draft as $tot_draft) { ?>
                 <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
-                  <span class="info-box-text"><center>Total Draft</center></span>
+                <?php foreach ($draft as $tot_draft) { ?>
+                <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
+                <span class="info-box-text"><center>Total Draft</center></span>
+                <?php } ?>            
                 </div>
                 <!-- /.info-box-content -->
-              <?php } ?>  
             </div>
             <!-- /.info-box -->
             </div>
         </div>
         
-        <!-- Info boxes -->
-        <div class="box box-default">
-            <div class="box-header with-border">
-              <h3 class="box-title">Payment Request Usage</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
+        <div class="row">
+          <div class="col-md-6"><!--PieChart-->
             <div class="box-body">
-              <div class="row">
+                <!-- USERS LIST -->
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <div class="box-tools pull-right">
+                      <span class="label label-success"></span>
+                    </div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                      <script src="https://code.highcharts.com/highcharts.js"></script>
+                      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                      <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-                <div class="col-md-6">
+                      <div class="col-md-9">
+                      <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>        
+                      </div>          
+                    <!-- /.users-list -->
+                    <div class="col-md-3">
+                    <ul class="chart-legend clearfix">
+                      <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
+                      <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
+                      <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
+                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
+                    </ul>
+                    </div>
+                  </div>
+                  <!-- /.box-body -->               
+                </div>
+                <!--/.box -->              
+            </div>
+          </div>
+        
+          <div class="col-md-6">
+            <div class="box-body">
               <!-- USERS LIST -->
               <div class="box box-success">
                 <div class="box-header with-border">
-
                   <div class="box-tools pull-right">
                     <span class="label label-success"></span>
                   </div>
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body no-padding">
-                    <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                <div class="box-body">
+                  <table width="100%"> 
+                  <tr> 
+                    <font size='5'> STATUS | </font> 
+                    <td><div class="satu"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="dua"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="tiga"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="empat"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="lima"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="enam"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;                        
+                  </tr>  
+                  </table>
+                </div>
+                <br><br>               
+                <div class="box-body">
+                  <td><img src="assets/dashboard/images/legend/treatment.png"></td>
+                  <td>Draft</td> &nbsp; &nbsp;
 
-                    <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                  <td><img src="assets/dashboard/images/legend/submit.png"></td>
+                  <td>Accepted</td> &nbsp; &nbsp;
 
-                  <!-- /.users-list -->
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer text-center">
-                 
-                </div>
-                <!-- /.box-footer -->
-              </div>
-              <!--/.box -->
-            </div>
-            <div class="col-md-4">
-                  <ul class="chart-legend clearfix">
-                    <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
-                    <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
-                    <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                    <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
-                  </ul>
-                </div>
+                  <td><img src="assets/dashboard/images/legend/Default.png"></td>
+                  <td>Rejected</td>
+                </div>   
+              </div>     
             </div>
           </div>  
-            <!-- /.footer -->
         </div>
 
         <div class="row">
@@ -186,48 +216,7 @@
             </div>
             <!-- /.col -->
         </div>  
-        
-        <div class="row">
-            <div class="col-xs-12 col-md-4">
-            <!-- /.box -->
-            <div class="box">
-                <!-- /.box-header -->
-                <div class="box-body">
                 
-                    <table id="" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                    <th style="width: 10%">NO.</th>
-                    <th style="width: 10%">Status</th>
-                    <th>Keterangan</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                    <td>Draft</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                    <td>Accepted</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    <td><img src="assets/dashboard/images/legend/default.png"></td>
-                    <td>Rejected</td>
-                    </tr>
-                </tbody>
-                </table>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-            </div>
-            <!-- /.col -->
-        </div>
-      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>

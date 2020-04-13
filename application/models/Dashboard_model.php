@@ -9,6 +9,13 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    public function processing(){
+        $sql = "SELECT COUNT(status) as process FROM `t_payment` WHERE status='2'";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    
+    }
     public function getTotal(){
 
         $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment";

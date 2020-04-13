@@ -40,21 +40,25 @@
                       <div class="col-md-4"><!--Lingkaran-->
                           <div class="lingkaran1 panel panel-primary">
                             <br><br>
-                            <center> <font size='7'> 1 </font> </center> 
+                            <?php foreach ($processing as $tot_process) { ?>
+                            <center> <font size='7'> <?php echo $tot_process->process; ?> </font> </center> 
                             <center> <font size='3'> Waiting for Processing </font> </center>
+                            <?php } ?>
                           </div>
                         </div>
                       <div class="col-md-8"><!--Status-->
-                        <center> <font size='5'> Total Request : </font> </center> <br>
-                          <div class="">
+                        <?php foreach ($tot_pay_req as $tot_req) { ?>
+                        <center> <font size='5'> Total Request : <?php echo $tot_req->totalreq; ?> </font> </center> <br>
+                        <?php } ?>
+                          <div>
                           <table> 
                             <tr> 
                               <td><font size='5'> STATUS | </font> </td><td> &nbsp;
-                              <td><div class="satu"><font size='5'>82</div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="dua"><font size='5'>1</div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="tiga"><font size='5'>5</div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="empat"><font size='5'>5</div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="lima"><font size='5'>10</div> </td><td> &nbsp;                        
+                              <td><div class="satu"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="dua"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="tiga"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="empat"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="lima"><font size='5'>  </div> </td><td> &nbsp;                        
                             </tr>  
                           </table>
                           </div>
@@ -79,8 +83,8 @@
                            <br>
                             <table>
                             <tr>
-                              <td width="50%"> <div class="tujuh"><center><font size='3'> 1 <br> Tax<br>(A1) </font></center></div><td> &nbsp;
-                              <td width="50%"> <div class="tujuh"><center><font size='3'> 1 <br> Finance<br>(A2) </font></center></div><td> &nbsp;
+                              <td width="50%"> <div class="tujuh"><center><font size='3'>  <br> Tax<br>(A1) </font></center></div><td> &nbsp;
+                              <td width="50%"> <div class="tujuh"><center><font size='3'>  <br> Finance<br>(A2) </font></center></div><td> &nbsp;
                             </tr>
                             </table>
                           </div>
@@ -89,10 +93,10 @@
                           <div>
                             <table>
                             <tr>
-                            <td width="25%"> <div class="tujuh"><center><font size='5'> 2 <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'> 1 <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'> 5 <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'> 10 <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
+                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
+                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
+                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
+                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
                             </tr>
                             </table>
                           </div>
