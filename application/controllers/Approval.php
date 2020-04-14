@@ -22,7 +22,30 @@ class Approval extends CI_Controller {
     
     public function index(){
 
+		$data['index'] = 'active';
+		$data['active3'] = '';
+
+		$data['draft'] = $this->Dashboard_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['payment'] = $this->Dashboard_model->payment();
+
         $this->load->view('akses/approval/header_approval', $data);
-		// $this->load->view('akses/approval/dashboard_approval', $data);
+		$this->load->view('akses/approval/dashboard_approval', $data);
+	}
+	
+	public function listApproval(){
+		$data['active1'] = '';
+		$data['l_approval'] = 'active';
+		$data['active3'] = '';
+
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+
+        $this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/approval', $data);
     }
 }    

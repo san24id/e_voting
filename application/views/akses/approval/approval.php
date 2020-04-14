@@ -1,13 +1,21 @@
 <style type="text/css">
+	.lingkaran1{
+	width: 200px;
+	height: 200px;
+	/* background: #dac52c;  */
+	border-radius: 80%;
+	}
+   
    .satu { border: 5px solid purple; }
-   .dua { border: 5px dotted green; }
-   .tiga { border: 5px dashed blue; }
+   .dua { border: 5px solid green; }
+   .tiga { border: 5px solid blue; }
    .empat { border: 5px double blue; }
    .lima { border: 5px solid orange; }
-   .enam { border: 5px groove green; }
-   .tujuh { border: 5px solid green; }
+   .enam {background:green; border: 5px solid green; }
+   .tujuh {background:aqua; border: 4px solid green; }
    	
 </style>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -18,57 +26,58 @@
     </section>
 
     <section class="content">
-        <!-- Info boxes -->
-        <div class="row">        
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-plus-outline"></i></span>
-                <div class="info-box-content">
-                <?php foreach ($tot_pay_req as $tot_req) { ?>
-                <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
-                <span class="info-box-text"><center>Total Payment Request</center></span>     
-                <?php } ?>    
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
+            <div class="col-md-6">
+              <div class="box-body">
+                <!-- USERS LIST -->
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <div class="box-tools pull-right">
+                      <span class="label label-success"></span>
+                    </div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">      
+                    <div class="row">
+                      <div class="col-md-6"><!--Lingkaran-->
+                        <center> <div class="lingkaran1 panel panel-primary">
+                          <br><br>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-gear-outline"></i></span>
+                          <center> <font size='7'> 5 </font> </center> 
+                          <center> <font size='3'> Waiting for Approval </font> </center>
 
-                <div class="info-box-content">
-                <span class="info-box-number"><center>20</center></span>
-                <span class="info-box-text"><center>Total Outstanding Payment Request</center></span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            </div>            
-            <!-- /.col -->
-            <!-- fix for small devices only -->
-            <div class="clearfix visible-sm-block"></div>
+                        </div>
+                        <div class ="col-md-6">
+                          <td><img src="assets/dashboard/images/legend/treatment.png"></td>
+                          <td>Draft</td> &nbsp; &nbsp;
+                        </div>
+                        </center>
+                      </div>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
-                <div class="info-box-content">
-                <?php foreach ($draft as $tot_draft) { ?>
-                <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
-                <span class="info-box-text"><center>Total Draft</center></span>
-                <?php } ?>            
+                      <div class="col-md-6"><!--Status-->
+                      <center> <div class="lingkaran1 panel panel-primary">
+                          <br><br>
+
+                          <center> <font size='7'> 92 </font> </center> 
+                          <center> <font size='3'> Total Approved </font> </center>
+
+                        </div>               
+                        <div class ="col-md-6">
+                          <td><img src="assets/dashboard/images/legend/submit.png"></td>
+                          <td>Accepted</td> &nbsp; &nbsp;
+                        </div>  
+                      </center> 
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <!-- /.box-body -->               
                 </div>
-                <!-- /.info-box-content -->
+                <!--/.box -->
+              </div>            
             </div>
-            <!-- /.info-box -->
-            </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-6"><!--PieChart-->
-            <div class="box-body">
+
+            <div class="col-md-6"><!--PieChart-->
+              <div class="box-body">
                 <!-- USERS LIST -->
                 <div class="box box-success">
                   <div class="box-header with-border">
@@ -98,48 +107,11 @@
                   <!-- /.box-body -->               
                 </div>
                 <!--/.box -->              
-            </div>
-          </div>
-        
-          <div class="col-md-6">
-            <div class="box-body">
-              <!-- USERS LIST -->
-              <div class="box box-success">
-                <div class="box-header with-border">
-                  <div class="box-tools pull-right">
-                    <span class="label label-success"></span>
-                  </div>
-                </div>
-                <div class="box-body">
-                  <table width="100%"> 
-                  <tr> 
-                    <font size='5'> STATUS | </font> 
-                    <td><div class="satu"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="dua"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="tiga"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="empat"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="lima"><center><font size='5'> 5 </center></div> </td><td> &nbsp;
-                  </tr>  
-                  </table>
-                </div>
-                <br><br>               
-                <div class="box-body">
-                  <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                  <td>Draft</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                  <td>Accepted</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/Default.png"></td>
-                  <td>Rejected</td>
-                </div>   
-              </div>     
-            </div>
-          </div>  
-        </div>
+              </div>
+            </div>            
 
         <div class="row">
-            <div class="col-xs-12">
+          <div class="col-xs-12">
             <!-- /.box -->
             <div class="box">
                 <!-- /.box-header -->
@@ -150,15 +122,12 @@
                     <tr>
                     <th>NO.</th>
                     <th>Status</th>
-                    <th>Tanggal</th>
-                    <th>Jenis Pembayaran</th>
-                    <th>Nomor Surat</th>
+                    <th>Type</th>
+                    <th>Submitted Date</th>
+                    <th>APF No</th>
                     <th>Description</th>
                     <th>Pemohon</th>
-                    <th>Divisi</th>
-                    <th>Bank Account</th>
-                    <th>Nama Penerima</th>
-                    <th>Submitted Date</th>
+                    <th>Detail</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -170,7 +139,7 @@
                         $test1 = $row->dsc;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
-                        ?>
+                    ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
@@ -182,35 +151,33 @@
                              echo "<img src='assets/dashboard/images/legend/default.png'>";
                           }
                         ?>
-                    </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                    </td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
                             echo $test2[$a]."<br>";
                           }
                         }  ?>
-                    </td>
-                    <td><?php echo $row->nomor_surat; ?></td>
+                    </td>                  
+                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td>  XXX </td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <td><?php echo $row->division_id; ?></td>
-                    <td><?php echo $row->akun_bank; ?></td>
-                    <td><?php echo $row->penerima; ?></td>
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                        <?php if($row->status == 1){ ?>
-                        <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>   
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>                     
-                    </td>      
+                        <a href="approval/form_view/ "><button class="btn btn-primary btn-sm">View</button></a>
+                    </td>
+                    <td> 
+                        <button type="button" data-toggle="modal" data-target="#approve " class="btn btn-success">Approve</button>   
+                        <button type="button" data-toggle="modal" data-target="#reject " class="btn btn-danger">Reject</button> 
+                    </td>                          
                     </tr>
+                    
                     <!--.Modal-->
-                    <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" id="approve " tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
-                        <form id="accepted" method="post" action="dashboard/accept">
+                        <form id="approved" method="post" action="approval/approve">
                           <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                           <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
                           <label>Kepada :</label>                        
@@ -230,11 +197,11 @@
                     </div>
                   </div>
 
-                    <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" id="reject " tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
-                        <form id="rejected" method="post" action="dashboard/rejected">
+                        <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                           <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
                           <label>Notes :</label>                
@@ -249,8 +216,8 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                <?php  }} ?>
+                  </div>    
+                <?php } ?>            
                 </tbody>
                 </table>
                 </div>
@@ -258,17 +225,16 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-            </div>
-            <!-- /.col -->
-        </div>  
-                
+         </div>
+        <!-- /.col -->
+        </div>     
+        
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+</div>
+<!-- /.content-wrapper -->    
 
-
-  <footer class="main-footer">
+<footer class="main-footer">
     <div class="pull-right hidden-xs">
      
     </div>
@@ -329,6 +295,7 @@
 <script src="assets/admin/bower_components/chart.js/Chart.js"></script>
 
 <script>
+
 $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
@@ -341,7 +308,7 @@ $(function () {
     });
   });
 
-  Highcharts.chart('pieChart', {
+ Highcharts.chart('pieChart', {
       chart: {
           plotBackgroundColor: null,
           plotBorderWidth: null,
@@ -382,7 +349,7 @@ $(function () {
       }]
   });
 
-$(".reject").on('click', function(){
+  $(".reject").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
@@ -395,18 +362,16 @@ $(".reject").on('click', function(){
       });
   });    
 
-  $(".accept").on('click', function(){
+  $(".approve").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
-          data: $("#accepted").serialize(), // data yang akan dikirim ke file yang dituju        
+          data: $("#approved").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
-              $("#accept").modal('hide'); // Sembunyikan loadingnya   
+              $("#approve").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
               alert('Accepted success')
           }      
       });
-  });    
+  });      
 </script>
-</body>
-</html>

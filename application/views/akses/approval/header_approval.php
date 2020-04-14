@@ -118,8 +118,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">        
         <?php 
-         // if($this->session->userdata("role") == 2){ ?>
-               <li class="<?php echo $active1?>"><a href="Approval"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+         if($this->session->userdata("id_role_app") == 4){ ?>
+               <li class="<?php echo $index?>"><a href="Approval"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
@@ -137,8 +137,8 @@
             <li><a href="Approval/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        <li class=""><a href="Approval/list"><i class="glyphicon glyphicon-envelope"></i><span>Approval</a></span></li>
-        <li class=""><a href="Approval/report"><i class="glyphicon glyphicon-envelope"></i><span>Appoval Reprot</a></span></li>
+        <li class="<?php echo $l_approval ?>"><a href="Approval/listApproval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</a></span></li>
+        <li class=""><a href="Approval/report"><i class="glyphicon glyphicon-tag"></i><span>Appoval Report</a></span></li>
         
         <li class=""><a href="Approval/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
         <br>
@@ -152,7 +152,7 @@
                <li class="header">Other</li>
                <li class=""><a href="admin/datauser"><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
         <?php 
-            // } ?>
+            } ?>
         <!-- <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>     -->
       </ul>
     </section>

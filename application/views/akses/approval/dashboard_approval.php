@@ -118,7 +118,7 @@
                     <td><div class="dua"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
                     <td><div class="tiga"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
                     <td><div class="empat"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="lima"><center><font size='5'> 5 </center></div> </td><td> &nbsp;
+                    <td><div class="lima"><center><font size='5'> 5 </center></div> </td><td> &nbsp;                        
                   </tr>  
                   </table>
                 </div>
@@ -145,24 +145,24 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                 <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                    <th>NO.</th>
-                    <th>Status</th>
-                    <th>Tanggal</th>
-                    <th>Jenis Pembayaran</th>
-                    <th>Nomor Surat</th>
-                    <th>Description</th>
-                    <th>Pemohon</th>
-                    <th>Divisi</th>
-                    <th>Bank Account</th>
-                    <th>Nama Penerima</th>
-                    <th>Submitted Date</th>
-                    <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                  <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                  <th>NO.</th>
+                  <th>Status</th>
+                  <th>Tanggal</th>
+                  <th>Jenis Pembayaran</th>
+                  <th>Nomor Surat</th>
+                  <th>Description</th>
+                  <th>Pemohon</th>
+                  <th>Divisi</th>
+                  <th>Bank Account</th>
+                  <th>Nama Penerima</th>
+                  <th>Submitted Date</th>
+                  <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
                     <?php 
                         $i = 1;
                         foreach ($payment as $row){                          
@@ -171,97 +171,48 @@
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
-                    <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td> <?php 
-                          if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
-                          }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
-                          }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/default.png'>";
-                          }
-                        ?>
-                    </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
-                    <td><?php                     
+                  <tr>
+                  <td><?php echo $i++; ?></td>
+                  <td> <?php 
+                        if($row->status == 1){
+                          echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
+                        }else if($row->status == 2){
+                          echo "<img src='assets/dashboard/images/legend/submit.png'>";
+                        }else if($row->status >= 3){
+                          echo "<img src='assets/dashboard/images/legend/default.png'>";
+                        }
+                       ?>
+                  </td>                  
+                  <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                  <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
                             echo $test2[$a]."<br>";
                           }
                         }  ?>
-                    </td>
-                    <td><?php echo $row->nomor_surat; ?></td>
-                    <td><?php echo $row->label1; ?></td>
-                    <td><?php echo $row->display_name; ?></td>
-                    <td><?php echo $row->division_id; ?></td>
-                    <td><?php echo $row->akun_bank; ?></td>
-                    <td><?php echo $row->penerima; ?></td>
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
-                    <td>
-                        <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                        <?php if($row->status == 1){ ?>
-                        <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>   
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>                     
-                    </td>      
-                    </tr>
-                    <!--.Modal-->
-                    <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">                                        
-                        <div class="modal-body">
-                        <form id="accepted" method="post" action="dashboard/accept">
-                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                          <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-                          <label>Kepada :</label>                        
-                          <select class="form-control" name="handled_by">
-                            <option>--- Choose ---</option>
-                          <?php foreach ($csf as $get) {?>
-                            <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                          <?php } ?>
-                          </select>
-                        </div>
-                        <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                    <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">                                        
-                        <div class="modal-body">
-                        <form id="rejected" method="post" action="dashboard/rejected">
-                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
-                          <label>Notes :</label>                
-                          <input type="text" name="note"></input>
-                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <input type="text" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">  
-                        </div>
-                        <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <?php  }} ?>
-                </tbody>
-                </table>
+                  </td>
+                  <td><?php echo $row->nomor_surat; ?></td>
+                  <td><?php echo $row->label1; ?></td>
+                  <td><?php echo $row->display_name; ?></td>
+                  <td><?php echo $row->division_id; ?></td>
+                  <td><?php echo $row->akun_bank; ?></td>
+                  <td><?php echo $row->penerima; ?></td>
+                  <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                  <td>
+                      <a href="approval/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                  </td>      
+                  </tr>
+                    <?php  } ?>
+                  </tbody>
+                  </table>
                 </div>
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-            </div>
+          </div>
             <!-- /.col -->
         </div>  
-                
     </section>
     <!-- /.content -->
   </div>
