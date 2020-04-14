@@ -3,7 +3,9 @@ error_reporting(0);
 class Home_model extends CI_Model{   
 
     public function getPayment($sid=0) {
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE id_user = '$sid'";
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE id_user = '$sid' AND division_id='$dvs'";
                 
         $query = $this->db->query($sql)->result();
         return $query;

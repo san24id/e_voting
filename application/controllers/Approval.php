@@ -25,11 +25,13 @@ class Approval extends CI_Controller {
 		$data['index'] = 'active';
 		$data['active3'] = '';
 
-		$data['draft'] = $this->Dashboard_model->getTotalDraft();
-		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
 
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/dashboard_approval', $data);

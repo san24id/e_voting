@@ -118,8 +118,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">        
         <?php 
-         // if($this->session->userdata("role") == 2){ ?>
-               <li class="<?php echo $active1?>"><a href="Tri"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+         if($this->session->userdata("id_role_app") == 5){ ?>
+               <li class="<?php echo $index?>"><a href="Tri"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
@@ -137,10 +137,10 @@
             <li><a href="Tri/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        <li class=""><a href="Tri/list"><i class="glyphicon glyphicon-envelope"></i><span>Payment</a></span></li>
+        <li class="<?php echo $l_payment?>"><a href="Tri/listPayment"><i class="glyphicon glyphicon-list-alt"></i><span>Payment</a></span></li>
         <li class=""><a href="Tri/report"><i class="glyphicon glyphicon-envelope"></i><span>Payment Reprot</a></span></li>
         
-        <li class=""><a href="Tri/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
+        <li class="<?php echo $inbox?>"><a href="Tri/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
         <br>
         <br>
         <br>
@@ -152,8 +152,8 @@
                <li class="header">Other</li>
                <li class=""><a href="admin/datauser"><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
         <?php 
-            // } ?>
-        <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>    
+            } ?>
+        <!-- <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>     -->
       </ul>
     </section>
     <!-- /.sidebar -->

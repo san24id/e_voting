@@ -47,7 +47,6 @@ class Home extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();

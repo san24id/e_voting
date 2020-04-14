@@ -45,11 +45,12 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-		$data['draft'] = $this->Dashboard_model->getTotalDraft();
-		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['apayment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
 
 		$this->load->view('akses/csf/header_csf', $data);
