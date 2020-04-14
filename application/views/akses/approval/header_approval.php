@@ -119,7 +119,7 @@
       <ul class="sidebar-menu">        
         <?php 
          if($this->session->userdata("id_role_app") == 4){ ?>
-               <li class="<?php echo $index?>"><a href="Approval"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+        <li class="<?php echo $index?>"><a href="Approval"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
@@ -138,9 +138,10 @@
           </ul>  
         </li>
         <li class="<?php echo $l_approval ?>"><a href="Approval/listApproval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</a></span></li>
-        <li class=""><a href="Approval/report"><i class="glyphicon glyphicon-tag"></i><span>Appoval Report</a></span></li>
-        
-        <li class=""><a href="Approval/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
+        <li class=""><a href="Approval/report"><i class="glyphicon glyphicon-tag"></i><span>Appoval Report</a></span></li> 
+
+        <?php foreach ($reject as $notif) { ?>
+        <li class="<?php echo $inbox ?>"><a href="Approval/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <br>
         <br>
         <br>
@@ -152,7 +153,7 @@
                <li class="header">Other</li>
                <li class=""><a href="admin/datauser"><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
         <?php 
-            } ?>
+            } }?>
         <!-- <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>     -->
       </ul>
     </section>

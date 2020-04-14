@@ -139,8 +139,9 @@
         </li>
         <li class="<?php echo $l_payment?>"><a href="Tri/listPayment"><i class="glyphicon glyphicon-list-alt"></i><span>Payment</a></span></li>
         <li class=""><a href="Tri/report"><i class="glyphicon glyphicon-envelope"></i><span>Payment Reprot</a></span></li>
-        
-        <li class="<?php echo $inbox?>"><a href="Tri/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
+        <?php foreach ($reject as $notif) { ?>
+        <li class="<?php echo $inbox?>"><a href="Tri/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+        <?php } ?>
         <br>
         <br>
         <br>

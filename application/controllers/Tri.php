@@ -38,7 +38,7 @@ class Tri extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['apayment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
-
+		$data['reject'] = $this->Home_model->notifRejected();
 
         $this->load->view('akses/tri/header_tri', $data);
 		$this->load->view('akses/tri/dashboard_tri', $data);
@@ -50,6 +50,7 @@ class Tri extends CI_Controller {
 		$data['l_payment'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['payment'] = $this->Dashboard_model->payment();

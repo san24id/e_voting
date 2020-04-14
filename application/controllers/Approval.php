@@ -38,10 +38,12 @@ class Approval extends CI_Controller {
 	}
 	
 	public function listApproval(){
+
 		$data['active1'] = '';
 		$data['l_approval'] = 'active';
-		$data['active3'] = '';
+		$data['inbox'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['payment'] = $this->Dashboard_model->payment();
@@ -49,5 +51,23 @@ class Approval extends CI_Controller {
 
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/approval', $data);
-    }
+	}
+	
+	public function my_inbox()
+	{
+		$sid = $this->session->userdata("username");
+
+		$data['active1'] = '';
+		$data['active2'] = '';
+		$data['inbox'] = 'active';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['rejected'] = $this->Home_model->getRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		
+        $this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/my_inbox', $data);
+	}
 }    
