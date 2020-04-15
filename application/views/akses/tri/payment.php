@@ -25,7 +25,7 @@
     </section>
 
     <section class="content">
-            <div class="col-md-6">
+    <div class="col-md-6">
               <div class="box-body">
                 <!-- USERS LIST -->
                 <div class="box box-success">
@@ -37,70 +37,36 @@
                   <!-- /.box-header -->
                   <div class="box-body">      
                     <div class="row">
-                      <div class="col-md-4"><!--Lingkaran-->
-                          <div class="lingkaran1 panel panel-primary">
-                            <br><br>
-                            <?php foreach ($processing as $tot_process) { ?>
-                            <center> <font size='7'> <?php echo $tot_process->process; ?> </font> </center> 
-                            <center> <font size='3'> Waiting for Processing </font> </center>
-                            <?php } ?>
-                          </div>
+                      <div class="col-md-6"><!--Lingkaran-->
+                        <center> <div class="lingkaran1 panel panel-primary">
+                          <br><br>
+
+                          <center> <font size='7'> 10 </font> </center> 
+                          <center> <font size='3'> Waiting for Payment </font> </center>
+
                         </div>
-                      <div class="col-md-8"><!--Status-->
-                        <?php foreach ($tot_pay_req as $tot_req) { ?>
-                        <center> <font size='5'> Total Request : <?php echo $tot_req->totalreq; ?> </font> </center> <br>
-                        <?php } ?>
-                          <div>
-                          <table> 
-                            <tr> 
-                              <td><font size='5'> STATUS | </font> </td><td> &nbsp;
-                              <td><div class="satu"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="dua"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="tiga"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="empat"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="lima"><font size='5'>  </div> </td><td> &nbsp;                        
-                            </tr>  
-                          </table>
-                          </div>
-                          <br><br>               
-                        <div class ="col-md-12">
+                        <div class ="col-md-6">
                           <td><img src="assets/dashboard/images/legend/treatment.png"></td>
                           <td>Draft</td> &nbsp; &nbsp;
+                        </div>
+                        </center>
+                      </div>
 
+                      <div class="col-md-6"><!--Status-->
+                      <center> <div class="lingkaran1 panel panel-primary">
+                          <br><br>
+
+                          <center> <font size='7'> 82 </font> </center> 
+                          <center> <font size='3'> Total Paid </font> </center>
+
+                        </div>               
+                        <div class ="col-md-6">
                           <td><img src="assets/dashboard/images/legend/submit.png"></td>
                           <td>Accepted</td> &nbsp; &nbsp;
-
-                          <td><img src="assets/dashboard/images/legend/Default.png"></td>
-                          <td>Rejected</td>
                         </div>  
+                      </center> 
                       </div>
                       
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3"> <!--UnderProcessing-->
-                        <div class="enam"><center><font color='white' size='3'> Under Processing <br>(A) </font></center></div>
-                          <div>
-                           <br>
-                            <table>
-                            <tr>
-                              <td width="50%"> <div class="tujuh"><center><font size='3'>  <br> Tax<br>(A1) </font></center></div><td> &nbsp;
-                              <td width="50%"> <div class="tujuh"><center><font size='3'>  <br> Finance<br>(A2) </font></center></div><td> &nbsp;
-                            </tr>
-                            </table>
-                          </div>
-                      </div>
-                      <div class="col-md-9">
-                          <div>
-                            <table>
-                            <tr>
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
-                            </tr>
-                            </table>
-                          </div>
-                      </div>
                     </div>
                   </div>
                   <!-- /.box-body -->               
@@ -155,13 +121,12 @@
                     <tr>
                     <th>NO.</th>
                     <th>Status</th>
-                    <th>CSF</th>
-                    <th>Submitted Date</th>
                     <th>Type</th>
-                    <th>Nomor Surat</th>
+                    <th>Submitt Date</th>
+                    <th>APF No</th>
                     <th>Description</th>
                     <th>Pemohon</th>
-                    <th>APF No</th>
+                    <th>Payment</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -186,21 +151,20 @@
                           }
                         ?>
                     </td>
-                    <td> </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
                             echo $test2[$a]."<br>";
                           }
                         }  ?>
-                    </td>
-                    <td><?php echo $row->nomor_surat; ?></td>
+                    </td>                  
+                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td>xxx</td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td>XXX</td>
                     <td>
-                        <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="tri/view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     </td>      
                     </tr>
                 <?php  } ?>

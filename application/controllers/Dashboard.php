@@ -209,6 +209,54 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/monitoring', $data);
 	}
 
+	public function List_or(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_or', $data);
+	}
+
+	public function List_upt(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_upt', $data);
+	}
+
+	public function List_upf(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_upf', $data);
+	}
+
+	public function List_wfr(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_wfr', $data);
+	}
+	
+	public function List_wfv(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_wfv', $data);
+	}
+
+	public function List_wfa(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_wfa', $data);
+	}
+
+	public function List_wfp(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_wfp', $data);
+	}
+
+	public function List_pr(){
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/mr_pr', $data);
+	}
+
 	public function my_task()
 	{
 		$sid = $this->session->userdata("username");

@@ -236,14 +236,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Dashboard/or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li>
-            <li><a href="Dashboard/upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
-            <li><a href="Dashboard/upf"><i class="fa fa-circle-o"></i>List of Under <br>Processing (Finance)</a></li>
-            <li><a href="Dashboard/wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
-            <li><a href="Dashboard/wfv"><i class="fa fa-circle-o"></i>List of Waiting for Verification</a></li>
-            <li><a href="Dashboard/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
-            <li><a href="Dashboard/wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
-            <li><a href="Dashboard/pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
+            <li><a href="Dashboard/List_or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li>
+            <li><a href="Dashboard/List_upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
+            <li><a href="Dashboard/List_upf"><i class="fa fa-circle-o"></i>List of Under <br>Processing (Finance)</a></li>
+            <li><a href="Dashboard/List_wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
+            <li><a href="Dashboard/List_wfv"><i class="fa fa-circle-o"></i>List of Waiting for Verification</a></li>
+            <li><a href="Dashboard/List_wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
+            <li><a href="Dashboard/List_wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
+            <li><a href="Dashboard/List_pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
           </ul>  
         </li>
         <li class="<?php echo $task?>"><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>My Task</a></span></li>
