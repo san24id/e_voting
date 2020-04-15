@@ -146,7 +146,39 @@ class Approval extends CI_Controller {
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/approval', $data);
 	}
-	
+
+	public function wfa(){
+
+		$data['active1'] = '';
+		$data['wfa'] = 'active';
+		$data['inbox'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+
+        $this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/wfa', $data);
+	}
+
+	public function approvedList(){
+
+		$data['active1'] = '';
+		$data['approved'] = 'active';
+		$data['inbox'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+
+        $this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/approvedList', $data);
+	}
+
 	public function my_inbox()
 	{
 		$sid = $this->session->userdata("username");

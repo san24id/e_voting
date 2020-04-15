@@ -138,7 +138,19 @@
           </ul>  
         </li>
         <li class="<?php echo $l_approval ?>"><a href="Approval/listApproval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</a></span></li>
-        <li class=""><a href="Approval/report"><i class="glyphicon glyphicon-tag"></i><span>Appoval Report</a></span></li> 
+        <li class="treeview">
+          <a href="">
+            <i class="glyphicon glyphicon-list"></i>
+            <span>Approval Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="<?php echo $wfa?>"><a href="Approval/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
+            <li class="<?php echo $approved?>"><a href="Approval/approvedList"><i class="fa fa-circle-o"></i>List of Approved</a></li>
+          </ul>  
+        </li> 
 
         <?php foreach ($reject as $notif) { ?>
         <li class="<?php echo $inbox ?>"><a href="Approval/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>

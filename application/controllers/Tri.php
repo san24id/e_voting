@@ -154,6 +154,40 @@ class Tri extends CI_Controller {
 		$this->load->view('akses/tri/payment', $data);
 
 	}
+
+	public function wfp(){
+
+		$data['active1'] = '';
+		$data['wfp'] = 'active';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/wfp', $data);
+
+	}
+
+	public function paidList(){
+
+		$data['active1'] = '';
+		$data['l_paid'] = 'active';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/paidList', $data);
+
+	}
 	
 	public function my_inbox()
 	{
