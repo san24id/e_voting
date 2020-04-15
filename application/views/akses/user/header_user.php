@@ -216,6 +216,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="<?php echo $active1?>"><a href="Home"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+        
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
@@ -225,12 +226,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Home/dp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li><a href="Home/ar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li><a href="Home/asr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
-            <li><a href="Home/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
-            <li><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+            <li class="<?php echo $dp?>"><a href="Home/dp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li class="<?php echo $ar?>"><a href="Home/ar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li class="<?php echo $asr?>"><a href="Home/asr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li class="<?php echo $lop?>"><a href="Home/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li class="<?php echo $op?>"><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
+            <li class="<?php echo $dr?>"><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
         <?php foreach ($reject as $notif) { ?>
@@ -244,3 +245,4 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  

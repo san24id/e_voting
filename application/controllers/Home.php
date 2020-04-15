@@ -60,28 +60,12 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/dashboard_user', $data);
 	}
 
-	public function my_report()
-	{
-		$sid = $this->session->userdata("id_user");
-
-		$data['active1'] = '';
-		$data['active2'] = 'active';
-		$data['active3'] = '';
-
-		$data['reject'] = $this->Home_model->notifRejected();
-		$data['payment'] = $this->Home_model->getPayment($sid);
-		$data['surat'] = $this->Home_model->buat_kode();
-
-		$this->load->view('akses/user/header_user', $data);
-		$this->load->view('akses/user/my_report', $data);
-	}
-
 	public function dp()
 	{
 		$sid = $this->session->userdata("id_user");
 
 		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['dp'] = 'active';
 		$data['active3'] = '';
 
 		$data['directpayment'] 	= $this->Home_model->getVdp();	
@@ -98,7 +82,7 @@ class Home extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['ar'] = 'active';
 		$data['active3'] = '';
 
 		$data['advancerequest'] = $this->Home_model->getVar();
@@ -115,10 +99,9 @@ class Home extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['asr'] = 'active';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		$data['settlement'] = $this->Home_model->getVasr();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -133,7 +116,7 @@ class Home extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['lop'] = 'active';
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
@@ -149,10 +132,9 @@ class Home extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['op'] = 'active';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -166,11 +148,10 @@ class Home extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['dr'] = 'active';
 		$data['active3'] = '';
 
-		// $data['profil'] = $this->Home_model->getProfilProjek($sid, $_GET['filter_status']);
-		// $data['sektor'] = $this->Home_model->getSektor();
+		$data['draftreq'] = $this->Home_model->getVdraftrequest();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -347,14 +328,6 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/header_user', $data);	
        	$this->load->view('akses/user/form_finished', $data);
 
-		// if($this->Home_model->getIdProfilProjekUser($idp, $sid) == TRUE){
-			
-		// 	$this->load->view('akses/user/header_user', $data);	
-       	// 	$this->load->view('akses/user/form_finished', $data);
-
-		// }else{
-		// 	redirect('Home');
-		// }
 	}
 
 	public function myprofile()
@@ -368,17 +341,6 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/header_user', $data);		
         $this->load->view('akses/user/profil', $data);
 	} 
-
-	// public function submitted()
-	// {
-	// 	$data['active1'] = '';
-	// 	$data['active2'] = 'active';
-	// 	$data['active3'] = '';
-	// 	$data['active4'] = '';
-	// 	//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
-	// 	$this->load->view('akses/user/header_user');	
-    //     $this->load->view('akses/user/submitted_user', $data);
-	// }
 
 	public function updatemyprofil(){
 		
@@ -398,7 +360,7 @@ class Home extends CI_Controller {
 				'password' => $_POST['password'],
 				'password_baru' => $_POST['password_baru']
 			);
-			// var_dump($myprofil	);exit;
+			// var_dump($myprofil);exit;
 			if(!empty($_POST['password'])){
 				if($pass != md5($_POST['password'])){
 					$this->session->set_flashdata('msg','gagal_password');

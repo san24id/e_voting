@@ -107,8 +107,9 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['directpayment'] 	= $this->Home_model->getVdp();	
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -122,8 +123,9 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['advancerequest'] = $this->Home_model->getVar();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -137,8 +139,9 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['settlement'] = $this->Home_model->getVasr();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -152,8 +155,8 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -167,7 +170,8 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 		
-		$data['payment'] = $this->Dashboard_model->payment(); 	
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -181,7 +185,9 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 		
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['draftreq'] = $this->Home_model->getVdraftrequest();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);

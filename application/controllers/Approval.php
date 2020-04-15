@@ -36,6 +36,100 @@ class Approval extends CI_Controller {
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/dashboard_approval', $data);
 	}
+
+	public function dp()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['directpayment'] 	= $this->Home_model->getVdp();	
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/list_dp', $data);
+	}
+
+	public function ar()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['advancerequest'] = $this->Home_model->getVar();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/list_ar', $data);
+	}
+
+	public function asr()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['settlement'] = $this->Home_model->getVasr();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/list_asr', $data);
+	}
+
+	public function lop()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/list_lop', $data);
+	}
+
+	public function op()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+		
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/list_op', $data);
+	}
+
+	public function dr()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+		
+		$data['draftreq'] = $this->Home_model->getVdraftrequest();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/list_dr', $data);
+	}
 	
 	public function listApproval(){
 
