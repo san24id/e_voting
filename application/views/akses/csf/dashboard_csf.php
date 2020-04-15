@@ -55,8 +55,8 @@
             <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
                 <div class="info-box-content">
-                <?php foreach ($tot_pay_req as $tot_draft) { ?> <!--SEMENTARA-->
-                <span class="info-box-number"><center><?php echo $tot_draft->totalreq; ?></center></span>
+                <?php foreach ($draft as $tot_draft) { ?> <!--SEMENTARA-->
+                <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
                 <span class="info-box-text"><center>Total Draft</center></span>
                 <?php } ?> 
                 </div>
