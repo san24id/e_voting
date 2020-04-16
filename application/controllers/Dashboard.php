@@ -68,7 +68,63 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);
-		$this->load->view('akses/csf/payment', $data);
+		$this->load->view('akses/csf/form_sp3', $data);
+	}
+
+	public function form_arf(){
+
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
+		// $data['ppayment'] = $this->Home_model->getform($id_payment);
+		// $data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_arf', $data);
+	}
+
+	public function form_asf(){
+
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
+		// $data['ppayment'] = $this->Home_model->getform($id_payment);
+		// $data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_asf', $data);
+	}
+
+	public function form_prf(){
+
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
+		// $data['ppayment'] = $this->Home_model->getform($id_payment);
+		// $data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_prf', $data);
+	}
+
+	public function form_crf(){
+
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
+		// $data['ppayment'] = $this->Home_model->getform($id_payment);
+		// $data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_crf', $data);
 	}
 
 	public function accept(){

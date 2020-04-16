@@ -260,7 +260,12 @@
                <li class=""><a href="admin/datauser"><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
         <?php 
             // } ?>
-        <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST</button></a></center></li>    
+        <!-- <li><center><a href="Dashboard/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST SP3</button></a></center></li><br>   -->
+        <li><center><a href="Dashboard/form_arf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a></center></li><br>    
+        <li><center><a href="Dashboard/form_asf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ASF</button></a></center></li><br>    
+        <li><center><a href="Dashboard/form_prf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM PRF</button></a></center></li><br>    
+        <li><center><a href="Dashboard/form_crf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a></center></li><br>    
+
       </ul>
     </section>
     <!-- /.sidebar -->
