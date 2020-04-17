@@ -453,16 +453,18 @@
                               <?php foreach ($ppayment as $print) { ?>
                               <tr>
                                 <td>Nomor ARF terkait : &nbsp; <?php echo $print->label5;?></td>
+                                <input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $get->label6=="Lampiran copy ARF tersedia"? 'checked':''?> >Lampiran copy ARF tersedia</input>
+                                <td>
                               </tr>
                               <tr>
                                 <td>Perhitungan Penggunaan Uang Muka :</td>
                               </tr>
                               <tr?>  
-                                <td>Jumlah Biaya : &nbsp; <?php echo $print->label6;?></td>
+                                <td>Jumlah Biaya : &nbsp; <?php echo $print->label7;?></td>
                               </tr>
-                                <td>Jumlah Uang Muka : &nbsp; <?php echo $print->label7; ?></td>     
+                                <td>Jumlah Uang Muka : &nbsp; <?php echo $print->label8; ?></td>     
                               <tr>
-                                <td>Selisih Kurang/Lebih : &nbsp; <?php echo $print->label8; ?></td>                                
+                                <td>Selisih Kurang/Lebih : &nbsp; <?php echo $print->label9; ?></td>                                
                               </tr>                              
                               <?php }  ?>
                             </tbody>

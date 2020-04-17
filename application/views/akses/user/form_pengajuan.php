@@ -1,12 +1,12 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <!-- <section class="content-header">
           <h1>
             DATA PAYMENT
             <small></small>
           </h1>
-        </section>
+        </section> -->
         <!-- Main content -->
         <form id="form" method="post" action="Home/addpayment" onsubmit="tambah()">
           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
@@ -16,135 +16,204 @@
                 <!-- /.box -->
                 <div class="box">
                   <div class="box-header with-border">
-                    <center><h3 class="box-title">Data Pengajuan SP3</h3></center>
+                    <h5>
+                      <br>
+                      <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
+                      <br>
+                      <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
+                    </h5>
+                    <table style="font-family: calibri;" width="75%">
+                      <tbody>
+                        <tr>
+                        <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?= $surat; ?></b></td>
+                        <input type="hidden" name="nomor_surat" class="form-control" value="<?= $surat; ?>" readonly>                            
+
+                        <td><b>No ARF/ASF   :</b></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table style="font-family: calibri;" width="120%">
+                      <tbody>     
+                        <tr>
+                        <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
+                        <td ><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
+                        <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <br>
+
+                    <table style="font-family: calibri;" width="50%">
+                      <tr>
+                      <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                      <td>
+                        <input type="checkbox" name="jenis_pembayaran[]" value="1"> Uang Muka/Advance</input><br>
+                      </td>
+                      <td>
+                        <input type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                      </td>
+                      </tr>    
+                      <tr>
+                      <td></td>
+                      <td>
+                        <input type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                      </td>
+                      <td>
+                        <input type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
+                      </td>
+                      </tr>                       
+                    </table>
+
+                    <br>
+
+                    <table style="font-family: calibri;" width="50%">
+                      <tbody>                            
+                      <tr>
+                      <td>Kepada : Divisi CSF</td>
+                      <td align="right">Tanggal : <?php echo date("l, Y-m-d"); ?></td>
+                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                        <input type="hidden" name="hari" class="form-control" value="<?php echo date("l");?>">
+                      </tr>
+                      <tr>
+                      <td>Dari : </td>
+                      </tr>             
+                      <tr>
+                        <td>&nbsp;  Nama Pemohon : </td>
+                        <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
+                      </tr> 
+                      <tr>
+                        <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $this->session->userdata('division_id') ?></td>
+                        <input type="hidden" name="division_id" class="form-control" value="<?php echo $this->session->userdata('division_id') ?>">                            
+                      </tr>                                                   
+                      </tbody>
+                    </table>
+
+                    <hr style=" border: 1px solid #000;">
+
+                    <table style="font-family: calibri;" width="75%">
+                      <tbody>
+                      <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
+                      <tr>
+                        <td><b>- Tujuan Penggunaan :</b></td>
+                        <td>
+                        <td><textarea type="text" class="form-control" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
+                        <td>
+                      </tr>
+                      <tr>
+                        <td><b>- Jumlah :</b></td>
+                        <td>IDR </td>
+                        <td colspan="2"><textarea type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea></td>
+                      </tr>
+                      <tr>
+                        <td><b>- Perkiraan Tanggal :</b></td>
+                        <td>
+                        <td><input type="date" class="form-control" name="label3" required></input></td>     
+                      </tr>
+                      <tr>
+                        <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
+                      </tr>                            
+                      </tbody>
+                    </table>
+
+                    <br>
+
+                    <table style="font-family: calibri;" width="50%">
+                      <tbody>
+                      <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
+                      <tr>
+                        <td>&nbsp; Nama : <input type="text" class="form-control" name="penerima" placeholder="Enter Text" required></td>
+                      </tr>
+                      <tr>  
+                        <td>&nbsp; Kode Vendor : <input type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
+                        <td>&nbsp; Bank : <select name="akun_bank" class="form-control">
+                                      <option value="1">Choose</option>
+                                      <option value="BCA">BCA</option>
+                                      <option value="Mandiri">Mandiri</option>
+                                      <option value="BNI">BNI</option>
+                                      <option value="BRI">BRI</option>
+                                      <option value="6">Other</option>
+                                    </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>                            
+                        <td>&nbsp; Nomor Rekening : <input type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required></td>                                
+                      </tr>
+                      <tr>
+                        <td colspan="2"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                    <br>
+
+                    <table style="font-family: calibri;" width="100%">
+                      <tr>
+                        <td><b>- Lampiran Dokumen Pendukung :</b></td>
+                        <td><td>
+                      </tr>
+                      <tr>
+                        <td>  
+                          <input type="checkbox" name="label4[]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)"> Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)"> Berita Acara Pemeriksaan (BAP)</input><br>
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)"> Berita Acara Pemeriksaan (BAST)</input><br>                            
+                          <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)"> Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                          <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"> Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Copy PO/SPK"> Copy PO/SPK</input><br>
+                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian"> Copy Kontrak/Perjanjian</input><br>                            
+                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2"> Faktur Pajak Rangkap 2</input><br>                        
+                          <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"> Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                          <input type="checkbox" name="label4[]" value="NPWP"> NPWP (Jika kode vendor tidak tersedia)</input><br>
+                          <input type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                        </td>
+                      <tr>      
+                    </table>
+
+                    <br>
+
+                    <table style="font-family: calibri;" width="50%">
+                      <tbody>
+                      <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
+                      <tr>
+                        <td><b>- Nomor ARF terkait : </b></td>
+                        <td>
+                          <input type="text" class="form-control" name="label5" placeholder="Enter Text">
+                          <input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>- Perhitungan Penggunaan Uang Muka : <b></td>
+                      </tr>
+                      <tr>
+                        <td>
+                        <td><b> Curr</b></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
+                      </tr>
+                      <tr>  
+                        <td>Jumlah Biaya : </td>
+                        <td>
+                        <td><input type="text" class="form-control" name="label7" placeholder="Enter Text"></input><td>
+                      </tr>
+                        <td>Jumlah Uang Muka : </td>
+                        <td>
+                        <td><input type="text" class="form-control" name="label8" placeholder="Enter Text"></input> </td>     
+                      <tr>
+                        <td>Selisih Kurang/Lebih : </td> 
+                        <td>
+                        <td><input type="text" class="form-control" name="label9" placeholder="Enter Text"></input></td>                               
+                      </tr>                              
+                      </tbody>
+                    </table>
                   </div>  
-                  
-                    <div class="box-body">                      
-                      <div class="form-row">                  
-                        <div class="form-group col-md-12">
-                            <label>Jenis Pembayaran (pilih salah satu)</label><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="1">Uang Muka/Advance</input><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="2">Permintaan Uang Muka/Request</input><br>
-                            <input type="checkbox" name="jenis_pembayaran[]" value="3">Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
-                            <input type="checkbox" name="jenis_pembayaran[]" value="4">Non-Uang Muka/Non-Advance</input><br>
-                        </div>                                                                       
-                        <div class="form-group col-md-6">
-                             <label>Tanggal</label>
-                             <input type="text" name="tanggal" class="form-control" value="<?php echo date("Y-m-d"); ?>" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Nomor Surat</label>
-                            <input type="text" name="nomor_surat" class="form-control" value="<?= $surat; ?>" readonly>                            
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Hari</label>
-                            <input type="text" name="hari" class="form-control" value="<?php echo date("l");?>" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Nama Pemohon</label>
-                            <input type="text" name="nama_user" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Divisi</label>
-                            <input type="text" name="divisi" class="form-control" value="<?php echo $this->session->userdata('division_id') ?>" readonly>                            
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Jabatan</label>
-                            <input type="text" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>" readonly>
-                        </div>                      
-                    </div>
                 </div>    
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Detail Pengajuan</h3>
-                  </div>  
-
-                  <div class="box-body">
-                    <div class="form-group">
-                        <label>Tujuan Penggunaan : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>                        
-                        <textarea type="text" class="form-control" name="label1" placeholder="Enter Text" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Jumlah : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>                        
-                        <textarea type="text" class="form-control" name="label2" placeholder="Enter Text" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Perkiraan Tanggal Selesai Pekerjaan/Terima Barang (Hanya diisi untuk jenis pembayaran Permintaan Uang Muka/Request) : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
-                        <input type="date" class="form-control" name="label3" placeholder="Enter Text" required></input>
-                    </div>
-                    <div class="form-group">
-                        <label>Lampiran Dokumen Pendukung (Pilih dan Tandai jika ada) <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor4"></i></label><br>                        
-                        <input type="checkbox" name="label4[]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)">Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
-                        <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)">Berita Acara Pemeriksaan (BAP)</input><br>
-                        <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)">Berita Acara Pemeriksaan (BAST)</input><br>                            
-                        <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)">Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
-                        <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)">Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
-                        <input type="checkbox" name="label4[]" value="Copy PO/SPK">Copy PO/SPK</input><br>
-                        <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian">Copy Kontrak/Perjanjian</input><br>                            
-                        <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2">Faktur Pajak Rangkap 2</input><br>                        
-                        <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)">Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
-                        <input type="checkbox" name="label4[]" value="NPWP">NPWP (Jika kode vendor tidak tersedia)</input><br>
-                        <input type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran">Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
-                    </div>                                                      
-                </div>
-
-                <div class="box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Data Penerima Pembayaran <br> <i>(diisi dengan mengacu pada vendor master data-Procurement)</i></h3>
-                  </div>
-                  <div class="box-body">  
-                    <h5 class="box-title"><b>Penyedia Barang / Jasa Penerima Pembayaran :</b></h5>
-                    <div class="form-group col-md-6">
-                        <label>Bank Account</label>
-                        <select name="akun_bank" class="form-control">
-                            <option value="1">Choose</option>
-                            <option value="BCA">BCA</option>
-                            <option value="Mandiri">Mandiri</option>
-                            <option value="BNI">BNI</option>
-                            <option value="BRI">BRI</option>
-                            <option value="6">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Nama Penerima:</label>
-                        <input type="text" class="form-control" name="penerima" placeholder="Enter Text" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Kode Vendor</label>
-                        <input type="text" class="form-control" name="vendor" placeholder="Enter Text" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Nomor Rekening</label>
-                        <input type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required>
-                    </div>                                 
-                </div>
-
-                <div class="box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</h3>
-                  </div>  
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label>Nomor ARF terkait</label>
-                      <input type="text" class="form-control" name="label5" placeholder="Enter Text">
-                      <input type="checkbox" name="label6" value="Lampiran copy ARF tersedia">Lampiran copy ARF tersedia</input>
-                    </div>
-                    <div class="form-group">
-                      <label>Perhitungan Penggunaan Uang Muka :</label><br>
-                      <label>Jumlah Biaya :</label>
-                      <input type="text" class="form-control" name="label7" placeholder="Enter Text"></input>
-                    
-                      <label>Jumlah Uang Muka :</label>
-                      <input type="text" class="form-control" name="label8" placeholder="Enter Text"></input>
-
-                      <label>Selisih Kurang/Lebih :</label>
-                      <input type="text" class="form-control" name="label9" placeholder="Enter Text"></input>
-                    </div>
-                    
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    
                   </div>
                 </div>                                                 
             </div>
