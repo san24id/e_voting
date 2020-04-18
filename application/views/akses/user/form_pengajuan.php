@@ -25,9 +25,10 @@
                     <table style="font-family: calibri;" width="75%">
                       <tbody>
                         <tr>
-                        <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?= $surat; ?></b></td>
-                        <input type="hidden" name="nomor_surat" class="form-control" value="<?= $surat; ?>" readonly>                            
-
+                        <td> </td>
+                        <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td>
+                            <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">                            
+              
                         <td><b>No ARF/ASF   :</b></td>
                         </tr>
                       </tbody>
@@ -35,9 +36,9 @@
                     <table style="font-family: calibri;" width="120%">
                       <tbody>     
                         <tr>
-                        <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
-                        <td ><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
                         <td></td>
+                        <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
+                        <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
                         </tr>
                       </tbody>
                     </table>
@@ -180,9 +181,9 @@
                       <tr>
                         <td><b>- Nomor ARF terkait : </b></td>
                         <td>
-                          <input type="text" class="form-control" name="label5" placeholder="Enter Text">
-                          <input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input>
+                          <input type="text" class="form-control" name="label5" placeholder="Enter Text">                          
                         </td>
+                        <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
                       </tr>
                       <tr>
                         <td><b>- Perhitungan Penggunaan Uang Muka : <b></td>

@@ -120,7 +120,7 @@ class Home_model extends CI_Model{
     public function buat_kode()  {   
         $dvs = $this->session->userdata('division_id');  
 
-        $this->db->select('RIGHT(t_payment.nomor_surat,4) as kode', FALSE);
+        $this->db->select('LEFT(t_payment.nomor_surat,4) as kode', FALSE);
         $this->db->order_by('nomor_surat','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment');      //cek dulu apakah ada sudah ada kode di tabel.    
