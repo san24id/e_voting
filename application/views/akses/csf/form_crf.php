@@ -1,12 +1,12 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <!-- <section class="content-header">
           <h1>
-          FORMULIR PENERIMAAN KAS <br> <i> CASH RECEIVED FORM (CRF)</i>
+          FORMULIR PERMINTAAN PEMBAYARAN <br> <i> PAYMENT REQUEST FORM (PRF)</i>
             <small></small>
           </h1>
-        </section>
+        </section> -->
         <!-- Main content -->
         <form id="form" method="post" action="Dashboard/addarf" onsubmit="tambah()">
           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
@@ -16,66 +16,124 @@
                 <!-- /.box -->
                 <div class="box">
                   <div class="box-header with-border">
-                    <center><h3 class="box-title"><i>FORM CASH RECEIVED FORM (CRF)</i></h3></center>
-                  </div>  
-                  
-                    <div class="box-body">                      
-                      <div class="form-row">                 
-                        <div class="form-group col-md-6">
-                            <label>Tanggal</label>
-                            <input type="text" name="tanggal" class="form-control" value="<?php echo date("l, Y-m-d"); ?>" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>CRF Doc No</label>
-                            <input type="text" name="nomor_surat" class="form-control" value="">                            
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Direktorat/Divisi Pemohon</label>
-                            <input type="text" name="divisi" class="form-control" value="">                            
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Kode Proyek </label>
-                            <input type="text" name="nama_user" class="form-control" value="">
-                        </div>                        
-                    </div>
-                </div>    
+                    
+                    <table style="font-family: calibri;" width="100%">
+                      <tbody>
+                        <tr>
+                        <td> </td>
+                        <td <b><font size="+2" style="font-family: calibri;">FORMULIR PENERIMAAN KAS <br> <i> CASH RECEIVED FORM (PRF)</i></font></b>                                  
+                        <td><img src="assets/dashboard/images/logo.png" alt="Logo Images"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <br>
+
+                    <table style="font-family: calibri;" width="100%">
+                      <tbody>     
+                        <tr>
+                          <td><font size="+1" >Tanggal : </td>
+                          <td><input type="text" name="" class="form-control" value="<?php echo date("l, d-m-Y"); ?>"</td>
+                          <td> &nbsp;</td>
+                          <td><font size="+1" >ARF Doc. No : </font></td>
+                          <td><input type="text" name="" class="form-control" placeholder="ARF Doc. No"></td>
+                        </tr>
+                        <tr>
+                          <td><font size="+1" >Dir/Sub/Div :<br><i>Dir/Sub/Div </i><font></td>
+                          <td><input type="text" name="" class="form-control" placeholder="Dir/Sub/Div"></td>
+                          <td> &nbsp;</td>
+                          <td><font size="+1" >Kode Proyek : <br> <i>Project Code</i><font></td>
+                          <td><input type="text" name="" class="form-control" placeholder="Kode Proyek"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <br>
+
+                    <table border="1" style="font-family: calibri;" width="100%" height="auto">
+                        <thead>
+                        <tr>
+                          <th width="10%"><center>NO. <br> <i>No.</i></center></th>
+                          <th height="50%"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
+                          <th width="25%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                        
+                        </tr>
+                        </thead>
+                        <tbody>                      
+                        <tr>
+                          <td><center> 1 </center></td>
+                          <td><textarea type="text" class="form-control" name="label2" placeholder="Description" required></textarea> </td>                  
+                          <td><select name="akun_bank" class="form-control">
+                                      <option value="1">Choose</option>
+                                      <option value="EUR">EUR</option>
+                                      <option value="GBP">GBP</option>
+                                      <option value="HKD">HKD</option>
+                                      <option value="IDR">IDR</option>
+                                      <option value="JPY">JPY</option>
+                                      <option value="KRW">KRW</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="USD">USD</option>
+                              </select>
+                          </td>
+                          <td><textarea type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea> </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td> </td>
+                          <td> </td>
+                        </tr>
+                        <tr> 
+                          <td>Terbilang/ <i>Say :</i> </td>
+                          <td colspan="3"><input type="text" name="" class="form-control" ></td>
+                        </tr>
+                        <tr> 
+                          <td>Dibayar Kepada/ <i>Paid To :</i> </td>
+                          <td colspan="3"><input type="text" name="" class="form-control" ></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                    <br>
+
+                    <table border="1" style="font-family: calibri;" width="100%">
+                      <tbody>
+                        <tr> 
+                          <td width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
+                          <td>&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="label2" placeholder="Remarks" required></textarea></td>
+                        </tr>
+                        <tr align="right">  
+                          <td>Tanggal/<i>Date: </i> <?php echo date("l, d-M-Y");?> &nbsp;</td>
+                        </tr>
+                      </tbody>
+                    </table>  
+                    <table border="1" style="font-family: calibri;" width="50%">  
+                      <tbody>
+                        <tr>
+                          <td>Nama /<i>Name : </i></td>
+                          <td><textarea type="text" class="form-control" name="label2" placeholder="Name" required></textarea></td> 
+                        </tr>
+                        <tr>
+                          <td>Jabatan /<i>Title : </i></td>
+                          <td><textarea type="text" class="form-control" name="label2" placeholder="Title" required></textarea></td> 
+                        </tr>
+                      </tbody>  
+                    </table>    
+
+                    <br>
+
+
+                    </div>  
+                </div>
+                     
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">DETAIL <i> CASH RECEIVED FORM (CRF))</i></h3>
-                  </div>  
-
-                  <div class="box-body">
-                    <div class="form-group">
-                        <label>Deskripsi : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor1"></i></label>                        
-                        <textarea type="text" class="form-control" name="label1" placeholder="Enter Text" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Mata Uang : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor2"></i></label>                        
-                        <input type="text" class="form-control" name="label2" placeholder="Enter Text" required></input>
-                    </div>
-                    <div class="form-group">
-                        <label>Jumlah : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
-                        <input type="text" class="form-control" name="label3" placeholder="Enter Text" required></input>
-                    </div>
-                    <div class="form-group">
-                        <label>Terbilang : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
-                        <input type="text" class="form-control" name="label3" placeholder="Enter Text" required></input>
-                    </div>   
-                    <div class="form-group">
-                        <label>Dibayar kepada : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
-                        <input type="text" class="form-control" name="label3" placeholder="Enter Text" required></input>
-                    </div> 
-                    <div class="form-group">
-                        <label>Catatan : <i class="glyphicon glyphicon-info-sign" style="color: blue; cursor:pointer;" data-toggle="modal" data-target="#anomor3"></i></label>                        
-                        <input type="text" class="form-control" name="label3" placeholder="Enter Text" required></input>
-                    </div> 
-
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Submit</button>                                                  
-                </div>               
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>                                                 
             </div>
-          </section>  
+          </section>    
 
         </form>
         <!-- /.content -->

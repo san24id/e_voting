@@ -60,10 +60,10 @@
                     <table border="1" style="font-family: calibri;" width="100%">
                         <thead>
                         <tr>
-                          <th><center>NO. <br> <i>No.</i></center></th>
-                          <th><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th><center>Jumlah / <br><i>Amount</i></center></th>                        
+                          <th width="10%"><center>NO. <br> <i>No.</i></center></th>
+                          <th height="50%"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
+                          <th width="25%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                         
                         </tr>
                         </thead>
                         <tbody>                      
@@ -73,7 +73,7 @@
                           <td><select name="akun_bank" class="form-control">
                                       <option value="1">Choose</option>
                                       <option value="EUR">EUR</option>
-                                      <option value="GBP">Mandiri</option>
+                                      <option value="GBP">GBP</option>
                                       <option value="HKD">HKD</option>
                                       <option value="IDR">IDR</option>
                                       <option value="JPY">JPY</option>
@@ -105,7 +105,7 @@
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr> 
-                          <td>&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
+                          <td width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
                           <td>&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="label2" placeholder="Remarks" required></textarea></td>
                         </tr>
                         <tr align="right">  
@@ -113,7 +113,7 @@
                         </tr>
                       </tbody>
                     </table>  
-                    <table border="1" style="font-family: calibri;" width="57%">  
+                    <table border="1" style="font-family: calibri;" width="50%">  
                       <tbody>
                         <tr>
                           <td>Nama /<i>Name : </i></td>
