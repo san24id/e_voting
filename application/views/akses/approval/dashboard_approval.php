@@ -6,6 +6,19 @@
    .lima { border: 5px solid orange; }
    .enam { border: 5px groove green; }
    .tujuh { border: 5px solid green; }
+   .box1{width:150px;
+				height:80px;
+				border: solid green;
+				display: inline-block;
+				margin-left: 10px;
+   }
+   .box2{width:150px;
+				height:80px;
+        background: aqua;
+				border: solid green;
+				display: inline-block;
+				margin-left: 10px;
+   }  
    	
 </style>
   <!-- Content Wrapper. Contains page content -->

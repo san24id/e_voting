@@ -228,7 +228,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                    </div>
 
                     <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
@@ -249,7 +249,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                    </div>
                 <?php  }} ?>
                 </tbody>
                 </table>
