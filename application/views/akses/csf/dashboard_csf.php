@@ -55,10 +55,22 @@
             <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
                 <div class="info-box-content">
-                <?php foreach ($draft as $tot_draft) { ?> <!--SEMENTARA-->
+                <?php foreach ($draft as $tot_draft) { ?>
                 <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
                 <span class="info-box-text"><center>Total Draft</center></span>
-                <?php } ?> 
+                <?php } ?>            
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-user"></i></span>
+                <div class="info-box-content">
+                <span class="info-box-number"><center><?php echo $this->session->userdata("display_name"); ?></center></span>
+                <span class="info-box-text"><center>View By</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -67,6 +79,60 @@
         </div>
         
         <div class="row">
+          <div class="col-md-6">
+            <div class="box-body">
+              <!-- USERS LIST -->
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <div class="box-tools pull-right">
+                    <span class="label label-success"></span>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <table width="100%"> 
+                  <tr> 
+                    <font size='5'> STATUS | </font> 
+                    <td><div class="satu"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="dua"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="tiga"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="empat"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="lima"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="enam"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;                        
+                  </tr>  
+                  </table>
+                </div>
+                <br><br>               
+                <div class="box-body">
+                  <td><img src="assets/dashboard/images/legend/treatment.png"></td>
+                  <td>Draft</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/submit.png"></td>
+                  <td>Accepted</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/Default.png"></td>
+                  <td>Rejected</td>
+                </div>   
+              </div>     
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="box-body">
+                  <!-- USERS LIST -->
+                  <div class="box box-success">
+                    <div class="box-header with-border">
+                      <div class="box-tools pull-right">
+                        <span class="label label-success"></span>
+                      </div>
+                    </div>
+                  
+                    lalalalala
+                  </div>
+                </div>
+              </div>      
+            </div>
+          </div>
+
           <div class="col-md-6"><!--PieChart-->
             <div class="box-body">
                 <!-- USERS LIST -->
@@ -100,42 +166,6 @@
                 <!--/.box -->              
             </div>
           </div>
-        
-          <div class="col-md-6">
-            <div class="box-body">
-              <!-- USERS LIST -->
-              <div class="box box-success">
-                <div class="box-header with-border">
-                  <div class="box-tools pull-right">
-                    <span class="label label-success"></span>
-                  </div>
-                </div>
-                <div class="box-body">
-                  <table width="100%"> 
-                  <tr> 
-                    <font size='5'> STATUS | </font> 
-                    <td><div class="satu"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="dua"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="tiga"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="empat"><center><font size='5'> 5 </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="lima"><center><font size='5'> 5 </center></div> </td><td> &nbsp;
-                  </tr>  
-                  </table>
-                </div>
-                <br><br>               
-                <div class="box-body">
-                  <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                  <td>Draft</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                  <td>Accepted</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/Default.png"></td>
-                  <td>Rejected</td>
-                </div>   
-              </div>     
-            </div>
-          </div>  
         </div>
 
         <div class="row">

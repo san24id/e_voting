@@ -80,40 +80,6 @@
         </div>
         
         <div class="row">
-          <div class="col-md-6"><!--PieChart-->
-            <div class="box-body">
-                <!-- USERS LIST -->
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <div class="box-tools pull-right">
-                      <span class="label label-success"></span>
-                    </div>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body no-padding">
-                      <script src="https://code.highcharts.com/highcharts.js"></script>
-                      <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                      <script src="https://code.highcharts.com/modules/export-data.js"></script>
-
-                      <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>        
-                      </div>          
-                    <!-- /.users-list -->
-                    <div class="col-md-3">
-                    <ul class="chart-legend clearfix">
-                      <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
-                      <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
-                      <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
-                    </ul>
-                    </div>
-                  </div>
-                  <!-- /.box-body -->               
-                </div>
-                <!--/.box -->              
-            </div>
-          </div>
-        
           <div class="col-md-6">
             <div class="box-body">
               <!-- USERS LIST -->
@@ -150,7 +116,57 @@
                 </div>   
               </div>     
             </div>
-          </div>  
+            <div class="row">
+              <div class="col-md-6">
+                <div class="box-body">
+                  <!-- USERS LIST -->
+                  <div class="box box-success">
+                    <div class="box-header with-border">
+                      <div class="box-tools pull-right">
+                        <span class="label label-success"></span>
+                      </div>
+                    </div>
+                  
+                    lalalalala
+                  </div>
+                </div>
+              </div>      
+            </div>
+          </div>
+
+          <div class="col-md-6"><!--PieChart-->
+            <div class="box-body">
+                <!-- USERS LIST -->
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <div class="box-tools pull-right">
+                      <span class="label label-success"></span>
+                    </div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                      <script src="https://code.highcharts.com/highcharts.js"></script>
+                      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+                      <div class="col-md-9">
+                      <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>        
+                      </div>          
+                    <!-- /.users-list -->
+                    <div class="col-md-3">
+                    <ul class="chart-legend clearfix">
+                      <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
+                      <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
+                      <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
+                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
+                    </ul>
+                    </div>
+                  </div>
+                  <!-- /.box-body -->               
+                </div>
+                <!--/.box -->              
+            </div>
+          </div>
         </div>
 
         <div class="row">

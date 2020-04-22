@@ -63,7 +63,7 @@
                         <tr>
                           <td><center> 1 </center></td>
                           <td><textarea type="text" class="form-control" name="label2" placeholder="Description" required></textarea> </td>                  
-                          <td><select name="akun_bank" class="form-control">
+                          <td><select id="Select" onchange="myFunction()" name="akun_bank" class="form-control">
                                       <option value="1">Choose</option>
                                       <option value="EUR">EUR</option>
                                       <option value="GBP">GBP</option>
@@ -75,12 +75,12 @@
                                       <option value="USD">USD</option>
                               </select>
                           </td>
-                          <td><textarea type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea> </td>
+                          <td><textarea id="nilai" onchange="jumlah()" type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea> </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td> </td>
-                          <td> </td>
+                          <td><center><p id="demo">  </p></center></td>
+                          <td><center><p id="ulang">  </p> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -121,6 +121,27 @@
 
                     <br>
 
+                    <table border="1" style="font-family: calibri;" width="100%">
+                      <tbody>
+                        <tr>
+                          <td colspan="6"><center><b>Disetujui oleh <br> <i>Approved by :</i> </b></center></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"> <br> <br></td>
+                          <td colspan="2"> <br> <br></td>
+                          <td colspan="2"> <br> <br></td>
+                        </tr>
+                        <tr>
+                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td> </td>
+                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td> </td>
+                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td> </td>  
+                        </tr>
+                      </tbody>
+                    </table>
+                    
 
                     </div>  
                 </div>
@@ -202,6 +223,18 @@
 <script>
 function tambah() {
   alert("Data Successfully to Submit");
+}
+
+function myFunction(){
+  var x = document.getElementById("Select").value;
+
+  document.getElementById("demo").innerHTML = x;
+}
+
+function jumlah(){
+  var x = document.getElementById("nilai").value;
+
+  document.getElementById("ulang").innerHTML = x;
 }
 </script>
 

@@ -70,7 +70,7 @@
                         <tr>
                           <td><center> 1 </center></td>
                           <td><textarea type="text" class="form-control" name="label2" placeholder="Description" required></textarea> </td>                  
-                          <td><select name="akun_bank" class="form-control">
+                          <td><select id="Select" onchange="myFunction()" name="akun_bank" class="form-control">
                                       <option value="1">Choose</option>
                                       <option value="EUR">EUR</option>
                                       <option value="GBP">GBP</option>
@@ -82,12 +82,12 @@
                                       <option value="USD">USD</option>
                               </select>
                           </td>
-                          <td><textarea type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea> </td>
+                          <td><textarea id="nilai" onchange="jumlah()" type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea> </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td> </td>
-                          <td> </td>
+                          <td><center><p id="demo">  </p></center></td>
+                          <td><center><p id="ulang">  </p> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -128,6 +128,41 @@
 
                     <br>
 
+                    <table border="1" style="font-family: calibri;" width="100%">
+                      <tbody>
+                        <tr>
+                          <td colspan="6"><center><b>Persetujuan Pembayaran </b></center></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"> <br> <br></td>
+                          <td colspan="2"> <br> <br></td>
+                          <td colspan="2"> <br> <br></td>
+                        </tr>
+                        <tr>
+                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td> </td>
+                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td> </td>
+                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td> </td>  
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table border="1" style="font-family: calibri;" width="100%">
+                      <tbody>
+                        <tr>
+                          <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="" value="Tunai" disabled> Tunai</input></font></td>
+                        </tr>
+                        <tr>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="" value="Transfer" disabled> Transfer Ke :</input> </center></td>
+                          <td><font size="+1"> Bank : &nbsp;<input type="text" name="" placeholder="Bank" readonly> </input></font></td> 
+                          <td><font size="+1"> No. Rek : &nbsp;<input type="text" name="" placeholder="No. Rek" readonly> </input></font></td>                        
+                        </tr>
+                      </tbody>
+                    </table>
 
                     </div>  
                 </div>
@@ -209,6 +244,18 @@
 <script>
 function tambah() {
   alert("Data Successfully to Submit");
+}
+
+function myFunction(){
+  var x = document.getElementById("Select").value;
+
+  document.getElementById("demo").innerHTML = x;
+}
+
+function jumlah(){
+  var x = document.getElementById("nilai").value;
+
+  document.getElementById("ulang").innerHTML = x;
 }
 </script>
 
