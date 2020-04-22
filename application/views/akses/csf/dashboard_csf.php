@@ -6,7 +6,19 @@
    .lima { border: 5px solid orange; }
    .enam { border: 5px groove green; }
    .tujuh { border: 5px solid green; }
-   	
+   .box1{width:150px;
+				height:80px;
+				border: solid green;
+				display: inline-block;
+				margin-left: 10px;
+   }
+   .box2{width:150px;
+				height:80px;
+        background: aqua;
+				border: solid green;
+				display: inline-block;
+				margin-left: 10px;
+   }  
 </style>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -115,8 +127,9 @@
                 </div>   
               </div>     
             </div>
+
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="box-body">
                   <!-- USERS LIST -->
                   <div class="box box-success">
@@ -125,8 +138,27 @@
                         <span class="label label-success"></span>
                       </div>
                     </div>
-                  
-                    lalalalala
+                    <div class="box-body">
+                      <table width="100%">
+                      <tr> 
+                        <center><font size='3'><i> *) Total Outstanding = Number Processing + Number Verified + Number Approved  </i></font></center> 
+                        <td></td>
+                        <td width="25%"> ADVANCED </td>
+                        <td></td>
+                        <td></td>
+                        <td width="25%"> CREDITCARD </td>
+                        <td></td>
+                      </tr>  
+                      <tr> 
+                        <td align="center" width="25%"><div class="box1"><center><font size='3'> - <br> Upcoming Overdue</center></div></td>
+                        <td> </td>
+                        <td align="center" width="25%"><div class="box2"><center><font size='4'> - <br> Overdue</center></div></td>
+                        <td align="center" width="25%"><div class="box1"><center><font size='4'><br> 2</center></div></td>
+                        <td> </td>
+                        <td align="center" width="25%"><div class="box2"><center><font size='3'>Schedule Credit <br>Card Submission in <br>next 30 days</center></div></td>
+                      </tr>  
+                      </table>
+                    </div>  
                   </div>
                 </div>
               </div>      

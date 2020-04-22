@@ -261,12 +261,69 @@
         <?php 
             // } ?>
         <!-- <li><center><a href="Dashboard/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST SP3</button></a></center></li><br>   -->
-        <li><center><a href="Dashboard/form_arf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a></center></li><br>    
+        <!-- <li><center><a href="Dashboard/form_arf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a></center></li><br>    
         <li><center><a href="Dashboard/form_asf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ASF</button></a></center></li><br>    
         <li><center><a href="Dashboard/form_prf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM PRF</button></a></center></li><br>    
-        <li><center><a href="Dashboard/form_crf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a></center></li><br>    
-
+        <li><center><a href="Dashboard/form_crf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a></center></li><br>     -->
+        <li><center><button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM</button></a></center></li>      
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
+
+  <div class="modal fade" id="modalNext" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="col-xs-12">
+                <!-- /.box -->
+                <div class="box">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <div class="box-body">
+                      <h5>
+                        <br>
+                        <center><img src="assets/dashboard/images/logo.png" alt="Logo Images"></center>
+                        <br>
+                        <center><b><u><font size="+1" style="font-family: calibri;">CREATE FORM</font></u></b></center>
+                      </h5>
+                      
+                      <a href="Dashboard/form_arf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a> &nbsp;&nbsp;&nbsp;
+                      <a href="Dashboard/form_asf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ASF</button></a>
+                      <br><br>
+                      <a href="Dashboard/form_prf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM PRF</button></a>&nbsp;&nbsp;&nbsp;
+                      <a href="Dashboard/form_crf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="printThis()">Print</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+
+<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+<script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+<script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+<script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+<script src="assets/dashboard/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+<script src="assets/dashboard/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+<script src="assets/dashboard/dist/js/demo.js"></script>
+<script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
+    <!-- Select2 -->
+<script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>      

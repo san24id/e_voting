@@ -136,8 +136,6 @@
                       </tbody>  
                     </table>    
 
-                    <br>
-
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
@@ -149,13 +147,21 @@
                           <td colspan="2"> <br> <br></td>
                         </tr>
                         <tr>
-                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td width="10%">Nama/ <i>Name</i> </td>
                           <td> </td>
-                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
+                          <td width="10%">Nama/ <i>Name</i> </td>
                           <td> </td>
-                          <td width="10%">Nama/<i>Name</i> <br> Jabatan /<i>Title</i> </td>
-                          <td> </td>  
+                          <td width="10%">Nama/ <i>Name</i> </td>
+                          <td> </td>
                         </tr>
+                        <tr>
+                          <td>Jabatan/ <i>Title</i> </td>
+                          <td> </td>
+                          <td>Jabatan/ <i>Title</i> </td>
+                          <td> </td>
+                          <td>Jabatan/ <i>Title</i> </td>
+                          <td> </td>
+                        </tr>  
                       </tbody>
                     </table>
                     <table border="1" style="font-family: calibri;" width="100%">
