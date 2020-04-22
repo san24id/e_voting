@@ -1,3 +1,9 @@
+<style>
+td[rowspan="3"] {
+  vertical-align: top;
+  text-align: left;
+}
+</style>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -147,8 +153,68 @@
                         </tr>  
                       </tbody>
                     </table>
-                    
 
+                    <table border="1" style="font-family: calibri;" width="100%">
+                      <tbody>
+                        <tr>
+                          <td colspan="12"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
+                        </tr>
+                        <tr>
+                          <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
+                          <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
+                          <td colspan="4" rowspan="3">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" name="label2" placeholder="Remarks" required></textarea></td>                          
+                        </tr>
+                        <tr>
+                          <td colspan="4"><br><br><br><br> </td>
+                          <td colspan="4"><br><br><br><br> </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"> </td>
+                          <td> Tanggal <br><i>Date</i></td>
+                          <td> <?php echo date("l, d-m-Y"); ?></td>
+                          <td colspan="2"> </td>
+                          <td> Tanggal <br><i>Date</i></td>
+                          <td> <?php echo date("l, d-m-Y"); ?></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">Nama/ <i>Name</i> </td>
+                          <td colspan="2"> </td>
+                          <td colspan="2">Nama/ <i>Name</i> </td>
+                          <td colspan="2"> </td>
+                          <td colspan="2" width="10%">No. Bilyet: </td>
+                          <td colspan="2"> </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">Jabatan/ <i>Title</i> </td>
+                          <td colspan="2"> </td>
+                          <td colspan="2">Jabatan/ <i>Title</i> </td>
+                          <td colspan="2"> </td>
+                          <td colspan="2" width="10%"><i>Check No.:</i> </td>
+                          <td colspan="2"> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <br>
+
+                    <table border="1" style="font-family: calibri;" width="100%">
+                      <tbody>
+                        <tr>
+                          <td colspan="2">Penerima : <br> <i>Received by :</i></td>
+                        </tr>
+                        <tr>
+                          <td ">Nama/ <i>Name</i> </td>
+                        <td> </td>		
+                        </tr>
+                        <tr>
+                          <td width="10%">Tanggal/ <i>Date</i> </td>
+                          <td> </td>	
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <img align="right" src="assets/dashboard/images/footer_form2.png" alt="Logo Images">    
+                    
                     </div>  
                 </div>
                      
