@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Dashboard_model');
-		$this->load->model('Home_model');
+		$this->load->model('Dashboard_model');
 		$this->load->library('Pdf');
 
 		$sid = $this->session->userdata("username");
@@ -341,5 +341,93 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/my_inbox', $data);
+	}
+
+	function addpay(){
+		$add = array(
+			
+			'id' => $_POST['id'],
+			'status' => $_POST['status'],
+			'id_user' => $_POST['id_user'],
+			'tanggal' => $_POST['tanggal'],
+			'arf_doc' => $_POST['arf_doc'],
+			'asf_doc' => $_POST['asf_doc'],
+			'prf_doc' => $_POST['prf_doc'],
+			'crf_doc' => $_POST['crf_doc'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'kode_proyek' => $_POST['kode_proyek'],
+			'kode_proyek' => $_POST['kode_proyek'],
+			'tanggal_selesai' => $_POST['tanggal_selesai'],
+			'division_id' => $_POST['division_id'],
+			'label1' => $_POST['label1'],
+			'description' => $_POST['description'],
+			'currency' => $_POST['currency'],
+			'jumlah' => $_POST['jumlah'],
+			'terbilang' => $_POST['terbilang'],
+			'dibayar_kepada' => $_POST['dibayar_kepada'],
+			'verified_date' => $_POST['verified_date'],
+			'penanggung_jawab' => $_POST['penanggung_jawab'],
+			'jabatan' => $_POST['jabatan'],
+			'persetujuan_pembayaran1' => $_POST['persetujuan_pembayaran1'],
+			'persetujuan_pembayaran2' => $_POST['persetujuan_pembayaran2'],
+			'persetujuan_pembayaran3' => $_POST['persetujuan_pembayaran3'],
+			'jabatan1' => $_POST['jabatan1'],
+			'jabatan2' => $_POST['jabatan2'],
+			'jabatan3' => $_POST['jabatan3'],
+			'catatan' => $_POST['catatan']
+
+		);
+
+		$this->Dashboard_model->addpay($add);
+			
+		redirect('Dashboard');
+	}
+	
+	function updpay(){
+		$upd = array(
+			
+			'id' => $_POST['id'],
+			'status' => $_POST['status'],
+			'id_user' => $_POST['id_user'],
+			'tanggal' => $_POST['tanggal'],
+			'arf_doc' => $_POST['arf_doc'],
+			'asf_doc' => $_POST['asf_doc'],
+			'prf_doc' => $_POST['prf_doc'],
+			'crf_doc' => $_POST['crf_doc'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'kode_proyek' => $_POST['kode_proyek'],
+			'kode_proyek' => $_POST['kode_proyek'],
+			'tanggal_selesai' => $_POST['tanggal_selesai'],
+			'division_id' => $_POST['division_id'],
+			'label1' => $_POST['label1'],
+			'description' => $_POST['description'],
+			'currency' => $_POST['currency'],
+			'jumlah' => $_POST['jumlah'],
+			'terbilang' => $_POST['terbilang'],
+			'dibayar_kepada' => $_POST['dibayar_kepada'],
+			'verified_date' => $_POST['verified_date'],
+			'penanggung_jawab' => $_POST['penanggung_jawab'],
+			'jabatan' => $_POST['jabatan'],
+			'persetujuan_pembayaran1' => $_POST['persetujuan_pembayaran1'],
+			'persetujuan_pembayaran2' => $_POST['persetujuan_pembayaran2'],
+			'persetujuan_pembayaran3' => $_POST['persetujuan_pembayaran3'],
+			'jabatan1' => $_POST['jabatan1'],
+			'jabatan2' => $_POST['jabatan2'],
+			'jabatan3' => $_POST['jabatan3'],
+			'catatan' => $_POST['catatan']
+
+		);
+
+		$this->Dashboard_model->updpay($upd);
+			
+		redirect('Dashboard');
+	}
+
+	function deletepay(){
+
+		$this->Dashboard_model->deletepay($_POST['id']);
+
+		redirect('Dashboard');
+
 	}
 }

@@ -40,24 +40,24 @@ td[rowspan="6"] {
                       <tbody>     
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Tanggal : </td>
-                          <td><input type="text" name="" class="form-control" value="<?php echo date("l, d-m-Y"); ?>"</td>
+                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-m-Y"); ?>"</td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="" class="form-control" ></td>
+                          <td><input type="text" name="prf_doc" class="form-control" ></td>
                         </tr>
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="" class="form-control" ></td>
+                          <td><input type="text" name="division_id" class="form-control" ></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">SPPP Doc. No : </font></td>
-                          <td><input type="text" name="" class="form-control" ></td>
+                          <td><input type="text" name="nomor_surat" class="form-control" ></td>
                         </tr>
                         <tr>
                           <td> </td>
                           <td> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">Kode Proyek : <br> <i>Project Code</i><font></td>
-                          <td><input type="text" name="" class="form-control" ></td>
+                          <td><input type="text" name="kode_proyek" class="form-control" ></td>
                         </tr>
                       </tbody>
                     </table>
@@ -70,14 +70,14 @@ td[rowspan="6"] {
                           <th width="10%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="50%"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
                           <th width="25%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                         
+                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                         </thead>
                         <tbody>                      
                         <tr>
                           <td><center> 1 </center></td>
-                          <td><textarea type="text" class="form-control" name="label2" placeholder="Description" required></textarea> </td>                  
-                          <td><select id="Select" onchange="myFunction()" name="akun_bank" class="form-control">
+                          <td><textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea> </td>                  
+                          <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
                                       <option value="1">Choose</option>
                                       <option value="EUR">EUR</option>
                                       <option value="GBP">GBP</option>
@@ -89,7 +89,7 @@ td[rowspan="6"] {
                                       <option value="USD">USD</option>
                               </select>
                           </td>
-                          <td><textarea id="nilai" onchange="jumlah()" type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea> </td>
+                          <td><textarea id="nilai" onchange="jumlah()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
@@ -98,11 +98,11 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="3"><input type="text" name="" class="form-control" ></td>
+                          <td colspan="3"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang"></td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><input type="text" name="" class="form-control" ></td>
+                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" placeholder="Name"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -111,24 +111,32 @@ td[rowspan="6"] {
 
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
-                        <tr> 
-                          <td width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                          <td>&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" rows="6" name="label2" placeholder="Remarks" required></textarea></td>
-                        </tr>
-                        <tr align="right">  
-                          <td>Tanggal/<i>Date: </i> <?php echo date("l, d-M-Y");?> &nbsp;</td>
-                        </tr>
+                      <tr> 
+                        <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks" required></textarea></td>
+                      </tr>
+                      <tr>
+                      </tr>
+                      <tr align="right">
+                        <td width="5%"> </td>
+                        <td width="20%">Tanggal &nbsp;</td>
+                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control"></td>     
+                      </tr>
+                      <tr align="right">
+                        <td width="5%"> </td>
+                        <td width="20%"><i>Date </i> &nbsp;</td>
+                      </tr>
                       </tbody>
                     </table>  
                     <table border="1" style="font-family: calibri;" width="50%">  
                       <tbody>
                         <tr>
                           <td>Nama /<i>Name : </i></td>
-                          <td><textarea type="text" class="form-control" name="label2" placeholder="Name" required></textarea></td> 
+                          <td><textarea type="text" class="form-control" name="penanggung_jawab" placeholder="Name" required></textarea></td> 
                         </tr>
                         <tr>
                           <td>Jabatan /<i>Title : </i></td>
-                          <td><textarea type="text" class="form-control" name="label2" placeholder="Title" required></textarea></td> 
+                          <td><textarea type="text" class="form-control" name="jabatan" placeholder="Title" required></textarea></td> 
                         </tr>
                       </tbody>  
                     </table>    
@@ -139,25 +147,25 @@ td[rowspan="6"] {
                           <td colspan="6"><center><b>Persetujuan Pembayaran </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="2"><br> <br> <br> <br> <br></td>
-                          <td colspan="2"><br> <br> <br> <br> <br></td>
-                          <td colspan="2"><br> <br> <br> <br> <br></td>
+                          <td colspan="2"> <br> <br> <br> <br> <br> <br></td>
+                          <td colspan="2"> <br> <br> <br> <br> <br> <br></td>
+                          <td colspan="2"> <br> <br> <br> <br> <br> <br></td>
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td> </td>
+                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" placeholder="Name"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td> </td>
+                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" placeholder="Name"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td> </td>
+                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" placeholder="Name"> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td> </td>
+                          <td><input type="text" name="jabatan1" class="form-control" placeholder="Title"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td> </td>
+                          <td><input type="text" name="jabatan2" class="form-control" placeholder="Title"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td> </td>
+                          <td><input type="text" name="jabatan3" class="form-control" placeholder="Title"> </td>
                         </tr>  
                       </tbody>
                     </table>
@@ -191,21 +199,21 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="2"> </td>
                           <td> Tanggal <br><i>Date</i></td>
-                          <td> <?php echo date("l, d-m-Y"); ?></td>
+                          <td width="15%"> </td>
                           <td colspan="2"> </td>
                           <td> Tanggal <br><i>Date</i></td>
-                          <td> <?php echo date("l, d-m-Y"); ?></td>
+                          <td width="15%"> </td>
                         </tr>
                         <tr>
-                          <td colspan="2">Nama/ <i>Name</i> </td>
+                          <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
                           <td colspan="2"> </td>
-                          <td colspan="2">Nama/ <i>Name</i> </td>
+                          <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
                           <td colspan="2"> </td>        
                         </tr>
                         <tr>
-                          <td colspan="2">Jabatan/ <i>Title</i> </td>
+                          <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
                           <td colspan="2"> </td>
-                          <td colspan="2">Jabatan/ <i>Title</i> </td>
+                          <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
                           <td colspan="2"> </td>
                         </tr>                      
                       </tbody> 
