@@ -19,12 +19,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <!-- <h1>
-        Data Pengajuan Payment        
-      </h1> -->
-    </section>
-
+    
     <section class="content">
             <div class="col-md-6">
               <div class="box-body">
@@ -47,8 +42,8 @@
 
                         </div>
                         <div class ="col-md-6">
-                          <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                          <td>Draft</td> &nbsp; &nbsp;
+                          <td><img src="assets/dashboard/images/legend/blue.png"></td>
+                          <td>Waiting for Approval</td> &nbsp; &nbsp;
                         </div>
                         </center>
                       </div>
@@ -62,8 +57,8 @@
 
                         </div>               
                         <div class ="col-md-6">
-                          <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                          <td>Accepted</td> &nbsp; &nbsp;
+                          <td><img src="assets/dashboard/images/legend/orange.png"></td>
+                          <td>Approved</td> &nbsp; &nbsp;
                         </div>  
                       </center> 
                       </div>
@@ -134,56 +129,46 @@
                     <tbody>
                     <?php 
                         $i = 1;
-                        foreach ($payment as $row){                          
-                        // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->dsc;                        
-                        $test2 = explode(";", $test1);
-                        $test3 = count($test2);                        
+                        foreach ($approved as $row){                          
                     ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
-                          if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
-                          }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
+                          if($row->status == 4){
+                              echo "<img src='assets/dashboard/images/legend/blue.png'>";  
                           }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/default.png'>";
-                          }
+                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                          }else if($row->status >= 6){
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>";
+                         }
                         ?>
                     </td>
-                    <td><?php                     
-                        for($a=0; $a<$test3; $a++){
-                          if($test2[$a]){
-                            echo $test2[$a]."<br>";
-                          }
-                        }  ?>
-                    </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
-                    <td>  XXX </td>
-                    <td><?php echo $row->label1; ?></td>
-                    <td><?php echo $row->display_name; ?></td>
+                    <td><?php echo $row->type; ?> </td>                  
+                    <td><?php echo $row->tanggal; ?></td>
+                    <td> </td>
+                    <td><?php echo $row->description; ?></td>
+                    <td><?php echo $row->division_id; ?></td>
                     <td>
-                        <a href="approval/form_view/ "><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     </td>
-                    <td> 
-                        <button type="button" data-toggle="modal" data-target="#approve " class="btn btn-success">Approve</button>   
-                        <button type="button" data-toggle="modal" data-target="#reject " class="btn btn-danger">Reject</button> 
+                    <td>
+                        <?php if ($row->status == 4){ ?>  
+                        <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_pay; ?>" class="btn btn-success">Approve</button>   
+                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_pay; ?>" class="btn btn-danger">Reject</button> 
                     </td>                          
-                    </tr>
-                    
+                    </tr>                    
                     <!--.Modal-->
-                    <div class="modal fade" id="approve " tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" id="approve<?php echo $row->id_pay; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
                         <form id="approved" method="post" action="approval/approve">
-                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                          <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
+                          <input type="hidden" name="id_pay" value="<?php echo $row->id_pay; ?>">
+                          <p align="justify">Apa kamu yakin akan Menyetujui Form Pengajuan ini :  <?=$row->nomor_surat?></p>
                           <label>Kepada :</label>                        
                           <select class="form-control" name="handled_by">
                             <option>--- Choose ---</option>
-                          <?php foreach ($csf as $get) {?>
+                          <?php foreach ($tri as $get) {?>
                             <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                           <?php } ?>
                           </select>
@@ -195,19 +180,25 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                    </div>
 
-                    <div class="modal fade" id="reject " tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" id="reject<?php echo $row->id_pay; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
                         <form id="rejected" method="post" action="approval/rejected">
-                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                          <input type="hidden" name="id_pay" value="<?php echo $row->id_pay; ?>">
                           <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
                           <label>Notes :</label>                
                           <input type="text" name="note"></input>
+                          <select class="form-control" name="handled_by">
+                            <option>--- Choose ---</option>
+                          <?php foreach ($csf as $get) {?>
+                            <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                          <?php } ?>
+                          </select>
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <input type="text" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">  
+                          <input type="hidden" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">  
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
@@ -216,8 +207,8 @@
                         </div>
                       </div>
                     </div>
-                  </div>    
-                <?php } ?>            
+                    </div>    
+                <?php }} ?>            
                 </tbody>
                 </table>
                 </div>

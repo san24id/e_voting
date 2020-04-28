@@ -116,14 +116,27 @@
                 </div>
                 <br><br>               
                 <div class="box-body">
-                  <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                  <td>Draft</td> &nbsp; &nbsp;
+                  <td><img src="assets/dashboard/images/legend/purple.png"></td>
+                  <td>Paid</td> &nbsp; &nbsp;
 
-                  <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                  <td>Accepted</td> &nbsp; &nbsp;
+                  <td><img src="assets/dashboard/images/legend/green_nofull.png"></td>
+                  <td>Draft (Draft)</td> &nbsp; &nbsp;
 
-                  <td><img src="assets/dashboard/images/legend/Default.png"></td>
-                  <td>Rejected</td>
+                  <td><img src="assets/dashboard/images/legend/green_nobackground.png"></td>
+                  <td>Draft (Print)</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/green.png"></td>
+                  <td>Submitted</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
+                  <td>Processing</td>
+
+                  <td><img src="assets/dashboard/images/legend/blue.png"></td>
+                  <td>Verified</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/orange.png"></td>
+                  <td>Approved</td> &nbsp; &nbsp;
+                  
                 </div>   
               </div>     
             </div>

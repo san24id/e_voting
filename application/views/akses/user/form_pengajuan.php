@@ -72,15 +72,14 @@
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="right">Tanggal : <?php echo date("l, Y-m-d"); ?></td>
-                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo date("Y-m-d"); ?>">
-                        <input type="hidden" name="hari" class="form-control" value="<?php echo date("l");?>">
+                      <td align="right">Tanggal : <?php echo date("l, d-M-Y"); ?></td>
+                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo date("d-M-Y"); ?>">
                       </tr>
                       <tr>
                       <td>Dari : </td>
                       </tr>             
                       <tr>
-                        <td>&nbsp;  Nama Pemohon : </td>
+                        <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $this->session->userdata('display_name') ?></td>
                         <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
                       </tr> 
                       <tr>
@@ -103,7 +102,18 @@
                       </tr>
                       <tr>
                         <td><b>- Jumlah :</b></td>
-                        <td>IDR </td>
+                        <td><select name="currency" class="form-control">
+                                      <option>Choose</option>
+                                      <option value="EUR">EUR</option>
+                                      <option value="GBP">GBP</option>
+                                      <option value="HKD">HKD</option>
+                                      <option value="IDR">IDR</option>
+                                      <option value="JPY">JPY</option>
+                                      <option value="KRW">KRW</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="USD">USD</option>
+                              </select>
+                          </td>
                         <td colspan="2"><textarea type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea></td>
                       </tr>
                       <tr>

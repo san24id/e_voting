@@ -5,7 +5,7 @@
     <!--.SECTION 1-->                  
     <section class="content-header">
       <h1>
-        LIST OF REJECTED 
+        LIST OF REJECTED (AS USERS)
       </h1>
     </section>
 
@@ -48,8 +48,8 @@
                   <td><?php echo $row->display_name;?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>
-                    <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <a href="Approval/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
+                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -70,7 +70,7 @@
     <!--.SECTION 2-->                  
     <section class="content-header">
       <h1>
-        LIST OF REJECT 
+        LIST OF REJECT (AS APPROVER)
       </h1>
     </section>
 
@@ -84,7 +84,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="table-responsive">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>NO.</th>
@@ -113,8 +113,8 @@
                   <td><?php echo $row->label1;?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>
-                    <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <a href="Approval/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
+                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -194,7 +194,8 @@
 <script>
 $(function () {
     $("#example1").DataTable();
-    $('#example2').DataTable({
+    $("#example2").DataTable();
+    $('#example3').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,

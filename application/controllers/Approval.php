@@ -5,6 +5,7 @@ class Approval extends CI_Controller {
    
     function __construct(){
 		parent::__construct();
+		$this->load->model('Approval_model');
 		$this->load->model('Dashboard_model');
 		$this->load->model('Home_model');
 		$this->load->library('Pdf');
@@ -141,10 +142,41 @@ class Approval extends CI_Controller {
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['payment'] = $this->Dashboard_model->payment();
+		$data['approved'] = $this->Approval_model->getList();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/approval', $data);
+	}
+
+	public function approve(){
+
+		$upd = array(
+			'id_pay' => $_POST['id_pay'],
+			'status' => 6,
+			'handled_by' => $_POST['handled_by']
+		);
+
+		$this->Approval_model->updateaccept($upd);
+
+		redirect('Approval/listApproval');
+	}
+
+	public function rejected(){
+
+		$upd = array(
+			'id_pay' => $_POST['id_pay'],
+			'status' => 3,
+			'note' => $_POST['note'],
+			'rejected_by' => $_POST['rejected_by'],
+			'rejected_date' => $_POST['rejected_date'],
+			
+		);
+
+		$this->Approval_model->updaterejected($upd);
+
+		redirect('Approval/listApproval');
 	}
 
 	public function wfa(){

@@ -14,8 +14,9 @@ td[rowspan="6"] {
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/addarf" onsubmit="tambah()">
-          <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
+        <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
+          <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
+          <input type="hidden" name="type" class="form-control" value="Advanced Settlement Form"> 
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -39,7 +40,7 @@ td[rowspan="6"] {
                       <tbody>     
                         <tr>
                           <td><font size="+1">Tanggal : <br> <i>Date</i></td>
-                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-m-Y"); ?>"</td>
+                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
                           <td><input type="text" name="asf_doc" class="form-control" placeholder="ASF Doc. No"></td>
@@ -88,7 +89,7 @@ td[rowspan="6"] {
                                       <option value="USD">USD</option>
                               </select>
                           </td>
-                          <td><textarea id="nilai" onchange="jumlah()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
+                          <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
                         </tr>
                         <tr>
                           <td colspan="2"> Jumlah Pembayaran/<i>Total Payment</i> </td>
@@ -199,7 +200,7 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
                           <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
-                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" name="label2" placeholder="Remarks" required></textarea></td>                          
+                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" name="label2" placeholder="Remarks"></textarea></td>                          
                         </tr>
                         <tr>
                           <td colspan="4"><br><br><br><br> </td>
@@ -336,7 +337,7 @@ function myFunction(){
   document.getElementById("demo").innerHTML = x;
 }
 
-function jumlah(){
+function nominal(){
   var x = document.getElementById("nilai").value;
 
   document.getElementById("ulang").innerHTML = x;

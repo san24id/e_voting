@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Dashboard_model');
-		$this->load->model('Dashboard_model');
+		$this->load->model('Home_model');
 		$this->load->library('Pdf');
 
 		$sid = $this->session->userdata("username");
@@ -346,9 +346,10 @@ class Dashboard extends CI_Controller {
 	function addpay(){
 		$add = array(
 			
-			'id' => $_POST['id'],
-			'status' => $_POST['status'],
+			'id_pay' => $_POST['id_pay'],
+			'status' => 4,
 			'id_user' => $_POST['id_user'],
+			'type' => $_POST['type'],
 			'tanggal' => $_POST['tanggal'],
 			'arf_doc' => $_POST['arf_doc'],
 			'asf_doc' => $_POST['asf_doc'],

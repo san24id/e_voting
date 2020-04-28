@@ -85,8 +85,10 @@ class Home_model extends CI_Model{
                 GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' 
                 AND otr.totaldraft != 0 AND otr.status_laporan IS NOT NULL";
                 
+        // var_dump($sql);exit;        
         $query = $this->db->query($sql)->result();
         return $query;
+        
     }
 
     public function getRejected(){
@@ -140,10 +142,10 @@ class Home_model extends CI_Model{
     }
     
     function addpayment($add){
-        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, hari, division_id, jabatan, label1, label2,
+        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, currency, division_id, jabatan, label1, label2,
         label3, label4, label5, label6, label7, label8, label9, penerima, vendor, akun_bank, no_rekening, status) 
         VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['display_name']."',
-        '".$add['tanggal']."','".$add['hari']."','".$add['division_id']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."',
+        '".$add['tanggal']."','".$add['currency']."','".$add['division_id']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."',
         '".$add['label3']."','".$add['label4']."','".$add['label5']."','".$add['label6']."','".$add['label7']."','".$add['label8']."',
         '".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."','".$add['status']."')";
         

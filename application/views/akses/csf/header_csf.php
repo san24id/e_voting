@@ -260,11 +260,6 @@
                <li class=""><a href="admin/datauser"><i class="glyphicon glyphicon-user"></i><span>User</a></span></li> -->
         <?php 
             // } ?>
-        <!-- <li><center><a href="Dashboard/form_add"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE REQUEST SP3</button></a></center></li><br>   -->
-        <!-- <li><center><a href="Dashboard/form_arf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a></center></li><br>    
-        <li><center><a href="Dashboard/form_asf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ASF</button></a></center></li><br>    
-        <li><center><a href="Dashboard/form_prf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM PRF</button></a></center></li><br>    
-        <li><center><a href="Dashboard/form_crf"><button type="button" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a></center></li><br>     -->
         <li><center><button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM</button></a></center></li>      
       </ul>
     </section>
@@ -291,18 +286,17 @@
                         <center><b><u><font size="+1" style="font-family: calibri;">CREATE FORM</font></u></b></center>
                       </h5>
                       
-                      <a href="Dashboard/form_arf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a> &nbsp;&nbsp;&nbsp;
-                      <a href="Dashboard/form_asf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ASF</button></a>
+                      <a href="Dashboard/form_arf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a> &nbsp;&nbsp;&nbsp;
+                      <a href="Dashboard/form_asf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ASF</button></a>
                       <br><br>
-                      <a href="Dashboard/form_prf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM PRF</button></a>&nbsp;&nbsp;&nbsp;
-                      <a href="Dashboard/form_crf"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a>
+                      <a href="Dashboard/form_prf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM PRF</button></a>&nbsp;&nbsp;&nbsp;
+                      <a href="Dashboard/form_crf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary" onclick="printThis()">Print</button>
           </div>
         </div>
       </div>

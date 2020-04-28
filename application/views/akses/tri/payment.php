@@ -46,8 +46,8 @@
 
                         </div>
                         <div class ="col-md-6">
-                          <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                          <td>Draft</td> &nbsp; &nbsp;
+                          <td><img src="assets/dashboard/images/legend/orange.png"></td>
+                          <td>Waiting for Payment</td> &nbsp; &nbsp;
                         </div>
                         </center>
                       </div>
@@ -61,8 +61,8 @@
 
                         </div>               
                         <div class ="col-md-6">
-                          <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                          <td>Accepted</td> &nbsp; &nbsp;
+                          <td><img src="assets/dashboard/images/legend/purple.png"></td>
+                          <td>Paid</td> &nbsp; &nbsp;
                         </div>  
                       </center> 
                       </div>

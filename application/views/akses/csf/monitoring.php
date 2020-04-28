@@ -6,9 +6,9 @@
 			border-radius: 80%;
 		}
    .satu { border: 5px solid purple; }
-   .dua { border: 5px solid green; }
+   .dua { border: 5px solid green; background: green; }
    .tiga { border: 5px solid blue; }
-   .empat { border: 5px double blue; }
+   .empat { border: 5px solid blue; background: blue; }
    .lima { border: 5px solid orange; }
    .enam {background:green; border: 5px solid green; }
    .tujuh {background:aqua; border: 4px solid green; }
@@ -54,24 +54,30 @@
                           <table> 
                             <tr> 
                               <td><font size='5'> STATUS | </font> </td><td> &nbsp;
-                              <td><div class="satu"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="dua"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="tiga"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="empat"><font size='5'>  </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="lima"><font size='5'>  </div> </td><td> &nbsp;                        
+                              <td><div class="satu"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="dua"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="tiga"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="empat"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="lima"><font size='5'> - </div> </td><td> &nbsp;                        
                             </tr>  
                           </table>
                           </div>
                           <br><br>               
                         <div class ="col-md-12">
-                          <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                          <td>Draft</td> &nbsp; &nbsp;
+                          <td><img src="assets/dashboard/images/legend/purple.png"></td>
+                          <td>Paid</td> &nbsp; &nbsp;
 
-                          <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                          <td>Accepted</td> &nbsp; &nbsp;
+                          <td><img src="assets/dashboard/images/legend/green.png"></td>
+                          <td>Waiting for processing/ Submitted by users</td> &nbsp; &nbsp;
 
-                          <td><img src="assets/dashboard/images/legend/Default.png"></td>
-                          <td>Rejected</td>
+                          <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
+                          <td>Processing</td>
+
+                          <td><img src="assets/dashboard/images/legend/blue.png"></td>
+                          <td>Verified</td>
+
+                          <td><img src="assets/dashboard/images/legend/orange.png"></td>
+                          <td>Approved</td>
                         </div>  
                       </div>
                       

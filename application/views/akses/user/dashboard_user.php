@@ -1,11 +1,11 @@
 <style type="text/css">
-   .satu { border: 5px solid purple; }
-   .dua { border: 5px dotted green; }
-   .tiga { border: 5px dashed blue; }
-   .empat { border: 5px double blue; }
-   .lima { border: 5px solid orange; }
-   .enam { border: 5px groove green; }
-   .tujuh { border: 5px solid green; }
+   .satu { border: 5px solid purple; background: purple;}
+   .dua { border: 5px dashed green; }
+   .tiga { border: 5px solid green; }
+   .empat { border: 5px solid green; background: green; }
+   .lima { border: 5px solid blue; }
+   .enam { border: 5px solid blue; background: blue;}
+   .tujuh { border: 5px solid orange; background: orange;}
    .box1{width:150px;
 				height:80px;
 				border: solid green;
@@ -118,14 +118,27 @@
                 </div>
                 <br><br>               
                 <div class="box-body">
-                  <td><img src="assets/dashboard/images/legend/treatment.png"></td>
-                  <td>Draft</td> &nbsp; &nbsp;
+                  <td><img src="assets/dashboard/images/legend/purple.png"></td>
+                  <td>Paid</td> &nbsp; &nbsp;
 
-                  <td><img src="assets/dashboard/images/legend/submit.png"></td>
-                  <td>Accepted</td> &nbsp; &nbsp;
+                  <td><img src="assets/dashboard/images/legend/green_nofull.png"></td>
+                  <td>Draft (Draft)</td> &nbsp; &nbsp;
 
-                  <td><img src="assets/dashboard/images/legend/Default.png"></td>
-                  <td>Rejected</td>
+                  <td><img src="assets/dashboard/images/legend/green_nobackground.png"></td>
+                  <td>Draft (Print)</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/green.png"></td>
+                  <td>Submitted</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
+                  <td>Processing</td>
+
+                  <td><img src="assets/dashboard/images/legend/blue.png"></td>
+                  <td>Verified</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/orange.png"></td>
+                  <td>Approved</td> &nbsp; &nbsp;
+                  
                 </div>   
               </div>     
             </div>
@@ -238,11 +251,11 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php 
                           if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
+                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
+                             echo "<img src='assets/dashboard/images/legend/green.png'>";
                           }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/default.png'>";
+                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
                           }
                         ?>
                     </td>                  
