@@ -77,9 +77,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
-		// $data['ppayment'] = $this->Home_model->getform($id_payment);
-		// $data['surat'] = $this->Home_model->buat_kode();
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_arf', $data);
@@ -91,6 +89,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		// $data['surat'] = $this->Home_model->buat_kode();
@@ -105,6 +104,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		// $data['surat'] = $this->Home_model->buat_kode();
@@ -119,6 +119,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		// $data['surat'] = $this->Home_model->buat_kode();
@@ -131,13 +132,12 @@ class Dashboard extends CI_Controller {
 
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
-			'status' => 2,
-			'handled_by' => $_POST['handled_by']
+			'status' => 2
 		);
 
 		$this->Dashboard_model->updateaccept($upd);
 
-		redirect('Dashboard');
+		redirect('Dashboard/monitoring');
 	}
 
 	public function rejected(){
@@ -153,7 +153,20 @@ class Dashboard extends CI_Controller {
 
 		$this->Dashboard_model->updaterejected($upd);
 
-		redirect('Dashboard');
+		redirect('Dashboard/monitoring');
+	}
+
+	public function processing(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 4,
+			'handled_by' => $_POST['handled_by']
+		);
+
+		$this->Dashboard_model->updateprocess($upd);
+
+		redirect('Dashboard/monitoring');
 	}
 
 	public function dp()
@@ -347,8 +360,8 @@ class Dashboard extends CI_Controller {
 		$add = array(
 			
 			'id_pay' => $_POST['id_pay'],
-			'status' => 4,
-			'id_user' => $_POST['id_user'],
+			'status' => 8,
+			'display_name' => $_POST['display_name'],
 			'type' => $_POST['type'],
 			'tanggal' => $_POST['tanggal'],
 			'arf_doc' => $_POST['arf_doc'],
@@ -380,7 +393,7 @@ class Dashboard extends CI_Controller {
 		);
 
 		$this->Dashboard_model->addpay($add);
-			
+		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat]);
 		redirect('Dashboard');
 	}
 	
@@ -389,7 +402,7 @@ class Dashboard extends CI_Controller {
 			
 			'id' => $_POST['id'],
 			'status' => $_POST['status'],
-			'id_user' => $_POST['id_user'],
+			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'arf_doc' => $_POST['arf_doc'],
 			'asf_doc' => $_POST['asf_doc'],

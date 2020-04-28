@@ -25,7 +25,7 @@ class Dashboard_model extends CI_Model{
     }
 
     public function updateaccept($upd){
-        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 
@@ -35,6 +35,22 @@ class Dashboard_model extends CI_Model{
     public function updaterejected($upd){
         $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`note`='".$upd['note']."',`rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."'
                 WHERE `id_payment`='".$upd['id_payment']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function nomorsurat(){
+        $sql = "SELECT nomor_surat AS number1 FROM t_payment WHERE status = 7";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
+
+    public function updateprocess($upd){
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 
@@ -82,10 +98,10 @@ class Dashboard_model extends CI_Model{
     }
 
     function addpay($add){
-        $sql = "INSERT INTO `t_payment_l` (id_user, type, status, tanggal, arf_doc, asf_doc, prf_doc, crf_doc, nomor_surat, kode_proyek, division_id,
+        $sql = "INSERT INTO `t_payment_l` (display_name, type, status, tanggal, arf_doc, asf_doc, prf_doc, crf_doc, nomor_surat, kode_proyek, division_id,
                 tanggal_selesai, label1, description, currency, jumlah, terbilang, dibayar_kepada, verified_date, penanggung_jawab, jabatan, 
                 persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan ) 
-        VALUES ('".$add['id_user']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['arf_doc']."','".$add['asd_doc']."','".$add['prf_doc']."',
+        VALUES ('".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['arf_doc']."','".$add['asd_doc']."','".$add['prf_doc']."',
                 '".$add['crf_doc']."','".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."',
                 '".$add['description']."','".$add['currency']."','".$add['jumlah']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."',
                 '".$add['penanggung_jawab']."','".$add['jabatan']."','".$add['persetujuan_pembayaran1']."','".$add['persetujuan_pembayaran2']."','".$add['persetujuan_pembayaran3']."',
@@ -95,9 +111,18 @@ class Dashboard_model extends CI_Model{
 
         return $query;
     }
+    
+    function updatepay($status,$nomor_surat){
+        
+        $sql = "UPDATE `t_payment` SET `status`='".$status."' WHERE `nomor_surat`='".$nomor_surat."'";
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
 
     function updpay($upd){
-        $sql = "UPDATE `t_payment_l` SET `id_user`='".$upd['id_user']."',`status`='".$upd['status']."',`tanggal`='".$upd['tanggal']."',`arf_doc`='".$upd['arf_doc']."',`asf_doc`='".$upd['asf_doc']."',
+        $sql = "UPDATE `t_payment_l` SET `display_name`='".$upd['display_name']."',`status`='".$upd['status']."',`tanggal`='".$upd['tanggal']."',`arf_doc`='".$upd['arf_doc']."',`asf_doc`='".$upd['asf_doc']."',
         `prf_doc`='".$upd['prf_doc']."',`crf_doc`='".$upd['crf_doc']."',`nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`division_id`='".$upd['division_id']."',
         `tanggal_selesai`='".$upd['tanggal_selesai']."',`label1`='".$upd['label1']."',`description`='".$upd['description']."',`currency`='".$upd['currency']."',`jumlah`='".$upd['jumlah']."',
         `terbilang`='".$upd['terbilang']."',`dibayar_kepada`='".$upd['dibayar_kepada']."',`verified_date`='".$upd['verified_date']."',`penanggung_jawab`='".$upd['penanggung_jawab']."',

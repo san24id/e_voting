@@ -50,7 +50,14 @@ td[rowspan="6"] {
                           <td><input type="text" name="division_id" class="form-control" placeholder="Divisi Pemohon"></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">SPPP Doc. No : </font></td>
-                          <td><input type="text" name="nomor_surat" class="form-control" placeholder="SPPP Doc. No"></td>
+                          <td><input type="text" name="nomor_surat" class="form-control" placeholder="SPPP Doc. No">
+                              <select class="form-control" name="nomor_surat">
+                                <option>--- Choose ---</option>
+                              <?php foreach ($surat1 as $got) {?>
+                                <option value="<?php echo $got->number1; ?>"><?php echo $got->number1; ?></option>
+                              <?php } ?>
+                              </select>
+                          </td>    
                         </tr>
                         <tr>
                           <td> </td>

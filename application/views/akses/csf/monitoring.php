@@ -184,15 +184,42 @@
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
                           if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
+                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
-                          }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/default.png'>";
-                          }
+                             echo "<img src='assets/dashboard/images/legend/green.png'>";
+                          }else if($row->status == 3){
+                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                          }else if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 5){
+                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            }else if($row->status == 6){
+                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            }else if($row->status == 7){
+                                echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            }else if($row->status == 8){
+                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                            }else if($row->status == 9){
+                              echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                            }   
                         ?>
                     </td>
-                    <td> </td>                  
+                    <td><?php 
+                          if($row->status == 4){
+                            echo "Processing Tax/Waiting for Review";
+                          }else if($row->status == 5){
+                            echo "Processing Finance";
+                          }else if($row->status == 6){
+                            echo "Waiting for Review";
+                          }else if($row->status == 7){
+                              echo "Waiting for Verification";
+                          }else if($row->status == 8){
+                            echo "Waiting for Payment";
+                          }else if($row->status == 9){
+                            echo "Paid";  
+                          }  
+                        ?>
+                    </td>                  
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
@@ -208,45 +235,67 @@
                     <td>
                         <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php if($row->status == 1){ ?>                                           
-                        <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>   
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>  
+                          <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success btn-sm">Accept</button>   
+                          <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Reject</button>
+                          <!---.Accept-->          
+                          <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">                                        
+                              <div class="modal-body">
+                              <form id="accepted" method="post" action="dashboard/accept">
+                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                <p align="justify">Apa kamu yakin akan menerima Form Pengajuan ini : <br> <?=$row->nomor_surat?></p>
+                              </div>
+                              <div class="modal-footer">                        
+                                  <button type="submit" class="btn btn-success bye">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                          <!---.Reject-->          
+                          <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">                                        
+                              <div class="modal-body">
+                              <form id="rejected" method="post" action="dashboard/rejected">
+                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
+                                <label>Notes :</label>                
+                                <input type="text" name="note"></input>
+                                <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                                <input type="hidden" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">  
+                              </div>
+                              <div class="modal-footer">                        
+                                  <button type="submit" class="btn btn-success bye">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+
+                        <?php } else if($row->status == 2){ ?>                                           
+                          <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success btn-sm">Processing</button>   
                     </td>      
-                    </tr><!--.Modal-->
-                    <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    </tr>
+                    <!--.Modal-->                    
+                    <!---.Processing-->          
+                    <div class="modal fade" id="processing<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
-                        <form id="accepted" method="post" action="dashboard/accept">
+                        <form id="processed" method="post" action="dashboard/processing">
                           <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                           <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-                          <label>Kepada :</label>                        
+                          <label>Kepada CSF Tax:</label>                        
                           <select class="form-control" name="handled_by">
                             <option>--- Choose ---</option>
                           <?php foreach ($csf as $get) {?>
                             <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                           <?php } ?>
                           </select>
-                        </div>
-                        <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-
-                    <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">                                        
-                        <div class="modal-body">
-                        <form id="rejected" method="post" action="dashboard/rejected">
-                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
-                          <label>Notes :</label>                
-                          <input type="text" name="note"></input>
-                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <input type="text" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">  
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
