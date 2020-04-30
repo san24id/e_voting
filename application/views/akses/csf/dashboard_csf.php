@@ -250,12 +250,24 @@
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
                           if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
+                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
-                          }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/default.png'>";
-                          }
+                             echo "<img src='assets/dashboard/images/legend/green.png'>";
+                          }else if($row->status == 3){
+                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                          }else if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 7){
+                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }   
                         ?>
                     </td>                  
                     <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>

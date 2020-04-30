@@ -11,7 +11,7 @@ $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
             $pdf->AddPage();
             $i=0;
            $html='<table>';
-            foreach ($profil as $rowp)
+           foreach ($ppayment as $row)
                 {
                     $i++;
                     if($rowp->status == 1){

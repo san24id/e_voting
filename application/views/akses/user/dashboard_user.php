@@ -131,7 +131,7 @@
                   <td>Submitted</td> &nbsp; &nbsp;
 
                   <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
-                  <td>Processing</td>
+                  <td>Processing</td> &nbsp; &nbsp;
 
                   <td><img src="assets/dashboard/images/legend/blue.png"></td>
                   <td>Verified</td> &nbsp; &nbsp;
@@ -254,9 +254,21 @@
                               echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
                              echo "<img src='assets/dashboard/images/legend/green.png'>";
-                          }else if($row->status >= 3){
+                          }else if($row->status == 3){
                              echo "<img src='assets/dashboard/images/legend/reject.png'>";
-                          }
+                          }else if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 7){
+                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }   
                         ?>
                     </td>                  
                     <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
@@ -274,12 +286,12 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary">Edit</button></a> 
-                        <?php if($row->status == 3){ ?>
-                        <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger">Delete</button></a>
+                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <a href="Home/report/<?php echo $row->id_payment; ?>"><button class="btn btn-warning btn-sm">View</button> 
+                        
                     </td>      
                     </tr>
-                <?php  }} ?>
+                <?php  } ?>
                 </tbody>
                 </table>
                 </div>
@@ -410,6 +422,12 @@ $(function () {
               ]
       }]
   });
+</script>
+
+<script>
+function printThis() {
+  window.print();
+}
 </script>
 </body>
 </html>

@@ -64,6 +64,9 @@
                           </div>
                           <br><br>               
                         <div class ="col-md-12">
+                          <td><img src="assets/dashboard/images/legend/green_nobackground.png"></td>
+                          <td>Draft</td> &nbsp; &nbsp;
+
                           <td><img src="assets/dashboard/images/legend/purple.png"></td>
                           <td>Paid</td> &nbsp; &nbsp;
 
@@ -71,13 +74,13 @@
                           <td>Waiting for processing/ Submitted by users</td> &nbsp; &nbsp;
 
                           <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
-                          <td>Processing</td>
+                          <td>Processing</td> &nbsp; &nbsp;
 
                           <td><img src="assets/dashboard/images/legend/blue.png"></td>
-                          <td>Verified</td>
+                          <td>Verified</td> &nbsp; &nbsp;
 
                           <td><img src="assets/dashboard/images/legend/orange.png"></td>
-                          <td>Approved</td>
+                          <td>Approved</td> &nbsp; &nbsp;
                         </div>  
                       </div>
                       

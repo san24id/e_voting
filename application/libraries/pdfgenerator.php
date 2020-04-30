@@ -1,15 +1,14 @@
 <?php
-
+require 'vendor/autoload.php';
 use Dompdf\Dompdf;
 
 class PdfGenerator
 {
-  public function generate($html,$filename)
+  public function generate($html, $filename='', $stream=TRUE, $paper = 'A4', $orientation = "portrait")
   {
-    define('DOMPDF_ENABLE_AUTOLOAD', false);
- 
-    $dompdf = new Dompdf();
-    $dompdf->load_html($html);
+    $dompdf = new DOMPDF();
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper($paper, $orientation);
     $dompdf->render();
     $dompdf->stream($filename.'.pdf',array("Attachment"=>0));
   }
