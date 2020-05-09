@@ -40,8 +40,8 @@
                       <div class="col-md-4"><!--Lingkaran-->
                           <div class="lingkaran1 panel panel-primary">
                             <br><br>
-                            <?php foreach ($processing as $tot_process) { ?>
-                            <center> <font size='7'> <?php echo $tot_process->process; ?> </font> </center> 
+                            <?php foreach ($processing as $process) { ?>
+                            <center> <font size='7'> <?php echo $process->process; ?> </font> </center> 
                             <center> <font size='3'> Waiting for Processing </font> </center>
                             <?php } ?>
                           </div>
@@ -54,11 +54,21 @@
                           <table> 
                             <tr> 
                               <td><font size='5'> STATUS | </font> </td><td> &nbsp;
-                              <td><div class="satu"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="dua"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="tiga"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="empat"><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <td><div class="lima"><font size='5'> - </div> </td><td> &nbsp;                        
+                              <?php foreach ($wPaid as $wPaid) { ?>
+                              <td><div class="satu"><font size='5'> <?php echo $wPaid->paid;?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($processing as $process) { ?>
+                              <td><div class="dua"><font size='5'> <?php echo $process->process; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($gprocess as $tot_process) { ?>
+                              <td><div class="tiga"><font size='5'> <?php echo $tot_process->totalstatus; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($verifikasi as $verifikasi) { ?>
+                              <td><div class="empat"><font size='5'> <?php echo $verifikasi->verifikasi; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($wApproval as $wApproval) { ?>
+                              <td><div class="lima"><font size='5'> <?php echo $wApproval->approval; ?> </div> </td><td> &nbsp;   
+                              <?php } ?>
                             </tr>  
                           </table>
                           </div>
@@ -72,6 +82,8 @@
 
                           <td><img src="assets/dashboard/images/legend/green.png"></td>
                           <td>Waiting for processing/ Submitted by users</td> &nbsp; &nbsp;
+
+                          <br>
 
                           <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
                           <td>Processing</td> &nbsp; &nbsp;
@@ -92,8 +104,12 @@
                            <br>
                             <table>
                             <tr>
-                              <td width="50%"> <div class="tujuh"><center><font size='3'>  <br> Tax<br>(A1) </font></center></div><td> &nbsp;
-                              <td width="50%"> <div class="tujuh"><center><font size='3'>  <br> Finance<br>(A2) </font></center></div><td> &nbsp;
+                              <?php foreach ($tax as $tax){ ?>
+                              <td width="50%"> <div class="tujuh"><center><font size='3'> <?php echo $tax->tax;?> <br> Tax<br>(A1) </font></center></div><td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($finance as $finance){ ?>
+                              <td width="50%"> <div class="tujuh"><center><font size='3'> <?php echo $finance->finance;?> <br> Finance<br>(A2) </font></center></div><td> &nbsp;
+                              <?php } ?>
                             </tr>
                             </table>
                           </div>
@@ -102,10 +118,18 @@
                           <div>
                             <table>
                             <tr>
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
-                            <td width="25%"> <div class="tujuh"><center><font size='5'>  <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
+                              <?php foreach ($review as $review) { ?>
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $review->review; ?> <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($verifikasi as $verifikasi) { ?>
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($wApproval as $wApproval) { ?>
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wApproval->approval; ?> <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
+                              <?php } ?>
+                              <?php foreach ($wPaid as $wPaid) { ?>
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wPaid->paid; ?> <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
+                              <?php } ?>
                             </tr>
                             </table>
                           </div>
@@ -240,6 +264,7 @@
                         <?php if($row->status == 1){ ?>                                           
                           <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success btn-sm">Accept</button>   
                           <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Reject</button>
+                          <!---.Modal-->
                           <!---.Accept-->          
                           <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                           <div class="modal-dialog modal-sm" role="document">
@@ -280,34 +305,34 @@
                           </div>
 
                         <?php } else if($row->status == 2){ ?>                                           
-                          <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success btn-sm">Processing</button>   
+                          <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success btn-sm">Process</button> 
+                          <!--.Modal-->                    
+                          <!---.Processing-->          
+                          <div class="modal fade" id="processing<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">                                        
+                              <div class="modal-body">
+                              <form id="processed" method="post" action="dashboard/processing">
+                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
+                                <label>Kepada CSF Tax:</label>                        
+                                <select class="form-control" name="handled_by">
+                                  <option>--- Choose ---</option>
+                                <?php foreach ($csf as $get) {?>
+                                  <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                                <?php } ?>
+                                </select>
+                              </div>
+                              <div class="modal-footer">                        
+                                  <button type="submit" class="btn btn-success bye">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                          </div>  
                     </td>      
-                    </tr>
-                    <!--.Modal-->                    
-                    <!---.Processing-->          
-                    <div class="modal fade" id="processing<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">                                        
-                        <div class="modal-body">
-                        <form id="processed" method="post" action="dashboard/processing">
-                          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                          <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-                          <label>Kepada CSF Tax:</label>                        
-                          <select class="form-control" name="handled_by">
-                            <option>--- Choose ---</option>
-                          <?php foreach ($csf as $get) {?>
-                            <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                          <?php } ?>
-                          </select>
-                        </div>
-                        <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
+                    </tr>                    
                 <?php  }} ?>
                 </tbody>
                 </table>

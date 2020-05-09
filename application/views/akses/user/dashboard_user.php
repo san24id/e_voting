@@ -106,14 +106,26 @@
                   <table width="100%"> 
                   <tr> 
                     <font size='5'> STATUS | </font> 
-                    <td><div class="satu"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    
+                    <td><div class="satu"><center><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    
                     <td><div class="dua"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="tiga"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="empat"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+
+                    <?php foreach ($draft as $tot_draft) { ?>
+                    <td><div class="tiga"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>                    
+                    
+                    <td><div class="empat"><center><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    
+                   
                     <td><div class="lima"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    
+
                     <td><div class="enam"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;                        
-                  </tr>  
+                    
+                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;     
+                                     
+                  </tr>   
                   </table>
                 </div>
                 <br><br>               

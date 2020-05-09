@@ -52,7 +52,7 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['apayment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
-
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/dashboard_csf', $data);
 	}
@@ -273,6 +273,13 @@ class Dashboard extends CI_Controller {
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['gprocess'] = $this->Dashboard_model->getProcessing();
+		$data['tax'] = $this->Dashboard_model->getTax();
+		$data['finance'] = $this->Dashboard_model->getFinance();
+		$data['review'] = $this->Dashboard_model->getWaitReview();
+		$data['verifikasi'] = $this->Dashboard_model->getWaitVerifikasi();
+		$data['wApproval'] = $this->Dashboard_model->getWaitApproval();
+		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/monitoring', $data);
@@ -335,8 +342,10 @@ class Dashboard extends CI_Controller {
 		$data['task'] = 'active';
 		$data['active4'] = '';
 
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
+		$data['mytask1'] = $this->Dashboard_model->getmyTask1();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/my_task', $data);

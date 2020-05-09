@@ -10,12 +10,13 @@ class Dashboard_model extends CI_Model{
     }
 
     public function processing(){
-        $sql = "SELECT COUNT(status) as process FROM `t_payment` WHERE status='2'";
+        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status=2";
         
         $query = $this->db->query($sql)->result();
         return $query;
     
     }
+
     public function getTotal(){
 
         $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment";
@@ -95,6 +96,61 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
 
+    }
+
+    function getmyTask1() {
+        $usr= $this->session->userdata("username");
+
+        $sql = "SELECT * FROM t_payment_l";
+        // var_dump($sql);exit;
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+
+    }
+
+    public function getProcessing(){
+        $sql = "SELECT COUNT(status) as totalstatus FROM t_payment WHERE status BETWEEN 4 AND 5 AND 6 AND 7";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    
+    }
+
+    function getTax() {
+        $sql = "SELECT COUNT(status) as tax FROM t_payment WHERE status= '4'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getFinance(){
+        $sql = "SELECT COUNT(status) as finance FROM t_payment WHERE status= '5'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitReview(){
+        $sql = "SELECT COUNT(status) as review FROM t_payment WHERE status= '6'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitVerifikasi(){
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status=7";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitApproval(){
+        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status=8";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitPaid(){
+        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status=9";
+        $query = $this->db->query($sql)->result();
+        return $query;
     }
 
     function addpay($add){

@@ -1,11 +1,11 @@
 <style type="text/css">
-   .satu { border: 5px solid purple; }
-   .dua { border: 5px dotted green; }
-   .tiga { border: 5px dashed blue; }
-   .empat { border: 5px double blue; }
-   .lima { border: 5px solid orange; }
-   .enam { border: 5px groove green; }
-   .tujuh { border: 5px solid green; }
+   .satu { border: 5px solid purple; background: purple;}
+   .dua { border: 5px dashed green; }
+   .tiga { border: 5px solid green; }
+   .empat { border: 5px solid green; background: green; }
+   .lima { border: 5px solid blue; }
+   .enam { border: 5px solid blue; background: blue;}
+   .tujuh { border: 5px solid orange; background: orange;}
    .box1{width:150px;
 				height:80px;
 				border: solid green;
@@ -104,13 +104,23 @@
                   <table width="100%"> 
                   <tr> 
                     <font size='5'> STATUS | </font> 
-                    <td><div class="satu"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    
+                    <td><div class="satu"><center><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    
+
                     <td><div class="dua"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+
                     <td><div class="tiga"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="empat"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+
+                    
+                    <td><div class="empat"><center><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                   
                     <td><div class="lima"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                   
                     <td><div class="enam"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;                        
+                    
+                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;     
+                                      
                   </tr>  
                   </table>
                 </div>
@@ -129,7 +139,7 @@
                   <td>Submitted</td> &nbsp; &nbsp;
 
                   <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
-                  <td>Processing</td>
+                  <td>Processing</td> &nbsp; &nbsp;
 
                   <td><img src="assets/dashboard/images/legend/blue.png"></td>
                   <td>Verified</td> &nbsp; &nbsp;

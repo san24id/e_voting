@@ -73,6 +73,66 @@
 
       <!-- /.row -->
     </section>
+
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box -->
+
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>NO.</th>
+                  <th>SP3 No</th>
+                  <th>APF No</th>
+                  <th>Tanggal Pembayaran</th>
+                  <th>Jenis Pembayaran</th>
+                  <th>Description</th>
+                  <th>Divisi Pemohon</th>
+                  <th>Currency</th>
+                  <th>Jumlah</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                    $i = 1;
+                    foreach ($mytask1 as $row){
+                  ?>
+                <tr>
+                  <td><?php echo $i++; ?></td>                  
+                  <td><?php echo $row->nomor_surat; ?> </td>
+                  <td>XXX</td>
+                  <td><?php echo $row->tanggal; ?></td>
+                  <td><?php echo $row->type; ?> </td>
+                  <td><?php echo $row->division_id; ?></td>
+                  <td><?php echo $row->description; ?></td>
+                  <td><?php echo $row->currency; ?></td>
+                  <td><?php echo $row->jumlah; ?> </td>
+                  <td>
+                    <a href=""><button class="btn btn-danger btn-sm">Clear</button></a>
+                    <a href=""><button class="btn btn-primary btn-sm">Open</button></a>                    
+                  </td>      
+                  </tr>
+                    <?php } ?>      
+              </tbody>
+              </table>
+            </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>  
+
+      <!-- /.row -->
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -137,7 +197,8 @@
 <script>
 $(function () {
     $("#example1").DataTable();
-    $('#example2').DataTable({
+    $("#example2").DataTable();
+    $('#example3').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,

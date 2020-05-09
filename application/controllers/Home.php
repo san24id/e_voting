@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 		parent::__construct();
         
         $this->load->model('Home_model');
-        // $this->load->model('Dashboard_model');
+        $this->load->model('Dashboard_model');
 
         $sid = $this->session->userdata("id_user");
 		
@@ -55,7 +55,7 @@ class Home extends CI_Controller {
 		$data['dp'] = $this->Home_model->getVdp();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
-
+		
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
 	}
