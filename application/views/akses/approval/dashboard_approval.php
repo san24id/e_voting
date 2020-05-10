@@ -1,11 +1,11 @@
 <style type="text/css">
-   .satu { border: 5px solid purple; }
-   .dua { border: 5px dotted green; }
-   .tiga { border: 5px dashed blue; }
-   .empat { border: 5px double blue; }
-   .lima { border: 5px solid orange; }
-   .enam { border: 5px groove green; }
-   .tujuh { border: 5px solid green; }
+   .satu { border: 5px solid purple; background: purple;}
+   .dua { border: 5px dashed green; }
+   .tiga { border: 5px solid green; }
+   .empat { border: 5px solid green; background: green; }
+   .lima { border: 5px solid blue; }
+   .enam { border: 5px solid blue; background: blue;}
+   .tujuh { border: 5px solid orange; background: orange;}
    .box1{width:150px;
 				height:80px;
 				border: solid green;
@@ -21,6 +21,7 @@
    }  
    	
 </style>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -39,8 +40,8 @@
                 <div class="info-box-content">
                 <?php foreach ($tot_pay_req as $tot_req) { ?>
                 <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
-                <span class="info-box-text"><center>Total Payment Request</center></span>     
                 <?php } ?>    
+                <span class="info-box-text"><center>Total Payment Request</center></span>     
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -70,8 +71,8 @@
                 <div class="info-box-content">
                 <?php foreach ($draft as $tot_draft) { ?>
                 <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
-                <span class="info-box-text"><center>Total Draft</center></span>
                 <?php } ?>            
+                <span class="info-box-text"><center>Total Draft</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -105,14 +106,29 @@
                   <table width="100%"> 
                   <tr> 
                     <font size='5'> STATUS | </font> 
-                    <td><div class="satu"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php foreach ($paid as $paid) { ?>
+                    <td><div class="satu"><center><font size='5'> <?php echo $paid->paid; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>
+                    
                     <td><div class="dua"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="tiga"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="empat"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="lima"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="enam"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;                        
-                  </tr>  
+                    
+                    <?php foreach ($draft as $tot_draft) { ?>
+                    <td><div class="tiga"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>                    
+                    <?php foreach ($submit as $submit) { ?>
+                    <td><div class="empat"><center><font size='5'> <?php echo $submit->submit; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>                  
+                    <?php foreach ($process as $process) { ?>
+                    <td><div class="lima"><center><font size='5'> <?php echo $process->process; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>
+                    <?php foreach ($verifikasi as $verifikasi) { ?>
+                    <td><div class="enam"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>
+                    <?php foreach ($approval as $approval) { ?>
+                    <td><div class="tujuh"><center><font size='5'> <?php echo $approval->approval; ?> </center></div> </td><td> &nbsp;     
+                    <?php } ?>
+                                     
+                  </tr>   
                   </table>
                 </div>
                 <br><br>               
@@ -130,7 +146,7 @@
                   <td>Submitted</td> &nbsp; &nbsp;
 
                   <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
-                  <td>Processing</td>
+                  <td>Processing</td> &nbsp; &nbsp;
 
                   <td><img src="assets/dashboard/images/legend/blue.png"></td>
                   <td>Verified</td> &nbsp; &nbsp;
@@ -221,24 +237,23 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                 <div class="table-responsive">
-                  <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                  <th>NO.</th>
-                  <th>Status</th>
-                  <th>Tanggal</th>
-                  <th>Jenis Pembayaran</th>
-                  <th>Nomor Surat</th>
-                  <th>Description</th>
-                  <th>Pemohon</th>
-                  <th>Divisi</th>
-                  <th>Bank Account</th>
-                  <th>Nama Penerima</th>
-                  <th>Submitted Date</th>
-                  <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
+                    <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                    <th>NO.</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                    <th>Jenis Pembayaran</th>
+                    <th>Nomor Surat</th>
+                    <th>Description</th>
+                    <th>Pemohon</th>
+                    <th>Bank Account</th>
+                    <th>Nama Penerima</th>
+                    <th>Submitted Date</th>
+                    <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <?php 
                         $i = 1;
                         foreach ($payment as $row){                          
@@ -247,9 +262,9 @@
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
-                  <tr>
-                  <td><?php echo $i++; ?></td>
-                  <td> <?php 
+                    <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php 
                           if($row->status == 1){
                               echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
@@ -269,38 +284,40 @@
                           }else if($row->status == 9){
                             echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }   
-                       ?>
-                  </td>                  
-                  <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
-                  <td><?php                     
+                        ?>
+                    </td>                  
+                    <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                    <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
                             echo $test2[$a]."<br>";
                           }
                         }  ?>
-                  </td>
-                  <td><?php echo $row->nomor_surat; ?></td>
-                  <td><?php echo $row->label1; ?></td>
-                  <td><?php echo $row->display_name; ?></td>
-                  <td><?php echo $row->division_id; ?></td>
-                  <td><?php echo $row->akun_bank; ?></td>
-                  <td><?php echo $row->penerima; ?></td>
-                  <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
-                  <td>
-                      <a href="approval/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                  </td>      
-                  </tr>
-                    <?php  } ?>
-                  </tbody>
-                  </table>
+                    </td>
+                    <td><?php echo $row->nomor_surat; ?></td>
+                    <td><?php echo $row->label1; ?></td>
+                    <td><?php echo $row->display_name; ?></td>
+                    <td><?php echo $row->akun_bank; ?></td>
+                    <td><?php echo $row->penerima; ?></td>
+                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td>
+                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <a href="Home/report/<?php echo $row->id_payment; ?>"><button class="btn btn-warning btn-sm">View</button> 
+                        
+                    </td>      
+                    </tr>
+                <?php  } ?>
+                </tbody>
+                </table>
                 </div>
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-          </div>
+            </div>
             <!-- /.col -->
         </div>  
+                
     </section>
     <!-- /.content -->
   </div>
@@ -342,10 +359,10 @@
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
+ 
+
 </div>
 <!-- ./wrapper -->
-<!----.Modal -->
-
 
 <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -388,7 +405,7 @@ $(function () {
           type: 'pie'
       },
       title: {
-          text: 'Jumlah Data Payment Request Divisi'
+          text: 'Jumlah Data Payment Request / Divisi'
       },
       credits: {
           enabled: false
@@ -420,32 +437,12 @@ $(function () {
               ]
       }]
   });
+</script>
 
-$(".reject").on('click', function(){
-      $.ajax({        
-          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
-          data: $("#rejected").serialize(), // data yang akan dikirim ke file yang dituju        
-          success: function(response){ // Ketika proses pengiriman berhasil          
-              $("#reject").modal('hide'); // Sembunyikan loadingnya   
-               location.reload();       
-              alert('Rejected success')
-          }      
-      });
-  });    
-
-  $(".accept").on('click', function(){
-      $.ajax({        
-          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
-          data: $("#accepted").serialize(), // data yang akan dikirim ke file yang dituju        
-          success: function(response){ // Ketika proses pengiriman berhasil          
-              $("#accept").modal('hide'); // Sembunyikan loadingnya   
-               location.reload();       
-              alert('Accepted success')
-          }      
-      });
-  });    
+<script>
+function printThis() {
+  window.print();
+}
 </script>
 </body>
 </html>

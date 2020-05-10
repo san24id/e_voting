@@ -52,6 +52,11 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['apayment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getWaitVerifikasi();
+		$data['approval'] = $this->Home_model->getWaitApproval();
+		$data['paid'] = $this->Home_model->getWaitPaid();
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/dashboard_csf', $data);
@@ -277,9 +282,16 @@ class Dashboard extends CI_Controller {
 		$data['tax'] = $this->Dashboard_model->getTax();
 		$data['finance'] = $this->Dashboard_model->getFinance();
 		$data['review'] = $this->Dashboard_model->getWaitReview();
-		$data['verifikasi'] = $this->Dashboard_model->getWaitVerifikasi();
+		
+		$data['wverifikasi'] = $this->Dashboard_model->getWaitVerifikasi();
+		$data['verifikasi'] = $this->Dashboard_model->getVerifikasi();
+
 		$data['wApproval'] = $this->Dashboard_model->getWaitApproval();
+		$data['approval'] = $this->Dashboard_model->getApproval();
+		
 		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
+		$data['Paid'] = $this->Dashboard_model->getPaid();
+
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/monitoring', $data);
@@ -369,7 +381,7 @@ class Dashboard extends CI_Controller {
 		$add = array(
 			
 			'id_pay' => $_POST['id_pay'],
-			'status' => 8,
+			'status' => 4,
 			'display_name' => $_POST['display_name'],
 			'type' => $_POST['type'],
 			'tanggal' => $_POST['tanggal'],

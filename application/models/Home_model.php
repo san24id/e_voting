@@ -56,6 +56,55 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getSubmitted(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as submit FROM t_payment WHERE status='2' AND division_id='$dvs' AND id_user='$usr'";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    
+    }
+
+    public function getProcessing(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status in ('4','5','6','7') AND division_id='$dvs' AND id_user='$usr'";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    
+    }
+
+    function getVerifikasi(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND division_id='$dvs' AND id_user='$usr'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getApproval(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9' AND division_id='$dvs' AND id_user='$usr'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getPaid(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10' AND division_id='$dvs' AND id_user='$usr'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getVdraftrequest(){
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');

@@ -38,8 +38,8 @@
                 <div class="info-box-content">
                 <?php foreach ($tot_pay_req as $tot_req) { ?>
                 <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
-                <span class="info-box-text"><center>Total Payment Request</center></span>     
                 <?php } ?>    
+                <span class="info-box-text"><center>Total Payment Request</center></span>     
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -69,8 +69,8 @@
                 <div class="info-box-content">
                 <?php foreach ($draft as $tot_draft) { ?>
                 <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
-                <span class="info-box-text"><center>Total Draft</center></span>
                 <?php } ?>            
+                <span class="info-box-text"><center>Total Draft</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -104,23 +104,28 @@
                   <table width="100%"> 
                   <tr> 
                     <font size='5'> STATUS | </font> 
+                    <?php foreach ($paid as $paid) { ?>
+                    <td><div class="satu"><center><font size='5'> <?php echo $paid->paid; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>
                     
-                    <td><div class="satu"><center><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    
-
                     <td><div class="dua"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-
-                    <td><div class="tiga"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-
                     
-                    <td><div class="empat"><center><font size='5'> - </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                   
-                    <td><div class="lima"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                   
-                    <td><div class="enam"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    
-                    <td><div class="tujuh"><center><font size='5'> - </center></div> </td><td> &nbsp;     
-                                      
+                    <?php foreach ($draft as $tot_draft) { ?>
+                    <td><div class="tiga"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>                    
+                    <?php foreach ($submit as $submit) { ?>
+                    <td><div class="empat"><center><font size='5'> <?php echo $submit->submit; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>                  
+                    <?php foreach ($process as $process) { ?>
+                    <td><div class="lima"><center><font size='5'> <?php echo $process->process; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>
+                    <?php foreach ($verifikasi as $verifikasi) { ?>
+                    <td><div class="enam"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>
+                    <?php foreach ($approval as $approval) { ?>
+                    <td><div class="tujuh"><center><font size='5'> <?php echo $approval->approval; ?> </center></div> </td><td> &nbsp;     
+                    <?php } ?>
+                                     
                   </tr>  
                   </table>
                 </div>

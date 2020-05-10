@@ -33,6 +33,11 @@ class Approval extends CI_Controller {
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getVerifikasi();
+		$data['approval'] = $this->Home_model->getApproval();
+		$data['paid'] = $this->Home_model->getPaid();
 
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/dashboard_approval', $data);
@@ -145,6 +150,8 @@ class Approval extends CI_Controller {
 		$data['approved'] = $this->Approval_model->getList();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['tot_approved'] = $this->Approval_model->TotalApproved();
+		$data['wApproval'] = $this->Approval_model->getWaitApproval();
 
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/approval', $data);

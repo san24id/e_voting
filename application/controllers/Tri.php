@@ -39,6 +39,11 @@ class Tri extends CI_Controller {
 		$data['apayment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getWaitVerifikasi();
+		$data['approval'] = $this->Home_model->getWaitApproval();
+		$data['paid'] = $this->Home_model->getWaitPaid();
 
         $this->load->view('akses/tri/header_tri', $data);
 		$this->load->view('akses/tri/dashboard_tri', $data);

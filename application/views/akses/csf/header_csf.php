@@ -286,11 +286,11 @@
                         <center><b><u><font size="+1" style="font-family: calibri;">CREATE FORM</font></u></b></center>
                       </h5>
                       
-                      <a href="Dashboard/form_arf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ARF</button></a> &nbsp;&nbsp;&nbsp;
-                      <a href="Dashboard/form_asf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM ASF</button></a>
+                      <a href="Dashboard/form_arf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; FORM ARF</button></a> &nbsp;&nbsp;&nbsp;
+                      <a href="Dashboard/form_asf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; FORM ASF</button></a>
                       <br><br>
-                      <a href="Dashboard/form_prf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM PRF</button></a>&nbsp;&nbsp;&nbsp;
-                      <a href="Dashboard/form_crf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE FORM CRF</button></a>
+                      <a href="Dashboard/form_prf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; FORM PRF</button></a>&nbsp;&nbsp;&nbsp;
+                      <a href="Dashboard/form_crf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; FORM CRF</button></a>
                     </div>
                   </div>
                 </div>

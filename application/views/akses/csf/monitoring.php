@@ -54,8 +54,8 @@
                           <table> 
                             <tr> 
                               <td><font size='5'> STATUS | </font> </td><td> &nbsp;
-                              <?php foreach ($wPaid as $wPaid) { ?>
-                              <td><div class="satu"><font size='5'> <?php echo $wPaid->paid;?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <?php foreach ($Paid as $Paid) { ?>
+                              <td><div class="satu"><font size='5'> <?php echo $Paid->paid;?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
                               <?php } ?>
                               <?php foreach ($processing as $process) { ?>
                               <td><div class="dua"><font size='5'> <?php echo $process->process; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
@@ -66,8 +66,8 @@
                               <?php foreach ($verifikasi as $verifikasi) { ?>
                               <td><div class="empat"><font size='5'> <?php echo $verifikasi->verifikasi; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
                               <?php } ?>
-                              <?php foreach ($wApproval as $wApproval) { ?>
-                              <td><div class="lima"><font size='5'> <?php echo $wApproval->approval; ?> </div> </td><td> &nbsp;   
+                              <?php foreach ($approval as $approval) { ?>
+                              <td><div class="lima"><font size='5'> <?php echo $approval->approval; ?> </div> </td><td> &nbsp;   
                               <?php } ?>
                             </tr>  
                           </table>
@@ -119,16 +119,16 @@
                             <table>
                             <tr>
                               <?php foreach ($review as $review) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $review->review; ?> <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $review->wreview; ?> <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
                               <?php } ?>
-                              <?php foreach ($verifikasi as $verifikasi) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
+                              <?php foreach ($wverifikasi as $verifikasi) { ?>
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $verifikasi->wverifikasi; ?> <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
                               <?php } ?>
                               <?php foreach ($wApproval as $wApproval) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wApproval->approval; ?> <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wApproval->wapproval; ?> <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
                               <?php } ?>
                               <?php foreach ($wPaid as $wPaid) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wPaid->paid; ?> <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
+                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wPaid->wpaid; ?> <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
                               <?php } ?>
                             </tr>
                             </table>

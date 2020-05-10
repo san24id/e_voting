@@ -36,8 +36,9 @@
                       <div class="col-md-6"><!--Lingkaran-->
                         <center> <div class="lingkaran1 panel panel-primary">
                           <br><br>
-
-                          <center> <font size='7'> 5 </font> </center> 
+                          <?php foreach ($wApproval as $wApproval) { ?>
+                          <center> <font size='7'> <?php echo $wApproval->approval; ?> </font> </center> 
+                          <?php } ?>
                           <center> <font size='3'> Waiting for Approval </font> </center>
 
                         </div>
@@ -51,8 +52,9 @@
                       <div class="col-md-6"><!--Status-->
                       <center> <div class="lingkaran1 panel panel-primary">
                           <br><br>
-
-                          <center> <font size='7'> 92 </font> </center> 
+                          <?php foreach ($tot_approved as $tot_approved) { ?>
+                          <center> <font size='7'> <?php echo $tot_approved->tot_approved; ?> </font> </center> 
+                          <?php } ?>
                           <center> <font size='3'> Total Approved </font> </center>
 
                         </div>               
@@ -134,11 +136,11 @@
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
-                          if($row->status == 4){
+                          if($row->status == 8){
                               echo "<img src='assets/dashboard/images/legend/blue.png'>";  
                           }else if($row->status >= 3){
                              echo "<img src='assets/dashboard/images/legend/reject.png'>";
-                          }else if($row->status >= 6){
+                          }else if($row->status >= 9){
                             echo "<img src='assets/dashboard/images/legend/orange.png'>";
                          }
                         ?>

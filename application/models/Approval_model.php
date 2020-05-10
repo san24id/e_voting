@@ -4,8 +4,20 @@ class Approval_model extends CI_Model{
 
     public function getList() {
 
-        $sql = "SELECT * FROM t_payment_l";
+        $sql = "SELECT * FROM t_payment_l WHERE status='8'";
                 
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitApproval(){
+        $sql = "SELECT COUNT(status) as approval FROM t_payment_l WHERE status=8";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function TotalApproved(){
+        $sql = "SELECT COUNT(status) as tot_approved FROM t_payment_l WHERE status=9";
         $query = $this->db->query($sql)->result();
         return $query;
     }

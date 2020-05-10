@@ -55,6 +55,12 @@ class Home extends CI_Controller {
 		$data['dp'] = $this->Home_model->getVdp();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getVerifikasi();
+		$data['approval'] = $this->Home_model->getApproval();
+		$data['paid'] = $this->Home_model->getPaid();
+
 		
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);

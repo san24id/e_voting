@@ -110,7 +110,7 @@ class Dashboard_model extends CI_Model{
     }
 
     public function getProcessing(){
-        $sql = "SELECT COUNT(status) as totalstatus FROM t_payment WHERE status BETWEEN 4 AND 5 AND 6 AND 7";
+        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status in ('4','5','6','7')";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -130,25 +130,45 @@ class Dashboard_model extends CI_Model{
     }
 
     function getWaitReview(){
-        $sql = "SELECT COUNT(status) as review FROM t_payment WHERE status= '6'";
+        $sql = "SELECT COUNT(status) as wreview FROM t_payment WHERE status= '6'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
     function getWaitVerifikasi(){
-        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status=7";
+        $sql = "SELECT COUNT(status) as wverifikasi FROM t_payment WHERE status='7'";
+        // var_dump ($sql);exit;
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getVerifikasi(){
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8'";
+        // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
     function getWaitApproval(){
-        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status=8";
+        $sql = "SELECT COUNT(status) as wapproval FROM t_payment WHERE status='8'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getApproval(){
+        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
     function getWaitPaid(){
-        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status=9";
+        $sql = "SELECT COUNT(status) as wpaid FROM t_payment WHERE status='9'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getPaid(){
+        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
