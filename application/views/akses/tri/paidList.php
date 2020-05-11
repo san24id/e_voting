@@ -32,7 +32,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    // foreach ($rejected as $row){
+                    foreach ($payment as $row){
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
@@ -47,7 +47,7 @@
                     <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                   </td>      
                   </tr>
-                       
+                    <?php } ?>       
               </tbody>
               </table>
             </div>

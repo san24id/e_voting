@@ -15,9 +15,11 @@ td[rowspan="6"] {
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
-          <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
-          <input type="hidden" name="type" class="form-control" value="1"> 
+        <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()">
+          <?php foreach ($ppayment as $get) { ?>  
+            <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
+
+          <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>"> 
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -41,24 +43,24 @@ td[rowspan="6"] {
                       <tbody>     
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Tanggal : </td>
-                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>" readonly></td>
+                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="prf_doc" class="form-control" placeholder="PRF Doc"></td>
+                          <td><input type="text" name="prf_doc" class="form-control" value="<?php echo $get->prf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" placeholder="Divisi Pemohon"></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $get->division_id; ?>"></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">SPPP Doc. No : </font></td>
-                          <td><input type="text" name="nomor_surat" class="form-control" placeholder="SPPP Doc"></td>
+                          <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat; ?>"></td>
                         </tr>
                         <tr>
                           <td> </td>
                           <td> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">Kode Proyek : <br> <i>Project Code</i><font></td>
-                          <td><input type="text" name="kode_proyek" class="form-control" placeholder="Project Code"></td>
+                          <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -77,20 +79,20 @@ td[rowspan="6"] {
                         <tbody>                      
                         <tr>
                           <td><center> 1 </center></td>
-                          <td><textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea> </td>                  
+                          <td><textarea type="text" class="form-control" name="description" required><?php echo $get->description;?></textarea> </td>                  
                           <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
-                                      <option value="1">Choose</option>
-                                      <option value="EUR">EUR</option>
-                                      <option value="GBP">GBP</option>
-                                      <option value="HKD">HKD</option>
-                                      <option value="IDR">IDR</option>
-                                      <option value="JPY">JPY</option>
-                                      <option value="KRW">KRW</option>
-                                      <option value="SGD">SGD</option>
-                                      <option value="USD">USD</option>
+                                      <option>---Choose---</option>
+                                      <option value="EUR"<?php echo $get->currency==EUR? 'selected':''?>>EUR</option>
+                                      <option value="GBP"<?php echo $get->currency==GBP? 'selected':''?>>GBP</option>
+                                      <option value="HKD"<?php echo $get->currency==HKD? 'selected':''?>>HKD</option>
+                                      <option value="IDR"<?php echo $get->currency==IDR? 'selected':''?>>IDR</option>
+                                      <option value="JPY"<?php echo $get->currency==JPY? 'selected':''?>>JPY</option>
+                                      <option value="KRW"<?php echo $get->currency==KRW? 'selected':''?>>KRW</option>
+                                      <option value="SGD"<?php echo $get->currency==SGD? 'selected':''?>>SGD</option>
+                                      <option value="USD"<?php echo $get->currency==USD? 'selected':''?>>USD</option>
                               </select>
                           </td>
-                          <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
+                          <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" required><?php echo $get->jumlah;?></textarea> </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
@@ -99,11 +101,11 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="3"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang"></td>
+                          <td colspan="3"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>"></td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" placeholder="Name"></td>
+                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada;?>"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -114,14 +116,14 @@ td[rowspan="6"] {
                       <tbody>
                       <tr> 
                         <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks" required></textarea></td>
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" required><?php echo $get->catatan;?></textarea></td>
                       </tr>
                       <tr>
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control"></td>     
+                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->verified_date));?>"></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -131,13 +133,13 @@ td[rowspan="6"] {
                     </table>  
                     <table border="1" style="font-family: calibri;" width="50%">  
                       <tbody>
-                        <tr>
+                      <tr>
                           <td>Nama /<i>Name : </i></td>
-                          <td><textarea type="text" class="form-control" name="penanggung_jawab" placeholder="Name" required></textarea></td> 
+                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $get->penanggung_jawab;?>" required></td> 
                         </tr>
                         <tr>
                           <td>Jabatan /<i>Title : </i></td>
-                          <td><textarea type="text" class="form-control" name="jabatan" placeholder="Title" required></textarea></td> 
+                          <td><input type="text" class="form-control" name="jabatan" value="<?php echo $get->jabatan;?>" required></td> 
                         </tr>
                       </tbody>  
                     </table>    
@@ -154,22 +156,24 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" placeholder="Name"> </td>
+                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" placeholder="Name"> </td>
+                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" placeholder="Name"> </td>
+                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>"> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" placeholder="Title"> </td>
+                          <td><input type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" placeholder="Title"> </td>
+                          <td><input type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" placeholder="Title"> </td>
-                        </tr>  
+                          <td><input type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>"> </td>
+                        </tr>   
                       </tbody>
                     </table>
+
+                    <!---TREASURY--->
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
@@ -252,7 +256,7 @@ td[rowspan="6"] {
                 </div>                                                 
             </div>
           </section>    
-
+          <?php } ?>
         </form>
         <!-- /.content -->
       </div>
@@ -318,8 +322,8 @@ td[rowspan="6"] {
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script>
-function tambah() {
-  alert("Data Successfully to Submit");
+function update() {
+  alert("Data Successfully to Update!");
 }
 
 function myFunction(){

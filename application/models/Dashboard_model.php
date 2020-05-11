@@ -43,7 +43,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function nomorsurat(){
-        $sql = "SELECT nomor_surat AS number1 FROM t_payment WHERE status = 7";
+        $sql = "SELECT nomor_surat AS number1 FROM t_payment WHERE status = 4";
 
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;
@@ -101,7 +101,7 @@ class Dashboard_model extends CI_Model{
     function getmyTask1() {
         $usr= $this->session->userdata("username");
 
-        $sql = "SELECT * FROM t_payment_l";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay ";
         // var_dump($sql);exit;
 
         $query = $this->db->query($sql)->result();
@@ -109,8 +109,15 @@ class Dashboard_model extends CI_Model{
 
     }
 
+    public function getform($id) {
+        $sql = "SELECT * FROM `t_payment_l` WHERE id = '$id'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getProcessing(){
-        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status in ('4','5','6','7')";
+        $sql = "SELECT COUNT(status) as totalstatus FROM t_payment WHERE status in ('4','5','6','7')";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -204,7 +211,7 @@ class Dashboard_model extends CI_Model{
         `terbilang`='".$upd['terbilang']."',`dibayar_kepada`='".$upd['dibayar_kepada']."',`verified_date`='".$upd['verified_date']."',`penanggung_jawab`='".$upd['penanggung_jawab']."',
         `jabatan`='".$upd['jabatan']."',`persetujuan_pembayaran1`='".$upd['persetujuan_pembayaran1']."',`persetujuan_pembayaran2`='".$upd['persetujuan_pembayaran2']."',
         `persetujuan_pembayaran3`='".$upd['persetujuan_pembayaran3']."',`jabatan1`='".$upd['jabatan1']."',`jabatan2`='".$upd['jabatan2']."',`jabatan3`='".$upd['jabatan3']."',`catatan`='".$upd['catatan']."' 
-        WHERE `id_pay`='".$upd['id_pay']."'"; 
+        WHERE `id`='".$upd['id']."'"; 
         
         $query = $this->db->query($sql);
 
@@ -212,7 +219,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function deletepay($id){
-        $sql = "DELETE FROM `t_payment_l` WHERE `t_payment_l`.`id_pay` = $id";
+        $sql = "DELETE FROM `t_payment_l` WHERE `t_payment_l`.`id` = $id";
 
         $query = $this->db->query($sql);
 

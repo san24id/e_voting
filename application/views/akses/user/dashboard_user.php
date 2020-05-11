@@ -219,7 +219,6 @@
                       <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
                       <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
                       <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
                     </ul>
                     </div>
                   </div>

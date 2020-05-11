@@ -103,20 +103,39 @@
                   <?php 
                     $i = 1;
                     foreach ($mytask1 as $row){
-                  ?>
-                <tr>
+                      $test11 = $row->apf;                        
+                      $test22 = explode(";", $test11);
+                      $test33 = count($test22);                        
+                      ?>  
+                  <tr>
                   <td><?php echo $i++; ?></td>                  
                   <td><?php echo $row->nomor_surat; ?> </td>
                   <td>XXX</td>
                   <td><?php echo $row->tanggal; ?></td>
-                  <td><?php echo $row->type; ?> </td>
-                  <td><?php echo $row->division_id; ?></td>
+                  <td><?php                     
+                        for($b=0; $b<$test33; $b++){
+                          if($test22[$b]){
+                            echo $test22[$b]."<br>";
+                          }
+                        }  ?> 
+                  </td>
                   <td><?php echo $row->description; ?></td>
+                  <td><?php echo $row->division_id; ?></td>
                   <td><?php echo $row->currency; ?></td>
                   <td><?php echo $row->jumlah; ?> </td>
                   <td>
-                    <a href=""><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href=""><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <?php if ($row->type == 1) { ?>   
+                      <a href="Dashboard/form_eprf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                    <?php } ?>
+                    <?php if ($row->type == 2) { ?> 
+                      <a href="Dashboard/form_earf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                    <?php } ?>
+                    <?php if ($row->type == 3) { ?> 
+                      <a href="Dashboard/form_easf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <?php } ?>
+                    <?php if ($row->type == 4) { ?> 
+                      <a href="Dashboard/form_ecrf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <?php } ?>
                   </td>      
                   </tr>
                     <?php } ?>      

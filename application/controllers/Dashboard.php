@@ -54,9 +54,9 @@ class Dashboard extends CI_Controller {
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
 		$data['submit'] = $this->Home_model->getSubmitted();
 		$data['process'] = $this->Home_model->getProcessing();
-		$data['verifikasi'] = $this->Home_model->getWaitVerifikasi();
-		$data['approval'] = $this->Home_model->getWaitApproval();
-		$data['paid'] = $this->Home_model->getWaitPaid();
+		$data['verifikasi'] = $this->Home_model->getVerifikasi();
+		$data['approval'] = $this->Home_model->getApproval();
+		$data['paid'] = $this->Home_model->getPaid();
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/dashboard_csf', $data);
@@ -88,6 +88,22 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_arf', $data);
 	}
 
+	public function form_earf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_earf', $data);
+
+	}
+
 	public function form_asf(){
 
 		$data['active1'] = 'active';
@@ -101,6 +117,23 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf', $data);
+	}
+
+	public function form_easf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_easf', $data);
+
 	}
 
 	public function form_prf(){
@@ -118,6 +151,23 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_prf', $data);
 	}
 
+	public function form_eprf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_eprf', $data);
+
+	}
+
 	public function form_crf(){
 
 		$data['active1'] = 'active';
@@ -131,6 +181,23 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_crf', $data);
+	}
+
+	public function form_ecrf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_ecrf', $data);
+
 	}
 
 	public function accept(){
@@ -378,12 +445,20 @@ class Dashboard extends CI_Controller {
 	}
 
 	function addpay(){
+		$c_jp = count($_POST['type']);
+		$type = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$type .= $_POST['type'][$i].";";
+		}
+
+		// echo $type;
+		// var_dump(count($_POST['type']));exit;
 		$add = array(
 			
 			'id_pay' => $_POST['id_pay'],
-			'status' => 4,
+			'status' => 5,
 			'display_name' => $_POST['display_name'],
-			'type' => $_POST['type'],
+			'type' => $type,
 			'tanggal' => $_POST['tanggal'],
 			'arf_doc' => $_POST['arf_doc'],
 			'asf_doc' => $_POST['asf_doc'],
@@ -415,10 +490,16 @@ class Dashboard extends CI_Controller {
 
 		$this->Dashboard_model->addpay($add);
 		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat]);
-		redirect('Dashboard');
+		redirect('Dashboard/monitoring');
 	}
 	
 	function updpay(){
+		$c_jp = count($_POST['type']);
+		$type = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$type .= $_POST['type'][$i].";";
+		}
+
 		$upd = array(
 			
 			'id' => $_POST['id'],
@@ -449,13 +530,15 @@ class Dashboard extends CI_Controller {
 			'jabatan1' => $_POST['jabatan1'],
 			'jabatan2' => $_POST['jabatan2'],
 			'jabatan3' => $_POST['jabatan3'],
-			'catatan' => $_POST['catatan']
+			'catatan' => $_POST['catatan'],
+			'handled_by' => $_POST['handled_by']
 
 		);
 
 		$this->Dashboard_model->updpay($upd);
+		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat]);
 			
-		redirect('Dashboard');
+		redirect('Dashboard/my_task');
 	}
 
 	function deletepay(){

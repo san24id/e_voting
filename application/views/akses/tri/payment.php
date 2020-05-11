@@ -40,8 +40,9 @@
                       <div class="col-md-6"><!--Lingkaran-->
                         <center> <div class="lingkaran1 panel panel-primary">
                           <br><br>
-
-                          <center> <font size='7'> 10 </font> </center> 
+                          <?php foreach ($wPaid as $wPaid) { ?> 
+                          <center> <font size='7'> <?php echo $wPaid->wpaid;?> </font> </center> 
+                          <?php } ?>
                           <center> <font size='3'> Waiting for Payment </font> </center>
 
                         </div>
@@ -55,8 +56,9 @@
                       <div class="col-md-6"><!--Status-->
                       <center> <div class="lingkaran1 panel panel-primary">
                           <br><br>
-
-                          <center> <font size='7'> 82 </font> </center> 
+                          <?php foreach ($Paid as $Paid) { ?>
+                          <center> <font size='7'> <?php echo $Paid->paid; ?> </font> </center> 
+                          <?php } ?>
                           <center> <font size='3'> Total Paid </font> </center>
 
                         </div>               
@@ -99,7 +101,6 @@
                       <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
                       <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
                       <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
                     </ul>
                     </div>
                   </div>
@@ -135,17 +136,17 @@
                         $i = 1;
                         foreach ($payment as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->dsc;                        
+                        $test1 = $row->apf;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
-                          if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
-                          }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
+                          if($row->status == 9){
+                              echo "<img src='assets/dashboard/images/legend/orange.png'>";  
+                          }else if($row->status == 10){
+                             echo "<img src='assets/dashboard/images/legend/purple.png'>";
                           }else if($row->status >= 3){
                              echo "<img src='assets/dashboard/images/legend/default.png'>";
                           }

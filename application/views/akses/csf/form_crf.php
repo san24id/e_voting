@@ -16,7 +16,7 @@ td[rowspan="3"] {
         <!-- Main content -->
         <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
-          <input type="hidden" name="type" class="form-control" value="Cash Received Form"> 
+          <input type="hidden" name="type" class="form-control" value="4"> 
           <section class="content">
             <div class="row">
               <div class="col-xs-12">

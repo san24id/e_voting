@@ -302,13 +302,13 @@
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
                         <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                        <?php if($row->status == 1){ ?>
+                        <!-- <?php if($row->status == 1){ ?>
                         <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>   
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>                     
+                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>                      -->
                     </td>      
                     </tr>
                     <!--.Modal-->
-                    <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <!-- <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
@@ -330,7 +330,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                    </div>
 
                     <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
@@ -351,7 +351,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                    </div> -->
                 <?php  }} ?>
                 </tbody>
                 </table>

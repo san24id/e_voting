@@ -241,10 +241,12 @@
                           }else if($row->status == 7){
                               echo "Waiting for Verification";
                           }else if($row->status == 8){
-                            echo "Waiting for Payment";
+                            echo "Waiting for Approval";
                           }else if($row->status == 9){
+                            echo "Waiting for Payment";  
+                          }else if($row->status == 10){
                             echo "Paid";  
-                          }  
+                          }
                         ?>
                     </td>                  
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>

@@ -15,8 +15,9 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
         
-        $sql = "SELECT * FROM (SELECT b.dsc, a.id_user, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.id_user = '$usr'
-                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
+        $sql = "SELECT * FROM (SELECT b.dsc, a.id_user, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a 
+                RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.id_user = '$usr' GROUP by b.jenis_pembayaran ORDER by b.id_pay) 
+                otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
                
             //    var_dump($dvs);exit;
         $query = $this->db->query($sql)->result();
@@ -160,6 +161,7 @@ class Home_model extends CI_Model{
         return $count_rejected;
 
     }    
+    
     public function getform($id_payment) {
         $sql = "SELECT * FROM `t_payment` WHERE id_payment = '$id_payment'";
                 

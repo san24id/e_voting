@@ -282,8 +282,10 @@
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                          }   
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>";    
+                          }  
                         ?>
                     </td>                  
                     <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
