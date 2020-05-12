@@ -148,13 +148,15 @@ td[rowspan="6"] {
                     <table border="1" style="font-family: calibri;" width="50%">  
                       <tbody>
                         <tr>
+                            <?php foreach ($divhead as $divhead) { ?>
                           <td>Nama /<i>Name : </i></td>
-                          <td><input type="text" class="form-control" name="penanggung_jawab" placeholder="Name" required></td> 
+                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $divhead->display_name; ?>" required></td> 
                         </tr>
                         <tr>
                           <td>Jabatan /<i>Title : </i></td>
-                          <td><input type="text" class="form-control" name="jabatan" placeholder="Title" required></td> 
+                          <td><input type="text" class="form-control" name="jabatan" value="SVP Corporate Strategy & Finance" required></td> 
                         </tr>
+                            <?php }?>
                       </tbody>  
                     </table>    
 

@@ -255,8 +255,11 @@
                                 <br>
                                 <br>
                                 <br>
-                                <br>Nama :
-                                <br>Jabatan :
+                                <?php foreach ($divhead as $divhead) { ?>
+                                <br>Nama : &nbsp; <?php echo $divhead->display_name; ?>
+                                <br>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
+                                                echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
+                                <?php } ?>                                
                             </div>  
                       </div>
                         <hr style=" border: 1px solid #000;">

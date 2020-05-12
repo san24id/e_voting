@@ -60,7 +60,7 @@ class Home extends CI_Controller {
 		$data['verifikasi'] = $this->Home_model->getVerifikasi();
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
-
+		$data['divhead'] = $this->Home_model->getDivHead();
 		
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
@@ -77,8 +77,8 @@ class Home extends CI_Controller {
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['dp'] = $this->Home_model->getVdp();
 		$data['payment'] = $this->Home_model->getPayment($sid);
-		$data['surat'] = $this->Home_model->buat_kode();			
-
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
 		
 		// $this->load->view('akses/user/header_user');
 		$this->load->view('akses/report/print', $data);
@@ -217,6 +217,7 @@ class Home extends CI_Controller {
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		
 		$this->load->view('akses/user/header_user', $data);	
@@ -233,8 +234,7 @@ class Home extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
-		// $data['cn_assesment'] = $this->Home_model->cn_assesment();
-		// $data['noass'] = $this->Home_model->getno();
+		$data['divhead'] = $this->Home_model->getDivHead();
 
 		$this->load->view('akses/user/header_user', $data);	
         $this->load->view('akses/user/form_pengajuan', $data);
@@ -351,7 +351,10 @@ class Home extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
 
 		$this->load->view('akses/user/header_user', $data);	
        	$this->load->view('akses/user/form_finished', $data);

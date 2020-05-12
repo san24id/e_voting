@@ -83,6 +83,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_arf', $data);
@@ -95,6 +96,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		// $sid = $this->session->userdata("id_user");
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -111,9 +113,9 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
-		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
-		// $data['ppayment'] = $this->Home_model->getform($id_payment);
-		// $data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf', $data);
@@ -127,6 +129,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -143,9 +146,12 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
-		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		// $data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_prf', $data);
@@ -161,6 +167,7 @@ class Dashboard extends CI_Controller {
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -174,8 +181,9 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
-		// $data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		// $data['surat'] = $this->Home_model->buat_kode();
 
@@ -191,6 +199,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();

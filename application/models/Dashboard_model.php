@@ -180,6 +180,15 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getDivHeadCSF(){
+        $sql = "SELECT a.display_name, b.role_id, a.division_id FROM m_user as a JOIN m_role as b ON b.role_id='4' 
+                WHERE a.division_id='CSF' AND a.role_id='4'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+
+    }
+
     function addpay($add){
         $sql = "INSERT INTO `t_payment_l` (display_name, type, status, tanggal, arf_doc, asf_doc, prf_doc, crf_doc, nomor_surat, kode_proyek, division_id,
                 tanggal_selesai, label1, description, currency, jumlah, terbilang, dibayar_kepada, verified_date, penanggung_jawab, jabatan, 

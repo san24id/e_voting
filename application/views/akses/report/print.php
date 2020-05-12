@@ -284,15 +284,18 @@
                       </tr>
                       <tr>
                         <td><font size="1">Nama : &nbsp; <?php echo $row->display_name?></td>
-                        <td><font size="1">Nama Approval : </td>
+                        <?php foreach ($divhead as $divhead) { ?>
+                        <td><font size="1">Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
                       </tr>
                       <tr>
                         <td><font size="1">Jabatan : &nbsp; <?php echo $row->jabatan?></td>
-                        <td><font size="1">Jabatan : &nbsp; </td>
+                        <td><font size="1">Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
+                                                echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
+                        <?php } ?>                        
                       </tr>                            
                     </tbody>
                     </table>
-
+                     
                     <hr style=" border: 0.5px solid #000;">
                     <h6>
                     <table border="1" width="100%">

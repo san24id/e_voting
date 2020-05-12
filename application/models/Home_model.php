@@ -40,7 +40,17 @@ class Home_model extends CI_Model{
         $usr = $this->session->userdata('id_user');
 
         $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
-        AND id_user = '$usr' AND division_id='$dvs' ";
+                AND id_user = '$usr' AND division_id='$dvs' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getDivHead(){
+        $dvs = $this->session->userdata('division_id'); 
+
+        $sql = "SELECT a.display_name, b.role_id, a.division_id FROM m_user as a JOIN m_role as b ON b.role_id='4' 
+                WHERE a.division_id='$dvs' AND a.role_id='4'";
 
         $query = $this->db->query($sql)->result();
         return $query;
