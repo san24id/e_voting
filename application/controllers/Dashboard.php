@@ -66,13 +66,16 @@ class Dashboard extends CI_Controller {
 
 	public function form_sp3($id_payment){
 
-		$data['active1'] = 'active';
+		$data['monitoring'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Home_model->buat_kode();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Home_model->getDivHead();
+
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_sp3', $data);
@@ -85,6 +88,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -100,6 +104,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 
@@ -117,6 +122,7 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -132,6 +138,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -153,7 +160,7 @@ class Dashboard extends CI_Controller {
 		// $data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
-
+		$data['currency'] = $this->Home_model->getCurrency();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_prf', $data);
@@ -168,6 +175,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -184,6 +192,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -201,6 +210,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -453,6 +463,165 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/my_inbox', $data);
+	}
+
+	public function form_add()
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['bank'] =$this->Home_model->getBank();
+		$data['currency'] = $this->Home_model->getCurrency();
+
+		$this->load->view('akses/csf/header_csf', $data);	
+        $this->load->view('akses/csf/form_pengajuan', $data);
+	}
+
+	public function addpayment(){
+		$c_jp = count($_POST['jenis_pembayaran']);
+		$jenis_pembayaran = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$jenis_pembayaran .= $_POST['jenis_pembayaran'][$i].";";
+		}
+
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$label4 .= $_POST['label4'][$i].";";
+		}
+
+		// echo $jenis_pembayaran;
+		// var_dump(count($_POST['jenis_pembayaran']));exit;
+		$add = array(
+			
+			'id_payment' => $_POST['id_payment'],
+			'status' => 1,
+			'id_user' => $_POST['id_user'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $jenis_pembayaran,
+			'display_name' => $_POST['display_name'],
+			'tanggal' => $_POST['tanggal'],
+			'currency' => $_POST['currency'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'label3' => $_POST['label3'],
+			'label4' => $label4,
+			'label5' => $_POST['label5'],
+			'label6' => $_POST['label6'],
+			'label7' => $_POST['label7'],
+			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
+			'penerima' => $_POST['penerima'],
+			'vendor' => $_POST['vendor'],
+			'akun_bank' => $_POST['akun_bank'],
+			'no_rekening' => $_POST['no_rekening'],
+		);
+
+		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
+		$this->Home_model->addpayment($add);
+			
+		redirect('Dashboard');
+	}
+
+	public function updatepayment(){
+		$c_jp = count($_POST['jenis_pembayaran']);
+		$jenis_pembayaran = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$jenis_pembayaran .= $_POST['jenis_pembayaran'][$i].";";
+		}
+
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$label4 .= $_POST['label4'][$i].";";
+		}
+		// echo $label4;
+		// var_dump(count($_POST['label$label4']));exit;
+		$upd = array(
+
+			'id_payment' => $_POST['id_payment'],
+			'id_user' => $_POST['id_user'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $jenis_pembayaran,
+			'display_name' => $_POST['display_name'],
+			'tanggal' => $_POST['tanggal'],
+			'currency' => $_POST['currency'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'label3' => $_POST['label3'],
+			'label4' => $label4,
+			'label5' => $_POST['label5'],
+			'label6' => $_POST['label6'],
+			'label7' => $_POST['label7'],
+			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
+			'penerima' => $_POST['penerima'],
+			'vendor' => $_POST['vendor'],
+			'akun_bank' => $_POST['akun_bank'],
+			'no_rekening' => $_POST['no_rekening'],
+		);
+		
+		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
+		$this->Home_model->updatepayment($upd);
+
+		redirect('Dashboard');
+	}
+
+	public function deletepayment(){
+
+		$this->Home_model->deletepayment($_POST['id_payment']);
+
+		redirect('Dashboard');
+
+	}
+
+	public function formfinished($id_payment)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$sid = $this->session->userdata("id_user");
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['bank'] = $this->Home_model->getBank();
+		$data['currency'] = $this->Home_model->getCurrency();
+
+		$this->load->view('akses/csf/header_csf', $data);	
+       	$this->load->view('akses/csf/form_finished', $data);
+
+	}
+
+	public function form_view($id_payment)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$sid = $this->session->userdata("id_user");
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		
+		$this->load->view('akses/csf/header_csf', $data);	
+        $this->load->view('akses/csf/form_view', $data);
 	}
 
 	function addpay(){

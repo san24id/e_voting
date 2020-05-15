@@ -234,10 +234,9 @@
                       <tbody>
                       <font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
                       <tr>
-                        <td><font size="1"><b>- Nomor ARF terkait : </b></td>
-                        <td><font size="1">
-                            &nbsp; <?php echo $row->label5;?>                          
-                        </td>
+                        <td><font size="1"><b>- Nomor ARF terkait</b></td>
+                        <td>:</td>
+                        <td><font size="1"> &nbsp; <?php echo $row->label5;?> </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled><font size="1">Lampiran copy ARF tersedia</td>
                       </tr>
                       <tr>
@@ -245,20 +244,23 @@
                       </tr>
                       <tr>
                         <td>
-                        <td><font size="1"><b> Curr</b></td>
+                        <td><font size="1"><center><b> Curr</b></center></td>
                         <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
                         <td><font size="1">Jumlah Biaya : </td>
-                        <td>
+                        <td>:</td>
+                        <td> </td>
                         <td><font size="1">&nbsp; <?php echo $row->label7;?><td>
                       </tr>
                         <td><font size="1">Jumlah Uang Muka : </td>
-                        <td>
+                        <td>:</td>
+                        <td> </td>
                         <td><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
                       <tr>
                         <td><font size="1">Selisih Kurang/Lebih : </td> 
-                        <td>
+                        <td>:</td>
+                        <td> </td>
                         <td><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
                       </tr>                              
                       </tbody>
@@ -269,8 +271,8 @@
                     <table width="100%">
                     <tbody>
                       <tr>
-                        <td><font size="1">Pemohon, <br><br><br><br></td>
-                        <td><font size="1">Menyetujui, <br><br><br><br></td>
+                        <td><font size="1">Pemohon, <br><br><br><br><br></td>
+                        <td><font size="1">Menyetujui, <br><br><br><br><br></td>
                       </tr>
                       <tr>
                         <td><font size="1">Nama : &nbsp; <?php echo $row->display_name?></td>

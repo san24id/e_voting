@@ -226,7 +226,7 @@
             <li><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        <li class="<?php echo $monitoring?>"><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-console"></i><span>Monitoring</a></span></li>
+        <li class="<?php echo $monitoring?>"><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-list-alt"></i><span>Monitoring</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-console"></i>
@@ -249,8 +249,8 @@
         <li class="<?php echo $task?>"><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>My Task</a></span></li>
         <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</a></span></li>
         <li class="header">MASTER DATA</li>
-               <li class=""><a href="Dashboard/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</a></span></li>
-               <li class=""><a href="Dashboard/bank"><i class="glyphicon glyphicon-user"></i><span>Bank Account</a></span></li>
+               <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</a></span></li>
+               <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-user"></i><span>Bank Account</a></span></li>
         <br>
         <br>
         <br>
@@ -288,7 +288,9 @@
                         <br>
                         <center><b><u><font size="+1" style="font-family: calibri;">CREATE FORM</font></u></b></center>
                       </h5>
-                      
+
+                      <a href="Dashboard/form_add" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; FORM SPPP</button></a> &nbsp;&nbsp;&nbsp;
+                      <br><br>
                       <a href="Dashboard/form_arf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; FORM ARF</button></a> &nbsp;&nbsp;&nbsp;
                       <a href="Dashboard/form_asf" target="_blank"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp; FORM ASF</button></a>
                       <br><br>

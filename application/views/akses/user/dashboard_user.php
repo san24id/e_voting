@@ -287,7 +287,7 @@
                           }   
                         ?>
                     </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                    <td><?php echo $row->label3; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -303,7 +303,7 @@
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
                         <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                        <a href="Home/report/<?php echo $row->id_payment; ?>" target="_blank"><button class="btn btn-warning btn-sm">View</button> 
+                        <a href="Home/report/<?php echo $row->id_payment; ?>" target="_blank"><button class="btn btn-warning btn-sm">Print</button> 
                         
                     </td>      
                     </tr>

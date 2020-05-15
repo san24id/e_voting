@@ -81,15 +81,10 @@ td[rowspan="6"] {
                           <td><center> 1 </center></td>
                           <td><textarea type="text" class="form-control" name="description" required><?php echo $get->description;?></textarea> </td>                  
                           <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
-                                      <option>---Choose---</option>
-                                      <option value="EUR"<?php echo $get->currency==EUR? 'selected':''?>>EUR</option>
-                                      <option value="GBP"<?php echo $get->currency==GBP? 'selected':''?>>GBP</option>
-                                      <option value="HKD"<?php echo $get->currency==HKD? 'selected':''?>>HKD</option>
-                                      <option value="IDR"<?php echo $get->currency==IDR? 'selected':''?>>IDR</option>
-                                      <option value="JPY"<?php echo $get->currency==JPY? 'selected':''?>>JPY</option>
-                                      <option value="KRW"<?php echo $get->currency==KRW? 'selected':''?>>KRW</option>
-                                      <option value="SGD"<?php echo $get->currency==SGD? 'selected':''?>>SGD</option>
-                                      <option value="USD"<?php echo $get->currency==USD? 'selected':''?>>USD</option>
+                                <option>--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <?php } ?>
                               </select>
                           </td>
                           <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" required><?php echo $get->jumlah;?></textarea> </td>

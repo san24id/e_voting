@@ -95,15 +95,10 @@ td[rowspan="6"] {
                           <td><center> 1 </center></td>
                           <td><textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea> </td>                  
                           <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
-                                      <option value="1">Choose</option>
-                                      <option value="EUR">EUR</option>
-                                      <option value="GBP">GBP</option>
-                                      <option value="HKD">HKD</option>
-                                      <option value="IDR">IDR</option>
-                                      <option value="JPY">JPY</option>
-                                      <option value="KRW">KRW</option>
-                                      <option value="SGD">SGD</option>
-                                      <option value="USD">USD</option>
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                        <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                      <?php } ?>
                               </select>
                           </td>
                           <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
@@ -352,7 +347,6 @@ function nominal(){
   document.getElementById("ulang").innerHTML = x;
 }
 </script>
-
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">
