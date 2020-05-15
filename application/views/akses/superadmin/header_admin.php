@@ -5,26 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <base href="<?php echo base_url() ?>">
   <title>Aplikasi Payment Request</title>
-  <link rel="icon" type="image/png" href="<?=base_url('assets/login/images/menu_app_logo2.png');?>"/>
+  <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/login/images/menu_app_logo2.png"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="assets/dashboard/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dashboard/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="assets/dashboard/plugins/datatables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dashboard/plugins/datatables/dataTables.bootstrap.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="assets/dashboard/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dashboard/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="assets/dashboard/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dashboard/dist/css/skins/_all-skins.min.css">
 
-  <link rel="stylesheet" href="assets/dashboard/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dashboard/plugins/iCheck/all.css">
     <!-- Select2 -->
-  <link rel="stylesheet" href="assets/dashboard/bower_components/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dashboard/bower_components/select2/dist/css/select2.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -36,7 +36,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>IP</span>
       <!-- logo for regular state and mobile devices -->
-      <span><img width="60px" height="35px;" src="<?=base_url('assets/dashboard/images/login_app_logo.png');?>" /></span>
+      <span><img width="60px" height="35px;" src="<?php echo base_url(); ?>assets/dashboard/images/login_app_logo.png" /></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -57,13 +57,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="assets/dashboard/dist/img/avatar5.png" class="user-image" alt="User Image">
+              <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/avatar5.png" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="assets/dashboard/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
                  <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
