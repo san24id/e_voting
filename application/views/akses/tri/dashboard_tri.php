@@ -219,7 +219,6 @@
                       <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
                       <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
                       <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
                     </ul>
                     </div>
                   </div>
@@ -258,7 +257,7 @@
                         $i = 1;
                         foreach ($payment as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->dsc;                        
+                        $test1 = $row->jenis_pembayaran;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
@@ -303,8 +302,8 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                        <a href="Home/report/<?php echo $row->id_payment; ?>"><button class="btn btn-warning btn-sm">View</button> 
+                        <a href="Tri/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <a href="Tri/report/<?php echo $row->id_payment; ?>"><button class="btn btn-warning btn-sm">View</button> 
                         
                     </td>      
                     </tr>

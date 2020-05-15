@@ -72,4 +72,61 @@ class SuperAdm_model extends CI_model {
         return $query;
      }
 
+     function getCurrency(){
+        $result = $this->db->get('m_currency')->result();
+        return $result; 
+     }
+
+     function addcurr($add){
+        $sql = "INSERT INTO `m_currency` (id_curr, mata_uang, currency) VALUES ('".$add['id_curr']."','".$add['mata_uang']."','".$add['currency']."')";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+    
+    public function updatecurr($upd){
+        $sql = "UPDATE `m_currency` SET `mata_uang`='".$upd['mata_uang']."',`currency`='".$upd['currency']."' WHERE id_curr = '".$upd['id_curr']."'";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+    
+    function deletecurr($id){
+        $sql = "DELETE FROM `m_currency` WHERE `m_currency`.`id_curr` = $id";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function getBank(){
+        $result = $this->db->get('m_bank')->result();
+        return $result; 
+    }
+
+    function addbank($add){
+        $sql = "INSERT INTO `m_bank` (id_bank, nama_bank, singkatan) VALUES ('".$add['id_bank']."','".$add['nama_bank']."','".$add['singkatan']."')";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+    
+    public function updatebank($upd){
+        $sql = "UPDATE `m_bank` SET `nama_bank`='".$upd['nama_bank']."',`singkatan`='".$upd['singkatan']."' WHERE id_bank = '".$upd['id_bank']."'";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+    
+    function deletebank($id){
+        $sql = "DELETE FROM `m_bank` WHERE `m_bank`.`id_bank` = $id";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
 }

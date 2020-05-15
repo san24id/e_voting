@@ -10,7 +10,8 @@ class Approval extends CI_Controller {
 		$this->load->model('Home_model');
 		$this->load->library('Pdf');
 
-		// $sid = $this->session->userdata("username");
+		$sid = $this->session->userdata("id_user");
+		$usr = $this->session->userdata("username");
 
 		$this->load->library('session');
  		
@@ -22,6 +23,9 @@ class Approval extends CI_Controller {
     }
     
     public function index(){
+
+		$sid = $this->session->userdata("id_user");
+		$usr = $this->session->userdata("username");
 
 		$data['index'] = 'active';
 		$data['active3'] = '';

@@ -161,4 +161,93 @@ class SuperAdm extends CI_Controller {
 
 		redirect('SuperAdm/supplier');
 	}
+
+	public function currency(){
+		$data['active1'] = '';
+		$data['active2'] = '';
+		$data['active3'] = 'active';
+
+		$data['currency'] = $this->SuperAdm_model->getCurrency();
+
+		$this->load->view('akses/superadmin/header_admin', $data);
+        $this->load->view('akses/superadmin/currency', $data);
+	}
+
+	public function addcurr(){
+		$add = array(
+
+			'mata_uang' => $_POST['mata_uang'],
+			'currency' => $_POST['currency']
+			
+		);
+
+		$this->SuperAdm_model->addcurr($add);
+
+		redirect('SuperAdm/currency');
+	}
+
+	public function deletecurr(){
+		
+		$this->SuperAdm_model->deletecurr($_POST['id_curr']);
+
+		redirect('SuperAdm/currency');
+
+	}
+
+	public function updatecurr(){
+		$upd = array(
+			'id_curr' => $_POST['id_curr'],
+			'mata_uang' => $_POST['mata_uang'],
+			'currency' => $_POST['currency']
+		);
+
+		$this->SuperAdm_model->updatecurr($upd);
+
+		redirect('SuperAdm/currency');
+	}
+
+	public function bank(){
+		$data['active1'] = '';
+		$data['active2'] = '';
+		$data['active4'] = 'active';
+
+
+		$data['bank'] = $this->SuperAdm_model->getBank();
+
+		$this->load->view('akses/superadmin/header_admin', $data);
+        $this->load->view('akses/superadmin/bank', $data);
+	}
+
+	public function addbank(){
+		$add = array(
+
+			'nama_bank' => $_POST['nama_bank'],
+			'singkatan' => $_POST['singkatan']
+			
+		);
+
+		$this->SuperAdm_model->addbank($add);
+
+		redirect('SuperAdm/bank');
+	}
+
+	public function deletebank(){
+		
+		$this->SuperAdm_model->deletebank($_POST['id_bank']);
+
+		redirect('SuperAdm/bank');
+
+	}
+
+	public function updatebank(){
+		$upd = array(
+			'id_bank' => $_POST['id_bank'],
+			'nama_bank' => $_POST['nama_bank'],
+			'singkatan' => $_POST['singkatan']
+		);
+
+		$this->SuperAdm_model->updatebank($upd);
+
+		redirect('SuperAdm/bank');
+	}
 }

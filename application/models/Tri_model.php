@@ -38,5 +38,4 @@ class Tri_model extends CI_Model{
         return $query;
     }
 
-
 }

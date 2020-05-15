@@ -257,7 +257,7 @@
                         $i = 1;
                         foreach ($payment as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->dsc;                        
+                        $test1 = $row->jenis_pembayaran;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>

@@ -175,17 +175,7 @@
                       </tr>
                       <tr>
                         <td><font size="1"><b>- Jumlah :</b></td>
-                        <td><select name="currency" class="form-control">
-                                <option value="EUR"<?php echo $row->currency==EUR? 'selected':''?> disabled><font size="1">EUR</option>
-                                <option value="GBP"<?php echo $row->currency==GBP? 'selected':''?>disabled><font size="1">GBP</option>
-                                <option value="HKD"<?php echo $row->currency==HKD? 'selected':''?>disabled><font size="1">HKD</option>
-                                <option value="IDR"<?php echo $row->currency==IDR? 'selected':''?>disabled><font size="1">IDR</option>
-                                <option value="JPY"<?php echo $row->currency==JPY? 'selected':''?>disabled><font size="1">JPY</option>
-                                <option value="KRW"<?php echo $row->currency==KRW? 'selected':''?>disabled><font size="1">KRW</option>
-                                <option value="SGD"<?php echo $row->currency==SGD? 'selected':''?>disabled><font size="1">SGD</option>
-                                <option value="USD"<?php echo $row->currency==USD? 'selected':''?>disabled><font size="1">USD</option>
-                              </select>
-                          </td>
+                        <td><font size="1"><?php echo $row->currency; ?></td>
                         <td colspan="2"><font size="1">&nbsp; <?php echo $row->label2; ?></td>
                       </tr>
                       <tr>

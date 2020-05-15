@@ -5,7 +5,7 @@ class Home_model extends CI_Model{
     public function getPayment($sid=0) {
         $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE id_user = '$sid' AND division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE id_user = '$sid' AND division_id='$dvs'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -28,7 +28,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%1%' 
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%1%' 
         AND id_user = '$usr' AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();
@@ -39,7 +39,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
                 AND id_user = '$usr' AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();
@@ -60,7 +60,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
         AND id_user = '$usr' AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();
@@ -132,6 +132,20 @@ class Home_model extends CI_Model{
 
         $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND id_user='$usr'";
                 
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getBank(){
+        $sql = "SELECT nama_bank as bank FROM m_bank";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getCurrency(){
+        $sql = "SELECT currency as curr FROM m_currency";
+        
         $query = $this->db->query($sql)->result();
         return $query;
     }

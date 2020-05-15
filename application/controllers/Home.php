@@ -235,6 +235,8 @@ class Home extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['bank'] =$this->Home_model->getBank();
+		$data['currency'] = $this->Home_model->getCurrency();
 
 		$this->load->view('akses/user/header_user', $data);	
         $this->load->view('akses/user/form_pengajuan', $data);
@@ -355,6 +357,8 @@ class Home extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['bank'] = $this->Home_model->getBank();
+		$data['currency'] = $this->Home_model->getCurrency();
 
 		$this->load->view('akses/user/header_user', $data);	
        	$this->load->view('akses/user/form_finished', $data);

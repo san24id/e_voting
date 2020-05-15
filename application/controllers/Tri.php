@@ -11,7 +11,8 @@ class Tri extends CI_Controller {
 
 		$this->load->library('Pdf');
 
-		$sid = $this->session->userdata("username");
+		$sid = $this->session->userdata("id_user");
+		$usr = $this->session->userdata("username");
 
 		$this->load->library('session');
  		
@@ -24,7 +25,8 @@ class Tri extends CI_Controller {
     
     public function index(){
 
-		$sid = $this->session->userdata("username");
+		$usr = $this->session->userdata("username");
+		$sid = $this->session->userdata("id_user");
 		
 		$data['index'] = 'active';
 		$data['active2'] = '';
@@ -47,6 +49,28 @@ class Tri extends CI_Controller {
 
         $this->load->view('akses/tri/header_tri', $data);
 		$this->load->view('akses/tri/dashboard_tri', $data);
+	}
+
+	public function report($id_payment)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
 	public function dp()

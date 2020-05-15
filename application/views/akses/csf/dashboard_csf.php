@@ -217,7 +217,6 @@
                       <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
                       <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
                       <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
                     </ul>
                     </div>
                   </div>
@@ -257,7 +256,7 @@
                         $i = 1;
                         foreach ($payment as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->dsc;                        
+                        $test1 = $row->jenis_pembayaran;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
@@ -281,6 +280,8 @@
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                          }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }   
                         ?>

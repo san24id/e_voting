@@ -27,7 +27,7 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Home/updatepayment" onsubmit="update()">
+        <form id="form" method="post" action="Approval/updatepayment" onsubmit="update()">
 
           <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
@@ -184,9 +184,11 @@
                         <td>&nbsp; Kode Vendor : <input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
                         <td>&nbsp; Bank : <select name="akun_bank" class="form-control">
                                             <option>---Choose---</option>
-                                            <?php foreach ($bank as $get) {?>
-                                              <option value="<?php echo $get->bank; ?>"<?php echo $row->bank==bank? 'selected':''?>><?php echo $get->bank; ?></option>
-                                            <?php } ?>
+                                            <option value="BCA" <?php echo $row->akun_bank==BCA? 'selected':''?> >BCA</option>
+                                            <option value="Mandiri" <?php echo $row->akun_bank==Mandiri? 'selected':''?> >Mandiri</option>
+                                            <option value="BNI" <?php echo $row->akun_bank==BNI? 'selected':''?> >BNI</option>
+                                            <option value="BRI" <?php echo $row->akun_bank==BRI? 'selected':''?> >BRI</option>
+                                            <option value="6" <?php echo $row->akun_bank==6? 'selected':''?> >Other</option>
                                           </select>
                         </td>
                       </tr>

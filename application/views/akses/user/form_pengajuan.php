@@ -45,7 +45,7 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="60%">
                       <tr>
                       <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
                       <td>
@@ -60,9 +60,9 @@
                       <td>
                         <input type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
                       </td>
-                      <!-- <td>
+                      <td>
                         <input type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
-                      </td> -->
+                      </td>
                       </tr>                       
                     </table>
 
@@ -95,64 +95,71 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td><b>- Tujuan Penggunaan :</b></td>
-                        <td>
-                        <td><textarea type="text" class="form-control" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
-                        <td>
+                        <td><b>- Tujuan Penggunaan </b></td>
+                        <td><b> : </b></td>
+                        <!--<td>-->
+                        <td colspan="2"><textarea type="text" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
+                        <!--<td>-->
                       </tr>
                       <tr>
-                        <td><b>- Jumlah :</b></td>
+                        <td><b>- Jumlah </b></td>
+                        <td><b> : </b></td>
                         <td><select name="currency" class="form-control">
-                                      <option>Choose</option>
-                                      <option value="EUR">EUR</option>
-                                      <option value="GBP">GBP</option>
-                                      <option value="HKD">HKD</option>
-                                      <option value="IDR">IDR</option>
-                                      <option value="JPY">JPY</option>
-                                      <option value="KRW">KRW</option>
-                                      <option value="SGD">SGD</option>
-                                      <option value="USD">USD</option>
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><textarea type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea></td>
+                        <td colspan="2"><input type="text" class="form-control" name="label2" placeholder="Jumlah" required>
+                          <!--<textarea type="text" class="form-control" name="label2" placeholder="Jumlah" required></textarea>--></td>
                       </tr>
                       <tr>
-                        <td><b>- Perkiraan Tanggal :</b></td>
-                        <td>
-                        <td><input type="date" class="form-control" name="label3" required></input></td>     
+                        <td><b>- Perkiraan Tanggal </b></td>
+                        <td><b> : </b></td>
+                        <!--<td>-->
+                        <td colspan="2"><input type="date" class="form-control" name="label3" ></input></td>     
                       </tr>
                       <tr>
-                        <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
+                        <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
                       </tr>                            
                       </tbody>
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="55%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                        <td>&nbsp; Nama : <input type="text" class="form-control" name="penerima" placeholder="Enter Text" required></td>
+                        <td>Nama</td>
+                        <td> : </td>
+                        <td colspan="4"><input type="text" class="form-control" name="penerima" placeholder="Enter Text" required></td>
                       </tr>
                       <tr>  
-                        <td>&nbsp; Kode Vendor : <input type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
-                        <td>&nbsp; Bank : <select name="akun_bank" class="form-control">
-                                      <option value="1">Choose</option>
-                                      <option value="BCA">BCA</option>
-                                      <option value="Mandiri">Mandiri</option>
-                                      <option value="BNI">BNI</option>
-                                      <option value="BRI">BRI</option>
-                                      <option value="6">Other</option>
-                                    </select>
+                        <td>Kode Vendor</td>
+                        <td> : </td>
+                        <td><input type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
+                        <td>Bank</td>
+                        <td>:</td>
+                        <td><select name="akun_bank" class="form-control">
+                                <option>--- Choose ---</option>
+                                <?php foreach ($bank as $get) {?>
+                                  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+                                <?php } ?>
+                            </select>
                         </td>
                       </tr>
                       <tr>
-                        <td>                            
-                        <td>&nbsp; Nomor Rekening : <input type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required></td>                                
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Nomor Rekenng</td> 
+                        <td>:</td>                           
+                        <td><input type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required></td>                                
                       </tr>
                       <tr>
-                        <td colspan="2"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
+                        <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
                       </tr>
                       </tbody>
                     </table>
@@ -189,7 +196,8 @@
                       <tbody>
                       <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
                       <tr>
-                        <td><b>- Nomor ARF terkait : </b></td>
+                        <td><b>- Nomor ARF terkait</b></td>
+                        <td>:</td>
                         <td>
                           <input type="text" class="form-control" name="label5" placeholder="Enter Text">                          
                         </td>
@@ -199,21 +207,28 @@
                         <td><b>- Perhitungan Penggunaan Uang Muka : <b></td>
                       </tr>
                       <tr>
-                        <td>
+                        <td></td>
+                        <td></td>
                         <td><b> Curr</b></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya : </td>
-                        <td>
+                        <td>Jumlah Biaya</td>
+                        <td>:</td>
+                        <td></td>
+                        <!--<td><input type="text" name="label17a" class="form-control"></td>-->
                         <td><input type="text" class="form-control" name="label7" placeholder="Enter Text"></input><td>
                       </tr>
-                        <td>Jumlah Uang Muka : </td>
-                        <td>
+                        <td>Jumlah Uang Muka</td>
+                        <td>:</td>
+                        <td></td>
+                        <!--<td><input type="text" name="label18a" class="form-control"></td>-->
                         <td><input type="text" class="form-control" name="label8" placeholder="Enter Text"></input> </td>     
                       <tr>
-                        <td>Selisih Kurang/Lebih : </td> 
-                        <td>
+                        <td>Selisih Kurang/Lebih</td> 
+                        <td>:</td>
+                        <td></td>
+                        <!--<td><input type="text" name="label19a" class="form-control"></td>-->
                         <td><input type="text" class="form-control" name="label9" placeholder="Enter Text"></input></td>                               
                       </tr>                              
                       </tbody>

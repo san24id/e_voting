@@ -8,7 +8,7 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Tri/addpayment" onsubmit="tambah()">
+        <form id="form" method="post" action="Approval/addpayment" onsubmit="tambah()">
           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
           <section class="content">
             <div class="row">
@@ -119,7 +119,7 @@
                       <tr>
                         <td><b>- Perkiraan Tanggal :</b></td>
                         <td>
-                        <td><input type="date" class="form-control" name="label3" required></input></td>     
+                        <td><input type="date" class="form-control" name="label3"></input></td>     
                       </tr>
                       <tr>
                         <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
@@ -223,7 +223,7 @@
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Tri" role="button">Cancel</a>  
+                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>                                                 

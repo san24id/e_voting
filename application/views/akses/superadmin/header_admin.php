@@ -117,9 +117,12 @@
         <?php 
             if($this->session->userdata("id_role_app") == 1){?>
                <li class="<?php echo $active1?>"><a href="superadm"><i class="glyphicon glyphicon-user"></i><span>Admin Staff</span></a></li>
-               <li class="<?php echo $active2?>"><a href="superadm/supplier"><i class="glyphicon glyphicon-user"></i><span>Data Supplier</span></a></li>
-               <!-- <li class="<?php echo $active3?>"><a href="superadm/user"><i class="glyphicon glyphicon-user"></i><span>Status User</span></a></li>
-               <li class="<?php echo $active4?>"><a href="superadm/user"><i class="glyphicon glyphicon-user"></i><span>Status User</span></a></li> -->
+               <li class="header">MASTER DATA</li>
+               <li class="<?php echo $active3?>"><a href="superadm/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</span></a></li>
+               <li class="<?php echo $active4?>"><a href="superadm/bank"><i class="glyphicon glyphicon-user"></i><span>Bank</span></a></li>
+
+               <!-- <li class="<?php echo $active2?>"><a href="superadm/supplier"><i class="glyphicon glyphicon-user"></i><span>Data Supplier</span></a></li> -->
+               <!-- <li class="<?php echo $active4?>"><a href="superadm/user"><i class="glyphicon glyphicon-user"></i><span>Status User</span></a></li> -->
                
         <?php }else{ ?>
           <li class="<?php echo $active1?>"><a href="superadm"><i class="glyphicon glyphicon-user"></i><span>Admin Staff</span></a></li>

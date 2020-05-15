@@ -258,7 +258,7 @@
                         $i = 1;
                         foreach ($payment as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->dsc;                        
+                        $test1 = $row->jenis_pembayaran;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
@@ -301,8 +301,8 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="Home/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                        <a href="Home/report/<?php echo $row->id_payment; ?>"><button class="btn btn-warning btn-sm">View</button> 
+                        <a href="Approval/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <a href="Approval/report/<?php echo $row->id_payment; ?>"><button class="btn btn-warning btn-sm">View</button> 
                         
                     </td>      
                     </tr>
