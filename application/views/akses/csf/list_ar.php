@@ -37,7 +37,7 @@
                   <?php 
                     $i = 1;
                     foreach ($advancerequest as $row){
-                      $test1 = $row->dsc;                        
+                      $test1 = $row->jenis_pembayaran;                        
                       $test2 = explode(";", $test1);
                       $test3 = count($test2);                        
                   ?>
@@ -45,15 +45,29 @@
                   <td><?php echo $i++; ?></td>                  
                   <td><?php 
                           if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/treatment.png'>";  
+                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/submit.png'>";
-                          }else if($row->status >= 3){
-                             echo "<img src='assets/dashboard/images/legend/default.png'>";
-                          }
+                             echo "<img src='assets/dashboard/images/legend/green.png'>";
+                          }else if($row->status == 3){
+                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                          }else if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 7){
+                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }   
                         ?>
                   </td>
-                  <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                  <td><?php echo $row->label3; ?></td>
                   <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){

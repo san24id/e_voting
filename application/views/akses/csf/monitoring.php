@@ -234,6 +234,9 @@
                         ?>
                     </td>
                     <td><?php 
+                          // if($row->status == 2){
+                          //   echo "Waiting for processing/ Submitted by users";
+                          // }else 
                           if($row->status == 4){
                             echo "Processing Tax/Waiting for Review";
                           }else if($row->status == 5){

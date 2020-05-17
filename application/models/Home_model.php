@@ -28,7 +28,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%1%' 
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%4%' 
         AND id_user = '$usr' AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();

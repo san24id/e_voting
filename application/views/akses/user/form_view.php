@@ -324,7 +324,7 @@
                       <tr>
                         <td>Jabatan : &nbsp; <?php echo $row->jabatan?></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
-                                                echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
+                                                echo "SVP"; } ?> <?php echo $divhead->division_id; ?> </td>
                         <?php } ?>                        
                       </tr>                            
                     </tbody>

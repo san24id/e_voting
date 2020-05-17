@@ -27,7 +27,6 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Home/updatepayment" onsubmit="update()">
 
           <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
@@ -322,9 +321,9 @@
                         <td>Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
                       </tr>
                       <tr>
-                        <td>Jabatan : &nbsp; <?php echo $row->jabatan?></td>
+                        <td>Jabatan : &nbsp; <?php echo $row->jabatan;?></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
-                                                echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
+                                                echo "SVP"; } ?> <?php echo $divhead->division_id; ?> </td>
                         <?php } ?>                        
                       </tr>                            
                     </tbody>
@@ -335,15 +334,16 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Home" role="button">Back</a>
+                        <a class="btn btn-warning" href="Dashboard" role="button">Back</a>
+                        <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+                        <a class="btn btn-danger" href="Dashboard/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>    
+
                         <!-- <button type="submit" class="btn btn-success">Save</button> -->
                         <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                     </div>
             </div>
           </section>  
           <?php } ?>
-        </form>       
-        <!-- </form> -->
         <!-- /.content -->
       </div>
 

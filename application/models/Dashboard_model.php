@@ -241,8 +241,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function getDivHeadCSF(){
-        $sql = "SELECT a.display_name, b.role_id, a.division_id FROM m_user as a JOIN m_role as b ON b.role_id='4' 
-                WHERE a.division_id='CSF' AND a.role_id='4'";
+        $sql = "SELECT a.display_name, b.role_id, c.* FROM m_user as a JOIN m_role as b ON b.role_id='4' JOIN m_division as c ON a.division_id=c.division_id
+                WHERE a.division_id='CSF' AND a.role_id='4' AND c.division_name='Corporate Strategy and Finance (CSF)'";
 
         $query = $this->db->query($sql)->result();
         return $query;
