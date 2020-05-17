@@ -92,7 +92,7 @@
                       <tr>
                       <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="1" <?php echo $xxi1=="1"? 'checked':''?> disabled>Uang Muka/Advance<br>
+                        <input type="checkbox" checked disabled>Uang Muka/Advance<br>
                       </td>
                       <td>
                         <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
@@ -146,18 +146,7 @@
                       <tr>
                         <td><b>- Jumlah :</b></td>
                         <td><b> : </b></td>
-                        <td><select name="currency" class="form-control">
-                                      <option>Choose</option>
-                                      <option value="EUR"<?php echo $row->currency==EUR? 'selected':''?> >EUR</option>
-                                      <option value="GBP"<?php echo $row->currency==GBP? 'selected':''?> >GBP</option>
-                                      <option value="HKD"<?php echo $row->currency==HKD? 'selected':''?> >HKD</option>
-                                      <option value="IDR"<?php echo $row->currency==IDR? 'selected':''?> >IDR</option>
-                                      <option value="JPY"<?php echo $row->currency==JPY? 'selected':''?> >JPY</option>
-                                      <option value="KRW"<?php echo $row->currency==KRW? 'selected':''?> >KRW</option>
-                                      <option value="SGD"<?php echo $row->currency==SGD? 'selected':''?> >SGD</option>
-                                      <option value="USD"<?php echo $row->currency==USD? 'selected':''?> >USD</option>
-                              </select>
-                          </td>
+                        <td> <?php echo $row->currency;?> </td>
                         <td colspan="2"><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
                       </tr>
                       <tr>

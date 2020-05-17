@@ -27,7 +27,8 @@ class Dashboard extends CI_Controller {
 
 		$this->load->library('Pdf');
 
-		$sid = $this->session->userdata("username");
+		$sid = $this->session->userdata("id_user");
+		$usr = $this->session->userdata("username");
 
 		$this->load->library('session');
  		
@@ -40,7 +41,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$sid = $this->session->userdata("username");
+		$sid = $this->session->userdata("id_user");
 		
 		$data['dashboard'] = 'active';
 		$data['active2'] = '';
@@ -548,7 +549,7 @@ class Dashboard extends CI_Controller {
 
 	public function my_task()
 	{
-		$sid = $this->session->userdata("username");
+		$usr = $this->session->userdata("username");
 
 		$data['active1'] = '';
 		$data['active2'] = '';

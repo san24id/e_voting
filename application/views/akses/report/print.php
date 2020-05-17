@@ -121,7 +121,7 @@
                       <tr>
                       <td align="center"><font size="1"><b>Jenis Pembayaran (pilih salah satu):</b></td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="1" <?php echo $xxi1=="1"? 'checked':''?> disabled><font size="1">Uang Muka/Advance<br>
+                        <input type="checkbox" checked disabled><font size="1">Uang Muka/Advance<br>
                       </td>
                       <td>
                         <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled><font size="1">Permintaan Uang Muka/Request<br>

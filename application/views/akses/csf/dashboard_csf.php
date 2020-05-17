@@ -286,7 +286,7 @@
                           }   
                         ?>
                     </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                    <td><?php echo $row->label3; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){

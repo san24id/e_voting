@@ -49,7 +49,7 @@
                       <tr>
                       <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="1"> Uang Muka/Advance</input><br>
+                        <input type="checkbox" checked disabled> Uang Muka/Advance</input><br>
                       </td>
                       <td>
                         <input type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>

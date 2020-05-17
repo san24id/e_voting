@@ -147,27 +147,22 @@
                       </tr>
                       <tr>
                         <td><b>- Jumlah :</b></td>
-                        <td><select name="currency" class="form-control">
-                                      <option>Choose</option>
-                                      <option value="EUR"<?php echo $row->currency==EUR? 'selected':''?> >EUR</option>
-                                      <option value="GBP"<?php echo $row->currency==GBP? 'selected':''?> >GBP</option>
-                                      <option value="HKD"<?php echo $row->currency==HKD? 'selected':''?> >HKD</option>
-                                      <option value="IDR"<?php echo $row->currency==IDR? 'selected':''?> >IDR</option>
-                                      <option value="JPY"<?php echo $row->currency==JPY? 'selected':''?> >JPY</option>
-                                      <option value="KRW"<?php echo $row->currency==KRW? 'selected':''?> >KRW</option>
-                                      <option value="SGD"<?php echo $row->currency==SGD? 'selected':''?> >SGD</option>
-                                      <option value="USD"<?php echo $row->currency==USD? 'selected':''?> >USD</option>
+                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->curr; ?>"<?php echo $get->curr==bank? 'selected':''?>><?php echo $get->curr; ?></option>
+                                <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><textarea type="text" class="form-control" name="label2" value="Jumlah" required><?php echo $row->label2; ?></textarea></td>
+                        <td colspan="2"><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>"></td>
                       </tr>
                       <tr>
-                        <td><b>- Perkiraan Tanggal :</b></td>
-                        <td>
-                        <td><input type="" class="form-control" name="label3" value="<?php echo $row->label3; ?>" ></input></td>     
+                        <td><b>- Perkiraan Tanggal </b></td>
+                        <td><b> : </b></td>
+                        <td colspan="2"><input type="" class="form-control" name="label3" value="<?php echo $row->label3; ?>" ></input></td>     
                       </tr>
                       <tr>
-                        <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
+                        <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
                       </tr>                            
                       </tbody>
                     </table>
@@ -178,18 +173,22 @@
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                        <td>&nbsp; Nama : <input type="text" class="form-control" name="penerima" value="<?php echo $row->penerima;?>" required></td>
+                      <td>Nama</td>
+                        <td> : </td>
+                        <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $row->penerima;?>" required></td>
                       </tr>
                       <tr>  
-                        <td>&nbsp; Kode Vendor : <input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
-                        <td>&nbsp; Bank : <select name="akun_bank" class="form-control">
+                        <td>Kode Vendor</td>
+                        <td> : </td>
+                        <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
+                        <td>Bank</td>
+                        <td>:</td>
+                        <td><select name="akun_bank" class="form-control">
                                             <option>---Choose---</option>
-                                            <option value="BCA" <?php echo $row->akun_bank==BCA? 'selected':''?> >BCA</option>
-                                            <option value="Mandiri" <?php echo $row->akun_bank==Mandiri? 'selected':''?> >Mandiri</option>
-                                            <option value="BNI" <?php echo $row->akun_bank==BNI? 'selected':''?> >BNI</option>
-                                            <option value="BRI" <?php echo $row->akun_bank==BRI? 'selected':''?> >BRI</option>
-                                            <option value="6" <?php echo $row->akun_bank==6? 'selected':''?> >Other</option>
-                                          </select>
+                                            <?php foreach ($bank as $get) {?>
+                                              <option value="<?php echo $get->bank; ?>"<?php echo $row->bank==bank? 'selected':''?>><?php echo $get->bank; ?></option>
+                                            <?php } ?>
+                            </select>
                         </td>
                       </tr>
                       <tr>

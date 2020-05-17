@@ -148,16 +148,11 @@
                       <tr>
                         <td><b>- Jumlah :</b></td>
                         <td><b> : </b></td>
-                        <td><select name="currency" class="form-control">
-                                      <option>Choose</option>
-                                      <option value="EUR"<?php echo $row->currency==EUR? 'selected':''?> >EUR</option>
-                                      <option value="GBP"<?php echo $row->currency==GBP? 'selected':''?> >GBP</option>
-                                      <option value="HKD"<?php echo $row->currency==HKD? 'selected':''?> >HKD</option>
-                                      <option value="IDR"<?php echo $row->currency==IDR? 'selected':''?> >IDR</option>
-                                      <option value="JPY"<?php echo $row->currency==JPY? 'selected':''?> >JPY</option>
-                                      <option value="KRW"<?php echo $row->currency==KRW? 'selected':''?> >KRW</option>
-                                      <option value="SGD"<?php echo $row->currency==SGD? 'selected':''?> >SGD</option>
-                                      <option value="USD"<?php echo $row->currency==USD? 'selected':''?> >USD</option>
+                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->curr; ?>"<?php echo $get->curr==bank? 'selected':''?>><?php echo $get->curr; ?></option>
+                                <?php } ?>
                               </select>
                           </td>
                         <td colspan="2"><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>"></td>
