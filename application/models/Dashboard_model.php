@@ -58,6 +58,20 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    public function updatetax($upd){
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`PPh_Pasal_21`='".$upd['PPh_Pasal_21']."',`PPh_Pasal_22`='".$upd['PPh_Pasal_22']."'
+                ,`PPh_Pasal_23`='".$upd['PPh_Pasal_23']."',`PPh_Pasal_4`='".$upd['PPh_Pasal_4']."',`tarif1`='".$upd['tarif1']."'
+                ,`tarif2`='".$upd['tarif2']."',`tarif3`='".$upd['tarif3']."',`tarif4`='".$upd['tarif4']."',`tarif5`='".$upd['tarif5']."',`dpp1`='".$upd['dpp1']."',`dpp2`='".$upd['dpp2']."'
+                ,`dpp3`='".$upd['dpp3']."',`dpp4`='".$upd['dpp4']."',`dpp5`='".$upd['dpp5']."',`gross_up1`='".$upd['gross_up1']."',`gross_up2`='".$upd['gross_up2']."',`gross_up3`='".$upd['gross_up3']."'
+                ,`gross_up4`='".$upd['gross_up4']."',`gross_up5`='".$upd['gross_up5']."',`pjt1`='".$upd['pjt1']."',`pjt2`='".$upd['pjt2']."',`pjt3`='".$upd['pjt3']."',`pjt4`='".$upd['pjt4']."',`pjt5`='".$upd['pjt5']."'
+        
+                WHERE `id_payment`='".$upd['id_payment']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
     public function getTotalDraft(){
 
         $sql = "SELECT * FROM (SELECT b.status_laporan, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
@@ -130,8 +144,20 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getVTax() {
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='4' ";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getFinance(){
         $sql = "SELECT COUNT(status) as finance FROM t_payment WHERE status= '5'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getVFinance() {
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='5' ";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -142,8 +168,21 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getVReview() {
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='6' ";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getWaitVerifikasi(){
         $sql = "SELECT COUNT(status) as wverifikasi FROM t_payment WHERE status='7'";
+        // var_dump ($sql);exit;
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getVWaitVerifikasi(){
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='7' ";
         // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
@@ -162,6 +201,13 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getVWaitApproval(){
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='8' ";
+        // var_dump ($sql);exit;
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getApproval(){
         $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9'";
         $query = $this->db->query($sql)->result();
@@ -174,8 +220,22 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getVWaitPaid(){
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='9' ";
+        // var_dump ($sql);exit;
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getPaid(){
         $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getVPaid(){
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='10' ";
+        // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
     }

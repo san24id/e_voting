@@ -262,6 +262,73 @@ class Dashboard extends CI_Controller {
 		redirect('Dashboard/monitoring');
 	}
 
+	public function tax(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 5,
+			'handled_by' => $_POST['handled_by'],
+			'PPh_Pasal_21' => $_POST['PPh_Pasal_21'],
+			'PPh_Pasal_22' => $_POST['PPh_Pasal_22'],
+			'PPh_Pasal_23' => $_POST['PPh_Pasal_23'],
+			'PPh_Pasal_4' => $_POST['PPh_Pasal_4'],
+			'tarif1' => $_POST['tarif1'],
+			'tarif2' => $_POST['tarif2'],
+			'tarif3' => $_POST['tarif3'],
+			'tarif4' => $_POST['tarif4'],
+			'tarif5' => $_POST['tarif5'],
+			'dpp1' => $_POST['dpp1'],
+			'dpp2' => $_POST['dpp2'],
+			'dpp3' => $_POST['dpp3'],
+			'dpp4' => $_POST['dpp4'],
+			'dpp5' => $_POST['dpp5'],
+			'dpp1' => $_POST['dpp1'],
+			'gross_up1' => $_POST['gross_up1'],
+			'gross_up2' => $_POST['gross_up2'],
+			'gross_up3' => $_POST['gross_up3'],
+			'gross_up4' => $_POST['gross_up4'],
+			'gross_up5' => $_POST['gross_up5'],
+			'pjt1' => $_POST['pjt1'],			
+			'pjt2' => $_POST['pjt2'],			
+			'pjt3' => $_POST['pjt3'],			
+			'pjt4' => $_POST['pjt4'],			
+			'pjt5' => $_POST['pjt5']			
+						
+		);
+
+		$this->Dashboard_model->updatetax($upd);
+
+		redirect('Dashboard/monitoring');
+	}
+
+	public function getTax($id_payment){
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['gprocess'] = $this->Dashboard_model->getProcessing();
+		$data['tax'] = $this->Dashboard_model->getTax();
+		$data['finance'] = $this->Dashboard_model->getFinance();
+		$data['review'] = $this->Dashboard_model->getWaitReview();
+		
+		$data['wverifikasi'] = $this->Dashboard_model->getWaitVerifikasi();
+		$data['verifikasi'] = $this->Dashboard_model->getVerifikasi();
+
+		$data['wApproval'] = $this->Dashboard_model->getWaitApproval();
+		$data['approval'] = $this->Dashboard_model->getApproval();
+		
+		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
+		$data['Paid'] = $this->Dashboard_model->getPaid();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/getTax', $data);
+	}
+
 	public function dp()
 	{
 		
@@ -392,18 +459,36 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function List_upt(){
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['tax'] = $this->Dashboard_model->getVTax();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_upt', $data);
 	}
 
 	public function List_upf(){
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['finance'] = $this->Dashboard_model->getVFinance();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_upf', $data);
 	}
 
 	public function List_wfr(){
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['review'] = $this->Dashboard_model->getVReview();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_wfr', $data);
@@ -411,11 +496,25 @@ class Dashboard extends CI_Controller {
 	
 	public function List_wfv(){
 
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['vwaitverif'] = $this->Dashboard_model->getVWaitVerifikasi();
+
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_wfv', $data);
 	}
 
 	public function List_wfa(){
+
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['vwaitapprov'] = $this->Dashboard_model->getVWaitApproval();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_wfa', $data);
@@ -423,11 +522,25 @@ class Dashboard extends CI_Controller {
 
 	public function List_wfp(){
 
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['vwaitpaid'] = $this->Dashboard_model->getVWaitPaid();
+
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_wfp', $data);
 	}
 
 	public function List_pr(){
+
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['vpaid'] = $this->Dashboard_model->getVPaid();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_pr', $data);
@@ -467,7 +580,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_add()
 	{
-		$data['active1'] = 'active';
+		$data['dashboard'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 

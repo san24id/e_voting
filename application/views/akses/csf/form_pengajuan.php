@@ -8,7 +8,7 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Home/addpayment" onsubmit="tambah()">
+        <form id="form" method="post" action="Dashboard/addpayment" onsubmit="tambah()">
           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
           <section class="content">
             <div class="row">
@@ -49,7 +49,7 @@
                       <tr>
                       <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="1"> Uang Muka/Advance</input><br>
+                        <input type="checkbox" name="jenis_pembayaran[]" value="1" > Uang Muka/Advance</input><br>
                       </td>
                       <td>
                         <input type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
@@ -117,7 +117,7 @@
                         <td><b>- Perkiraan Tanggal </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="2"><input type="date" class="form-control" name="label3" ></input></td>     
+                        <td colspan="2"><input type="text" class="form-control" name="label3" required></input></td>     
                       </tr>
                       <tr>
                         <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
@@ -236,7 +236,7 @@
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
+                    <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>  
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>                                                 

@@ -71,18 +71,16 @@
                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
                 <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>" >
                   <div class="box-header with-border">
-                    <h5>
+                  
                       <left><img src="<?php echo base_url(); ?>/assets/dashboard/images/logo.png" width="150px" alt="Logo Images"></left>
-                      <br>
                       <center><b><u><font size="2"> SURAT PERMINTAAN PROSES PEMBAYARAN</u></b></center>
-                    </h5>
+                    
                     <table width="100%">
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td align="center"><font size="1"><b>No   : <?php echo $row->nomor_surat;?></b></td>
-              
-                        <td><font size="1"><b>No ARF/ASF   :</b></td>
+                          <td align="center"><font size="1"><b>No   : <?php echo $row->nomor_surat;?></b></td>
+                          <td><font size="1"><b>No ARF/ASF   :</b></td>
                         </tr>
                       </tbody>
                     </table>
@@ -90,13 +88,11 @@
                       <tbody>     
                         <tr>
                         <td></td>
-                        <td align="center"><font size="1"><b><i>(dilengkapi oleh Pemohon)</b></td>
-                        <td><font size="1"><b><i>(dilengkapi oleh CSF, coret salah satu)</b></td>
+                        <td align="right"><font size="1"><b><i>(dilengkapi oleh Pemohon)</b></td>
+                        <td align="center"><font size="1"><b><i>(dilengkapi oleh CSF, coret salah satu)</b></td>
                         </tr>
                       </tbody>
                     </table>
-
-                    <br>
 
                     <table width="100%">
                         <?php 
@@ -142,8 +138,6 @@
                       </tr>                       
                     </table>
 
-                    <br>
-
                     <table width="100%">
                       <tbody>                            
                       <tr>
@@ -168,28 +162,27 @@
                       <tbody>
                       <p><font size="1">Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td><font size="1"><b>- Tujuan Penggunaan :</b></td>
-                        <td>
+                        <td><font size="1"><b>- Tujuan Penggunaan </b></td>
+                        <td><b> : </b></td>
                         <td colspan="2"><font size="1">&nbsp; <?php echo $row->label1; ?></td>
                         
                       </tr>
                       <tr>
-                        <td><font size="1"><b>- Jumlah :</b></td>
+                        <td><font size="1"><b>- Jumlah </b></td>
+                        <td><b> : </b></td>
                         <td><font size="1"><?php echo $row->currency; ?></td>
                         <td colspan="2"><font size="1">&nbsp; <?php echo $row->label2; ?></td>
                       </tr>
                       <tr>
-                        <td><font size="1"><b>- Perkiraan Tanggal :</b></td>
-                        <td></td>
-                        <td><font size="1"> &nbsp; <?php echo $row->label3; ?></td>     
+                        <td><font size="1"><b>- Perkiraan Tanggal </b></td>
+                        <td><b> : </b></td>
+                        <td colspan="2"><font size="1"> &nbsp; <?php echo $row->label3; ?></td>     
                       </tr>
                       <tr>
-                        <td colspan="2"><font size="1"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
+                        <td colspan="4"><font size="1"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
                       </tr>                            
                       </tbody>
                     </table>
-
-                    <br>
 
                     <table width="100%">
                       <tbody>
@@ -212,27 +205,83 @@
                       </tbody>
                     </table>
 
-                    <br>
-
                     <table width="100%">
+                    <?php 
+                          $testl1 = $row->label4;
+                          $testl2 = explode(";", $testl1);
+                          $testl3 = count($testl2);
+                                 
+                          for($i=0; $i<$testl3; $i++){
+                            if($testl2[$i] == 'Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)'){
+                              $xxii1 .= "Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)";
+                            }
+                            
+                            if($testl2[$i] == 'Berita Acara Pemeriksaan (BAP)'){
+                              $xxii2 .= "Berita Acara Pemeriksaan (BAP)";
+                            }
+                            
+                            if($testl2[$i] == 'Berita Acara Pemeriksaan (BAST)'){
+                              $xxii3 .= "Berita Acara Pemeriksaan (BAST)";
+                            }
+                            
+                            if($testl2[$i] == 'Bukti Penerimaan Jasa/Barang (Delivery Order)'){
+                              $xxii4 .= "Bukti Penerimaan Jasa/Barang (Delivery Order)";
+                            }
+                            if($testl2[$i] == 'Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)'){
+                              $xxii5 .= "Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)";
+                            }
+                            
+                            if($testl2[$i] == 'Copy PO/SPK'){
+                              $xxii6 .= "Copy PO/SPK";
+                            }
+                            
+                            if($testl2[$i] == 'Copy Kontrak/Perjanjian'){
+                              $xxii7 .= "Copy Kontrak/Perjanjian";
+                            }
+                            
+                            if($testl2[$i] == 'Faktur Pajak Rangkap 2'){
+                              $xxii8 .= "Faktur Pajak Rangkap 2";
+                            }
+                            if($testl2[$i] == 'Form DGT-1 & COD (Jika kode vendor tidak tersedia)'){
+                              $xxii9 .= "Form DGT-1 & COD (Jika kode vendor tidak tersedia)";
+                            }
+                            
+                            if($testl2[$i] == 'NPWP'){
+                              $xxii10 .= "NPWP";
+                            }
+                            
+                            if($testl2[$i] == 'Lainnya (Jika ada) : Rincian Pengeluaran'){
+                              $xxii11 .= "Lainnya (Jika ada) : Rincian Pengeluaran";
+                            }
+                          }
+                      ?> 
                       <tr>
                         <td><font size="1"><b>- Lampiran Dokumen Pendukung :</b></td>
-                        <td><td>
                       </tr>
                       <tr>
                         <td><font size="1">  
-                        <?php if($row->label4){
-                            echo $row->label4;
-                        }?>
+                          <input type="checkbox" name="label4[]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)" <?php echo $xxii1=="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)"? 'checked':''?> disabled>Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)" <?php echo $xxii2=="Berita Acara Pemeriksaan (BAP)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAP)</input><br>
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAST)</input><br>                            
+                          <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)" <?php echo $xxii4=="Bukti Penerimaan Jasa/Barang (Delivery Order)"? 'checked':''?> disabled>Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                          <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $xxii5=="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> disabled>Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
                         </td>
-                      <tr>      
+                        <td><font size="1">
+                        <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> disabled>Copy PO/SPK</input><br>
+                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> disabled>Copy Kontrak/Perjanjian</input><br>                            
+                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>                        
+                          <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                          <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
+                          <input type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                        </td>
+                      <tr>  
                     </table>
 
-                    <br>
-
-                    <table width="100%">
+                    <table width="90%">
                       <tbody>
-                      <font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
+                      <tr>
+                        <td><font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b></td>
+                      </tr>  
                       <tr>
                         <td><font size="1"><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
@@ -244,8 +293,9 @@
                       </tr>
                       <tr>
                         <td>
+                        <td>
                         <td><font size="1"><center><b> Curr</b></center></td>
-                        <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
+                        <td><font size="1"><center><b> Jumlah/<i>Amount</i></b></center></td>
                       </tr>
                       <tr>  
                         <td><font size="1">Jumlah Biaya : </td>
@@ -264,10 +314,8 @@
                         <td><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
                       </tr>                              
                       </tbody>
-                    </table>
-                    
-                    <br>
-                    
+                    </table>          
+                  
                     <table width="100%">
                     <tbody>
                       <tr>
@@ -290,7 +338,7 @@
                      
                     <hr style=" border: 0.5px solid #000;">
                     <h6>
-                    <table border="1" width="100%">
+                    <table border="1" width="70%">
                     <tbody>
                         <tr>
                           <td colspan="5"><font size="1"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
@@ -345,12 +393,6 @@
                   </div>  
                 </div>    
 
-                <!-- <div class="box">
-                  <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="button" class="btn btn-primary" target="_blank" onclick="printThis()">Print</button>
-                  </div>
-                </div>                                                  -->
             </div>
           </section>  
 

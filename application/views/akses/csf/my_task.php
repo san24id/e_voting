@@ -56,7 +56,7 @@
                   <td><?php echo $row->akun_bank; ?> </td>
                   <td>
                     <a href=""><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href=""><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      

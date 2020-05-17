@@ -166,7 +166,6 @@
                       <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
                       <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
                       <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                      <li><i class="fa fa-circle-o text-orange"></i> Non-Advance(NA)</li><br>
                     </ul>
                     </div>
                   </div>
@@ -189,9 +188,9 @@
                     <th>NO.</th>
                     <th>Status</th>
                     <th>CSF</th>
-                    <th>Submitted Date</th>
+                    <th>Nomor SP3</th>
                     <th>Type</th>
-                    <th>Nomor Surat</th>
+                    <th>SP3 Submitted Date</th>
                     <th>Description</th>
                     <th>Pemohon</th>
                     <th>APF No</th>
@@ -219,16 +218,19 @@
                           }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                           }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 7){
                               echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
-                            }else if($row->status == 6){
-                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
-                            }else if($row->status == 7){
-                                echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
-                            }else if($row->status == 8){
-                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
-                            }else if($row->status == 9){
-                              echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                            }   
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }  
+
                         ?>
                     </td>
                     <td><?php 
@@ -249,7 +251,7 @@
                           }
                         ?>
                     </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -257,7 +259,7 @@
                           }
                         }  ?>
                     </td>
-                    <td><?php echo $row->nomor_surat; ?></td>
+                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td>XXX</td>

@@ -67,9 +67,9 @@ td[rowspan="6"] {
                     <table border="1" style="font-family: calibri;" width="100%">
                         <thead>
                         <tr>
-                          <th width="10%"><center>NO. <br> <i>No.</i></center></th>
+                          <th width="5%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="50%"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="25%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
                           <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                         </thead>
@@ -77,7 +77,7 @@ td[rowspan="6"] {
                         <tr>
                           <td><center> 1 </center></td>
                           <td><textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea> </td>                  
-                          <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
+                          <td><select id="Select" onchange="myFunction()" name="currency" >
                                 <option>--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
@@ -136,13 +136,15 @@ td[rowspan="6"] {
                     <table border="1" style="font-family: calibri;" width="50%">  
                       <tbody>
                         <tr>
+                            <?php foreach ($divhead as $divhead) { ?>
                           <td>Nama /<i>Name : </i></td>
-                          <td><textarea type="text" class="form-control" name="penanggung_jawab" placeholder="Name" required></textarea></td> 
+                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $divhead->display_name; ?>" required></td> 
                         </tr>
                         <tr>
                           <td>Jabatan /<i>Title : </i></td>
-                          <td><textarea type="text" class="form-control" name="jabatan" placeholder="Title" required></textarea></td> 
+                          <td><input type="text" class="form-control" name="jabatan" value="SVP Corporate Strategy & Finance" required></td> 
                         </tr>
+                            <?php }?>
                       </tbody>  
                     </table>       
 

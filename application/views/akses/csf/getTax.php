@@ -19,16 +19,7 @@
   
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <!-- Main content -->
-        <!-- <form id="form" method="post" action="Home/updatepayment" onsubmit="update()"> -->
-
-        <!-- <?php $message = $this->session->flashdata('msg');
-        if($message){
-          echo 'Berhasil disimpan!';
-        }?> -->
-
-          <?php foreach ($ppayment as $row){ ?>          
+        <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -145,7 +136,18 @@
                       <tr>
                         <td><b>- Jumlah :</b></td>
                         <td><b> : </b></td>
-                        <td>&nbsp; <?php echo $row->currency;?></td>
+                        <td><select name="currency" class="form-control">
+                                      <option>Choose</option>
+                                      <option value="EUR"<?php echo $row->currency==EUR? 'selected':''?> >EUR</option>
+                                      <option value="GBP"<?php echo $row->currency==GBP? 'selected':''?> >GBP</option>
+                                      <option value="HKD"<?php echo $row->currency==HKD? 'selected':''?> >HKD</option>
+                                      <option value="IDR"<?php echo $row->currency==IDR? 'selected':''?> >IDR</option>
+                                      <option value="JPY"<?php echo $row->currency==JPY? 'selected':''?> >JPY</option>
+                                      <option value="KRW"<?php echo $row->currency==KRW? 'selected':''?> >KRW</option>
+                                      <option value="SGD"<?php echo $row->currency==SGD? 'selected':''?> >SGD</option>
+                                      <option value="USD"<?php echo $row->currency==USD? 'selected':''?> >USD</option>
+                              </select>
+                          </td>
                         <td colspan="2"><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
                       </tr>
                       <tr>
@@ -175,7 +177,7 @@
                         <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" readonly></td>
                         <td>Bank</td>
                         <td>:</td>
-                        <td>&nbsp; <?php echo $row->akun_bank; ?> </td>
+                        <td><?php echo $row->akun_bank; ?> </td>
                       </tr>
                       <tr>
                       <td></td>
@@ -305,79 +307,81 @@
                         <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
                       </tr>                              
                       </tbody>
-                    </table>                 
-                    <?php if ($row->status >= 4 ){ ?>
-                      <hr style=" border: 0.5px solid #000;">
-                      <h6>
-                      <table border="1" width="50%">
-                      <tbody>
-                          <tr>
-                            <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
-                          </tr>
-                          <tr>
+                    </table>     
+
+        <form id="form" method="post" action="Dashboard/tax" onsubmit="tambah()">    
+
+                    <hr style=" border: 0.5px solid #000;">
+                    <h6>
+                    <table border="1" width="50%">
+                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
+
+                    <tbody>
+                        <tr>
+                        <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
+                        </tr>
+                        <tr>
                             <td width="20%"><center><b>Jenis Pajak </b></center></td>
                             <td width="10%"><center><b>Tarif </b></center></td>
                             <td width="30%"><center><b>DPP </b></center></td>
                             <td width="20%"><center><b>Gross Up </b></center>  </td>
                             <td width="20%"><center><b>Pajak Terhitung </b></center>  </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 21/26 <input type="text" value="<?php echo $row->PPh_Pasal_21;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif1;?> </td>
-                            <td><font size="3"><?php echo $row->dpp1;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up1;?> </td>
-                            <td><font size="3"><?php echo $row->pjt1;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 22 <input type="text" value="<?php echo $row->PPh_Pasal_22;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif2;?> </td>
-                            <td><font size="3"><?php echo $row->dpp2;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up2;?> </td>
-                            <td><font size="3"><?php echo $row->pjt2;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 23/26 <input type="text" value="<?php echo $row->PPh_Pasal_23;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif3;?> </td>
-                            <td><font size="3"><?php echo $row->dpp3;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up3;?> </td>
-                            <td><font size="3"><?php echo $row->pjt3;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 4(2) <input type="text" value="<?php echo $row->PPh_Pasal_4;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif4;?> </td>
-                            <td><font size="3"><?php echo $row->dpp4;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up4;?> </td>
-                            <td><font size="3"><?php echo $row->pjt4;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPN WAPU/PPN Offshore</td>
-                            <td><font size="3"><?php echo $row->tarif5;?> </td>
-                            <td><font size="3"><?php echo $row->dpp5;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up5;?> </td>
-                            <td><font size="3"><?php echo $row->pjt5;?> </td>
-                          </tr>                                                          
-                      </tbody>
-                      </table>
-                      </h6>
-                    <?php } ?>                   
+                        </tr>
+                        <tr>
+                            <td><font size="2">PPh Pasal 21/26 <input type="text" name="PPh_Pasal_21"></td>
+                            <td><input type="text" class="form-control" name="tarif1"></td>
+                            <td><input type="text" class="form-control" name="dpp1"></td>
+                            <td><input type="text" class="form-control" name="gross_up1"></td>
+                            <td><input type="text" class="form-control" name="pjt1"></td>
+                        </tr>
+                        <tr>
+                            <td><font size="2">PPh Pasal 22 <input type="text" name="PPh_Pasal_22"></td>
+                            <td><input type="text" class="form-control" name="tarif2"></td>
+                            <td><input type="text" class="form-control" name="dpp2"></td>
+                            <td><input type="text" class="form-control" name="gross_up2"></td>
+                            <td><input type="text" class="form-control" name="pjt2"></td>
+                        </tr>
+                        <tr>
+                            <td><font size="2">PPh Pasal 23/26<input type="text" name="PPh_Pasal_23"></td>
+                            <td><input type="text" class="form-control" name="tarif3"></td>
+                            <td><input type="text" class="form-control" name="dpp3"></td>
+                            <td><input type="text" class="form-control" name="gross_up3"></td>
+                            <td><input type="text" class="form-control" name="pjt3"></td>
+                        </tr>
+                        <tr>
+                            <td><font size="2">PPh Pasal 4(2) <input type="text" name="PPh_Pasal_4"></td>
+                            <td><input type="text" class="form-control" name="tarif4"></td>
+                            <td><input type="text" class="form-control" name="dpp4"></td>
+                            <td><input type="text" class="form-control" name="gross_up4"></td>
+                            <td><input type="text" class="form-control" name="pjt4"></td>
+                        </tr>
+                        <tr>
+                            <td><font size="2">PPN WAPU/PPN Offshore </td>
+                            <td><input type="text" class="form-control" name="tarif5"></td>
+                            <td><input type="text" class="form-control" name="dpp5"></td>
+                            <td><input type="text" class="form-control" name="gross_up5"></td>
+                            <td><input type="text" class="form-control" name="pjt5"></td>
+                        </tr>                                                          
+                    </tbody>
+                    </table>
+                    </h6>
+                    <p align="justify">Apa kamu yakin akan mengirimkan TAX Form Pengajuan ini :  <?=$row->nomor_surat?></p>
+                    <label>Kepada CSF Finance:</label>                        
+                    <select name="handled_by">
+                        <option>--- Choose ---</option>
+                    <?php foreach ($csf as $get) {?>
+                        <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                    <?php } ?>
+                    </select>
                   </div>  
                 </div>                 
 
-                    <div class="box">
-                      <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Dashboard/monitoring" role="button">Back</a>
-                        <?php if($row->status == 1){ ?>
-                          <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>
-                          <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
-                        <?php } ?>  
-                        <?php if($row->status == 2){ ?>
-                          <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success">Process</button>
-                        <?php } ?>
-                        <?php if($row->status == 4){ ?>
-                          <a class="btn btn-success" href="Dashboard/getTax/<?php echo $row->id_payment; ?>" role="button">Tax</a>
-                        <?php } ?>
-                      </div>    
-                    </div>
+                <div class="box">
+                    <div class="box-header with-border">
+                    <a class="btn btn-warning" href="Dashboard/form_sp3/<?php echo $row->id_payment;?>" role="button">Back</a>                        
+                    <button type="submit" class="btn btn-primary">Submit</button>                        
+                    </div>    
+                </div>
             </section>
           <?php } ?>  
         </form>       
@@ -423,176 +427,12 @@
 </div>
 <!-- ./wrapper -->
 
-<!----.Modal -->
-<!----.Accept -->
-<div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-   <div class="modal-content">                                        
-    <div class="modal-body">
-    <form id="accepted" method="post" action="dashboard/accept">
-    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-      <p align="justify">Apa kamu yakin telah menerima Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-    </div>
-    <div class="modal-footer">                        
-     <button type="submit" class="btn btn-success bye">Yes</button>
-     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    </form>
-    </div>
-   </div>
-  </div>
-</div>
 
-<!----.Reject -->
-<div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-
-      <div class="modal-body">
-      <form id="rejected" method="post" action="dashboard/rejected">
-        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
-        <label>Notes :</label>                
-        <input type="text" name="note"></input>
-        <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-      </div>
-      <div class="modal-footer">                        
-        <button type="submit" class="btn btn-success bye">Yes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!---.Processing-->          
-<div class="modal fade" id="processing<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">                                        
-      <div class="modal-body">
-      <form id="processed" method="post" action="dashboard/processing">
-        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-        <label>Kepada CSF Tax:</label>                        
-        <select class="form-control" name="handled_by">
-          <option>--- Choose ---</option>
-        <?php foreach ($csf as $get) {?>
-          <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-        <?php } ?>
-        </select>
-      </div>
-      <div class="modal-footer">                        
-          <button type="submit" class="btn btn-success bye">Yes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>  
-    
-
-<!---.Tax-->          
-<div class="modal fade" id="tax<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">                                        
-      <div class="modal-body">
-      <form id="processed" method="post" action="dashboard/tax">
-        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <table border="1" width="50%">
-          <tbody>
-              <tr>
-                <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
-              </tr>
-              <tr>
-                <td width="20%"><center><b>Jenis Pajak </b></center></td>
-                <td width="10%"><center><b>Tarif </b></center></td>
-                <td width="30%"><center><b>DPP </b></center></td>
-                <td width="20%"><center><b>Gross Up </b></center>  </td>
-                <td width="20%"><center><b>Pajak Terhitung </b></center>  </td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 21/26</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 22</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 23/26</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 4(2)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPN WAPU/PPN Offshore</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>                                                          
-          </tbody>
-        </table>
-        <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-        <label>Kepada CSF Finance:</label>                        
-        <select class="form-control" name="handled_by">
-          <option>--- Choose ---</option>
-        <?php foreach ($csf as $get) {?>
-          <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-        <?php } ?>
-        </select>
-      </div>
-      <div class="modal-footer">                        
-          <button type="submit" class="btn btn-success bye">Yes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>    
 <script>
 function printThis() {
   window.print();
 }
 
-$(".accept").on('click', function(){
-      $.ajax({        
-          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/dashboard/accept"); ?>", // Isi dengan url/path file php yang dituju       
-          data: $("#accepted").serialize(), // data yang akan dikirim ke file yang dituju        
-          success: function(response){ // Ketika proses pengiriman berhasil          
-              $("#accept").modal('hide'); // Sembunyikan loadingnya   
-               location.reload();       
-              alert('Accepted success')
-          }      
-      });
-  });
-
-$(".reject").on('click', function(){
-      $.ajax({        
-          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/dashboard/rejected"); ?>", // Isi dengan url/path file php yang dituju       
-          data: $("#rejected").serialize(), // data yang akan dikirim ke file yang dituju        
-          success: function(response){ // Ketika proses pengiriman berhasil          
-              $("#reject").modal('hide'); // Sembunyikan loadingnya   
-               location.reload();       
-              alert('Rejected success')
-          }      
-      });
-  });  
 </script>
 
     <!-- jQuery 2.2.3 -->

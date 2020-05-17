@@ -81,12 +81,12 @@ td[rowspan="6"] {
 
                     <br>
 
-                    <table border="1" style="font-family: calibri;" width="100%">
+                    <table border="1" style="font-family: calibri;">
                         <thead>
                         <tr>
-                          <th width="10%"><center>NO. <br> <i>No.</i></center></th>
+                          <th width="5%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="50%"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="25%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
                           <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                         </thead>
@@ -94,7 +94,7 @@ td[rowspan="6"] {
                         <tr>
                           <td><center> 1 </center></td>
                           <td><textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea> </td>                  
-                          <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
+                          <td><select id="Select" onchange="myFunction()" name="currency">
                                       <option>--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                         <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>

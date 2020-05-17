@@ -117,7 +117,7 @@
                         <td><b>- Perkiraan Tanggal </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="2"><input type="date" class="form-control" name="label3" ></input></td>     
+                        <td colspan="2"><input type="text" class="form-control" name="label3" required></input></td>     
                       </tr>
                       <tr>
                         <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
