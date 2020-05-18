@@ -42,8 +42,16 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function surat_tax(){
+        $sql = "SELECT nomor_surat AS tax FROM t_payment WHERE status = 4";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
+
     function nomorsurat(){
-        $sql = "SELECT nomor_surat AS number1 FROM t_payment WHERE status = 4";
+        $sql = "SELECT nomor_surat AS number1 FROM t_payment WHERE status = 5";
 
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;
@@ -53,6 +61,18 @@ class Dashboard_model extends CI_Model{
     public function updateprocess($upd){
         $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
         
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function addtax($add){
+        $sql = "INSERT INTO `t_pajak` (id_payment, nomor_surat, jenis_pajak, masa_pajak, tahun_pajak, tgl_pemotongan, ber_npwp, npwp, nama_vendor, nik, alamat, kode_pajak,
+                penghasilan_bruto, tarif_pajak, pjk_terutang, fasilitas, nomor_skb, vendor, nilai_ppn ) 
+                VALUES ('".$add['id_payment']."','".$add['nomor_surat']."','".$add['jenis_pajak']."','".$add['masa_pajak']."','".$add['tahun_pajak']."','".$add['tgl_pemotongan']."',
+                '".$add['ber_npwp']."','".$add['npwp']."','".$add['nama_vendor']."','".$add['nik']."','".$add['alamat']."','".$add['kode_pajak']."','".$add['penghasilan_bruto']."',
+                '".$add['tarif_pajak']."','".$add['pjk_terutang']."','".$add['fasilitas']."','".$add['nomor_skb']."','".$add['vendor']."','".$add['nilai_ppn']."')";
+
         $query = $this->db->query($sql);
 
         return $query;
@@ -93,6 +113,91 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    var $table ="t_payment_l";
+    public function buat_kode_arf()  {   
+
+        $this->db->select('RIGHT(t_payment_l.arf_doc,4) as kode', FALSE);
+        $this->db->order_by('arf_doc','DESC');    
+        $this->db->limit(1);    
+        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
+        if($query->num_rows() <> 0){      
+         //jika kode ternyata sudah ada.      
+         $data = $query->row();      
+         $kode = intval($data->kode) + 1;    
+        }
+        else {      
+         //jika kode belum ada      
+         $kode = 1;    
+        }
+
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodejadi = "ARF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        return $kodejadi;  
+    }
+
+    public function buat_kode_asf()  {   
+
+        $this->db->select('RIGHT(t_payment_l.asf_doc,4) as kode', FALSE);
+        $this->db->order_by('asf_doc','DESC');    
+        $this->db->limit(1);    
+        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
+        if($query->num_rows() <> 0){      
+         //jika kode ternyata sudah ada.      
+         $data = $query->row();      
+         $kode = intval($data->kode) + 1;    
+        }
+        else {      
+         //jika kode belum ada      
+         $kode = 1;    
+        }
+
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodejadi = "ASF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        return $kodejadi;  
+    }
+
+    public function buat_kode_prf()  {   
+
+        $this->db->select('RIGHT(t_payment_l.prf_doc,4) as kode', FALSE);
+        $this->db->order_by('prf_doc','DESC');    
+        $this->db->limit(1);    
+        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
+        if($query->num_rows() <> 0){      
+         //jika kode ternyata sudah ada.      
+         $data = $query->row();      
+         $kode = intval($data->kode) + 1;    
+        }
+        else {      
+         //jika kode belum ada      
+         $kode = 1;    
+        }
+
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodejadi = "PRF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        return $kodejadi;  
+    }
+
+    public function buat_kode_crf()  {   
+
+        $this->db->select('RIGHT(t_payment_l.crf_doc,4) as kode', FALSE);
+        $this->db->order_by('crf_doc','DESC');    
+        $this->db->limit(1);    
+        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
+        if($query->num_rows() <> 0){      
+         //jika kode ternyata sudah ada.      
+         $data = $query->row();      
+         $kode = intval($data->kode) + 1;    
+        }
+        else {      
+         //jika kode belum ada      
+         $kode = 1;    
+        }
+
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodejadi = "CRF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        return $kodejadi;  
+    }
+
     function getAdminCSF() {
         $sql = "SELECT * FROM `m_user` WHERE id_role_app = '2' AND role_id < 4;";
 
@@ -125,7 +230,6 @@ class Dashboard_model extends CI_Model{
 
     public function getform($id) {
         $sql = "SELECT * FROM `t_payment_l` WHERE id = '$id'";
-                
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -251,19 +355,35 @@ class Dashboard_model extends CI_Model{
 
     function addpay($add){
         $sql = "INSERT INTO `t_payment_l` (display_name, type, status, tanggal, arf_doc, asf_doc, prf_doc, crf_doc, nomor_surat, kode_proyek, division_id,
-                tanggal_selesai, label1, description, currency, jumlah, terbilang, dibayar_kepada, verified_date, penanggung_jawab, jabatan, 
-                persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan ) 
+                tanggal_selesai, label1, description, currency, currency1, jumlah, terbilang, dibayar_kepada, verified_date, penanggung_jawab, jabatan, 
+                persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, cash_advance, piutang ) 
         VALUES ('".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['arf_doc']."','".$add['asd_doc']."','".$add['prf_doc']."',
                 '".$add['crf_doc']."','".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."',
-                '".$add['description']."','".$add['currency']."','".$add['jumlah']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."',
+                '".$add['description']."','".$add['currency']."','".$add['currency1']."','".$add['jumlah']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."',
                 '".$add['penanggung_jawab']."','".$add['jabatan']."','".$add['persetujuan_pembayaran1']."','".$add['persetujuan_pembayaran2']."','".$add['persetujuan_pembayaran3']."',
-                '".$add['jabatan1']."','".$add['jabatan2']."','".$add['jabatan3']."','".$add['catatan']."')";
+                '".$add['jabatan1']."','".$add['jabatan2']."','".$add['jabatan3']."','".$add['catatan']."','".$add['total_expenses']."','".$add['cash_advance']."','".$add['piutang']."')";
         
         $query = $this->db->query($sql);
 
         return $query;
     }
     
+    function report_view($id_pajak){
+        $sql = "SELECT * FROM `t_pajak` WHERE id_pajak= '$id_pajak' ";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
+
+    function report_pajak(){
+        $sql = "SELECT * FROM `t_pajak`";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
     function updatepay($status,$nomor_surat){
         
         $sql = "UPDATE `t_payment` SET `status`='".$status."' WHERE `nomor_surat`='".$nomor_surat."'";
@@ -276,10 +396,11 @@ class Dashboard_model extends CI_Model{
     function updpay($upd){
         $sql = "UPDATE `t_payment_l` SET `display_name`='".$upd['display_name']."',`status`='".$upd['status']."',`tanggal`='".$upd['tanggal']."',`arf_doc`='".$upd['arf_doc']."',`asf_doc`='".$upd['asf_doc']."',
         `prf_doc`='".$upd['prf_doc']."',`crf_doc`='".$upd['crf_doc']."',`nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`division_id`='".$upd['division_id']."',
-        `tanggal_selesai`='".$upd['tanggal_selesai']."',`label1`='".$upd['label1']."',`description`='".$upd['description']."',`currency`='".$upd['currency']."',`jumlah`='".$upd['jumlah']."',
+        `tanggal_selesai`='".$upd['tanggal_selesai']."',`label1`='".$upd['label1']."',`description`='".$upd['description']."',`currency`='".$upd['currency']."',`currency1`='".$upd['currency1']."',`jumlah`='".$upd['jumlah']."',
         `terbilang`='".$upd['terbilang']."',`dibayar_kepada`='".$upd['dibayar_kepada']."',`verified_date`='".$upd['verified_date']."',`penanggung_jawab`='".$upd['penanggung_jawab']."',
         `jabatan`='".$upd['jabatan']."',`persetujuan_pembayaran1`='".$upd['persetujuan_pembayaran1']."',`persetujuan_pembayaran2`='".$upd['persetujuan_pembayaran2']."',
-        `persetujuan_pembayaran3`='".$upd['persetujuan_pembayaran3']."',`jabatan1`='".$upd['jabatan1']."',`jabatan2`='".$upd['jabatan2']."',`jabatan3`='".$upd['jabatan3']."',`catatan`='".$upd['catatan']."' 
+        `persetujuan_pembayaran3`='".$upd['persetujuan_pembayaran3']."',`jabatan1`='".$upd['jabatan1']."',`jabatan2`='".$upd['jabatan2']."',`jabatan3`='".$upd['jabatan3']."',`catatan`='".$upd['catatan']."'
+        ,`total_expenses`='".$upd['total_expenses']."',`cash_advance`='".$upd['cash_advance']."',`piutang`='".$upd['piutang']."' 
         WHERE `id`='".$upd['id']."'"; 
         
         $query = $this->db->query($sql);

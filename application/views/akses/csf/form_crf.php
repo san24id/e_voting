@@ -43,7 +43,7 @@ td[rowspan="3"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" placeholder="ARF Doc. No"></td>
+                          <td><input type="text" name="crf_doc" class="form-control" value="<?php echo $crf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" >Dir/Sub/Div :<br><i>Dir/Sub/Div </i><font></td>
@@ -76,12 +76,18 @@ td[rowspan="3"] {
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
                               </select>
+                              <select id="Select1" onchange="myFunction1()" name="currency1">
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                        <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                      <?php } ?>
+                              </select>
                           </td>
                           <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><p id="demo">  </p></center></td>
+                          <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
                           <td><center><p id="ulang">  </p> </td>
                         </tr>
                         <tr> 
@@ -119,13 +125,15 @@ td[rowspan="3"] {
                     <table border="1" style="font-family: calibri;" width="50%">  
                       <tbody>
                         <tr>
+                            <?php foreach ($divhead as $divhead) { ?>
                           <td>Nama /<i>Name : </i></td>
-                          <td><textarea type="text" class="form-control" name="penanggung_jawab" placeholder="Name" required></textarea></td> 
+                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $divhead->display_name; ?>" required></td> 
                         </tr>
                         <tr>
                           <td>Jabatan /<i>Title : </i></td>
-                          <td><textarea type="text" class="form-control" name="jabatan" placeholder="Title" required></textarea></td> 
+                          <td><input type="text" class="form-control" name="jabatan" value="SVP Corporate Strategy & Finance" required></td> 
                         </tr>
+                            <?php }?>
                       </tbody>  
                     </table>    
 
@@ -182,23 +190,23 @@ td[rowspan="3"] {
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Dian Puspitasari </td>    
                           <td colspan="2" width="10%">No. Bilyet: </td>
                           <td colspan="2"> </td>
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; VP Treasury </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Cashier </td>
                           <td colspan="2" width="10%"><i>Check No.:</i> </td>
                           <td colspan="2"> </td>
                         </tr>
                       </tbody>
                     </table>
-
+                    
                     <br>
 
                     <table border="1" style="font-family: calibri;" width="100%">
@@ -217,9 +225,17 @@ td[rowspan="3"] {
                       </tbody>
                     </table>
 
-                    <img align="right" src="assets/dashboard/images/footer_form2.png" alt="Logo Images">    
-                    
-                    </div>  
+                    <img align="right" src="assets/dashboard/images/footer_form2.png" alt="Logo Images">  
+
+                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
+                    <label>Kepada CSF Review:</label>                        
+                    <select name="handled_by">
+                        <option>--- Choose ---</option>
+                    <?php foreach ($csf as $get) {?>
+                        <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                    <?php } ?>
+                    </select>            
+                  </div>  
                 </div>
                      
 
@@ -305,6 +321,12 @@ function myFunction(){
   var x = document.getElementById("Select").value;
 
   document.getElementById("demo").innerHTML = x;
+}
+
+function myFunction1(){
+  var x = document.getElementById("Select1").value;
+
+  document.getElementById("demo1").innerHTML = x;
 }
 
 function nominal(){

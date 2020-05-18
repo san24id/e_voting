@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        LIST OF DIRECT PAYMENT
+        LIST OF REPORT PAJAK
       </h1>
     </section>
 
@@ -20,70 +20,39 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
-                  <th>Status</th>
-                  <th>Tanggal</th>
-                  <th>Jenis Pembayaran</th>
-                  <th>Nomor Surat</th>
-                  <th>Description</th>
-                  <th>Pemohon</th>
-                  <th>Bank Account</th>
-                  <th>Nama Penerima</th>
-                  <th>Submitted Date</th>
-                  <th>Action</th>
+                    <th>No.</th>
+                    <th>SPPP No. </th>
+                    <th>Jenis Pajak </th>
+                    <th>Tahun Pajak</th>
+                    <th>NPWP </th> 
+                    <th>NIK</th>
+                    <th>Nama Vendor</th>
+                    <th>Alamat</th>
+                    <th>Kode Objek Pajak</th>
+                    <th>Nomor SKB</th>
+                    <th>Nilai PPN WAPU/OFFSHORE</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($directpayment as $row){
-                      $test1 = $row->jenis_pembayaran;                        
-                      $test2 = explode(";", $test1);
-                      $test3 = count($test2);                        
+                    foreach ($report as $row){
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
-                  <td><?php 
-                        if($row->status == 1){
-                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
-                        }else if($row->status == 2){
-                            echo "<img src='assets/dashboard/images/legend/green.png'>";
-                        }else if($row->status == 3){
-                            echo "<img src='assets/dashboard/images/legend/reject.png'>";
-                        }else if($row->status == 4){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
-                        }else if($row->status == 5){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
-                        }else if($row->status == 6){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
-                        }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
-                        }else if($row->status == 8){
-                          echo "<img src='assets/dashboard/images/legend/blue.png'>";
-                        }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
-                        }else if($row->status == 10){
-                          echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                        }   
-                      ?>
-                  </td>
-                  <td><?php echo $row->label3; ?></td>
-                  <td><?php                     
-                        for($a=0; $a<$test3; $a++){
-                          if($test2[$a]){
-                            echo $test2[$a]."<br>";
-                          }
-                        }  ?>
-                  </td>
-                  <td><?php echo $row->nomor_surat; ?></td>
-                  <td><?php echo $row->label1; ?></td>
-                  <td><?php echo $row->display_name; ?></td>
-                  <td><?php echo $row->akun_bank; ?></td>
-                  <td><?php echo $row->penerima; ?></td>
-                  <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                  <td><?php echo $row->nomor_surat;?> </td>
+                  <td><?php echo $row->jenis_pajak; ?></td>
+                  <td><?php echo $row->tahun_pajak; ?></td>
+                  <td><?php echo $row->npwp; ?></td>
+                  <td><?php echo $row->nik; ?></td>
+                  <td><?php echo $row->nama_vendor; ?></td>
+                  <td><?php echo $row->alamat; ?></td>
+                  <td><?php echo $row->kode_pajak; ?></td>
+                  <td><?php echo $row->nomor_skb; ?></td>
+                  <td><?php echo $row->nilai_ppn; ?></td>
                   <td>
-                    <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <a href="Dashboard/report_view/<?php echo $row->id_pajak; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      

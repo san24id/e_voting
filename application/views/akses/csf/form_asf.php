@@ -43,21 +43,28 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="asf_doc" class="form-control" placeholder="ASF Doc. No"></td>
+                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $asf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
                           <td><input type="text" name="division_id" class="form-control" placeholder="Divisi Pemohon"></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">SPPP Doc. No : </font></td>
-                          <td><input type="text" name="nomor_surat" class="form-control" placeholder="SPPP Doc. No"></td>
+                          <td><input type="text" name="nomor_surat" class="form-control" placeholder="SPPP Doc. No">
+                              <select class="form-control" name="nomor_surat">
+                                <option>--- Choose ---</option>
+                              <?php foreach ($surat1 as $got) {?>
+                                <option value="<?php echo $got->number1; ?>"><?php echo $got->number1; ?></option>
+                              <?php } ?>
+                              </select>
+                          </td>
                         </tr>
                         <tr>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
                           <td>&nbsp; </td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" placeholder="ARF Doc. No"></td>
+                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -83,23 +90,29 @@ td[rowspan="6"] {
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
                               </select>
+                              <select id="Select1" onchange="myFunction1()" name="currency1">
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                        <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                      <?php } ?>
+                              </select>
                           </td>
                           <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
                         </tr>
                         <tr>
-                          <td colspan="2"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><p id="demo">  </p></center></td>
-                          <td><center><p id="ulang">  </p> </td>
+                          <td colspan="2"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
+                          <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
+                          <td><center><p id="ulang" name="total_expenses">  </p> </td>
                         </tr>
                         <tr>
                           <td colspan="2"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                          <td> </td>
-                          <td> </td>
+                          <td><center><p id="demo"> </td>
+                          <td><input type="text" name="cash_advance" class="form-control"> </td>
                         </tr>
                         <tr>
                           <td colspan="2"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td> </td>
-                          <td> </td>
+                          <td><center><p id="demo"> </td>
+                          <td><input type="text" name="piutang" class="form-control"> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -186,8 +199,12 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="26%" colspan="2"><center> <input type="checkbox" name="" value="Transfer" disabled> Transfer Ke :</input> </center></td>
-                          <td><font size="+1"> Bank : &nbsp;<input type="text" name="" placeholder="Bank" readonly> </input></font></td> 
-                          <td><font size="+1"> No. Rek : &nbsp;<input type="text" name="" placeholder="No. Rek" readonly> </input></font></td>                        
+                          <td><font size="+1"> Bank : 
+                              <!-- &nbsp;<input type="text" name="" placeholder="Bank" readonly> </input></font> -->
+                          </td> 
+                          <td><font size="+1"> No. Rek : 
+                              <!-- &nbsp;<input type="text" name="" placeholder="No. Rek" readonly> </input></font> -->
+                          </td>                        
                         </tr>
                       </tbody>
                     </table>
@@ -213,15 +230,15 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>        
+                          <td colspan="2">&nbsp; Dian Puspitasari </td>        
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; VP Treasury </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Cashier </td>
                         </tr>                      
                       </tbody> 
                     </table>
@@ -246,6 +263,14 @@ td[rowspan="6"] {
 
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
 
+                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
+                    <label>Kepada CSF Review:</label>                        
+                    <select name="handled_by">
+                        <option>--- Choose ---</option>
+                    <?php foreach ($csf as $get) {?>
+                        <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                    <?php } ?>
+                    </select>            
                   </div>  
                 </div>
                      
@@ -332,6 +357,12 @@ function myFunction(){
   var x = document.getElementById("Select").value;
 
   document.getElementById("demo").innerHTML = x;
+}
+
+function myFunction1(){
+  var x = document.getElementById("Select1").value;
+
+  document.getElementById("demo1").innerHTML = x;
 }
 
 function nominal(){

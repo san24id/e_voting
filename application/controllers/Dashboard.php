@@ -87,6 +87,57 @@ class Dashboard extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
+	public function report_pajak(){
+		
+		$data['active1'] = '';
+		$data['report_pajak'] = 'active';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['report'] = $this->Dashboard_model->report_pajak();
+		// $data['report_view'] = $this->Dashboard_model->report_view($id_pajak);
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/report_pajak', $data);
+	}
+
+	public function report_view($id_pajak){
+		
+		$data['active1'] = '';
+		$data['report_pajak'] = 'active';
+		$data['active3'] = '';
+
+		// $data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['report'] = $this->Dashboard_model->report_pajak();
+		$data['vreport'] = $this->Dashboard_model->report_view($id_pajak);
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/report_view', $data);
+	}
+
+	public function report_dp($id_payment)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print_dp', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
 	public function form_sp3($id_payment){
 
 		$data['monitoring'] = 'active';
@@ -110,9 +161,11 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_arf', $data);
@@ -142,11 +195,13 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		$data['surat'] = $this->Dashboard_model->nomorsurat();
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
+		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf', $data);
@@ -177,12 +232,11 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		$data['surat'] = $this->Dashboard_model->nomorsurat();
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-		// $data['ppayment'] = $this->Home_model->getform($id_payment);
-		// $data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['prf_doc'] = $this->Dashboard_model->buat_kode_prf();
 		$data['currency'] = $this->Home_model->getCurrency();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -218,8 +272,8 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-		// $data['ppayment'] = $this->Home_model->getform($id_payment);
-		// $data['surat'] = $this->Home_model->buat_kode();
+		$data['crf_doc'] = $this->Dashboard_model->buat_kode_crf();
+
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_crf', $data);
@@ -287,6 +341,53 @@ class Dashboard extends CI_Controller {
 
 	public function tax(){
 
+		$add = array(
+			'id_payment' => $_POST['id_payment'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pajak' => $_POST['jenis_pajak'],
+			'masa_pajak' => $_POST['masa_pajak'],
+			'tahun_pajak' => $_POST['tahun_pajak'],
+			'tgl_pemotongan' => $_POST['tgl_pemotongan'],
+			'ber_npwp' => $_POST['ber_npwp'],
+			'npwp' => $_POST['npwp'],
+			'nama_vendor' => $_POST['nama_vendor'],
+			'nik' => $_POST['nik'],
+			'alamat' => $_POST['alamat'],
+			'kode_pajak' => $_POST['kode_pajak'],
+			'penghasilan_bruto' => $_POST['penghasilan_bruto'],
+			'tarif_pajak' => $_POST['tarif_pajak'],
+			'pjk_terutang' => $_POST['pjk_terutang'],
+			'fasilitas' => $_POST['fasilitas'],
+			'nomor_skb' => $_POST['nomor_skb'],
+			'vendor' => $_POST['vendor'],
+			'nilai_ppn' => $_POST['nilai_ppn']			
+						
+		);
+
+		$this->Dashboard_model->addtax($add);
+
+		redirect('Dashboard/report_pajak');
+	}
+
+	public function form_sp3_2($id_payment){
+		$data['active1'] = '';
+		$data['monitoring'] = 'active';
+		$data['active3'] = '';
+
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['gprocess'] = $this->Dashboard_model->getProcessing();
+		$data['tax'] = $this->Dashboard_model->getTax();
+		
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_sp3_2', $data);
+	}
+	
+	public function tax2(){
+
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
 			'status' => 5,
@@ -305,7 +406,6 @@ class Dashboard extends CI_Controller {
 			'dpp3' => $_POST['dpp3'],
 			'dpp4' => $_POST['dpp4'],
 			'dpp5' => $_POST['dpp5'],
-			'dpp1' => $_POST['dpp1'],
 			'gross_up1' => $_POST['gross_up1'],
 			'gross_up2' => $_POST['gross_up2'],
 			'gross_up3' => $_POST['gross_up3'],
@@ -336,21 +436,11 @@ class Dashboard extends CI_Controller {
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['gprocess'] = $this->Dashboard_model->getProcessing();
 		$data['tax'] = $this->Dashboard_model->getTax();
-		$data['finance'] = $this->Dashboard_model->getFinance();
-		$data['review'] = $this->Dashboard_model->getWaitReview();
 		
-		$data['wverifikasi'] = $this->Dashboard_model->getWaitVerifikasi();
-		$data['verifikasi'] = $this->Dashboard_model->getVerifikasi();
-
-		$data['wApproval'] = $this->Dashboard_model->getWaitApproval();
-		$data['approval'] = $this->Dashboard_model->getApproval();
-		
-		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
-		$data['Paid'] = $this->Dashboard_model->getPaid();
-
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/getTax', $data);
 	}
+
 
 	public function dp()
 	{
@@ -760,6 +850,10 @@ class Dashboard extends CI_Controller {
         $this->load->view('akses/csf/form_view', $data);
 	}
 
+	function addtax(){
+
+	}
+
 	function addpay(){
 		$c_jp = count($_POST['type']);
 		$type = "";
@@ -786,8 +880,12 @@ class Dashboard extends CI_Controller {
 			'tanggal_selesai' => $_POST['tanggal_selesai'],
 			'division_id' => $_POST['division_id'],
 			'label1' => $_POST['label1'],
+			'cash_advance' => $_POST['cash_advance'],
+			'piutang' => $_POST['piutang'],
+			'total_expenses' => $_POST['total_expenses'],
 			'description' => $_POST['description'],
 			'currency' => $_POST['currency'],
+			'currency1' => $_POST['currency1'],
 			'jumlah' => $_POST['jumlah'],
 			'terbilang' => $_POST['terbilang'],
 			'dibayar_kepada' => $_POST['dibayar_kepada'],
