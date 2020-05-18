@@ -67,6 +67,17 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getDraftPrint(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status='1' AND division_id='$dvs' AND id_user='$usr'";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    
+    }
+    
     public function getSubmitted(){
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
@@ -155,7 +166,7 @@ class Home_model extends CI_Model{
         $usr = $this->session->userdata('id_user');
 
         $sql = "SELECT * FROM (SELECT b.status_laporan, a.id_user, a.division_id, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
-                a.status = b.id_status AND a.id_user = '$usr' AND a.status = '1'
+                a.status = b.id_status AND a.id_user = '$usr' AND a.status = '0'
                 GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' 
                 AND otr.totaldraft != 0 AND otr.status_laporan IS NOT NULL";
                 
@@ -235,6 +246,14 @@ class Home_model extends CI_Model{
         `label8`='".$upd['label8']."',`label9`='".$upd['label9']."',`penerima`='".$upd['penerima']."',`vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',
         `no_rekening`='".$upd['no_rekening']."'
         WHERE `id_payment`='".$upd['id_payment']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    public function updateprint($upd){
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 

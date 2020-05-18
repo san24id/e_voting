@@ -49,6 +49,7 @@ class Dashboard extends CI_Controller {
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['draftprint'] = $this->Home_model->getDraftPrint();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -727,7 +728,7 @@ class Dashboard extends CI_Controller {
 		$add = array(
 			
 			'id_payment' => $_POST['id_payment'],
-			'status' => 1,
+			'status' => 0,
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'jenis_pembayaran' => $jenis_pembayaran,
@@ -801,6 +802,30 @@ class Dashboard extends CI_Controller {
 		$this->Home_model->updatepayment($upd);
 
 		redirect('Dashboard');
+	}
+
+	public function draftprintdp(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Dashboard/report_dp/'.$_POST['id_payment']);
+	}
+
+	public function draftprint(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Dashboard/report/'.$_POST['id_payment']);
 	}
 
 	public function deletepayment(){
@@ -887,6 +912,7 @@ class Dashboard extends CI_Controller {
 			'currency' => $_POST['currency'],
 			'currency1' => $_POST['currency1'],
 			'jumlah' => $_POST['jumlah'],
+			'jumlah1' => $_POST['jumlah1'],
 			'terbilang' => $_POST['terbilang'],
 			'dibayar_kepada' => $_POST['dibayar_kepada'],
 			'verified_date' => $_POST['verified_date'],

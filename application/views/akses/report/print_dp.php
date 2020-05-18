@@ -60,6 +60,8 @@
           </h1>
         </section> -->
         <!-- Main content -->
+        <form id="form" method="post" action="Dashboard/draftprintdp" onsubmit="update()">
+
         <?php foreach ($ppayment as $row) { ?>
           
           <section class="content">
@@ -395,7 +397,7 @@
 
             </div>
           </section>  
-
+        </form>                  
         <!-- /.content -->
       </div>
 

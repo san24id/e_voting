@@ -374,7 +374,7 @@
                           <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success">Process</button>
                         <?php } ?>
                         <?php if($row->status == 4){ ?>
-                          <a class="btn btn-success" href="Dashboard/getTax/<?php echo $row->id_payment; ?>" role="button">Tax</a>
+                          <a class="btn btn-success" href="Dashboard/form_sp3_2/<?php echo $row->id_payment; ?>" role="button">Tax</a>
                         <?php } ?>
                       </div>    
                     </div>

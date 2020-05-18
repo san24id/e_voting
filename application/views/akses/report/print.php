@@ -60,6 +60,9 @@
           </h1>
         </section> -->
         <!-- Main content -->
+
+        <form id="form" method="post" action="Dashboard/draftprint" onsubmit="update()">
+
         <?php foreach ($ppayment as $row) { ?>
           
           <section class="content">

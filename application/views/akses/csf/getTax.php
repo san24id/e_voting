@@ -219,9 +219,6 @@ function math() {
   }  
 }
 
-
-
-
 $(function () {
     $("#example1").DataTable();
 });

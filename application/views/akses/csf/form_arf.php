@@ -107,7 +107,9 @@ td[rowspan="6"] {
                                       <?php } ?>
                               </select>
                           </td>
-                          <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
+                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></input>
+                              <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" placeholder="Jumlah" required></input>
+                          </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
@@ -173,19 +175,19 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control"> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" placeholder="Title"> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" placeholder="Title"> </td>
+                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" placeholder="Title"> </td>
+                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control"> </td>
                         </tr>  
                       </tbody>
                     </table>
@@ -367,10 +369,50 @@ function myFunction1(){
 }
 
 function nominal(){
-  var x = document.getElementById("nilai").value;
+  var x = parseInt(document.getElementById("nilai").value);
+  // alert(x)
+  var b = parseInt(document.getElementById("nilai1").value);
+  // alert(b)
+  if(x && b){
+    document.getElementById("ulang").innerHTML = x+b ;
+  }  
+  var a = x+b ;
+  if (a <= 100000000){
+    document.getElementById("approval1").value = "Donny Hamdani";
+    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+  }
+  if (a >= 100000000 && a <= 500000000) {
+    document.getElementById("approval1").value = "Donny Hamdani";
+    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+    
+    document.getElementById("approval2").value = "Salusra Satria";
+    document.getElementById("jabatan2").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+  }
+  if (a >= 500000000) {
+    document.getElementById("approval1").value = "Salusra Satria";
+    document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+    
+    document.getElementById("approval2").value = "Andre Permana";
+    document.getElementById("jabatan2").value = "Direktur Eksekutif Bisnis / COO"; 
 
-  document.getElementById("ulang").innerHTML = x;
+    document.getElementById("approval3").value = "M. Wahid Sutopo";
+    document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
+  }  
 }
+
+
+// function math() {
+// 	var a = parseInt(document.getElementById("1").value);
+//   // alert(a);
+// 	var b = parseInt(document.getElementById("2").value);
+//   // alert(b);
+// 	if(a && b){
+//     document.getElementById("msg").value= a*(b/100);
+//   }		
+//   if(a){
+//     document.getElementById("msg2").value= a*(10/100);
+//   }  
+// }
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

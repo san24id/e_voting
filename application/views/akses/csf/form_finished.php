@@ -27,7 +27,7 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Home/updatepayment" onsubmit="update()">
+        <form id="form" method="post" action="Dashboard/updatepayment" onsubmit="update()">
 
           <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
@@ -349,7 +349,7 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Home" role="button">Cancel</a>
+                        <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>
                         <button type="submit" class="btn btn-success">Save</button>
                         <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                     </div>
