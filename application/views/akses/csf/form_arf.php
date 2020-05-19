@@ -114,7 +114,7 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
-                          <td><center><p id="ulang">  </p> </td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses">  </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -198,15 +198,15 @@ td[rowspan="6"] {
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="" value="Tunai" disabled> Tunai </font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" > Tunai </font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="" value="Transfer" disabled> Transfer Ke : </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" > Transfer Ke : </center></td>
                           <td><font size="+1"> Bank : 
-                              <!-- &nbsp;<input type="text" name="" placeholder="Bank" readonly> </font> -->
+                              &nbsp;<input type="text" name="bank" placeholder="Bank" > </font>
                           </td> 
                           <td><font size="+1"> No. Rek : 
-                              <!-- &nbsp;<input type="text" name="" placeholder="No. Rek" readonly> </font> -->
+                              &nbsp;<input type="text" name="no_rek" placeholder="No. Rek" > </font>
                           </td>                        
                         </tr>
                       </tbody>
@@ -267,7 +267,7 @@ td[rowspan="6"] {
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
                    
                     <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
-                    <label>Kepada CSF Review:</label>                        
+                    <label>Kepada CSF Reviewer:</label>                        
                     <select name="handled_by">
                         <option>--- Choose ---</option>
                     <?php foreach ($csf as $get) {?>
@@ -374,7 +374,7 @@ function nominal(){
   var b = parseInt(document.getElementById("nilai1").value);
   // alert(b)
   if(x && b){
-    document.getElementById("ulang").innerHTML = x+b ;
+    document.getElementById("ulang").value = x+b ;
   }  
   var a = x+b ;
   if (a <= 100000000){

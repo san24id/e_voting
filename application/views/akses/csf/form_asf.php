@@ -97,22 +97,24 @@ td[rowspan="6"] {
                                       <?php } ?>
                               </select>
                           </td>
-                          <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
+                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></input>
+                              <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" placeholder="Jumlah" required></input>
+                          </td>
                         </tr>
                         <tr>
                           <td colspan="2"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
-                          <td><center><p id="ulang" name="total_expenses">  </p> </td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses">  </p> </td>
                         </tr>
                         <tr>
                           <td colspan="2"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                          <td><center><p id="demo"> </td>
-                          <td><input type="text" name="cash_advance" class="form-control"> </td>
+                          <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
+                          <td><input id="jumlah" onchange="nominal()" type="text" name="cash_advance" class="form-control"> </td>
                         </tr>
                         <tr>
                           <td colspan="2"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td><center><p id="demo"> </td>
-                          <td><input type="text" name="piutang" class="form-control"> </td>
+                          <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
+                          <td><input id="negatif" type="text" name="piutang" class="form-control"> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -173,37 +175,38 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control"> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" placeholder="Title"> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" placeholder="Title"> </td>
+                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" placeholder="Title"> </td>
-                        </tr>  
+                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control"> </td>
+                        </tr>
                       </tbody>
                     </table>
+
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="" value="Tunai" disabled> Tunai</input></font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" > Tunai </font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="" value="Transfer" disabled> Transfer Ke :</input> </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" > Transfer Ke : </center></td>
                           <td><font size="+1"> Bank : 
-                              <!-- &nbsp;<input type="text" name="" placeholder="Bank" readonly> </input></font> -->
+                              &nbsp;<input type="text" name="bank" placeholder="Bank" > </font>
                           </td> 
                           <td><font size="+1"> No. Rek : 
-                              <!-- &nbsp;<input type="text" name="" placeholder="No. Rek" readonly> </input></font> -->
+                              &nbsp;<input type="text" name="no_rek" placeholder="No. Rek" > </font>
                           </td>                        
                         </tr>
                       </tbody>
@@ -264,7 +267,7 @@ td[rowspan="6"] {
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
 
                     <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
-                    <label>Kepada CSF Review:</label>                        
+                    <label>Kepada CSF Reviewer:</label>                        
                     <select name="handled_by">
                         <option>--- Choose ---</option>
                     <?php foreach ($csf as $get) {?>
@@ -366,10 +369,43 @@ function myFunction1(){
 }
 
 function nominal(){
-  var x = document.getElementById("nilai").value;
+  var x = parseInt(document.getElementById("nilai").value);
+  // alert(x)
+  var b = parseInt(document.getElementById("nilai1").value);
+  // alert(b)
+  var c = parseInt(document.getElementById("jumlah").value);
 
-  document.getElementById("ulang").innerHTML = x;
+  if(x && b){
+    document.getElementById("ulang").value = x+b ;
+  } 
+  if(c){
+    document.getElementById("negatif").value = x+b+c ;
+  }
+
+  var a = x+b ;
+  if (a <= 100000000){
+    document.getElementById("approval1").value = "Donny Hamdani";
+    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+  }
+  if (a >= 100000000 && a <= 500000000) {
+    document.getElementById("approval1").value = "Donny Hamdani";
+    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+    
+    document.getElementById("approval2").value = "Salusra Satria";
+    document.getElementById("jabatan2").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+  }
+  if (a >= 500000000) {
+    document.getElementById("approval1").value = "Salusra Satria";
+    document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+    
+    document.getElementById("approval2").value = "Andre Permana";
+    document.getElementById("jabatan2").value = "Direktur Eksekutif Bisnis / COO"; 
+
+    document.getElementById("approval3").value = "M. Wahid Sutopo";
+    document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
+  }  
 }
+
 </script>
 
 

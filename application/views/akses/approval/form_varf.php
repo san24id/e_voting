@@ -14,7 +14,7 @@ td[rowspan="6"] {
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()">
+        <!-- <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()"> -->
           <?php foreach ($ppayment as $get) { ?>  
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
 
@@ -255,25 +255,58 @@ td[rowspan="6"] {
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>
-                    <?php if($get->status == 4){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#tax<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
-                    <?php if($get->status == 5){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#review<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
-                    <?php if($get->status == 6){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#verif<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
-                    <?php if($get->status == 7){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#sendapv<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
+                    <a class="btn btn-warning" href="Approval/listApproval" role="button">Cancel</a>                   
+                  
+                    <button type="submit" data-toggle="modal" data-target="#approved<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
+                    <!--Modal SendApproval-->
+                    <div class="modal fade" id="approved<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">                                        
+                        <div class="modal-body">
+                        <form id="processed1" method="post" action="approval/approve">
+                          <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                          <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          <p align="justify">Apa kamu yakin akan menyetujui Form Pengajuan ini : <?=$get->arf_doc?></p>
+                                                 
+                        </div>
+                        <div class="modal-footer">                        
+                            <button type="submit" class="btn btn-success bye">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+
+                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
+                    <!---Modal RejectRequestor-->
+                    <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">
+
+                        <div class="modal-body">
+                        <form id="rejected" method="post" action="approval/rejected">
+                          <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+                          <label>Notes :</label>                
+                          <input type="text" name="note"></input>
+                          <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                        </div>
+                        <div class="modal-footer">                        
+                          <button type="submit" class="btn btn-success bye">Yes</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                    </div> 
+
                   </div>
                 </div>                                                 
             </div>
           </section>    
         <?php } ?>                        
-        </form>
+        <!-- </form> -->
         <!-- /.content -->
       </div>
 
@@ -355,15 +388,15 @@ function nominal(){
 }
 </script>
 
-<div class="modal fade" id="tax<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">                                        
       <div class="modal-body">
       <form id="processed" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-        <input type="hidden" name="status" value="5">
+        <input type="hidden" name="status" value="7">
         <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
-        <label>Kepada CSF Finance:</label>                        
+        <label>Kepada CSF Verificator:</label>                        
         <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>
         <?php foreach ($csf as $get) {?>
@@ -379,6 +412,77 @@ function nominal(){
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">                                        
+      <div class="modal-body">
+      <form id="processed1" method="post" action="dashboard/updpay">
+        <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+        <input type="hidden" name="status" value="8">
+        <p align="justify">Apa kamu yakin akan menyetujui Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <label>Kepada Approval? </label>                        
+      </div>
+      <div class="modal-footer">                        
+          <button type="submit" class="btn btn-success bye">Yes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+      <form id="rejected" method="post" action="dashboard/rejected">
+        <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+        <input type="hidden" name="id" value="3">
+        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+        <label>Notes :</label>                
+        <input type="text" name="note"></input>
+        <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+      </div>
+      <div class="modal-footer">                        
+        <button type="submit" class="btn btn-success bye">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+      <form id="rejected2" method="post" action="dashboard/updpay">
+        <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+        <input type="hidden" name="id" value="4">
+        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <label>Kepada CSF Finance:</label>                        
+        <select class="form-control" name="handled_by">
+          <option>--- Choose ---</option>
+        <?php foreach ($csf as $get) {?>
+          <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+        <?php } ?>
+        </select>
+        <label>Notes :</label>                
+        <input type="text" name="note"></input>
+        <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+      </div>
+      <div class="modal-footer">                        
+        <button type="submit" class="btn btn-success bye">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">

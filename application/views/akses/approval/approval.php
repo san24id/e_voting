@@ -130,7 +130,11 @@
                     <tbody>
                     <?php 
                         $i = 1;
-                        foreach ($approved as $row){                          
+                        foreach ($approved as $row){  
+                          $test11 = $row->apf;                        
+                          $test22 = explode(";", $test11);
+                          $test33 = count($test22);                        
+                          ?>                           
                     ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
@@ -144,13 +148,31 @@
                          }
                         ?>
                     </td>
-                    <td><?php echo $row->type; ?> </td>                  
+                    <td><?php                     
+                        for($b=0; $b<$test33; $b++){
+                          if($test22[$b]){
+                            echo $test22[$b]."<br>";
+                          }
+                        }  ?>
+                    </td>                  
                     <td><?php echo $row->tanggal; ?></td>
-                    <td> </td>
+                    <td> XXX </td>
                     <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->division_id; ?></td>
                     <td>
-                        <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
+                        <?php if ($row->type == 1) { ?>   
+                          <a href="approval/form_vprf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                        <?php } ?>
+                        <?php if ($row->type == 2) { ?> 
+                          <a href="approval/form_varf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                        <?php } ?>
+                        <?php if ($row->type == 3) { ?> 
+                          <a href="approval/form_vasf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->type == 4) { ?> 
+                          <a href="approval/form_vcrf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                        <?php } ?>
                     </td>
                     <td>
                         <?php if ($row->status == 4){ ?>  

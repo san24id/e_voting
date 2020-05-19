@@ -329,35 +329,72 @@
                         </tr>
                         <tr>
                             <td><font size="2">PPh Pasal 21/26 <input type="text" name="PPh_Pasal_21"></td>
-                            <td><input type="text" class="form-control" name="tarif1"></td>
+                            <td><select  name="tarif1" >
+                                      <option>--Choose--</option>
+                                      <option value="0%">0%</option>
+                                      <option value="2,5%">2,5%</option>
+                                      <option value="7,5%">7,5%</option>
+                                      <option value="12.5%">12,5%</option>
+                                      <option value="15%">15%</option>
+                                      <option value="3%">3%</option>
+                                      <option value="9%">9%</option>
+                                      <option value="18%">18%</option>
+                                      <option value="20%">20%</option>
+                                </select>
+                            </td>
                             <td><input type="text" class="form-control" name="dpp1"></td>
                             <td><input type="text" class="form-control" name="gross_up1"></td>
                             <td><input type="text" class="form-control" name="pjt1"></td>
                         </tr>
                         <tr>
                             <td><font size="2">PPh Pasal 22 <input type="text" name="PPh_Pasal_22"></td>
-                            <td><input type="text" class="form-control" name="tarif2"></td>
+                            <td><select name="tarif2" >
+                                      <option>--Choose--</option>
+                                      <option value="1,5%">1,5%</option>
+                                      <option value="3%">3%</option>
+                                </select>
+                            </td>
                             <td><input type="text" class="form-control" name="dpp2"></td>
                             <td><input type="text" class="form-control" name="gross_up2"></td>
                             <td><input type="text" class="form-control" name="pjt2"></td>
                         </tr>
                         <tr>
                             <td><font size="2">PPh Pasal 23/26<input type="text" name="PPh_Pasal_23"></td>
-                            <td><input type="text" class="form-control" name="tarif3"></td>
+                            <td><select name="tarif3" >
+                                      <option>--Choose--</option>
+                                      <option value="0%">0%</option>
+                                      <option value="2%">2%</option>
+                                      <option value="15%">15%</option>
+                                      <option value="4%">4%</option>
+                                      <option value="20%">20%</option>
+                                      <option value="30%">30%</option>
+                                </select>
+                            </td>
                             <td><input type="text" class="form-control" name="dpp3"></td>
                             <td><input type="text" class="form-control" name="gross_up3"></td>
                             <td><input type="text" class="form-control" name="pjt3"></td>
                         </tr>
                         <tr>
                             <td><font size="2">PPh Pasal 4(2) <input type="text" name="PPh_Pasal_4"></td>
-                            <td><input type="text" class="form-control" name="tarif4"></td>
+                            <td><select name="tarif4" >
+                                      <option>--Choose--</option>
+                                      <option value="0,5%">0,5%</option>
+                                      <option value="2%">2%</option>
+                                      <option value="3%">3%</option>
+                                      <option value="4%">4%</option>
+                                      <option value="6%">6%</option>
+                                      <option value="6%">6%</option>
+                                </select></td>
                             <td><input type="text" class="form-control" name="dpp4"></td>
                             <td><input type="text" class="form-control" name="gross_up4"></td>
                             <td><input type="text" class="form-control" name="pjt4"></td>
                         </tr>
                         <tr>
                             <td><font size="2">PPN WAPU/PPN Offshore </td>
-                            <td><input type="text" class="form-control" name="tarif5"></td>
+                            <td><select name="tarif5" >
+                                      <option>--Choose--</option>
+                                      <option value="10%">10%</option>
+                                </select></td></td>
                             <td><input type="text" class="form-control" name="dpp5"></td>
                             <td><input type="text" class="form-control" name="gross_up5"></td>
                             <td><input type="text" class="form-control" name="pjt5"></td>

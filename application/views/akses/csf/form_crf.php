@@ -83,12 +83,14 @@ td[rowspan="3"] {
                                       <?php } ?>
                               </select>
                           </td>
-                          <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></textarea> </td>
+                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></input>
+                              <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" placeholder="Jumlah" required></input>
+                          </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
-                          <td><center><p id="ulang">  </p> </td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses">  </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -149,20 +151,20 @@ td[rowspan="3"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" placeholder="Name"> </td>
+                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control"> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" placeholder="Title"> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" placeholder="Title"> </td>
+                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" placeholder="Title"> </td>
-                        </tr>  
+                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control"> </td>
+                        </tr>
                       </tbody>
                     </table>
 
@@ -228,7 +230,7 @@ td[rowspan="3"] {
                     <img align="right" src="assets/dashboard/images/footer_form2.png" alt="Logo Images">  
 
                     <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
-                    <label>Kepada CSF Review:</label>                        
+                    <label>Kepada CSF Reviewer:</label>                        
                     <select name="handled_by">
                         <option>--- Choose ---</option>
                     <?php foreach ($csf as $get) {?>
@@ -330,9 +332,36 @@ function myFunction1(){
 }
 
 function nominal(){
-  var x = document.getElementById("nilai").value;
+  var x = parseInt(document.getElementById("nilai").value);
+  // alert(x)
+  var b = parseInt(document.getElementById("nilai1").value);
+  // alert(b)
+  if(x && b){
+    document.getElementById("ulang").value = x+b ;
+  }  
 
-  document.getElementById("ulang").innerHTML = x;
+  var a = x+b ;
+  if (a <= 100000000){
+    document.getElementById("approval1").value = "Donny Hamdani";
+    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+  }
+  if (a >= 100000000 && a <= 500000000) {
+    document.getElementById("approval1").value = "Donny Hamdani";
+    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+    
+    document.getElementById("approval2").value = "Salusra Satria";
+    document.getElementById("jabatan2").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+  }
+  if (a >= 500000000) {
+    document.getElementById("approval1").value = "Salusra Satria";
+    document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+    
+    document.getElementById("approval2").value = "Andre Permana";
+    document.getElementById("jabatan2").value = "Direktur Eksekutif Bisnis / COO"; 
+
+    document.getElementById("approval3").value = "M. Wahid Sutopo";
+    document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
+  }  
 }
 </script>
 

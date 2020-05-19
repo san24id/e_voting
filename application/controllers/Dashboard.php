@@ -172,6 +172,25 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_arf', $data);
 	}
 
+	public function form_varf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_varf', $data);
+
+	}
+
 	public function form_earf($id)
 	{
 		$data['active1'] = 'active';
@@ -190,6 +209,25 @@ class Dashboard extends CI_Controller {
 
 	}
 
+	public function report_arf($id)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print_arf', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
 	public function form_asf(){
 
 		$data['active1'] = 'active';
@@ -206,6 +244,25 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf', $data);
+	}
+
+	public function form_vasf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_vasf', $data);
+
 	}
 
 	public function form_easf($id)
@@ -227,6 +284,25 @@ class Dashboard extends CI_Controller {
 
 	}
 
+	public function report_asf($id)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print_asf', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
 	public function form_prf(){
 
 		$data['active1'] = 'active';
@@ -242,6 +318,25 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_prf', $data);
+	}
+
+	public function form_vprf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_vprf', $data);
+
 	}
 
 	public function form_eprf($id)
@@ -263,6 +358,25 @@ class Dashboard extends CI_Controller {
 
 	}
 
+	public function report_prf($id)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print_prf', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
 	public function form_crf(){
 
 		$data['active1'] = 'active';
@@ -278,6 +392,25 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_crf', $data);
+	}
+
+	public function form_vcrf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_vcrf', $data);
+
 	}
 
 	public function form_ecrf($id)
@@ -297,6 +430,25 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_ecrf', $data);
 
+	}
+
+	public function report_crf($id)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print_crf', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
 	public function accept(){
@@ -891,7 +1043,7 @@ class Dashboard extends CI_Controller {
 		$add = array(
 			
 			'id_pay' => $_POST['id_pay'],
-			'status' => 5,
+			'status' => 6,
 			'display_name' => $_POST['display_name'],
 			'type' => $type,
 			'tanggal' => $_POST['tanggal'],
@@ -924,7 +1076,8 @@ class Dashboard extends CI_Controller {
 			'jabatan1' => $_POST['jabatan1'],
 			'jabatan2' => $_POST['jabatan2'],
 			'jabatan3' => $_POST['jabatan3'],
-			'catatan' => $_POST['catatan']
+			'catatan' => $_POST['catatan'],
+			'handled_by' => $_POST['handled_by']
 
 		);
 
@@ -944,33 +1097,6 @@ class Dashboard extends CI_Controller {
 			
 			'id' => $_POST['id'],
 			'status' => $_POST['status'],
-			'display_name' => $_POST['display_name'],
-			'tanggal' => $_POST['tanggal'],
-			'arf_doc' => $_POST['arf_doc'],
-			'asf_doc' => $_POST['asf_doc'],
-			'prf_doc' => $_POST['prf_doc'],
-			'crf_doc' => $_POST['crf_doc'],
-			'nomor_surat' => $_POST['nomor_surat'],
-			'kode_proyek' => $_POST['kode_proyek'],
-			'kode_proyek' => $_POST['kode_proyek'],
-			'tanggal_selesai' => $_POST['tanggal_selesai'],
-			'division_id' => $_POST['division_id'],
-			'label1' => $_POST['label1'],
-			'description' => $_POST['description'],
-			'currency' => $_POST['currency'],
-			'jumlah' => $_POST['jumlah'],
-			'terbilang' => $_POST['terbilang'],
-			'dibayar_kepada' => $_POST['dibayar_kepada'],
-			'verified_date' => $_POST['verified_date'],
-			'penanggung_jawab' => $_POST['penanggung_jawab'],
-			'jabatan' => $_POST['jabatan'],
-			'persetujuan_pembayaran1' => $_POST['persetujuan_pembayaran1'],
-			'persetujuan_pembayaran2' => $_POST['persetujuan_pembayaran2'],
-			'persetujuan_pembayaran3' => $_POST['persetujuan_pembayaran3'],
-			'jabatan1' => $_POST['jabatan1'],
-			'jabatan2' => $_POST['jabatan2'],
-			'jabatan3' => $_POST['jabatan3'],
-			'catatan' => $_POST['catatan'],
 			'handled_by' => $_POST['handled_by']
 
 		);

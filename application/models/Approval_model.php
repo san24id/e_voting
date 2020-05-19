@@ -4,7 +4,7 @@ class Approval_model extends CI_Model{
 
     public function getList() {
 
-        $sql = "SELECT * FROM t_payment_l WHERE status='8'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status='8'";
                 
         $query = $this->db->query($sql)->result();
         return $query;

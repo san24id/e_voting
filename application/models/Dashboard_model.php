@@ -364,12 +364,14 @@ class Dashboard_model extends CI_Model{
     function addpay($add){
         $sql = "INSERT INTO `t_payment_l` (display_name, type, status, tanggal, arf_doc, asf_doc, prf_doc, crf_doc, nomor_surat, kode_proyek, division_id,
                 tanggal_selesai, label1, description, currency, currency1, jumlah, jumlah1, terbilang, dibayar_kepada, verified_date, penanggung_jawab, jabatan, 
-                persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, cash_advance, piutang ) 
-        VALUES ('".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['arf_doc']."','".$add['asd_doc']."','".$add['prf_doc']."',
+                persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, cash_advance, 
+                piutang, metode_pembayaran, bank, no_rek, handled_by ) 
+        VALUES ('".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['arf_doc']."','".$add['asf_doc']."','".$add['prf_doc']."',
                 '".$add['crf_doc']."','".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."',
                 '".$add['description']."','".$add['currency']."','".$add['currency1']."','".$add['jumlah']."','".$add['jumlah1']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."',
                 '".$add['penanggung_jawab']."','".$add['jabatan']."','".$add['persetujuan_pembayaran1']."','".$add['persetujuan_pembayaran2']."','".$add['persetujuan_pembayaran3']."',
-                '".$add['jabatan1']."','".$add['jabatan2']."','".$add['jabatan3']."','".$add['catatan']."','".$add['total_expenses']."','".$add['cash_advance']."','".$add['piutang']."')";
+                '".$add['jabatan1']."','".$add['jabatan2']."','".$add['jabatan3']."','".$add['catatan']."','".$add['total_expenses']."','".$add['cash_advance']."','".$add['piutang']."','".$add['metode_pembayaran']."'
+                ,'".$add['bank']."','".$add['no_rek']."','".$add['handled_by']."')";
         
         $query = $this->db->query($sql);
 
@@ -402,14 +404,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function updpay($upd){
-        $sql = "UPDATE `t_payment_l` SET `display_name`='".$upd['display_name']."',`status`='".$upd['status']."',`tanggal`='".$upd['tanggal']."',`arf_doc`='".$upd['arf_doc']."',`asf_doc`='".$upd['asf_doc']."',
-        `prf_doc`='".$upd['prf_doc']."',`crf_doc`='".$upd['crf_doc']."',`nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`division_id`='".$upd['division_id']."',
-        `tanggal_selesai`='".$upd['tanggal_selesai']."',`label1`='".$upd['label1']."',`description`='".$upd['description']."',`currency`='".$upd['currency']."',`currency1`='".$upd['currency1']."',`jumlah`='".$upd['jumlah']."',
-        `terbilang`='".$upd['terbilang']."',`dibayar_kepada`='".$upd['dibayar_kepada']."',`verified_date`='".$upd['verified_date']."',`penanggung_jawab`='".$upd['penanggung_jawab']."',
-        `jabatan`='".$upd['jabatan']."',`persetujuan_pembayaran1`='".$upd['persetujuan_pembayaran1']."',`persetujuan_pembayaran2`='".$upd['persetujuan_pembayaran2']."',
-        `persetujuan_pembayaran3`='".$upd['persetujuan_pembayaran3']."',`jabatan1`='".$upd['jabatan1']."',`jabatan2`='".$upd['jabatan2']."',`jabatan3`='".$upd['jabatan3']."',`catatan`='".$upd['catatan']."'
-        ,`total_expenses`='".$upd['total_expenses']."',`cash_advance`='".$upd['cash_advance']."',`piutang`='".$upd['piutang']."' 
-        WHERE `id`='".$upd['id']."'"; 
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id`='".$upd['id']."'"; 
         
         $query = $this->db->query($sql);
 

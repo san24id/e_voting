@@ -161,11 +161,87 @@ class Approval extends CI_Controller {
 		$this->load->view('akses/approval/approval', $data);
 	}
 
+	public function form_varf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/form_varf', $data);
+
+	}
+
+	public function form_vasf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/form_vasf', $data);
+
+	}
+
+	public function form_vprf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/form_vprf', $data);
+
+	}
+
+	public function form_vcrf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/form_vcrf', $data);
+
+	}
+
 	public function approve(){
 
 		$upd = array(
 			'id_pay' => $_POST['id_pay'],
-			'status' => 6,
+			'status' => 9,
 			'handled_by' => $_POST['handled_by']
 		);
 
@@ -178,7 +254,7 @@ class Approval extends CI_Controller {
 
 		$upd = array(
 			'id_pay' => $_POST['id_pay'],
-			'status' => 3,
+			'status' => 4,
 			'note' => $_POST['note'],
 			'rejected_by' => $_POST['rejected_by'],
 			'rejected_date' => $_POST['rejected_date'],
