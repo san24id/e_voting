@@ -471,6 +471,7 @@ class Dashboard extends CI_Controller {
 			'note' => $_POST['note'],
 			'rejected_by' => $_POST['rejected_by'],
 			'rejected_date' => $_POST['rejected_date'],
+			'handled_by' => $_POST['handled_by']
 			
 		);
 
@@ -839,6 +840,10 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 		$data['inbox'] = 'active';
 
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['rejected'] = $this->Home_model->getRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/my_inbox', $data);

@@ -88,6 +88,28 @@ class Home extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
+	public function report_dp($id_payment)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print_dp', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
 	public function dp()
 	{
 		$sid = $this->session->userdata("id_user");
@@ -260,7 +282,7 @@ class Home extends CI_Controller {
 		$add = array(
 			
 			'id_payment' => $_POST['id_payment'],
-			'status' => 1,
+			'status' => 0,
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'jenis_pembayaran' => $jenis_pembayaran,
@@ -290,6 +312,30 @@ class Home extends CI_Controller {
 		redirect('Home');
 	}
 
+	public function draftprintdp(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Home/report_dp/'.$_POST['id_payment']);
+	}
+
+	public function draftprint(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Home/report/'.$_POST['id_payment']);
+	}
+	
 	public function updatepayment(){
 		$c_jp = count($_POST['jenis_pembayaran']);
 		$jenis_pembayaran = "";
