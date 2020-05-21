@@ -255,8 +255,19 @@ td[rowspan="6"] {
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                  <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
+                    <?php if($get->status == 4){ ?>  
+                    <button type="submit" data-toggle="modal" data-target="#tax<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
+                    <?php } ?>
+                    <?php if($get->status == 5){ ?>  
+                    <button type="submit" data-toggle="modal" data-target="#review<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
+                    <?php } ?>
+                    <?php if($get->status == 6){ ?>  
+                    <button type="submit" data-toggle="modal" data-target="#verif<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
+                    <?php } ?>
+                    <?php if($get->status == 7){ ?>  
+                    <button type="submit" data-toggle="modal" data-target="#sendapv<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
+                    <?php } ?>
                   </div>
                 </div>                                                 
             </div>

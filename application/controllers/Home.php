@@ -390,6 +390,18 @@ class Home extends CI_Controller {
 
 	}
 
+	public function submit(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 2
+		);
+
+		$this->Dashboard_model->updateaccept($upd);
+
+		redirect('Home');
+	}
+
 	public function formfinished($id_payment)
 	{
 		$data['active1'] = 'active';

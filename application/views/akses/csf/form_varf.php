@@ -268,13 +268,14 @@ td[rowspan="6"] {
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="7">
                             <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
-                            <label>Kepada CSF Verificator:</label>                        
-                            <select class="form-control" name="handled_by">
+                            <label>Kepada CSF Reviewer:</label>    
+                            <input type="hidden" name="handled_by" value="i.akmal">                    
+                            <!-- <select class="form-control" name="handled_by">
                               <option>--- Choose ---</option>
                             <?php foreach ($csf as $get) {?>
                               <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                             <?php } ?>
-                            </select>
+                            </select> -->
                           </div>
                           <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>
@@ -285,7 +286,7 @@ td[rowspan="6"] {
                       </div>
                       </div>
                       
-                      <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
+                      <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Returned to Requestor</button>
                       <!---Modal RejectRequestor-->
                       <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-sm" role="document">
@@ -294,11 +295,11 @@ td[rowspan="6"] {
                           <div class="modal-body">
                           <form id="rejected" method="post" action="dashboard/rejected">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                            <input type="hidden" name="id" value="3">
+                            <input type="hidden" name="status" value="3">
                             <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
                             <input type="text" name="note"></input>
-                            <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
@@ -309,7 +310,7 @@ td[rowspan="6"] {
                       </div>
                       </div> 
 
-                      <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Reject to Finance</button>
+                      <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
                       <!---Modal RejectedFinance--> 
                       <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-sm" role="document">
@@ -318,18 +319,20 @@ td[rowspan="6"] {
                           <div class="modal-body">
                           <form id="rejected2" method="post" action="dashboard/updpay">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                            <input type="hidden" name="id" value="4">
+                            <input type="hidden" name="status" value="4">
                             <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
-                            <label>Kepada CSF Finance:</label>                        
-                            <select class="form-control" name="handled_by">
+                            <label>Kepada CSF Finance:</label>
+                            <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+
+                            <!-- <select class="form-control" name="handled_by">
                               <option>--- Choose ---</option>
                             <?php foreach ($csf as $get) {?>
                               <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                             <?php } ?>
-                            </select>
+                            </select> -->
                             <label>Notes :</label>                
                             <input type="text" name="note"></input>
-                            <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
@@ -363,7 +366,7 @@ td[rowspan="6"] {
                     </div>
                     </div>
 
-                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
+                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Returned to Requestor</button>
                     <!---Modal RejectRequestor-->
                     <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
@@ -372,11 +375,11 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="rejected" method="post" action="dashboard/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="id" value="3">
+                          <input type="hidden" name="status" value="3">
                           <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
                           <label>Notes :</label>                
                           <input type="text" name="note"></input>
-                          <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
                           <button type="submit" class="btn btn-success bye">Yes</button>
@@ -387,7 +390,7 @@ td[rowspan="6"] {
                     </div>
                     </div> 
 
-                    <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Reject to Finance</button>
+                    <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
                     <!---Modal RejectedFinance--> 
                     <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
@@ -396,18 +399,19 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="rejected2" method="post" action="dashboard/updpay">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="id" value="4">
+                          <input type="hidden" name="status" value="4">
                           <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
                           <label>Kepada CSF Finance:</label>                        
-                          <select class="form-control" name="handled_by">
+                          <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                          <!-- <select class="form-control" name="handled_by">
                             <option>--- Choose ---</option>
                           <?php foreach ($csf as $get) {?>
                             <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                           <?php } ?>
-                          </select>
+                          </select> -->
                           <label>Notes :</label>                
                           <input type="text" name="note"></input>
-                          <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
                           <button type="submit" class="btn btn-success bye">Yes</button>

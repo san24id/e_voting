@@ -131,7 +131,8 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT * FROM t_payment WHERE status='1' AND division_id='$dvs' AND id_user='$usr' ";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay
+                WHERE status in ('0', '1') AND division_id='$dvs' AND id_user='$usr' ";
 
         $query = $this->db->query($sql)->result();
         return $query;

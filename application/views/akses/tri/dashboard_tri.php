@@ -1,21 +1,32 @@
 <style type="text/css">
-   .satu { border: 5px solid purple; background: purple;}
-   .dua { border: 5px dashed green; }
-   .tiga { border: 5px solid green; }
-   .empat { border: 5px solid green; background: green; }
-   .lima { border: 5px solid blue; }
-   .enam { border: 5px solid blue; background: blue;}
-   .tujuh { border: 5px solid orange; background: orange;}
+   .satu { border: 8px solid purple; border-radius: 8px; background: purple;}
+   .dua { border: 8px solid yellow; border-radius: 8px; }
+   .tiga { border: 8px solid lime; border-radius: 8px; }
+   .empat { border: 8px solid lime; border-radius: 8px; background: lime; }
+   .lima { border: 8px solid turquoise; border-radius: 8px; }
+   .enam { border: 8px solid turquoise; border-radius: 8px; background: turquoise;}
+   .tujuh { border: 8px solid yellow; border-radius: 8px; background: yellow;}
    .box1{width:150px;
-				height:80px;
-				border: solid green;
+				height:100px;
+        background: #132f6d;
+				border: solid #132f6d;
+        border-radius: 8px;
 				display: inline-block;
 				margin-left: 10px;
    }
    .box2{width:150px;
-				height:80px;
-        background: aqua;
-				border: solid green;
+				height:100px;
+        background: #858e8e;
+				border: solid #858e8e;
+        border-radius: 8px;
+				display: inline-block;
+				margin-left: 10px;
+   }
+   .box3{width:150px;
+				height:100px;
+        background: #4dce8d;
+				border: solid #4dce8d;
+        border-radius: 8px;
 				display: inline-block;
 				margin-left: 10px;
    }  
@@ -31,17 +42,17 @@
       </h1> -->
     </section>
 
-    <section class="content">
+    <section class="content bg-white">
         <!-- Info boxes -->
         <div class="row">        
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-plus-outline"></i></span>
+                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/payment.png"></i></span>
                 <div class="info-box-content">
-                <?php foreach ($tot_pay_req as $tot_req) { ?>
-                <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
-                <?php } ?>    
-                <span class="info-box-text"><center>Total Payment Request</center></span>     
+                  <?php foreach ($tot_pay_req as $tot_req) { ?>
+                  <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
+                  <?php } ?>    
+                  <span class="info-box-text bg-gray"><center>Total Payment </br>Request</center></span>     
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -51,11 +62,11 @@
 
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-gear-outline"></i></span>
+                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/outstanding.png"></i></span>
 
                 <div class="info-box-content">
-                <span class="info-box-number"><center>20</center></span>
-                <span class="info-box-text"><center>Total Outstanding Payment Request</center></span>
+                  <span class="info-box-number"><center>20</center></span>
+                  <span class="info-box-text bg-gray"><center>Total Outstanding </br> Payment Request</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -67,12 +78,12 @@
 
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
+                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/draft.png"></i></span>
                 <div class="info-box-content">
-                <?php foreach ($draft as $tot_draft) { ?>
-                <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
-                <?php } ?>            
-                <span class="info-box-text"><center>Total Draft</center></span>
+                  <?php foreach ($draft as $tot_draft) { ?>
+                  <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
+                  <?php } ?>            
+                  <span class="info-box-text bg-gray"><center>Total Draft</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -81,10 +92,10 @@
 
             <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-user"></i></span>
+                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/user.png"></i></span>
                 <div class="info-box-content">
-                <span class="info-box-number"><center><?php echo $this->session->userdata("display_name"); ?></center></span>
-                <span class="info-box-text"><center>View By</center></span>
+                  <span class="info-box-number"><center><?php echo $this->session->userdata("display_name"); ?></center></span>
+                  <span class="info-box-text bg-gray"><center>View By</center></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -104,17 +115,16 @@
                 </div>
                 <div class="box-body">
                   <table width="100%"> 
+                    <tr><td colspan="45"><font size='6'><center>STATUS</center></font></td></tr>
                   <tr> 
-                    <font size='5'> STATUS | </font> 
-                    <?php foreach ($paid as $paid) { ?>
-                    <td><div class="satu"><center><font size='5'> <?php echo $paid->paid; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <?php } ?>
-                    
-                    <td><div class="dua"><center><font size='5'> - </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                     
                     
                     <?php foreach ($draft as $tot_draft) { ?>
-                    <td><div class="tiga"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <?php } ?>                    
+                    <td><div class="dua"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>   
+                    <?php foreach ($draftprint as $draftprint) { ?>                    
+                    <td><div class="tiga"><center><font size='5'> <?php echo $draftprint->draftprint; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                    <?php } ?>               
                     <?php foreach ($submit as $submit) { ?>
                     <td><div class="empat"><center><font size='5'> <?php echo $submit->submit; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
                     <?php } ?>                  
@@ -125,7 +135,10 @@
                     <td><div class="enam"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
                     <?php } ?>
                     <?php foreach ($approval as $approval) { ?>
-                    <td><div class="tujuh"><center><font size='5'> <?php echo $approval->approval; ?> </center></div> </td><td> &nbsp;     
+                    <td><div class="tujuh"><center><font size='5'> <?php echo $approval->approval; ?> </center></div> </td><td> &nbsp;  <td> &nbsp;   <td> &nbsp;
+                    <?php } ?>
+                    <?php foreach ($paid as $paid) { ?>
+                    <td><div class="satu"><center><font size='5'> <?php echo $paid->paid; ?> </div> </td><td> &nbsp; <td> &nbsp; 
                     <?php } ?>
                                      
                   </tr>   
@@ -133,10 +146,8 @@
                 </div>
                 <br><br>               
                 <div class="box-body">
-                  <td><img src="assets/dashboard/images/legend/purple.png"></td>
-                  <td>Paid</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/green_nofull.png"></td>
+                 
+                  <td><img src="assets/dashboard/images/legend/yellow_nofull.png"></td>
                   <td>Draft (Draft)</td> &nbsp; &nbsp;
 
                   <td><img src="assets/dashboard/images/legend/green_nobackground.png"></td>
@@ -151,8 +162,11 @@
                   <td><img src="assets/dashboard/images/legend/blue.png"></td>
                   <td>Verified</td> &nbsp; &nbsp;
 
-                  <td><img src="assets/dashboard/images/legend/orange.png"></td>
+                  <td><img src="assets/dashboard/images/legend/yellow.png"></td>
                   <td>Approved</td> &nbsp; &nbsp;
+
+                  <td><img src="assets/dashboard/images/legend/purple.png"></td>
+                  <td>Paid</td> &nbsp; &nbsp;
                   
                 </div>   
               </div>     
@@ -170,23 +184,20 @@
                     </div>
                     <div class="box-body">
                       <table width="100%">
-                      <tr> 
-                        <center><font size='3'><i> *) Total Outstanding = Number Processing + Number Verified + Number Approved  </i></font></center> 
-                        <td></td>
-                        <td width="25%"> ADVANCED </td>
-                        <td></td>
-                        <td></td>
-                        <td width="25%"> CREDITCARD </td>
-                        <td></td>
-                      </tr>  
-                      <tr> 
-                        <td align="center" width="25%"><div class="box1"><center><font size='3'> - <br> Upcoming Overdue</center></div></td>
-                        <td> </td>
-                        <td align="center" width="25%"><div class="box2"><center><font size='4'> - <br> Overdue</center></div></td>
-                        <td align="center" width="25%"><div class="box1"><center><font size='4'><br> 2</center></div></td>
-                        <td> </td>
-                        <td align="center" width="25%"><div class="box2"><center><font size='3'>Schedule Credit <br>Card Submission in <br>next 30 days</center></div></td>
-                      </tr>  
+                        <!-- <tr>
+                          <td colspan="4"><font size='3'><b><i> *) Total Outstanding = Number Processing + Number Verified + Number Approved  </i></b></font></td>
+                        </tr> -->
+                        <!-- <tr> 
+                          <td width="25%" colspan="2"><center><b>ADVANCE</b></center></td>
+                          <td width="25%" colspan="2"><center><b>CREDITCARD</b></center></td>
+                        </tr>   -->
+                        <tr> 
+                          <td align="center" width="25%"><div class="box1"><center><font size='3' color="white">Upcoming Overdue<br> - <br>ADVANCE</center></div></td>
+                          
+                          <td align="center" width="25%"><div class="box2"><center><font size='4' color="white">Overdue<br> - <br> ADVANCE</center></div></td>
+                          
+                          <td align="center" width="25%"><div class="box3"><center><font size='3' color="white">Submission in <br> 30 days <br> 20 <br>Credit Card </center></div></td>
+                        </tr>  
                       </table>
                     </div>  
                   </div>
@@ -206,21 +217,33 @@
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body no-padding">
-                      <script src="https://code.highcharts.com/highcharts.js"></script>
-                      <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/highcharts.js"></script>
+                  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
                       <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>        
-                      </div>          
+                      <div id="pieChart" style="min-width: 600px; height: 400px; max-width: 600px; margin: 0 auto"></div> 
+                      <table>
+                        <tr>
+                          <th><i class="fa fa-circle-o text-lime"></i> Direct Payment(DP)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-aqua"></i> Advance Request(AR)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-black"></i> Advance Settlement(AS)<br></th>
+                        </tr>
+                      </table> 
+                      </div>
+                              
                     <!-- /.users-list -->
-                    <div class="col-md-3">
+                    <!--<div class="col-md-3">
                     <ul class="chart-legend clearfix">
                       <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
                       <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
                       <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
                     </ul>
-                    </div>
+                    </div>-->
                   </div>
                   <!-- /.box-body -->               
                 </div>
@@ -263,13 +286,14 @@
                         ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
-                    <td><?php 
-                          if($row->status == 1){
+                    <td><?php if($row->status == 0){
+                              echo "<img src='assets/dashboard/images/legend/yellow_nofull.png'>";  
+                          }else if($row->status == 1){
                               echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
                              echo "<img src='assets/dashboard/images/legend/green.png'>";
                           }else if($row->status == 3){
-                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                           }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                           }else if($row->status == 5){
@@ -281,13 +305,13 @@
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>";    
-                          }  
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                          }   
                         ?>
                     </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
+                    <td><?php echo $row->label3; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -302,8 +326,8 @@
                     <td><?php echo $row->penerima; ?></td>
                     <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
                     <td>
-                        <a href="Tri/formfinished/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                        <a href="Tri/report/<?php echo $row->id_payment; ?>"><button class="btn btn-warning btn-sm">View</button> 
+
+                    <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                         
                     </td>      
                     </tr>
@@ -400,13 +424,23 @@ $(function () {
 
   Highcharts.chart('pieChart', {
       chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
+          // plotBackgroundColor: null,
+          // plotBorderWidth: null,
+          // plotShadow: false,
+          type: 'pie',
+          options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+          }
       },
       title: {
           text: 'Jumlah Data Payment Request / Divisi'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
       },
       credits: {
           enabled: false
@@ -418,6 +452,7 @@ $(function () {
           pie: {
               allowPointSelect: true,
               cursor: 'pointer',
+              
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
@@ -427,6 +462,8 @@ $(function () {
       series: [{
           name: 'Total',
           colorByPoint: true,
+          innerSize: 100,
+          depth: 45,
           data: [
 
             <?php foreach ($pembayaran as $key) { ?>

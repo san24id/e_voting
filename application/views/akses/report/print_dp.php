@@ -338,7 +338,7 @@
                     </tbody>
                     </table>
                      
-                    <hr style=" border: 0.5px solid #000;">
+                    <!-- <hr style=" border: 0.5px solid #000;">
                     <h6>
                     <table border="1" width="70%">
                     <tbody>
@@ -389,7 +389,7 @@
                         </tr>                                                          
                     </tbody>
                     </table>
-                    </h6>
+                    </h6> -->
                         <?php } ?>        
 
                   </div>  

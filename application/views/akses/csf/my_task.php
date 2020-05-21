@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        MY TASK
+        INCOMING DOCUMENT
       </h1>
     </section>
 
@@ -21,13 +21,14 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>SP3 No</th>
-                  <th>Tanggal Pembayaran</th>
-                  <th>Jenis Pembayaran</th>
+                  <th>Status</th>
+                  <th>CSF</th>
+                  <th>Nomor SP3</th>
+                  <th>Type</th>
+                  <th>SP3 Submitted Date</th>
                   <th>Description</th>
-                  <th>Nama Pemohon</th>
-                  <th>Nama Penerima</th>
-                  <th>Bank Account</th>
+                  <th>Pemohon</th>
+                  <th>APF No</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -40,24 +41,68 @@
                       $test3 = count($test2);                        
                   ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->nomor_surat; ?> </td>
-                  <td><?php echo date("d-M-Y", strtotime($row->label3)); ?></td>
-                  <td><?php                     
+                <td><?php echo $i++; ?></td>
+                    <td> <?php 
+                          if($row->status == 1){
+                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                          }else if($row->status == 2){
+                             echo "<img src='assets/dashboard/images/legend/green.png'>";
+                          }else if($row->status == 3){
+                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                          }else if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 7){
+                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }  
+
+                        ?>
+                    </td>
+                    <td><?php 
+                          // if($row->status == 2){
+                          //   echo "Waiting for processing/ Submitted by users";
+                          // }else 
+                          if($row->status == 4){
+                            echo "Processing Tax";
+                          }else if($row->status == 5){
+                            echo "Processing Finance";
+                          }else if($row->status == 6){
+                            echo "Waiting for Review";
+                          }else if($row->status == 7){
+                              echo "Waiting for Verification";
+                          }else if($row->status == 8){
+                            echo "Waiting for Approval";
+                          }else if($row->status == 9){
+                            echo "Waiting for Payment";  
+                          }else if($row->status == 10){
+                            echo "Paid";  
+                          }
+                        ?>
+                    </td>                  
+                    <td><?php echo $row->nomor_surat; ?></td>
+                    <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
                             echo $test2[$a]."<br>";
                           }
                         }  ?>
-                  </td>
-                  <td><?php echo $row->label1; ?></td>
-                  <td><?php echo $row->display_name; ?></td>
-                  <td><?php echo $row->penerima; ?></td>
-                  <td><?php echo $row->akun_bank; ?> </td>
-                  <td>
-                    <a href=""><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
-                  </td>      
+                    </td>
+                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td><?php echo $row->label1; ?></td>
+                    <td><?php echo $row->display_name; ?></td>
+                    <td>XXX</td>
+                    <td>
+                        <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                    </td>     
                   </tr>
                     <?php } ?>      
               </tbody>

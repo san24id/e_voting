@@ -43,13 +43,14 @@
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
-                  <td><?php 
-                          if($row->status == 1){
+                  <td><?php if($row->status == 0){
+                              echo "<img src='assets/dashboard/images/legend/yellow_nofull.png'>";  
+                          }else if($row->status == 1){
                               echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
                              echo "<img src='assets/dashboard/images/legend/green.png'>";
                           }else if($row->status == 3){
-                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                           }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                           }else if($row->status == 5){
@@ -61,9 +62,9 @@
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
                           }   
                         ?>
                   </td>

@@ -460,7 +460,7 @@ class Dashboard extends CI_Controller {
 
 		$this->Dashboard_model->updateaccept($upd);
 
-		redirect('Dashboard/monitoring');
+		redirect('Dashboard');
 	}
 
 	public function rejected(){
@@ -698,7 +698,7 @@ class Dashboard extends CI_Controller {
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['payment'] = $this->Dashboard_model->payment();
+		$data['list_monitoring'] = $this->Dashboard_model->monitoring();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['gprocess'] = $this->Dashboard_model->getProcessing();
 		$data['tax'] = $this->Dashboard_model->getTax();

@@ -37,11 +37,36 @@
                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
                 <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>" >
                   <div class="box-header with-border">
+                    <p align="right"><?php 
+                        if($row->status == 1){
+                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                        }else if($row->status == 2){
+                            echo "<img src='assets/dashboard/images/legend/green.png'>";
+                        }else if($row->status == 3){
+                            echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                        }else if($row->status == 4){
+                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                        }else if($row->status == 5){
+                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                        }else if($row->status == 6){
+                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                        }else if($row->status == 7){
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                        }else if($row->status == 8){
+                          echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                        }else if($row->status == 9){
+                          echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
+                        }else if($row->status == 10){
+                          echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                        }
+                      ?>
+                    </p>
                     <h5>
-                      <br>
+                      <br>                        
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
                       <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
+                       
                     </h5>
                     <table style="font-family: calibri;" width="75%">
                       <tbody>
@@ -256,11 +281,11 @@
                           <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $xxii5=="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> disabled>Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
                         </td>
                         <td>
-                        <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> >Copy PO/SPK</input><br>
+                        <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> disabled>Copy PO/SPK</input><br>
                           <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> disabled>Copy Kontrak/Perjanjian</input><br>                            
                           <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>                        
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
-                          <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> >NPWP (Jika kode vendor tidak tersedia)</input><br>
+                          <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
                         </td>
                       <tr>      
@@ -366,12 +391,12 @@
                     <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Dashboard/monitoring" role="button">Back</a>
-                        <?php if($row->status == 1){ ?>
+                        <!-- <?php if($row->status == 1){ ?>
                           <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>
-                          <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
-                        <?php } ?>  
+                        <?php } ?>   -->
                         <?php if($row->status == 2){ ?>
                           <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success">Process</button>
+                          <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
                         <?php } ?>
                         <?php if($row->status == 4){ ?>
                           <a class="btn btn-success" href="Dashboard/form_sp3_2/<?php echo $row->id_payment; ?>" role="button">Tax</a>
@@ -472,14 +497,15 @@
       <div class="modal-body">
       <form id="processed" method="post" action="dashboard/processing">
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-        <label>Kepada CSF Tax:</label>                        
-        <select class="form-control" name="handled_by">
+        <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+        <label>Kepada CSF Tax?</label> 
+        <input type="hidden" name="handled_by" value="a.ester">                       
+        <!-- <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>
         <?php foreach ($csf as $get) {?>
           <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
         <?php } ?>
-        </select>
+        </select> -->
       </div>
       <div class="modal-footer">                        
           <button type="submit" class="btn btn-success bye">Yes</button>

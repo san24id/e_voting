@@ -5,13 +5,14 @@
 			/* background: #dac52c;  */
 			border-radius: 80%;
 		}
-   .satu { border: 5px solid purple; }
-   .dua { border: 5px solid green; background: green; }
-   .tiga { border: 5px solid blue; }
-   .empat { border: 5px solid blue; background: blue; }
-   .lima { border: 5px solid orange; }
-   .enam {background:green; border: 5px solid green; }
-   .tujuh {background:aqua; border: 4px solid green; }
+   
+   .satu { border: 5px solid lime; border-radius: 6px; background: lime; }
+   .dua { border: 5px solid turquoise; border-radius: 6px}
+   .tiga { border: 5px solid turquoise;border-radius: 6px; background: turquoise; }
+   .empat { border: 5px solid yellow; border-radius: 6px}
+   .lima { border: 5px solid purple; border-radius: 6px }
+   .enam {background:lime; border: 5px solid lime; border-radius: 6px }
+   .tujuh {background:turquoise; border: 4px solid turquoise; border-radius: 6px }
    	
 </style>
 
@@ -37,7 +38,7 @@
                   <!-- /.box-header -->
                   <div class="box-body">      
                     <div class="row">
-                      <div class="col-md-4"><!--Lingkaran-->
+                      <div class="col-md-4"><!--Lingkaran Waiting for Processing-->
                           <div class="lingkaran1 panel panel-primary">
                             <br><br>
                             <?php foreach ($processing as $process) { ?>
@@ -45,40 +46,49 @@
                             <center> <font size='3'> Waiting for Processing </font> </center>
                             <?php } ?>
                           </div>
-                        </div>
+                      </div>
                       <div class="col-md-8"><!--Status-->
                         <?php foreach ($tot_pay_req as $tot_req) { ?>
-                        <center> <font size='5'> Total Request : <?php echo $tot_req->totalreq; ?> </font> </center> <br>
+                        <font size='5'> TOTAL REQUEST : </font><font size="10"><?php echo $tot_req->totalreq; ?> </font><br>
                         <?php } ?>
                           <div>
-                          <table> 
+                          <table width="85%"> 
                             <tr> 
-                              <td><font size='5'> STATUS | </font> </td><td> &nbsp;
-                              <?php foreach ($Paid as $Paid) { ?>
-                              <td><div class="satu"><font size='5'> <?php echo $Paid->paid;?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                              <?php } ?>
+
+                              <td><font size='5'> STATUS :</font> </td>
+
                               <?php foreach ($processing as $process) { ?>
-                              <td><div class="dua"><font size='5'> <?php echo $process->process; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="satu"><font size='5'><center><?php echo $process->process; ?></center></div> </td>
+                              <td> &nbsp; 
                               <?php } ?>
+
                               <?php foreach ($gprocess as $tot_process) { ?>
-                              <td><div class="tiga"><font size='5'> <?php echo $tot_process->totalstatus; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="dua"><font size='5'><center><?php echo $tot_process->totalstatus; ?></center></div> </td>
+                              <td> &nbsp; 
                               <?php } ?>
+
                               <?php foreach ($verifikasi as $verifikasi) { ?>
-                              <td><div class="empat"><font size='5'> <?php echo $verifikasi->verifikasi; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
+                              <td><div class="tiga"><font size='5'><center><?php echo $verifikasi->verifikasi; ?></center></div> </td>
+                              <td> &nbsp; 
                               <?php } ?>
+
                               <?php foreach ($approval as $approval) { ?>
-                              <td><div class="lima"><font size='5'> <?php echo $approval->approval; ?> </div> </td><td> &nbsp;   
+                              <td><div class="empat"><font size='5'><center><?php echo $approval->approval; ?></center></div> </td>
+                              <td> &nbsp;   
                               <?php } ?>
+                              <?php foreach ($Paid as $Paid) { ?>
+                              <td><div class="lima"><font size='5'><center><?php echo $Paid->paid;?></center></div> </td>
+                              <td> &nbsp; 
+                              <?php } ?>
+
                             </tr>  
                           </table>
                           </div>
-                          <br><br>               
-                        <div class ="col-md-12">
-                          <td><img src="assets/dashboard/images/legend/green_nobackground.png"></td>
-                          <td>Draft</td> &nbsp; &nbsp;
-
-                          <td><img src="assets/dashboard/images/legend/purple.png"></td>
-                          <td>Paid</td> &nbsp; &nbsp;
+                          <br><br> 
+                                        
+                        <div class ="col-md-12"> <!-- icon status -->
+                          <!-- <td><img src="assets/dashboard/images/legend/Green_nobackground.png"></td>
+                          <td>Draft</td> &nbsp;  -->
 
                           <td><img src="assets/dashboard/images/legend/green.png"></td>
                           <td>Waiting for processing/ Submitted by users</td> &nbsp; &nbsp;
@@ -91,50 +101,54 @@
                           <td><img src="assets/dashboard/images/legend/blue.png"></td>
                           <td>Verified</td> &nbsp; &nbsp;
 
-                          <td><img src="assets/dashboard/images/legend/orange.png"></td>
+                          <td><img src="assets/dashboard/images/legend/yellow.png"></td>
                           <td>Approved</td> &nbsp; &nbsp;
-                        </div>  
+
+                          <td><img src="assets/dashboard/images/legend/purple.png"></td>
+                          <td>Paid</td> &nbsp;
+
+                        </div> 
+
+
                       </div>
-                      
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3"> <!--UnderProcessing-->
-                        <div class="enam"><center><font color='white' size='3'> Under Processing <br>(A) </font></center></div>
+
+                     </div>
+                     <div class="col-md-3"> <!--UnderProcessing-->
+                        <div class="tujuh"><center><font color='white' size='3'> Under Processing (A) </font></center></div>
                           <div>
                            <br>
                             <table>
                             <tr>
                               <?php foreach ($tax as $tax){ ?>
-                              <td width="50%"> <div class="tujuh"><center><font size='3'> <?php echo $tax->tax;?> <br> Tax<br>(A1) </font></center></div><td> &nbsp;
+                              <td width="50%"> <div class="enam"><center><font size='5'> <?php echo $tax->tax;?> </font><br> <font size="3">Tax<br>(A1) </font></center></div><td> &nbsp;
                               <?php } ?>
                               <?php foreach ($finance as $finance){ ?>
-                              <td width="50%"> <div class="tujuh"><center><font size='3'> <?php echo $finance->finance;?> <br> Finance<br>(A2) </font></center></div><td> &nbsp;
+                              <td width="50%"> <div class="enam"><center><font size='5'> <?php echo $finance->finance;?></font> <br><font size="3">Finance<br>(A2) </font></center></div><td> &nbsp;
                               <?php } ?>
                             </tr>
                             </table>
                           </div>
                       </div>
-                      <div class="col-md-9">
+                      <div class="col-md-9"> <!-- Waiting for...-->
                           <div>
                             <table>
                             <tr>
                               <?php foreach ($review as $review) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $review->wreview; ?> <br> Waiting for<br>Review(B) </font></center></div><td> &nbsp;
+                              <td> <div class="enam"><center><font size='8'> <?php echo $review->wreview; ?> <br></font> <font size="4">Waiting <br>for<br>Review(B) </font></center></div><td> &nbsp;
                               <?php } ?>
                               <?php foreach ($wverifikasi as $verifikasi) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $verifikasi->wverifikasi; ?> <br> Waiting for<br>Verification(C) </font></center></div><td> &nbsp;
+                              <td> <div class="enam"><center><font size='8'> <?php echo $verifikasi->wverifikasi; ?></font> <br><font size="4"> Waiting <br>for<br>Verification(C) </font></center></div><td> &nbsp;
                               <?php } ?>
                               <?php foreach ($wApproval as $wApproval) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wApproval->wapproval; ?> <br> Waiting for<br>Approval </font></center></div><td> &nbsp;
+                              <td> <div class="enam"><center><font size='8'> <?php echo $wApproval->wapproval; ?> </font><br><font size="4">Waiting <br>for<br>Approval </font></center></div><td> &nbsp;
                               <?php } ?>
                               <?php foreach ($wPaid as $wPaid) { ?>
-                              <td width="25%"> <div class="tujuh"><center><font size='5'> <?php echo $wPaid->wpaid; ?> <br> Waiting for<br>Payment </font></center></div><td> &nbsp;
+                              <td> <div class="enam"><center><font size='8'> <?php echo $wPaid->wpaid; ?> </font><br> <font size="4">Waiting <br>for<br>Payment </font></center></div><td> &nbsp;
                               <?php } ?>
                             </tr>
                             </table>
                           </div>
                       </div>
-                    </div>
                   </div>
                   <!-- /.box-body -->               
                 </div>
@@ -153,27 +167,31 @@
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body no-padding">
-                      <script src="https://code.highcharts.com/highcharts.js"></script>
-                      <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/highcharts.js"></script>
+                  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
                       <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>        
+                      <div id="pieChart" style="min-width: 610px; height: 400px; max-width: 600px; margin: 0 auto"></div>  
+                      <table width="130%">
+                        <tr>
+                          <th><i class="fa fa-circle-o text-lime"></i> Direct Payment(DP)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-aqua"></i> Advance Request(AR)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-black"></i> Advance Settlement(AS)<br></th>
+                        </tr>
+                      </table> 
                       </div>          
-                    <!-- /.users-list -->
-                    <div class="col-md-3">
-                    <ul class="chart-legend clearfix">
-                      <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
-                      <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
-                      <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                    </ul>
-                    </div>
                   </div>
                   <!-- /.box-body -->               
                 </div>
                 <!--/.box -->              
               </div>
-            </div>            
+            </div> 
+
 
         <div class="row">
           <div class="col-xs-12">
@@ -200,7 +218,7 @@
                     <tbody>
                     <?php 
                         $i = 1;
-                        foreach ($payment as $row){                          
+                        foreach ($list_monitoring as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
                         $test1 = $row->dsc;                        
                         $test2 = explode(";", $test1);
@@ -214,7 +232,7 @@
                           }else if($row->status == 2){
                              echo "<img src='assets/dashboard/images/legend/green.png'>";
                           }else if($row->status == 3){
-                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                           }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                           }else if($row->status == 5){
@@ -226,7 +244,7 @@
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }  
@@ -238,7 +256,7 @@
                           //   echo "Waiting for processing/ Submitted by users";
                           // }else 
                           if($row->status == 4){
-                            echo "Processing Tax/Waiting for Review";
+                            echo "Processing Tax";
                           }else if($row->status == 5){
                             echo "Processing Finance";
                           }else if($row->status == 6){
@@ -361,15 +379,25 @@ $(function () {
     });
   });
 
- Highcharts.chart('pieChart', {
+  Highcharts.chart('pieChart', {
       chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
+          // plotBackgroundColor: null,
+          // plotBorderWidth: null,
+          // plotShadow: false,
+          type: 'pie',
+          options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+          }
       },
       title: {
-          text: 'Jumlah Data Payment Request Divisi'
+          text: 'Jumlah Data Payment Request / Divisi'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
       },
       credits: {
           enabled: false
@@ -381,6 +409,7 @@ $(function () {
           pie: {
               allowPointSelect: true,
               cursor: 'pointer',
+              
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
@@ -390,6 +419,8 @@ $(function () {
       series: [{
           name: 'Total',
           colorByPoint: true,
+          innerSize: 100,
+          depth: 45,
           data: [
 
             <?php foreach ($pembayaran as $key) { ?>

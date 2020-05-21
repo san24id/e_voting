@@ -334,23 +334,62 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Dashboard" role="button">Back</a>
-                        <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-                        <?php if ($row->jenis_pembayaran == 4) { ?>
-                          <form id="form" method="post" action="Dashboard/draftprintdp" onsubmit="update()">
-                            <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
-                            <button type="submit" class="btn btn-danger">Print</button>
-                          </form>      
-                        <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                          <form id="form" method="post" action="Dashboard/draftprint" onsubmit="update()">
-                            <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
-                            <button type="submit" class="btn btn-primary">Print</button>
-                          </form> 
-                          <!-- <a class="btn btn-danger" href="Dashboard/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
-                        <?php } ?>    
-                        <!-- <button type="submit" class="btn btn-success">Save</button> -->
-                        <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
-                    </div>
+                        <a class="btn btn-warning" href="Dashboard/monitoring" role="button">Exit</a>
+                        <?php if ($row->status == 0) { ?>
+                          <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+                            <?php if ($row->jenis_pembayaran == 4) { ?>
+                              <form id="form" method="post" action="Dashboard/draftprintdp" target="_blank" onsubmit="update()">
+                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
+                                <button type="submit" class="btn btn-danger">Print</button>
+                              </form>      
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
+                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
+                                <button type="submit" class="btn btn-primary">Print</button>
+                              </form> 
+                              <!-- <a class="btn btn-danger" href="Dashboard/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
+                            <?php } ?>    
+                            <!-- <button type="submit" class="btn btn-success">Save</button> -->
+                            <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
+                        <?php } ?>
+
+                        <?php if($row->status == 1){ ?>
+                          <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+                          <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
+                          <!----.Modal -->
+                          <!----.Accept -->
+                          <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">                                        
+                              <div class="modal-body">
+                              <form id="accepted" method="post" action="dashboard/accept">
+                              <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                <p align="justify">Apa kamu yakin mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                              </div>
+                              <div class="modal-footer">                        
+                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                            </div>
+                          </div>   
+
+                          <?php if ($row->jenis_pembayaran == 4) { ?>
+                              <form id="form" method="post" action="Dashboard/draftprintdp" target="_blank" onsubmit="update()">
+                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
+                                <button type="submit" class="btn btn-danger">Print</button>
+                              </form>      
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
+                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
+                                <button type="submit" class="btn btn-primary">Print</button>
+                              </form> 
+                              <!-- <a class="btn btn-danger" href="Home/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
+                            <?php } ?>
+                        <?php } ?>  
+                      </div>
+                    </div>  
             </div>
           </section>  
           <?php } ?>
