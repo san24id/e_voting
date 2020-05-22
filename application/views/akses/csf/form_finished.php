@@ -32,7 +32,7 @@
           <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
             <div class="row">
-              <div class="col-xs-10">
+              <div class="col-xs-12">
                 <!-- /.box -->
                 <div class="box">
                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
@@ -94,19 +94,19 @@
                       <tr>
                       <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
                       <td>
-                        <input type="checkbox" checked >Uang Muka/Advance<br>
+                        <input id="auto" type="checkbox" >Uang Muka/Advance<br>
                       </td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
+                        <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
                       </td>
                       </tr>    
                       <tr>
                       <td></td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                        <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
                       </td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Non-Uang Muka/Non-Advance<br>
+                        <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Non-Uang Muka/Non-Advance<br>
                       </td>
                       </tr>                       
                     </table>
@@ -142,19 +142,20 @@
                       <tr>
                         <td><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
-                        <td colspan="2"><textarea type="text" class="form-control" name="label1" required><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="2"><textarea type="text" class="form-control" name="label1" required><?php echo $row->label1; ?> </textarea></td>
                         <td>
                       </tr>
                       <tr>
                         <td><b>- Jumlah :</b></td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
-                                      <option>--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->curr; ?>"<?php echo $get->curr==bank? 'selected':''?>><?php echo $get->curr; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td>
+                                <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
+                                <option>--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                <option value="<?php echo $get->curr; ?>"<?php echo $get->curr==bank? 'selected':''?>><?php echo $get->curr; ?></option>
+                              <?php } ?>
+                            </select>
+                        </td>
                         <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" value="<?php echo $row->label2; ?>"></td>
                       </tr>
                       <tr>
@@ -185,10 +186,11 @@
                         <td>Bank</td>
                         <td>:</td>
                         <td><select name="akun_bank" class="form-control">
-                                            <option>---Choose---</option>
-                                            <?php foreach ($bank as $get) {?>
-                                              <option value="<?php echo $get->bank; ?>"<?php echo $get->bank==bank? 'selected':''?>><?php echo $get->bank; ?></option>
-                                            <?php } ?>
+                              <option value="<?php echo $row->akun_bank; ?>"><?php echo $row->akun_bank; ?></option>
+                              <option>---Choose---</option>
+                              <?php foreach ($bank as $get) {?>
+                                <option value="<?php echo $get->bank; ?>"<?php echo $get->bank==bank? 'selected':''?>><?php echo $get->bank; ?></option>
+                              <?php } ?>
                             </select>
                         </td>
                       </tr>
@@ -282,10 +284,17 @@
                     </table>
 
                     <br>
-
-                    <table style="font-family: calibri;" width="50%">
+                    
+                    <?php if ($row->jenis_pembayaran == 4) { $showed="style='display: none'" ;
+                    }else{
+                          $showed="style=''" ;
+                    } ?>
+                                                
+                    <table id="show" <?php echo $showed;?> width="50%">
                       <tbody>
-                      <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
+                      <tr>
+                        <td colspan="4"><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
+                      </tr>
                       <tr>
                         <td><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
@@ -400,242 +409,7 @@
 
 </div>
 <!-- ./wrapper -->
-<div class="modal fade" id="modalNext" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="col-xs-12">
-            <!-- /.box -->
-            <div class="box">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-              <!-- /.box-header -->
-              <div class="box-body">
-                  <input type="hidden" name="id_payment" value="<?php echo $get->id_payment; ?>" />
-                  <input type="hidden" name="id_user" value="<?php echo $get->id_user; ?>" />
-                  <div class="box-body">
-                      <div id="printThis">
-                      <h5>
-                        <br>
-                        <left><img src="assets/dashboard/images/logo.png" width="140px" alt="Logo Images"></left>
-                        <br>
-                        <center><b><u><font size="+1" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
-                      </h5>
-                      <table width="100%">
-                      <tbody>
-                        <tr>
-                          <td>
-                          <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $get->nomor_surat;?></b></td>
-                          <td><b>No ARF/ASF   :</b></td>
-                        </tr> 
-                        <!-- <tr>
-                          <td>
-                          <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
-                          <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
-                        </tr>-->
-                      </tbody>
-                      </table>
 
-                      <table width="100%">
-                        <tr>
-                            <td><b>Jenis Pembayaran (pilih salah satu)</b></td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="1" <?php echo $xxi1=="1"? 'checked':''?> disabled>Uang Muka/Advance</label>
-                            </td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request</label>                     
-                            </td>
-                        </tr>    
-                        <tr>
-                            <td></td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement</label>
-                            </td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance</label>
-                            </td>
-                        </tr>                       
-                      </table>
-
-                      <table width="100%">
-                      <tbody>                            
-                        <tr>
-                          <td>Kepada : Divisi CSF</td>
-                          <td align="right">Tanggal : <?php echo date("d-M-Y", strtotime($get->tanggal)); ?></td>
-                        </tr>
-                        <tr>
-                          <td>Dari : </td>
-                        </tr>             
-                        <tr>
-                          <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->display_name;?></td>
-                        </tr> 
-                        <tr>
-                          <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->division_id;?></td>
-                        </tr>                                                   
-                      </tbody>
-                      </table>
-                                                
-                      <hr style=" border: 1px solid #000;">
-                                                  
-                      <table style="font-family: calibri;" width="100%">
-                        <tbody>
-                        <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
-                          <?php foreach ($ppayment as $ket) { ?>
-                          <tr>
-                            <td><b>Tujuan Penggunaan :</b></td>
-                            <td>&nbsp; <?php echo $ket->label1; ?></td>
-                          </tr>
-                          <tr>
-                            <td><b>Jumlah :</b></td>
-                            <td>IDR &nbsp; <?php echo $ket->label2; ?></td>
-                          </tr>
-                          <tr>
-                            <td><b>Perkiraan Tanggal :</b></td>
-                            <td>&nbsp; <?php echo $ket->label3; ?></td>     
-                          </tr>
-                          <!-- <tr>
-                            <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> (Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
-                          </tr>                               -->
-                          <?php } ?>
-                        </tbody>
-                      </table>
-
-                      <table style="font-family: calibri;" width="100%">
-                        <tbody>
-                          <b><p>Penyedia Barang / Jasa Penerima Pembayaran</p></b>
-                          <?php foreach ($ppayment as $print) { ?>
-                          <tr>
-                            <td>Nama : &nbsp; <?php echo $print->penerima;?></td>
-                            <td>Bank : &nbsp; <?php echo $print->akun_bank;?></td>
-                          </tr>
-                          <tr>
-                            <td>Kode Vendor : &nbsp; <?php echo $print->vendor;?></td>
-                            <td>Nomor Rekening : &nbsp; <?php echo $print->no_rekening; ?></td>                                
-                          </tr>
-                          <tr>
-                            <td colspan="2"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
-                          </tr>
-                          <?php }  ?>
-                        </tbody>
-                      </table>
-
-                      <table>
-                        <tr>
-                            <td><b>Lampiran Dokumen Pendukung :</b></td>
-                            <td>&nbsp;
-                              <?php if($get->label4){
-                                echo $get->label4;
-                              }?>
-                            </td>
-                        <tr>      
-                      </table>
-
-                      <table style="font-family: calibri;" width="125%">
-                        <tbody>
-                          <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
-                          <?php foreach ($ppayment as $print) { ?>
-                          <tr>
-                            <td>Nomor ARF terkait : &nbsp; <?php echo $print->label5;?></td>
-                            <input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $get->label6=="Lampiran copy ARF tersedia"? 'checked':''?> >Lampiran copy ARF tersedia</input>
-                            <td>
-                          </tr>
-                          <tr>
-                            <td>Perhitungan Penggunaan Uang Muka :</td>
-                          </tr>
-                          <tr?>  
-                            <td>Jumlah Biaya : &nbsp; <?php echo $print->label7;?></td>
-                          </tr>
-                            <td>Jumlah Uang Muka : &nbsp; <?php echo $print->label8; ?></td>     
-                          <tr>
-                            <td>Selisih Kurang/Lebih : &nbsp; <?php echo $print->label9; ?></td>                                
-                          </tr>                              
-                          <?php }  ?>
-                        </tbody>
-                      </table>
-                      <br>
-                      <table width="100%">
-                      <tbody>
-                          <tr>
-                            <td>Pemohon, <br><br><br><br></td>
-                            <td>Menyetujui, <br><br><br><br></td>
-                          </tr>
-                          <tr>
-                            <td>Nama : &nbsp; <?php echo $get->display_name?></td>
-                            <td>Nama Approval : </td>
-                          </tr>
-                          <tr>
-                            <td>Jabatan : &nbsp; <?php echo $get->jabatan?></td>
-                            <td>Jabatan : &nbsp; </td>
-                          </tr>                            
-                      </tbody>
-                      </table>
-                      </h5>
-                      <hr style=" border: 0.5px solid #000;">
-                      <h6>
-                      <table style="font-family: calibri;" width="100%">
-                      <tbody>
-                          <tr>
-                            <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
-                          </tr>
-                          <tr>
-                            <td><center><b>Jenis Pajak </b></center></td>
-                            <td><center><b>Tarif </b></center></td>
-                            <td width="100"><center><b>DPP </b></center></td>
-                            <td width="100"><center><b>Gross Up </b></center>  </td>
-                            <td><center><b>Pajak Terhitung </b></center>  </td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 21/26</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 22</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 23/26</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 4(2)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPN WAPU/PPN Offshore</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>                                                          
-                      </tbody>
-                      </table>
-                    </h6>
-                </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="printThis()">Print</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
 <script type="text/javascript">
   
   var rupiah = document.getElementById('rupiah');
@@ -668,13 +442,43 @@
 function printThis() {
   window.print();
 }
-</script>
 
-<script>
 function update() {
   alert("Data Successfully to Update");
 }
+
+function hide() {
+  var checkBox = document.getElementById("check");
+  var text = document.getElementById("show");
+  if (checkBox.checked == false){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function checkUangMuka() {
+  // alert();
+  // var checkBox1 = document.getElementById("checkrequest");
+  // var checkBox2 = document.getElementById("checksettlement");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
+  } 
+}
+
+function checkUangMuka2() {
+  // alert();
+  // var checkBox1 = document.getElementById("checkrequest");
+  // var checkBox2 = document.getElementById("checksettlement");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+  } 
+}
 </script>
+
+
     <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- Bootstrap 3.3.6 -->

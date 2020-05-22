@@ -49,19 +49,19 @@
                       <tr>
                       <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
                       <td>
-                        <input type="checkbox" checked> Uang Muka/Advance</input><br>
+                        <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
                       </td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                        <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
                       </td>
                       </tr>    
                       <tr>
                       <td></td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                        <input id="checksettlement" onclick="checkUangMuka2()" type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
                       </td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
+                        <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
                       </td>
                       </tr>                       
                     </table>
@@ -184,16 +184,20 @@
                           <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2"> Faktur Pajak Rangkap 2</input><br>                        
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"> Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="NPWP"> NPWP (Jika kode vendor tidak tersedia)</input><br>
-                          <input type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                            <input id="text1" type="text" name="lainnya1" style="display:none"> <br>
+                            <input id="text2" type="text" name="lainnya2" style="display:none"> <br>
                         </td>
                       <tr>      
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table id="show" style="font-family: calibri;" width="50%">
                       <tbody>
-                      <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
+                      <tr>
+                        <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
+                      </tr>
                       <tr>
                         <td><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
@@ -318,6 +322,50 @@ function myFunction(){
   document.getElementById("demo").innerHTML = x;
   document.getElementById("demo2").innerHTML = x;
   document.getElementById("demo3").innerHTML = x;
+}
+
+function hide() {
+  var checkBox = document.getElementById("checked");
+  var text = document.getElementById("show");
+  if (checkBox.checked == false){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function showInput() {
+  var checkBox = document.getElementById("lainnya");
+  var text = document.getElementById("text1");
+  var text2 = document.getElementById("text2");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text.style.display = "none"; 
+     text2.style.display = "none";
+
+  }
+}
+
+function checkUangMuka() {
+  // alert();
+  // var checkBox1 = document.getElementById("checkrequest");
+  // var checkBox2 = document.getElementById("checksettlement");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
+  } 
+}
+
+function checkUangMuka2() {
+  // alert();
+  // var checkBox1 = document.getElementById("checkrequest");
+  // var checkBox2 = document.getElementById("checksettlement");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+  } 
 }
 </script>
 
