@@ -14,9 +14,11 @@ td[rowspan="6"] {
           </h1>
         </section> -->
         <!-- Main content -->
+        <?php foreach ($ppayment as $row){ ?>          
         <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
           <input type="hidden" name="type" class="form-control" value="2"> 
+          <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>">
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -47,16 +49,16 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" placeholder="Divisi Pemohon" required></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" required></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">SPPP Doc. No : </font></td>
-                          <td><input type="text" name="nomor_surat" class="form-control" placeholder="SPPP Doc. No">
-                              <select class="form-control" name="nomor_surat">
+                          <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>" readonly>
+                              <!-- <select class="form-control" name="nomor_surat">
                                 <option>--- Choose ---</option>
                               <?php foreach ($surat1 as $got) {?>
                                 <option value="<?php echo $got->number1; ?>"><?php echo $got->number1; ?></option>
                               <?php } ?>
-                              </select>
+                              </select> -->
                           </td>    
                         </tr>
                         <tr>
@@ -74,7 +76,7 @@ td[rowspan="6"] {
                           <td> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Perkiraan Tanggal Selesai Pekerjaan : <br> Terima Barang</i><font></td>
-                          <td><input type="text" name="tanggal_selesai" class="form-control" required></td>
+                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo date('d-M-Y', strtotime($row->label3));?>" required></td>
                         </tr>
                       </tbody>
                     </table>
@@ -93,7 +95,7 @@ td[rowspan="6"] {
                         <tbody>                      
                         <tr>
                           <td><center> 1 </center></td>
-                          <td><textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea> </td>                  
+                          <td><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea> </td>                  
                           <td><select id="Select" onchange="myFunction()" name="currency">
                                       <option>--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
@@ -113,7 +115,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><p id="demo"> </p> & <p id="demo1"> </p></center></td>
+                          <td><center><p id="demo"> </p> <p id="demo1"> </p></center></td>
                           <td><input id="ulang" type="text" class="form-control" name="total_expenses">  </td>
                         </tr>
                         <tr> 
@@ -122,7 +124,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" placeholder="Name" required></td>
+                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima;?>" required></td>
                         </tr>
                         </tbody>
                     </table>
@@ -203,10 +205,10 @@ td[rowspan="6"] {
                         <tr>
                           <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" > Transfer Ke : </center></td>
                           <td><font size="+1"> Bank : 
-                              &nbsp;<input type="text" name="bank" placeholder="Bank" > </font>
+                              &nbsp;<input type="text" name="bank" value="<?php echo $row->akun_bank;?>" > </font>
                           </td> 
                           <td><font size="+1"> No. Rek : 
-                              &nbsp;<input type="text" name="no_rek" placeholder="No. Rek" > </font>
+                              &nbsp;<input type="text" name="no_rek" value="<?php echo $row->no_rekening;?>" > </font>
                           </td>                        
                         </tr>
                       </tbody>
@@ -280,7 +282,7 @@ td[rowspan="6"] {
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
+                    <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>                                                 
@@ -288,6 +290,7 @@ td[rowspan="6"] {
           </section>    
 
         </form>
+        <?php } ?>  
         <!-- /.content -->
       </div>
 

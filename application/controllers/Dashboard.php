@@ -156,13 +156,14 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_sp3', $data);
 	}
 
-	public function form_arf(){
+	public function form_arf($id_payment){
 
 		$data['active1'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
@@ -228,7 +229,7 @@ class Dashboard extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
-	public function form_asf(){
+	public function form_asf($id_payment){
 
 		$data['active1'] = 'active';
 		$data['active2'] = '';
@@ -237,6 +238,7 @@ class Dashboard extends CI_Controller {
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
@@ -303,7 +305,7 @@ class Dashboard extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
-	public function form_prf(){
+	public function form_prf($id_payment){
 
 		$data['active1'] = 'active';
 		$data['active2'] = '';
@@ -313,6 +315,7 @@ class Dashboard extends CI_Controller {
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['prf_doc'] = $this->Dashboard_model->buat_kode_prf();
 		$data['currency'] = $this->Home_model->getCurrency();
 
@@ -377,7 +380,7 @@ class Dashboard extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
-	public function form_crf(){
+	public function form_crf($id_payment){
 
 		$data['active1'] = 'active';
 		$data['active2'] = '';
@@ -385,6 +388,7 @@ class Dashboard extends CI_Controller {
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['crf_doc'] = $this->Dashboard_model->buat_kode_crf();
@@ -1032,10 +1036,6 @@ class Dashboard extends CI_Controller {
         $this->load->view('akses/csf/form_view', $data);
 	}
 
-	function addtax(){
-
-	}
-
 	function addpay(){
 		$c_jp = count($_POST['type']);
 		$type = "";
@@ -1048,6 +1048,7 @@ class Dashboard extends CI_Controller {
 		$add = array(
 			
 			'id_pay' => $_POST['id_pay'],
+			'id_payment' => $_POST['id_payment'],
 			'status' => 6,
 			'display_name' => $_POST['display_name'],
 			'type' => $type,
@@ -1102,7 +1103,10 @@ class Dashboard extends CI_Controller {
 			
 			'id' => $_POST['id'],
 			'status' => $_POST['status'],
-			'handled_by' => $_POST['handled_by']
+			'nomor_surat' => $_POST['nomor_surat'],
+			'handled_by' => $_POST['handled_by'],
+			'rejected_by' => $_POST['rejected_by'],
+			'rejected_date' => $_POST['rejected_date']
 
 		);
 

@@ -401,6 +401,21 @@
                         <?php if($row->status == 4){ ?>
                           <a class="btn btn-success" href="Dashboard/form_sp3_2/<?php echo $row->id_payment; ?>" role="button">Tax</a>
                         <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 2) { ?> 
+                          <?php if ($row->status == 5) { ?> 
+                            <a class="btn btn-primary" href="Dashboard/form_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Next</a>
+                          <?php } ?>                        
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 3) { ?> 
+                          <?php if ($row->status == 5) { ?> 
+                            <a class="btn btn-primary" href="Dashboard/form_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Next</a>
+                          <?php } ?>                        
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 4) { ?> 
+                          <?php if ($row->status == 5) { ?> 
+                            <a class="btn btn-primary" href="Dashboard/form_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Next</a>
+                          <?php } ?>                        
+                        <?php } ?>      
                       </div>    
                     </div>
             </section>
@@ -497,8 +512,8 @@
       <div class="modal-body">
       <form id="processed" method="post" action="dashboard/processing">
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
-        <label>Kepada CSF Tax?</label> 
+        <p align="justify">Apa kamu yakin telah menerima Form SP3 ini :  <?=$row->nomor_surat?> ?</p>
+        <label>Dan akan mengirimkan Form SP3 ini Kepada CSF Tax?</label> 
         <input type="hidden" name="handled_by" value="a.ester">                       
         <!-- <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>
