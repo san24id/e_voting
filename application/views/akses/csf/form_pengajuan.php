@@ -111,13 +111,13 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" class="form-control" name="label2" placeholder="Jumlah" required> </td>
+                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" required> </td>
                       </tr>
                       <tr>
                         <td><b>- Perkiraan Tanggal </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="2"><input type="text" class="form-control" name="label3" required></input></td>     
+                        <td colspan="2"><input type="date" class="form-control" name="label3" required></input></td>     
                       </tr>
                       <tr>
                         <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
@@ -138,7 +138,7 @@
                       <tr>  
                         <td>Kode Vendor</td>
                         <td> : </td>
-                        <td><input type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
+                        <td><input type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
                         <td>Bank</td>
                         <td>:</td>
                         <td><select name="akun_bank" class="form-control">
@@ -155,7 +155,7 @@
                         <td></td>
                         <td>Nomor Rekening</td> 
                         <td>:</td>                           
-                        <td><input type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required></td>                                
+                        <td><input type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
                       </tr>
                       <tr>
                         <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
@@ -319,6 +319,34 @@ function myFunction(){
   document.getElementById("demo2").innerHTML = x;
   document.getElementById("demo3").innerHTML = x;
 }
+</script>
+
+<script type="text/javascript">
+  
+  var rupiah = document.getElementById('rupiah');
+  rupiah.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rupiah.value = formatRupiah(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatRupiah(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    rupiah     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+    return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
+  }
 </script>
 
 

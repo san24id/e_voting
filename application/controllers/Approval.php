@@ -315,4 +315,106 @@ class Approval extends CI_Controller {
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/my_inbox', $data);
 	}
+
+	public function addpayment(){
+		$c_jp = count($_POST['jenis_pembayaran']);
+		$jenis_pembayaran = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$jenis_pembayaran .= $_POST['jenis_pembayaran'][$i].";";
+		}
+
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($l=0; $l<=$c_label4; $l++){
+			$label4 .= $_POST['label4'][$l].";";
+		}
+
+		// echo $jenis_pembayaran;
+		// var_dump(count($_POST['jenis_pembayaran']));exit;
+		$add = array(
+			
+			'id_payment' => $_POST['id_payment'],
+			'status' => 1,
+			'id_user' => $_POST['id_user'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $jenis_pembayaran,
+			'display_name' => $_POST['display_name'],
+			'tanggal' => $_POST['tanggal'],
+			'currency' => $_POST['currency'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'label3' => $_POST['label3'],
+			'label4' => $label4,
+			'label5' => $_POST['label5'],
+			'label6' => $_POST['label6'],
+			'label7' => $_POST['label7'],
+			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
+			'penerima' => $_POST['penerima'],
+			'vendor' => $_POST['vendor'],
+			'akun_bank' => $_POST['akun_bank'],
+			'no_rekening' => $_POST['no_rekening'],
+		);
+
+		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
+		$this->Home_model->addpayment($add);
+			
+		redirect('Approval');
+	}
+
+	public function updatepayment(){
+		$c_jp = count($_POST['jenis_pembayaran']);
+		$jenis_pembayaran = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$jenis_pembayaran .= $_POST['jenis_pembayaran'][$i].";";
+		}
+
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($l=0; $l<=$c_label4; $l++){
+			$label4 .= $_POST['label4'][$l].";";
+		}
+		// echo $label4;
+		// var_dump(count($_POST['label$label4']));exit;
+		$upd = array(
+
+			'id_payment' => $_POST['id_payment'],
+			'id_user' => $_POST['id_user'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $jenis_pembayaran,
+			'display_name' => $_POST['display_name'],
+			'tanggal' => $_POST['tanggal'],
+			'currency' => $_POST['currency'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'label3' => $_POST['label3'],
+			'label4' => $label4,
+			'label5' => $_POST['label5'],
+			'label6' => $_POST['label6'],
+			'label7' => $_POST['label7'],
+			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
+			'penerima' => $_POST['penerima'],
+			'vendor' => $_POST['vendor'],
+			'akun_bank' => $_POST['akun_bank'],
+			'no_rekening' => $_POST['no_rekening'],
+		);
+		
+		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
+		$this->Home_model->updatepayment($upd);
+
+		redirect('Approval');
+	}
+
+	public function deletepayment(){
+
+		$this->Home_model->deletepayment($_POST['id_payment']);
+
+		redirect('Approval');
+
+	}
 }    

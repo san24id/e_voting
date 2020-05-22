@@ -258,8 +258,8 @@ class Tri extends CI_Controller {
 
 		$c_label4 = count($_POST['label4']);
 		$label4 = "";
-		for($i=0; $i<=$c_jp; $i++){
-			$label4 .= $_POST['label4'][$i].";";
+		for($l=0; $l<=$c_label4; $l++){
+			$label4 .= $_POST['label4'][$l].";";
 		}
 
 		// echo $jenis_pembayaran;
@@ -306,8 +306,8 @@ class Tri extends CI_Controller {
 
 		$c_label4 = count($_POST['label4']);
 		$label4 = "";
-		for($i=0; $i<=$c_jp; $i++){
-			$label4 .= $_POST['label4'][$i].";";
+		for($l=0; $l<=$c_label4; $l++){
+			$label4 .= $_POST['label4'][$l].";";
 		}
 		// echo $label4;
 		// var_dump(count($_POST['label$label4']));exit;

@@ -334,7 +334,7 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Dashboard/monitoring" role="button">Exit</a>
+                        <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
                         <?php if ($row->status == 0) { ?>
                           <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
                             <?php if ($row->jenis_pembayaran == 4) { ?>

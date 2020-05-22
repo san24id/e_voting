@@ -1,5 +1,16 @@
 <html>
 <body onload="window.print()">
+<style type="text/css">
+@print {
+    @page :footer {
+        display: none
+    }
+
+    @page :header {
+        display: none
+    }
+}
+</style>
 <!-- <style type="text/css">
     @media print {
       body * {
