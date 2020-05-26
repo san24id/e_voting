@@ -161,7 +161,7 @@
                       <tr>
                         <td><b>- Perkiraan Tanggal </b></td>
                         <td><b> : </b></td>
-                        <td colspan="2"><input type="" class="form-control" name="label3" value="<?php echo $row->label3; ?>" ></input></td>     
+                        <td colspan="2"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>" ></input></td>     
                       </tr>
                       <tr>
                         <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
@@ -200,7 +200,7 @@
                         <td></td>
                         <td>Nomor Rekening</td> 
                         <td>:</td>                           
-                        <td><input type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>" required></td>                                
+                        <td><input type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>"></td>                                
                       </tr>
                       <tr>
                         <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
@@ -278,8 +278,13 @@
                           <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> >Faktur Pajak Rangkap 2</input><br>                        
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> >Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> >NPWP (Jika kode vendor tidak tersedia)</input><br>
-                          <input type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
-                        </td>
+                          <?php if ($row->label4->$testl2[$i]->$xxii11) { $showing="style='display: none'" ;
+                          }else{ 
+                                $showing="style=''" ;
+                          } ?>
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                            <input id="text1" <?php echo $showing;?> type="text" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>"> <br>
+                            <input id="text2" <?php echo $showing;?> type="text" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>"> <br>
                       <tr>      
                     </table>
 
@@ -454,6 +459,20 @@ function hide() {
     text.style.display = "block";
   } else {
      text.style.display = "none";
+  }
+}
+
+function showInput() {
+  var checkBox = document.getElementById("lainnya");
+  var text = document.getElementById("text1");
+  var text2 = document.getElementById("text2");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text.style.display = "none"; 
+     text2.style.display = "none";
+
   }
 }
 

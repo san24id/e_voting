@@ -304,6 +304,8 @@ class Home extends CI_Controller {
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
 			'no_rekening' => $_POST['no_rekening'],
+			'lainnya1' => $_POST['lainnya1'],
+			'lainnya2' => $_POST['lainnya2']
 		);
 
 		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
@@ -374,6 +376,8 @@ class Home extends CI_Controller {
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
 			'no_rekening' => $_POST['no_rekening'],
+			'lainnya1' => $_POST['lainnya1'],
+			'lainnya2' => $_POST['lainnya2']
 		);
 		
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
