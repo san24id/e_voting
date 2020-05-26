@@ -121,7 +121,7 @@
 
     <section class="content-header">
       <h1>
-        APF FORM
+        Waiting APF Processing
       </h1>
     </section>
 
@@ -176,16 +176,16 @@
                   <td><?php echo $row->jumlah; ?> </td>
                   <td>
                     <?php if ($row->type == 1) { ?>   
-                      <a href="Dashboard/form_vprf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                      <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
                     <?php } ?>
                     <?php if ($row->type == 2) { ?> 
-                      <a href="Dashboard/form_varf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                      <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
                     <?php } ?>
                     <?php if ($row->type == 3) { ?> 
-                      <a href="Dashboard/form_vasf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                      <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                     <?php } ?>
                     <?php if ($row->type == 4) { ?> 
-                      <a href="Dashboard/form_vcrf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                      <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                     <?php } ?>
                   </td>      
                   </tr>

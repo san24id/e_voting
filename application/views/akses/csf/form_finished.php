@@ -74,21 +74,25 @@
                         $test3 = count($test2);
                                 
                         for($b=0; $b<$test3; $b++){
-                        if($test2[$b] == '1'){
-                        $xxi1 .= "1";
-                        }
-                        
-                        if($test2[$b] == '2'){
-                        $xxi2 .= "2";
-                        }
-                        
-                        if($test2[$b] == '3'){
-                        $xxi3 .= "3";
-                        }
-                        
-                        if($test2[$b] == '4'){
-                        $xxi4 .= "4";
-                        }
+                          if($test2[$b] == '1'){
+                          $xxi1 .= "1";
+                          }
+                          
+                          if($test2[$b] == '2'){
+                          $xxi2 .= "2";
+                          }
+                          
+                          if($test2[$b] == '3'){
+                          $xxi3 .= "3";
+                          }
+                          
+                          if($test2[$b] == '4'){
+                          $xxi4 .= "4";
+                          }
+
+                          if($test2[$b] == '5'){
+                            $xxi5 .= "5";
+                            }
                         }
                       ?>
                       <tr>
@@ -107,6 +111,9 @@
                       </td>
                       <td>
                         <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Non-Uang Muka/Non-Advance<br>
+                      </td>
+                      <td>
+                        <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?>> Cash Received</input><br>
                       </td>
                       </tr>                       
                     </table>
@@ -290,7 +297,7 @@
 
                     <br>
                     
-                    <?php if ($row->jenis_pembayaran == 4) { $showed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 ) { $showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
@@ -453,9 +460,10 @@ function update() {
 }
 
 function hide() {
-  var checkBox = document.getElementById("check");
+  var checkBox = document.getElementById("checked");
+  var checkBox2 = document.getElementById("checked2");
   var text = document.getElementById("show");
-  if (checkBox.checked == false){
+  if (checkBox.checked == false && checkBox2.checked == false ){
     text.style.display = "block";
   } else {
      text.style.display = "none";

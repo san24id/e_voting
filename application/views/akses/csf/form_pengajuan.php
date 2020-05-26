@@ -47,13 +47,13 @@
 
                     <table style="font-family: calibri;" width="60%">
                       <tr>
-                      <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
-                      <td>
-                        <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
-                      </td>
-                      <td>
-                        <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
-                      </td>
+                        <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td>
+                          <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
+                        </td>
+                        <td>
+                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                        </td>
                       </tr>    
                       <tr>
                       <td></td>
@@ -62,6 +62,9 @@
                       </td>
                       <td>
                         <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
+                      </td>
+                      <td>
+                        <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
                       </td>
                       </tr>                       
                     </table>
@@ -117,7 +120,7 @@
                         <td><b>- Perkiraan Tanggal </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="2"><input type="date" class="form-control" name="label3" required></input></td>     
+                        <td colspan="2"><input type="date" class="form-control" name="label3"></input></td>     
                       </tr>
                       <tr>
                         <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
@@ -326,8 +329,9 @@ function myFunction(){
 
 function hide() {
   var checkBox = document.getElementById("checked");
+  var checkBox2 = document.getElementById("checked2");
   var text = document.getElementById("show");
-  if (checkBox.checked == false){
+  if (checkBox.checked == false && checkBox2.checked == false ){
     text.style.display = "block";
   } else {
      text.style.display = "none";

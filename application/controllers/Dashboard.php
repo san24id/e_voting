@@ -1057,6 +1057,7 @@ class Dashboard extends CI_Controller {
 			'display_name' => $_POST['display_name'],
 			'type' => $type,
 			'tanggal' => $_POST['tanggal'],
+			'pr_doc' => $_POST['pr_doc'],
 			'arf_doc' => $_POST['arf_doc'],
 			'asf_doc' => $_POST['asf_doc'],
 			'prf_doc' => $_POST['prf_doc'],

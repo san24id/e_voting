@@ -236,6 +236,8 @@ class Dashboard_model extends CI_Model{
     function getmyTask1() {
         $usr= $this->session->userdata("username");
 
+        // $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('5','6','7')";
+
         $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay ";
         // var_dump($sql);exit;
 
@@ -245,7 +247,7 @@ class Dashboard_model extends CI_Model{
     }
 
     public function getform($id) {
-        $sql = "SELECT * FROM `t_payment_l` WHERE id = '$id'";
+        $sql = "SELECT * FROM `t_payment_l` WHERE id_payment = '$id'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -370,16 +372,15 @@ class Dashboard_model extends CI_Model{
     }
 
     function addpay($add){
-        $sql = "INSERT INTO `t_payment_l` (id_payment, display_name, type, status, tanggal, arf_doc, asf_doc, prf_doc, crf_doc, nomor_surat, kode_proyek, division_id,
+        $sql = "INSERT INTO `t_payment_l` (id_payment, display_name, type, status, tanggal, pr_doc, arf_doc, asf_doc, prf_doc, crf_doc, nomor_surat, kode_proyek, division_id,
                 tanggal_selesai, label1, description, currency, currency1, jumlah, jumlah1, terbilang, dibayar_kepada, verified_date, penanggung_jawab, jabatan, 
                 persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, cash_advance, 
                 piutang, metode_pembayaran, bank, no_rek, handled_by ) 
-        VALUES ('".$add['id_payment']."','".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['arf_doc']."','".$add['asf_doc']."','".$add['prf_doc']."',
-                '".$add['crf_doc']."','".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."',
-                '".$add['description']."','".$add['currency']."','".$add['currency1']."','".$add['jumlah']."','".$add['jumlah1']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."',
-                '".$add['penanggung_jawab']."','".$add['jabatan']."','".$add['persetujuan_pembayaran1']."','".$add['persetujuan_pembayaran2']."','".$add['persetujuan_pembayaran3']."',
-                '".$add['jabatan1']."','".$add['jabatan2']."','".$add['jabatan3']."','".$add['catatan']."','".$add['total_expenses']."','".$add['cash_advance']."','".$add['piutang']."','".$add['metode_pembayaran']."'
-                ,'".$add['bank']."','".$add['no_rek']."','".$add['handled_by']."')";
+        VALUES ('".$add['id_payment']."','".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['pr_doc']."','".$add['arf_doc']."','".$add['asf_doc']."','".$add['prf_doc']."',
+                '".$add['crf_doc']."','".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."','".$add['description']."','".$add['currency']."',
+                '".$add['currency1']."','".$add['jumlah']."','".$add['jumlah1']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."','".$add['penanggung_jawab']."','".$add['jabatan']."',
+                '".$add['persetujuan_pembayaran1']."','".$add['persetujuan_pembayaran2']."','".$add['persetujuan_pembayaran3']."','".$add['jabatan1']."','".$add['jabatan2']."','".$add['jabatan3']."','".$add['catatan']."',
+                '".$add['total_expenses']."','".$add['cash_advance']."','".$add['piutang']."','".$add['metode_pembayaran']."','".$add['bank']."','".$add['no_rek']."','".$add['handled_by']."')";
         
         $query = $this->db->query($sql);
 

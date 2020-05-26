@@ -246,8 +246,12 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    <?php if($get->status == 6){ ?>  
+
+                    <?php if($get->status == 8){ ?>                      
                       <a href="Dashboard/report_prf/<?php echo $get->id; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
+                    <?php } ?>
+
+                    <?php if($get->status == 6){ ?>  
                       <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Accept</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -258,8 +262,8 @@ td[rowspan="6"] {
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="7">
                             <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini : <?=$get->nomor_surat?></p>
-                            <label>Kepada CSF Reviewer:</label>  
-                            <input type="hidden" name="handled_by" value="i.akmal">
+                            <label>Kepada CSF Verificator:</label>    
+                            <input type="hidden" name="handled_by" value="h.harlina"> 
                             <!-- <select class="form-control" name="handled_by">
                               <option>--- Choose ---</option>
                             <?php foreach ($csf as $get) {?>
@@ -288,7 +292,8 @@ td[rowspan="6"] {
                             <input type="hidden" name="status" value="3">
                             <p align="justify">Apa kamu yakin akan me-rejected Form SP3 kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
-                            <input type="text" name="note"></input>
+                            <textarea type="text" class="form-control" name="note"></textarea>
+
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
@@ -321,7 +326,8 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select> -->
                             <label>Notes :</label>                
-                            <input type="text" name="note"></input>
+                            <textarea type="text" class="form-control" name="note"></textarea>
+
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
@@ -368,7 +374,8 @@ td[rowspan="6"] {
                           <input type="hidden" name="status" value="3">
                           <p align="justify">Apa kamu yakin akan me-rejected Form SP3 kepada Requestor : <?=$get->nomor_surat?></p>
                           <label>Notes :</label>                
-                          <input type="text" name="note"></input>
+                          <textarea type="text" class="form-control" name="note"></textarea>
+
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
@@ -400,7 +407,8 @@ td[rowspan="6"] {
                           <?php } ?>
                           </select> -->
                           <label>Notes :</label>                
-                          <input type="text" name="note"></input>
+                          <textarea type="text" class="form-control" name="note"></textarea>
+
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        

@@ -14,8 +14,10 @@ td[rowspan="3"] {
           </h1>
         </section> -->
         <!-- Main content -->
+        <?php foreach ($ppayment as $row){ ?>          
         <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
+          <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>">
           <input type="hidden" name="type" class="form-control" value="4"> 
           <section class="content">
             <div class="row">
@@ -42,16 +44,20 @@ td[rowspan="3"] {
                           <td><font size="+1" >Tanggal : </td>
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>" readonly> </td>
                           <td> &nbsp;</td>
-                          <td><font size="+1" >ARF Doc. No : </font></td>
-                          <td><input type="text" name="crf_doc" class="form-control" value="<?php echo $crf_doc; ?>"></td>
+                          <td><font size="+1" >CRF Doc. No : </font></td>
+                          <td><input type="text" name="crf_doc" class="form-control" value="<?php echo $crf_doc; ?>"></td>                          
                         </tr>
                         <tr>
                           <td><font size="+1" >Dir/Sub/Div :<br><i>Dir/Sub/Div </i><font></td>
-                          <td><input type="text" name="division_id" class="form-control" placeholder="Dir/Sub/Div"></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>"></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek"></td>
                         </tr>
+                        <tr>
+                          <td><font size="+1" >PR Doc. No : </font></td>
+                          <td><input type="text" name="pr_doc" class="form-control" placeholder="PR Doc. No"></td>
+                        </tr>  
                       </tbody>
                     </table>
 
@@ -69,9 +75,10 @@ td[rowspan="3"] {
                         <tbody>                      
                         <tr>
                           <td><center> 1 </center></td>
-                          <td><textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea> </td>                  
+                          <td><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea> </td>                  
                           <td><select id="Select" onchange="myFunction()" name="currency">
-                              <option>--Choose--</option>
+                                <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option> 
+                                <option>--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
@@ -83,7 +90,7 @@ td[rowspan="3"] {
                                       <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></input>
+                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></input>
                               <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" placeholder="Jumlah" required></input>
                           </td>
                         </tr>
@@ -98,7 +105,7 @@ td[rowspan="3"] {
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" placeholder="Name"></td>
+                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima;?>"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -230,13 +237,15 @@ td[rowspan="3"] {
                     <img align="right" src="assets/dashboard/images/footer_form2.png" alt="Logo Images">  
 
                     <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
-                    <label>Kepada CSF Reviewer:</label>                        
-                    <select name="handled_by">
+                    <label>Kepada CSF Reviewer?</label>        
+                    <input type="hidden" name="handled_by" value="i.akmal">                       
+
+                    <!-- <select name="handled_by">
                         <option>--- Choose ---</option>
                     <?php foreach ($csf as $get) {?>
                         <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                     <?php } ?>
-                    </select>            
+                    </select>             -->
                   </div>  
                 </div>
                      
@@ -251,6 +260,7 @@ td[rowspan="3"] {
           </section>    
 
         </form>
+        <?php } ?>
         <!-- /.content -->
       </div>
 

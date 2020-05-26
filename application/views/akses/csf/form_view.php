@@ -71,21 +71,25 @@
                         $test3 = count($test2);
                                 
                         for($b=0; $b<$test3; $b++){
-                        if($test2[$b] == '1'){
-                        $xxi1 .= "1";
-                        }
-                        
-                        if($test2[$b] == '2'){
-                        $xxi2 .= "2";
-                        }
-                        
-                        if($test2[$b] == '3'){
-                        $xxi3 .= "3";
-                        }
-                        
-                        if($test2[$b] == '4'){
-                        $xxi4 .= "4";
-                        }
+                          if($test2[$b] == '1'){
+                          $xxi1 .= "1";
+                          }
+                          
+                          if($test2[$b] == '2'){
+                          $xxi2 .= "2";
+                          }
+                          
+                          if($test2[$b] == '3'){
+                          $xxi3 .= "3";
+                          }
+                          
+                          if($test2[$b] == '4'){
+                          $xxi4 .= "4";
+                          }
+
+                          if($test2[$b] == '5'){
+                            $xxi5 .= "5";
+                          }
                         }
                       ?>
                       <tr>
@@ -107,6 +111,9 @@
                       </td>
                       <td>
                         <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
+                      </td>
+                      <td>
+                        <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
                       </td>
                       </tr>                       
                     </table>
@@ -264,11 +271,11 @@
                           <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>                        
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
-                          <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
-                          }else{ 
-                                $showing="style=''" ;
-                          } ?>
                           <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                          <?php if ($row->label4->$xxii11) { $showing="style=''" ;
+                          }else{ 
+                                $showing="style='display: none'" ;
+                          } ?>
                             <input id="text1" <?php echo $showing;?> type="text" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>" readonly> <br>
                             <input id="text2" <?php echo $showing;?> type="text" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br>
                         </td>
@@ -277,7 +284,7 @@
 
                     <br>
 
-                    <?php if ($row->jenis_pembayaran == 4) { $showed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
@@ -352,7 +359,7 @@
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
                         <?php if ($row->status == 0) { ?>
                           <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-                            <?php if ($row->jenis_pembayaran == 4) { ?>
+                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
                               <form id="form" method="post" action="Dashboard/draftprintdp" target="_blank" onsubmit="update()">
                                 <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
                                 <button type="submit" class="btn btn-primary">Print</button>
@@ -447,9 +454,10 @@ function update() {
 }
 
 function hide() {
-  var checkBox = document.getElementById("check");
+  var checkBox = document.getElementById("checked");
+  var checkBox2 = document.getElementById("checked2");
   var text = document.getElementById("show");
-  if (checkBox.checked == false){
+  if (checkBox.checked == false && checkBox2.checked == false ){
     text.style.display = "block";
   } else {
      text.style.display = "none";

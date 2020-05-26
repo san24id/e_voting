@@ -62,39 +62,49 @@
                         $test3 = count($test2);
                                 
                         for($b=0; $b<$test3; $b++){
-                        if($test2[$b] == '1'){
-                        $xxi1 .= "1";
-                        }
-                        
-                        if($test2[$b] == '2'){
-                        $xxi2 .= "2";
-                        }
-                        
-                        if($test2[$b] == '3'){
-                        $xxi3 .= "3";
-                        }
-                        
-                        if($test2[$b] == '4'){
-                        $xxi4 .= "4";
-                        }
+                          if($test2[$b] == '1'){
+                          $xxi1 .= "1";
+                          }
+                          
+                          if($test2[$b] == '2'){
+                          $xxi2 .= "2";
+                          }
+                          
+                          if($test2[$b] == '3'){
+                          $xxi3 .= "3";
+                          }
+                          
+                          if($test2[$b] == '4'){
+                          $xxi4 .= "4";
+                          }
+
+                          if($test2[$b] == '5'){
+                            $xxi5 .= "5";
+                          }
                         }
                       ?>
                       <tr>
                       <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
-                      <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="1" <?php echo $xxi1=="1"? 'checked':''?> disabled>Uang Muka/Advance<br>
+                      <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
+                          }else{
+                                $cek=" " ;
+                          } ?>
+                        <input id="auto" <?php echo $cek;?> type="checkbox" disabled>Uang Muka/Advance<br>
                       </td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                        <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
                       </td>
                       </tr>    
                       <tr>
                       <td></td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                        <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
                       </td>
                       <td>
-                        <input type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
+                        <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
+                      </td>
+                      <td>
+                        <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
                       </td>
                       </tr>                       
                     </table>
@@ -136,18 +146,7 @@
                       <tr>
                         <td><b>- Jumlah :</b></td>
                         <td><b> : </b></td>
-                        <td><select name="currency" class="form-control">
-                                      <option>Choose</option>
-                                      <option value="EUR"<?php echo $row->currency==EUR? 'selected':''?> >EUR</option>
-                                      <option value="GBP"<?php echo $row->currency==GBP? 'selected':''?> >GBP</option>
-                                      <option value="HKD"<?php echo $row->currency==HKD? 'selected':''?> >HKD</option>
-                                      <option value="IDR"<?php echo $row->currency==IDR? 'selected':''?> >IDR</option>
-                                      <option value="JPY"<?php echo $row->currency==JPY? 'selected':''?> >JPY</option>
-                                      <option value="KRW"<?php echo $row->currency==KRW? 'selected':''?> >KRW</option>
-                                      <option value="SGD"<?php echo $row->currency==SGD? 'selected':''?> >SGD</option>
-                                      <option value="USD"<?php echo $row->currency==USD? 'selected':''?> >USD</option>
-                              </select>
-                          </td>
+                        <td>&nbsp; <?php echo $row->currency;?></td>
                         <td colspan="2"><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
                       </tr>
                       <tr>
@@ -263,16 +262,29 @@
                           <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>                        
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
-                          <input type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                          <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
+                          }else{ 
+                                $showing="style=''" ;
+                          } ?>
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
+                            <input id="text1" <?php echo $showing;?> type="text" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>" readonly> <br>
+                            <input id="text2" <?php echo $showing;?> type="text" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br>
                         </td>
                       <tr>      
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
+                    }else{
+                          $showed="style=''" ;
+                    } ?>
+                                                
+                    <table id="show" <?php echo $showed;?> width="50%">
                       <tbody>
-                      <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
+                      <tr>
+                        <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
+                      </tr>
                       <tr>
                         <td><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
@@ -403,13 +415,14 @@
                     </table>
                     </h6>
                     <p align="justify">Apa kamu yakin akan mengirimkan TAX Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-                    <label>Kepada CSF Finance:</label>                        
-                    <select name="handled_by">
+                    <label>Kepada CSF Finance?</label>   
+                    <input type="hidden" class="form-control" name="handled_by" value="n.prasetyaningrum">                     
+                    <!-- <select name="handled_by">
                         <option>--- Choose ---</option>
                     <?php foreach ($csf as $get) {?>
                         <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                     <?php } ?>
-                    </select>
+                    </select> -->
                   </div>  
                 </div>                 
 
@@ -469,9 +482,52 @@
 function printThis() {
   window.print();
 }
-$(function () {
-    $("#example1").DataTable();
-    
+
+function hide() {
+  var checkBox = document.getElementById("checked");
+  var checkBox2 = document.getElementById("checked2");
+  var text = document.getElementById("show");
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function showInput() {
+  var checkBox = document.getElementById("lainnya");
+  var text = document.getElementById("text1");
+  var text2 = document.getElementById("text2");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text.style.display = "none"; 
+     text2.style.display = "none";
+
+  }
+}
+
+function checkUangMuka() {
+  // alert();
+  // var checkBox1 = document.getElementById("checkrequest");
+  // var checkBox2 = document.getElementById("checksettlement");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
+  } 
+}
+
+function checkUangMuka2() {
+  // alert();
+  // var checkBox1 = document.getElementById("checkrequest");
+  // var checkBox2 = document.getElementById("checksettlement");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+  } 
+}
+
 </script>
 
     <!-- jQuery 2.2.3 -->

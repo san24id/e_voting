@@ -69,7 +69,7 @@ td[rowspan="6"] {
                           <td> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Perkiraan Tanggal Selesai Pekerjaan : <br> Terima Barang</i><font></td>
-                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->tanggal_selesai)); ?>" readonly></td>
+                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo $get->tanggal_selesai; ?>" readonly></td>
                         </tr>
                       </tbody>
                     </table>
@@ -256,8 +256,13 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    <?php if($get->status == 6){ ?>  
-                      <a href="Dashboard/report_arf/<?php echo $get->id; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
+                    
+                    <?php if($get->status == 8){ ?>                      
+                    <a href="Dashboard/report_arf/<?php echo $get->id; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
+                    <?php } ?>
+                    
+                    <?php if($get->status == 6){ ?>
+                      <a href="Dashboard/form_earf/<?php echo $get->id; ?>" role="button" class="btn btn-primary">Edit</a>
                       <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Accept</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -267,9 +272,9 @@ td[rowspan="6"] {
                           <form id="processed" method="post" action="dashboard/updpay">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="7">
-                            <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
-                            <label>Kepada CSF Reviewer:</label>    
-                            <input type="hidden" name="handled_by" value="i.akmal">                    
+                            <p align="justify">Apa kamu yakin akan mengirim Form APF ini : <?=$get->nomor_surat?></p>
+                            <label>Kepada CSF Verificator:</label>    
+                            <input type="hidden" name="handled_by" value="h.harlina">                    
                             <!-- <select class="form-control" name="handled_by">
                               <option>--- Choose ---</option>
                             <?php foreach ($csf as $get) {?>
@@ -296,9 +301,9 @@ td[rowspan="6"] {
                           <form id="rejected" method="post" action="dashboard/rejected">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="3">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
-                            <input type="text" name="note"></input>
+                            <textarea type="text" class="form-control" name="note"></textarea>
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
@@ -320,7 +325,7 @@ td[rowspan="6"] {
                           <form id="rejected2" method="post" action="dashboard/updpay">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="4">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->nomor_surat?></p>
                             <label>Kepada CSF Finance:</label>
                             <input type="hidden" name="handled_by" value="n.prasetyaningrum">
 
@@ -331,7 +336,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select> -->
                             <label>Notes :</label>                
-                            <input type="text" name="note"></input>
+                            <textarea type="text" class="form-control" name="note"></textarea>
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
@@ -345,6 +350,7 @@ td[rowspan="6"] {
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
+                    <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
                     <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -354,7 +360,7 @@ td[rowspan="6"] {
                         <form id="processed1" method="post" action="dashboard/updpay">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="8">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form Pengajuan ini : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->nomor_surat?></p>
                           <label>Kepada Approval? </label>                        
                         </div>
                         <div class="modal-footer">                        
@@ -376,9 +382,9 @@ td[rowspan="6"] {
                         <form id="rejected" method="post" action="dashboard/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="3">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                           <label>Notes :</label>                
-                          <input type="text" name="note"></input>
+                          <textarea type="text" class="form-control" name="note"></textarea>
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
@@ -400,7 +406,7 @@ td[rowspan="6"] {
                         <form id="rejected2" method="post" action="dashboard/updpay">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="4">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->nomor_surat?></p>
                           <label>Kepada CSF Finance:</label>                        
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                           <!-- <select class="form-control" name="handled_by">
@@ -410,7 +416,7 @@ td[rowspan="6"] {
                           <?php } ?>
                           </select> -->
                           <label>Notes :</label>                
-                          <input type="text" name="note"></input>
+                          <textarea type="text" class="form-control" name="note"></textarea>
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        

@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $asf_doc; ?>"></td>
+                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $asf_doc; ?>"></td>                          
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -68,6 +68,10 @@ td[rowspan="6"] {
                           <td><font size="+1">ARF Doc. No : </font></td>
                           <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
                         </tr>
+                        <tr>
+                          <td><font size="+1">PR Doc. No : </font></td>
+                          <td><input type="text" name="pr_doc" class="form-control" placeholder="PR Doc. No"></td>
+                        </tr>
                       </tbody>
                     </table>
 
@@ -87,6 +91,7 @@ td[rowspan="6"] {
                           <td><center> 1 </center></td>
                           <td><textarea type="text" class="form-control" name="description" required><?php echo $row->label1; ?></textarea> </td>                  
                           <td><select id="Select" onchange="myFunction()" name="currency" >
+                                <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option> 
                                 <option>--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
@@ -99,7 +104,7 @@ td[rowspan="6"] {
                                       <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" placeholder="Jumlah" required></input>
+                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></input>
                               <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" placeholder="Jumlah" required></input>
                           </td>
                         </tr>
@@ -269,13 +274,14 @@ td[rowspan="6"] {
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
 
                     <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
-                    <label>Kepada CSF Reviewer:</label>                        
-                    <select name="handled_by">
+                    <label>Kepada CSF Reviewer?</label>      
+                    <input type="hidden" name="handled_by" value="i.akmal">                       
+                    <!-- <select name="handled_by">
                         <option>--- Choose ---</option>
                     <?php foreach ($csf as $get) {?>
                         <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
                     <?php } ?>
-                    </select>            
+                    </select>             -->
                   </div>  
                 </div>
                      
