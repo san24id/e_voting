@@ -65,7 +65,9 @@
                 <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/outstanding.png"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-number"><center>20</center></span>
+                  <?php foreach ($outstanding as $tot_outstanding) { ?>  
+                  <span class="info-box-number"><center><?php echo $tot_outstanding->outstanding; ?></center></span>
+                  <?php } ?>            
                   <span class="info-box-text bg-gray"><center>Total Outstanding </br> Payment Request</center></span>
                 </div>
                 <!-- /.info-box-content -->

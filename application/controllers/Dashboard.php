@@ -49,6 +49,7 @@ class Dashboard extends CI_Controller {
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['draftprint'] = $this->Home_model->getDraftPrint();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();

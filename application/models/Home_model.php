@@ -89,6 +89,16 @@ class Home_model extends CI_Model{
     
     }
 
+    public function getOutstanding(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','9') AND division_id='$dvs' AND id_user='$usr'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getProcessing(){
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
