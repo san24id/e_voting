@@ -239,13 +239,14 @@ class Home_model extends CI_Model{
     }
     
     function addpayment($add){
-        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, currency, division_id, jabatan, label1, label2,
-                label3, label4, label5, label6, label7, label8, label9, penerima, vendor, akun_bank, no_rekening, status, lainnya1, lainnya2) 
+        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, currency, currency2, currency3, 
+                division_id, jabatan, label1, label2, jumlah2, jumlah3, label3, label4, label5, label6, label7, label8, label9, penerima, vendor, 
+                akun_bank, no_rekening, status, lainnya1, lainnya2) 
                 VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['display_name']."',
-                '".$add['tanggal']."','".$add['currency']."','".$add['division_id']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."',
-                '".$add['label3']."','".$add['label4']."','".$add['label5']."','".$add['label6']."','".$add['label7']."','".$add['label8']."',
-                '".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."','".$add['status']."',
-                '".$add['lainnya1']."','".$add['lainnya2']."')";
+                '".$add['tanggal']."','".$add['currency']."','".$add['currency2']."','".$add['currency3']."','".$add['division_id']."','".$add['jabatan']."',
+                '".$add['label1']."','".$add['label2']."','".$add['jumlah2']."','".$add['jumlah3']."','".$add['label3']."','".$add['label4']."','".$add['label5']."',
+                '".$add['label6']."','".$add['label7']."','".$add['label8']."','".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."',
+                '".$add['no_rekening']."','".$add['status']."','".$add['lainnya1']."','".$add['lainnya2']."')";
         
         $query = $this->db->query($sql);
 
@@ -253,10 +254,10 @@ class Home_model extends CI_Model{
     }
 
     function updatepayment($upd){
-        $sql = "UPDATE `t_payment` SET `jenis_pembayaran`='".$upd['jenis_pembayaran']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`label3`='".$upd['label3']."',
-                `label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',`label8`='".$upd['label8']."',
-                `label9`='".$upd['label9']."',`penerima`='".$upd['penerima']."',`vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',
-                `lainnya1`='".$upd['lainnya1']."',`lainnya2`='".$upd['lainnya2']."'
+        $sql = "UPDATE `t_payment` SET `currency`='".$upd['currency']."',`currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`jenis_pembayaran`='".$upd['jenis_pembayaran']."',
+                `label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',`label3`='".$upd['label3']."',`label4`='".$upd['label4']."',
+                `label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',`label8`='".$upd['label8']."',`label9`='".$upd['label9']."',`penerima`='".$upd['penerima']."',
+                `vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',`lainnya1`='".$upd['lainnya1']."',`lainnya2`='".$upd['lainnya2']."'
         WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);

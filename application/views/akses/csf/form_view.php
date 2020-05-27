@@ -93,28 +93,34 @@
                         }
                       ?>
                       <tr>
-                      <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
-                      <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
+                        <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
                           }else{
                                 $cek=" " ;
                           } ?>
-                        <input id="auto" <?php echo $cek;?> type="checkbox" disabled>Uang Muka/Advance<br>
-                      </td>
-                      <td>
-                        <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
-                      </td>
-                      </tr>    
+                          <input id="auto" <?php echo $cek;?> type="checkbox" disabled>Uang Muka/Advance<br>
+                        </td>
+
+                        <td>
+                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
+                        </td>
+                        <td>
+                          <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
+                        </td>
+                      </tr>
+
                       <tr>
-                      <td></td>
-                      <td>
-                        <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
-                      </td>
-                      <td>
-                        <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
-                      </td>
-                      <td>
-                        <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
-                      </td>
+                        <td></td>
+                        <td>
+                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                        <td>
+                      </tr>
+                      
+                      <tr>
+                        <td></td>
+                        <td>
+                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                        </td>
                       </tr>                       
                     </table>
 
@@ -149,22 +155,26 @@
                       <tr>
                         <td><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
-                        <td colspan="2"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
                         <td><b>- Jumlah :</b></td>
                         <td><b> : </b></td>
+
                         <td> <?php echo $row->currency;?> </td>
-                        <td colspan="2"><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
+                        <td><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
+
+                        <td> <?php echo $row->currency2;?> </td>
+                        <td><input type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" readonly></td>
+
+                        <td> <?php echo $row->currency3;?> </td>
+                        <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
                       </tr>
                       <tr>
-                        <td><b>- Perkiraan Tanggal </b></td>
+                        <td><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang<br></b><i>(Hanya diisi untuk jenis pembayaran</i> <i><b>Permintaan Uang Muka/Request)</b></i></b></td>
                         <td><b> : </b></td>
-                        <td colspan="2"><input type="" class="form-control" name="label3" value="<?php echo $row->label3; ?>" readonly></input></td>     
-                      </tr>
-                      <tr>
-                        <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
+                        <td colspan="8"><input type="" class="form-control" name="label3" value="<?php echo $row->label3; ?>" readonly></input></td>     
                       </tr>                            
                       </tbody>
                     </table>
@@ -276,8 +286,8 @@
                           }else{ 
                                 $showing="style='display: none'" ;
                           } ?>
-                            <input id="text1" <?php echo $showing;?> type="text" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>" readonly> <br>
-                            <input id="text2" <?php echo $showing;?> type="text" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br>
+                            <input id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>" readonly> <br>
+                            <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br>
                         </td>
                       <tr>      
                     </table>
@@ -359,16 +369,21 @@
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
                         <?php if ($row->status == 0) { ?>
                           <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
-                              <form id="form" method="post" action="Dashboard/draftprintdp" target="_blank" onsubmit="update()">
+                              <!-- <form id="form" method="post" action="Dashboard/" target="_blank" onsubmit="update()">
                                 <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
                                 <button type="submit" class="btn btn-primary">Print</button>
-                              </form>      
+                              </form>       -->
+                              <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
+
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
+                              <!-- <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
                                 <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
                                 <button type="submit" class="btn btn-primary">Print</button>
-                              </form> 
+                              </form>  -->
+                              <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>
+
                               <!-- <a class="btn btn-danger" href="Dashboard/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
                             <?php } ?>    
                             <!-- <button type="submit" class="btn btn-success">Save</button> -->

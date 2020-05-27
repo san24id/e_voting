@@ -897,10 +897,14 @@ class Dashboard extends CI_Controller {
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
@@ -945,10 +949,14 @@ class Dashboard extends CI_Controller {
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
@@ -982,16 +990,16 @@ class Dashboard extends CI_Controller {
 		redirect('Dashboard/report_dp/'.$_POST['id_payment']);
 	}
 
-	public function draftprint(){
+	public function draftprint($id_payment){
 
 		$upd = array(
-			'id_payment' => $_POST['id_payment'],
+			'id_payment' => $id_payment,
 			'status' => 1
 		);
 
 		$this->Dashboard_model->updateprint($upd);
 
-		redirect('Dashboard/report/'.$_POST['id_payment']);
+		redirect('Dashboard/report/'.$id_payment);
 	}
 
 	public function deletepayment(){

@@ -22,61 +22,77 @@
                       <br>
                       <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
                     </h5>
-                    <table style="font-family: calibri;" width="75%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
-                        <td> </td>
-                        <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td>
+                        
+                        <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td>
                             <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">                            
               
-                        <td><b>No ARF/ASF   :</b></td>
+                        <td width="50%"><center><b>No ARF/ASF   :</b></center></td>
                         </tr>
                       </tbody>
                     </table>
-                    <table style="font-family: calibri;" width="120%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>     
                         <tr>
-                        <td></td>
-                        <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
-                        <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
+                        
+                        <td align="center" width="50%"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
+                        <td width="50%"><center><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></center></td>
                         </tr>
                       </tbody>
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="60%">
+                    <table style="font-family: calibri;" width="100%">
                       <tr>
-                        <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
                         <td>
                           <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
                         </td>
                         <td>
-                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                          <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
                         </td>
-                      </tr>    
-                      <tr>
-                      <td></td>
-                      <td>
-                        <input id="checksettlement" onclick="checkUangMuka2()" type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
-                      </td>
-                      <td>
-                        <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
-                      </td>
-                      <td>
-                        <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
-                      </td>
+                        <td>
+                          <input id="checked2" onclick="hide2()" type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
+                        </td>
+                        </tr>  
+                        <tr>
+                          <td></td>
+                          <td>
+                            <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                          </td>
+                        </tr>  
+                        <tr>
+                        <td></td>
+                        <td>
+                          <input id="checksettlement" onclick="checkUangMuka2()" type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                        </td>
                       </tr>                       
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
+                      <?php
+                        $dayList = array(
+                              'Sun' => 'Minggu',
+                              'Mon' => 'Senin',
+                              'Tue' => 'Selasa',
+                              'Wed' => 'Rabu',
+                              'Thu' => 'Kamis',
+                              'Fri' => 'Jumat',
+                              'Sat' => 'Sabtu'
+                          );
+                          $hari_ing = date('D');
+                          // echo date("D");
+                      ?>              
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="right">Tanggal : <?php echo date("l, d-M-Y"); ?></td>
-                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>">
+                      <td align="center">Tanggal : <?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?></td>
+                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>">
                       </tr>
                       <tr>
                       <td>Dari : </td>
@@ -94,15 +110,15 @@
 
                     <hr style=" border: 1px solid #000;">
 
-                    <table style="font-family: calibri;" width="75%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
                         <td><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="2"><textarea type="text" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
-                        <td>
+                        <td colspan="8"><textarea type="text" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
+                        
                       </tr>
                       <tr>
                         <td><b>- Jumlah </b></td>
@@ -115,36 +131,54 @@
                               </select>
                           </td>
                         <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" required> </td>
+
+                        <td><select name="currency2" class="form-control">
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <?php } ?>
+                              </select>
+                          </td>
+                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" placeholder="Jumlah" > </td>
+
+                        <td><select name="currency3" class="form-control">
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <?php } ?>
+                              </select>
+                          </td>
+                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
                       </tr>
                       <tr>
-                        <td><b>- Perkiraan Tanggal </b></td>
+                        <td><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        	<br>
+                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="2"><input type="date" class="form-control" name="label3"></input></td>     
+                        <td colspan="8"><input type="date" class="form-control" name="label3"></input></td>     
                       </tr>
-                      <tr>
-                        <td colspan="4"><b>Selesai Pekerjaan/Terima Barang</b> <br>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
-                      </tr>                            
+                                                  
                       </tbody>
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="55%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                        <td>Nama</td>
-                        <td> : </td>
+                        <td width="33%">Nama</td>
+                        <td align="right"><b>:</b></td>
                         <td colspan="4"><input type="text" class="form-control" name="penerima" placeholder="Enter Text" required></td>
                       </tr>
                       <tr>  
                         <td>Kode Vendor</td>
-                        <td> : </td>
+                        <td align="right"><b>:</b></td>
                         <td><input type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
                         <td>Bank</td>
                         <td>:</td>
-                        <td><select name="akun_bank" class="form-control">
+                        <td><select id="dropdown" name="akun_bank" class="form-control">
                                 <option>--- Choose ---</option>
                                 <?php foreach ($bank as $get) {?>
                                   <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
@@ -158,7 +192,7 @@
                         <td></td>
                         <td>Nomor Rekening</td> 
                         <td>:</td>                           
-                        <td><input type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
+                        <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
                       </tr>
                       <tr>
                         <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
@@ -173,30 +207,66 @@
                         <td><b>- Lampiran Dokumen Pendukung :</b></td>
                         <td><td>
                       </tr>
+
                       <tr>
                         <td>  
                           <input type="checkbox" name="label4[]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)"> Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
-                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)"> Berita Acara Pemeriksaan (BAP)</input><br>
-                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)"> Berita Acara Pemeriksaan (BAST)</input><br>                            
-                          <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)"> Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
-                          <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"> Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
                         </td>
                         <td>
                           <input type="checkbox" name="label4[]" value="Copy PO/SPK"> Copy PO/SPK</input><br>
-                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian"> Copy Kontrak/Perjanjian</input><br>                            
-                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2"> Faktur Pajak Rangkap 2</input><br>                        
-                          <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"> Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
-                          <input type="checkbox" name="label4[]" value="NPWP"> NPWP (Jika kode vendor tidak tersedia)</input><br>
-                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
-                            <input id="text1" type="text" name="lainnya1" style="display:none"> <br>
-                            <input id="text2" type="text" name="lainnya2" style="display:none"> <br>
+                        </td> 
+                      </tr> 
+
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)"> Berita Acara Pemeriksaan (BAP)</input><br>
                         </td>
-                      <tr>      
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian"> Copy Kontrak/Perjanjian</input><br>
+                        </td>
+                      </tr>
+
+                      <tr>
+                      	<td>
+                      	  <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)"> Berita Acara Pemeriksaan (BAST)</input><br> 	
+                      	</td>
+                      	<td>
+                      	  <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2"> Faktur Pajak Rangkap 2</input><br>
+                      	</td>
+                      </tr> 
+
+                      <tr>
+                      	<td>
+                      	  <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)"> Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                      	</td>
+                      	<td>
+                      	  <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"> Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                      	</td>
+                      </tr>
+
+                      <tr>
+                      	<td>
+                      	  <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"> Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
+                      	</td>
+                      	<td>
+                      	  <input type="checkbox" name="label4[]" value="NPWP"> NPWP (Jika kode vendor tidak tersedia)</input><br>
+                      	</td>
+                      </tr>
+
+                      <tr>
+                      	<td></td>
+                      	<td>
+                      	  <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada) :
+                          <input id="text1" type="text" class="form-control" name="lainnya1" placeholder="Enter Text" style="display:none" ></input><br>
+                          <input id="text2" type="text" class="form-control" name="lainnya2" placeholder="Enter Text" style="display:none"></input><br>
+                      	</td>
+                      </tr>
+                              
                     </table>
 
                     <br>
 
-                    <table id="show" style="font-family: calibri;" width="50%">
+                    <table id="show" style="font-family: calibri;" width="70%">
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
@@ -316,7 +386,7 @@
 
 <script>
 function tambah() {
-  alert("Data Successfully to Submit");
+  alert("Data Successfully to Save!");
 }
 
 function myFunction(){
@@ -329,13 +399,54 @@ function myFunction(){
 
 function hide() {
   var checkBox = document.getElementById("checked");
-  var checkBox2 = document.getElementById("checked2");
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
   var text = document.getElementById("show");
   if (checkBox.checked == false && checkBox2.checked == false ){
     text.style.display = "block";
   } else {
      text.style.display = "none";
   }
+
+}
+
+function hide2() {
+  var checkBox = document.getElementById("checked").disabled = true;
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text = document.getElementById("show");
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+
+}
+
+function checkUangMuka() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
+  } 
+}
+
+function checkUangMuka2() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+  } 
 }
 
 function showInput() {
@@ -350,26 +461,6 @@ function showInput() {
      text2.style.display = "none";
 
   }
-}
-
-function checkUangMuka() {
-  // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checkrequest").checked == false){
-    document.getElementById("auto").checked=false
-  } 
-}
-
-function checkUangMuka2() {
-  // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checksettlement").checked == false){
-    document.getElementById("auto").checked=false
-  } 
 }
 </script>
 
@@ -399,6 +490,68 @@ function checkUangMuka2() {
     rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
     return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
   }
+
+  var rupiah2 = document.getElementById('rupiah2');
+  rupiah2.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rupiah2.value = formatRupiah2(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatRupiah2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    rupiah2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      rupiah2 += separator + ribuan.join('.');
+    }
+
+    rupiah2 = split[1] != undefined ? rupiah2 + ',' + split[1] : rupiah2;
+    return prefix == undefined ? rupiah2 : (rupiah2 ? + rupiah2 : '');
+  }
+
+  var rupiah3 = document.getElementById('rupiah3');
+  rupiah3.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rupiah3.value = formatRupiah3(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatRupiah3(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    rupiah3     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      rupiah3 += separator + ribuan.join('.');
+    }
+
+    rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+    return prefix == undefined ? rupiah3 : (rupiah3? + rupiah3 : '');
+  }
+
+  $(document).ready(function() { 
+    $('#dropdown').change(function() {
+      if( $(this).val() == 'Tunai') {
+            $('#textInput').prop( "disabled", true );
+      } else {       
+        $('#textInput').prop( "disabled", false );
+      }
+    });
+
+  });
+
 </script>
 
 
