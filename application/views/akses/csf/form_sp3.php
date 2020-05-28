@@ -419,7 +419,7 @@
                           <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>
                         <?php } ?>   -->
                         <?php if($row->status == 2){ ?>
-                          <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success">Process</button>
+                          <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success">Proceed To Processing</button>
                           <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
                         <?php } ?>
                         <?php if($row->status == 4){ ?>
@@ -427,22 +427,22 @@
                         <?php } ?>
                         <?php if ($row->jenis_pembayaran == 2) { ?> 
                           <?php if ($row->status == 5) { ?> 
-                            <a class="btn btn-primary" href="Dashboard/form_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Next</a>
+                            <a class="btn btn-primary" href="Dashboard/form_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
                           <?php } ?>                        
                         <?php } ?>
                         <?php if ($row->jenis_pembayaran == 3) { ?> 
                           <?php if ($row->status == 5) { ?> 
-                            <a class="btn btn-primary" href="Dashboard/form_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Next</a>
+                            <a class="btn btn-primary" href="Dashboard/form_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
                           <?php } ?>                        
                         <?php } ?>
                         <?php if ($row->jenis_pembayaran == 4) { ?> 
                           <?php if ($row->status == 5) { ?> 
-                            <a class="btn btn-primary" href="Dashboard/form_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Next</a>
+                            <a class="btn btn-primary" href="Dashboard/form_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
                           <?php } ?>                        
                         <?php } ?>
                         <?php if ($row->jenis_pembayaran == 5) { ?> 
                           <?php if ($row->status == 5) { ?> 
-                            <a class="btn btn-primary" href="Dashboard/form_crf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Next</a>
+                            <a class="btn btn-primary" href="Dashboard/form_crf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
                           <?php } ?>                        
                         <?php } ?>          
                       </div>    

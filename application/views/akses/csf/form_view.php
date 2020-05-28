@@ -399,14 +399,14 @@
                                 <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
                                 <button type="submit" class="btn btn-primary">Print</button>
                               </form>       -->
-                              <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
+                              <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
                               <!-- <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
                                 <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
                                 <button type="submit" class="btn btn-primary">Print</button>
                               </form>  -->
-                              <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>
+                              <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Set To Print</a>
 
                               <!-- <a class="btn btn-danger" href="Dashboard/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
                             <?php } ?>    

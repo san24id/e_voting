@@ -428,7 +428,7 @@
 
                 <div class="box">
                     <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Dashboard/form_sp3/<?php echo $row->id_payment;?>" role="button">Back</a>                        
+                    <a class="btn btn-warning" href="Dashboard/form_sp3/<?php echo $row->id_payment;?>" role="button">Exit</a>                        
                     <button type="submit" class="btn btn-primary">Submit</button>                        
                     </div>    
                 </div>

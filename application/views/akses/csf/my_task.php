@@ -121,7 +121,7 @@
 
     <section class="content-header">
       <h1>
-        Waiting APF Processing
+        Waiting For APF Processing
       </h1>
     </section>
 

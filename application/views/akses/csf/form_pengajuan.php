@@ -24,16 +24,14 @@
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
-                        <tr>
-                        
+                        <tr>                       
                         <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td>
                             <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">                            
-              
-                        <td width="50%"><center><b>No ARF/ASF   :</b></center></td>
+                        <!-- <td width="50%"><center><b>No ARF/ASF   :</b></center></td> -->
                         </tr>
                       </tbody>
                     </table>
-                    <table style="font-family: calibri;" width="100%">
+                    <!-- <table style="font-family: calibri;" width="100%">
                       <tbody>     
                         <tr>
                         
@@ -41,7 +39,7 @@
                         <td width="50%"><center><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></center></td>
                         </tr>
                       </tbody>
-                    </table>
+                    </table> -->
 
                     <br>
 
@@ -150,6 +148,11 @@
                           </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
                       </tr>
+                      </tbody>
+                    </table>
+                    
+                    <table id="choose" style="font-family: calibri;" width="100%">
+                      <tbody>
                       <tr>
                         <td><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
@@ -403,13 +406,16 @@ function hide() {
   var checkBox2 = document.getElementById("checked2").disabled = true;
   var checkBox3 = document.getElementById("checksettlement").disabled = true;
   var checkBox4 = document.getElementById("checkrequest").disabled = true;
-  var text = document.getElementById("show");
-  if (checkBox.checked == false && checkBox2.checked == false ){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
+  var text2 = document.getElementById("choose");
+  var text1 = document.getElementById("show");
 
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
 }
 
 function hide2() {
@@ -418,11 +424,15 @@ function hide2() {
   var checkBox2 = document.getElementById("checked2");
   var checkBox3 = document.getElementById("checksettlement").disabled = true;
   var checkBox4 = document.getElementById("checkrequest").disabled = true;
-  var text = document.getElementById("show");
+  var text1 = document.getElementById("show");
+  var text2 = document.getElementById("choose");
+
   if (checkBox.checked == false && checkBox2.checked == false ){
-    text.style.display = "block";
+    text1.style.display = "block";
+    text2.style.display = "block";
   } else {
-     text.style.display = "none";
+     text1.style.display = "none";
+     text2.style.display = "none";
   }
 
 }
@@ -432,9 +442,14 @@ function checkUangMuka() {
   var checkBox1 = document.getElementById("checked").disabled = true;
   var checkBox2 = document.getElementById("checked2").disabled = true;
   var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var text = document.getElementById("show");
+
   document.getElementById("auto").checked = true;
   if (document.getElementById("checkrequest").checked == false){
     document.getElementById("auto").checked=false
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
   } 
   // alert(checkrequest);
 }
@@ -444,10 +459,14 @@ function checkUangMuka2() {
   var checkBox1 = document.getElementById("checked").disabled = true;
   var checkBox2 = document.getElementById("checked2").disabled = true;
   var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
   document.getElementById("auto").checked = true;
   if (document.getElementById("checksettlement").checked == false){
     document.getElementById("auto").checked=false
-  } 
+    text2.style.display = "block";
+  } else {
+    text2.style.display = "none";
+  }
 }
 
 function showInput() {
