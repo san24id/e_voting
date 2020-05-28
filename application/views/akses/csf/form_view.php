@@ -37,6 +37,30 @@
                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
                 <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>" >
                   <div class="box-header with-border">
+                    <p align="right"><?php 
+                        if($row->status == 1){
+                            echo "Draft (Print)";  
+                        }else if($row->status == 2){
+                            echo "Submitted";
+                        }else if($row->status == 3){
+                            echo "Rejected";
+                        }else if($row->status == 4){
+                          echo "Processing Tax";
+                        }else if($row->status == 5){
+                          echo "Processing Finance";
+                        }else if($row->status == 6){
+                          echo "Waiting For Review";
+                        }else if($row->status == 7){
+                            echo "Waiting For Verificator";
+                        }else if($row->status == 8){
+                          echo "Waiting For Approval";
+                        }else if($row->status == 9){
+                          echo "Waiting For Paid"; 
+                        }else if($row->status == 10){
+                          echo "Paid"; 
+                        }
+                      ?>
+                    </p>
                     <h5>
                       <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
@@ -282,9 +306,9 @@
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
                           <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
-                          <?php if ($row->label4->$xxii11) { $showing="style=''" ;
+                          <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
                           }else{ 
-                                $showing="style='display: none'" ;
+                                $showing="style=''" ;
                           } ?>
                             <input id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>" readonly> <br>
                             <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br>

@@ -96,7 +96,7 @@
                           }
                         }  ?>
                     </td>
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td><?php echo $row->tanggal; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td>XXX</td>
@@ -139,6 +139,7 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
+                  <th>Status</th>
                   <th>SP3 No</th>
                   <th>APF No</th>
                   <th>Tanggal Pembayaran</th>
@@ -159,7 +160,28 @@
                       $test33 = count($test22);                        
                       ?>  
                   <tr>
-                  <td><?php echo $i++; ?></td>                  
+                  <td><?php echo $i++; ?></td>
+                  <td><?php 
+                          // if($row->status == 2){
+                          //   echo "Waiting for processing/ Submitted by users";
+                          // }else 
+                          if($row->status == 4){
+                            echo "Processing Tax";
+                          }else if($row->status == 5){
+                            echo "Processing Finance";
+                          }else if($row->status == 6){
+                            echo "Waiting for Review";
+                          }else if($row->status == 7){
+                              echo "Waiting for Verification";
+                          }else if($row->status == 8){
+                            echo "Waiting for Approval";
+                          }else if($row->status == 9){
+                            echo "Waiting for Payment";  
+                          }else if($row->status == 10){
+                            echo "Paid";  
+                          }
+                        ?>
+                  </td>                        
                   <td><?php echo $row->nomor_surat; ?> </td>
                   <td>XXX</td>
                   <td><?php echo $row->tanggal; ?></td>
@@ -176,16 +198,16 @@
                   <td><?php echo $row->jumlah; ?> </td>
                   <td>
                     <?php if ($row->type == 1) { ?>   
-                      <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                      <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     <?php } ?>
                     <?php if ($row->type == 2) { ?> 
-                      <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                      <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     <?php } ?>
                     <?php if ($row->type == 3) { ?> 
-                      <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                      <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                     <?php } ?>
                     <?php if ($row->type == 4) { ?> 
-                      <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                      <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                     <?php } ?>
                   </td>      
                   </tr>

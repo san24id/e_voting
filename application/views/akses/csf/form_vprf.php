@@ -78,18 +78,25 @@ td[rowspan="6"] {
                         <tbody>                      
                         <tr>
                           <td><center> 1 </center></td>
-                          <td><textarea type="text" class="form-control" name="description" readonly ><?php echo $get->description;?></textarea> </td>                  
+                          <td><textarea type="text" class="form-control" name="description" readonly ><?php echo $get->description;?></textarea>
+                              <textarea type="text" class="form-control" name="description2" readonly ><?php echo $get->description2;?></textarea>
+                              <textarea type="text" class="form-control" name="description3" readonly ><?php echo $get->description3;?></textarea>
+                          </td>                  
                           <td><center><?php echo $get->currency;?>
                               <br>
-                              <?php echo $get->currency1;?></center>  
+                              <?php echo $get->currency1;?>
+                              <br>
+                              <?php echo $get->currency2;?></center>  
                           </td>
                           <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>" readonly> 
                               <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" value="<?php echo $get->jumlah1;?>" readonly>
+                              <input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>" readonly>
+
                           </td>
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><?php echo $get->currency;?> & <?php echo $get->currency1;?> </center></td>
+                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
                           <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> </td>
                         </tr>
                         <tr> 
@@ -248,10 +255,11 @@ td[rowspan="6"] {
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
 
                     <?php if($get->status == 8){ ?>                      
-                      <a href="Dashboard/report_prf/<?php echo $get->id; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
+                      <a href="Dashboard/report_prf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
                     <?php } ?>
 
                     <?php if($get->status == 6){ ?>  
+                      <a href="Dashboard/form_eprf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
                       <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Accept</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -259,6 +267,7 @@ td[rowspan="6"] {
                         <div class="modal-content">                                        
                           <div class="modal-body">
                           <form id="processed" method="post" action="dashboard/updpay">
+                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="7">
                             <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini : <?=$get->nomor_surat?></p>
@@ -349,6 +358,7 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="processed1" method="post" action="dashboard/updpay">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="status" value="8">
                           <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini : <?=$get->nomor_surat?></p>
                           <label>Kepada Approval? </label>                        

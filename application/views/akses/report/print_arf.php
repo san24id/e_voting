@@ -30,6 +30,7 @@ td[rowspan="6"] {
         <!-- <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()"> -->
           <?php foreach ($ppayment as $get) { ?>  
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
+            <input type="hidden" name="id_payment" class="form-control" value="<?php echo $get->id_payment?>">  
 
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
           <section class="content">

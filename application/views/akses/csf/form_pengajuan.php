@@ -436,6 +436,7 @@ function checkUangMuka() {
   if (document.getElementById("checkrequest").checked == false){
     document.getElementById("auto").checked=false
   } 
+  // alert(checkrequest);
 }
 
 function checkUangMuka2() {

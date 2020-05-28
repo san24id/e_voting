@@ -14,7 +14,7 @@ td[rowspan="3"] {
           </h1>
         </section> -->
         <!-- Main content -->
-        <<form id="form" method="post" action="Dashboard/updpay" onsubmit="update()">
+        <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()">
           <?php foreach ($ppayment as $get) { ?>  
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
 

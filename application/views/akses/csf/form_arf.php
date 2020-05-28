@@ -39,10 +39,23 @@ td[rowspan="6"] {
                     <br>
 
                     <table style="font-family: calibri;" width="100%">
-                      <tbody>     
+                    <tbody>
+                            <?php
+                              $dayList = array(
+                                    'Sun' => 'Minggu',
+                                    'Mon' => 'Senin',
+                                    'Tue' => 'Selasa',
+                                    'Wed' => 'Rabu',
+                                    'Thu' => 'Kamis',
+                                    'Fri' => 'Jumat',
+                                    'Sat' => 'Sabtu'
+                                );
+                                $hari_ing = date('D');
+                                // echo date("D");
+                            ?>     
                         <tr>
-                          <td><font size="+1">Tanggal : <br> <i>Date</i></td>
-                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo date("l, d-M-Y"); ?>" readonly></td>
+                          <td><font size="+1" >Tanggal : </td>
+                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ARF Doc. No : </font></td>
                           <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
@@ -96,7 +109,10 @@ td[rowspan="6"] {
                         <tbody>                      
                         <tr>
                           <td><center> 1 </center></td>
-                          <td><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea> </td>                  
+                          <td><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea>
+                              <textarea type="text" class="form-control" name="description2" ></textarea>
+                              <textarea type="text" class="form-control" name="description3" ></textarea>
+                          </td>                  
                           <td><select id="Select" onchange="myFunction()" name="currency">
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
                                 <option>--Choose--</option>
@@ -104,7 +120,15 @@ td[rowspan="6"] {
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
                               </select>
-                              <select id="Select1" onchange="myFunction1()" name="currency1">
+                              <select id="Select1" onchange="myFunction1()" name="currency2">
+                                  <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
+                                      <option>--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                        <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                      <?php } ?>
+                              </select>
+                              <select id="Select2" onchange="myFunction2()" name="currency3">
+                                  <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
                                       <option>--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                         <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
@@ -112,7 +136,8 @@ td[rowspan="6"] {
                               </select>
                           </td>
                           <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></input>
-                              <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" placeholder="Jumlah" required></input>
+                              <input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" value="<?php echo $row->jumlah2;?>" ></input>
+                              <input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></input>                              
                           </td>
                         </tr>
                         <tr>
@@ -375,15 +400,22 @@ function myFunction1(){
   document.getElementById("demo1").innerHTML = x;
 }
 
+function myFunction2(){
+  var x = document.getElementById("Select2").value;
+
+  document.getElementById("demo2").innerHTML = x;
+}
+
 function nominal(){
   var x = parseInt(document.getElementById("nilai").value);
   // alert(x)
   var b = parseInt(document.getElementById("nilai1").value);
+  var c = parseInt(document.getElementById("nilai2").value);
   // alert(b)
   if(x && b){
-    document.getElementById("ulang").value = x+b ;
+    document.getElementById("ulang").value = x+b+c ;
   }  
-  var a = x+b ;
+  var a = x+b+c ;
   if (a <= 100000000){
     document.getElementById("approval1").value = "Donny Hamdani";
     document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";

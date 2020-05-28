@@ -280,7 +280,7 @@
                           }
                         }  ?>
                     </td>
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td><?php echo $row->tanggal; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td>XXX</td>

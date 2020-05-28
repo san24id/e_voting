@@ -101,28 +101,28 @@
                           }else{
                                 $cek=" " ;
                           } ?>
-                          <input id="auto" <?php echo $cek;?> type="checkbox" disabled>Uang Muka/Advance<br>
+                          <input id="auto" <?php echo $cek;?> type="checkbox" ><b>Uang Muka/Advance</b><br>
                         </td>
 
                         <td>
-                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
+                          <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Non-Uang Muka/Non-Advance<br>
                         </td>
                         <td>
-                          <input id="checked2" onclick="hide2()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
+                          <input id="checked2" onclick="hide2()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> > Cash Received</input><br>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
                         <td>
-                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
                         <td>
                       </tr>
                       
                       <tr>
                         <td></td>
                         <td>
-                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
                         </td>
                       </tr>                      
                     </table>
@@ -182,7 +182,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" placeholder="Jumlah" > </td>
+                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" > </td>
 
                         <td><select name="currency3" class="form-control">
                                 <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>
@@ -192,7 +192,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>          
+                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" > </td>          
                       </tr>
                       <tr>
                         <td><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
@@ -477,6 +477,68 @@
     rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
     return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
   }
+
+  var rupiah2 = document.getElementById('rupiah2');
+  rupiah2.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rupiah2.value = formatRupiah2(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatRupiah2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    rupiah2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      rupiah2 += separator + ribuan.join('.');
+    }
+
+    rupiah2 = split[1] != undefined ? rupiah2 + ',' + split[1] : rupiah2;
+    return prefix == undefined ? rupiah2 : (rupiah2 ? + rupiah2 : '');
+  }
+
+  var rupiah3 = document.getElementById('rupiah3');
+  rupiah3.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rupiah3.value = formatRupiah3(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatRupiah3(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    rupiah3     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      rupiah3 += separator + ribuan.join('.');
+    }
+
+    rupiah3 = split[1] != undefined ? rupiah3 + ',' + split[1] : rupiah3;
+    return prefix == undefined ? rupiah3 : (rupiah3? + rupiah3 : '');
+  }
+
+  $(document).ready(function() { 
+    $('#dropdown').change(function() {
+      if( $(this).val() == 'Tunai') {
+            $('#textInput').prop( "disabled", true );
+      } else {       
+        $('#textInput').prop( "disabled", false );
+      }
+    });
+
+  });
+
 </script>
 
 <script>
@@ -504,9 +566,9 @@ function hide() {
 }
 
 function hide2() {
-  var checkBox2 = document.getElementById("checked2");
   var checkBox = document.getElementById("checked").disabled = true;
   var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
   var checkBox3 = document.getElementById("checksettlement").disabled = true;
   var checkBox4 = document.getElementById("checkrequest").disabled = true;
   var text = document.getElementById("show");
@@ -521,17 +583,24 @@ function hide2() {
 function checkUangMuka() {
   // alert();
   var checkBox1 = document.getElementById("checked").disabled = true;
+  // alert(checkBox1);
   var checkBox2 = document.getElementById("checked2").disabled = true;
+  // alert(checkBox2);
   var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  // alert(checkBox3);
+
   document.getElementById("auto").checked = true;
   if (document.getElementById("checkrequest").checked == false){
     document.getElementById("auto").checked=false
   } 
+  // alert(checkrequest);
+
 }
 
 function checkUangMuka2() {
   // alert();
   var checkBox1 = document.getElementById("checked").disabled = true;
+  // alert(checkBox1);
   var checkBox2 = document.getElementById("checked2").disabled = true;
   var checkBox3 = document.getElementById("checkrequest").disabled = true;
   document.getElementById("auto").checked = true;

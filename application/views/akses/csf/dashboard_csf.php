@@ -328,7 +328,7 @@
                     <td><?php echo $row->display_name; ?></td>
                     <td><?php echo $row->akun_bank; ?></td>
                     <td><?php echo $row->penerima; ?></td>
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <td><?php echo $row->tanggal; ?></td>
                     <td>
 
                     <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 

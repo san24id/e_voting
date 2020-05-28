@@ -39,25 +39,25 @@
                   <div class="box-header with-border">
                     <p align="right"><?php 
                         if($row->status == 1){
-                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                            echo "Draft (Print)";  
                         }else if($row->status == 2){
-                            echo "<img src='assets/dashboard/images/legend/green.png'>";
+                            echo "Submitted";
                         }else if($row->status == 3){
-                            echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                            echo "Rejected";
                         }else if($row->status == 4){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          echo "Processing Tax";
                         }else if($row->status == 5){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          echo "Processing Finance";
                         }else if($row->status == 6){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          echo "Waiting For Review";
                         }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "Waiting For Verificator";
                         }else if($row->status == 8){
-                          echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          echo "Waiting For Approval";
                         }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
+                          echo "Waiting For Paid"; 
                         }else if($row->status == 10){
-                          echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          echo "Paid"; 
                         }
                       ?>
                     </p>
