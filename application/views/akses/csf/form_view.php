@@ -38,7 +38,9 @@
                 <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>" >
                   <div class="box-header with-border">
                     <p align="right"><?php 
-                        if($row->status == 1){
+                        if ($row->status == 0) {
+                          echo "Draft (Draft)";
+                        } else if($row->status == 1){
                             echo "Draft (Print)";  
                         }else if($row->status == 2){
                             echo "Submitted";
@@ -65,30 +67,22 @@
                       <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
-                      <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
+                      <center><b><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></b></center>
                     </h5>
-                    <table style="font-family: calibri;" width="75%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
-                        <td><b>No ARF/ASF   :</b></td>
+                        <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
+                        
                         </tr>
                       </tbody>
                     </table>
-                    <table style="font-family: calibri;" width="120%">
-                      <tbody>     
-                        <tr>
-                        <td></td>
-                        <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
-                        <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <?php 
                         $test1 = $row->jenis_pembayaran;
                         $test2 = explode(";", $test1);
@@ -117,7 +111,7 @@
                         }
                       ?>
                       <tr>
-                        <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
                         <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
                           }else{
                                 $cek=" " ;
@@ -150,11 +144,11 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="right">Tanggal : <?php echo $row->tanggal; ?></td>
+                      <td align="center">Tanggal : <?php echo $row->tanggal; ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<<?php echo $row->tanggal; ?>">
                       </tr>
                       <tr>
@@ -173,11 +167,11 @@
 
                     <hr style=" border: 1px solid #000;">
 
-                    <table style="font-family: calibri;" width="75%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td><b>- Tujuan Penggunaan </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
                         <td colspan="8"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
@@ -194,28 +188,41 @@
 
                         <td> <?php echo $row->currency3;?> </td>
                         <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
-                      </tr>
+                      </tr>                                                 
+                      </tbody>
+                    </table>
+
+                    <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $choosed="style='display: none'" ;
+                    }else{
+                          $choosed="style=''" ;
+                    } ?>
+
+                    <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
+                      <tbody>
                       <tr>
-                        <td><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang<br></b><i>(Hanya diisi untuk jenis pembayaran</i> <i><b>Permintaan Uang Muka/Request)</b></i></b></td>
-                        <td><b> : </b></td>
-                        <td colspan="8"><input type="" class="form-control" name="label3" value="<?php echo $row->label3; ?>" readonly></input></td>     
-                      </tr>                            
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        	<br>
+                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
+                        <td align="right"><b> : </b></td>
+                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
+                      </tr>
+                                                  
                       </tbody>
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                        <td>Nama</td>
-                        <td> : </td>
+                        <td width="35%"> &nbsp; &nbsp; Nama</td>
+                        <td><b> : </b></td>
                         <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $row->penerima;?>" readonly></td>
                       </tr>
                       <tr>  
-                        <td>Kode Vendor</td>
-                        <td> : </td>
+                        <td> &nbsp; &nbsp; Kode Vendor</td>
+                        <td><b> : </b></td>
                         <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" readonly></td>
                         <td>Bank</td>
                         <td>:</td>
@@ -294,41 +301,70 @@
                       <tr>
                         <td>  
                           <input type="checkbox" name="label4[]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)" <?php echo $xxii1=="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)"? 'checked':''?> disabled>Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> disabled>Copy PO/SPK</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
                           <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)" <?php echo $xxii2=="Berita Acara Pemeriksaan (BAP)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAP)</input><br>
-                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAST)</input><br>                            
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> disabled>Copy Kontrak/Perjanjian</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAST)</input><br> 
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
                           <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)" <?php echo $xxii4=="Bukti Penerimaan Jasa/Barang (Delivery Order)"? 'checked':''?> disabled>Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
                           <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $xxii5=="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> disabled>Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
                         </td>
                         <td>
-                        <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> disabled>Copy PO/SPK</input><br>
-                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> disabled>Copy Kontrak/Perjanjian</input><br>                            
-                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>                        
-                          <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>
                           <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
                           <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
                           }else{ 
                                 $showing="style=''" ;
                           } ?>
-                            <input id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>" readonly> <br>
-                            <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br>
+                            <textarea id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none" readonly> <?php echo $row->lainnya1;?></textarea> <br>
+                            <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
                         </td>
-                      <tr>      
+                      </tr>
                     </table>
 
                     <br>
 
-                    <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table id="show" <?php echo $showed;?> width="50%">
+                    <table width="70%" id="show" <?php echo $showed;?> >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
-                        <td><b>- Nomor ARF terkait</b></td>
+                        <td width="50%"><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
                         <td>
                           <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
@@ -494,47 +530,71 @@ function update() {
 
 function hide() {
   var checkBox = document.getElementById("checked");
-  var checkBox2 = document.getElementById("checked2");
-  var text = document.getElementById("show");
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  var text1 = document.getElementById("show");
+
   if (checkBox.checked == false && checkBox2.checked == false ){
-    text.style.display = "block";
+    text1.style.display = "block";
+    text2.style.display = "block";
   } else {
-     text.style.display = "none";
+     text1.style.display = "none";
+     text2.style.display = "none";
   }
 }
 
-function showInput() {
-  var checkBox = document.getElementById("lainnya");
-  var text = document.getElementById("text1");
-  var text2 = document.getElementById("text2");
-  if (checkBox.checked == true){
-    text.style.display = "block";
+function hide2() {
+  var checkBox = document.getElementById("checked").disabled = true;
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text1 = document.getElementById("show");
+  var text2 = document.getElementById("choose");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
     text2.style.display = "block";
   } else {
-     text.style.display = "none"; 
+     text1.style.display = "none";
      text2.style.display = "none";
-
   }
+
 }
 
 function checkUangMuka() {
   // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var text = document.getElementById("show");
+
   document.getElementById("auto").checked = true;
   if (document.getElementById("checkrequest").checked == false){
     document.getElementById("auto").checked=false
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
   } 
+  // alert(checkrequest);
 }
 
 function checkUangMuka2() {
   // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
   document.getElementById("auto").checked = true;
   if (document.getElementById("checksettlement").checked == false){
     document.getElementById("auto").checked=false
-  } 
+    text2.style.display = "block";
+  } else {
+    text2.style.display = "none";
+  }
 }
 
 </script>

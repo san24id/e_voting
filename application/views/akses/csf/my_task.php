@@ -142,7 +142,7 @@
                   <th>Status</th>
                   <th>SP3 No</th>
                   <th>APF No</th>
-                  <th>Tanggal Pembayaran</th>
+                  <th>Tanggal Penerimaan SPPP </th>
                   <th>Jenis Pembayaran</th>
                   <th>Description</th>
                   <th>Divisi Pemohon</th>

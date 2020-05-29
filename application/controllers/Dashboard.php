@@ -978,16 +978,16 @@ class Dashboard extends CI_Controller {
 		redirect('Dashboard');
 	}
 
-	public function draftprintdp(){
+	public function draftprintdp($id_payment){
 
 		$upd = array(
-			'id_payment' => $_POST['id_payment'],
+			'id_payment' => $id_payment,
 			'status' => 1
 		);
 
 		$this->Dashboard_model->updateprint($upd);
 
-		redirect('Dashboard/report_dp/'.$_POST['id_payment']);
+		redirect('Dashboard/report_dp/'.$id_payment);
 	}
 
 	public function draftprint($id_payment){

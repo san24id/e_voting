@@ -112,7 +112,7 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td><b>- Tujuan Penggunaan </b></td>
+                        <td width="36%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
                         <td colspan="8"><textarea type="text" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
@@ -154,12 +154,11 @@
                     <table id="choose" style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
                         <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
-                        <td><b> : </b></td>
-                        <!--<td>-->
-                        <td colspan="8"><input type="date" class="form-control" name="label3"></input></td>     
+                        <td align="right"><b> : </b></td>
+                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3"></input></td>     
                       </tr>
                                                   
                       </tbody>
@@ -260,8 +259,7 @@
                       	<td></td>
                       	<td>
                       	  <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada) :
-                          <input id="text1" type="text" class="form-control" name="lainnya1" placeholder="Enter Text" style="display:none" ></input><br>
-                          <input id="text2" type="text" class="form-control" name="lainnya2" placeholder="Enter Text" style="display:none"></input><br>
+                          <textarea id="text1" type="text" class="form-control" name="lainnya1" placeholder="Enter Text" style="display:none" ></textarea><br>
                       	</td>
                       </tr>
                               

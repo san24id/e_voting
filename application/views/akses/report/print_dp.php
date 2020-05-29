@@ -93,16 +93,6 @@
                         <tr>
                         <td> </td>
                           <td align="center"><font size="1"><b>No   : <?php echo $row->nomor_surat;?></b></td>
-                          <td><font size="1"><b>No ARF/ASF   :</b></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table width="100%">
-                      <tbody>     
-                        <tr>
-                        <td></td>
-                        <td align="right"><font size="1"><b><i>(dilengkapi oleh Pemohon)</b></td>
-                        <td align="center"><font size="1"><b><i>(dilengkapi oleh CSF, coret salah satu)</b></td>
                         </tr>
                       </tbody>
                     </table>
@@ -209,11 +199,23 @@
                         <td><font size="1"> <?php echo $row->currency3;?> </td>
                         <td><font size="1"><?php echo $row->jumlah3; ?></td>
                       </tr>
+                      </tbody>
+                    </table>
+
+                    <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $choosed="style='display: none'" ;
+                    }else{
+                          $choosed="style=''" ;
+                    } ?>
+
+                    <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
+                      <tbody>
                       <tr>
-                        <td><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang<br></b><i>(Hanya diisi untuk jenis pembayaran</i> <i><b>Permintaan Uang Muka/Request)</b></i></b></td>
-                        <td><font size="1"><b> : </b></td>
-                        <td colspan="8"><font size="1"><?php echo $row->label3; ?></input></td>     
-                      </tr>                              
+                        <td width="36%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        	<br>
+                        <i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
+                        <td align="right"><b> : </b></td>
+                        <td colspan="8" width="65%"><font size="1"><?php echo $row->label3; ?></td>     
+                      </tr>                                                  
                       </tbody>
                     </table>
 
@@ -290,35 +292,66 @@
                       ?> 
                       <tr>
                         <td><font size="1"><b>- Lampiran Dokumen Pendukung :</b></td>
+                        <td><td>
                       </tr>
                       <tr>
                         <td><font size="1">  
                           <input type="checkbox" name="label4[]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)" <?php echo $xxii1=="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)"? 'checked':''?> disabled>Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
-                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)" <?php echo $xxii2=="Berita Acara Pemeriksaan (BAP)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAP)</input><br>
-                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAST)</input><br>                            
-                          <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)" <?php echo $xxii4=="Bukti Penerimaan Jasa/Barang (Delivery Order)"? 'checked':''?> disabled>Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
-                          <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $xxii5=="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> disabled>Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
                         </td>
                         <td><font size="1">
                           <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> disabled>Copy PO/SPK</input><br>
-                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> disabled>Copy Kontrak/Perjanjian</input><br>                            
-                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><font size="1">
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)" <?php echo $xxii2=="Berita Acara Pemeriksaan (BAP)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAP)</input><br>
+                        </td>
+                        <td><font size="1">
+                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> disabled>Copy Kontrak/Perjanjian</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><font size="1">
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAST)</input><br> 
+                        </td>
+                        <td><font size="1">
+                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><font size="1">
+                          <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)" <?php echo $xxii4=="Bukti Penerimaan Jasa/Barang (Delivery Order)"? 'checked':''?> disabled>Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                        </td>
+                        <td><font size="1">
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><font size="1">
+                          <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $xxii5=="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> disabled>Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
+                        </td>
+                        <td><font size="1">
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td><font size="1">
                           <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
                           <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
                           }else{ 
                                 $showing="style=''" ;
                           } ?>
-                            <input id="text1" <?php echo $showing;?> type="text" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>" readonly> <br>
-                            <input id="text2" <?php echo $showing;?> type="text" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br>
+                            <p id="text1" <?php echo $showing;?> style="display:none" > <?php echo $row->lainnya1;?></p> <br>
+
+                            <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
                         </td>
-                      <tr>      
+                      </tr>      
                     </table>
 
                     <br>
 
-                    <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
@@ -456,14 +489,73 @@
 </body>
 </html>
 <script>
+
 function hide() {
   var checkBox = document.getElementById("checked");
-  var checkBox2 = document.getElementById("checked2");
-  var text = document.getElementById("show");
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  var text1 = document.getElementById("show");
+
   if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+}
+
+function hide2() {
+  var checkBox = document.getElementById("checked").disabled = true;
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text1 = document.getElementById("show");
+  var text2 = document.getElementById("choose");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+
+}
+
+function checkUangMuka() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var text = document.getElementById("show");
+
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
     text.style.display = "block";
   } else {
      text.style.display = "none";
+  } 
+  // alert(checkrequest);
+}
+
+function checkUangMuka2() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+    text2.style.display = "block";
+  } else {
+    text2.style.display = "none";
   }
 }
 
@@ -479,25 +571,5 @@ function showInput() {
      text2.style.display = "none";
 
   }
-}
-
-function checkUangMuka() {
-  // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checkrequest").checked == false){
-    document.getElementById("auto").checked=false
-  } 
-}
-
-function checkUangMuka2() {
-  // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checksettlement").checked == false){
-    document.getElementById("auto").checked=false
-  } 
 }
 </script>

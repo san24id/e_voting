@@ -152,13 +152,13 @@
 
                     <hr style=" border: 1px solid #000;">
 
-                    <table style="font-family: calibri;" width="75%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td><b>- Tujuan Penggunaan </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" class="form-control" name="label1" required><?php echo $row->label1; ?> </textarea></td>
+                        <td colspan="8"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
@@ -193,15 +193,25 @@
                               </select>
                           </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" > </td>          
-                      </tr>
+                      </tr>                                                 
+                      </tbody>
+                    </table>
+
+                    <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $choosed="style='display: none'" ;
+                    }else{
+                          $choosed="style=''" ;
+                    } ?>
+
+                    <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
+                      <tbody>
                       <tr>
-                        <td><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
                         <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
-                        <td><b> : </b></td>
-                        <!--<td>-->
-                        <td colspan="8"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></input></td>     
-                      </tr>                            
+                        <td align="right"><b> : </b></td>
+                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
+                      </tr>
+                                                  
                       </tbody>
                     </table>
                     
@@ -303,30 +313,60 @@
                       <tr>
                         <td>  
                           <input type="checkbox" name="label4[]" value="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)" <?php echo $xxii1=="Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)"? 'checked':''?> >Bukti Transaksi Asli (a.l : Invoice/Kuitansi, Struk, Nota, Dll)</input><br>
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> >Copy PO/SPK</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
                           <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)" <?php echo $xxii2=="Berita Acara Pemeriksaan (BAP)"? 'checked':''?> >Berita Acara Pemeriksaan (BAP)</input><br>
-                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> >Berita Acara Pemeriksaan (BAST)</input><br>                            
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> >Copy Kontrak/Perjanjian</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> >Berita Acara Pemeriksaan (BAST)</input><br> 
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> >Faktur Pajak Rangkap 2</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
                           <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)" <?php echo $xxii4=="Bukti Penerimaan Jasa/Barang (Delivery Order)"? 'checked':''?> >Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
+                        </td>
+                        <td>
+                          <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> >Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
                           <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $xxii5=="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> >Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
                         </td>
                         <td>
-                        <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> >Copy PO/SPK</input><br>
-                          <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> >Copy Kontrak/Perjanjian</input><br>                            
-                          <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> >Faktur Pajak Rangkap 2</input><br>                        
-                          <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> >Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> >NPWP (Jika kode vendor tidak tersedia)</input><br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
                           <?php if ($row->label4->$testl2[$i]->$xxii11) { $showing="style='display: none'" ;
                           }else{ 
                                 $showing="style=''" ;
                           } ?>
-                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
-                            <input id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none" value="<?php echo $row->lainnya1;?>"> <br>
-                            <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>"> <br>
-                      <tr>      
+                            <textarea id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none"> <?php echo $row->lainnya1;?></textarea> <br>
+                            <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
+                        </td>
+                      </tr>      
                     </table>
 
                     <br>
                     
-                    <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 ) { $showed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
@@ -380,13 +420,13 @@
                         <td>Pemohon, <br><br><br><br></td>
                         <td>Menyetujui, <br><br><br><br></td>
                       </tr>
-                      <tr>
-                        <td>Nama : &nbsp; <?php echo $row->display_name?></td>
+                      <tr> 
+                        <td>Nama : &nbsp; <input type="text" name="display_name" value="<?php echo $row->display_name?>"></td>
                         <?php foreach ($divhead as $divhead) { ?>
                         <td>Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
                       </tr>
                       <tr>
-                        <td>Jabatan : &nbsp; <?php echo $row->jabatan?></td>
+                        <td>Jabatan : &nbsp; <input type="text" name="jabatan" value="<?php echo $row->jabatan?>"></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
                                                 echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
                         <?php } ?>                        
