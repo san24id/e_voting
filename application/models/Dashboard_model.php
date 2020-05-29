@@ -132,8 +132,8 @@ class Dashboard_model extends CI_Model{
     var $table ="t_payment_l";
     public function buat_kode_arf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.arf_doc,4) as kode', FALSE);
-        $this->db->order_by('arf_doc','DESC');    
+        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
         if($query->num_rows() <> 0){      
@@ -153,8 +153,8 @@ class Dashboard_model extends CI_Model{
 
     public function buat_kode_asf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.asf_doc,4) as kode', FALSE);
-        $this->db->order_by('asf_doc','DESC');    
+        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
         if($query->num_rows() <> 0){      
@@ -174,8 +174,8 @@ class Dashboard_model extends CI_Model{
 
     public function buat_kode_prf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.prf_doc,4) as kode', FALSE);
-        $this->db->order_by('prf_doc','DESC');    
+        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
         if($query->num_rows() <> 0){      
@@ -195,8 +195,8 @@ class Dashboard_model extends CI_Model{
 
     public function buat_kode_crf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.crf_doc,4) as kode', FALSE);
-        $this->db->order_by('crf_doc','DESC');    
+        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
         if($query->num_rows() <> 0){      

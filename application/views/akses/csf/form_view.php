@@ -40,27 +40,27 @@
                     <p align="right"><?php 
                         if ($row->status == 0) {
                           echo "Draft (Draft)";
-                        } else if($row->status == 1){
-                            echo "Draft (Print)";  
+                        }else if($row->status == 1){
+                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                         }else if($row->status == 2){
-                            echo "Submitted";
+                          echo "<img src='assets/dashboard/images/legend/green.png'>";
                         }else if($row->status == 3){
-                            echo "Rejected";
+                          echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                         }else if($row->status == 4){
-                          echo "Processing Tax";
+                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                         }else if($row->status == 5){
-                          echo "Processing Finance";
+                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                         }else if($row->status == 6){
-                          echo "Waiting For Review";
+                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                         }else if($row->status == 7){
-                            echo "Waiting For Verificator";
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                         }else if($row->status == 8){
-                          echo "Waiting For Approval";
+                          echo "<img src='assets/dashboard/images/legend/blue.png'>";
                         }else if($row->status == 9){
-                          echo "Waiting For Paid"; 
+                          echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
                         }else if($row->status == 10){
-                          echo "Paid"; 
-                        }
+                          echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                        } 
                       ?>
                     </p>
                     <h5>

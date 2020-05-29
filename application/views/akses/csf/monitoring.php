@@ -11,8 +11,9 @@
    .tiga { border: 5px solid turquoise;border-radius: 6px; background: turquoise; }
    .empat { border: 5px solid yellow; border-radius: 6px}
    .lima { border: 5px solid purple; border-radius: 6px }
-   .enam {background:lime; border: 5px solid lime; border-radius: 6px }
+   .enam {background:lime;  border: 5px solid lime; border-radius: 6px }
    .tujuh {background:turquoise; border: 4px solid turquoise; border-radius: 6px }
+   .delapan {width: 120px; background:lime; border: 5px solid lime; border-radius: 6px }
    	
 </style>
 
@@ -134,16 +135,16 @@
                             <table>
                             <tr>
                               <?php foreach ($review as $review) { ?>
-                              <td> <div class="enam"><center><font size='8'> <?php echo $review->wreview; ?> <br></font> <font size="4">Waiting <br>for<br>Review(B) </font></center></div><td> &nbsp;
+                              <td> <div class="delapan"><center><font size='8'> <?php echo $review->wreview; ?> <br></font> <font size="4">Waiting <br>for<br>Review(B) </font></center></div><td> &nbsp;&nbsp;&nbsp;&nbsp;
                               <?php } ?>
                               <?php foreach ($wverifikasi as $verifikasi) { ?>
-                              <td> <div class="enam"><center><font size='8'> <?php echo $verifikasi->wverifikasi; ?></font> <br><font size="4"> Waiting <br>for<br>Verification(C) </font></center></div><td> &nbsp;
+                              <td> <div class="delapan"><center><font size='8'> <?php echo $verifikasi->wverifikasi; ?></font> <br><font size="4"> Waiting <br>for<br>Verification(C) </font></center></div><td> &nbsp;&nbsp;&nbsp;&nbsp;
                               <?php } ?>
                               <?php foreach ($wApproval as $wApproval) { ?>
-                              <td> <div class="enam"><center><font size='8'> <?php echo $wApproval->wapproval; ?> </font><br><font size="4">Waiting <br>for<br>Approval </font></center></div><td> &nbsp;
+                              <td> <div class="delapan"><center><font size='8'> <?php echo $wApproval->wapproval; ?> </font><br><font size="4">Waiting <br>for<br>Approval </font></center></div><td> &nbsp;&nbsp;&nbsp;&nbsp;
                               <?php } ?>
                               <?php foreach ($wPaid as $wPaid) { ?>
-                              <td> <div class="enam"><center><font size='8'> <?php echo $wPaid->wpaid; ?> </font><br> <font size="4">Waiting <br>for<br>Payment </font></center></div><td> &nbsp;
+                              <td> <div class="delapan"><center><font size='8'> <?php echo $wPaid->wpaid; ?> </font><br> <font size="4">Waiting <br>for<br>Payment </font></center></div><td> &nbsp;
                               <?php } ?>
                             </tr>
                             </table>
@@ -256,19 +257,19 @@
                           //   echo "Waiting for processing/ Submitted by users";
                           // }else 
                           if($row->status == 4){
-                            echo "Processing Tax";
+                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
                           }else if($row->status == 5){
-                            echo "Processing Finance";
+                            echo "<img src='assets/dashboard/images/legend/tax1.png'>";
                           }else if($row->status == 6){
-                            echo "Waiting for Review";
+                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
                           }else if($row->status == 7){
-                              echo "Waiting for Verification";
+                              echo "<img src='assets/dashboard/images/legend/review1.png'>";
                           }else if($row->status == 8){
-                            echo "Waiting for Approval";
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 9){
-                            echo "Waiting for Payment";  
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
                           }else if($row->status == 10){
-                            echo "Paid";  
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }
                         ?>
                     </td>                  
@@ -299,7 +300,53 @@
             <!-- /.box -->
          </div>
         <!-- /.col -->
-        </div>     
+        </div>
+        
+        <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <!-- /.box -->
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+            
+                 <table id="" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="width: 10%">NO.</th>
+                  <th style="width: 10%">Status</th>
+                  <th>Keterangan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><img src="assets/dashboard/images/legend/finance1.png"></td>
+                  <td>Proceed On Finance</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><img src="assets/dashboard/images/legend/tax1.png"></td>
+                  <td>Proceed On Tax</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><img src="assets/dashboard/images/legend/review1.png"></td>
+                  <td>Proceed On Review</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><img src="assets/dashboard/images/legend/blue.png"></td>
+                  <td>Proceed On Verification</td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
         
     </section>
     <!-- /.content -->
