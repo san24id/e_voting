@@ -294,18 +294,18 @@
                         <td>:</td>
                         <td><center><p id="demo">  </p></td>
                         <!--<td><input type="text" name="label17a" class="form-control"></td>-->
-                        <td><input type="text" class="form-control" name="label7" placeholder="Enter Text"></input><td>
+                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input><td>
                       </tr>
                         <td>Jumlah Uang Muka</td>
                         <td>:</td>
                         <td><center><p id="demo2">  </p></td>
-                        <td><input type="text" class="form-control" name="label8" placeholder="Enter Text"></input> </td>     
+                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input> </td>     
                       <tr>
                         <td>Selisih Kurang/Lebih</td> 
                         <td>:</td>
                         <td><center><p id="demo3">  </p></td>
                         <!--<td><input type="text" name="label19a" class="form-control"></td>-->
-                        <td><input type="text" class="form-control" name="label9" placeholder="Enter Text"></input></td>                               
+                        <td><input type="text" id="hasil" class="form-control" name="label9" placeholder="Enter Text"></input></td>                               
                       </tr>                              
                       </tbody>
                     </table>
@@ -386,6 +386,17 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script>
+
+function penjumlahan(){
+  var a = parseInt(document.getElementById("biaya").value);
+  var b = parseInt(document.getElementById("uangmuka").value);
+
+  if(a && b){
+    document.getElementById("hasil").value = a-b; 
+  }
+}
+
+
 function tambah() {
   alert("Data Successfully to Save!");
 }
@@ -559,6 +570,56 @@ function showInput() {
     return prefix == undefined ? rupiah3 : (rupiah3? + rupiah3 : '');
   }
 
+  var biaya = document.getElementById('biaya');
+  biaya.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    biaya.value = formatbiaya(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatbiaya(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    biaya     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      biaya += separator + ribuan.join('.');
+    }
+
+    biaya = split[1] != undefined ? biaya + ',' + split[1] : biaya;
+    return prefix == undefined ? biaya : (biaya? + biaya : '');
+  }
+
+  var uangmuka = document.getElementById('uangmuka');
+  uangmuka.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    uangmuka.value = formatuangmuka(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatuangmuka(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    uangmuka     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      uangmuka += separator + ribuan.join('.');
+    }
+
+    uangmuka = split[1] != undefined ? uangmuka + ',' + split[1] : uangmuka;
+    return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
+  }
+
   $(document).ready(function() { 
     $('#dropdown').change(function() {
       if( $(this).val() == 'Tunai') {
@@ -569,6 +630,7 @@ function showInput() {
     });
 
   });
+  
 
 </script>
 

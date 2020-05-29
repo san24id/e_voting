@@ -42,32 +42,21 @@
                       <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
-                      <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
+                      <center><b><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></b></center>
                     </h5>
-                    <table style="font-family: calibri;" width="75%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
+                        <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
                             <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>">                            
               
-                        <td><b>No ARF/ASF   :</b></td>
                         </tr>
                       </tbody>
                     </table>
-                    <table style="font-family: calibri;" width="120%">
-                      <tbody>     
-                        <tr>
-                        <td></td>
-                        <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
-                        <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
-                        </tr>
-                      </tbody>
-                    </table>
-
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <?php 
                         $test1 = $row->jenis_pembayaran;
                         $test2 = explode(";", $test1);
@@ -96,7 +85,7 @@
                         }
                       ?>
                       <tr>
-                        <td align="center"><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
                         <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
                           }else{
                                 $cek=" " ;
@@ -129,11 +118,11 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="right">Tanggal : <?php echo $row->tanggal; ?></td>
+                      <td align="center">Tanggal : <?php echo $row->tanggal; ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<?php echo $row->tanggal; ?>">
                       </tr>
                       <tr>
@@ -205,7 +194,7 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="30%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
                         <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
                         <td align="right"><b> : </b></td>
@@ -217,11 +206,11 @@
                     
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                      <td>Nama</td>
+                      <td width="35%">Nama</td>
                         <td> : </td>
                         <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $row->penerima;?>" required></td>
                       </tr>
@@ -397,18 +386,18 @@
                         <td>Jumlah Biaya</td>
                         <td>:</td>
                         <td> </td>
-                        <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input><td>
+                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
                       </tr>
                       <td>Jumlah Uang Muka</td>
                         <td>:</td>
                         <td> </td>
-                        <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
+                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
                       <tr>
                       <td>Selisih Kurang/Lebih</td> 
                         <td>:</td>
                         <td> </td>
-                        <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"></input></td>                               
-                      </tr>                              
+                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
+                      </tr>                                
                       </tbody>
                     </table>
 
@@ -568,6 +557,56 @@
     return prefix == undefined ? rupiah3 : (rupiah3? + rupiah3 : '');
   }
 
+  var biaya = document.getElementById('biaya');
+  biaya.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    biaya.value = formatbiaya(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatbiaya(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    biaya     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      biaya += separator + ribuan.join('.');
+    }
+
+    biaya = split[1] != undefined ? biaya + ',' + split[1] : biaya;
+    return prefix == undefined ? biaya : (biaya? + biaya : '');
+  }
+
+  var uangmuka = document.getElementById('uangmuka');
+  uangmuka.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    uangmuka.value = formatuangmuka(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatuangmuka(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    uangmuka     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      uangmuka += separator + ribuan.join('.');
+    }
+
+    uangmuka = split[1] != undefined ? uangmuka + ',' + split[1] : uangmuka;
+    return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
+  }
+
   $(document).ready(function() { 
     $('#dropdown').change(function() {
       if( $(this).val() == 'Tunai') {
@@ -582,6 +621,16 @@
 </script>
 
 <script>
+
+function penjumlahan(){
+  var a = parseInt(document.getElementById("biaya").value);
+  var b = parseInt(document.getElementById("uangmuka").value);
+
+  if(a && b){
+    document.getElementById("hasil").value = a-b; 
+  }
+} 
+
 function printThis() {
   window.print();
 }

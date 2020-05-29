@@ -460,7 +460,9 @@ class Dashboard extends CI_Controller {
 
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
-			'status' => 2
+			'status' => 2,
+			'handled_by' => $_POST['handled_by']
+
 		);
 
 		$this->Dashboard_model->updateaccept($upd);
@@ -1067,10 +1069,8 @@ class Dashboard extends CI_Controller {
 			'type' => $type,
 			'tanggal' => $_POST['tanggal'],
 			'pr_doc' => $_POST['pr_doc'],
-			'arf_doc' => $_POST['arf_doc'],
-			'asf_doc' => $_POST['asf_doc'],
-			'prf_doc' => $_POST['prf_doc'],
-			'crf_doc' => $_POST['crf_doc'],
+			'apf_doc' => $_POST['apf_doc'],
+			'apf1_doc' => $_POST['apf1_doc'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'kode_proyek' => $_POST['kode_proyek'],
 			'kode_proyek' => $_POST['kode_proyek'],

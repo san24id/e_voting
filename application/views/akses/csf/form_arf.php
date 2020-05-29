@@ -58,7 +58,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
                           
                         </tr>
                         <tr>
@@ -412,7 +412,7 @@ function nominal(){
   var b = parseInt(document.getElementById("nilai1").value);
   var c = parseInt(document.getElementById("nilai2").value);
   // alert(b)
-  if(x && b){
+  if(x && b && c){
     document.getElementById("ulang").value = x+b+c ;
   }  
   var a = x+b+c ;

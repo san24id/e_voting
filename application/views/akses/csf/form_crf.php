@@ -58,7 +58,7 @@ td[rowspan="3"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >CRF Doc. No : </font></td>
-                          <td><input type="text" name="crf_doc" class="form-control" value="<?php echo $crf_doc; ?>"></td>   
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $crf_doc; ?>"></td>   
                           <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>">                       
                         </tr>
                         <tr>

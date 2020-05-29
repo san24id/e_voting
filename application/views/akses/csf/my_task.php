@@ -23,7 +23,7 @@
                   <th>NO.</th>
                   <th>Status</th>
                   <th>CSF</th>
-                  <th>Nomor SP3</th>
+                  <th>SP3 No</th>
                   <th>Type</th>
                   <th>SP3 Submitted Date</th>
                   <th>Description</th>
@@ -68,10 +68,9 @@
                         ?>
                     </td>
                     <td><?php 
-                          // if($row->status == 2){
-                          //   echo "Waiting for processing/ Submitted by users";
-                          // }else 
-                          if($row->status == 4){
+                          if($row->status == 2){
+                            echo "Submitted by users";
+                          }else if($row->status == 4){
                             echo "Processing Tax";
                           }else if($row->status == 5){
                             echo "Processing Finance";
@@ -183,7 +182,7 @@
                         ?>
                   </td>                        
                   <td><?php echo $row->nomor_surat; ?> </td>
-                  <td>XXX</td>
+                  <td><?php echo $row->apf_doc;?> </td>
                   <td><?php echo $row->tanggal; ?></td>
                   <td><?php                     
                         for($b=0; $b<$test33; $b++){

@@ -182,23 +182,23 @@
                       <tbody>
                       <p><font size="1">Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td><font size="1"><b>- Tujuan Penggunaan </b></td>
-                        <td><font size="1"><b> : </b></td>
-                        <td colspan="8"><font size="1">&nbsp; <?php echo $row->label1; ?></td>
+                        <td width="36%"><font size="1"><b>- Tujuan Penggunaan </b></td>
+                        <td width="1%"><font size="1"><b> : </b></td>
+                        <td colspan="8"><font size="1"><?php echo $row->label1; ?></td>
                         
                       </tr>
                       <tr>
                         <td><font size="1"><b>- Jumlah :</b></td>
                         <td><font size="1"><b> : </b></td>
 
-                        <td><font size="1"> <?php echo $row->currency;?> </td>
-                        <td><font size="1"><?php echo $row->label2; ?></td>
+                        <td width="2%"><font size="1"> <?php echo $row->currency;?> </td>
+                        <td width="10%"><font size="1"><?php echo $row->label2; ?></td>
 
-                        <td><font size="1"> <?php echo $row->currency2;?> </td>
-                        <td><font size="1"><?php echo $row->jumlah2; ?></td>
+                        <td width="2%"><font size="1"> <?php echo $row->currency2;?> </td>
+                        <td width="10%"><font size="1"><?php echo $row->jumlah2; ?></td>
 
-                        <td><font size="1"> <?php echo $row->currency3;?> </td>
-                        <td><font size="1"><?php echo $row->jumlah3; ?></td>
+                        <td width="2%"><font size="1"> <?php echo $row->currency3;?> </td>
+                        <td width="10%"><font size="1"><?php echo $row->jumlah3; ?></td>
                       </tr>
                                              
                       </tbody>
@@ -212,12 +212,15 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="36%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="48.5%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        <i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
-                        <td align="right"><b> : </b></td>
+                        </td>
+                        <td align="right"><font size="1"><b> : </b></td>
                         <td colspan="8" width="65%"><font size="1"><?php echo $row->label3; ?></td>     
-                      </tr>                                                  
+                      </tr> 
+                      <tr>
+                        <td><i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
+                      </tr>                                                 
                       </tbody>
                     </table>
                     
@@ -225,15 +228,23 @@
                       <tbody>
                       <font size="1"><b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                        <td><font size="1">&nbsp; Nama : &nbsp; <?php echo $row->penerima;?></td>
+                        <td width="47%"><font size="1">&nbsp; Nama</font></td>
+                        <td width="1%"><font size="1">:</font></td>
+                        <td  colspan="4"><font size="1"><?php echo $row->penerima;?></font></td>
                       </tr>
                       <tr>  
-                        <td><font size="1">&nbsp; Kode Vendor : &nbsp; <?php echo $row->vendor;?></td>
-                        <td><font size="1">&nbsp; Bank : &nbsp; <?php echo $row->akun_bank;?>
-                        </td>
+                        <td><font size="1">&nbsp; Kode Vendor</font></td>
+                        <td><font size="1">:</font></td>
+                        <td><font size="1"><?php echo $row->vendor;?></font></td>
+                        <td width="15%"><font size="1">&nbsp; Bank </font></td>
+                        <td><font size="1">:</font></td>
+                        <td><font size="1"><?php echo $row->akun_bank;?></font></td>
+                        
                       </tr>
                       <tr>
-                        <td>                            
+                        <td></td>
+                        <td></td>                           
+                        <td></td>
                         <td><font size="1">&nbsp; Nomor Rekening : &nbsp; <?php echo $row->no_rekening; ?></td>                                
                       </tr>
                       <tr>
@@ -357,19 +368,19 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table id="show" <?php echo $showed;?> width="50%">
+                    <table id="show" <?php echo $showed;?> width="70%">
                       <tbody>
                       <tr>
-                        <td><font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b></td>
+                        <td colspan="4"><font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b></td>
                       </tr>  
                       <tr>
-                        <td><font size="1"><b>- Nomor ARF terkait</b></td>
+                        <td width="30%"><font size="1"><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
                         <td><font size="1"> &nbsp; <?php echo $row->label5;?> </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled><font size="1">Lampiran copy ARF tersedia</td>
                       </tr>
                       <tr>
-                        <td><font size="1"><b>- Perhitungan Penggunaan Uang Muka : <b></td>
+                        <td colspan="3"><font size="1"><b>- Perhitungan Penggunaan Uang Muka : <b></td>
                       </tr>
                       <tr>
                         <td>
@@ -381,20 +392,22 @@
                         <td><font size="1">Jumlah Biaya : </td>
                         <td>:</td>
                         <td> </td>
-                        <td><font size="1">&nbsp; <?php echo $row->label7;?><td>
+                        <td align="center"><font size="1">&nbsp; <?php echo $row->label7;?><td>
                       </tr>
                         <td><font size="1">Jumlah Uang Muka : </td>
                         <td>:</td>
                         <td> </td>
-                        <td><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
+                        <td align="center"><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
                       <tr>
                         <td><font size="1">Selisih Kurang/Lebih : </td> 
                         <td>:</td>
                         <td> </td>
-                        <td><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
+                        <td align="center"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
                       </tr>                              
                       </tbody>
-                    </table>          
+                    </table> 
+
+                    <br><br><br><br><br>         
                   
                     <table width="100%">
                     <tbody>

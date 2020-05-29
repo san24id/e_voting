@@ -58,7 +58,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $asf_doc; ?>"></td>                          
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $asf_doc; ?>"></td>                          
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -79,7 +79,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
                           <td>&nbsp; </td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
+                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>

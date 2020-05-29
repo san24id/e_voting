@@ -210,11 +210,14 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="36%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="48.5%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        <i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
-                        <td align="right"><b> : </b></td>
+                        </td>
+                        <td align="right"><font size="1"><b> : </b></td>
                         <td colspan="8" width="65%"><font size="1"><?php echo $row->label3; ?></td>     
+                      </tr> 
+                      <tr>
+                        <td><i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
                       </tr>                                                  
                       </tbody>
                     </table>
