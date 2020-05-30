@@ -37,30 +37,31 @@
                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
                 <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>" >
                   <div class="box-header with-border">
-                    <p align="right"><?php 
-                        if ($row->status == 0) {
-                          echo "Draft (Draft)";
+                    <p align="right">
+                      <?php 
+                        if($row->status == 0){
+                          echo "<img src='assets/dashboard/images/legend/yellow_nofull.png'>";
                         }else if($row->status == 1){
-                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                          echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/green.png'>";
                         }else if($row->status == 3){
                           echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                         }else if($row->status == 4){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          echo "<img src='assets/dashboard/images/legend/tax1.png'>";
                         }else if($row->status == 5){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          echo "<img src='assets/dashboard/images/legend/finance1.png'>";
                         }else if($row->status == 6){
-                          echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                          echo "<img src='assets/dashboard/images/legend/review1.png'>";
                         }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
                         }else if($row->status == 8){
-                          echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          echo "<img src='assets/dashboard/images/legend/yellow.png'>";
                         }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
+                          echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                         }else if($row->status == 10){
                           echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                        } 
+                        }
                       ?>
                     </p>
                     <h5>

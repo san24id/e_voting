@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="prf_doc" class="form-control" value="<?php echo $get->prf_doc; ?>"></td>
+                          <td><input type="text" name="prf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -55,8 +55,8 @@ td[rowspan="6"] {
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat; ?>"></td>
                         </tr>
                         <tr>
-                          <td> </td>
-                          <td> </td>
+                          <td><font size="+1">PR Doc. No : </font></td> 
+                          <td><input type="text" name="pr_doc" class="form-control" value="<?php echo $get->pr_doc; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>"></td>
@@ -270,7 +270,7 @@ td[rowspan="6"] {
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="7">
-                            <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada CSF Verificator:</label>    
                             <input type="hidden" name="handled_by" value="h.harlina"> 
                             <!-- <select class="form-control" name="handled_by">
@@ -299,7 +299,7 @@ td[rowspan="6"] {
                           <form id="rejected" method="post" action="dashboard/rejected">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="3">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form SP3 kepada Requestor : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
                             <textarea type="text" class="form-control" name="note"></textarea>
 
@@ -324,7 +324,7 @@ td[rowspan="6"] {
                           <form id="rejected2" method="post" action="dashboard/updpay">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="4">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->nomor_surat?></p>
                             <label>Kepada CSF Finance:</label>
                             <input type="hidden" name="handled_by" value="n.prasetyaningrum">
 
@@ -360,7 +360,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="status" value="8">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                           <label>Kepada Approval? </label>                        
                         </div>
                         <div class="modal-footer">                        
@@ -382,7 +382,7 @@ td[rowspan="6"] {
                         <form id="rejected" method="post" action="dashboard/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="3">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form SP3 kepada Requestor : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                           <label>Notes :</label>                
                           <textarea type="text" class="form-control" name="note"></textarea>
 
@@ -407,7 +407,7 @@ td[rowspan="6"] {
                         <form id="rejected2" method="post" action="dashboard/updpay">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="4">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->nomor_surat?></p>
                           <label>Kepada CSF Finance:</label>                        
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                           <!-- <select class="form-control" name="handled_by">

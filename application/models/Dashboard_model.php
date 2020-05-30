@@ -404,9 +404,9 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function updatepay($status,$nomor_surat){
+    function updatepay($status,$nomor_surat,$handled_by){
         
-        $sql = "UPDATE `t_payment` SET `status`='".$status."' WHERE `nomor_surat`='".$nomor_surat."'";
+        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."' WHERE `nomor_surat`='".$nomor_surat."'";
         
         $query = $this->db->query($sql);
 

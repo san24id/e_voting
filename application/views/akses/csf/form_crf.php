@@ -49,13 +49,28 @@ td[rowspan="3"] {
                                     'Thu' => 'Kamis',
                                     'Fri' => 'Jumat',
                                     'Sat' => 'Sabtu'
-                                );
+                              );
                                 $hari_ing = date('D');
                                 // echo date("D");
+                              $monthList = array(
+                                    'Jan' => 'Jan',
+                                    'Feb' => 'Feb',
+                                    'Mar' => 'Mar',
+                                    'Apr' => 'Apr',
+                                    'May' => 'Mei',
+                                    'Jun' => 'Jun',
+                                    'Jul' => 'Jul',
+                                    'Aug' => 'Ags',
+                                    'Sep' => 'Sep',
+                                    'Oct' => 'Okt',
+                                    'Nov' => 'Nov',
+                                    'Dec' => 'Des'                                    
+                              );
+                                $bulan_ing = date('M');  
                             ?>     
                         <tr>
                           <td><font size="+1" >Tanggal : </td>
-                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>" readonly> </td>
+                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d'); ?>-<?php echo $monthList[$bulan_ing]; ?>-<?php echo date('Y'); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >CRF Doc. No : </font></td>
                           <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $crf_doc; ?>"></td>   

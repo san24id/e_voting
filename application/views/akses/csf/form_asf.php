@@ -52,10 +52,25 @@ td[rowspan="6"] {
                                 );
                                 $hari_ing = date('D');
                                 // echo date("D");
+                                $monthList = array(
+                                  'Jan' => 'Jan',
+                                  'Feb' => 'Feb',
+                                  'Mar' => 'Mar',
+                                  'Apr' => 'Apr',
+                                  'May' => 'Mei',
+                                  'Jun' => 'Jun',
+                                  'Jul' => 'Jul',
+                                  'Aug' => 'Ags',
+                                  'Sep' => 'Sep',
+                                  'Oct' => 'Okt',
+                                  'Nov' => 'Nov',
+                                  'Dec' => 'Des'                                    
+                                );
+                                  $bulan_ing = date('M');
                             ?>     
                         <tr>
                           <td><font size="+1" >Tanggal : </td>
-                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>" readonly> </td>
+                          <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d'); ?>-<?php echo $monthList[$bulan_ing]; ?>-<?php echo date('Y'); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
                           <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $asf_doc; ?>"></td>                          
@@ -308,8 +323,11 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
-                        <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" > Tunai </font></td>
+                        <tr><?php if ($row->akun_bank == 'Tunai') {$ceklis="checked"; 
+                        }else{
+                              $ceklis=" ";
+                        } ?>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" <?php echo $ceklis;?> name="metode_pembayaran" value="Tunai" > Tunai </font></td>
                         </tr>
                         <tr>
                           <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" > Transfer Ke : </center></td>
@@ -377,7 +395,7 @@ td[rowspan="6"] {
 
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
 
-                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
+                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?php echo $asf_doc; ?></p>
                     <label>Kepada CSF Reviewer?</label>      
                     <input type="hidden" name="handled_by" value="i.akmal">                       
                     <!-- <select name="handled_by">

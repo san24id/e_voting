@@ -1090,6 +1090,9 @@ class Dashboard extends CI_Controller {
 			'verified_date' => $_POST['verified_date'],
 			'penanggung_jawab' => $_POST['penanggung_jawab'],
 			'jabatan' => $_POST['jabatan'],
+			'metode_pembayaran' => $_POST['metode_pembayaran'],
+			'bank' => $_POST['bank'],
+			'no_rek' => $_POST['no_rek'],
 			'persetujuan_pembayaran1' => $_POST['persetujuan_pembayaran1'],
 			'persetujuan_pembayaran2' => $_POST['persetujuan_pembayaran2'],
 			'persetujuan_pembayaran3' => $_POST['persetujuan_pembayaran3'],
@@ -1102,7 +1105,7 @@ class Dashboard extends CI_Controller {
 		);
 
 		$this->Dashboard_model->addpay($add);
-		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat]);
+		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by]);
 		redirect('Dashboard/monitoring');
 	}
 	
@@ -1125,7 +1128,7 @@ class Dashboard extends CI_Controller {
 		);
 
 		$this->Dashboard_model->updpay($upd);
-		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat]);
+		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by]);
 			
 		redirect('Dashboard/my_task');
 	}

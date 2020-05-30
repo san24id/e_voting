@@ -21,10 +21,9 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Status</th>
                   <th>CSF</th>
                   <th>SP3 No</th>
-                  <th>Type</th>
+                  <th>Jenis Pembayaran</th>
                   <th>SP3 Submitted Date</th>
                   <th>Description</th>
                   <th>Pemohon</th>
@@ -41,7 +40,7 @@
                       $test3 = count($test2);                        
                   ?>
                 <tr>
-                <td><?php echo $i++; ?></td>
+                    <td><?php echo $i++; ?></td>
                     <td> <?php 
                           if($row->status == 1){
                               echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
@@ -50,43 +49,23 @@
                           }else if($row->status == 3){
                              echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                           }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/tax1.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/review1.png'>";
                           }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }  
 
                         ?>
                     </td>
-                    <td><?php 
-                          if($row->status == 2){
-                            echo "Submitted by users";
-                          }else if($row->status == 4){
-                            echo "Processing Tax";
-                          }else if($row->status == 5){
-                            echo "Processing Finance";
-                          }else if($row->status == 6){
-                            echo "Waiting for Review";
-                          }else if($row->status == 7){
-                              echo "Waiting for Verification";
-                          }else if($row->status == 8){
-                            echo "Waiting for Approval";
-                          }else if($row->status == 9){
-                            echo "Waiting for Payment";  
-                          }else if($row->status == 10){
-                            echo "Paid";  
-                          }
-                        ?>
-                    </td>                  
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
@@ -141,7 +120,7 @@
                   <th>Status</th>
                   <th>SP3 No</th>
                   <th>APF No</th>
-                  <th>Tanggal Penerimaan SPPP </th>
+                  <th>APF Created Date</th>
                   <th>Jenis Pembayaran</th>
                   <th>Description</th>
                   <th>Divisi Pemohon</th>
@@ -165,19 +144,19 @@
                           //   echo "Waiting for processing/ Submitted by users";
                           // }else 
                           if($row->status == 4){
-                            echo "Processing Tax";
+                            echo "<img src='assets/dashboard/images/legend/tax1.png'>";
                           }else if($row->status == 5){
-                            echo "Processing Finance";
+                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
                           }else if($row->status == 6){
-                            echo "Waiting for Review";
+                            echo "<img src='assets/dashboard/images/legend/review1.png'>";
                           }else if($row->status == 7){
-                              echo "Waiting for Verification";
+                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 8){
-                            echo "Waiting for Approval";
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>";
                           }else if($row->status == 9){
-                            echo "Waiting for Payment";  
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }else if($row->status == 10){
-                            echo "Paid";  
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }
                         ?>
                   </td>                        
@@ -221,6 +200,52 @@
         </div>
         <!-- /.col -->
       </div>  
+
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <!-- /.box -->
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+            
+                <table id="" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="width: 10%">NO.</th>
+                  <th style="width: 10%">Status</th>
+                  <th>Keterangan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><img src="assets/dashboard/images/legend/finance1.png"></td>
+                  <td>Proceed On Finance</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><img src="assets/dashboard/images/legend/tax1.png"></td>
+                  <td>Proceed On Tax</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><img src="assets/dashboard/images/legend/review1.png"></td>
+                  <td>Proceed On Review</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><img src="assets/dashboard/images/legend/blue.png"></td>
+                  <td>Proceed On Verification</td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
 
       <!-- /.row -->
     </section>

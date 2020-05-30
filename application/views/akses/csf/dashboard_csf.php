@@ -120,8 +120,7 @@
                     <tr>
                       <td colspan="45"><font size='6'><center>STATUS</center></font></td>
                     </tr>
-                  <tr> 
-                     
+                  <tr>                     
                     
                     <?php foreach ($draft as $tot_draft) { ?>
                     <td><div class="dua"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;

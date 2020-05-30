@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->arf_doc; ?>" readonly></td>
+                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -55,8 +55,8 @@ td[rowspan="6"] {
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat; ?>" readonly></td>    
                         </tr>
                         <tr>
-                          <td> </td>
-                          <td> </td>
+                          <td><font size="+1">PR Doc. No : </font></td>
+                          <td><input type="text" name="pr_doc" class="form-control" value="<?php echo $get->pr_doc; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>" readonly></td>
@@ -334,7 +334,7 @@ td[rowspan="6"] {
                           <form id="rejected2" method="post" action="dashboard/updpay">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="4">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada CSF Finance:</label>
                             <input type="hidden" name="handled_by" value="n.prasetyaningrum">
 
@@ -370,7 +370,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="status" value="8">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                           <label>Kepada Approval? </label>                        
                         </div>
                         <div class="modal-footer">                        
