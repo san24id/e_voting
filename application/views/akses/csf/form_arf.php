@@ -108,7 +108,7 @@ td[rowspan="6"] {
                       </thead>
                       <tbody>                      
                         <tr>
-                          <td rowspan="10"><center> 1 </center></td>
+                          <td rowspan="3"><center> 1 </center></td>
                           <td colspan="2"><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea></td>                  
                           <td><select id="Select" class="form-control" onchange="myFunction()" name="currency">
                             <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
@@ -145,7 +145,7 @@ td[rowspan="6"] {
                           <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
                         </tr>
 
-                        <tr>
+                        <!-- <tr>
                           <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
                           <td><select id="Select2" onchange="myFunction2()" name="currency3">
                             <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
@@ -216,10 +216,10 @@ td[rowspan="6"] {
                             </select>
                           </td>
                           <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
-                        </tr>
+                        </tr> -->
 
                         <tr>
-                          <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p></center></td>
                           <td><input id="ulang" type="text" class="form-control" name="total_expenses">  </td>
                         </tr>
@@ -373,7 +373,7 @@ td[rowspan="6"] {
                                 
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
                    
-                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
+                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini : &nbsp; <?php echo $arf_doc; ?></p>
                     <label>Kepada CSF Reviewer?</label>   
                     <input type="hidden" name="handled_by" value="i.akmal">                       
 
@@ -485,15 +485,26 @@ function myFunction2(){
 }
 
 function nominal(){
-  var x = parseInt(document.getElementById("nilai").value);
+  var x = document.getElementById("nilai").value;
   // alert(x)
-  var b = parseInt(document.getElementById("nilai1").value);
-  var c = parseInt(document.getElementById("nilai2").value);
+  var b = document.getElementById("nilai1").value;
+  var c = document.getElementById("nilai2").value;
+
+  var get_x = x.replace(/\./g,'');
+  var get_b = b.replace(/\./g,'');
+  var get_c = c.replace(/\./g,'');
+
+  var sum_x = Number(get_x) + 0 ;
+  var sum_b = Number(get_b) + 0 ;
+  var sum_c = Number(get_c) + 0 ;
+   
+  var hasil = sum_x+sum_b+sum_c; 
   // alert(b)
-  if(x && b && c){
-    document.getElementById("ulang").value = x+b+c ;
-  }  
-  var a = x+b+c ;
+  // if(x && b && c){
+    document.getElementById("ulang").value = hasil ;
+  // }  
+
+  var a = hasil ;
   if (a <= 100000000){
     document.getElementById("approval1").value = "Donny Hamdani";
     document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
@@ -517,7 +528,110 @@ function nominal(){
   }  
 }
 
+  // Format Separator Id Nilai 
+  var nilai = document.getElementById('nilai');
+  nilai.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai() untuk mengubah angka yang di ketik menjadi format angka
+    nilai.value = formatnilai(this.value);
+  });
 
+  /* Fungsi formatnilai */
+  function formatnilai(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai += separator + ribuan.join('.');
+    }
+
+    nilai = split[1] != undefined ? nilai + ',' + split[1] : nilai;
+    return prefix == undefined ? nilai : (nilai ? + nilai : '');
+  }
+
+  // Format Separator Id Nilai 1
+  var nilai1 = document.getElementById('nilai1');
+  nilai1.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai1() untuk mengubah angka yang di ketik menjadi format angka
+    nilai1.value = formatnilai1(this.value);
+  });
+
+  /* Fungsi formatnilai1 */
+  function formatnilai1(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai1     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai1 += separator + ribuan.join('.');
+    }
+
+    nilai1 = split[1] != undefined ? nilai1 + ',' + split[1] : nilai1;
+    return prefix == undefined ? nilai1 : (nilai1 ? + nilai1 : '');
+  }
+
+  // Format Separator Id Nilai 2
+  var nilai2 = document.getElementById('nilai2');
+  nilai2.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai2() untuk mengubah angka yang di ketik menjadi format angka
+    nilai2.value = formatnilai2(this.value);
+  });
+
+  /* Fungsi formatnilai2 */
+  function formatnilai2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai2 += separator + ribuan.join('.');
+    }
+
+    nilai2 = split[1] != undefined ? nilai2 + ',' + split[1] : nilai2;
+    return prefix == undefined ? nilai2 : (nilai2 ? + nilai2 : '');
+  }
+
+  // Format Separator Id Ulang (Jumlah Pembayaran)
+  var ulang = document.getElementById('ulang');
+  ulang.addEventListener('mousemove', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatulang() untuk mengubah angka yang di ketik menjadi format angka
+    ulang.value = formatulang(this.value);
+  });
+
+  /* Fungsi formatulang */
+  function formatulang(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    ulang     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      ulang += separator + ribuan.join('.');
+    }
+
+    ulang = split[1] != undefined ? ulang + ',' + split[1] : ulang;
+    return prefix == undefined ? ulang : (ulang ? + ulang : '');
+  }  
+  
 // function math() {
 // 	var a = parseInt(document.getElementById("1").value);
 //   // alert(a);
