@@ -61,6 +61,8 @@
                           echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                         }else if($row->status == 10){
                           echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                        }else if($row->status == 11){
+                          echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>"; 
                         }
                       ?>
                     </p>
@@ -451,8 +453,33 @@
                             <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                         <?php } ?>
 
-                        <?php if($row->status == 1){ ?>
-                          <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+                        <?php 
+                          if($this->session->userdata("role_id") == 4){ ?>      
+                          <?php if($row->status == 1){ ?>
+                          <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
+                          <!----.Modal -->
+                          <!----.Accept -->
+                          <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">                                        
+                              <div class="modal-body">
+                              <form id="approve" method="post" action="dashboard/approve">
+                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                              </div>
+                              <div class="modal-footer">                        
+                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                                                      
+                          <?php } ?>
+                        <?php } ?>  
+
+                        <?php if($row->status == 11){ ?>
                           <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                           <!----.Modal -->
                           <!----.Accept -->
@@ -472,7 +499,7 @@
                               </div>
                             </div>
                             </div>
-                          </div>                            
+                          </div>  
                         <?php } ?>  
                       </div>
                     </div>  
@@ -520,7 +547,7 @@
  
 
 </div>
-   
+
 <script>
 function printThis() {
   window.print();

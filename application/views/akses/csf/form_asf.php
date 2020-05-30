@@ -259,14 +259,14 @@ td[rowspan="6"] {
                       <tbody>
                       <tr> 
                         <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks" required></textarea></td>
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks" ></textarea></td>
                       </tr>
                       <tr>
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control"></td>     
+                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" required></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -507,7 +507,7 @@ function myFunction2(){
 
 function nominal(){
   var x = document.getElementById("nilai").value;
-  // alert(x)
+  alert(x);
   var b = document.getElementById("nilai1").value;
   // alert(b)
   var c = document.getElementById("nilai2").value;
@@ -520,6 +520,7 @@ function nominal(){
 
   var sum_x = Number(get_x) + 0 ;
   var sum_b = Number(get_b) + 0 ;
+  // alert(sum_b);
   var sum_c = Number(get_c) + 0 ;
   var sum_d = Number(get_d) + 0 ;
 

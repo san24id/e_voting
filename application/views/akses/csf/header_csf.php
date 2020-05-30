@@ -206,9 +206,8 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">        
-        <?php 
-         // if($this->session->userdata("role") == 2){ ?>
-               <li class="<?php echo $dashboard?>"><a href="Dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+        
+        <li class="<?php echo $dashboard?>"><a href="Dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
@@ -253,6 +252,10 @@
           <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</a></span></li>
           <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-user"></i><span>Bank Account</a></span></li> -->
         <br>
+        <?php 
+         if($this->session->userdata("role") == 4){ ?>
+        <li><center><button type="button" data-toggle="modal" data-target="#activate" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;ACTIVATED APPROVAL</button></a></center></li>
+        <?php } ?> 
         <br>
         <br>
         
@@ -270,6 +273,23 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+
+<!-- <div class="modal fade" id="activate" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+   <div class="modal-content">                                        
+    <div class="modal-body">
+    <form id="activated" method="post" action="dashboard/activated">
+      <p align="justify">Apakah anda ingin mengaktifkan Approval Requestor?</p>
+      <input type="radio" name="activate" value="11"> ON</input><br>
+    </div>
+    <div class="modal-footer">                        
+     <button type="submit" class="btn btn-success bye">Yes</button>
+     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </form>
+    </div>
+   </div>
+  </div>
+</div> -->
 
   <div class="modal fade" id="modalNext" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
       <div class="modal-dialog">

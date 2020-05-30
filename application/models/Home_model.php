@@ -71,7 +71,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status='1' AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status in ('1', '11') AND division_id='$dvs' AND id_user='$usr'";
         
         $query = $this->db->query($sql)->result();
         return $query;

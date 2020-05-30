@@ -456,6 +456,18 @@ class Dashboard extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
+	public function approve(){
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 11
+		);
+
+		$this->Dashboard_model->approve($upd);
+
+		redirect('Dashboard');
+
+	}
+
 	public function accept(){
 
 		$upd = array(

@@ -99,13 +99,13 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td>Status <i>Outstanding Advance</i> Pemohon<br>
-                            <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta"> <i>Akumulasi > Rp. 20 Juta</i></input><br>
-                            <input type="checkbox" name="label1" value="Outstanding Advance > 3 Transaksi"> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
+                            <input type="radio" name="label1" value="Akumulasi > Rp. 20 Juta"> <i>Akumulasi > Rp. 20 Juta</i></input><br>
+                            <input type="radio" name="label1" value="Outstanding Advance > 3 Transaksi"> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
                           </td>
                           <td> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Perkiraan Tanggal Selesai Pekerjaan : <br> Terima Barang</i><font></td>
-                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo date('d-M-Y', strtotime($row->label3));?>" required></td>
+                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo $row->label3;?>" required></td>
                         </tr>
                       </tbody>
                     </table>
