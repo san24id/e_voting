@@ -612,6 +612,156 @@ function nominal(){
     return prefix == undefined ? nilai2 : (nilai2 ? + nilai2 : '');
   }
 
+  var nilai3 = document.getElementById('nilai3');
+  nilai3.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai3() untuk mengubah angka yang di ketik menjadi format angka
+    nilai3.value = formatnilai3(this.value);
+  });
+
+  /* Fungsi formatnilai3 */
+  function formatnilai3(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai3     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai3 += separator + ribuan.join('.');
+    }
+
+    nilai3 = split[1] != undefined ? nilai3 + ',' + split[1] : nilai3;
+    return prefix == undefined ? nilai3 : (nilai3 ? + nilai3 : '');
+  }
+
+  var nilai4 = document.getElementById('nilai4');
+  nilai4.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai4() untuk mengubah angka yang di ketik menjadi format angka
+    nilai4.value = formatnilai4(this.value);
+  });
+
+  /* Fungsi formatnilai4 */
+  function formatnilai4(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai4     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai4 += separator + ribuan.join('.');
+    }
+
+    nilai4 = split[1] != undefined ? nilai4 + ',' + split[1] : nilai4;
+    return prefix == undefined ? nilai4 : (nilai4 ? + nilai4 : '');
+  }
+
+  var nilai5 = document.getElementById('nilai5');
+  nilai5.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai5() untuk mengubah angka yang di ketik menjadi format angka
+    nilai5.value = formatnilai5(this.value);
+  });
+
+  /* Fungsi formatnilai5 */
+  function formatnilai5(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai5     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai5 += separator + ribuan.join('.');
+    }
+
+    nilai5 = split[1] != undefined ? nilai5 + ',' + split[1] : nilai5;
+    return prefix == undefined ? nilai5 : (nilai5 ? + nilai5 : '');
+  }
+
+  var nilai6 = document.getElementById('nilai6');
+  nilai6.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai6() untuk mengubah angka yang di ketik menjadi format angka
+    nilai6.value = formatnilai6(this.value);
+  });
+
+  /* Fungsi formatnilai6 */
+  function formatnilai6(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai6     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai6 += separator + ribuan.join('.');
+    }
+
+    nilai6 = split[1] != undefined ? nilai6 + ',' + split[1] : nilai6;
+    return prefix == undefined ? nilai6 : (nilai6 ? + nilai6 : '');
+  }
+
+  var nilai7 = document.getElementById('nilai7');
+  nilai7.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai7() untuk mengubah angka yang di ketik menjadi format angka
+    nilai7.value = formatnilai7(this.value);
+  });
+
+  /* Fungsi formatnilai7 */
+  function formatnilai7(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai7     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai7 += separator + ribuan.join('.');
+    }
+
+    nilai7 = split[1] != undefined ? nilai7 + ',' + split[1] : nilai7;
+    return prefix == undefined ? nilai7 : (nilai7 ? + nilai7 : '');
+  }
+
+  var nilai8 = document.getElementById('nilai8');
+  nilai8.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai8() untuk mengubah angka yang di ketik menjadi format angka
+    nilai8.value = formatnilai8(this.value);
+  });
+
+  /* Fungsi formatnilai8 */
+  function formatnilai8(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai8     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai8 += separator + ribuan.join('.');
+    }
+
+    nilai8 = split[1] != undefined ? nilai8 + ',' + split[1] : nilai8;
+    return prefix == undefined ? nilai8 : (nilai8 ? + nilai8 : '');
+  }
+  
   // Format Separator Id Ulang (Jumlah Pembayaran)
   var ulang = document.getElementById('ulang');
   ulang.addEventListener('mousemove', function(e){
