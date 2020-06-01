@@ -4,7 +4,7 @@ class Tri_model extends CI_Model{
 
     public function getList() {
 
-        $sql = "SELECT * FROM t_payment_l WHERE status='9'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('9','10')";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -38,4 +38,11 @@ class Tri_model extends CI_Model{
         return $query;
     }
 
+    public function updatepaid($upd){
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id`='".$upd['id']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
 }

@@ -478,8 +478,15 @@
                         <?php } ?>
                         <?php if ($row->jenis_pembayaran == 3) { ?> 
                           <?php if ($row->status == 5) { ?> 
+                            <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
+                                
                             <a class="btn btn-primary" href="Dashboard/form_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
-                          <?php } ?>                        
+                            <?php } ?>
+
+                            <?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
+                              <a class="btn btn-primary" href="Dashboard/form_asf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a> 
+                            <?php } ?>  
+                          <?php } ?>                       
                         <?php } ?>
                         <?php if ($row->jenis_pembayaran == 4) { ?> 
                           <?php if ($row->status == 5) { ?> 

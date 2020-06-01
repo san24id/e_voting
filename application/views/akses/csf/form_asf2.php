@@ -188,17 +188,17 @@ td[rowspan="6"] {
 
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
-                          <td><center><p id="demo"> </p> <p id="demo1"> </p></center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses">  </p> </td>
+                          <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses"> </td>
                         </tr>
                         <tr>
                             <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                            <td><center><p id="demo"> </p> <p id="demo1"> </p></center></td>
+                            <td><center><p id="demo3"> </p> <p id="demo4"> </p> <p id="demo5"> </p> </center></td>
                             <td><input id="jumlahuangmuka" onchange="nominal()" type="text" name="cash_advance" class="form-control"> </td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td><center><p id="demo"> </p> <p id="demo1"> </p></center></td>
+                          <td><center><p id="demo6"> </p> <p id="demo7"> </p> <p id="demo8"> </p></center></td>
                           <td><input id="negatif" type="text" name="piutang" class="form-control"> </td>
                         </tr>
                         <tr> 
@@ -448,20 +448,50 @@ function tambah() {
 
 function myFunction(){
   var x = document.getElementById("Select").value;
+  var x1 = document.getElementById("Select1").value;
+  var x2 = document.getElementById("Select2").value;
 
   document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo1").innerHTML = x1;
+  document.getElementById("demo2").innerHTML = x2;
+  document.getElementById("demo3").innerHTML = x;
+  document.getElementById("demo4").innerHTML = x1;
+  document.getElementById("demo5").innerHTML = x2;
+  document.getElementById("demo6").innerHTML = x;
+  document.getElementById("demo7").innerHTML = x1;
+  document.getElementById("demo8").innerHTML = x2;
 }
 
 function myFunction1(){
-  var x = document.getElementById("Select1").value;
+  var x = document.getElementById("Select").value;
+  var x1 = document.getElementById("Select1").value;
+  var x2 = document.getElementById("Select2").value;
 
-  document.getElementById("demo1").innerHTML = x;
+  document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo1").innerHTML = x1;
+  document.getElementById("demo2").innerHTML = x2;
+  document.getElementById("demo3").innerHTML = x;
+  document.getElementById("demo4").innerHTML = x1;
+  document.getElementById("demo5").innerHTML = x2;
+  document.getElementById("demo6").innerHTML = x;
+  document.getElementById("demo7").innerHTML = x1;
+  document.getElementById("demo8").innerHTML = x2;
 }
 
 function myFunction2(){
-  var x = document.getElementById("Select2").value;
+  var x = document.getElementById("Select").value;
+  var x1 = document.getElementById("Select1").value;
+  var x2 = document.getElementById("Select2").value;
 
-  document.getElementById("demo2").innerHTML = x;
+  document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo1").innerHTML = x1;
+  document.getElementById("demo2").innerHTML = x2;
+  document.getElementById("demo3").innerHTML = x;
+  document.getElementById("demo4").innerHTML = x1;
+  document.getElementById("demo5").innerHTML = x2;
+  document.getElementById("demo6").innerHTML = x;
+  document.getElementById("demo7").innerHTML = x1;
+  document.getElementById("demo8").innerHTML = x2;
 }
 
 function nominal(){
@@ -484,10 +514,8 @@ function nominal(){
   var i = document.getElementById("nilai8").value;
   // alert(i);
   var j = document.getElementById("jumlahuangmuka").value;
-  // alert(j);
 
   var get_x = x.replace(/\./g,'');
-  // alert(get_x);
   var get_b = b.replace(/\./g,'');
   var get_c = c.replace(/\./g,'');
   var get_d = d.replace(/\./g,'');
@@ -499,22 +527,20 @@ function nominal(){
 
   var get_j = j.replace(/\./g,'');
 
-  var sum_x = Number(get_x) + 0 ;
-  var sum_b = Number(get_b) + 0 ;
+  var currency = Number(get_x) + Number(get_b) ;
+  var currency2 = Number(get_c) + Number(get_d) + Number(get_e) + Number(get_f);
   // alert(sum_b);
-  var sum_c = Number(get_c) + 0 ;
-  var sum_d = Number(get_d) + 0 ;
-  var sum_e = Number(get_e) + 0 ;
-  var sum_f = Number(get_f) + 0 ;
-  var sum_g = Number(get_g) + 0 ;
-  var sum_h = Number(get_h) + 0 ;
-  var sum_i = Number(get_i) + 0 ;
-  var sum_j = Number(get_j) + 0 ;
+  var currency3 = Number(get_g) + Number(get_h) + Number(get_i);
+  var negatif = Number(get_j) + 0 ;
 
-  var hasil_jumlah = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i;
-  var hasil = hasil_jumlah-sum_j;
+  var hasil_jumlah1 = currency;
+  var hasil_jumlah2 = currency2;
+  var hasil_jumlah3 = currency3;
+
+  var hasil = (hasil_jumlah1+hasil_jumlah2+hasil_jumlah3)-negatif;
   // if(x && b){
-    document.getElementById("ulang").value = hasil_jumlah ;
+    document.getElementById("ulang").value = hasil_jumlah1 ;
+    // alert(ulang);
   // } 
   // if(c){
     document.getElementById("negatif").value = hasil ;

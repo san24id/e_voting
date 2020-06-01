@@ -84,21 +84,24 @@
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body no-padding">
-                      <script src="https://code.highcharts.com/highcharts.js"></script>
-                      <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/highcharts.js"></script>
+                  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
                       <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>        
+                      <div id="pieChart" style="min-width: 610px; height: 400px; max-width: 600px; margin: 0 auto"></div>  
+                      <table width="130%">
+                        <tr>
+                          <th><i class="fa fa-circle-o text-lime"></i> Direct Payment(DP)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-aqua"></i> Advance Request(AR)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-black"></i> Advance Settlement(AS)<br></th>
+                        </tr>
+                      </table> 
                       </div>          
-                    <!-- /.users-list -->
-                    <div class="col-md-3">
-                    <ul class="chart-legend clearfix">
-                      <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
-                      <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
-                      <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                    </ul>
-                    </div>
                   </div>
                   <!-- /.box-body -->               
                 </div>
@@ -128,14 +131,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php 
-                        $i = 1;
-                        foreach ($approved as $row){  
+                        <?php 
+                          $i = 1;
+                          foreach ($approved as $row){  
                           $test11 = $row->apf;                        
                           $test22 = explode(";", $test11);
                           $test33 = count($test22);                        
-                          ?>                           
-                    ?>
+                        ?>                           
+                    
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
@@ -162,16 +165,16 @@
                     <td>
                         <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
                         <?php if ($row->type == 1) { ?>   
-                          <a href="approval/form_vprf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                          <a href="approval/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
                         <?php if ($row->type == 2) { ?> 
-                          <a href="approval/form_varf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>
+                          <a href="approval/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
                         <?php if ($row->type == 3) { ?> 
-                          <a href="approval/form_vasf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                          <a href="approval/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>
                         <?php if ($row->type == 4) { ?> 
-                          <a href="approval/form_vcrf/<?php echo $row->id; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                          <a href="approval/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>
                     </td>
                     <td>
@@ -322,15 +325,25 @@ $(function () {
     });
   });
 
- Highcharts.chart('pieChart', {
+  Highcharts.chart('pieChart', {
       chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
+          // plotBackgroundColor: null,
+          // plotBorderWidth: null,
+          // plotShadow: false,
+          type: 'pie',
+          options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+          }
       },
       title: {
-          text: 'Jumlah Data Payment Request Divisi'
+          text: 'Jumlah Data Payment Request / Divisi'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
       },
       credits: {
           enabled: false
@@ -342,6 +355,7 @@ $(function () {
           pie: {
               allowPointSelect: true,
               cursor: 'pointer',
+              
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
@@ -351,6 +365,8 @@ $(function () {
       series: [{
           name: 'Total',
           colorByPoint: true,
+          innerSize: 100,
+          depth: 45,
           data: [
 
             <?php foreach ($pembayaran as $key) { ?>

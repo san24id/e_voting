@@ -22,8 +22,18 @@ class Approval_model extends CI_Model{
         return $query;
     }
 
-    public function updateaccept($upd){
-        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_pay`='".$upd['id_pay']."'"; 
+    public function updateapprove($upd){
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id`='".$upd['id']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function updatepay($status,$nomor_surat,$handled_by,$rejected_by,$rejected_date,$note){
+        
+        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."',`rejected_by`='".$rejected_by."',`rejected_date`='".$rejected_date."',`note`='".$note."' 
+                WHERE `nomor_surat`='".$nomor_surat."'";
         
         $query = $this->db->query($sql);
 
@@ -32,10 +42,12 @@ class Approval_model extends CI_Model{
 
     public function updaterejected($upd){
         $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`note`='".$upd['note']."',`rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."'
-                WHERE `id_pay`='".$upd['id_pay']."'"; 
+                WHERE `id`='".$upd['id']."'"; 
         
         $query = $this->db->query($sql);
 
         return $query;
     }
-}    
+
+    
+}   

@@ -240,12 +240,15 @@ class Approval extends CI_Controller {
 	public function approve(){
 
 		$upd = array(
-			'id_pay' => $_POST['id_pay'],
-			'status' => 9,
-			'handled_by' => $_POST['handled_by']
+			'id' => $_POST['id'],
+			'status' => $_POST['status'],
+			'handled_by' => $_POST['handled_by'],
+			'nomor_surat' => $_POST['nomor_surat']
+
 		);
 
-		$this->Approval_model->updateaccept($upd);
+		$this->Approval_model->updateapprove($upd);
+		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by]);
 
 		redirect('Approval/listApproval');
 	}
@@ -253,8 +256,9 @@ class Approval extends CI_Controller {
 	public function rejected(){
 
 		$upd = array(
-			'id_pay' => $_POST['id_pay'],
-			'status' => 4,
+			'id' => $_POST['id'],	
+			'status' => $_POST['status'],
+			'handled_by' => $_POST['handled_by'],
 			'note' => $_POST['note'],
 			'rejected_by' => $_POST['rejected_by'],
 			'rejected_date' => $_POST['rejected_date'],
@@ -262,6 +266,7 @@ class Approval extends CI_Controller {
 		);
 
 		$this->Approval_model->updaterejected($upd);
+		$this->Approval_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 
 		redirect('Approval/listApproval');
 	}

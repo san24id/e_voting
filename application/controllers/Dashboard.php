@@ -249,6 +249,25 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_asf', $data);
 	}
 
+	public function form_asf2($id_payment){
+
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['payment'] = $this->Home_model->getform($id_payment);
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
+		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_asf2', $data);
+	}
+
 	public function form_vasf($id)
 	{
 		$data['active1'] = 'active';

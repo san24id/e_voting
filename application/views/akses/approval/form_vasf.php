@@ -264,9 +264,12 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="processed1" method="post" action="approval/approve">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                          <input type="hidden" name="status" value="9">
+                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form Pengajuan ini : <?=$get->asf_doc?></p>
-                                                 
+                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                          <label>Notes :</label>                
+                          <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
@@ -277,7 +280,7 @@ td[rowspan="6"] {
                     </div>
                     </div>
 
-                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
+                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Finance</button>
                     <!---Modal RejectRequestor-->
                     <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
@@ -286,10 +289,13 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+                          <input type="hidden" name="status" value="4">
+                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
-                          <input type="text" name="note"></input>
-                          <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          <textarea type="text" name="note"></textarea>
+                          <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                          <input type="hidden" name="rejected_date" value="<?php echo date("d-m-Y");?>">
+                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
                           <button type="submit" class="btn btn-success bye">Yes</button>
@@ -298,7 +304,7 @@ td[rowspan="6"] {
                         </div>
                       </div>
                     </div>
-                    </div> 
+                    </div>
 
                   </div>
                 </div>                                           

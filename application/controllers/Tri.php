@@ -73,6 +73,84 @@ class Tri extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
+	public function form_varf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/form_varf', $data);
+
+	}
+
+	public function form_vasf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/form_vasf', $data);
+
+	}
+
+	public function form_vprf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/form_vprf', $data);
+
+	}
+
+	public function form_vcrf($id)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/form_vcrf', $data);
+
+	}
+
 	public function dp()
 	{
 		
@@ -174,6 +252,10 @@ class Tri extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['ppayment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['payment'] = $this->Tri_model->getList();
 		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
 		$data['Paid'] = $this->Dashboard_model->getPaid();
@@ -349,5 +431,21 @@ class Tri extends CI_Controller {
 
 		redirect('Tri');
 
+	}
+
+	public function paid(){
+
+		$upd = array(
+			'id' => $_POST['id'],
+			'status' => $_POST['status'],
+			'handled_by' => $_POST['handled_by'],
+			'nomor_surat' => $_POST['nomor_surat']
+
+		);
+
+		$this->Tri_model->updatepaid($upd);
+		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by]);
+
+		redirect('Tri/listPayment');
 	}
 }    

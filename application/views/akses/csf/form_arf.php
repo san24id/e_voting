@@ -92,7 +92,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
-                          <td><input type="text" name="pr_doc" class="form-control" placeholder="PR DOc. No"></td>
+                          <td><input type="text" name="pr_doc" class="form-control" value="PR - /PII/<?php echo date('m/y');?>"></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
@@ -122,116 +122,76 @@ td[rowspan="6"] {
                         </tr>
                       </thead>
                       <tbody>                      
-                        <tr>
-                          <td rowspan="3"><center> 1 </center></td>
+                      <tr>
+                          <td rowspan="9"><center> 1 </center></td>
                           <td colspan="2"><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea></td>                  
                           <td><select id="Select" class="form-control" onchange="myFunction()" name="currency">
-                            <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
+                                <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <?php } ?>
+                              </select>
                           </td>
                           <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></td>
                         </tr>
                         <tr>
                           <td colspan="2"><input type="text" class="form-control" name="description2" ></td>
-                          <td><select id="Select1" onchange="myFunction1()" name="currency2">
-                            <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select> 
-                          </td>
-                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" value="<?php echo $row->jumlah2;?>" ></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
-                          </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td> </td>
+                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" > </td>
                         </tr>
 
-                        <!-- <tr>
+                        <tr>
                           <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
+                          <td><select id="Select1" onchange="myFunction1()" name="currency2">
+                                <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <?php } ?>
+                              </select>
                           </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
                         </tr>
+                        <tr>
+                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td>  </td>
+                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah3" > </td> 
+                        </tr>
+                        <tr>
+                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td>                         </td>
+                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah4"></td> 
+                        </tr>
+                        
+                        <tr>
+                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td>     </td>
+                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah5">  </td> 
+                        </tr>
+
                         <tr>
                           <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
                           <td><select id="Select2" onchange="myFunction2()" name="currency3">
                             <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option>--Choose--</option>
+                            <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
                             <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $row->jumlah3;?>" ></td> 
                         </tr>
                         <tr>
                           <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
-                          </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td>       </td>
+                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah7" ></td> 
                         </tr>
                         <tr>
                           <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
-                          </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td> </td>
+                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah8"></td> 
                         </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
-                          </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option>--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
-                          </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah3;?>" ></td> 
-                        </tr> -->
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
@@ -504,19 +464,47 @@ function myFunction2(){
 
 function nominal(){
   var x = document.getElementById("nilai").value;
-  // alert(x)
+  // alert(x);
   var b = document.getElementById("nilai1").value;
+  // alert(b);
   var c = document.getElementById("nilai2").value;
+  // alert(c);
+  var d = document.getElementById("nilai3").value;
+  // alert(d);
+  var e = document.getElementById("nilai4").value;
+  // alert(e);
+  var f = document.getElementById("nilai5").value;
+  // alert(f);
+  var g = document.getElementById("nilai6").value;
+  // alert(g);
+  var h = document.getElementById("nilai7").value;
+  // alert(h);
+  var i = document.getElementById("nilai8").value;
+  // alert(i);
 
   var get_x = x.replace(/\./g,'');
+  // alert(get_x);
   var get_b = b.replace(/\./g,'');
   var get_c = c.replace(/\./g,'');
+  var get_d = d.replace(/\./g,'');
+  var get_e = e.replace(/\./g,'');
+  var get_f = f.replace(/\./g,'');
+  var get_g = g.replace(/\./g,'');
+  var get_h = h.replace(/\./g,'');
+  var get_i = i.replace(/\./g,'');
 
   var sum_x = Number(get_x) + 0 ;
   var sum_b = Number(get_b) + 0 ;
+  // alert(sum_b);
   var sum_c = Number(get_c) + 0 ;
-   
-  var hasil = sum_x+sum_b+sum_c; 
+  var sum_d = Number(get_d) + 0 ;
+  var sum_e = Number(get_e) + 0 ;
+  var sum_f = Number(get_f) + 0 ;
+  var sum_g = Number(get_g) + 0 ;
+  var sum_h = Number(get_h) + 0 ;
+  var sum_i = Number(get_i) + 0 ;
+
+  var hasil = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i;
   // alert(b)
   // if(x && b && c){
     document.getElementById("ulang").value = hasil ;

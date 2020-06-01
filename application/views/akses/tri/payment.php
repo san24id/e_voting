@@ -88,21 +88,24 @@
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body no-padding">
-                      <script src="https://code.highcharts.com/highcharts.js"></script>
-                      <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/highcharts.js"></script>
+                  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
                       <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>        
+                      <div id="pieChart" style="min-width: 610px; height: 400px; max-width: 600px; margin: 0 auto"></div>  
+                      <table width="130%">
+                        <tr>
+                          <th><i class="fa fa-circle-o text-lime"></i> Direct Payment(DP)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-aqua"></i> Advance Request(AR)<br></th>
+                          <td width="12px"></td>
+                          <th><i class="fa fa-circle-o text-black"></i> Advance Settlement(AS)<br></th>
+                        </tr>
+                      </table> 
                       </div>          
-                    <!-- /.users-list -->
-                    <div class="col-md-3">
-                    <ul class="chart-legend clearfix">
-                      <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
-                      <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
-                      <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                    </ul>
-                    </div>
                   </div>
                   <!-- /.box-body -->               
                 </div>
@@ -159,14 +162,26 @@
                           }
                         }  ?>
                     </td>                  
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
-                    <td>xxx</td>
-                    <td><?php echo $row->label1; ?></td>
+                    <td><?php echo $row->tanggal; ?></td>
+                    <td><?php echo $row->apf_doc;?></td>
+                    <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td>XXX</td>
                     <td>
-                        <a href="tri/view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                    </td>      
+                        <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
+                        <?php if ($row->type == 1) { ?>   
+                          <a href="Tri/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->type == 2) { ?> 
+                          <a href="Tri/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->type == 3) { ?> 
+                          <a href="Tri/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->type == 4) { ?> 
+                          <a href="Tri/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                    </td>     
                     </tr>
                 <?php  } ?>
                 </tbody>
@@ -259,15 +274,25 @@ $(function () {
     });
   });
 
- Highcharts.chart('pieChart', {
+  Highcharts.chart('pieChart', {
       chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
+          // plotBackgroundColor: null,
+          // plotBorderWidth: null,
+          // plotShadow: false,
+          type: 'pie',
+          options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+          }
       },
       title: {
-          text: 'Jumlah Data Payment Request Divisi'
+          text: 'Jumlah Data Payment Request / Divisi'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
       },
       credits: {
           enabled: false
@@ -279,6 +304,7 @@ $(function () {
           pie: {
               allowPointSelect: true,
               cursor: 'pointer',
+              
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
@@ -288,6 +314,8 @@ $(function () {
       series: [{
           name: 'Total',
           colorByPoint: true,
+          innerSize: 100,
+          depth: 45,
           data: [
 
             <?php foreach ($pembayaran as $key) { ?>

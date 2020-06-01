@@ -40,12 +40,12 @@ td[rowspan="6"] {
 
                     <table style="font-family: calibri;" width="100%">
                       <tbody>     
-                        <tr>
+                      <tr>
                           <td><font size="+1">Tanggal : <br> <i>Date</i></td>
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->arf_doc; ?>" readonly></td>
+                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -55,8 +55,8 @@ td[rowspan="6"] {
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat; ?>" readonly></td>    
                         </tr>
                         <tr>
-                          <td> </td>
-                          <td> </td>
+                          <td><font size="+1">PR Doc. No : </font></td>
+                          <td><input type="text" name="pr_doc" class="form-control" value="<?php echo $get->pr_doc; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>" readonly></td>
@@ -69,7 +69,7 @@ td[rowspan="6"] {
                           <td> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Perkiraan Tanggal Selesai Pekerjaan : <br> Terima Barang</i><font></td>
-                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->tanggal_selesai)); ?>" readonly></td>
+                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo $get->tanggal_selesai; ?>" readonly></td>
                         </tr>
                       </tbody>
                     </table>
@@ -265,9 +265,12 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="processed1" method="post" action="approval/approve">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                          <input type="hidden" name="status" value="9">
+                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form Pengajuan ini : <?=$get->arf_doc?></p>
-                                                 
+                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                          <label>Notes :</label>                
+                          <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
@@ -278,7 +281,7 @@ td[rowspan="6"] {
                     </div>
                     </div>
 
-                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
+                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Finance</button>
                     <!---Modal RejectRequestor-->
                     <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
@@ -287,10 +290,13 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+                          <input type="hidden" name="status" value="4">
+                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
-                          <input type="text" name="note"></input>
-                          <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          <textarea type="text" name="note"></textarea>
+                          <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                          <input type="hidden" name="rejected_date" value="<?php echo date("d-m-Y");?>">
+                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
                           <button type="submit" class="btn btn-success bye">Yes</button>

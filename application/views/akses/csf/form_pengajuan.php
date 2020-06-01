@@ -122,7 +122,7 @@
                         <td><b>- Jumlah </b></td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
-                                      <option>--Choose--</option>
+                                      <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
@@ -131,7 +131,7 @@
                         <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" required> </td>
 
                         <td><select name="currency2" class="form-control">
-                                      <option>--Choose--</option>
+                                      <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
@@ -140,7 +140,7 @@
                         <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" placeholder="Jumlah" > </td>
 
                         <td><select name="currency3" class="form-control">
-                                      <option>--Choose--</option>
+                                      <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>

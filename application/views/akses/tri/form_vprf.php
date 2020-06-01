@@ -244,22 +244,22 @@ td[rowspan="6"] {
                      
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Approval/listApproval" role="button">Cancel</a>                   
+                    <a class="btn btn-warning" href="tri/listPayment" role="button">Cancel</a>                   
                   
-                    <button type="submit" data-toggle="modal" data-target="#approved<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
+                    <button type="submit" data-toggle="modal" data-target="#approved<?php echo $get->id; ?>" class="btn btn-success">Paid</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="approved<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-sm" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
-                        <form id="processed1" method="post" action="approval/approve">
+                        <form id="paid" method="post" action="tri/paid">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="status" value="9">
+                          <input type="hidden" name="status" value="10">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa kamu yakin akan Telah membayar Form APF ini : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
-                          <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
+                          <p><b>Jika iya, Form APF ini telah selesai diajukan</b></p>                       
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
@@ -268,36 +268,10 @@ td[rowspan="6"] {
                         </div>
                       </div>
                     </div>
-                    </div>
-
-                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Finance</button>
-                    <!---Modal RejectRequestor-->
-                    <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">
-
-                        <div class="modal-body">
-                        <form id="rejected" method="post" action="approval/rejected">
-                          <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="status" value="4">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
-                          <label>Notes :</label>                
-                          <textarea type="text" name="note"></textarea>
-                          <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                          <input type="hidden" name="rejected_date" value="<?php echo date("d-m-Y");?>">
-                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                        </div>
-                        <div class="modal-footer">                        
-                          <button type="submit" class="btn btn-success bye">Yes</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                    </div> 
+                    </div>                    
 
                   </div>
-                </div>   
+                </div>       
                                                                 
             </div>
           </section>    
