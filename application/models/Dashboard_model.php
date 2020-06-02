@@ -382,15 +382,18 @@ class Dashboard_model extends CI_Model{
 
     function addpay($add){
         $sql = "INSERT INTO `t_payment_l` (id_payment, display_name, type, status, tanggal, pr_doc, apf_doc, apf1_doc, nomor_surat, kode_proyek, division_id,
-                tanggal_selesai, label1, description, currency, currency1, jumlah, jumlah1, terbilang, dibayar_kepada, verified_date, penanggung_jawab, jabatan, 
-                persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, cash_advance, 
-                piutang, metode_pembayaran, bank, no_rek, handled_by ) 
+                tanggal_selesai, label1, description, description2, description3, description4, description5, description6, description7, description8, description9, 
+                currency, currency1, currency2, jumlah, jumlah1, jumlah2, jumlah3, jumlah4, jumlah5, jumlah6, jumlah7, jumlah8, terbilang, dibayar_kepada,
+                verified_date, penanggung_jawab, jabatan, persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, 
+                catatan, total_expenses, cash_advance, piutang, metode_pembayaran, bank, no_rek, handled_by ) 
         VALUES ('".$add['id_payment']."','".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['pr_doc']."','".$add['apf_doc']."','".$add['apf1_doc']."',
-                '".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."','".$add['description']."','".$add['currency']."',
-                '".$add['currency1']."','".$add['jumlah']."','".$add['jumlah1']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."','".$add['penanggung_jawab']."',
+                '".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."','".$add['description']."','".$add['description2']."',
+                '".$add['description3']."','".$add['description4']."','".$add['description5']."','".$add['description6']."','".$add['description7']."','".$add['description8']."','".$add['description9']."',
+                '".$add['currency']."','".$add['currency1']."','".$add['currency2']."','".$add['jumlah']."','".$add['jumlah1']."','".$add['jumlah2']."','".$add['jumlah3']."','".$add['jumlah4']."',
+                '".$add['jumlah5']."','".$add['jumlah6']."','".$add['jumlah7']."','".$add['jumlah8']."','".$add['terbilang']."','".$add['dibayar_kepada']."','".$add['verified_date']."','".$add['penanggung_jawab']."',
                 '".$add['jabatan']."','".$add['persetujuan_pembayaran1']."','".$add['persetujuan_pembayaran2']."','".$add['persetujuan_pembayaran3']."','".$add['jabatan1']."','".$add['jabatan2']."',
-                '".$add['jabatan3']."','".$add['catatan']."','".$add['total_expenses']."','".$add['cash_advance']."','".$add['piutang']."','".$add['metode_pembayaran']."','".$add['bank']."',
-                '".$add['no_rek']."','".$add['handled_by']."')";
+                '".$add['jabatan3']."','".$add['catatan']."','".$add['total_expenses']."','".$add['cash_advance']."','".$add['piutang']."','".$add['metode_pembayaran']."','".$add['bank']."','".$add['no_rek']."',
+                '".$add['handled_by']."')";
         
         $query = $this->db->query($sql);
 
@@ -422,14 +425,33 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function rejectapf($status,$nomor_surat,$handled_by,$rejected_by,$rejected_date,$note){
+        
+        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."',`rejected_by`='".$rejected_by."',`rejected_date`='".$rejected_date."',  
+                `note`='".$note."' WHERE `nomor_surat`='".$nomor_surat."'";
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }    
+
     function updpay($upd){
         $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`nomor_surat`='".$upd['nomor_surat']."',
-                `rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."' WHERE `id`='".$upd['id']."'"; 
+                `rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."',`note`='".$upd['note']."' WHERE `id`='".$upd['id']."'"; 
         
         $query = $this->db->query($sql);
 
         return $query;
     }
+
+    // function rejectedapf($upd){
+    //     $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`nomor_surat`='".$upd['nomor_surat']."',
+    //             `rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."' WHERE `id`='".$upd['id']."'"; 
+        
+    //     $query = $this->db->query($sql);
+
+    //     return $query;
+    // }
 
     function deletepay($id){
         $sql = "DELETE FROM `t_payment_l` WHERE `t_payment_l`.`id` = $id";

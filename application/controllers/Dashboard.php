@@ -1112,10 +1112,26 @@ class Dashboard extends CI_Controller {
 			'piutang' => $_POST['piutang'],
 			'total_expenses' => $_POST['total_expenses'],
 			'description' => $_POST['description'],
+			'description2' => $_POST['description2'],
+			'description3' => $_POST['description3'],
+			'description4' => $_POST['description4'],
+			'description5' => $_POST['description5'],
+			'description6' => $_POST['description6'],
+			'description7' => $_POST['description7'],
+			'description8' => $_POST['description8'],
+			'description9' => $_POST['description9'],
 			'currency' => $_POST['currency'],
 			'currency1' => $_POST['currency1'],
+			'currency2' => $_POST['currency2'],
 			'jumlah' => $_POST['jumlah'],
 			'jumlah1' => $_POST['jumlah1'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
+			'jumlah4' => $_POST['jumlah4'],
+			'jumlah5' => $_POST['jumlah5'],
+			'jumlah6' => $_POST['jumlah6'],
+			'jumlah7' => $_POST['jumlah7'],
+			'jumlah8' => $_POST['jumlah8'],
 			'terbilang' => $_POST['terbilang'],
 			'dibayar_kepada' => $_POST['dibayar_kepada'],
 			'verified_date' => $_POST['verified_date'],
@@ -1153,13 +1169,61 @@ class Dashboard extends CI_Controller {
 			'status' => $_POST['status'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'handled_by' => $_POST['handled_by'],
-			'rejected_by' => $_POST['rejected_by'],
-			'rejected_date' => $_POST['rejected_date']
 
 		);
 
 		$this->Dashboard_model->updpay($upd);
 		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by]);
+			
+		redirect('Dashboard/my_task');
+	}
+
+	function rejectapf(){
+		$c_jp = count($_POST['type']);
+		$type = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$type .= $_POST['type'][$i].";";
+		}
+
+		$upd = array(
+			
+			'id' => $_POST['id'],
+			'status' => $_POST['status'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'rejected_by' => $_POST['rejected_by'],
+			'handled_by' => $_POST['handled_by'],
+			'rejected_date' => $_POST['rejected_date'],
+			'note' => $_POST['note']
+
+		);
+
+		$this->Dashboard_model->updpay($upd);
+		$this->Dashboard_model->rejectapf($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
+			
+		redirect('Dashboard/my_task');
+	}
+
+	function rejectreq(){
+		$c_jp = count($_POST['type']);
+		$type = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$type .= $_POST['type'][$i].";";
+		}
+
+		$upd = array(
+			
+			'id' => $_POST['id'],
+			'status' => $_POST['status'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'rejected_by' => $_POST['rejected_by'],
+			'handled_by' => $_POST['handled_by'],
+			'rejected_date' => $_POST['rejected_date'],
+			'note' => $_POST['note']
+
+		);
+
+		$this->Dashboard_model->updpay($upd);
+		$this->Dashboard_model->rejectapf($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 			
 		redirect('Dashboard/my_task');
 	}

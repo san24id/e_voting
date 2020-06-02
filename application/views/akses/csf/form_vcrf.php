@@ -283,12 +283,14 @@ td[rowspan="3"] {
                         <div class="modal-content">
 
                           <div class="modal-body">
-                          <form id="rejected" method="post" action="dashboard/rejected">
+                          <form id="rejected" method="post" action="dashboard/rejectreq">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="3">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
                             <textarea type="text" class="form-control" name="note"></textarea>
+                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
+                            <input type="hidden" name="rejected_date" value="<?php echo date('d-m-y'); ?>">
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
@@ -307,21 +309,18 @@ td[rowspan="3"] {
                         <div class="modal-content">
 
                           <div class="modal-body">
-                          <form id="rejected2" method="post" action="dashboard/updpay">
+                          <form id="rejected2" method="post" action="dashboard/rejectapf">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="4">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada CSF Finance:</label>
+                            <br>
                             <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-
-                            <!-- <select class="form-control" name="handled_by">
-                              <option>--- Choose ---</option>
-                            <?php foreach ($csf as $get) {?>
-                              <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                            <?php } ?>
-                            </select> -->
+                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
+                            
                             <label>Notes :</label>                
                             <textarea type="text" class="form-control" name="note"></textarea>
+                            <input type="hidden" name="rejected_date" value="<?php echo date('d-m-y'); ?>">
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>
                           <div class="modal-footer">                        
@@ -331,7 +330,7 @@ td[rowspan="3"] {
                           </div>
                         </div>
                       </div>
-                      </div>   
+                      </div>  
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
@@ -364,12 +363,14 @@ td[rowspan="3"] {
                       <div class="modal-content">
 
                         <div class="modal-body">
-                        <form id="rejected" method="post" action="dashboard/rejected">
+                        <form id="rejected" method="post" action="dashboard/rejectreq">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="3">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form SPPP kepada Requestor : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                           <label>Notes :</label>                
                           <textarea type="text" class="form-control" name="note"></textarea>
+                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
+                          <input type="hidden" name="rejected_date" value="<?php echo date('d-m-y'); ?>">
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
@@ -388,12 +389,13 @@ td[rowspan="3"] {
                       <div class="modal-content">
 
                         <div class="modal-body">
-                        <form id="rejected2" method="post" action="dashboard/updpay">
+                        <form id="rejected2" method="post" action="dashboard/rejectapf">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="4">
                           <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
                           <label>Kepada CSF Finance:</label>                        
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
                           <!-- <select class="form-control" name="handled_by">
                             <option>--- Choose ---</option>
                           <?php foreach ($csf as $get) {?>
@@ -402,6 +404,7 @@ td[rowspan="3"] {
                           </select> -->
                           <label>Notes :</label>                
                           <textarea type="text" class="form-control" name="note"></textarea>
+                          <input type="hidden" name="rejected_date" value="<?php echo date('d-m-y'); ?>">
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
@@ -411,7 +414,7 @@ td[rowspan="3"] {
                         </div>
                       </div>
                       </div>
-                      </div>        
+                      </div>       
                     <?php } ?>
                   </div>
                 </div>                                              

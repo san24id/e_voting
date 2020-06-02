@@ -147,24 +147,24 @@ td[rowspan="6"] {
                           <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
                         </tr>
                         <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description4" ></td>
                           <td>  </td>
                           <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah3" > </td> 
                         </tr>
                         <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description5" ></td>
                           <td>                         </td>
                           <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah4"></td> 
                         </tr>
                         
                         <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description6" ></td>
                           <td>     </td>
                           <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah5">  </td> 
                         </tr>
 
                         <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description7" ></td>
                           <td><select id="Select2" onchange="myFunction2()" name="currency3">
                             <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
                             <option value="">--Choose--</option>
@@ -176,12 +176,12 @@ td[rowspan="6"] {
                           <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $row->jumlah3;?>" ></td> 
                         </tr>
                         <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description8" ></td>
                           <td>       </td>
                           <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah7" ></td> 
                         </tr>
                         <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description9" ></td>
                           <td> </td>
                           <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah8"></td> 
                         </tr>
