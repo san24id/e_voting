@@ -54,6 +54,7 @@
                         </tr>
                       </tbody>
                     </table>
+
                     <br>
 
                     <table style="font-family: calibri;" width="100%">
@@ -155,7 +156,7 @@
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
-                                <option>--Choose--</option>
+                                <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->curr; ?>"<?php echo $get->curr==bank? 'selected':''?>><?php echo $get->curr; ?></option>
                               <?php } ?>
@@ -165,7 +166,7 @@
                         
                         <td><select name="currency2" class="form-control">
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
-                                <option>--Choose--</option>
+                                <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
@@ -175,7 +176,7 @@
 
                         <td><select name="currency3" class="form-control">
                                 <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>
-                                <option>--Choose--</option>
+                                <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
@@ -222,7 +223,7 @@
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
                               <option value="<?php echo $row->akun_bank; ?>"><?php echo $row->akun_bank; ?></option>
-                              <option>---Choose---</option>
+                              <option value="">---Choose---</option>
                               <?php foreach ($bank as $get) {?>
                                 <option value="<?php echo $get->bank; ?>"<?php echo $get->bank==bank? 'selected':''?>><?php echo $get->bank; ?></option>
                               <?php } ?>
@@ -713,7 +714,6 @@ function showInput() {
 }
 </script>
 
-
     <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
@@ -732,4 +732,4 @@ function showInput() {
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>      
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>    

@@ -314,28 +314,40 @@ class Home extends CI_Controller {
 		redirect('Home');
 	}
 
-	public function draftprintdp(){
+	public function draftprintdp($id_payment){
 
 		$upd = array(
-			'id_payment' => $_POST['id_payment'],
+			'id_payment' => $id_payment,
 			'status' => 1
 		);
 
 		$this->Dashboard_model->updateprint($upd);
 
-		redirect('Home/report_dp/'.$_POST['id_payment']);
+		redirect('Home/report_dp/'.$id_payment);
 	}
 
-	public function draftprint(){
+	public function draftprint($id_payment){
 
 		$upd = array(
-			'id_payment' => $_POST['id_payment'],
+			'id_payment' => $id_payment,
 			'status' => 1
 		);
 
 		$this->Dashboard_model->updateprint($upd);
 
-		redirect('Home/report/'.$_POST['id_payment']);
+		redirect('Home/report/'.$id_payment);
+	}
+
+	public function approve(){
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 11
+		);
+
+		$this->Dashboard_model->approve($upd);
+
+		redirect('Home');
+
 	}
 	
 	public function updatepayment(){
@@ -398,7 +410,9 @@ class Home extends CI_Controller {
 
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
-			'status' => 2
+			'status' => 2,
+			'handled_by' => $_POST['handled_by']
+
 		);
 
 		$this->Dashboard_model->updateaccept($upd);

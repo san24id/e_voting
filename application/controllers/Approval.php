@@ -424,4 +424,155 @@ class Approval extends CI_Controller {
 		redirect('Approval');
 
 	}
+
+	public function form_add()
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['bank'] =$this->Home_model->getBank();
+		$data['currency'] = $this->Home_model->getCurrency();
+
+		$this->load->view('akses/approval/header_approval', $data);	
+        $this->load->view('akses/approval/form_pengajuan', $data);
+	}
+
+	public function form_view($id_payment)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$sid = $this->session->userdata("id_user");
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		
+		$this->load->view('akses/approval/header_approval', $data);	
+        $this->load->view('akses/approval/form_view', $data);
+	}
+
+	public function formfinished($id_payment)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$sid = $this->session->userdata("id_user");
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['bank'] = $this->Home_model->getBank();
+		$data['currency'] = $this->Home_model->getCurrency();
+
+		$this->load->view('akses/approval/header_approval', $data);	
+       	$this->load->view('akses/approval/form_finished', $data);
+
+	}
+
+	public function draftprintdp($id_payment){
+
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Approval/report_dp/'.$id_payment);
+	}
+
+	public function draftprint($id_payment){
+
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Approval/report/'.$id_payment);
+	}
+
+	public function report($id_payment)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
+	public function report_dp($id_payment)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print_dp', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
+	public function setuju(){
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 11
+		);
+
+		$this->Dashboard_model->approve($upd);
+
+		redirect('Approval');
+
+	}
+
+	public function submit(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 2,
+			'handled_by' => $_POST['handled_by']
+
+		);
+
+		$this->Dashboard_model->updateaccept($upd);
+
+		redirect('Approval');
+	}
 }    

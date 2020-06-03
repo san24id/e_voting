@@ -379,6 +379,27 @@ class Tri extends CI_Controller {
 		redirect('Tri');
 	}
 
+	public function formfinished($id_payment)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$sid = $this->session->userdata("id_user");
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['bank'] = $this->Home_model->getBank();
+		$data['currency'] = $this->Home_model->getCurrency();
+
+		$this->load->view('akses/tri/header_tri', $data);	
+       	$this->load->view('akses/tri/form_finished', $data);
+
+	}
+
 	public function updatepayment(){
 		$c_jp = count($_POST['jenis_pembayaran']);
 		$jenis_pembayaran = "";
@@ -431,6 +452,74 @@ class Tri extends CI_Controller {
 
 		redirect('Tri');
 
+	}
+
+	public function form_view($id_payment)
+	{
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$sid = $this->session->userdata("id_user");
+
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		
+		$this->load->view('akses/tri/header_tri', $data);	
+        $this->load->view('akses/tri/form_view', $data);
+	}
+
+	public function draftprintdp($id_payment){
+
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Tri/report_dp/'.$id_payment);
+	}
+
+	public function draftprint($id_payment){
+
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1
+		);
+
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Tri/report/'.$id_payment);
+	}
+
+	public function approve(){
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 11
+		);
+
+		$this->Dashboard_model->approve($upd);
+
+		redirect('Tri');
+
+	}
+
+	public function submit(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 2,
+			'handled_by' => $_POST['handled_by']
+
+		);
+
+		$this->Dashboard_model->updateaccept($upd);
+
+		redirect('Tri');
 	}
 
 	public function paid(){

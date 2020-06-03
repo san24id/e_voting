@@ -2,8 +2,9 @@
 		.lingkaran1{
 			width: 200px;
 			height: 200px;
-			/* background: #dac52c;  */
+			/* background: #4dce8d;  */
 			border-radius: 80%;
+      border: 5px solid #4dce8d;
 		}
    
    .satu { border: 5px solid lime; border-radius: 25px; background: lime; }
@@ -14,7 +15,7 @@
    .enam {background:lime;  border: 5px solid lime; border-radius: 6px }
    .tujuh {background:turquoise; border: 4px solid turquoise; border-radius: 6px }
    .delapan {width: 120px; background:lime; border: 5px solid lime; border-radius: 6px }
-   .sembilan { border: 5px solid blue; border-radius: 5px; background: blue }
+   .sembilan { border: 5px solid #4dce8d; border-radius: 5px; background: #4dce8d }
    .sepuluh { border: 5px solid white; border-radius: 15px; background: lavender }
 </style>
 <style type="text/css">
@@ -384,10 +385,9 @@
                         ?>
                     </td>-->
                     <td><center><?php 
-                          // if($row->status == 2){
-                          //   echo "<img src='assets/dashboard/images/legend/green.png'>";
-                          // }else 
-                          if($row->status == 4){
+                          if($row->status == 2){
+                            echo "<img src='assets/dashboard/images/legend/green.png'>";
+                          }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/tax1.png'>";
                           }else if($row->status == 5){
                             echo "<img src='assets/dashboard/images/legend/finance1.png'>";
@@ -395,14 +395,13 @@
                             echo "<img src='assets/dashboard/images/legend/review1.png'>";
                           }else if($row->status == 7){
                               echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }
-                          // else if($row->status == 8){
-                          //   echo "<img src='assets/dashboard/images/legend/yellow.png'>";
-                          // }else if($row->status == 9){
-                          //   echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                          // }else if($row->status == 10){
-                          //   echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                          // }
                         ?></center>
                     </td>                  
                     <td><?php echo $row->nomor_surat; ?></td>

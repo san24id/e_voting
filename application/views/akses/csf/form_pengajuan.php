@@ -663,10 +663,7 @@ function showInput() {
     });
 
   });
-  
-
 </script>
-
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">
