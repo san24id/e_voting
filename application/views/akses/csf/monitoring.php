@@ -298,7 +298,7 @@
                   <script src="https://code.highcharts.com/modules/export-data.js"></script>
                   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-                      <div class="col-md-9">
+                    <div class="col-md-9">
                       <div id="pieChart" style="min-width: 600px; height: 425px; max-width: 400px; margin: 0 auto"></div>  
                       <table width="45%">
                         <tr>
@@ -317,7 +317,7 @@
                         </tr>
                       </table> 
                       </div>          
-                  </div>
+                    </div>
                   <!-- /.box-body -->               
                 </div>
                 <!--/.box -->              
@@ -468,6 +468,16 @@
                     <td>4</td>
                     <td><img src="assets/dashboard/images/legend/blue.png"></td>
                     <td>Proceed On Verification/Verified</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><img src="assets/dashboard/images/legend/yellow.png"></td>
+                    <td>Approved</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><img src="assets/dashboard/images/legend/purple.png"></td>
+                    <td>Paid</td>
                   </tr>
                 </tbody>
                 </table>

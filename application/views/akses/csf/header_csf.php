@@ -253,7 +253,7 @@
           <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-user"></i><span>Bank Account</a></span></li> -->
         <br>
         <?php 
-         if($this->session->userdata("role") == 4){ ?>
+         if($this->session->userdata("role_id") == 4){ ?>
         <li><center><button type="button" data-toggle="modal" data-target="#activate" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;ACTIVATED APPROVAL</button></a></center></li>
         <?php } ?> 
         <br>
@@ -274,13 +274,14 @@
     <!-- /.sidebar -->
   </aside>
 
-<!-- <div class="modal fade" id="activate" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="activate" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
    <div class="modal-content">                                        
     <div class="modal-body">
     <form id="activated" method="post" action="dashboard/activated">
-      <p align="justify">Apakah anda ingin mengaktifkan Approval Requestor?</p>
-      <input type="radio" name="activate" value="11"> ON</input><br>
+      <p align="justify">Apakah anda ingin mengaktifkan Approval Requestor Signature?</p>
+      <input type="radio" name="activate" value="On"> ON</input><br>
+      <input type="radio" name="activate" value="Off"> OFF</input><br>
     </div>
     <div class="modal-footer">                        
      <button type="submit" class="btn btn-success bye">Yes</button>
@@ -289,7 +290,7 @@
     </div>
    </div>
   </div>
-</div> -->
+</div>
 
   <div class="modal fade" id="modalNext" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
       <div class="modal-dialog">

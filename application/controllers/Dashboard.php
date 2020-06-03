@@ -159,7 +159,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_arf($id_payment){
 
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -176,7 +176,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_varf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -195,7 +195,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_earf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -232,7 +232,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_asf($id_payment){
 
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -251,7 +251,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_asf2($id_payment){
 
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -270,7 +270,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_vasf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -289,7 +289,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_easf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -327,7 +327,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_prf($id_payment){
 
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -345,7 +345,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_vprf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -364,7 +364,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_eprf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -402,7 +402,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_crf($id_payment){
 
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -420,7 +420,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_vcrf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -439,7 +439,7 @@ class Dashboard extends CI_Controller {
 
 	public function form_ecrf($id)
 	{
-		$data['active1'] = 'active';
+		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -473,6 +473,17 @@ class Dashboard extends CI_Controller {
 		// $html = $this->load->view('akses/report/print', $data, true);
 	 
 		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
+	function activated(){
+		$upd = array(
+			'id_status' => 11,
+			'activate' => $_POST['activate']
+		);
+
+		$this->Dashboard_model->activated($upd);
+
+		redirect('Dashboard');
 	}
 
 	public function approve(){
@@ -1017,7 +1028,7 @@ class Dashboard extends CI_Controller {
 			'id_payment' => $id_payment,
 			'status' => 1
 		);
-
+		
 		$this->Dashboard_model->updateprint($upd);
 
 		redirect('Dashboard/report_dp/'.$id_payment);
@@ -1089,6 +1100,12 @@ class Dashboard extends CI_Controller {
 			$type .= $_POST['type'][$i].";";
 		}
 
+		$c_pembayaran = count($_POST['total_expenses']);
+		$total_expenses = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$total_expenses .= $_POST['total_expenses'][$i].", ";
+		}
+
 		// echo $type;
 		// var_dump(count($_POST['type']));exit;
 		$add = array(
@@ -1110,7 +1127,7 @@ class Dashboard extends CI_Controller {
 			'label1' => $_POST['label1'],
 			'cash_advance' => $_POST['cash_advance'],
 			'piutang' => $_POST['piutang'],
-			'total_expenses' => $_POST['total_expenses'],
+			'total_expenses' => $total_expenses,
 			'description' => $_POST['description'],
 			'description2' => $_POST['description2'],
 			'description3' => $_POST['description3'],
@@ -1120,9 +1137,21 @@ class Dashboard extends CI_Controller {
 			'description7' => $_POST['description7'],
 			'description8' => $_POST['description8'],
 			'description9' => $_POST['description9'],
+			'description10' => $_POST['description10'],		
+			'description11' => $_POST['description11'],
+			'description12' => $_POST['description12'],
 			'currency' => $_POST['currency'],
 			'currency1' => $_POST['currency1'],
 			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
+			'currency4' => $_POST['currency4'],
+			'currency5' => $_POST['currency5'],
+			'currency6' => $_POST['currency6'],
+			'currency7' => $_POST['currency7'],
+			'currency8' => $_POST['currency8'],
+			'currency9' => $_POST['currency9'],
+			'currency10' => $_POST['currency10'],
+			'currency11' => $_POST['currency11'],
 			'jumlah' => $_POST['jumlah'],
 			'jumlah1' => $_POST['jumlah1'],
 			'jumlah2' => $_POST['jumlah2'],
@@ -1132,6 +1161,10 @@ class Dashboard extends CI_Controller {
 			'jumlah6' => $_POST['jumlah6'],
 			'jumlah7' => $_POST['jumlah7'],
 			'jumlah8' => $_POST['jumlah8'],
+			'jumlah9' => $_POST['jumlah9'],
+			'jumlah10' => $_POST['jumlah10'],
+			'jumlah11' => $_POST['jumlah11'],
+			'jumlah12' => $_POST['jumlah12'],
 			'terbilang' => $_POST['terbilang'],
 			'dibayar_kepada' => $_POST['dibayar_kepada'],
 			'verified_date' => $_POST['verified_date'],

@@ -16,7 +16,7 @@ td[rowspan="6"] {
         <?php foreach ($payment as $row){ ?>          
         <!-- Main content -->
         <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
-          <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
+          <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name;?>">
           <input type="hidden" name="type" class="form-control" value="3"> 
           <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>"> 
           <section class="content">
@@ -109,14 +109,14 @@ td[rowspan="6"] {
                       <thead>
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
-                          <th height="50%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
+                          <th height="40%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
+                          <th width="10%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="30%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                       </thead>
                       <tbody>                      
-                        <tr>
-                          <td rowspan="9"><center> 1 </center></td>
+                      <tr>
+                          <td rowspan="3"><center> 1 </center></td>
                           <td colspan="2"><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea></td>                  
                           <td><select id="Select" class="form-control" onchange="myFunction()" name="currency">
                                 <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
@@ -130,66 +130,149 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td colspan="2"><input type="text" class="form-control" name="description2" ></td>
-                          <td> </td>
-                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" > </td>
-                        </tr>
-
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select1" onchange="myFunction1()" name="currency2">
-                                <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
+                          <td><select id="Select1" class="form-control" onchange="myFunction1()" name="currency1">
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                                 <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
+                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah2"  ></td> 
                         </tr>
                         <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description4" ></td>
-                          <td>  </td>
-                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah3" > </td> 
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description5" ></td>
-                          <td>                         </td>
-                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah4"></td> 
-                        </tr>
-                        
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description6" ></td>
-                          <td>     </td>
-                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah5">  </td> 
-                        </tr>
-
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description7" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
+                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
+                          <td><select id="Select2" class="form-control" onchange="myFunction2()" name="currency2">
+                            <!-- <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
                             <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3;?>" ></td> 
                         </tr>
                         <tr>
+                          <td><center>2</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description4" ></td>
+                          <td><select id="Select3" class="form-control" onchange="myFunction3()" name="currency3">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah4" > </td>
+                        </tr>
+                        <tr>
+                          <td><center>3</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description5" ></td>
+                          <td><select id="Select4" class="form-control" onchange="myFunction4()" name="currency4">
+                            <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>                         
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $row->jumlah2;?>"> </td> 
+                        </tr>
+                        <tr>
+                          <td><center>4</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description6" ></td>
+                          <td><select id="Select5" class="form-control" onchange="myFunction5()" name="currency5">
+                            <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah6"></td> 
+                        </tr>
+                        
+                        <tr>
+                          <td><center>5</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description7" ></td>
+                          <td><select id="Select6" class="form-control" onchange="myFunction6()" name="currency6">
+                            <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah7">  </td> 
+                        </tr>
+                        <tr>
+                          <td><center>6</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description8" ></td>
-                          <td>       </td>
-                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah7" ></td> 
+                          <td><select id="Select7" class="form-control" onchange="myFunction7()" name="currency7">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah8" ></td> 
                         </tr>
                         <tr>
+                          <td><center>7</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description9" ></td>
-                          <td> </td>
-                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah8"></td> 
+                          <td><select id="Select8" class="form-control" onchange="myFunction8()" name="currency8">
+                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
+
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $row->jumlah3;?>"></td> 
+                        </tr>
+                        <tr>
+                          <td><center>8</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description10" ></td>
+                          <td><select id="Select9" class="form-control" onchange="myFunction9()" name="currency9">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10"></td> 
+                        </tr>
+                        <tr>
+                          <td><center>9</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description11" ></td>
+                          <td><select id="Select10" class="form-control" onchange="myFunction10()" name="currency10">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai10" onchange="nominal()" type="text" class="form-control" name="jumlah11"></td> 
+                        </tr>
+                        <tr>
+                          <td><center>10</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description12" ></td>
+                          <td><select id="Select11" class="form-control" onchange="myFunction11()" name="currency11">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $get) {?>
+                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <?php } ?>
+                            </select>
+                          </td>
+                          <td><input id="nilai11" onchange="nominal()" type="text" class="form-control" name="jumlah12"></td> 
                         </tr>
 
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses"> </td>
+                          <td><input id="ulang" type="text" name="total_expenses[]">
+                              <input id="ulang1" type="text" name="total_expenses[]">
+                              <input id="ulang2" type="text" name="total_expenses[]"> 
+                          </td>
                         </tr>
                         <tr>
                             <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
@@ -513,7 +596,13 @@ function nominal(){
   // alert(h);
   var i = document.getElementById("nilai8").value;
   // alert(i);
-  var j = document.getElementById("jumlahuangmuka").value;
+  var j = document.getElementById("nilai9").value;
+  // alert(j);
+  var k = document.getElementById("nilai10").value;
+  // alert(k);
+  var l = document.getElementById("nilai11").value;
+
+  var m = document.getElementById("jumlahuangmuka").value;
 
   var get_x = x.replace(/\./g,'');
   var get_b = b.replace(/\./g,'');
@@ -524,30 +613,37 @@ function nominal(){
   var get_g = g.replace(/\./g,'');
   var get_h = h.replace(/\./g,'');
   var get_i = i.replace(/\./g,'');
-
   var get_j = j.replace(/\./g,'');
+  var get_k = k.replace(/\./g,'');
+  var get_l = l.replace(/\./g,'');
 
-  var currency = Number(get_x) + Number(get_b) ;
-  var currency2 = Number(get_c) + Number(get_d) + Number(get_e) + Number(get_f);
+  var get_m = m.replace(/\./g,'');
+
+  var currency = Number(get_x) + Number(get_b) + Number(get_c) + Number(get_d) ;
+  var currency2 =  Number(get_e) + Number(get_f) + Number(get_g) + Number(get_h);
   // alert(sum_b);
-  var currency3 = Number(get_g) + Number(get_h) + Number(get_i);
-  var negatif = Number(get_j) + 0 ;
+  var currency3 =  Number(get_i) + Number(get_j) + Number(get_k) + Number(get_l) ;
+  var negatif = Number(get_m) + 0 ;
 
   var hasil_jumlah1 = currency;
   var hasil_jumlah2 = currency2;
   var hasil_jumlah3 = currency3;
 
-  var pembayaran = currency+ ',' +currency2+ ',' +currency3+ ',';
+  var pembayaran = currency+ ';' +currency2+ ';' +currency3;
   // var str = pembayaran.replace(/\./g,'');
  
   var hasil = (hasil_jumlah1+hasil_jumlah2+hasil_jumlah3)-negatif;
   // if(x && b){
-    document.getElementById("ulang").value = pembayaran ;
+    document.getElementById("ulang").value = hasil_jumlah1 ;
+    document.getElementById("ulang1").value = hasil_jumlah2 ;
+    document.getElementById("ulang2").value = hasil_jumlah3 ;
+
     // alert(ulang);
   // } 
   // if(c){
     document.getElementById("negatif").value = hasil ;
   // }
+  
 
   var a = hasil ;
   if (a <= 100000000){
@@ -801,9 +897,84 @@ var nilai = document.getElementById('nilai');
     return prefix == undefined ? nilai8 : (nilai8 ? + nilai8 : '');
   }
 
+  var nilai9 = document.getElementById('nilai9');
+  nilai9.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai9() untuk mengubah angka yang di ketik menjadi format angka
+    nilai9.value = formatnilai9(this.value);
+  });
+
+  /* Fungsi formatnilai9 */
+  function formatnilai9(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai9     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai9 += separator + ribuan.join('.');
+    }
+
+    nilai9 = split[1] != undefined ? nilai9 + ',' + split[1] : nilai9;
+    return prefix == undefined ? nilai9 : (nilai9 ? + nilai9 : '');
+  }
+
+  var nilai10 = document.getElementById('nilai10');
+  nilai10.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai8() untuk mengubah angka yang di ketik menjadi format angka
+    nilai10.value = formatnilai8(this.value);
+  });
+
+  /* Fungsi formatnilai10 */
+  function formatnilai8(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai10     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai10 += separator + ribuan.join('.');
+    }
+
+    nilai10 = split[1] != undefined ? nilai10 + ',' + split[1] : nilai10;
+    return prefix == undefined ? nilai10 : (nilai10 ? + nilai10 : '');
+  }
+
+  var nilai11 = document.getElementById('nilai11');
+  nilai11.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnilai11() untuk mengubah angka yang di ketik menjadi format angka
+    nilai11.value = formatnilai11(this.value);
+  });
+
+  /* Fungsi formatnilai11 */
+  function formatnilai11(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    nilai11     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      nilai11 += separator + ribuan.join('.');
+    }
+
+    nilai11 = split[1] != undefined ? nilai11 + ',' + split[1] : nilai11;
+    return prefix == undefined ? nilai11 : (nilai11 ? + nilai11 : '');
+  }
+
   // Format Separator Id Ulang (Jumlah Pembayaran)
   var ulang = document.getElementById('ulang');
-  ulang.addEventListener('change', function(e){
+  ulang.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatulang() untuk mengubah angka yang di ketik menjadi format angka
     ulang.value = formatulang(this.value);
@@ -825,6 +996,58 @@ var nilai = document.getElementById('nilai');
 
     ulang = split[1] != undefined ? ulang + ',' + split[1] : ulang;
     return prefix == undefined ? ulang : (ulang ? + ulang : '');
+  }
+
+  // Format Separator Id Ulang (Jumlah Pembayaran)
+  var ulang1 = document.getElementById('ulang1');
+  ulang1.addEventListener('mousemove', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatulang1() untuk mengubah angka yang di ketik menjadi format angka
+    ulang1.value = formatulang1(this.value);
+  });
+
+  /* Fungsi formatulang1 */
+  function formatulang1(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    ulang1     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      ulang1 += separator + ribuan.join('.');
+    }
+
+    ulang1 = split[1] != undefined ? ulang1 + ',' + split[1] : ulang1;
+    return prefix == undefined ? ulang1 : (ulang1 ? + ulang1 : '');
+  }
+
+  // Format Separator Id Ulang (Jumlah Pembayaran)
+  var ulang2 = document.getElementById('ulang2');
+  ulang2.addEventListener('mousemove', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatulang2() untuk mengubah angka yang di ketik menjadi format angka
+    ulang2.value = formatulang2(this.value);
+  });
+
+  /* Fungsi formatulang2 */
+  function formatulang2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    ulang2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      ulang2 += separator + ribuan.join('.');
+    }
+
+    ulang2 = split[1] != undefined ? ulang2 + ',' + split[1] : ulang2;
+    return prefix == undefined ? ulang2 : (ulang2 ? + ulang2 : '');
   }
 
   // Format Separator Id Jumlah (Jumlah UangMuka)

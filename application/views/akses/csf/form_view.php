@@ -437,7 +437,16 @@
                                 <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
                                 <button type="submit" class="btn btn-primary">Print</button>
                               </form>       -->
+                              
+                              
                               <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
+
+                              <?php if ($iya == 'On') {
+                                  echo "isan"; 
+                                }else if ($iya == 'Off'){
+                                  echo "faisal";
+                                }
+                                ?>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
                               <!-- <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
@@ -452,9 +461,21 @@
                             <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                         <?php } ?>
 
+
+                        <?php 
+                          $sql = "SELECT activate FROM m_status WHERE id_status=11";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query);exit; 
+                          $iya = "";
+                          foreach ($query as $signature):
+                            $iya.= $signature->activate;
+                            endforeach;
+                        ?>
+                        
                         <?php 
                           if($this->session->userdata("role_id") == 4){ ?>      
-                          <?php if($row->status == 1){ ?>
+                          <?php if($row->status == 1 && $iya == "On"){ ?>
                           <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
                           <!----.Modal -->
                           <!----.Accept -->
@@ -478,7 +499,7 @@
                           <?php } ?>
                         <?php } ?>  
 
-                        <?php if($row->status == 11){ ?>
+                        <?php if($row->status == 1 && $iya == "Off" ){ ?>
                           <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                           <!----.Modal -->
                           <!----.Accept -->

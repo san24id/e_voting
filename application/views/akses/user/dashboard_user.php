@@ -232,6 +232,7 @@
                           <th><i class="fa fa-circle-o text-aqua"></i> Advance Request(AR)<br></th>
                           <td width="12px"></td>
                           <th><i class="fa fa-circle-o text-black"></i> Advance Settlement(AS)<br></th>
+                          <th><i class="fa fa-circle-o text-orange"></i> Cash Received<br></th>
                         </tr>
                       </table> 
                       </div>
