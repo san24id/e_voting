@@ -286,7 +286,10 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang"></td>
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang[]" placeholder="Terbilang">
+                                          <input type="text" id="terbilang2" name="terbilang[]" placeholder="Terbilang">
+                                          <input type="text" id="terbilang3" name="terbilang[]" placeholder="Terbilang">      
+                          </td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
@@ -629,22 +632,253 @@ function nominal(){
   var hasil_jumlah2 = currency2;
   var hasil_jumlah3 = currency3;
 
-  var pembayaran = currency+ ';' +currency2+ ';' +currency3;
+  // var pembayaran = currency+ ';' +currency2+ ';' +currency3;
   // var str = pembayaran.replace(/\./g,'');
  
-  var hasil = (hasil_jumlah1+hasil_jumlah2+hasil_jumlah3)-negatif;
   // if(x && b){
     document.getElementById("ulang").value = hasil_jumlah1 ;
     document.getElementById("ulang1").value = hasil_jumlah2 ;
     document.getElementById("ulang2").value = hasil_jumlah3 ;
-
     // alert(ulang);
-  // } 
-  // if(c){
-    document.getElementById("negatif").value = hasil ;
-  // }
-  
 
+    var bilangan= ''+hasil_jumlah1+'';
+  // alert(bilangan);
+    var kalimat="";
+    var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+    var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+    var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
+    var panjang_bilangan = bilangan.length;
+    // alert(panjang_bilangan);
+     
+    /* pengujian panjang bilangan */
+    if(panjang_bilangan > 15){
+        kalimat = "Diluar Batas";
+    }else{
+        /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+        for(i = 1; i <= panjang_bilangan; i++) {
+            angka[i] = bilangan.substr(-(i),1);
+        }
+         
+        var i = 1;
+        var j = 0;
+         
+        /* mulai proses iterasi terhadap array angka */
+        while(i <= panjang_bilangan){
+            subkalimat = "";
+            kata1 = "";
+            kata2 = "";
+            kata3 = "";
+             
+            /* untuk Ratusan */
+            if(angka[i+2] != "0"){
+                if(angka[i+2] == "1"){
+                    kata1 = "Seratus";
+                }else{
+                    kata1 = kata[angka[i+2]] + " Ratus";
+                }
+            }
+             
+            /* untuk Puluhan atau Belasan */
+            if(angka[i+1] != "0"){
+                if(angka[i+1] == "1"){
+                    if(angka[i] == "0"){
+                        kata2 = "Sepuluh";
+                    }else if(angka[i] == "1"){
+                        kata2 = "Sebelas";
+                    }else{
+                        kata2 = kata[angka[i]] + " Belas";
+                    }
+                }else{
+                    kata2 = kata[angka[i+1]] + " Puluh";
+                }
+            }
+             
+            /* untuk Satuan */
+            if (angka[i] != "0"){
+                if (angka[i+1] != "1"){
+                    kata3 = kata[angka[i]];
+                }
+            }
+             
+            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+            if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
+                subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+            }
+             
+            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+            kalimat = subkalimat + kalimat;
+            i = i + 3;
+            j = j + 1;
+        }
+         
+        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+        if ((angka[5] == "0") && (angka[6] == "0")){
+            kalimat = kalimat.replace("Satu Ribu","Seribu");
+        }
+    }
+    document.getElementById("terbilang").value=kalimat;
+    // alert(kalimat);
+
+    var bilangan2= ''+hasil_jumlah2+'';
+  // alert(bilangan2);
+    var kalimat2="";
+    var angka2   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+    var katax    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+    var tingkat2 = new Array('','Ribu','Juta','Milyar','Triliun');
+    var panjang_bilangan2 = bilangan2.length;
+    // alert(panjang_bilangan2);
+     
+    /* pengujian panjang bilangan2 */
+    if(panjang_bilangan2 > 15){
+        kalimat2 = "Diluar Batas";
+    }else{
+        /* mengambil angka-angka yang ada dalam bilangan2, dimasukkan ke dalam array */
+        for(ix = 1; ix <= panjang_bilangan2; ix++) {
+            angka2[ix] = bilangan2.substr(-(ix),1);
+        }
+         
+        var ix = 1;
+        var jx = 0;
+         
+        /* mulai proses iterasi terhadap array angka */
+        while(ix <= panjang_bilangan2){
+            subkalimat2 = "";
+            kata12 = "";
+            kata22 = "";
+            kata32 = "";
+             
+            /* untuk Ratusan */
+            if(angka2[ix+2] != "0"){
+                if(angka[ix+2] == "1"){
+                    kata12 = "Seratus";
+                }else{
+                    kata12 = katax[angka2[ix+2]] + " Ratus";
+                }
+            }
+             
+            /* untuk Puluhan atau Belasan */
+            if(angka2[ix+1] != "0"){
+                if(angka2[ix+1] == "1"){
+                    if(angka2[ix] == "0"){
+                        kata22 = "Sepuluh";
+                    }else if(angka2[ix] == "1"){
+                        kata22 = "Sebelas";
+                    }else{
+                        kata22 = katax[angka2[ix]] + " Belas";
+                    }
+                }else{
+                    kata22 = katax[angka2[ix+1]] + " Puluh";
+                }
+            }
+             
+            /* untuk Satuan */
+            if (angka2[ix] != "0"){
+                if (angka2[ix+1] != "1"){
+                    kata32 = katax[angka2[ix]];
+                }
+            }
+             
+            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+            if ((angka2[ix] != "0") || (angka2[ix+1] != "0") || (angka2[ix+2] != "0")){
+                subkalimat2 = kata12+" "+kata22+" "+kata32+" "+tingkat2[jx]+" ";
+            }
+             
+            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+            kalimat2 = subkalimat2 + kalimat2;
+            ix = ix + 3;
+            jx = jx + 1;
+        }
+         
+        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+        if ((angka2[5] == "0") && (angka2[6] == "0")){
+            kalimat2 = kalimat2.replace("Satu Ribu","Seribu");
+        }
+    }
+    document.getElementById("terbilang2").value=kalimat2;
+    // alert(kalimat2);
+
+    var bilangan3= ''+hasil_jumlah3+'';
+  // alert(bilangan3);
+    var kalimat3="";
+    var angka3   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+    var kataxx    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+    var tingkat3 = new Array('','Ribu','Juta','Milyar','Triliun');
+    var panjang_bilangan3 = bilangan3.length;
+    // alert(panjang_bilangan3);
+     
+    /* pengujian panjang bilangan3 */
+    if(panjang_bilangan3 > 15){
+        kalimat3 = "Diluar Batas";
+    }else{
+        /* mengambil angka-angka yang ada dalam bilangan3, dimasukkan ke dalam array */
+        for(ixx = 1; ixx <= panjang_bilangan3; ixx++) {
+            angka3[ixx] = bilangan3.substr(-(ixx),1);
+        }
+         
+        var ixx = 1;
+        var jxx = 0;
+         
+        /* mulai proses iterasi terhadap array angka */
+        while(ixx <= panjang_bilangan3){
+            subkalimat3 = "";
+            kata13 = "";
+            kata23 = "";
+            kata33 = "";
+             
+            /* untuk Ratusan */
+            if(angka3[ixx+2] != "0"){
+                if(angka[ixx+2] == "1"){
+                    kata13 = "Seratus";
+                }else{
+                    kata13 = kataxx[angka3[ixx+2]] + " Ratus";
+                }
+            }
+             
+            /* untuk Puluhan atau Belasan */
+            if(angka3[ixx+1] != "0"){
+                if(angka3[ixx+1] == "1"){
+                    if(angka3[ixx] == "0"){
+                        kata23 = "Sepuluh";
+                    }else if(angka3[ixx] == "1"){
+                        kata23 = "Sebelas";
+                    }else{
+                        kata23 = kataxx[angka3[ixx]] + " Belas";
+                    }
+                }else{
+                    kata23 = kataxx[angka3[ixx+1]] + " Puluh";
+                }
+            }
+             
+            /* untuk Satuan */
+            if (angka3[ixx] != "0"){
+                if (angka3[ixx+1] != "1"){
+                    kata33 = kataxx[angka3[ixx]];
+                }
+            }
+             
+            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+            if ((angka3[ixx] != "0") || (angka3[ixx+1] != "0") || (angka3[ixx+2] != "0")){
+                subkalimat3 = kata13+" "+kata23+" "+kata33+" "+tingkat3[jxx]+" ";
+            }
+             
+            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+            kalimat3 = subkalimat3 + kalimat3;
+            ixx = ixx + 3;
+            jxx = jxx + 1;
+        }
+         
+        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+        if ((angka3[5] == "0") && (angka3[6] == "0")){
+            kalimat3 = kalimat3.replace("Satu Ribu","Seribu");
+        }
+    }
+    document.getElementById("terbilang3").value=kalimat3;
+    // alert(kalimat3);
+
+
+    var hasil = (hasil_jumlah1+hasil_jumlah2+hasil_jumlah3)-negatif;
+    document.getElementById("negatif").value = hasil ;
+ 
   var a = hasil ;
   if (a <= 100000000){
     document.getElementById("approval1").value = "Donny Hamdani";

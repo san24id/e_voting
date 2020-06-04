@@ -436,17 +436,8 @@
                               <!-- <form id="form" method="post" action="Dashboard/" target="_blank" onsubmit="update()">
                                 <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
                                 <button type="submit" class="btn btn-primary">Print</button>
-                              </form>       -->
-                              
-                              
+                              </form>       -->                           
                               <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
-
-                              <?php if ($iya == 'On') {
-                                  echo "isan"; 
-                                }else if ($iya == 'Off'){
-                                  echo "faisal";
-                                }
-                                ?>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
                               <!-- <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
@@ -492,6 +483,29 @@
                                 </form>
                                 </div>
                               </div>
+                              </div>
+                            </div>
+
+                            <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
+                            <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+
+                                  <div class="modal-body">
+                                  <form id="rejected" method="post" action="dashboard/rejected">
+                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                    <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+                                    <label>Notes :</label>                
+                                    <textarea type="text" class="form-control" name="note"></textarea>
+                                    <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
+                                    <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                                  </div>
+                                  <div class="modal-footer">                        
+                                    <button type="submit" class="btn btn-success bye">Yes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </form>
+                                  </div>
+                                </div>
                               </div>
                             </div>                                                      
                           <?php } ?>                          
@@ -541,7 +555,81 @@
                             </div>
                             </div>
                           </div>  
-                        <?php } ?>  
+                        <?php } ?>
+
+                        <?php if($row->display_name == "Harlina Hunaida") { ?>
+                          <?php 
+                          if($this->session->userdata("role_id") == 5){ ?>      
+                          <?php if($row->status == 1 && $iya == "On"){ ?>
+                            <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
+                            <!----.Modal -->
+                            <!----.Approve -->
+                            <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-content">                                        
+                                <div class="modal-body">
+                                <form id="approve" method="post" action="dashboard/approve">
+                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                </div>
+                                <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                                </div>
+                              </div>
+                              </div>
+                            </div>
+
+                            <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
+                            <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+
+                                  <div class="modal-body">
+                                  <form id="rejected" method="post" action="dashboard/rejected">
+                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                    <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+                                    <label>Notes :</label>                
+                                    <textarea type="text" class="form-control" name="note"></textarea>
+                                    <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
+                                    <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                                  </div>
+                                  <div class="modal-footer">                        
+                                    <button type="submit" class="btn btn-success bye">Yes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                                                      
+                          <?php } ?>                          
+                          <?php } ?>
+
+                          <?php if($row->status == 11){ ?> 
+                            <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
+                            <!----.Modal -->
+                            <!----.Submit -->
+                            <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-content">                                        
+                                <div class="modal-body">
+                                <form id="accepted" method="post" action="dashboard/accept">
+                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                </div>
+                                <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                                </div>
+                              </div>
+                              </div>
+                            </div>  
+                          <?php } ?>
+                        <?php } ?>
+
                       </div>
                     </div>  
             </div>

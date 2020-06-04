@@ -891,6 +891,9 @@ class Dashboard extends CI_Controller {
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['rejected'] = $this->Home_model->getRejected();
+		$data['returnedverif'] = $this->Dashboard_model->getReturnedVerif();
+		$data['returnedapprov'] = $this->Dashboard_model->getReturnedApprov();
+		$data['returnedusr'] = $this->Dashboard_model->getReturnedUser();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -1106,6 +1109,12 @@ class Dashboard extends CI_Controller {
 			$total_expenses .= $_POST['total_expenses'][$i].", ";
 		}
 
+		$c_terbilang = count($_POST['terbilang']);
+		$terbilang = "";
+		for($i=0; $i<=$c_jp; $i++){
+			$terbilang .= $_POST['terbilang'][$i].", ";
+		}
+
 		// echo $type;
 		// var_dump(count($_POST['type']));exit;
 		$add = array(
@@ -1165,7 +1174,7 @@ class Dashboard extends CI_Controller {
 			'jumlah10' => $_POST['jumlah10'],
 			'jumlah11' => $_POST['jumlah11'],
 			'jumlah12' => $_POST['jumlah12'],
-			'terbilang' => $_POST['terbilang'],
+			'terbilang' => $terbilang,
 			'dibayar_kepada' => $_POST['dibayar_kepada'],
 			'verified_date' => $_POST['verified_date'],
 			'penanggung_jawab' => $_POST['penanggung_jawab'],

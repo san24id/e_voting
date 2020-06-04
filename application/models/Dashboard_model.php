@@ -24,6 +24,41 @@ class Dashboard_model extends CI_Model{
     
     }
 
+    public function getReturnedVerif(){
+        $dvs = $this->session->userdata('division_id');
+        // $usr = $this->session->userdata('id_user');
+
+        $sql ="SELECT * FROM t_payment WHERE status='4' AND division_id='$dvs' AND rejected_by='h.harlina' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getReturnedApprov(){
+        $usr = $this->session->userdata('username');
+        $dvs = $this->session->userdata('division_id');
+        $role = $this->session->userdata('id_role_app');
+
+        if ($role == 4){
+
+            $sql ="SELECT * FROM t_payment WHERE status='4' AND division_id='$dvs' AND rejected_by='$usr' ";
+
+            $query = $this->db->query($sql)->result();
+            return $query;
+
+        }
+    }
+
+    public function getReturnedUser(){
+        $dvs = $this->session->userdata('division_id');
+        // $usr = $this->session->userdata('id_user');
+
+        $sql ="SELECT * FROM t_payment WHERE status='3' AND division_id='$dvs' AND rejected_by='h.harlina' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getTotal(){
 
         $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment";

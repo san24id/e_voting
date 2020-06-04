@@ -148,7 +148,7 @@
                       <tr>
                         <td width="35%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
@@ -218,7 +218,7 @@
                       <tr>  
                         <td>Kode Vendor</td>
                         <td> : </td>
-                        <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
+                        <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" ></td>
                         <td>Bank</td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
@@ -387,17 +387,17 @@
                         <td>Jumlah Biaya</td>
                         <td>:</td>
                         <td> </td>
-                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
+                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input><td>
                       </tr>
                       <td>Jumlah Uang Muka</td>
                         <td>:</td>
                         <td> </td>
-                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
+                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
                       <tr>
                       <td>Selisih Kurang/Lebih</td> 
                         <td>:</td>
                         <td> </td>
-                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
+                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"></input></td>                               
                       </tr>                                
                       </tbody>
                     </table>
@@ -608,6 +608,31 @@
     return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
   }
 
+  var hasil = document.getElementById('hasil');
+  hasil.addEventListener('mousemove', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    hasil.value = formathasil(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formathasil(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    hasil     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      hasil += separator + ribuan.join('.');
+    }
+
+    hasil = split[1] != undefined ? hasil + ',' + split[1] : hasil;
+    return prefix == undefined ? hasil : (hasil? + hasil : '');
+  }
+
   $(document).ready(function() { 
     $('#dropdown').change(function() {
       if( $(this).val() == 'Tunai') {
@@ -624,13 +649,21 @@
 <script>
 
 function penjumlahan(){
-  var a = parseInt(document.getElementById("biaya").value);
-  var b = parseInt(document.getElementById("uangmuka").value);
+  var a = document.getElementById("biaya").value;
+  var b = document.getElementById("uangmuka").value;
+  // var c = document.getElementById("hasil").value;
+  var reva = a.replace(/\./g,'');
+  var revb = b.replace(/\./g,'');
+  // var revc = c.replace(".","");
+  // alert(reva);
+  var hasil = parseInt(reva)-parseInt(revb);
+  // var aa = parseInt(rev).value;
+  // var b = parseInt(document.getElementById("uangmuka").value);
 
-  if(a && b){
-    document.getElementById("hasil").value = a-b; 
-  }
-} 
+  // if(reva && revb){
+    document.getElementById("hasil").value = hasil; 
+  // }
+}
 
 function printThis() {
   window.print();

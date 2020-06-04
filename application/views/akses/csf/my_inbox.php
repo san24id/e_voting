@@ -49,7 +49,7 @@
                   <td><?php echo $row->note;?> </td>
                   <td>
                     <!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -93,7 +93,6 @@
                   <th>From</th>
                   <th>To</th>
                   <th>SP3 No</th>
-                  <th>APF No</th>
                   <th>Description</th>
                   <th>Reason</th>
                   <th>Action</th>
@@ -102,7 +101,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($reject as $row){
+                    foreach ($returnedverif as $row){
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
@@ -110,12 +109,11 @@
                   <td><?php echo $row->rejected_by; ?>  </td>
                   <td><?php echo $row->division_id; ?> </td>
                   <td><?php echo $row->nomor_surat; ?> </td>
-                  <td> XXX </td>
                   <td><?php echo $row->label1;?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>
-                    <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
+                    <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -167,7 +165,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($reject as $row){
+                    foreach ($returnedapprov as $row){
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
@@ -175,12 +173,12 @@
                   <td><?php echo $row->rejected_by; ?>  </td>
                   <td><?php echo $row->division_id; ?> </td>
                   <td><?php echo $row->nomor_surat; ?> </td>
-                  <td> XXX </td>
+                  <!-- <td> XXX </td> -->
                   <td><?php echo $row->label1;?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>
-                    <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
+                    <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                 </tr>
                     <?php } ?>      
@@ -230,7 +228,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($reject as $row){
+                    foreach ($returnedusr as $row){
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  

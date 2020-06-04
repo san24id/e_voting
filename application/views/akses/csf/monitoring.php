@@ -171,27 +171,13 @@
                      <div class="col-md-18"> <!--waiting for-->
                       <div>
                       <table width="100%">
-                        <thead>
-                          <!-- <td colspan="6"><center><font size="5">Unde Processing</font></center></td> -->
-                          <tr>
-                            <td colspan="2"><center><font> Under Processing (A) </font></center></td>
-                            <td rowspan="2"><center><font> Waiting <br> For <br> Review (B) </font></center></td>
-                            <td rowspan="2"><center><font> Waiting <br> For <br> Verification (C) </font></center></td>
-                            <td rowspan="2"><center><font> Waiting <br> For <br> Approval </font></center></td>
-                            <td rowspan="2"><center><font> Waiting <br> For <br> Payment </font></center></td>
-                          </tr>
-                          <tr>
-                            <td align="center"><font> Tax (A1) </font></td>
-                            <td align="center"><font> Finance (A2) </font></td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
+                        
+                        <tr>
                             <td>
                               <div class="sepuluh">
                                 <!-- <center>Tax</center> -->
                               <?php foreach ($tax as $tax){ ?>
-                              <font size='8'><center><?php echo $tax->tax;?></center></font>
+                              <font size='7'><center><?php echo $tax->tax;?></center></font>
                               <?php } ?>
                               </div>
                             </td>
@@ -199,7 +185,7 @@
                               <div class="sepuluh">
                                 <!-- <center>Finance</center> -->
                               <?php foreach ($finance as $finance){ ?>
-                              <font size='8'><center><?php echo $finance->finance;?></center></font>
+                              <font size='7'><center><?php echo $finance->finance;?></center></font>
                               <?php } ?>
                             </div>
                             </td>
@@ -207,14 +193,14 @@
                               <div class="sepuluh">
                               <!-- <center>Waiting For Review</center> -->
                               <?php foreach ($review as $review) { ?>
-                              <center><font size='8'> <?php echo $review->wreview; ?> <br></font></center>
+                              <center><font size='7'> <?php echo $review->wreview; ?> <br></font></center>
                               <?php } ?>
                               </div>
                             <td>
                               <div class="sepuluh">
                               <!-- <center>Waiting For Verification</center> -->
                               <?php foreach ($wverifikasi as $verifikasi) { ?>
-                              <center><font size='8'> <?php echo $verifikasi->wverifikasi; ?></font></center>
+                              <center><font size='7'> <?php echo $verifikasi->wverifikasi; ?></font></center>
                               <?php } ?>
                             </div>
                             </td>
@@ -222,7 +208,7 @@
                               <div class="sepuluh">
                               <!-- <center>Waiting For Approval</center> -->
                               <?php foreach ($wApproval as $wApproval) { ?>
-                              <center><font size='8'> <?php echo $wApproval->wapproval; ?> </font></center>
+                              <center><font size='7'> <?php echo $wApproval->wapproval; ?> </font></center>
                               <?php } ?>
                             </div>
                             </td>
@@ -230,13 +216,28 @@
                               <div class="sepuluh">
                               <!-- <center>Waiting For Payment</center> -->
                                <?php foreach ($wPaid as $wPaid) { ?>
-                                <center><font size='8'> <?php echo $wPaid->wpaid; ?> </font></center>
+                                <center><font size='7'> <?php echo $wPaid->wpaid; ?> </font></center>
                                
                                 <?php } ?>
                               </div>
                             </td>
                           </tr>
-                        </tbody>
+                          <!-- <td colspan="6"><center><font size="5">Unde Processing</font></center></td> -->
+                          <tr>
+                            <td align="center"><font size="3"> Tax (A1) </font></td>
+                            <td align="center"><font size="3"> Finance (A2) </font></td>
+                            <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Review (B) </font></center></td>
+                            <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Verification (C) </font></center></td>
+                            <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Approval </font></center></td>
+                            <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Payment </font></center></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2"><center><font size="3"> Under Processing (A) </font></center></td>
+                          </tr>
+                        
+                        
+                          
+                        
                       </table>
                     </div>
                         <!-- <div class="tujuh"><center><font color='white' size='3'> Under Processing (A) </font></center></div>
