@@ -748,14 +748,25 @@ function nominal(){
   if (a <= 100000000){
     document.getElementById("approval1").value = "Donny Hamdani";
     document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+    <?php if ($row->display_name == "Donny Hamdani"){ ?>
+      document.getElementById("approval1").value = "Salusra Satria";
+      document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+    <?php } ?>
   }
+
   if (a >= 100000000 && a <= 500000000) {
-    document.getElementById("approval1").value = "Donny Hamdani";
-    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+    // document.getElementById("approval1").value = "Donny Hamdani";
+    // document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
     
-    document.getElementById("approval2").value = "Salusra Satria";
-    document.getElementById("jabatan2").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+    document.getElementById("approval1").value = "Salusra Satria";
+    document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+
+    <?php if ($row->display_name == "Salusra Satria"){ ?>
+      document.getElementById("approval1").value = "M. Wahid Sutopo";
+      document.getElementById("jabatan1").value = "Direktur Utama / CEO";
+    <?php } ?>
   }
+  
   if (a >= 500000000) {
     document.getElementById("approval1").value = "Salusra Satria";
     document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";

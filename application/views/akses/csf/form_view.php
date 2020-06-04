@@ -461,7 +461,6 @@
                             <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                         <?php } ?>
 
-
                         <?php 
                           $sql = "SELECT activate FROM m_status WHERE id_status=11";
                           $query = $this->db->query($sql)->result();
@@ -476,28 +475,50 @@
                         <?php 
                           if($this->session->userdata("role_id") == 4){ ?>      
                           <?php if($row->status == 1 && $iya == "On"){ ?>
-                          <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
-                          <!----.Modal -->
-                          <!----.Accept -->
-                          <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document">
-                            <div class="modal-content">                                        
-                              <div class="modal-body">
-                              <form id="approve" method="post" action="dashboard/approve">
-                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                            <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
+                            <!----.Modal -->
+                            <!----.Approve -->
+                            <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-content">                                        
+                                <div class="modal-body">
+                                <form id="approve" method="post" action="dashboard/approve">
+                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                </div>
+                                <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                                </div>
                               </div>
-                              <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              </form>
                               </div>
-                            </div>
-                            </div>
-                          </div>
-                                                      
-                          <?php } ?>
+                            </div>                                                      
+                          <?php } ?>                          
                         <?php } ?>  
+
+                          <?php if($row->status == 11){ ?> 
+                            <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
+                            <!----.Modal -->
+                            <!----.Submit -->
+                            <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-content">                                        
+                                <div class="modal-body">
+                                <form id="accepted" method="post" action="dashboard/accept">
+                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                </div>
+                                <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                                </div>
+                              </div>
+                              </div>
+                            </div>  
+                          <?php } ?>  
 
                         <?php if($row->status == 1 && $iya == "Off" ){ ?>
                           <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
@@ -510,7 +531,7 @@
                               <form id="accepted" method="post" action="dashboard/accept">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                <p align="justify">Apa kamu yakin mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
                               <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>

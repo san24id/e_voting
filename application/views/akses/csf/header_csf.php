@@ -279,7 +279,7 @@
    <div class="modal-content">                                        
     <div class="modal-body">
     <form id="activated" method="post" action="dashboard/activated">
-      <p align="justify">Apakah anda ingin mengaktifkan Approval Requestor Signature?</p>
+      <p align="justify">Apakah anda ingin mengaktifkan/menon-aktifkan Approval Requestor Signature?</p>
       <input type="radio" name="activate" value="On"> ON</input><br>
       <input type="radio" name="activate" value="Off"> OFF</input><br>
     </div>
