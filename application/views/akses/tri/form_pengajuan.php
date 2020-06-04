@@ -650,7 +650,8 @@ function showInput() {
     }
 
     hasil = split[1] != undefined ? hasil + ',' + split[1] : hasil;
-    return prefix == undefined ? hasil : (hasil? + hasil : '');
+    return prefix == undefined ? '('+hasil+')' : (hasil? + hasil : '');
+
   }
 
   $(document).ready(function() { 

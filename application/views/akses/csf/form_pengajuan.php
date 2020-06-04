@@ -400,7 +400,7 @@ function penjumlahan(){
   // var b = parseInt(document.getElementById("uangmuka").value);
 
   // if(reva && revb){
-    document.getElementById("hasil").value = hasil; 
+    document.getElementById("hasil").value = '('+hasil+')'; 
   // }
 }
 
@@ -650,7 +650,7 @@ function showInput() {
     }
 
     hasil = split[1] != undefined ? hasil + ',' + split[1] : hasil;
-    return prefix == undefined ? hasil : (hasil? + hasil : '');
+    return prefix == undefined ? '('+hasil+')' : (hasil? + hasil : '');
   }
 
   $(document).ready(function() { 
