@@ -913,7 +913,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai */
   function formatnilai(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai     		= split[0].substr(0, sisa),
@@ -939,7 +939,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai1 */
   function formatnilai1(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai1     		= split[0].substr(0, sisa),
@@ -965,7 +965,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai2 */
   function formatnilai2(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai2     		= split[0].substr(0, sisa),
@@ -990,7 +990,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai3 */
   function formatnilai3(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai3     		= split[0].substr(0, sisa),
@@ -1015,7 +1015,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai4 */
   function formatnilai4(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai4     		= split[0].substr(0, sisa),
@@ -1040,7 +1040,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai5 */
   function formatnilai5(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai5     		= split[0].substr(0, sisa),
@@ -1065,7 +1065,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai6 */
   function formatnilai6(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai6     		= split[0].substr(0, sisa),
@@ -1090,7 +1090,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai7 */
   function formatnilai7(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai7     		= split[0].substr(0, sisa),
@@ -1115,7 +1115,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai8 */
   function formatnilai8(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai8     		= split[0].substr(0, sisa),
@@ -1140,7 +1140,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai9 */
   function formatnilai9(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai9     		= split[0].substr(0, sisa),
@@ -1164,8 +1164,8 @@ var nilai = document.getElementById('nilai');
   });
 
   /* Fungsi formatnilai10 */
-  function formatnilai8(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+  function formatnilai10(angka, prefix){
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai10     		= split[0].substr(0, sisa),
@@ -1190,7 +1190,7 @@ var nilai = document.getElementById('nilai');
 
   /* Fungsi formatnilai11 */
   function formatnilai11(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai11     		= split[0].substr(0, sisa),

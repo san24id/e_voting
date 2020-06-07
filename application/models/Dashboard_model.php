@@ -146,17 +146,15 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    public function updatetax($upd){
-        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`PPh_Pasal_21`='".$upd['PPh_Pasal_21']."',`PPh_Pasal_22`='".$upd['PPh_Pasal_22']."'
-                ,`PPh_Pasal_23`='".$upd['PPh_Pasal_23']."',`PPh_Pasal_4`='".$upd['PPh_Pasal_4']."',`tarif1`='".$upd['tarif1']."'
-                ,`tarif2`='".$upd['tarif2']."',`tarif3`='".$upd['tarif3']."',`tarif4`='".$upd['tarif4']."',`tarif5`='".$upd['tarif5']."',`dpp1`='".$upd['dpp1']."',`dpp2`='".$upd['dpp2']."'
-                ,`dpp3`='".$upd['dpp3']."',`dpp4`='".$upd['dpp4']."',`dpp5`='".$upd['dpp5']."',`gross_up1`='".$upd['gross_up1']."',`gross_up2`='".$upd['gross_up2']."',`gross_up3`='".$upd['gross_up3']."'
-                ,`gross_up4`='".$upd['gross_up4']."',`gross_up5`='".$upd['gross_up5']."',`pjt1`='".$upd['pjt1']."',`pjt2`='".$upd['pjt2']."',`pjt3`='".$upd['pjt3']."',`pjt4`='".$upd['pjt4']."',`pjt5`='".$upd['pjt5']."'
-        
-                WHERE `id_payment`='".$upd['id_payment']."'"; 
+    public function updatetax($add){
+        $sql = "INSERT INTO `t_tax` (id_payment, status, nomor_surat, de, opsional, nilai, objek_pajak, jenis_pajak, kode_pajak, kode_map, nama, npwp, alamat, tarif, fas_pajak, 
+                special_tarif, gross, dpp, dpp_gross, pajak_terutang, masa_pajak, keterangan, handled_by)
+                VALUES ('".$add['id_payment']."','".$add['status']."','".$add['nomor_surat']."','".$add['de']."','".$add['opsional']."','".$add['nilai']."','".$add['objek_pajak']."','".$add['jenis_pajak']."',
+                '".$add['kode_pajak']."','".$add['kode_map']."','".$add['nama']."','".$add['npwp']."','".$add['alamat']."','".$add['tarif']."','".$add['fas_pajak']."','".$add['special_tarif']."',
+                '".$add['gross']."','".$add['dpp']."','".$add['dpp_gross']."','".$add['pajak_terutang']."','".$add['masa_pajak']."','".$add['keterangan']."','".$add['handled_by']."')"; 
         
         $query = $this->db->query($sql);
-
+        // var_dump($sql);exit;
         return $query;
     }
 
@@ -315,6 +313,27 @@ class Dashboard_model extends CI_Model{
     function getTax() {
         $sql = "SELECT COUNT(status) as tax FROM t_payment WHERE status= '4'";
         $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getJenisPajak(){
+        $sql = "SELECT * FROM m_jenis_pajak";
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
+
+    function getKodePajak(){
+        $sql = "SELECT * FROM m_kode_bukpot";
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
+
+    function getKodeMap(){
+        $sql = "SELECT * FROM m_kode_map";
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
         return $query;
     }
 

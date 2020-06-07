@@ -584,45 +584,154 @@ class Dashboard extends CI_Controller {
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['gprocess'] = $this->Dashboard_model->getProcessing();
 		$data['tax'] = $this->Dashboard_model->getTax();
+		$data['jenispajak'] = $this->Dashboard_model->getJenisPajak();
+		$data['kodePajak']= $this->Dashboard_model->getKodePajak();
+		$data['kodeMap']= $this->Dashboard_model->getKodeMap();
+
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_sp3_2', $data);
 	}
 	
-	public function tax2(){
+	public function procees_tax(){
+		$c_de = count($_POST['de']);
+		$de = "";
+		for($i=0; $i<=$c_de; $i++){
+			$de .= $_POST['de'][$i].";";
+		}
 
-		$upd = array(
+		$c_opsional = count($_POST['opsional']);
+		$opsional = "";
+		for($i=0; $i<=$c_opsional; $i++){
+			$opsional .= $_POST['opsional'][$i].";";
+		}
+
+		$c_objek_pajak = count($_POST['objek_pajak']);
+		$objek_pajak = "";
+		for($i=0; $i<=$c_objek_pajak; $i++){
+			$objek_pajak .= $_POST['objek_pajak'][$i].";";
+		}
+
+		$c_jenis_pajak = count($_POST['jenis_pajak']);
+		$jenis_pajak = "";
+		for($i=0; $i<=$c_jenis_pajak; $i++){
+			$jenis_pajak .= $_POST['jenis_pajak'][$i].";";
+		}
+
+		$c_kode_pajak = count($_POST['kode_pajak']);
+		$kode_pajak = "";
+		for($i=0; $i<=$c_kode_pajak; $i++){
+			$kode_pajak .= $_POST['kode_pajak'][$i].";";
+		}
+
+		$c_kode_map = count($_POST['kode_map']);
+		$kode_map = "";
+		for($i=0; $i<=$c_kode_map; $i++){
+			$kode_map .= $_POST['kode_map'][$i].";";
+		}
+
+		$c_nama = count($_POST['nama']);
+		$nama = "";
+		for($i=0; $i<=$c_nama; $i++){
+			$nama .= $_POST['nama'][$i].";";
+		}
+
+		$c_npwp = count($_POST['npwp']);
+		$npwp = "";
+		for($i=0; $i<=$c_npwp; $i++){
+			$npwp .= $_POST['npwp'][$i].";";
+		}
+
+		$c_alamat = count($_POST['alamat']);
+		$alamat = "";
+		for($i=0; $i<=$c_alamat; $i++){
+			$alamat .= $_POST['alamat'][$i].";";
+		}
+
+		$c_tarif = count($_POST['tarif']);
+		$tarif = "";
+		for($i=0; $i<=$c_tarif; $i++){
+			$tarif .= $_POST['tarif'][$i].";";
+		}
+
+		$c_fas_pajak = count($_POST['fas_pajak']);
+		$fas_pajak = "";
+		for($i=0; $i<=$c_fas_pajak; $i++){
+			$fas_pajak .= $_POST['fas_pajak'][$i].";";
+		}
+
+		$c_special_tarif = count($_POST['special_tarif']);
+		$special_tarif = "";
+		for($i=0; $i<=$c_special_tarif; $i++){
+			$special_tarif .= $_POST['special_tarif'][$i].";";
+		}
+
+		$c_gross = count($_POST['gross']);
+		$gross = "";
+		for($i=0; $i<=$c_gross; $i++){
+			$gross .= $_POST['gross'][$i].";";
+		}
+
+		$c_dpp = count($_POST['dpp']);
+		$dpp = "";
+		for($i=0; $i<=$c_dpp; $i++){
+			$dpp .= $_POST['dpp'][$i].";";
+		}
+
+		$c_dpp_gross = count($_POST['dpp_gross']);
+		$dpp_gross = "";
+		for($i=0; $i<=$c_dpp_gross; $i++){
+			$dpp_gross .= $_POST['dpp_gross'][$i].";";
+		}
+
+		$c_pajak_terutang = count($_POST['pajak_terutang']);
+		$pajak_terutang = "";
+		for($i=0; $i<=$c_pajak_terutang; $i++){
+			$pajak_terutang .= $_POST['pajak_terutang'][$i].";";
+		}
+
+		$c_masa_pajak = count($_POST['masa_pajak']);
+		$masa_pajak = "";
+		for($i=0; $i<=$c_masa_pajak; $i++){
+			$masa_pajak .= $_POST['masa_pajak'][$i].";";
+		}
+
+		$c_keterangan = count($_POST['keterangan']);
+		$keterangan = "";
+		for($i=0; $i<=$c_keterangan; $i++){
+			$keterangan .= $_POST['keterangan'][$i].";";
+		}
+
+		$add = array(
 			'id_payment' => $_POST['id_payment'],
 			'status' => 5,
 			'handled_by' => $_POST['handled_by'],
-			'PPh_Pasal_21' => $_POST['PPh_Pasal_21'],
-			'PPh_Pasal_22' => $_POST['PPh_Pasal_22'],
-			'PPh_Pasal_23' => $_POST['PPh_Pasal_23'],
-			'PPh_Pasal_4' => $_POST['PPh_Pasal_4'],
-			'tarif1' => $_POST['tarif1'],
-			'tarif2' => $_POST['tarif2'],
-			'tarif3' => $_POST['tarif3'],
-			'tarif4' => $_POST['tarif4'],
-			'tarif5' => $_POST['tarif5'],
-			'dpp1' => $_POST['dpp1'],
-			'dpp2' => $_POST['dpp2'],
-			'dpp3' => $_POST['dpp3'],
-			'dpp4' => $_POST['dpp4'],
-			'dpp5' => $_POST['dpp5'],
-			'gross_up1' => $_POST['gross_up1'],
-			'gross_up2' => $_POST['gross_up2'],
-			'gross_up3' => $_POST['gross_up3'],
-			'gross_up4' => $_POST['gross_up4'],
-			'gross_up5' => $_POST['gross_up5'],
-			'pjt1' => $_POST['pjt1'],			
-			'pjt2' => $_POST['pjt2'],			
-			'pjt3' => $_POST['pjt3'],			
-			'pjt4' => $_POST['pjt4'],			
-			'pjt5' => $_POST['pjt5']			
-						
+			'nomor_surat' => $_POST['nomor_surat'],
+			'de' => $de,
+			'opsional' => $opsional,
+			'nilai' => $_POST['nilai'],
+			'objek_pajak' => $objek_pajak,
+			'jenis_pajak' => $jenis_pajak,
+			'kode_pajak' => $kode_pajak,
+			'kode_map' => $kode_map,
+			'nama' => $nama,
+			'npwp' => $npwp,
+			'alamat' => $alamat,
+			'tarif' => $tarif,
+			'fas_pajak' => $fas_pajak,
+			'special_tarif' => $special_tarif,
+			'gross' => $gross,
+			'dpp' => $dpp,
+			'dpp_gross' => $dpp_gross,
+			'pajak_terutang' => $pajak_terutang,
+			'masa_pajak' => $masa_pajak,
+			'keterangan' => $keterangan			
+			
 		);
 
-		$this->Dashboard_model->updatetax($upd);
+		$this->Dashboard_model->updatetax($add);
+		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by]);
+
 
 		redirect('Dashboard/monitoring');
 	}
