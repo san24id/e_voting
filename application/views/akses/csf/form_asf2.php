@@ -110,8 +110,8 @@ td[rowspan="6"] {
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="40%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="10%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="30%"><center>Jumlah / <br><i>Amount</i></center></th>                       
+                          <th width="8%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="35%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                       </thead>
                       <tbody>                      
@@ -149,7 +149,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" ></td> 
                         </tr>
                         <tr>
                           <td><center>2</center></td>
@@ -269,26 +269,30 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" name="total_expenses[]">
-                              <input id="ulang1" type="text" name="total_expenses[]">
-                              <input id="ulang2" type="text" name="total_expenses[]"> 
+                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses">
+                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2">
+                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3"> 
                           </td>
                         </tr>
                         <tr>
                             <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
                             <td><center><p id="demo3"> </p> <p id="demo4"> </p> <p id="demo5"> </p> </center></td>
-                            <td><input id="jumlahuangmuka" onchange="nominal()" type="text" name="cash_advance" class="form-control"> </td>
+                            <td><?php echo $row->currency;?>&nbsp;<input id="jumlahuangmuka" onchange="nominal()" type="text" name="cash_advance"> 
+                                <?php echo $row->currency2;?>&nbsp;<input id="jumlahuangmuka2" onchange="nominal()" type="text" name="cash_advance2">
+                                <?php echo $row->currency3;?>&nbsp;<input id="jumlahuangmuka3" onchange="nominal()" type="text" name="cash_advance3"></td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
                           <td><center><p id="demo6"> </p> <p id="demo7"> </p> <p id="demo8"> </p></center></td>
-                          <td><input id="negatif" type="text" name="piutang" class="form-control"> </td>
+                          <td><?php echo $row->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" >
+                              <?php echo $row->currency2;?>&nbsp;<input id="negatif2" type="text" name="piutang2" > 
+                              <?php echo $row->currency3;?>&nbsp;<input id="negatif3" type="text" name="piutang3" ></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang[]" placeholder="Terbilang">
-                                          <input type="text" id="terbilang2" name="terbilang[]" placeholder="Terbilang">
-                                          <input type="text" id="terbilang3" name="terbilang[]" placeholder="Terbilang">      
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" placeholder="Terbilang">
+                                          <input type="text" id="terbilang2" name="terbilang2" placeholder="Terbilang">
+                                          <input type="text" id="terbilang3" name="terbilang3" placeholder="Terbilang">      
                           </td>
                         </tr>
                         <tr> 
@@ -606,6 +610,8 @@ function nominal(){
   var l = document.getElementById("nilai11").value;
 
   var m = document.getElementById("jumlahuangmuka").value;
+  var n = document.getElementById("jumlahuangmuka2").value;
+  var o = document.getElementById("jumlahuangmuka3").value;
 
   var get_x = x.replace(/\./g,'');
   var get_b = b.replace(/\./g,'');
@@ -621,12 +627,16 @@ function nominal(){
   var get_l = l.replace(/\./g,'');
 
   var get_m = m.replace(/\./g,'');
+  var get_n = n.replace(/\./g,'');
+  var get_o = o.replace(/\./g,'');
 
   var currency = Number(get_x) + Number(get_b) + Number(get_c) + Number(get_d) ;
   var currency2 =  Number(get_e) + Number(get_f) + Number(get_g) + Number(get_h);
   // alert(sum_b);
   var currency3 =  Number(get_i) + Number(get_j) + Number(get_k) + Number(get_l) ;
   var negatif = Number(get_m) + 0 ;
+  var negatif2 = Number(get_n) + 0 ;
+  var negatif3 = Number(get_o) + 0 ;
 
   var hasil_jumlah1 = currency;
   var hasil_jumlah2 = currency2;
@@ -641,7 +651,11 @@ function nominal(){
     document.getElementById("ulang2").value = hasil_jumlah3 ;
     // alert(ulang);
 
-    var bilangan= ''+hasil_jumlah1+'';
+    var hasil = hasil_jumlah1-negatif;
+    var hasil2 = hasil_jumlah2-negatif2;
+    var hasil3 = hasil_jumlah3-negatif3;
+
+    var bilangan= ''+hasil+'';
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -719,7 +733,7 @@ function nominal(){
     document.getElementById("terbilang").value=kalimat;
     // alert(kalimat);
 
-    var bilangan2= ''+hasil_jumlah2+'';
+    var bilangan2= ''+hasil2+'';
   // alert(bilangan2);
     var kalimat2="";
     var angka2   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -797,7 +811,7 @@ function nominal(){
     document.getElementById("terbilang2").value=kalimat2;
     // alert(kalimat2);
 
-    var bilangan3= ''+hasil_jumlah3+'';
+    var bilangan3= ''+hasil3+'';
   // alert(bilangan3);
     var kalimat3="";
     var angka3   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -875,10 +889,9 @@ function nominal(){
     document.getElementById("terbilang3").value=kalimat3;
     // alert(kalimat3);
 
-
-    var hasil = (hasil_jumlah1+hasil_jumlah2+hasil_jumlah3)-negatif;
     document.getElementById("negatif").value = hasil ;
- 
+    document.getElementById("negatif2").value = hasil2 ; 
+    document.getElementById("negatif3").value = hasil3 ;
   var a = hasil ;
   if (a <= 100000000){
     document.getElementById("approval1").value = "Donny Hamdani";
@@ -1310,6 +1323,55 @@ var nilai = document.getElementById('nilai');
     return prefix == undefined ? jumlahuangmuka : (jumlahuangmuka ? + jumlahuangmuka : '');
   }
 
+  var jumlahuangmuka2 = document.getElementById('jumlahuangmuka2');
+  jumlahuangmuka2.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatjumlahuangmuka2() untuk mengubah angka yang di ketik menjadi format angka
+    jumlahuangmuka2.value = formatjumlahuangmuka2(this.value);
+  });
+
+  /* Fungsi formatjumlahuangmuka2 */
+  function formatjumlahuangmuka2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    jumlahuangmuka2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      jumlahuangmuka2 += separator + ribuan.join('.');
+    }
+
+    jumlahuangmuka2 = split[1] != undefined ? jumlahuangmuka2 + ',' + split[1] : jumlahuangmuka2;
+    return prefix == undefined ? jumlahuangmuka2 : (jumlahuangmuka2 ? + jumlahuangmuka2 : '');
+  }
+
+  var jumlahuangmuka3 = document.getElementById('jumlahuangmuka3');
+  jumlahuangmuka3.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatjumlahuangmuka3() untuk mengubah angka yang di ketik menjadi format angka
+    jumlahuangmuka3.value = formatjumlahuangmuka3(this.value);
+  });
+
+  /* Fungsi formatjumlahuangmuka3 */
+  function formatjumlahuangmuka3(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    jumlahuangmuka3     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      jumlahuangmuka3 += separator + ribuan.join('.');
+    }
+
+    jumlahuangmuka3 = split[1] != undefined ? jumlahuangmuka3 + ',' + split[1] : jumlahuangmuka3;
+    return prefix == undefined ? jumlahuangmuka3 : (jumlahuangmuka3 ? + jumlahuangmuka3 : '');
+  }
   // Format Separator Id Negarif (Piutang)
   var negatif = document.getElementById('negatif');
   negatif.addEventListener('mousemove', function(e){
@@ -1334,6 +1396,56 @@ var nilai = document.getElementById('nilai');
 
     negatif = split[1] != undefined ? negatif + ',' + split[1] : negatif;
     return prefix == undefined ? negatif : (negatif ? + negatif : '');
+  }
+
+  var negatif2 = document.getElementById('negatif2');
+  negatif2.addEventListener('mousemove', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnegatif2() untuk mengubah angka yang di ketik menjadi format angka
+    negatif2.value = formatnegatif2(this.value);
+  });
+
+  /* Fungsi formatnegatif2 */
+  function formatnegatif2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    negatif2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      negatif2 += separator + ribuan.join('.');
+    }
+
+    negatif2 = split[1] != undefined ? negatif2 + ',' + split[1] : negatif2;
+    return prefix == undefined ? negatif2 : (negatif2 ? + negatif2 : '');
+  }
+
+  var negatif3 = document.getElementById('negatif3');
+  negatif3.addEventListener('mousemove', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnegatif3() untuk mengubah angka yang di ketik menjadi format angka
+    negatif3.value = formatnegatif3(this.value);
+  });
+
+  /* Fungsi formatnegatif3 */
+  function formatnegatif3(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    negatif3     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      negatif3 += separator + ribuan.join('.');
+    }
+
+    negatif3 = split[1] != undefined ? negatif3 + ',' + split[1] : negatif3;
+    return prefix == undefined ? negatif3 : (negatif3 ? + negatif3 : '');
   }
 
 </script>

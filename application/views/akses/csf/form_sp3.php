@@ -401,57 +401,175 @@
                       </tbody>
                     </table>    
 
-                    <?php if ($row->status >= 4 ){ ?>
+                    <?php if ($row->status == 5 ){ ?>
                       <hr style=" border: 0.5px solid #000;">
                       <h6>
-                      <table border="1" width="50%">
+                      
+                      <table border="1" class="table table-bordered table-striped" width="50%">
+                      <thead>
+                        <tr>
+                          <th width="9%">Jenis Pajak</th>
+                          <th width="8%">Kode Pajak</th>
+                          <th width="9%">Kode MAP</th>
+                          <th width="10%">Nama</th>
+                          <th width="10%">NPWP/ID</th>
+                          <th width="8%">Alamat</th>
+                          <th width="6%">Tarif</th>
+                          <th width="3%">Fasilitas Pajak</th>
+                          <th>Special Tarif</th>
+                          <th>Gross Up</th>
+                          <th>DPP</th>
+                          <th>DPP <br>(Gross Up)</th>
+                          <th>Pajak Terutang</th>
+                          <th>Masa Pajak PPN</th>
+                          <th>Tahun Pajak</th>
+                          <th>Keterangan</th>
+                        </tr>
+                      </thead>
                       <tbody>
-                          <tr>
-                            <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
-                          </tr>
-                          <tr>
-                            <td width="20%"><center><b>Jenis Pajak </b></center></td>
-                            <td width="10%"><center><b>Tarif </b></center></td>
-                            <td width="30%"><center><b>DPP </b></center></td>
-                            <td width="20%"><center><b>Gross Up </b></center>  </td>
-                            <td width="20%"><center><b>Pajak Terhitung </b></center>  </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 21/26 <input type="text" value="<?php echo $row->PPh_Pasal_21;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif1;?> </td>
-                            <td><font size="3"><?php echo $row->dpp1;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up1;?> </td>
-                            <td><font size="3"><?php echo $row->pjt1;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 22 <input type="text" value="<?php echo $row->PPh_Pasal_22;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif2;?> </td>
-                            <td><font size="3"><?php echo $row->dpp2;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up2;?> </td>
-                            <td><font size="3"><?php echo $row->pjt2;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 23/26 <input type="text" value="<?php echo $row->PPh_Pasal_23;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif3;?> </td>
-                            <td><font size="3"><?php echo $row->dpp3;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up3;?> </td>
-                            <td><font size="3"><?php echo $row->pjt3;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPh Pasal 4(2) <input type="text" value="<?php echo $row->PPh_Pasal_4;?>" readonly></td>
-                            <td><font size="3"><?php echo $row->tarif4;?> </td>
-                            <td><font size="3"><?php echo $row->dpp4;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up4;?> </td>
-                            <td><font size="3"><?php echo $row->pjt4;?> </td>
-                          </tr>
-                          <tr>
-                            <td><font size="3">PPN WAPU/PPN Offshore</td>
-                            <td><font size="3"><?php echo $row->tarif5;?> </td>
-                            <td><font size="3"><?php echo $row->dpp5;?> </td>
-                            <td><font size="3"><?php echo $row->gross_up5;?> </td>
-                            <td><font size="3"><?php echo $row->pjt5;?> </td>
-                          </tr>                                                          
+                       <?php foreach ($process_tax as $tampil) {?>
+                        <!-- //Baris 1 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak1;?></td>
+                          <td><?php echo $tampil->kode_pajak1;?></td>
+                          <td><?php echo $tampil->kode_map1;?>
+                          </td>
+                          <td><?php echo $tampil->nama1;?></td>
+                          <td><?php echo $tampil->npwp1;?></td>
+                          <td><?php echo $tampil->alamat1;?></td>
+                          <td><?php echo $tampil->tarif1;?></td>
+                          <td><?php echo $tampil->fas_pajak1;?></td>
+                          <td><?php echo $tampil->special_tarif1;?></td>
+                          <td><?php echo $tampil->gross1;?></td>
+                          <td><?php echo $tampil->dpp1;?></td>
+                          <td><?php echo $tampil->dpp_gross1;?></td>
+                          <td><?php echo $tampil->pajak_terutang1;?></td>
+                          <td><?php echo $tampil->masa_pajak1;?></td>
+                          <td><?php echo $tampil->tahun1;?></td>
+                          <td><?php echo $tampil->keterangan1;?></td>
+                        </tr>
+                        <!-- //Baris 2 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak2;?></td>
+                          <td><?php echo $tampil->kode_pajak2;?></td>
+                          <td><?php echo $tampil->kode_map;?>
+                          </td>
+                          <td><?php echo $tampil->nama2;?></td>
+                          <td><?php echo $tampil->npwp2;?></td>
+                          <td><?php echo $tampil->alamat2;?></td>
+                          <td><?php echo $tampil->tarif2;?></td>
+                          <td><?php echo $tampil->fas_pajak2;?></td>
+                          <td><?php echo $tampil->special_tarif2;?></td>
+                          <td><?php echo $tampil->gross2;?></td>
+                          <td><?php echo $tampil->dpp2;?></td>
+                          <td><?php echo $tampil->dpp_gross2;?></td>
+                          <td><?php echo $tampil->pajak_terutang2;?></td>
+                          <td><?php echo $tampil->masa_pajak2;?></td>
+                          <td><?php echo $tampil->tahun2;?></td>
+                          <td><?php echo $tampil->keterangan2;?></td>
+                        </tr>
+                        <!-- //Baris 3 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak3;?></td>
+                          <td><?php echo $tampil->kode_pajak3;?></td>
+                          <td><?php echo $tampil->kode_map;?>
+                          </td>
+                          <td><?php echo $tampil->nama3;?></td>
+                          <td><?php echo $tampil->npwp3;?></td>
+                          <td><?php echo $tampil->alamat3;?></td>
+                          <td><?php echo $tampil->tarif3;?></td>
+                          <td><?php echo $tampil->fas_pajak3;?></td>
+                          <td><?php echo $tampil->special_tarif3;?></td>
+                          <td><?php echo $tampil->gross3;?></td>
+                          <td><?php echo $tampil->dpp3;?></td>
+                          <td><?php echo $tampil->dpp_gross3;?></td>
+                          <td><?php echo $tampil->pajak_terutang3;?></td>
+                          <td><?php echo $tampil->masa_pajak3;?></td>
+                          <td><?php echo $tampil->tahun3;?></td>
+                          <td><?php echo $tampil->keterangan3;?></td>
+                        </tr>
+                        <!-- //Baris 4 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak4;?></td>
+                          <td><?php echo $tampil->kode_pajak4;?></td>
+                          <td><?php echo $tampil->kode_map;?>
+                          </td>
+                          <td><?php echo $tampil->nama4;?></td>
+                          <td><?php echo $tampil->npwp4;?></td>
+                          <td><?php echo $tampil->alamat4;?></td>
+                          <td><?php echo $tampil->tarif4;?></td>
+                          <td><?php echo $tampil->fas_pajak4;?></td>
+                          <td><?php echo $tampil->special_tarif4;?></td>
+                          <td><?php echo $tampil->gross4;?></td>
+                          <td><?php echo $tampil->dpp4;?></td>
+                          <td><?php echo $tampil->dpp_gross4;?></td>
+                          <td><?php echo $tampil->pajak_terutang4;?></td>
+                          <td><?php echo $tampil->masa_pajak4;?></td>
+                          <td><?php echo $tampil->tahun4;?></td>
+                          <td><?php echo $tampil->keterangan4;?></td>
+                        </tr>
+                        <!-- //Baris 5 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak5;?></td>
+                          <td><?php echo $tampil->kode_pajak5;?></td>
+                          <td><?php echo $tampil->kode_map;?>
+                          </td>
+                          <td><?php echo $tampil->nama5;?></td>
+                          <td><?php echo $tampil->npwp5;?></td>
+                          <td><?php echo $tampil->alamat5;?></td>
+                          <td><?php echo $tampil->tarif5;?></td>
+                          <td><?php echo $tampil->fas_pajak5;?></td>
+                          <td><?php echo $tampil->special_tarif5;?></td>
+                          <td><?php echo $tampil->gross5;?></td>
+                          <td><?php echo $tampil->dpp5;?></td>
+                          <td><?php echo $tampil->dpp_gross5;?></td>
+                          <td><?php echo $tampil->pajak_terutang5;?></td>
+                          <td><?php echo $tampil->masa_pajak5;?></td>
+                          <td><?php echo $tampil->tahun5;?></td>
+                          <td><?php echo $tampil->keterangan5;?></td>
+                        </tr>
+                        <!-- //Baris 6 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak6;?></td>
+                          <td><?php echo $tampil->kode_pajak6;?></td>
+                          <td><?php echo $tampil->kode_map;?>
+                          </td>
+                          <td><?php echo $tampil->nama6;?></td>
+                          <td><?php echo $tampil->npwp6;?></td>
+                          <td><?php echo $tampil->alamat6;?></td>
+                          <td><?php echo $tampil->tarif6;?></td>
+                          <td><?php echo $tampil->fas_pajak6;?></td>
+                          <td><?php echo $tampil->special_tarif6;?></td>
+                          <td><?php echo $tampil->gross6;?></td>
+                          <td><?php echo $tampil->dpp6;?></td>
+                          <td><?php echo $tampil->dpp_gross6;?></td>
+                          <td><?php echo $tampil->pajak_terutang6;?></td>
+                          <td><?php echo $tampil->masa_pajak6;?></td>
+                          <td><?php echo $tampil->tahun6;?></td>
+                          <td><?php echo $tampil->keterangan6;?></td>
+                        </tr>
+                        <!-- //Baris 7 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak7;?></td>
+                          <td><?php echo $tampil->kode_pajak7;?></td>
+                          <td><?php echo $tampil->kode_map;?>
+                          </td>
+                          <td><?php echo $tampil->nama7;?></td>
+                          <td><?php echo $tampil->npwp7;?></td>
+                          <td><?php echo $tampil->alamat7;?></td>
+                          <td><?php echo $tampil->tarif7;?></td>
+                          <td><?php echo $tampil->fas_pajak7;?></td>
+                          <td><?php echo $tampil->special_tarif7;?></td>
+                          <td><?php echo $tampil->gross7;?></td>
+                          <td><?php echo $tampil->dpp7;?></td>
+                          <td><?php echo $tampil->dpp_gross7;?></td>
+                          <td><?php echo $tampil->pajak_terutang7;?></td>
+                          <td><?php echo $tampil->masa_pajak7;?></td>
+                          <td><?php echo $tampil->tahun7;?></td>
+                          <td><?php echo $tampil->keterangan7;?></td>
+                        </tr>
                       </tbody>
+                       <?php } ?>  
                       </table>
                       </h6>
                     <?php } ?>                   

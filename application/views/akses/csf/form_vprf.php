@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="prf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -236,10 +236,10 @@ td[rowspan="6"] {
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
                           <!-- <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> disabled> <i>Akumulasi > Rp. 20 Juta</i></input><br> -->
 
                           <td><font size="+1"> Bank : &nbsp;<input type="text" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
@@ -309,11 +309,9 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
+                    <a href="Dashboard/report_prf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>
 
-                    <?php if($get->status == 8){ ?>                      
-                      <a href="Dashboard/report_prf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
-                    <?php } ?>
-
+                   
                     <?php if($get->status == 6){ ?>  
                       <a href="Dashboard/form_eprf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
                       <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Accept</button>
@@ -403,6 +401,8 @@ td[rowspan="6"] {
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
+                    <a href="Dashboard/form_eprf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+
                     <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">

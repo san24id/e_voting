@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -316,10 +316,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    
-                    <?php if($get->status == 8){ ?>                      
-                    <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
-                    <?php } ?>
+                    <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>            
                     
                     <?php if($get->status == 6){ ?>
                       <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>

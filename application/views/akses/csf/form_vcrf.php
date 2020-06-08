@@ -45,7 +45,7 @@ td[rowspan="3"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >ARF Doc. No : </font></td>
-                          <td><input type="text" name="crf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" >Dir/Sub/Div :<br><i>Dir/Sub/Div </i><font></td>
@@ -296,10 +296,7 @@ td[rowspan="3"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-
-                    <?php if($get->status == 8){ ?>                      
-                    <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
-                    <?php } ?>
+                    <a href="Dashboard/report_crf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>                 
 
                     <?php if($get->status == 6){ ?>  
                       <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
@@ -390,6 +387,8 @@ td[rowspan="3"] {
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
+                    <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+
                     <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">

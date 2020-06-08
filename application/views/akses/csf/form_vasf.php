@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -59,7 +59,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>" readonly></td>
                           <td>&nbsp; </td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->apf1_doc; ?>" readonly></td>
+                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $get->apf1_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
@@ -74,9 +74,9 @@ td[rowspan="6"] {
                         <thead>
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
-                          <th colspan="2" height="50%"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
+                          <th height="40%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
+                          <th width="7%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="33%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                         </thead>
                         <tbody>                      
@@ -155,23 +155,35 @@ td[rowspan="6"] {
                         </tr>
 
                         <tr>
-                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> </td>
+                          <td colspan="3" > Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td><center>    </center></td>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="ulang2" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="ulang3" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
+                          </td>
                         </tr>
                         <tr>
                           <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> </center></td>
-                          <td><input id="jumlah" onchange="nominal()" type="text" name="cash_advance" class="form-control" value="<?php echo $get->cash_advance; ?>" readonly> </td>
+                          <td><center> </center></td>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="jumlah" onchange="nominal()" type="text" name="cash_advance" value="<?php echo $get->cash_advance; ?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="jumlah2" onchange="nominal()" type="text" name="cash_advance2" value="<?php echo $get->cash_advance2; ?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="jumlah3" onchange="nominal()" type="text" name="cash_advance3" value="<?php echo $get->cash_advance3; ?>" readonly>
+                          </td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> </center></td>
-                          <td><input id="negatif" type="text" name="piutang" class="form-control" value="<?php echo $get->piutang; ?>" readonly> </td>
+                          <td><center> </center></td>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" value="<?php echo $get->piutang; ?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="negatif2" type="text" name="piutang2" value="<?php echo $get->piutang2; ?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="negatif3" type="text" name="piutang3" value="<?php echo $get->piutang3; ?>" readonly>
+                          </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>" readonly></td>
+                          <td colspan="4"><input type="text" name="terbilang" value="<?php echo $get->terbilang;?>" readonly>
+                                          <input type="text" name="terbilang2" value="<?php echo $get->terbilang2;?>" readonly>
+                                          <input type="text" name="terbilang3" value="<?php echo $get->terbilang3;?>" readonly>
+                          </td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
@@ -322,10 +334,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    
-                    <?php if($get->status == 8){ ?>
-                      <a href="Dashboard/report_asf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-primary">Print</a>
-                    <?php } ?>  
+                    <a href="Dashboard/report_asf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>
                     
                     <?php if($get->status == 6){ ?>  
                       <a href="Dashboard/form_easf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
@@ -410,6 +419,8 @@ td[rowspan="6"] {
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
+                    <a href="Dashboard/form_easf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+
                     <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">

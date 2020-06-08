@@ -15,7 +15,7 @@ td[rowspan="6"] {
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()">
+        <form id="form" method="post" action="Dashboard/edit_pay" onsubmit="update()">
           <?php foreach ($ppayment as $get) { ?>  
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
 
@@ -46,7 +46,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="prf_doc" class="form-control" value="<?php echo $get->prf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -56,8 +56,8 @@ td[rowspan="6"] {
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat; ?>"></td>
                         </tr>
                         <tr>
-                          <td> </td>
-                          <td> </td>
+                          <td><font size="+1">PR Doc. No : </font></td> 
+                          <td><input type="text" name="pr_doc" class="form-control" value="<?php echo $get->pr_doc; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>"></td>
@@ -78,25 +78,87 @@ td[rowspan="6"] {
                         </thead>
                         <tbody>                      
                         <tr>
-                          <td><center> 1 </center></td>
-                          <td><textarea type="text" class="form-control" name="description" required><?php echo $get->description;?></textarea> </td>                  
-                          <td><select id="Select" onchange="myFunction()" name="currency">
-                                <option>--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td>
-                          <td><textarea id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" required><?php echo $get->jumlah;?></textarea> </td>
+                          <td rowspan="3"><center> 1 </center></td>
+                          <td colspan="2"><textarea type="text" class="form-control" name="description" ><?php echo $get->description;?></textarea></td>                  
+                          <td><center><?php echo $get->currency;?></center> </td>
+                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>" ></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><input type="text" class="form-control" name="description2" value="<?php echo $get->description2;?>"></td>
+                          <td><center><?php echo $get->currency1;?></center> </td>
+                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>" ></td> 
+                        </tr>
+                        <tr>
+                          <td colspan="2"><input type="text" class="form-control" name="description3" value="<?php echo $get->description3;?>"></td>
+                          <td><center><?php echo $get->currency2;?> </center> </td>
+                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>" ></td> 
+                        </tr>
+                        <tr>
+                          <td><center>2</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description4" value="<?php echo $get->description4;?>"></td>
+                          <td><center>  <?php echo $get->currency3;?></center> </td>
+                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>" > </td>
+                        </tr>
+                        <tr>
+                          <td><center>3</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description5" value="<?php echo $get->description5;?>"></td>
+                          <td><center>  <?php echo $get->currency4;?></center> </td>
+                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>" > </td> 
+                        </tr>
+                        <tr>
+                          <td><center>4</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description6" value="<?php echo $get->description6;?>" ></td>
+                          <td><center>  <?php echo $get->currency5;?></center></td>
+                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>" ></td> 
+                        </tr>
+                        
+                        <tr>
+                          <td><center>5</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description7" value="<?php echo $get->description7;?>"></td>
+                          <td><center>  <?php echo $get->currency6;?></center></td>
+                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>" >  </td> 
+                        </tr>
+                        <tr>
+                          <td><center>6</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description8" value="<?php echo $get->description8;?>"></td>
+                          <td><center>  <?php echo $get->currency7;?></center></td>
+                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>"  ></td> 
+                        </tr>
+                        <tr>
+                          <td><center>7</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description9" value="<?php echo $get->description9;?>" ></td>
+                          <td><center>  <?php echo $get->currency8;?></center></td>
+
+                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>" ></td> 
+                        </tr>
+                        <tr>
+                          <td><center>8</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description10" value="<?php echo $get->description10;?>"></td>
+                          <td><center>  <?php echo $get->currency9;?></center></td>
+
+                          <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>" ></td> 
+                        </tr>
+                        <tr>
+                          <td><center>9</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description11" value="<?php echo $get->description11;?>"></td>
+                          <td><center>  <?php echo $get->currency10;?></center></td>
+                          <td><input id="nilai10" onchange="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>" ></td> 
+                        </tr>
+                        <tr>
+                          <td><center>10</center></td>
+                          <td colspan="2"><input type="text" class="form-control" name="description12" value="<?php echo $get->description12;?>"></td>
+                          <td><center>  <?php echo $get->currency11;?></center></td>
+
+                          <td><input id="nilai11" onchange="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>" ></td> 
                         </tr>
                         <tr>
                           <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><p id="demo">  </p></center></td>
-                          <td><center><p id="ulang">  </p> </td>
+                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" > </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="3"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>"></td>
+                          <td colspan="3"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>" ></td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
@@ -111,14 +173,14 @@ td[rowspan="6"] {
                       <tbody>
                       <tr> 
                         <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" required><?php echo $get->catatan;?></textarea></td>
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" readonly><?php echo $get->catatan;?></textarea></td>
                       </tr>
                       <tr>
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->verified_date));?>"></td>     
+                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->verified_date));?>" readonly></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -128,16 +190,16 @@ td[rowspan="6"] {
                     </table>  
                     <table border="1" style="font-family: calibri;" width="50%">  
                       <tbody>
-                      <tr>
+                        <tr>
                           <td>Nama /<i>Name : </i></td>
-                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $get->penanggung_jawab;?>" required></td> 
+                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $get->penanggung_jawab;?>" readonly></td> 
                         </tr>
                         <tr>
                           <td>Jabatan /<i>Title : </i></td>
-                          <td><input type="text" class="form-control" name="jabatan" value="<?php echo $get->jabatan;?>" required></td> 
+                          <td><input type="text" class="form-control" name="jabatan" value="<?php echo $get->jabatan;?>" readonly></td> 
                         </tr>
                       </tbody>  
-                    </table>    
+                    </table>      
 
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
@@ -151,36 +213,38 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>"> </td>
+                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>"> </td>
+                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>"> </td>
+                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>" readonly> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>"> </td>
+                          <td><input type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>"> </td>
+                          <td><input type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>"> </td>
-                        </tr>   
+                          <td><input type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
+                        </tr>  
                       </tbody>
                     </table>
 
-                    <!---TREASURY--->
+                    <!----TREASURY---->
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="" value="Tunai" disabled> Tunai</input></font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="" value="Transfer" disabled> Transfer Ke :</input> </center></td>
-                          <td><font size="+1"> Bank : &nbsp;<input type="text" name="" placeholder="Bank" readonly> </input></font></td> 
-                          <td><font size="+1"> No. Rek : &nbsp;<input type="text" name="" placeholder="No. Rek" readonly> </input></font></td>                        
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
+                          <!-- <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> disabled> <i>Akumulasi > Rp. 20 Juta</i></input><br> -->
+
+                          <td><font size="+1"> Bank : &nbsp;<input type="text" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
+                          <td><font size="+1"> No. Rek : &nbsp;<input type="text" name="no_rek" value="<?php echo $get->no_rek; ?>" readonly> </input></font></td>                        
                         </tr>
                       </tbody>
                     </table>
@@ -227,7 +291,7 @@ td[rowspan="6"] {
                           <td colspan="2">Diterima Oleh/ : <br> <i>Received by :</i></td>
                         </tr>
                         <tr>
-                          <td ">Nama/ <i>Name</i> </td>
+                          <td>Nama/ <i>Name</i> </td>
                         <td> </td>		
                         </tr>
                         <tr>
@@ -246,18 +310,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    <?php if($get->status == 4){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#tax<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
-                    <?php if($get->status == 5){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#review<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
-                    <?php if($get->status == 6){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#verif<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
-                    <?php if($get->status == 7){ ?>  
-                    <button type="submit" data-toggle="modal" data-target="#sendapv<?php echo $get->id; ?>" class="btn btn-success">Submit</button>   
-                    <?php } ?>
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </div>
                 </div>                                                 
             </div>
