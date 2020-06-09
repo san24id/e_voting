@@ -24,7 +24,7 @@ class Tri_model extends CI_Model{
 
     public function getListwfp() {
 
-        $sql = "SELECT * FROM t_payment_l WHERE status='9'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status='9'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -32,7 +32,7 @@ class Tri_model extends CI_Model{
 
     public function getpaidList() {
 
-        $sql = "SELECT * FROM t_payment_l WHERE status='10'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status='10'";
                 
         $query = $this->db->query($sql)->result();
         return $query;

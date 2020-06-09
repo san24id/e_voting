@@ -92,15 +92,15 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
-                          <td><input type="text" name="pr_doc" class="form-control" value="PR - /PII/<?php echo date('m/y');?>"></td>
+                          <td><input type="text" name="pr_doc" class="form-control" value="PR - ---/PII/--/--"></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
                         </tr>
                         <tr>
                           <td>Status <i>Outstanding Advance</i> Pemohon<br>
-                            <input type="radio" name="label1" value="Akumulasi > Rp. 20 Juta"> <i>Akumulasi > Rp. 20 Juta</i></input><br>
-                            <input type="radio" name="label1" value="Outstanding Advance > 3 Transaksi"> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
+                            <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta"> <i>Akumulasi > Rp. 20 Juta</i></input><br>
+                            <input type="checkbox" name="label2" value="Outstanding Advance > 3 Transaksi"> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
                           </td>
                           <td> </td>
                           <td> &nbsp;</td>
@@ -281,15 +281,25 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses[]"></td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses"></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
                           <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang"></td>
                         </tr>
+                        <?php 
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query[0]->nama);exit; 
+                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          }else{
+                            $buka = $row->penerima;
+                          }
+                        ?>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima; ?>"></td>
+                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $buka; ?>"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -387,7 +397,7 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
                           <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
-                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" name="label2" placeholder="Remarks"></textarea></td>                          
+                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" placeholder="Remarks"></textarea></td>                          
                         </tr>
                         <tr>
                           <td colspan="4"><br><br><br><br> </td>
@@ -770,7 +780,13 @@ function nominal(){
     }
 
     nilai1 = split[1] != undefined ? nilai1 + ',' + split[1] : nilai1;
-    return prefix == undefined ? nilai1 : (nilai1 ? + nilai1 : '');
+    // var minus = nilai1.split('-');
+
+    // if (minus[0]){
+      return prefix == undefined ? nilai1 : (nilai1 ? + nilai1 : '');
+    // }else{
+      // return prefix == undefined ? '('+nilai1+')' : (nilai1 ? + nilai1 : '');
+    // }
   }
 
 

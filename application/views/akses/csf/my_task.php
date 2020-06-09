@@ -1,6 +1,8 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    <?php 
+      if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>
     <section class="content-header">
       <h1>
         INCOMING DOCUMENT
@@ -94,7 +96,8 @@
 
       <!-- /.row -->
     </section>
-
+    <?php } ?>
+    
     <section class="content-header">
       <h1>
         Waiting For APF Processing
@@ -115,15 +118,12 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Status</th>
+                  <th>CSF</th>
                   <th>SP3 No</th>
-                  <th>APF No</th>
-                  <th>APF Created Date</th>
                   <th>Jenis Pembayaran</th>
+                  <th>SP3 Submitted Date</th>
                   <th>Description</th>
-                  <th>Divisi Pemohon</th>
-                  <th>Currency</th>
-                  <th>Jumlah</th>
+                  <th>Pemohon</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -131,6 +131,115 @@
                   <?php 
                     $i = 1;
                     foreach ($mytask1 as $row){
+                      $test11 = $row->dsc;                        
+                      $test22 = explode(";", $test11);
+                      $test33 = count($test22);                        
+                      ?>  
+                  <tr>
+                  <td><?php echo $i++; ?></td>
+                  <td><?php 
+                          // if($row->status == 2){
+                          //   echo "Waiting for processing/ Submitted by users";
+                          // }else 
+                          if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/tax1.png'>";
+                          }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/review1.png'>";
+                          }else if($row->status == 7){
+                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/yellow.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                          }
+                        ?>
+                  </td>                        
+                  <td><?php echo $row->nomor_surat; ?> </td>
+                  <td><?php                     
+                        for($b=0; $b<$test33; $b++){
+                          if($test22[$b]){
+                            echo $test22[$b]."<br>";
+                          }
+                        }  ?> 
+                  </td>
+                  <td><?php echo $row->tanggal;?></td>
+                  <td><?php echo $row->label1; ?></td>
+                  <td><?php echo $row->display_name; ?></td>
+                  <td>
+                    <?php if ($row->status <= 5) { ?>
+                    <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                    <?php } ?>
+                    <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>   
+                      <?php if ($row->jenis_pembayaran == 1) { ?>   
+                        <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 2) { ?> 
+                        <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 3) { ?> 
+                        <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 4) { ?> 
+                        <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                      <?php } ?>
+                    <?php } ?>  
+                  </td>      
+                  </tr>
+                    <?php } ?>      
+              </tbody>
+              </table>
+            </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>  
+
+    <?php 
+      if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>                    
+    <section class="content-header">
+      <h1>
+        APF READY TO PRINT
+      </h1>
+    </section>
+
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box -->
+
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>NO.</th>
+                    <th>Status</th>
+                    <th>SP3 No</th>
+                    <th>APF No</th>
+                    <th>APF Created Date</th>
+                    <th>Jenis Pembayaran</th>
+                    <th>Description</th>
+                    <th>Divisi Pemohon</th>
+                    <th>Currency</th>
+                    <th>Jumlah</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                    $i = 1;
+                    foreach ($mytask2 as $row){
                       $test11 = $row->apf;                        
                       $test22 = explode(";", $test11);
                       $test33 = count($test22);                        
@@ -173,18 +282,21 @@
                   <td><?php echo $row->currency; ?></td>
                   <td><?php echo $row->jumlah; ?> </td>
                   <td>
-                    <?php if ($row->type == 1) { ?>   
-                      <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                    <?php } ?>
-                    <?php if ($row->type == 2) { ?> 
-                      <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                    <?php } ?>
-                    <?php if ($row->type == 3) { ?> 
-                      <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                    <?php } ?>
-                    <?php if ($row->type == 4) { ?> 
-                      <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                    <?php } ?>
+                    
+                    <?php if ($row->status == 8) { ?>   
+                      <?php if ($row->jenis_pembayaran == 1) { ?>   
+                        <a href="Dashboard/report_prf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>            
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 2) { ?> 
+                        <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>            
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 3) { ?> 
+                        <a href="Dashboard/report_asf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>                                
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 4) { ?> 
+                        <a href="Dashboard/report_crf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>                                
+                      <?php } ?>
+                    <?php } ?>  
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -197,8 +309,11 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->
-      </div>  
+      </div>
+    <?php } ?>
+    </section>
 
+    <section class="content">
       <div class="row">
         <div class="col-xs-12 col-md-4">
           <!-- /.box -->
@@ -310,6 +425,7 @@
 
 <script>
 $(function () {
+    $("#example").DataTable();
     $("#example1").DataTable();
     $("#example2").DataTable();
     $('#example3').DataTable({

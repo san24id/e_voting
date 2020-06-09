@@ -20,34 +20,67 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
+                  <th>Status</th>
+                  <th>Type</th>
+                  <th>Submitted Date</th>
+                  <th>APF No</th>
                   <th>Description</th>
-                  <th>Nama Pemohon</th>
-                  <th>Reason</th>
+                  <th>Pemohon</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  <?php 
-                    $i = 1;
-                    // foreach ($rejected as $row){
-                  ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->rejected_date; ?></td>
-                  <td><?php echo $row->rejected_by; ?>  </td>
-                  <td><?php echo $row->division_id; ?> </td>
-                  <td><?php echo $row->label1;?> </td>
-                  <td><?php echo $row->display_name;?> </td>
-                  <td><?php echo $row->note;?> </td>
-                  <td>
-                    <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
-                  </td>      
+                    <?php 
+                      $i = 1;
+                      foreach ($tot_approve as $row){
+                
+                      $test11 = $row->apf;                        
+                        $test22 = explode(";", $test11);
+                        $test33 = count($test22);                        
+                    ?>                           
+                
+                    <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td> <?php 
+                          if($row->status == 8){
+                              echo "<img src='assets/dashboard/images/legend/blue.png'>";  
+                          }else if($row->status == 3){
+                              echo "<img src='assets/dashboard/images/legend/reject.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/orange.png'>";
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>";  
+                          }
+                        ?>
+                    </td>
+                    <td><?php                     
+                        for($b=0; $b<$test33; $b++){
+                          if($test22[$b]){
+                            echo $test22[$b]."<br>";
+                          }
+                        }  ?>
+                    </td>                  
+                    <td><?php echo $row->tanggal; ?></td>
+                    <td> <?php echo $row->apf_doc; ?> </td>
+                    <td><?php echo $row->description; ?></td>
+                    <td><?php echo $row->division_id; ?></td>
+                    <td>
+                        <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
+                        <?php if ($row->type == 1) { ?>   
+                          <a href="approval/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->type == 2) { ?> 
+                          <a href="approval/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->type == 3) { ?> 
+                          <a href="approval/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->type == 4) { ?> 
+                          <a href="approval/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                    </td>     
                   </tr>
-                       
+                    <?php } ?>
               </tbody>
               </table>
             </div>

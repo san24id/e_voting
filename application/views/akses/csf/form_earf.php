@@ -180,14 +180,14 @@ td[rowspan="6"] {
                       <tbody>
                       <tr> 
                         <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" readonly><?php echo $get->catatan;?></textarea></td>
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" ><?php echo $get->catatan;?></textarea></td>
                       </tr>
                       <tr>
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->verified_date));?>" readonly></td>     
+                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->verified_date));?>" ></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>

@@ -993,7 +993,7 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
 		$data['mytask1'] = $this->Dashboard_model->getmyTask1();
-
+		$data['mytask2'] = $this->Dashboard_model->getmyTask2();
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/my_task', $data);
 	}
@@ -1032,6 +1032,7 @@ class Dashboard extends CI_Controller {
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['bank'] =$this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 
 		$this->load->view('akses/csf/header_csf', $data);	
         $this->load->view('akses/csf/form_pengajuan', $data);
@@ -1190,6 +1191,7 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 
 		$this->load->view('akses/csf/header_csf', $data);	
        	$this->load->view('akses/csf/form_finished', $data);
@@ -1223,10 +1225,16 @@ class Dashboard extends CI_Controller {
 
 		// echo $type;
 		// var_dump(count($_POST['type']));exit;
+		if ($_POST['label1'] && $_POST['label2']){
+			$status = 3;
+		}else{
+			$status = 6;
+		}
+
 		$add = array(
 			
 			'id_payment' => $_POST['id_payment'],
-			'status' => 6,
+			'status' => $status,
 			'display_name' => $_POST['display_name'],
 			'type' => $type,
 			'tanggal' => $_POST['tanggal'],
@@ -1238,6 +1246,7 @@ class Dashboard extends CI_Controller {
 			'tanggal_selesai' => $_POST['tanggal_selesai'],
 			'division_id' => $_POST['division_id'],
 			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
 			'cash_advance' => $_POST['cash_advance'],
 			'piutang' => $_POST['piutang'],
 			'total_expenses' => $_POST['total_expenses'],

@@ -126,7 +126,6 @@
                     <th>APF No</th>
                     <th>Description</th>
                     <th>Pemohon</th>
-                    <th>Detail</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -144,10 +143,12 @@
                     <td> <?php 
                           if($row->status == 8){
                               echo "<img src='assets/dashboard/images/legend/blue.png'>";  
-                          }else if($row->status >= 3){
+                          }else if($row->status == 3){
                              echo "<img src='assets/dashboard/images/legend/reject.png'>";
-                          }else if($row->status >= 9){
+                          }else if($row->status == 9){
                             echo "<img src='assets/dashboard/images/legend/orange.png'>";
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>";  
                          }
                         ?>
                     </td>
@@ -159,7 +160,7 @@
                         }  ?>
                     </td>                  
                     <td><?php echo $row->tanggal; ?></td>
-                    <td> XXX </td>
+                    <td> <?php echo $row->apf_doc; ?> </td>
                     <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->division_id; ?></td>
                     <td>
@@ -177,11 +178,6 @@
                           <a href="approval/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>
                     </td>
-                    <td>
-                        <?php if ($row->status == 4){ ?>  
-                        <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_pay; ?>" class="btn btn-success">Approve</button>   
-                        <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_pay; ?>" class="btn btn-danger">Reject</button> 
-                    </td>                          
                     </tr>                    
                     <!--.Modal-->
                     <div class="modal fade" id="approve<?php echo $row->id_pay; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -234,7 +230,7 @@
                       </div>
                     </div>
                     </div>    
-                <?php }} ?>            
+                <?php } ?>            
                 </tbody>
                 </table>
                 </div>

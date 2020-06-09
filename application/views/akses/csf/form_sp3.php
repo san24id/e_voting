@@ -14,7 +14,12 @@
       .modal-footer * {
         visibility: hidden;
       }
+      .modal-admin {
+      /* new custom width */
+      width: 75%;
+      }
     }
+    
 </style>   
   
       <!-- Content Wrapper. Contains page content -->
@@ -212,10 +217,20 @@
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
+                        <?php 
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query[0]->nama);exit; 
+                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          }else{
+                            $buka = $row->penerima;
+                          }
+                        ?>
                       <tr>
                         <td width="36%">Nama</td>
                         <td> : </td>
-                        <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $row->penerima;?>" readonly></td>
+                        <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $buka;?>" readonly></td>
                       </tr>
                       <tr>  
                         <td>Kode Vendor</td>
@@ -675,7 +690,7 @@
 <!----.Modal -->
 <!----.Accept -->
 <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-xl" role="document">
    <div class="modal-content">                                        
     <div class="modal-body">
     <form id="accepted" method="post" action="dashboard/accept">
@@ -693,7 +708,7 @@
 
 <!----.Reject -->
 <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
 
       <div class="modal-body">
@@ -716,7 +731,7 @@
 
 <!---.Processing-->          
 <div class="modal fade" id="processing<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">                                        
       <div class="modal-body">
       <form id="processed" method="post" action="dashboard/processing">
@@ -743,7 +758,7 @@
 
 <!---.Tax-->          
 <div class="modal fade" id="tax<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">                                        
       <div class="modal-body">
       <form id="processed" method="post" action="dashboard/tax">

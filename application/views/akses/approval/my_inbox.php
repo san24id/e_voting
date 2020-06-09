@@ -101,7 +101,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($reject as $row){
+                    foreach ($rejectfinance as $row){
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
@@ -109,12 +109,22 @@
                   <td><?php echo $row->rejected_by; ?>  </td>
                   <td><?php echo $row->division_id; ?> </td>
                   <td><?php echo $row->nomor_surat; ?> </td>
-                  <td> XXX </td>
-                  <td><?php echo $row->label1;?> </td>
+                  <td><?php echo $row->apf_doc;?> </td>
+                  <td><?php echo $row->description; ?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>
-                    <a href="Approval/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                    <?php if ($row->type == 1) { ?>   
+                      <a href="approval/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                    <?php } ?>
+                    <?php if ($row->type == 2) { ?> 
+                      <a href="approval/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                    <?php } ?>
+                    <?php if ($row->type == 3) { ?> 
+                      <a href="approval/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <?php } ?>
+                    <?php if ($row->type == 4) { ?> 
+                      <a href="approval/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <?php } ?>                    
                   </td>      
                   </tr>
                     <?php } ?>      

@@ -291,7 +291,7 @@ class Dashboard_model extends CI_Model{
     function getmyTask() {
         $usr= $this->session->userdata("username");
 
-        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr'";
+        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status = '2' ";
         // var_dump($sql);exit;
 
         $query = $this->db->query($sql)->result();
@@ -304,7 +304,20 @@ class Dashboard_model extends CI_Model{
 
         // $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('5','6','7')";
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE handled_by='$usr' ";
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr' AND status in ('4','5','6','7')";
+        // var_dump($sql);exit;
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+
+    }
+
+    function getmyTask2() {
+        $usr= $this->session->userdata("username");
+
+        // $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('5','6','7')";
+
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status = '8' ";
         // var_dump($sql);exit;
 
         $query = $this->db->query($sql)->result();
@@ -363,7 +376,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function getDataVendor(){
-        $sql = "SELECT nama, npwp FROM m_honorarium_konsultan";
+        $sql = "SELECT * FROM m_honorarium_konsultan";
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;
         return $query;
@@ -483,14 +496,14 @@ class Dashboard_model extends CI_Model{
 
     function addpay($add){
         $sql = "INSERT INTO `t_payment_l` (id_payment, display_name, type, status, tanggal, pr_doc, apf_doc, apf1_doc, nomor_surat, kode_proyek, division_id, tanggal_selesai, 
-                label1, description, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11,
+                label1, label2, description, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11,
                 description12, currency, currency1, currency2, currency3, currency4, currency5, currency6, currency7, currency8, currency9, currency10, currency11, jumlah, jumlah1, 
                 jumlah2, jumlah3, jumlah4, jumlah5, jumlah6, jumlah7, jumlah8, jumlah9, jumlah10, jumlah11, jumlah12, terbilang, terbilang2, terbilang3, dibayar_kepada, verified_date, penanggung_jawab,
                 jabatan, persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, total_expenses2, total_expenses3, cash_advance, 
                 cash_advance2, cash_advance3, piutang, piutang2, piutang3, metode_pembayaran, bank, no_rek, handled_by ) 
 
         VALUES ('".$add['id_payment']."','".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['pr_doc']."','".$add['apf_doc']."','".$add['apf1_doc']."',
-                '".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."','".$add['description']."','".$add['description2']."',
+                '".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."','".$add['label2']."','".$add['description']."','".$add['description2']."',
                 '".$add['description3']."','".$add['description4']."','".$add['description5']."','".$add['description6']."','".$add['description7']."','".$add['description8']."','".$add['description9']."',
                 '".$add['description10']."','".$add['description11']."','".$add['description12']."','".$add['currency']."','".$add['currency1']."','".$add['currency2']."','".$add['currency3']."','".$add['currency4']."',
                 '".$add['currency5']."','".$add['currency6']."','".$add['currency7']."','".$add['currency8']."','".$add['currency9']."','".$add['currency10']."','".$add['currency11']."','".$add['jumlah']."',
@@ -501,13 +514,13 @@ class Dashboard_model extends CI_Model{
                 '".$add['metode_pembayaran']."','".$add['bank']."','".$add['no_rek']."','".$add['handled_by']."')";
         
         $query = $this->db->query($sql);
-
+        // var_dump($sql);exit;
         return $query;
     }
 
     function edit_pay($upd){
         $sql = "UPDATE `t_payment_l` SET `display_name`='".$upd['display_name']."',`tanggal`='".$upd['tanggal']."',`pr_doc`='".$upd['pr_doc']."',`apf_doc`='".$upd['apf_doc']."',`apf1_doc`='".$upd['apf1_doc']."',
-                `nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`tanggal_selesai`='".$upd['tanggal_selesai']."',`division_id`='".$upd['division_id']."',`label1`='".$upd['label1']."',`cash_advance`='".$upd['cash_advance']."',
+                `nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`tanggal_selesai`='".$upd['tanggal_selesai']."',`division_id`='".$upd['division_id']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`cash_advance`='".$upd['cash_advance']."',
                 `piutang`='".$upd['piutang']."',`total_expenses`='".$upd['total_expenses']."',`total_expenses2`='".$upd['total_expenses2']."',`total_expenses3`='".$upd['total_expenses3']."',`description`='".$upd['description']."',`description2`='".$upd['description2']."',
                 `description3`='".$upd['description3']."',`description4`='".$upd['description4']."',`description5`='".$upd['description5']."',`description6`='".$upd['description6']."',`description7`='".$upd['description7']."',`description8`='".$upd['description8']."',
                 `description9`='".$upd['description9']."',`description10`='".$upd['description10']."',`description11`='".$upd['description11']."',`description12`='".$upd['description12']."',`currency`='".$upd['currency']."',`currency1`='".$upd['currency1']."',

@@ -172,12 +172,18 @@
                       <tr>
                         <td width="33%">Nama</td>
                         <td align="right"><b>:</b></td>
-                        <td colspan="4"><input type="text" class="form-control" name="penerima" placeholder="Enter Text" required></td>
+                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                                            <option value="">--Choose--</option>
+                                            <?php foreach ($data_vendor as $nama){?> 
+                                              <option value="<?php echo $nama->npwp;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->npwp;?></option>
+                                            <?php } ?>
+                                        </select>
+                          </td>
                       </tr>
                       <tr>  
                         <td>Kode Vendor</td>
                         <td align="right"><b>:</b></td>
-                        <td><input type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
                         <td>Bank</td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
@@ -383,7 +389,8 @@
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>  
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> 
 
 <script>
 
@@ -404,6 +411,12 @@ function penjumlahan(){
   // }
 }
 
+function fung(){
+  // alert();  
+  var data = document.getElementById("penerima").value;
+  
+  document.getElementById("kode_vendor").value = data;
+}
 
 function tambah() {
   alert("Data Successfully to Save!");
@@ -661,8 +674,15 @@ function showInput() {
         $('#textInput').prop( "disabled", false );
       }
     });
-
   });
+
+  // $(document).ready(function() { 
+  //   $('#penerima').change(function() {
+  //         $('#kode_vendor').val() = $(this).val());
+  //     alert(kode_vendor);
+  //   });
+
+  // });
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

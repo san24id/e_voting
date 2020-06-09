@@ -1,5 +1,5 @@
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <!-- <section class="content-header">
           <h1>
@@ -77,13 +77,9 @@
                       <tr>
                         <td><b>Objek Pajak</b></td>
                         <td><input id="ya" onclick="showed()" type="checkbox" name="objek_pajak[]" value="1"> Ya </td>
-                        <td> <input id="tidak" onclick="showed()" type="checkbox" name="objek_pajak[]" value="0"> Tidak</input> </td>
-                      </tr> 
-                      <tr> 
-                        <td> </td>
-                        <td> </td>
-                        <td id="internal"><input  type="checkbox" name="objek_pajak[]" value="2" >Internal</input> </td>
-                        <td id="t_sett"><input  type="checkbox" name="objek_pajak[]" value="3" >Tax-Settlement</input> </td>
+                        <td> <input id="tidak" onclick="showed()" type="checkbox" name="objek_pajak[]" value=0"> Tidak</input> </td>
+                        <td><input type="checkbox" name="objek_pajak[]" value="2" > Internal</input> </td>
+                        <td><input type="checkbox" name="objek_pajak[]" value="3" > Tax-Settlement</input> </td>
                       </tr>                        
                     </table>
                     
@@ -102,8 +98,8 @@
                           <th width="9%">Kode MAP</th>
                           <th width="10%">Nama</th>
                           <th width="10%">NPWP/ID</th>
-                          <th width="8%">Alamat</th>
-                          <th width="6%">Tarif</th>
+                          <th width="10%">Alamat</th>
+                          <th>Tarif</th>
                           <th width="3%">Fasilitas Pajak</th>
                           <th>Special Tarif</th>
                           <th>Gross Up</th>
@@ -111,392 +107,49 @@
                           <th>DPP <br>(Gross Up)</th>
                           <th>Pajak Terutang</th>
                           <th>Masa Pajak PPN</th>
-                          <th>Tahun Pajak</th>
                           <th>Keterangan</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <!-- //Baris 1 -->
                         <tr>
-                          <td><select id="jenis_pajak1" name="jenis_pajak1" class="form-control">
+                          <td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control">
                                 <option value="">Choose</option>
                                 <?php foreach ($jenispajak as $get) {?>
                                   <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
                                 <?php } ?>
                             </select>
                           </td>
-                          <td><select id="kode_pajak1" name="kode_pajak1" class="form-control">
+                          <td><select id="kode_pajak" name="kode_pajak[]" class="form-control">
                                 <option value="">Choose</option>
                                 <?php foreach ($kodePajak as $kode) {?>
                                   <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
                                 <?php } ?>
                             </select>
                           </td>
-                          <td><select id="kode_map1" name="kode_map1" class="form-control">
+                          <td><select id="dropdown2" name="kode_map[]" class="form-control">
                                 <option value="">Choose</option>
                                 <?php foreach ($kodeMap as $map) {?>
                                   <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
                                 <?php } ?>
                             </select>
                           </td>
-                          <td><textarea type="text" class="form-control" name="nama1"><?php echo $row->penerima;?></textarea></td>
-                          <td><select class="form-control" name="npwp1">
-                              <option value="">Choose</option>
-                                <?php foreach ($vendor as $v) { ?>
-                                  <option value="<?php echo $v->npwp; ?>"><?php echo $v->npwp; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td>
-                          <td><textarea type="text" class="form-control" name="alamat1" placeholder="Enter Text" required></textarea></td>
-                          <td><select id="tarif1" class="form-control" name="tarif1" onchange="penjumlahan1()" type="text">
-                                 <option value="">Choose</option>
-                                <?php foreach ($persen as $tarif) { ?>
-                                  <option value="<?php echo $tarif->tarif; ?>"><?php echo $tarif->tarif; ?></option>
-                                <?php } ?> 
-                              </select>  
-                          </td>
-                          <td><input id="fas_pajak1" onchange="showInput()" type="checkbox" name="fas_pajak1" value="Ya"></td>
-                          <td><input id="special_tarif1" onchange="showInput()" type="text" class="form-control" name="special_tarif1" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross1" value="Ya"></td>
-                          <td><input id="dpp1" onchange="penjumlahan1()" type="text" class="form-control" name="dpp1" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross1" placeholder="Enter Text" ></td>
-                          <td><input id="hasil1" type="text" class="form-control" name="pajak_terutang1" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak1" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun1" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan1" placeholder="Enter Text" required></textarea></td>
-                        </tr>
-                        <!-- //Baris 2 -->
-                        <tr>
-                          <td><select id="jenis_pajak2" name="jenis_pajak2" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak2" name="kode_pajak2" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_map2" name="kode_map2" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select class="form-control" name="nama2">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->nama; ?>"><?php echo $kode->nama; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><select class="form-control" name="npwp2">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->npwp; ?>"><?php echo $kode->npwp; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><textarea type="text" class="form-control" name="alamat2" placeholder="Enter Text" required></textarea></td>
-                          <td><select id="tarif2" class="form-control" name="tarif2" onchange="penjumlahan2()" type="text">
-                              <option value="">Choose</option>
-                                <?php foreach ($persen as $lalal) { ?>
-                                  <option value="<?php echo $lalal->tarif; ?>"><?php echo $lalal->tarif; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td>    
-                          <td><input type="checkbox" name="fas_pajak2" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif2" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross2" value="Ya"></td>
-                          <td><input id="dpp2" onchange="penjumlahan2()" type="text" class="form-control" name="dpp2" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross2" placeholder="Enter Text" ></td>
-                          <td><input id="hasil2" type="text" class="form-control" name="pajak_terutang2" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak2" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun2" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan2" placeholder="Enter Text" required></textarea></td>
-                        </tr>
-                        <!-- //Baris 3 -->
-                        <tr>
-                          <td><select id="jenis_pajak3" name="jenis_pajak3" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak3" name="kode_pajak3" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_map3" name="kode_map3" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select class="form-control" name="nama3">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->nama; ?>"><?php echo $kode->nama; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><select class="form-control" name="npwp3">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->npwp; ?>"><?php echo $kode->npwp; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><textarea type="text" class="form-control" name="alamat3" placeholder="Enter Text" required></textarea></td>
-                          <td><select id="tarif3" class="form-control" name="tarif3" onchange="penjumlahan3()" type="text">
-                                <option value="">Choose</option>
-                                <?php foreach ($persen as $lalal) { ?>
-                                  <option value="<?php echo $lalal->tarif; ?>"><?php echo $lalal->tarif; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td> 
-                          <td><input type="checkbox" name="fas_pajak3" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif3" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross3" value="Ya"></td>
-                          <td><input id="dpp3" onchange="penjumlahan3()" type="text" class="form-control" name="dpp3" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross3" placeholder="Enter Text" ></td>
-                          <td><input id="hasil3" type="text" class="form-control" name="pajak_terutang3" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak3" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun3" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan3" placeholder="Enter Text" required></textarea></td>
-                        </tr>
-                        <!-- //Baris 4 -->
-                        <tr>
-                          <td><select id="jenis_pajak4" name="jenis_pajak4" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak4" name="kode_pajak4" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_map4" name="kode_map4" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select class="form-control" name="nama4">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->nama; ?>"><?php echo $kode->nama; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><select class="form-control" name="npwp4">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->npwp; ?>"><?php echo $kode->npwp; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><textarea type="text" class="form-control" name="alamat4" placeholder="Enter Text" required></textarea></td>
-                          <td><select id="tarif4" class="form-control" name="tarif4" onchange="penjumlahan4()" type="text">
-                                <option value="">Choose</option>
-                                <?php foreach ($persen as $lalal) { ?>
-                                  <option value="<?php echo $lalal->tarif; ?>"><?php echo $lalal->tarif; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td> 
-                          <td><input type="checkbox" name="fas_pajak4" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif4" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross4" value="Ya"></td>
-                          <td><input id="dpp4" onchange="penjumlahan4()" type="text" class="form-control" name="dpp4" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross4" placeholder="Enter Text" ></td>
-                          <td><input id="hasil4" type="text" class="form-control" name="pajak_terutang4" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak4" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun4" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan4" placeholder="Enter Text" required></textarea></td>
-                        </tr>
-                        <!-- //Baris 5 -->
-                        <tr>
-                          <td><select id="jenis_pajak5" name="jenis_pajak5" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak5" name="kode_pajak5" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_map5" name="kode_map5" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select class="form-control" name="nama5">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->nama; ?>"><?php echo $kode->nama; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><select class="form-control" name="npwp5">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->npwp; ?>"><?php echo $kode->npwp; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><textarea type="text" class="form-control" name="alamat5" placeholder="Enter Text" required></textarea></td>
-                          <td><select id="tarif5" class="form-control" name="tarif5" onchange="penjumlahan5()" type="text">
-                                <option value="">Choose</option>
-                                <?php foreach ($persen as $lalal) { ?>
-                                  <option value="<?php echo $lalal->tarif; ?>"><?php echo $lalal->tarif; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td> 
-                          <td><input type="checkbox" name="fas_pajak5" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif5" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross5" value="Ya"></td>
-                          <td><input id="dpp5" onchange="penjumlahan5()" type="text" class="form-control" name="dpp5" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross5" placeholder="Enter Text" ></td>
-                          <td><input id="hasil5" type="text" class="form-control" name="pajak_terutang5" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak5" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun5" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan5" placeholder="Enter Text" required></textarea></td>
-                        </tr>
-                        <!-- Baris 6 -->
-                        <tr>
-                          <td><select id="jenis_pajak6" name="jenis_pajak6" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak6" name="kode_pajak6" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_map6" name="kode_map6" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select class="form-control" name="nama6">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->nama; ?>"><?php echo $kode->nama; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><select class="form-control" name="npwp6">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->npwp; ?>"><?php echo $kode->npwp; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><textarea type="text" class="form-control" name="alamat6" placeholder="Enter Text" required></textarea></td>
-                          <td><select id="tarif6" class="form-control" name="tarif6" onchange="penjumlahan()" type="text">
-                                  <option value="">Choose</option>
-                                <?php foreach ($persen as $lalal) { ?>
-                                  <option value="<?php echo $lalal->tarif; ?>"><?php echo $lalal->tarif; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td> 
-                          <td><input type="checkbox" name="fas_pajak6" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif6" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross6" value="Ya"></td>
-                          <td><input id="dpp6" onchange="penjumlahan6()" type="text" class="form-control" name="dpp6" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross6" placeholder="Enter Text" ></td>
-                          <td><input id="hasil6" type="text" class="form-control" name="pajak_terutang6" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak6" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun6" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan6" placeholder="Enter Text" required></textarea></td>
-                        </tr>
-                        <!-- Baris 7 -->
-                        <tr>
-                          <td><select id="jenis_pajak7" name="jenis_pajak7" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak7" name="kode_pajak7" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_map7" name="kode_map7" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select class="form-control" name="nama7">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->nama; ?>"><?php echo $kode->nama; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><select class="form-control" name="npwp7">
-                                  <option value="">Choose</option>
-                                <?php foreach ($vendor as $kode) {?>
-                                  <option value="<?php echo $kode->npwp; ?>"><?php echo $kode->npwp; ?></option>
-                                <?php } ?>
-                              </select>       
-                          </td>
-                          <td><textarea type="text" class="form-control" name="alamat7" placeholder="Enter Text" required></textarea></td>
-                          <td><select id="tarif7" class="form-control" name="tarif7" onchange="penjumlahan7()" type="text">
-                                  <option value="">Choose</option>
-                                <?php foreach ($persen as $lalal) { ?>
-                                  <option value="<?php echo $lalal->tarif; ?>"><?php echo $lalal->tarif; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td> 
-                          <td><input type="checkbox" name="fas_pajak7" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif7" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross7" value="Ya"></td>
-                          <td><input id="dpp7" onchange="penjumlahan7()" type="text" class="form-control" name="dpp7" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross7" placeholder="Enter Text" ></td>
-                          <td><input id="hasil7" type="text" class="form-control" name="pajak_terutang7" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak7" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun7" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan7" placeholder="Enter Text" required></textarea></td>
+                          <td><textarea type="text" class="form-control" name="nama[]"></textarea></td>
+                          <td><textarea type="text" class="form-control" name="npwp[]"></textarea></td>
+                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" required></textarea></td>
+                          <td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"></td>
+                          <td><input type="checkbox" name="fas_pajak[]" value="Ya"></td>
+                          <td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" ></td>
+                          <td><input type="checkbox" name="gross[]" value="Ya"></td>
+                          <td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>
+                          <td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>
+                          <td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>
+                          <td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>
+                          <td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>
                         </tr>                        
                       </tbody>
-                      
+                      <tfoot>
+                        <td colspan="3"><input type="button" value="Tambah" onclick="tambah_baris()" ></td>
+                      </tfoot>  
                     </table>
                   </div>             
 
@@ -582,94 +235,41 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
    
-// function tambah_baris()
-// {
-// 	html='<tr>'
-//         + '<td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $get) {?><option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option><?php } ?></select> </td>'
-//         + '<td><select id="kode_pajak" name="kode_pajak[]" class="form-control"><option value="">Choose</option><option value=""></option></select> </td>'
-//         + '<td><select id="dropdown2" name="kode_map[]" class="form-control"><option value="">Choose</option><option value=""></option></select> </td>'
-//         + '<td><textarea type="text" class="form-control" name="nama[]"></textarea> </td>'
-//         + '<td><textarea type="text" class="form-control" name="npwp[]"></textarea> </td>'
-//         + '<td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" required></textarea> </td>'
-//         + '<td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"> </td>'
-//         + '<td><input type="checkbox" name="fas_pajak[]" value="Ya"> </td>'
-//         + '<td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" > </td>'
-//         + '<td><input type="checkbox" name="gross[]" value="Ya"> </td>'
-//         + '<td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>'
-//         + '<td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>'
-//         + '<td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>'
-//         + '<td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>'
-//         + '<td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>'
-//         + '</tr>';
-// 	$('#show tbody').append(html);
-// }     
+function tambah_baris()
+{
+	html='<tr>'
+        + '<td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $get) {?><option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option><?php } ?></select> </td>'
+        + '<td><select id="kode_pajak" name="kode_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($kodePajak as $kode) {?><option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option><?php } ?></select> </td>'
+        + '<td><input id="dropdown2" class="form-control" name="kode_map[]" onchange="penjumlahan()" type="text"> </td>'
+        + '<td><textarea type="text" class="form-control" name="nama[]"></textarea> </td>'
+        + '<td><textarea type="text" class="form-control" name="npwp[]"></textarea> </td>'
+        + '<td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" required></textarea> </td>'
+        + '<td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"> </td>'
+        + '<td><input type="checkbox" name="fas_pajak[]" value="Ya"> </td>'
+        + '<td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" > </td>'
+        + '<td><input type="checkbox" name="gross[]" value="Ya"> </td>'
+        + '<td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>'
+        + '<td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>'
+        + '<td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>'
+        + '<td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>'
+        + '<td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>'
+        + '</tr>';
+	$('#show tbody').append(html);
+}     
         
 </script>
 
 <script>
-function penjumlahan1(){
-  var a = parseFloat(document.getElementById("tarif1").value);
+function penjumlahan(){
+  var a = parseFloat(document.getElementById("tarif").value);
   // alert(a);
-  var b = parseFloat(document.getElementById("dpp1").value);
+  var b = parseFloat(document.getElementById("dpp").value);
  
   if(a && b){
-    document.getElementById("hasil1").value = b*(a/100); 
-  }    
-}
-function penjumlahan2(){
-  var a = parseFloat(document.getElementById("tarif2").value);
-  // alert(a);
-  var b = parseFloat(document.getElementById("dpp2").value);
- 
-  if(a && b){
-    document.getElementById("hasil2").value = b*(a/100); 
-  }    
-}
-function penjumlahan3(){
-  var a = parseFloat(document.getElementById("tarif3").value);
-  // alert(a);
-  var b = parseFloat(document.getElementById("dpp3").value);
- 
-  if(a && b){
-    document.getElementById("hasil3").value = b*(a/100); 
-  }    
-}
-function penjumlahan4(){
-  var a = parseFloat(document.getElementById("tarif4").value);
-  // alert(a);
-  var b = parseFloat(document.getElementById("dpp4").value);
- 
-  if(a && b){
-    document.getElementById("hasil4").value = b*(a/100); 
-  }    
-}
-function penjumlahan5(){
-  var a = parseFloat(document.getElementById("tarif5").value);
-  // alert(a);
-  var b = parseFloat(document.getElementById("dpp5").value);
- 
-  if(a && b){
-    document.getElementById("hasil5").value = b*(a/100); 
-  }    
-}
-function penjumlahan6(){
-  var a = parseFloat(document.getElementById("tarif6").value);
-  // alert(a);
-  var b = parseFloat(document.getElementById("dpp6").value);
- 
-  if(a && b){
-    document.getElementById("hasil6").value = b*(a/100); 
-  }    
-}
-function penjumlahan7(){
-  var a = parseFloat(document.getElementById("tarif7").value);
-  // alert(a);
-  var b = parseFloat(document.getElementById("dpp7").value);
- 
-  if(a && b){
-    document.getElementById("hasil7").value = b*(a/100); 
+    document.getElementById("hasil").value = b*(a/100); 
   }
-    
+  
+  
 }
 
 function tambah() {
@@ -687,17 +287,14 @@ function myFunction(){
 function showed() {
   // alert();
   var text1 = document.getElementById("show");
-  var internal = document.getElementById("internal");
-  var t_sett = document.getElementById("t_sett");
+  var text2 = document.getElementById("hide");
 
   if (document.getElementById("tidak").checked == false){
     text1.style.display = "block";
-    internal.style.display = "none";
-    t_sett.style.display = "none";
+    text2.style.display = "block";
   } else {
      text1.style.display = "none";
-     internal.style.display = "block";
-     t_sett.style.display = "block";
+     text2.style.display = "none";
   } 
   // alert(checkrequest);
 }
@@ -706,85 +303,15 @@ function showed() {
 <script type="text/javascript">
   
   $(document).ready(function() { 
-    $('#jenis_pajak1').change(function() {
+    $('#jenis_pajak').change(function() {
       if( $(this).val() == 'PPh Pasal 21') {
-            $('#kode_pajak1').prop( "disabled", true );
+            $('#kode_pajak').prop( "disabled", true );
       } else {       
-        $('#kode_pajak1').prop( "disabled", false );
+        $('#kode_pajak').prop( "disabled", false );
       }
     });
 
   });  
-  $(document).ready(function() { 
-    $('#jenis_pajak2').change(function() {
-      if( $(this).val() == 'PPh Pasal 21') {
-            $('#kode_pajak2').prop( "disabled", true );
-      } else {       
-        $('#kode_pajak2').prop( "disabled", false );
-      }
-    });
-
-  });
-  $(document).ready(function() { 
-    $('#jenis_pajak3').change(function() {
-      if( $(this).val() == 'PPh Pasal 21') {
-            $('#kode_pajak3').prop( "disabled", true );
-      } else {       
-        $('#kode_pajak3').prop( "disabled", false );
-      }
-    });
-
-  });
-  $(document).ready(function() { 
-    $('#jenis_pajak4').change(function() {
-      if( $(this).val() == 'PPh Pasal 21') {
-            $('#kode_pajak4').prop( "disabled", true );
-      } else {       
-        $('#kode_pajak4').prop( "disabled", false );
-      }
-    });
-
-  });
-  $(document).ready(function() { 
-    $('#jenis_pajak5').change(function() {
-      if( $(this).val() == 'PPh Pasal 21') {
-            $('#kode_pajak5').prop( "disabled", true );
-      } else {       
-        $('#kode_pajak5').prop( "disabled", false );
-      }
-    });
-
-  });
-  $(document).ready(function() { 
-    $('#jenis_pajak6').change(function() {
-      if( $(this).val() == 'PPh Pasal 21') {
-            $('#kode_pajak6').prop( "disabled", true );
-      } else {       
-        $('#kode_pajak6').prop( "disabled", false );
-      }
-    });
-
-  });
-  $(document).ready(function() { 
-    $('#jenis_pajak7').change(function() {
-      if( $(this).val() == 'PPh Pasal 21') {
-            $('#kode_pajak7').prop( "disabled", true );
-      } else {       
-        $('#kode_pajak7').prop( "disabled", false );
-      }
-    });
-
-  });
-
-// function showInput() {
-//   var checkBox = document.getElementById("fas_pajak1");
-//   var text = document.getElementById("special_tarif1");
-//   if (checkBox.checked == true){
-//     text.style.display = "block";
-//   } else {
-//     text.style.display = "none"; 
-//   }
-// }
 
   var rupiah = document.getElementById('rupiah');
   rupiah.addEventListener('keyup', function(e){

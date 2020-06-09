@@ -217,10 +217,20 @@
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
+                      <?php 
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query[0]->nama);exit; 
+                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          }else{
+                            $buka = $row->penerima;
+                          }
+                        ?>
                       <tr>
                         <td width="35%"> &nbsp; &nbsp; Nama</td>
                         <td><b> : </b></td>
-                        <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $row->penerima;?>" readonly></td>
+                        <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $buka;?>" readonly></td>
                       </tr>
                       <tr>  
                         <td> &nbsp; &nbsp; Kode Vendor</td>
@@ -470,7 +480,7 @@
                             <!----.Modal -->
                             <!----.Approve -->
                             <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                               <div class="modal-content">                                        
                                 <div class="modal-body">
                                 <form id="approve" method="post" action="dashboard/approve">
@@ -488,7 +498,7 @@
 
                             <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
                             <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
 
                                   <div class="modal-body">
@@ -516,7 +526,7 @@
                             <!----.Modal -->
                             <!----.Submit -->
                             <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                               <div class="modal-content">                                        
                                 <div class="modal-body">
                                 <form id="accepted" method="post" action="dashboard/accept">
@@ -539,7 +549,7 @@
                           <!----.Modal -->
                           <!----.Accept -->
                           <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-dialog modal-xl" role="document">
                             <div class="modal-content">                                        
                               <div class="modal-body">
                               <form id="accepted" method="post" action="dashboard/accept">
@@ -565,7 +575,7 @@
                             <!----.Modal -->
                             <!----.Approve -->
                             <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                               <div class="modal-content">                                        
                                 <div class="modal-body">
                                 <form id="approve" method="post" action="dashboard/approve">
@@ -583,7 +593,7 @@
 
                             <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
                             <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
 
                                   <div class="modal-body">
@@ -611,7 +621,7 @@
                             <!----.Modal -->
                             <!----.Submit -->
                             <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                               <div class="modal-content">                                        
                                 <div class="modal-body">
                                 <form id="accepted" method="post" action="dashboard/accept">

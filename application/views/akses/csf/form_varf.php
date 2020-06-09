@@ -69,7 +69,7 @@ td[rowspan="6"] {
                           <td> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Perkiraan Tanggal Selesai Pekerjaan : <br> Terima Barang</i><font></td>
-                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo $get->tanggal_selesai; ?>" readonly></td>
+                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo  date("d-M-Y", strtotime($get->tanggal_selesai)); ?>" readonly></td>
                         </tr>
                       </tbody>
                     </table>
@@ -185,12 +185,12 @@ td[rowspan="6"] {
                       <tr>
                       </tr>
                       <tr align="right">
-                        <td width="5%"> </td>
+                        <td width="5%"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->verified_date));?>" readonly></td>     
+                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-M-Y", strtotime($get->verified_date));?>" readonly></td>     
                       </tr>
                       <tr align="right">
-                        <td width="5%"> </td>
+                        <td width="5%"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>
                         <td width="20%"><i>Date </i> &nbsp;</td>
                       </tr>
                       </tbody>
@@ -316,14 +316,14 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>            
+                    <!-- <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>             -->
                     
                     <?php if($get->status == 6){ ?>
                       <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
-                      <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Accept</button>
+                      <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">                                        
                           <div class="modal-body">
                           <form id="processed" method="post" action="dashboard/updpay">
@@ -347,7 +347,7 @@ td[rowspan="6"] {
                       <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
                       <!---Modal RejectRequestor-->
                       <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
 
                           <div class="modal-body">
@@ -373,7 +373,7 @@ td[rowspan="6"] {
                       <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
                       <!---Modal RejectedFinance--> 
                       <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
 
                           <div class="modal-body">
@@ -403,10 +403,10 @@ td[rowspan="6"] {
 
                     <?php if($get->status == 7){ ?>  
                     <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
-                    <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
+                    <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Verification</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-dialog modal-xl" role="document">
                       <div class="modal-content">                                        
                         <div class="modal-body">
                         <form id="processed1" method="post" action="dashboard/updpay">
@@ -428,7 +428,7 @@ td[rowspan="6"] {
                     <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
                     <!---Modal RejectRequestor-->
                     <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-dialog modal-xl" role="document">
                       <div class="modal-content">
 
                         <div class="modal-body">
@@ -454,7 +454,7 @@ td[rowspan="6"] {
                     <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
                     <!---Modal RejectedFinance--> 
                     <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-dialog modal-xl" role="document">
                       <div class="modal-content">
 
                         <div class="modal-body">

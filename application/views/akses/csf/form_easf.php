@@ -180,9 +180,9 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" value="<?php echo $get->terbilang;?>" >
-                                          <input type="text" id="terbilang2" name="terbilang2" value="<?php echo $get->terbilang2;?>" >
-                                          <input type="text" id="terbilang3" name="terbilang3" value="<?php echo $get->terbilang3;?>" >
+                          <td colspan="4"><input type="text" id="terbilang" class="form-control" name="terbilang" value="<?php echo $get->terbilang;?>" >
+                                          <input type="text" id="terbilang2" class="form-control" name="terbilang2" value="<?php echo $get->terbilang2;?>" >
+                                          <input type="text" id="terbilang3" class="form-control" name="terbilang3" value="<?php echo $get->terbilang3;?>" >
                           </td>
                         </tr>
                         <tr> 
