@@ -46,6 +46,42 @@ class Tri extends CI_Controller {
 		$data['verifikasi'] = $this->Home_model->getVerifikasi();
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+
+
+        $this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/dashboard_tri', $data);
+	}
+
+	function periode(){
+		$usr = $this->session->userdata("username");
+		$sid = $this->session->userdata("id_user");
+		
+		$data['index'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['apayment'] = $this->Dashboard_model->payment();
+		$data['mytask'] = $this->Dashboard_model->getmyTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getVerifikasi();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+		$data['approval'] = $this->Home_model->getApproval();
+		$data['paid'] = $this->Home_model->getPaid();
+
+		$data['start_date'] = $this->input->post("start_date");
+		$data['end_date'] = $this->input->post("end_date");
+
+		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
+		$data['jumlah'] = count($data['payment']);
 
         $this->load->view('akses/tri/header_tri', $data);
 		$this->load->view('akses/tri/dashboard_tri', $data);
@@ -265,6 +301,30 @@ class Tri extends CI_Controller {
 
 	}
 
+	function periode_payment(){
+		$data['active1'] = '';
+		$data['l_payment'] = 'active';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['ppayment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['payment'] = $this->Tri_model->getList();
+		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
+		$data['Paid'] = $this->Dashboard_model->getPaid();
+
+		$data['start_date'] = $this->input->post("start_date");
+		$data['end_date'] = $this->input->post("end_date");
+
+		$data['payment'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
+		$data['jumlah'] = count($data['payment']);
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/payment', $data);
+	}
+
 	public function wfp(){
 
 		$data['active1'] = '';
@@ -357,6 +417,7 @@ class Tri extends CI_Controller {
 			'jenis_pembayaran' => $jenis_pembayaran,
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
+			'tanggal2' => $_POST['tanggal2'],
 			'currency' => $_POST['currency'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],

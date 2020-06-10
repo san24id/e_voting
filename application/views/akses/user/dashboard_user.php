@@ -119,17 +119,19 @@
                     <div class="col-md-12">
                     <!-- Periode -->
                     <table width="100%">
-                      <tr>
-                        <td class="period"><font color="white" size="3">Period: </font></td>
-                        <td></td>
-                        <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="date" name="start_date" id="start_date"></td>
-                        <td><font size="3">s/d</font></td>
-                        <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="date" name="end_date"></td>
-                        <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
+                      <?php echo form_open("Home/periode");?>
+                        <tr>
+                          <td class="period"><font color="white" size="3">Period: </font></td>
+                          <td></td>
+                          <td class="period"><font color="white" size="3"> Date </font></td>
+                          <td class="period"><input type="date" name="start_date" id="start_date"></td>
+                          <td><font size="3">s/d</font></td>
+                          <td class="period"><font color="white" size="3"> Date </font></td>
+                          <td class="period"><input type="date" name="end_date"></td>
+                          <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
                         </tr>
-                    </table>
+                      <?php echo form_close();?>  
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -204,17 +206,24 @@
                     </div>
                     <div class="box-body">
                       <table width="100%">
-                        <!-- <tr>
-                          <td colspan="4"><font size='3'><b><i> *) Total Outstanding = Number Processing + Number Verified + Number Approved  </i></b></font></td>
-                        </tr> -->
-                        <!-- <tr> 
-                          <td width="25%" colspan="2"><center><b>ADVANCE</b></center></td>
-                          <td width="25%" colspan="2"><center><b>CREDITCARD</b></center></td>
-                        </tr>   -->
+                      <?php foreach ($upcoming_over as $sebentar) { $tanggal_sekarang = date('Ymd');   ?>
+                        <?php 
+                              $string = $sebentar->upcoming;
+                              $stringBuka = str_replace("-", "", $string);
+                              // echo $stringBuka;              
+                        ?>
+
+                        <?php if ($tanggal_sekarang >= $stringBuka) {
+                              $count_overdue += 1;
+                              }else{
+                              $count_upcoming += 1;
+                              }
+                        ?>                        
+                      <?php } ?>
                         <tr> 
-                          <td align="center" width="25%"><div class="box1"><center><font size='3' color="white">Upcoming Overdue<br> - <br>ADVANCE</center></div></td>
+                          <td align="center" width="25%"><div class="box1"><center><font size='3' color="white">Upcoming Overdue<br> <?php echo $count_upcoming; ?> <br>ADVANCE</center></div></td>
                           
-                          <td align="center" width="25%"><div class="box2"><center><font size='4' color="white">Overdue<br> - <br> ADVANCE</center></div></td>
+                          <td align="center" width="25%"><div class="box2"><center><font size='4' color="white">Overdue<br> <?php echo $count_overdue; ?> <br> ADVANCE</center></div></td>
                           
                           <td align="center" width="25%"><div class="box3"><center><font size='3' color="white">Submission in <br> 30 days <br> 20 <br>Credit Card </center></div></td>
                         </tr>  

@@ -91,7 +91,7 @@
                       <div class="col-md-12">
                       <!-- Periode   -->
                       <table width="100%">
-                      <?php echo form_open("Dashboard/periode");?>
+                      <?php echo form_open("Dashboard/periode_monitoring");?>
                         <tr>
                           <td class="period"><font color="white" size="3">Period: </font></td>
                           <td></td>

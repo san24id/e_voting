@@ -42,6 +42,39 @@ class Approval extends CI_Controller {
 		$data['verifikasi'] = $this->Home_model->getVerifikasi();
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+
+
+        $this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/dashboard_approval', $data);
+	}
+
+	function periode_dashboard(){
+		$sid = $this->session->userdata("id_user");
+		$usr = $this->session->userdata("username");
+
+		$data['index'] = 'active';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getVerifikasi();
+		$data['approval'] = $this->Home_model->getApproval();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+		$data['paid'] = $this->Home_model->getPaid();
+
+		$data['start_date'] = $this->input->post("start_date");
+		$data['end_date'] = $this->input->post("end_date");
+
+		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
+		$data['jumlah'] = count($data['payment']);
 
         $this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/dashboard_approval', $data);
@@ -158,6 +191,32 @@ class Approval extends CI_Controller {
 		$data['wApproval'] = $this->Approval_model->getWaitApproval();
 
         $this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/approval', $data);
+	}
+
+	function periode_approval(){
+
+		$data['active1'] = '';
+		$data['l_approval'] = 'active';
+		$data['inbox'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['approved'] = $this->Approval_model->getList();
+		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['tot_approved'] = $this->Approval_model->TotalApproved();
+		$data['wApproval'] = $this->Approval_model->getWaitApproval();
+
+		$data['start_date'] = $this->input->post("start_date");
+		$data['end_date'] = $this->input->post("end_date");
+
+		$data['approved'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
+		$data['jumlah'] = count($data['approved']);
+
+		$this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/approval', $data);
 	}
 
@@ -349,6 +408,7 @@ class Approval extends CI_Controller {
 			'jenis_pembayaran' => $jenis_pembayaran,
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
+			'tanggal2' => $_POST['tanggal2'],
 			'currency' => $_POST['currency'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],

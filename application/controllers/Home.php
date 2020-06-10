@@ -61,7 +61,41 @@ class Home extends CI_Controller {
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
 		$data['divhead'] = $this->Home_model->getDivHead();
-		
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/user/dashboard_user', $data);
+	}
+
+	function periode(){
+		$sid = $this->session->userdata("id_user");
+
+		$data['active1'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getVerifikasi();
+		$data['approval'] = $this->Home_model->getApproval();
+		$data['paid'] = $this->Home_model->getPaid();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+		$data['divhead'] = $this->Home_model->getDivHead();
+
+		$data['start_date'] = $this->input->post("start_date");
+		$data['end_date'] = $this->input->post("end_date");
+
+		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
+		$data['jumlah'] = count($data['payment']);
+
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
 	}
@@ -289,6 +323,7 @@ class Home extends CI_Controller {
 			'jenis_pembayaran' => $jenis_pembayaran,
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
+			'tanggal2' => $_POST['tanggal2'],
 			'currency' => $_POST['currency'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],

@@ -479,6 +479,15 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getUpcomingOverdue(){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql ="SELECT label3 + INTERVAL '14' DAY as upcoming from `t_payment` WHERE division_id='$dvs' AND jenis_pembayaran LIKE '%2%' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getPaid(){
         $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10'";
         $query = $this->db->query($sql)->result();
@@ -501,10 +510,19 @@ class Dashboard_model extends CI_Model{
 
     }
 
-    function periode($star_date,$end_date){
-        $sql = "SELECT tanggal FROM t_payment WHERE tanggal=$star_date";
+    function periode($start_date,$end_date){
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function periode2($start_date,$end_date){
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE tanggal2 BETWEEN '$start_date' AND '$end_date'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
         return $query;
     }
 
