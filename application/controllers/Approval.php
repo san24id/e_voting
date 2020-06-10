@@ -439,6 +439,7 @@ class Approval extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['bank'] =$this->Home_model->getBank();
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['currency'] = $this->Home_model->getCurrency();
 
 		$this->load->view('akses/approval/header_approval', $data);	
@@ -477,6 +478,7 @@ class Approval extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['currency'] = $this->Home_model->getCurrency();
 
 		$this->load->view('akses/approval/header_approval', $data);	

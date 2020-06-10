@@ -226,11 +226,21 @@
                     
                     <table width="100%">
                       <tbody>
-                      <font size="1"><b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
+                      <font size="1"><b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b>
+                      <?php 
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query[0]->nama);exit; 
+                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          }else{
+                            $buka = $row->penerima;
+                          }
+                        ?> 
                       <tr>
                         <td width="47%"><font size="1">&nbsp; Nama</font></td>
                         <td width="1%"><font size="1">:</font></td>
-                        <td  colspan="4"><font size="1"><?php echo $row->penerima;?></font></td>
+                        <td  colspan="4"><font size="1"><?php echo $buka;?></font></td>
                       </tr>
                       <tr>  
                         <td><font size="1">&nbsp; Kode Vendor</font></td>

@@ -178,7 +178,7 @@
                                               <option value="<?php echo $nama->npwp;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->npwp;?></option>
                                             <?php } ?>
                                         </select>
-                          </td>
+                        </td>
                       </tr>
                       <tr>  
                         <td>Kode Vendor</td>

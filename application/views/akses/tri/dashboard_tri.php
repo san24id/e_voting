@@ -30,6 +30,7 @@
 				display: inline-block;
 				margin-left: 10px;
    }  
+   .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
    	
 </style>
 
@@ -111,6 +112,25 @@
                 <div class="box-header with-border">
                   <div class="box-tools pull-right">
                     <span class="label label-success"></span>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                    <!-- Periode -->
+                    <table width="100%">
+                      <tr>
+                        <td class="period"><font color="white" size="3">Period: </font></td>
+                        <td></td>
+                        <td class="period"><font color="white" size="3"> Date </font></td>
+                        <td class="period"><input type="date" name="start_date" id="start_date"></td>
+                        <td><font size="3">s/d</font></td>
+                        <td class="period"><font color="white" size="3"> Date </font></td>
+                        <td class="period"><input type="date" name="end_date"></td>
+                        <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
+                        </tr>
+                    </table>
+                    </div>
                   </div>
                 </div>
                 <div class="box-body">
@@ -218,32 +238,13 @@
                   <!-- /.box-header -->
                   <div class="box-body no-padding">
                   <script src="https://code.highcharts.com/highcharts.js"></script>
-                  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+                  <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
                   <script src="https://code.highcharts.com/modules/exporting.js"></script>
                   <script src="https://code.highcharts.com/modules/export-data.js"></script>
                   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-                      <div class="col-md-9">
+                    <div class="col-md-9">
                       <div id="pieChart" style="min-width: 600px; height: 400px; max-width: 600px; margin: 0 auto"></div> 
-                      <table>
-                        <tr>
-                          <th><i class="fa fa-circle-o text-lime"></i> Direct Payment(DP)<br></th>
-                          <td width="12px"></td>
-                          <th><i class="fa fa-circle-o text-aqua"></i> Advance Request(AR)<br></th>
-                          <td width="12px"></td>
-                          <th><i class="fa fa-circle-o text-black"></i> Advance Settlement(AS)<br></th>
-                        </tr>
-                      </table> 
-                      </div>
-                              
-                    <!-- /.users-list -->
-                    <!--<div class="col-md-3">
-                    <ul class="chart-legend clearfix">
-                      <li><i class="fa fa-circle-o text-blue"></i> Direct Payment(DP)</li><br>
-                      <li><i class="fa fa-circle-o text-black"></i> Advance Request(AR)</li><br>
-                      <li><i class="fa fa-circle-o text-green"></i> Advance Settlement(AS)</li><br>
-                    </ul>
-                    </div>-->
                   </div>
                   <!-- /.box-body -->               
                 </div>
@@ -262,17 +263,16 @@
                     <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                    <th>NO.</th>
-                    <th>Status</th>
-                    <th>Tanggal</th>
-                    <th>Jenis Pembayaran</th>
-                    <th>Nomor Surat</th>
-                    <th>Description</th>
-                    <th>Pemohon</th>
-                    <th>Bank Account</th>
-                    <th>Nama Penerima</th>
-                    <th>Submitted Date</th>
-                    <th>Action</th>
+                      <th>NO.</th>
+                      <th>Status</th>
+                      <th>Tanggal</th>
+                      <th>Jenis Pembayaran</th>
+                      <th>Nomor Surat</th>
+                      <th>Description</th>
+                      <th>Pemohon</th>
+                      <th>Bank Account</th>
+                      <th>Nama Penerima</th>
+                      <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -287,13 +287,15 @@
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td><?php if($row->status == 0){
-                              echo "<img src='assets/dashboard/images/legend/yellow_nofull.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/yellow_nofull.png'>";  
                           }else if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                          }else if($row->status == 11){
+                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                           }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/green.png'>";
+                            echo "<img src='assets/dashboard/images/legend/green.png'>";
                           }else if($row->status == 3){
-                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                            echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                           }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                           }else if($row->status == 5){
@@ -301,17 +303,17 @@
                           }else if($row->status == 6){
                             echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                           }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/blue.png'>";
                           }else if($row->status == 9){
                             echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                           }   
                         ?>
                     </td>                  
-                    <td><?php echo $row->label3; ?></td>
+                    <td><?php echo $row->tanggal; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -323,8 +325,17 @@
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td><?php echo $row->akun_bank; ?></td>
-                    <td><?php echo $row->penerima; ?></td>
-                    <td><?php echo date("d-M-Y", strtotime($row->tanggal)); ?></td>
+                    <?php 
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query[0]->nama);exit; 
+                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          }else{
+                            $buka = $row->penerima;
+                          }
+                        ?>
+                    <td><?php echo $buka; ?></td>
                     <td>
 
                     <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
@@ -424,23 +435,13 @@ $(function () {
 
   Highcharts.chart('pieChart', {
       chart: {
-          // plotBackgroundColor: null,
-          // plotBorderWidth: null,
-          // plotShadow: false,
-          type: 'pie',
-          options3d: {
-            enabled: true,
-            alpha: 45,
-            beta: 0
-          }
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
       },
       title: {
-          text: 'Jumlah Data Payment Request / Divisi'
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
+          text: 'Jumlah Data Payment Request Divisi'
       },
       credits: {
           enabled: false
@@ -450,9 +451,14 @@ $(function () {
       },
       plotOptions: {
           pie: {
+              colors: [
+                '#006400',
+                '#ADFF2F', 
+                '#808080', 
+                '#90EE90'                
+              ],
               allowPointSelect: true,
               cursor: 'pointer',
-              
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
@@ -462,8 +468,6 @@ $(function () {
       series: [{
           name: 'Total',
           colorByPoint: true,
-          innerSize: 100,
-          depth: 45,
           data: [
 
             <?php foreach ($pembayaran as $key) { ?>

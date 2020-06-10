@@ -172,7 +172,13 @@
                       <tr>
                         <td width="33%">Nama</td>
                         <td align="right"><b>:</b></td>
-                        <td colspan="4"><input type="text" class="form-control" name="penerima" placeholder="Enter Text" required></td>
+                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                                            <option value="">--Choose--</option>
+                                            <?php foreach ($data_vendor as $nama){?> 
+                                              <option value="<?php echo $nama->npwp;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->npwp;?></option>
+                                            <?php } ?>
+                                        </select>
+                        </td>
                       </tr>
                       <tr>  
                         <td>Kode Vendor</td>
@@ -386,6 +392,12 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script>
+function fung(){
+  // alert();  
+  var data = document.getElementById("penerima").value;
+  
+  document.getElementById("kode_vendor").value = data;
+}
 
 function penjumlahan(){
   var a = document.getElementById("biaya").value;

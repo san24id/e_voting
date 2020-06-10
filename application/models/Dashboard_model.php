@@ -59,9 +59,16 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getCreditCard(){
+        $sql ="SELECT SUM(jatah) as creditcard_pay FROM t_creditcard";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getTotal(){
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment";
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE status in ('2','3','4','5','7','8','9','10')";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -492,6 +499,13 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
 
+    }
+
+    function periode($star_date,$end_date){
+        $sql = "SELECT tanggal FROM t_payment WHERE tanggal=$star_date";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
     }
 
     function addpay($add){

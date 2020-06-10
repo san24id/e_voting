@@ -30,6 +30,7 @@
 				display: inline-block;
 				margin-left: 10px;
    }  
+   .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
    	
 </style>
 
@@ -104,7 +105,7 @@
             <!-- /.info-box -->
             </div>
         </div>
-        
+                
         <div class="row">
           <div class="col-md-6">
             <div class="box-body">
@@ -113,6 +114,25 @@
                 <div class="box-header with-border">
                   <div class="box-tools pull-right">
                     <span class="label label-success"></span>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                    <!-- periode -->
+                    <table width="100%">
+                      <tr>
+                        <td class="period"><font color="white" size="3">Period: </font></td>
+                        <td></td>
+                        <td class="period"><font color="white" size="3"> Date </font></td>
+                        <td class="period"><input type="date" name="start_date" id="start_date"></td>
+                        <td><font size="3">s/d</font></td>
+                        <td class="period"><font color="white" size="3"> Date </font></td>
+                        <td class="period"><input type="date" name="end_date"></td>
+                        <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
+                      </tr>
+                    </table>
+                    </div>
                   </div>
                 </div>
                 <div class="box-body">
@@ -198,8 +218,9 @@
                           <td align="center" width="25%"><div class="box1"><center><font size='3' color="white">Upcoming Overdue<br> - <br>ADVANCE</center></div></td>
                           
                           <td align="center" width="25%"><div class="box2"><center><font size='4' color="white">Overdue<br> - <br> ADVANCE</center></div></td>
-                          
-                          <td align="center" width="25%"><div class="box3"><center><font size='3' color="white">Submission in <br> 30 days <br> 20 <br>Credit Card </center></div></td>
+                          <?php foreach ($creditcard as $cc) { ?>
+                          <td align="center" width="25%"><div class="box3"><center><font size='3' color="white">Submission in <br> 30 days <br> <?php echo $cc->creditcard_pay;?> <br>Credit Card </center></div></td>
+                          <?php } ?>
                         </tr>  
                       </table>
                     </div>  
@@ -221,7 +242,7 @@
                   <!-- /.box-header -->
                   <div class="box-body no-padding">
                   <script src="https://code.highcharts.com/highcharts.js"></script>
-                  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+                  <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
                   <script src="https://code.highcharts.com/modules/exporting.js"></script>
                   <script src="https://code.highcharts.com/modules/export-data.js"></script>
                   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
@@ -267,16 +288,16 @@
                     <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                    <th>NO.</th>
-                    <th>Status</th>
-                    <th>Tanggal</th>
-                    <th>Jenis Pembayaran</th>
-                    <th>Nomor Surat</th>
-                    <th>Description</th>
-                    <th>Pemohon</th>
-                    <th>Bank Account</th>
-                    <th>Nama Penerima</th>
-                    <th>Action</th>
+                      <th>NO.</th>
+                      <th>Status</th>
+                      <th>Tanggal</th>
+                      <th>Jenis Pembayaran</th>
+                      <th>Nomor Surat</th>
+                      <th>Description</th>
+                      <th>Pemohon</th>
+                      <th>Bank Account</th>
+                      <th>Nama Penerima</th>
+                      <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -329,7 +350,7 @@
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td><?php echo $row->akun_bank; ?></td>
-                        <?php 
+                    <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
@@ -339,7 +360,6 @@
                             $buka = $row->penerima;
                           }
                         ?>
-                        
                     <td><?php echo $buka; ?></td>
                     <td>
 
@@ -440,23 +460,13 @@ $(function () {
 
   Highcharts.chart('pieChart', {
       chart: {
-          // plotBackgroundColor: null,
-          // plotBorderWidth: null,
-          // plotShadow: false,
-          type: 'pie',
-          options3d: {
-            enabled: true,
-            alpha: 45,
-            beta: 0
-          }
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
       },
       title: {
-          text: 'Jumlah Data Payment Request / Divisi'
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
+          text: 'Jumlah Data Payment Request Divisi'
       },
       credits: {
           enabled: false
@@ -466,9 +476,14 @@ $(function () {
       },
       plotOptions: {
           pie: {
+              colors: [
+                '#006400',
+                '#ADFF2F', 
+                '#808080', 
+                '#90EE90'                
+              ],
               allowPointSelect: true,
               cursor: 'pointer',
-              
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
@@ -478,8 +493,6 @@ $(function () {
       series: [{
           name: 'Total',
           colorByPoint: true,
-          innerSize: 100,
-          depth: 45,
           data: [
 
             <?php foreach ($pembayaran as $key) { ?>

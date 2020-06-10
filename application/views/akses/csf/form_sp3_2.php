@@ -78,8 +78,8 @@
                         <td><b>Objek Pajak</b></td>
                         <td><input id="ya" onclick="showed()" type="checkbox" name="objek_pajak[]" value="1"> Ya </td>
                         <td> <input id="tidak" onclick="showed()" type="checkbox" name="objek_pajak[]" value=0"> Tidak</input> </td>
-                        <td><input type="checkbox" name="objek_pajak[]" value="2" > Internal</input> </td>
-                        <td><input type="checkbox" name="objek_pajak[]" value="3" > Tax-Settlement</input> </td>
+                        <td><input id="tidak2" type="checkbox" name="objek_pajak[]" value="2" > Employee</input> </td>
+                        <td><input id="tidak3" type="checkbox" name="objek_pajak[]" value="3" > Tax at Settlement</input> </td>
                       </tr>                        
                     </table>
                     
@@ -289,7 +289,7 @@ function showed() {
   var text1 = document.getElementById("show");
   var text2 = document.getElementById("hide");
 
-  if (document.getElementById("tidak").checked == false){
+  if (document.getElementById("tidak").checked == false || document.getElementById("tidak2").checked == false || document.getElementById("tidak3").checked == false ){
     text1.style.display = "block";
     text2.style.display = "block";
   } else {

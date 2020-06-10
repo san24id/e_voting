@@ -47,6 +47,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['outstanding'] = $this->Home_model->getOutstanding();
@@ -885,6 +886,17 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/monitoring', $data);
 	}
+
+	// function periode(){
+	// 	$data['start_date'] = $this->input->post("start_date");
+	// 	$data['end_date'] = $this->input->post("end_date");
+
+	// 	$data['list_monitoring'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date'])->result();
+	// 	$data['jumlah'] = count($data['list_monitoring']);
+
+	// 	$this->load->view('akses/csf/header_csf', $data);
+	// 	$this->load->view('akses/csf/monitoring', $data);
+	// }
 
 	public function List_or(){
 

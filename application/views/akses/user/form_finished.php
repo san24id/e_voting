@@ -211,14 +211,31 @@
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
+                      <?php 
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query[0]->nama);exit; 
+                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          }else{
+                            $buka = $row->penerima;
+                          }
+                        ?>
                       <td width="35%">Nama</td>
                         <td> : </td>
-                        <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $row->penerima;?>" required></td>
+                        <td colspan="4"> <select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                                            <option value="<?php echo $buka;?>"><?php echo $buka;?></option>
+                                            <option value="">--Choose--</option>
+                                            <?php foreach ($data_vendor as $nama){?> 
+                                              <option value="<?php echo $nama->npwp;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->npwp;?></option>
+                                            <?php } ?>
+                                        </select>
+                        </td>
                       </tr>
                       <tr>  
                         <td>Kode Vendor</td>
                         <td> : </td>
-                        <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
                         <td>Bank</td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
@@ -482,6 +499,13 @@
 <!-- ./wrapper -->
     
 <script type="text/javascript">
+
+function fung(){
+  // alert();  
+  var data = document.getElementById("penerima").value;
+  
+  document.getElementById("kode_vendor").value = data;
+}
   
   var rupiah = document.getElementById('rupiah');
   rupiah.addEventListener('keyup', function(e){

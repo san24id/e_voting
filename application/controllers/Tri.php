@@ -323,6 +323,8 @@ class Tri extends CI_Controller {
 		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['currency'] = $this->Home_model->getCurrency();
 		$data['surat'] = $this->Home_model->buat_kode();
 		// $data['cn_assesment'] = $this->Home_model->cn_assesment();
 		// $data['noass'] = $this->Home_model->getno();
@@ -394,6 +396,7 @@ class Tri extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/tri/header_tri', $data);	
        	$this->load->view('akses/tri/form_finished', $data);

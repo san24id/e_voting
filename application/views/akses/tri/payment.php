@@ -12,6 +12,7 @@
    .lima { border: 5px solid orange; }
    .enam {background:green; border: 5px solid green; }
    .tujuh {background:aqua; border: 4px solid green; }
+   .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
    	
 </style>
 
@@ -24,95 +25,105 @@
       </h1> -->
     </section>
 
-    <section class="content">
-    <div class="col-md-6">
-              <div class="box-body">
-                <!-- USERS LIST -->
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <div class="box-tools pull-right">
-                      <span class="label label-success"></span>
-                    </div>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body">      
-                    <div class="row">
-                      <div class="col-md-6"><!--Lingkaran-->
-                        <center> <div class="lingkaran1 panel panel-primary">
-                          <br><br>
-                          <?php foreach ($wPaid as $wPaid) { ?> 
-                          <center> <font size='7'> <?php echo $wPaid->wpaid;?> </font> </center> 
-                          <?php } ?>
-                          <center> <font size='3'> Waiting for Payment </font> </center>
-
-                        </div>
-                        <div class ="col-md-6">
-                          <td><img src="assets/dashboard/images/legend/orange.png"></td>
-                          <td>Waiting for Payment</td> &nbsp; &nbsp;
-                        </div>
-                        </center>
-                      </div>
-
-                      <div class="col-md-6"><!--Status-->
-                      <center> <div class="lingkaran1 panel panel-primary">
-                          <br><br>
-                          <?php foreach ($Paid as $Paid) { ?>
-                          <center> <font size='7'> <?php echo $Paid->paid; ?> </font> </center> 
-                          <?php } ?>
-                          <center> <font size='3'> Total Paid </font> </center>
-
-                        </div>               
-                        <div class ="col-md-6">
-                          <td><img src="assets/dashboard/images/legend/purple.png"></td>
-                          <td>Paid</td> &nbsp; &nbsp;
-                        </div>  
-                      </center> 
-                      </div>
-                      
-                    </div>
-                  </div>
-                  <!-- /.box-body -->               
-                </div>
-                <!--/.box -->
-              </div>            
-            </div>
-
-            <div class="col-md-6"><!--PieChart-->
-              <div class="box-body">
-                <!-- USERS LIST -->
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <div class="box-tools pull-right">
-                      <span class="label label-success"></span>
-                    </div>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body no-padding">
-                  <script src="https://code.highcharts.com/highcharts.js"></script>
-                  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-                      <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 610px; height: 400px; max-width: 600px; margin: 0 auto"></div>  
-                      <table width="130%">
-                        <tr>
-                          <th><i class="fa fa-circle-o text-lime"></i> Direct Payment(DP)<br></th>
-                          <td width="12px"></td>
-                          <th><i class="fa fa-circle-o text-aqua"></i> Advance Request(AR)<br></th>
-                          <td width="12px"></td>
-                          <th><i class="fa fa-circle-o text-black"></i> Advance Settlement(AS)<br></th>
-                        </tr>
-                      </table> 
-                      </div>          
-                  </div>
-                  <!-- /.box-body -->               
-                </div>
-                <!--/.box -->              
+    <section class="content">    
+      <div class="col-md-6">
+        <div class="box-body">
+          <!-- USERS LIST -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <div class="box-tools pull-right">
+                <span class="label label-success"></span>
               </div>
-            </div>            
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body"> 
+            <!-- Periode -->
+            <div class="row">
+              <div class="col-md-12">
+              <!-- Periode   -->
+              <table width="100%">
+              <?php echo form_open("Dashboard/periode");?>
+                <tr>
+                  <td class="period"><font color="white" size="3">Period: </font></td>
+                  <td></td>
+                  <td class="period"><font color="white" size="3"> Date </font></td>
+                  <td class="period"><input type="date" name="start_date" id="start_date"></td>
+                  <td><font size="3">s/d</font></td>
+                  <td class="period"><font color="white" size="3"> Date </font></td>
+                  <td class="period"><input type="date" name="end_date"></td>
+                  <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
+                </tr>
+              <?php echo form_close();?>  
+              </table>
+              </div>
+            </div>    
+            <br>
 
+            <table width="100%">
+              <tr>
+                <td>
+                  <center> <div class="lingkaran1 panel panel-primary">
+                  <br><br>
+                  <?php foreach ($wPaid as $wPaid) { ?> 
+                  <center> <font size='7'> <?php echo $wPaid->wpaid;?> </font> </center> 
+                  <?php } ?>
+                  <center> <font size='3'> Waiting for Payment </font> </center>
+                </td>
+                <td>
+                  <center> <div class="lingkaran1 panel panel-primary">
+                  <br><br>
+                  <?php foreach ($Paid as $Paid) { ?>
+                  <center> <font size='7'> <?php echo $Paid->paid; ?> </font> </center> 
+                  <?php } ?>
+                  <center> <font size='3'> Total Paid </font> </center>
+                </td>
+              </tr>  
+
+              <tr>
+                <td>
+                  <center><img src="assets/dashboard/images/legend/orange.png">Waiting for Payment</center>
+                </td>
+                <td>
+                  <center><img src="assets/dashboard/images/legend/purple.png">Paid</center>
+                </td>
+              </tr>
+            </table>
+
+              </div>
+              <!-- /.box-body -->               
+            </div>
+            <!--/.box -->
+          </div>            
+        </div>
+
+        <div class="col-md-6"><!--PieChart-->
+          <div class="box-body">
+            <!-- USERS LIST -->
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <div class="box-tools pull-right">
+                  <span class="label label-success"></span>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body no-padding">
+              <script src="https://code.highcharts.com/highcharts.js"></script>
+              <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
+              <script src="https://code.highcharts.com/modules/exporting.js"></script>
+              <script src="https://code.highcharts.com/modules/export-data.js"></script>
+              <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+              <div class="col-md-9">
+                <div id="pieChart" style="min-width: 610px; height: 400px; max-width: 600px; margin: 0 auto"></div>  
+              </div>
+              <!-- /.box-body -->               
+            </div>
+            <!--/.box -->              
+          </div>
+        </div>            
+    </section>
+
+    <section class="content">
         <div class="row">
           <div class="col-xs-12">
             <!-- /.box -->
@@ -276,23 +287,13 @@ $(function () {
 
   Highcharts.chart('pieChart', {
       chart: {
-          // plotBackgroundColor: null,
-          // plotBorderWidth: null,
-          // plotShadow: false,
-          type: 'pie',
-          options3d: {
-            enabled: true,
-            alpha: 45,
-            beta: 0
-          }
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
       },
       title: {
-          text: 'Jumlah Data Payment Request / Divisi'
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
+          text: 'Jumlah Data Payment Request Divisi'
       },
       credits: {
           enabled: false
@@ -302,9 +303,14 @@ $(function () {
       },
       plotOptions: {
           pie: {
+              colors: [
+                '#006400',
+                '#ADFF2F', 
+                '#808080', 
+                '#90EE90'                
+              ],
               allowPointSelect: true,
               cursor: 'pointer',
-              
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
@@ -314,8 +320,6 @@ $(function () {
       series: [{
           name: 'Total',
           colorByPoint: true,
-          innerSize: 100,
-          depth: 45,
           data: [
 
             <?php foreach ($pembayaran as $key) { ?>

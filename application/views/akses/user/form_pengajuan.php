@@ -172,12 +172,27 @@
                       <tr>
                         <td width="33%">Nama</td>
                         <td align="right"><b>:</b></td>
-                        <td colspan="4"><input type="text" class="form-control" name="penerima" placeholder="Enter Text" required></td>
+                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                                            <option value="">--Choose--</option>
+                                            <?php foreach ($data_vendor as $nama){?> 
+                                              <option value="<?php echo $nama->npwp;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->npwp;?></option>
+                                            <?php } ?>
+                                        </select>
+                        </td>
                       </tr>
                       <tr>  
                         <td>Kode Vendor</td>
                         <td align="right"><b>:</b></td>
-                        <td><input type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                        <td>Bank</td>
+                        <td>:</td>
+                        <td><select id="dropdown" name="akun_bank" class="form-control">
+                                <option>--- Choose ---</option>
+                                <?php foreach ($bank as $get) {?>
+                                  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
                         <td>Bank</td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
@@ -404,6 +419,12 @@ function penjumlahan(){
   // }
 }
 
+function fung(){
+  // alert();  
+  var data = document.getElementById("penerima").value;
+  
+  document.getElementById("kode_vendor").value = data;
+}
 
 function tambah() {
   alert("Data Successfully to Save!");
