@@ -239,7 +239,7 @@ function tambah_baris()
 {
 	html='<tr>'
         + '<td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $get) {?><option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option><?php } ?></select> </td>'
-        + '<td><select id="kode_pajak" name="kode_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($kodePajak as $kode) {?><option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option><?php } ?></select> </td>'
+        + '<td><select id="kode_pajak" name="kode_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $kode1) {?><option value="<?php echo $kode1->jenis_pajak; ?>"><?php echo $kode1->jenis_pajak; ?></option><?php } ?></select> </td>'
         + '<td><input id="dropdown2" class="form-control" name="kode_map[]" onchange="penjumlahan()" type="text"> </td>'
         + '<td><textarea type="text" class="form-control" name="nama[]"></textarea> </td>'
         + '<td><textarea type="text" class="form-control" name="npwp[]"></textarea> </td>'

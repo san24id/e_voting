@@ -166,7 +166,7 @@ class Home_model extends CI_Model{
     }
 
     function getCurrency(){
-        $sql = "SELECT currency as curr FROM m_currency";
+        $sql = "SELECT * FROM m_currency";
         
         $query = $this->db->query($sql)->result();
         return $query;

@@ -122,7 +122,7 @@ td[rowspan="6"] {
                                 <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                                 <?php } ?>
                               </select>
                           </td>
@@ -290,9 +290,9 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" placeholder="Terbilang">
-                                          <input type="text" id="terbilang2" name="terbilang2" placeholder="Terbilang">
-                                          <input type="text" id="terbilang3" name="terbilang3" placeholder="Terbilang">      
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang">
+                                          <input type="text" id="terbilang2" name="terbilang2" class="form-control" placeholder="Terbilang">
+                                          <input type="text" id="terbilang3" name="terbilang3" class="form-control" placeholder="Terbilang">      
                           </td>
                         </tr>
                         <?php 
@@ -623,22 +623,106 @@ function nominal(){
   var n = document.getElementById("jumlahuangmuka2").value;
   var o = document.getElementById("jumlahuangmuka3").value;
 
-  var get_x = x.replace(/\./g,'');
-  var get_b = b.replace(/\./g,'');
-  var get_c = c.replace(/\./g,'');
-  var get_d = d.replace(/\./g,'');
-  var get_e = e.replace(/\./g,'');
-  var get_f = f.replace(/\./g,'');
-  var get_g = g.replace(/\./g,'');
-  var get_h = h.replace(/\./g,'');
-  var get_i = i.replace(/\./g,'');
-  var get_j = j.replace(/\./g,'');
-  var get_k = k.replace(/\./g,'');
-  var get_l = l.replace(/\./g,'');
+    
+  var get_x = x.replace(/\D+/g, '');
+  if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
+		get_x= -Math.abs(get_x);		
+  }else{
+	  get_x= Math.abs(get_x);		
+  }
+  var get_b = b.replace(/\D+/g, '');
+  if (b.substr(0,1)=="(" && b.substr(b.length-1,1)==")"){		
+		get_b= -Math.abs(get_b);		
+  }else{
+	  get_b= Math.abs(get_b);		
+  }
+  var get_c = c.replace(/\D+/g, '');
+  if (c.substr(0,1)=="(" && c.substr(c.length-1,1)==")"){		
+		get_c= -Math.abs(get_c);		
+  }else{
+	  get_c= Math.abs(get_c);		
+  }
+  var get_d = d.replace(/\D+/g, ''); 
+  if (d.substr(0,1)=="(" && d.substr(d.length-1,1)==")"){		
+		get_d= -Math.abs(get_d);		
+  }else{
+	  get_d= Math.abs(get_d);		
+  }  
+  var get_e = e.replace(/\D+/g, '');
+  if (e.substr(0,1)=="(" && e.substr(e.length-1,1)==")"){		
+		get_e= -Math.abs(get_e);		
+  }else{
+	  get_e= Math.abs(get_e);		
+  }
+  var get_f = f.replace(/\D+/g, '');
+  if (f.substr(0,1)=="" && f.substr(f.length-1,1)==")"){		
+		get_f= -Math.abs(get_f);		
+  }else{
+	  get_f= Math.abs(get_f);		
+  }
+  
+  var get_g = g.replace(/\D+/g, '');
+  if (g.substr(0,1)=="(" && g.substr(g.length-1,1)==")"){		
+		get_g= -Math.abs(get_g);		
+  }else{
+	  get_g= Math.abs(get_g);		
+  }
+  
+  var get_h = h.replace(/\D+/g, '');
+  if (h.substr(0,1)=="(" && h.substr(h.length-1,1)==")"){		
+		get_h= -Math.abs(get_h);		
+  }else{
+	  get_h= Math.abs(get_h);		
+  }
+  
+  var get_i = i.replace(/\D+/g, '');
+  if (i.substr(0,1)=="(" && i.substr(i.length-1,1)==")"){		
+		get_i= -Math.abs(get_i);		
+  }else{
+	  get_i= Math.abs(get_i);		
+  }
+  
+  var get_j = j.replace(/\D+/g, '');
+  if (j.substr(0,1)=="(" && j.substr(j.length-1,1)==")"){		
+		get_j= -Math.abs(get_j);		
+  }else{
+	  get_j= Math.abs(get_j);		
+  }
+  
+  var get_k = k.replace(/\D+/g, '');
+  if (k.substr(0,1)=="(" && k.substr(k.length-1,1)==")"){		
+		get_k= -Math.abs(get_k);		
+  }else{
+	  get_k= Math.abs(get_k);		
+  }
+
+  var get_l = l.replace(/\D+/g, '');  
+  if (l.substr(0,1)=="(" && l.substr(l.length-1,1)==")"){		
+		get_l= -Math.abs(get_l);		
+  }else{
+	  get_l= Math.abs(get_l);		
+  }
 
   var get_m = m.replace(/\./g,'');
+  if (m.substr(0,1)=="(" && m.substr(m.length-1,1)==")"){		
+		get_m= -Math.abs(get_m);		
+  }else{
+	  get_m= Math.abs(get_m);		
+  }
+  
   var get_n = n.replace(/\./g,'');
+  if (n.substr(0,1)=="(" && n.substr(n.length-1,1)==")"){		
+		get_n= -Math.abs(get_n);		
+  }else{
+	  get_n= Math.abs(get_n);		
+  }
+
   var get_o = o.replace(/\./g,'');
+  if (o.substr(0,1)=="(" && o.substr(o.length-1,1)==")"){		
+		get_o= -Math.abs(get_o);		
+  }else{
+	  get_o= Math.abs(get_o);		
+  }
 
   var currency = Number(get_x) + Number(get_b) + Number(get_c) + Number(get_d) ;
   var currency2 =  Number(get_e) + Number(get_f) + Number(get_g) + Number(get_h);
@@ -648,22 +732,24 @@ function nominal(){
   var negatif2 = Number(get_n) + 0 ;
   var negatif3 = Number(get_o) + 0 ;
 
+//Jumlah -> Jumlah Pembayaran
   var hasil_jumlah1 = currency;
   var hasil_jumlah2 = currency2;
   var hasil_jumlah3 = currency3;
+
+// Jumlah Pembayaran - Jumlah Uang Muka
+  var hasil = hasil_jumlah1-negatif;
+  var hasil2 = hasil_jumlah2-negatif2;
+  var hasil3 = hasil_jumlah3-negatif3;
 
   // var pembayaran = currency+ ';' +currency2+ ';' +currency3;
   // var str = pembayaran.replace(/\./g,'');
  
   // if(x && b){
-    document.getElementById("ulang").value = hasil_jumlah1 ;
-    document.getElementById("ulang1").value = hasil_jumlah2 ;
-    document.getElementById("ulang2").value = hasil_jumlah3 ;
-    // alert(ulang);
-
-    var hasil = hasil_jumlah1-negatif;
-    var hasil2 = hasil_jumlah2-negatif2;
-    var hasil3 = hasil_jumlah3-negatif3;
+    // document.getElementById("ulang").value = hasil_jumlah1 ;
+    // document.getElementById("ulang1").value = hasil_jumlah2 ;
+    // document.getElementById("ulang2").value = hasil_jumlah3 ;
+    // alert(ulang);    
 
     var bilangan= ''+hasil+'';
   // alert(bilangan);
@@ -740,7 +826,45 @@ function nominal(){
             kalimat = kalimat.replace("Satu Ribu","Seribu");
         }
     }
-    document.getElementById("terbilang").value=kalimat;
+
+    var matauang = document.getElementById("Select").value;
+    // var namamatauang =String(matauang);
+
+    // var splitCur []  		= namamatauang.split("-");
+    
+    // alert(splitCur[1]);
+    switch(matauang){
+      case "EUR":
+      muncul = "Euro";
+      break;
+      case "IDR":
+      muncul = "Rupiah";
+      break;
+      case "USD":
+      muncul = "Dollar Amerika";
+      break;
+      case "SGD":
+      muncul = "Dollar Singapura";
+      break;
+      case "GBP":
+      muncul = "Pound";
+      break;
+      case "JPY":
+      muncul = "Yen";
+      break;
+      case "HKD":
+      muncul = "Dollar Hongkong";
+      break;
+      case "KRW":
+      muncul = "Won";
+      break;
+
+      default:
+      muncul = "";
+    }
+    
+    document.getElementById("terbilang").value=kalimat+muncul;
+    
     // alert(kalimat);
 
     var bilangan2= ''+hasil2+'';
@@ -818,7 +942,44 @@ function nominal(){
             kalimat2 = kalimat2.replace("Satu Ribu","Seribu");
         }
     }
-    document.getElementById("terbilang2").value=kalimat2;
+
+    var matauang2 = document.getElementById("Select4").value;
+    // var namamatauang =String(matauang);
+
+    // var splitCur []  		= namamatauang.split("-");
+    
+    // alert(splitCur[1]);
+    switch(matauang2){
+      case "EUR":
+      muncul2 = "EURO";
+      break;
+      case "IDR":
+      muncul2 = "Rupiah";
+      break;
+      case "USD":
+      muncul2 = "Dollar Amerika";
+      break;
+      case "SGD":
+      muncul2 = "Dollar Singapura";
+      break;
+      case "GBP":
+      muncul2 = "Pound";
+      break;
+      case "JPY":
+      muncul2 = "Yen";
+      break;
+      case "HKD":
+      muncul2 = "Dollar Hongkong";
+      break;
+      case "KRW":
+      muncul2 = "Won";
+      break;
+
+      default:
+      muncul2 = "";
+    }
+
+    document.getElementById("terbilang2").value=kalimat2+muncul2;
     // alert(kalimat2);
 
     var bilangan3= ''+hasil3+'';
@@ -896,7 +1057,44 @@ function nominal(){
             kalimat3 = kalimat3.replace("Satu Ribu","Seribu");
         }
     }
-    document.getElementById("terbilang3").value=kalimat3;
+
+    var matauang3 = document.getElementById("Select8").value;
+    // var namamatauang =String(matauang);
+
+    // var splitCur []  		= namamatauang.split("-");
+    
+    // alert(splitCur[1]);
+    switch(matauang3){
+      case "EUR":
+      muncul3 = "EURO";
+      break;
+      case "IDR":
+      muncul3 = "Rupiah";
+      break;
+      case "USD":
+      muncul3 = "Dollar Amerika";
+      break;
+      case "SGD":
+      muncul3 = "Dollar Singapura";
+      break;
+      case "GBP":
+      muncul3 = "Pound";
+      break;
+      case "JPY":
+      muncul3 = "Yen";
+      break;
+      case "HKD":
+      muncul3 = "Dollar Hongkong";
+      break;
+      case "KRW":
+      muncul3 = "Won";
+      break;
+
+      default:
+      muncul3 = "";
+    }
+
+    document.getElementById("terbilang3").value=kalimat3+muncul3;
     // alert(kalimat3);
 
     document.getElementById("negatif").value = hasil ;
@@ -923,15 +1121,42 @@ function nominal(){
 
     document.getElementById("approval3").value = "M. Wahid Sutopo";
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
-  }  
+  }
+    
+  if (hasil_jumlah1<0){
+	  hasil_jumlah1=Math.abs(hasil_jumlah1);
+	  document.getElementById("ulang").value = "(" + hasil_jumlah1 + ")" ;
+  }else{
+	  document.getElementById("ulang").value = hasil_jumlah1 ;
+  }
+
+  if (hasil_jumlah2<0){
+	  hasil_jumlah2=Math.abs(hasil_jumlah2);
+	  document.getElementById("ulang1").value = "(" + hasil_jumlah2 + ")" ;
+  }else{
+	  document.getElementById("ulang1").value = hasil_jumlah2 ;
+  }
+
+  if (hasil_jumlah3<0){
+	  hasil_jumlah3=Math.abs(hasil_jumlah3);
+	  document.getElementById("ulang2").value = "(" + hasil_jumlah3 + ")" ;
+  }else{
+	  document.getElementById("ulang2").value = hasil_jumlah3 ;
+  }   
 }
 
 // Format Separator Id Nilai 
 var nilai = document.getElementById('nilai');
-  nilai.addEventListener('keyup', function(e){
+  nilai.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai() untuk mengubah angka yang di ketik menjadi format angka
-    nilai.value = formatnilai(this.value);
+    var strnilai =nilai.value;
+	if (strnilai.substr(0,1)=="(" && strnilai.substr(strnilai.length-1,1)==")"){
+		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-2)) + ")";
+	}else{
+		nilai.value = formatnilai(this.value);
+	}
+    //nilai.value = formatnilai(this.value);
   });
 
   /* Fungsi formatnilai */
@@ -954,10 +1179,16 @@ var nilai = document.getElementById('nilai');
 
   // Format Separator Id Nilai 1
   var nilai1 = document.getElementById('nilai1');
-  nilai1.addEventListener('keyup', function(e){
+  nilai1.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai1() untuk mengubah angka yang di ketik menjadi format angka
-    nilai1.value = formatnilai1(this.value);
+	var strnilai1 =nilai1.value;
+	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")"){
+		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-2)) + ")";
+	}else{
+		nilai1.value = formatnilai1(this.value);
+	}
+    //nilai1.value = formatnilai1(this.value);
   });
 
   /* Fungsi formatnilai1 */
@@ -978,12 +1209,19 @@ var nilai = document.getElementById('nilai');
     return prefix == undefined ? nilai1 : (nilai1 ? + nilai1 : '');
   }
 
-  // Format Separator Id Nilai 2
+
+  // // Format Separator Id Nilai 2
   var nilai2 = document.getElementById('nilai2');
-  nilai2.addEventListener('keyup', function(e){
+  nilai2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai2() untuk mengubah angka yang di ketik menjadi format angka
-    nilai2.value = formatnilai2(this.value);
+    var strnilai2 =nilai2.value;
+	if (strnilai2.substr(0,1)=="(" && strnilai2.substr(strnilai2.length-1,1)==")"){
+		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-2)) + ")";
+	}else{
+		nilai2.value = formatnilai2(this.value);
+	}
+    //nilai2.value = formatnilai2(this.value);
   });
 
   /* Fungsi formatnilai2 */
@@ -1004,16 +1242,23 @@ var nilai = document.getElementById('nilai');
     return prefix == undefined ? nilai2 : (nilai2 ? + nilai2 : '');
   }
 
-  var nilai3 = document.getElementById('nilai3');
-  nilai3.addEventListener('keyup', function(e){
+  var nilai3 = document.getElementById('nilai3');  
+  nilai3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatnilai3() untuk mengubah angka yang di ketik menjadi format angka
-    nilai3.value = formatnilai3(this.value);
+    // gunakan fungsi formatnilai3() untuk mengubah angka yang di ketik menjadi format angka	
+	var strnilai3 =nilai3.value;
+	if (strnilai3.substr(0,1)=="(" && strnilai3.substr(strnilai3.length-1,1)==")"){
+		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-2)) + ")";
+	}else{
+		nilai3.value = formatnilai3(this.value);
+	}
+    //nilai3.value = formatnilai3(this.value);
+    
   });
 
   /* Fungsi formatnilai3 */
-  function formatnilai3(angka, prefix){
-    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
+  function formatnilai3(angka, prefix){	  
+	var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai3     		= split[0].substr(0, sisa),
@@ -1030,10 +1275,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai4 = document.getElementById('nilai4');
-  nilai4.addEventListener('keyup', function(e){
+  nilai4.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai4() untuk mengubah angka yang di ketik menjadi format angka
-    nilai4.value = formatnilai4(this.value);
+    var strnilai4 =nilai4.value;
+	if (strnilai4.substr(0,1)=="(" && strnilai4.substr(strnilai4.length-1,1)==")"){
+		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-2)) + ")";
+	}else{
+		nilai4.value = formatnilai4(this.value);
+	}
+    //nilai4.value = formatnilai4(this.value);
   });
 
   /* Fungsi formatnilai4 */
@@ -1055,10 +1306,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai5 = document.getElementById('nilai5');
-  nilai5.addEventListener('keyup', function(e){
+  nilai5.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai5() untuk mengubah angka yang di ketik menjadi format angka
-    nilai5.value = formatnilai5(this.value);
+    var strnilai5 =nilai5.value;
+	if (strnilai5.substr(0,1)=="(" && strnilai5.substr(strnilai5.length-1,1)==")"){
+		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-2)) + ")";
+	}else{
+		nilai5.value = formatnilai5(this.value);
+	}
+    //nilai5.value = formatnilai5(this.value);
   });
 
   /* Fungsi formatnilai5 */
@@ -1080,10 +1337,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai6 = document.getElementById('nilai6');
-  nilai6.addEventListener('keyup', function(e){
+  nilai6.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai6() untuk mengubah angka yang di ketik menjadi format angka
-    nilai6.value = formatnilai6(this.value);
+    var strnilai6 =nilai6.value;
+	if (strnilai6.substr(0,1)=="(" && strnilai6.substr(strnilai6.length-1,1)==")"){
+		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-2)) + ")";
+	}else{
+		nilai6.value = formatnilai6(this.value);
+	}
+    //nilai6.value = formatnilai6(this.value);
   });
 
   /* Fungsi formatnilai6 */
@@ -1105,10 +1368,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai7 = document.getElementById('nilai7');
-  nilai7.addEventListener('keyup', function(e){
+  nilai7.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai7() untuk mengubah angka yang di ketik menjadi format angka
-    nilai7.value = formatnilai7(this.value);
+    var strnilai7 =nilai7.value;
+	if (strnilai7.substr(0,1)=="(" && strnilai7.substr(strnilai7.length-1,1)==")"){
+		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-2)) + ")";
+	}else{
+		nilai7.value = formatnilai7(this.value);
+	}
+    //nilai7.value = formatnilai7(this.value);
   });
 
   /* Fungsi formatnilai7 */
@@ -1130,10 +1399,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai8 = document.getElementById('nilai8');
-  nilai8.addEventListener('keyup', function(e){
+  nilai8.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai8() untuk mengubah angka yang di ketik menjadi format angka
-    nilai8.value = formatnilai8(this.value);
+    var strnilai8 =nilai8.value;
+	if (strnilai8.substr(0,1)=="(" && strnilai8.substr(strnilai8.length-1,1)==")"){
+		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-2)) + ")";
+	}else{
+		nilai8.value = formatnilai8(this.value);
+	}
+    //nilai8.value = formatnilai8(this.value);
   });
 
   /* Fungsi formatnilai8 */
@@ -1155,10 +1430,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai9 = document.getElementById('nilai9');
-  nilai9.addEventListener('keyup', function(e){
+  nilai9.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai9() untuk mengubah angka yang di ketik menjadi format angka
-    nilai9.value = formatnilai9(this.value);
+    var strnilai9 =nilai9.value;
+	if (strnilai9.substr(0,1)=="(" && strnilai9.substr(strnilai9.length-1,1)==")"){
+		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-2)) + ")";
+	}else{
+		nilai9.value = formatnilai9(this.value);
+	}
+    //nilai9.value = formatnilai9(this.value);
   });
 
   /* Fungsi formatnilai9 */
@@ -1180,10 +1461,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai10 = document.getElementById('nilai10');
-  nilai10.addEventListener('keyup', function(e){
+  nilai10.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai8() untuk mengubah angka yang di ketik menjadi format angka
-    nilai10.value = formatnilai8(this.value);
+    var strnilai10 =nilai10.value;
+	if (strnilai10.substr(0,1)=="(" && strnilai10.substr(strnilai10.length-1,1)==")"){
+		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-2)) + ")";
+	}else{
+		nilai10.value = formatnilai10(this.value);
+	}
+    //nilai10.value = formatnilai8(this.value);
   });
 
   /* Fungsi formatnilai10 */
@@ -1205,10 +1492,16 @@ var nilai = document.getElementById('nilai');
   }
 
   var nilai11 = document.getElementById('nilai11');
-  nilai11.addEventListener('keyup', function(e){
+  nilai11.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai11() untuk mengubah angka yang di ketik menjadi format angka
-    nilai11.value = formatnilai11(this.value);
+    var strnilai11 =nilai11.value;
+	if (strnilai11.substr(0,1)=="(" && strnilai11.substr(strnilai11.length-1,1)==")"){
+		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-2)) + ")";
+	}else{
+		nilai11.value = formatnilai11(this.value);
+	}
+	//nilai11.value = formatnilai11(this.value);
   });
 
   /* Fungsi formatnilai11 */
@@ -1228,13 +1521,19 @@ var nilai = document.getElementById('nilai');
     nilai11 = split[1] != undefined ? nilai11 + ',' + split[1] : nilai11;
     return prefix == undefined ? nilai11 : (nilai11 ? + nilai11 : '');
   }
-
+  
   // Format Separator Id Ulang (Jumlah Pembayaran)
   var ulang = document.getElementById('ulang');
   ulang.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatulang() untuk mengubah angka yang di ketik menjadi format angka
-    ulang.value = formatulang(this.value);
+    var strulang =ulang.value;
+	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else{
+		ulang.value = formatulang(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatulang */
@@ -1253,14 +1552,19 @@ var nilai = document.getElementById('nilai');
 
     ulang = split[1] != undefined ? ulang + ',' + split[1] : ulang;
     return prefix == undefined ? ulang : (ulang ? + ulang : '');
-  }
+  } 
 
   // Format Separator Id Ulang (Jumlah Pembayaran)
   var ulang1 = document.getElementById('ulang1');
   ulang1.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatulang1() untuk mengubah angka yang di ketik menjadi format angka
-    ulang1.value = formatulang1(this.value);
+    var strulang1 =ulang.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		ulang1.value = "(" + formatulang(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		ulang1.value = formatulang1(this.value);
+	}
   });
 
   /* Fungsi formatulang1 */
@@ -1286,7 +1590,12 @@ var nilai = document.getElementById('nilai');
   ulang2.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatulang2() untuk mengubah angka yang di ketik menjadi format angka
-    ulang2.value = formatulang2(this.value);
+    var strulang2 =ulang2.value;
+	if (strulang2.substr(0,1)=="(" && strulang2.substr(strulang2.length-1,1)==")"){
+		ulang2.value = "(" + formatulang(strulang2.substr(1,strulang2.length-2)) + ")";
+	}else{
+		ulang2.value = formatulang2(this.value);
+	}
   });
 
   /* Fungsi formatulang2 */
@@ -1309,10 +1618,15 @@ var nilai = document.getElementById('nilai');
 
   // Format Separator Id Jumlah (Jumlah UangMuka)
   var jumlahuangmuka = document.getElementById('jumlahuangmuka');
-  jumlahuangmuka.addEventListener('keyup', function(e){
+  jumlahuangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatjumlahuangmuka() untuk mengubah angka yang di ketik menjadi format angka
-    jumlahuangmuka.value = formatjumlahuangmuka(this.value);
+    var strjumlahuangmuka =jumlahuangmuka.value;
+	if (strjumlahuangmuka.substr(0,1)=="(" && strjumlahuangmuka.substr(strjumlahuangmuka.length-1,1)==")"){
+		jumlahuangmuka.value = "(" + formatjumlahuangmuka(strjumlahuangmuka.substr(1,strjumlahuangmuka.length-2)) + ")";
+	}else{
+		jumlahuangmuka.value = formatjumlahuangmuka(this.value);
+	}
   });
 
   /* Fungsi formatjumlahuangmuka */
@@ -1334,10 +1648,15 @@ var nilai = document.getElementById('nilai');
   }
 
   var jumlahuangmuka2 = document.getElementById('jumlahuangmuka2');
-  jumlahuangmuka2.addEventListener('keyup', function(e){
+  jumlahuangmuka2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatjumlahuangmuka2() untuk mengubah angka yang di ketik menjadi format angka
-    jumlahuangmuka2.value = formatjumlahuangmuka2(this.value);
+    var strjumlahuangmuka2 =jumlahuangmuka2.value;
+	if (strjumlahuangmuka2.substr(0,1)=="(" && strjumlahuangmuka2.substr(strjumlahuangmuka2.length-1,1)==")"){
+		jumlahuangmuka2.value = "(" + formatjumlahuangmuka2(strjumlahuangmuka2.substr(1,strjumlahuangmuka2.length-2)) + ")";
+	}else{
+		jumlahuangmuka2.value = formatjumlahuangmuka2(this.value);
+	}
   });
 
   /* Fungsi formatjumlahuangmuka2 */
@@ -1362,7 +1681,12 @@ var nilai = document.getElementById('nilai');
   jumlahuangmuka3.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatjumlahuangmuka3() untuk mengubah angka yang di ketik menjadi format angka
-    jumlahuangmuka3.value = formatjumlahuangmuka3(this.value);
+    var strjumlahuangmuka3 =jumlahuangmuka3.value;
+	if (strjumlahuangmuka3.substr(0,1)=="(" && strjumlahuangmuka3.substr(strjumlahuangmuka3.length-1,1)==")"){
+		jumlahuangmuka3.value = "(" + formatjumlahuangmuka3(strjumlahuangmuka3.substr(1,strjumlahuangmuka3.length-2)) + ")";
+	}else{
+		jumlahuangmuka3.value = formatjumlahuangmuka3(this.value);
+	}
   });
 
   /* Fungsi formatjumlahuangmuka3 */

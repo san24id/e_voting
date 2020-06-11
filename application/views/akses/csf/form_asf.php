@@ -122,7 +122,7 @@ td[rowspan="6"] {
                                 <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                                 <?php } ?>
                               </select>
                           </td>
@@ -134,7 +134,7 @@ td[rowspan="6"] {
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                                 <?php } ?>
                               </select>
                           </td>
@@ -146,7 +146,7 @@ td[rowspan="6"] {
                             <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                              <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -159,7 +159,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency4; ?>"> <?php echo $row->currency4; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                              <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -172,7 +172,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency5; ?>"> <?php echo $row->currency5; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -185,7 +185,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -199,7 +199,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -212,7 +212,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency9; ?>"> <?php echo $row->currency9; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -225,7 +225,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency10; ?>"> <?php echo $row->currency10; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -238,7 +238,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency11; ?>"> <?php echo $row->currency11; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -251,7 +251,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency12; ?>"> <?php echo $row->currency13; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -264,7 +264,7 @@ td[rowspan="6"] {
                             <!-- <option value="<?php echo $row->currency12; ?>"> <?php echo $row->currency14; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
                             <?php } ?>
                             </select>
                           </td>
@@ -587,21 +587,91 @@ function nominal(){
   var m = document.getElementById("jumlahuangmuka").value;
   // alert(j);
 
-  var get_x = x.replace(/\./g,'');
-  // alert(get_x);
-  var get_b = b.replace(/\./g,'');
-  var get_c = c.replace(/\./g,'');
-  var get_d = d.replace(/\./g,'');
-  var get_e = e.replace(/\./g,'');
-  var get_f = f.replace(/\./g,'');
-  var get_g = g.replace(/\./g,'');
-  var get_h = h.replace(/\./g,'');
-  var get_i = i.replace(/\./g,'');
-  var get_j = j.replace(/\./g,'');
-  var get_k = k.replace(/\./g,'');
-  var get_l = l.replace(/\./g,'');
+  var get_x = x.replace(/\D+/g, '');
+  if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
+		get_x= -Math.abs(get_x);		
+  }else{
+	  get_x= Math.abs(get_x);		
+  }
+  var get_b = b.replace(/\D+/g, '');
+  if (b.substr(0,1)=="(" && b.substr(b.length-1,1)==")"){		
+		get_b= -Math.abs(get_b);		
+  }else{
+	  get_b= Math.abs(get_b);		
+  }
+  var get_c = c.replace(/\D+/g, '');
+  if (c.substr(0,1)=="(" && c.substr(c.length-1,1)==")"){		
+		get_c= -Math.abs(get_c);		
+  }else{
+	  get_c= Math.abs(get_c);		
+  }
+  var get_d = d.replace(/\D+/g, ''); 
+  if (d.substr(0,1)=="(" && d.substr(d.length-1,1)==")"){		
+		get_d= -Math.abs(get_d);		
+  }else{
+	  get_d= Math.abs(get_d);		
+  }  
+  var get_e = e.replace(/\D+/g, '');
+  if (e.substr(0,1)=="(" && e.substr(e.length-1,1)==")"){		
+		get_e= -Math.abs(get_e);		
+  }else{
+	  get_e= Math.abs(get_e);		
+  }
+  var get_f = f.replace(/\D+/g, '');
+  if (f.substr(0,1)=="" && f.substr(f.length-1,1)==")"){		
+		get_f= -Math.abs(get_f);		
+  }else{
+	  get_f= Math.abs(get_f);		
+  }
+  
+  var get_g = g.replace(/\D+/g, '');
+  if (g.substr(0,1)=="(" && g.substr(g.length-1,1)==")"){		
+		get_g= -Math.abs(get_g);		
+  }else{
+	  get_g= Math.abs(get_g);		
+  }
+  
+  var get_h = h.replace(/\D+/g, '');
+  if (h.substr(0,1)=="(" && h.substr(h.length-1,1)==")"){		
+		get_h= -Math.abs(get_h);		
+  }else{
+	  get_h= Math.abs(get_h);		
+  }
+  
+  var get_i = i.replace(/\D+/g, '');
+  if (i.substr(0,1)=="(" && i.substr(i.length-1,1)==")"){		
+		get_i= -Math.abs(get_i);		
+  }else{
+	  get_i= Math.abs(get_i);		
+  }
+  
+  var get_j = j.replace(/\D+/g, '');
+  if (j.substr(0,1)=="(" && j.substr(j.length-1,1)==")"){		
+		get_j= -Math.abs(get_j);		
+  }else{
+	  get_j= Math.abs(get_j);		
+  }
+  
+  var get_k = k.replace(/\D+/g, '');
+  if (k.substr(0,1)=="(" && k.substr(k.length-1,1)==")"){		
+		get_k= -Math.abs(get_k);		
+  }else{
+	  get_k= Math.abs(get_k);		
+  }
 
-  var get_m = m.replace(/\./g,'');
+  var get_l = l.replace(/\D+/g, '');  
+  if (l.substr(0,1)=="(" && l.substr(l.length-1,1)==")"){		
+		get_l= -Math.abs(get_l);		
+  }else{
+	  get_l= Math.abs(get_l);		
+  }
+
+  var get_m = m.replace(/\D+/g, '');  
+  if (m.substr(0,1)=="(" && m.substr(m.length-1,1)==")"){		
+		get_m= -Math.abs(get_m);		
+  }else{
+	  get_m= Math.abs(get_m);		
+  }
 
   var sum_x = Number(get_x) + 0 ;
   var sum_b = Number(get_b) + 0 ;
@@ -622,7 +692,7 @@ function nominal(){
   var hasil_jumlah = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
   var hasil = hasil_jumlah-sum_m;
   // if(x && b){
-    document.getElementById("ulang").value = hasil_jumlah ;
+    // document.getElementById("ulang").value = hasil_jumlah ;
   // } 
   var bilangan= ''+hasil_jumlah+'';
   // alert(bilangan);
@@ -699,10 +769,47 @@ function nominal(){
             kalimat = kalimat.replace("Satu Ribu","Seribu");
         }
     }
-    document.getElementById("terbilang").value=kalimat;
+
+    var matauang = document.getElementById("Select").value;
+    // var namamatauang =String(matauang);
+
+    // var splitCur []  		= namamatauang.split("-");
+    
+    // alert(splitCur[1]);
+    switch(matauang){
+      case "EUR":
+      muncul = "EURO";
+      break;
+      case "IDR":
+      muncul = "Rupiah";
+      break;
+      case "USD":
+      muncul = "Dollar Amerika";
+      break;
+      case "SGD":
+      muncul = "Dollar Singapura";
+      break;
+      case "GBP":
+      muncul = "Pound";
+      break;
+      case "JPY":
+      muncul = "Yen";
+      break;
+      case "HKD":
+      muncul = "Dollar Hongkong";
+      break;
+      case "KRW":
+      muncul = "Won";
+      break;
+
+      default:
+      muncul = "";
+    }
+    
+    document.getElementById("terbilang").value=kalimat+muncul;;
     // alert(kalimat);
   // if(c){
-    document.getElementById("negatif").value = hasil ;
+    // document.getElementById("negatif").value = hasil ;
   // }
 
   var a = hasil ;
@@ -737,7 +844,37 @@ function nominal(){
 
     document.getElementById("approval3").value = "M. Wahid Sutopo";
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
-  }  
+  }
+
+// Jumlah Uang Muka
+  if (hasil_jumlah<0){
+	  hasil_jumlah=Math.abs(hasil_jumlah);
+	  document.getElementById("ulang").value = "(" + hasil_jumlah + ")" ;
+  }else{
+	  document.getElementById("ulang").value = hasil_jumlah ;
+  }
+  
+  var strulang =ulang.value;
+	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else{
+		ulang.value = formatulang(this.value);
+	}
+// 
+// Negatif(piutang)
+  if (hasil<0){
+	  hasil=Math.abs(hasil);
+	  document.getElementById("negatif").value = "(" + hasil + ")" ;
+  }else{
+	  document.getElementById("negatif").value = hasil ;
+  }
+  
+  var strnegatif =negatif.value;
+	if (strnegatif.substr(0,1)=="(" && strnegatif.substr(strnegatif.length-1,1)==")"){
+		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-2)) + ")";
+	}else{
+		negatif.value = formatnegatif(this.value);
+	}  
 }
 
 // Format Separator Id Nilai 
