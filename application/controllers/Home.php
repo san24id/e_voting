@@ -49,6 +49,8 @@ class Home extends CI_Controller {
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['draftprint'] = $this->Home_model->getDraftPrint();
+		$data['draft1'] = $this->Home_model->getDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -76,6 +78,8 @@ class Home extends CI_Controller {
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['draftprint'] = $this->Home_model->getDraftPrint();
+		$data['draft1'] = $this->Home_model->getDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);

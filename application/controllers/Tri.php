@@ -34,6 +34,8 @@ class Tri extends CI_Controller {
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['draftprint'] = $this->Home_model->getDraftPrint();
+		$data['draft1'] = $this->Home_model->getDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -293,8 +295,9 @@ class Tri extends CI_Controller {
 		$data['ppayment'] = $this->Dashboard_model->payment();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['payment'] = $this->Tri_model->getList();
-		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
-		$data['Paid'] = $this->Dashboard_model->getPaid();
+		$data['wPaid'] = $this->Tri_model->getWaitPaid();
+		$data['L_Paid'] = $this->Tri_model->getPaid();
+		// var_dump($data['L_Paid']);exit;
 
 		$this->load->view('akses/tri/header_tri', $data);
 		$this->load->view('akses/tri/payment', $data);
@@ -312,8 +315,8 @@ class Tri extends CI_Controller {
 		$data['ppayment'] = $this->Dashboard_model->payment();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['payment'] = $this->Tri_model->getList();
-		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
-		$data['Paid'] = $this->Dashboard_model->getPaid();
+		$data['wPaid'] = $this->Tri_model->getWaitPaid();
+		$data['L_Paid'] = $this->Tri_model->getPaid();
 
 		$data['start_date'] = $this->input->post("start_date");
 		$data['end_date'] = $this->input->post("end_date");
@@ -333,8 +336,8 @@ class Tri extends CI_Controller {
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Tri_model->getListwfp();
-		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
-		$data['Paid'] = $this->Dashboard_model->getPaid();
+		$data['wPaid'] = $this->Tri_model->getWaitPaid();
+		$data['L_Paid'] = $this->Tri_model->getPaid();
 
 		$this->load->view('akses/tri/header_tri', $data);
 		$this->load->view('akses/tri/wfp', $data);
@@ -349,8 +352,8 @@ class Tri extends CI_Controller {
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Tri_model->getpaidList();
-		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
-		$data['Paid'] = $this->Dashboard_model->getPaid();
+		$data['wPaid'] = $this->Tri_model->getWaitPaid();
+		$data['L_Paid'] = $this->Tri_model->getPaid();
 
 		$this->load->view('akses/tri/header_tri', $data);
 		$this->load->view('akses/tri/paidList', $data);

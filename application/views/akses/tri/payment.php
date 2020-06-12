@@ -13,6 +13,16 @@
    .enam {background:green; border: 5px solid green; }
    .tujuh {background:aqua; border: 4px solid green; }
    .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
+
+   .box1{
+    width:260px;
+    height:90px;
+    background: linear-gradient(#339966, #0066CC) ;
+    border: linear-gradient(#339966, #0066CC);
+    border-radius: 8px;
+    display: inline-block;
+    margin-left: 10px;
+  }
    	
 </style>
 
@@ -61,31 +71,27 @@
 
             <table width="100%">
               <tr>
-                <td>
-                  <center> <div class="lingkaran1 panel panel-primary">
-                  <br><br>
-                  <?php foreach ($wPaid as $wPaid) { ?> 
-                  <center> <font size='7'> <?php echo $wPaid->wpaid;?> </font> </center> 
-                  <?php } ?>
-                  <center> <font size='3'> Waiting for Payment </font> </center>
+                <td align="center" width="10%">
+                  <div class="info-box box1">
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approved.png"></i></span>
+                      <br>
+                      <?php foreach ($wPaid as $wPaid) { ?>
+                      <font size='5' color="white"><center><?php echo $wPaid->wpaid;?></center></font>
+                      <?php } ?>
+                      <center><font size='3' color="white">Waiting for Payment </center>
+                  </div>
                 </td>
-                <td>
-                  <center> <div class="lingkaran1 panel panel-primary">
-                  <br><br>
-                  <?php foreach ($Paid as $Paid) { ?>
-                  <center> <font size='7'> <?php echo $Paid->paid; ?> </font> </center> 
-                  <?php } ?>
-                  <center> <font size='3'> Total Paid </font> </center>
-                </td>
-              </tr>  
+                <td align="center" width="10%">
+                  <div class="info-box box1">
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid1.png"></i></span>
+                      <br>
+                      <?php foreach ($L_Paid as $Paid) { ?>
 
-              <tr>
-                <td>
-                  <center><img src="assets/dashboard/images/legend/orange.png">Waiting for Payment</center>
-                </td>
-                <td>
-                  <center><img src="assets/dashboard/images/legend/purple.png">Paid</center>
-                </td>
+                      <font size='5' color="white"><center><?php echo $Paid->paid; ?></center></font>
+                      <?php } ?>
+                      <center><font size='3' color="white">Total Paid </center>
+                  </div>
+                </td>                                 
               </tr>
             </table>
 
@@ -158,9 +164,9 @@
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
                           if($row->status == 9){
-                              echo "<img src='assets/dashboard/images/legend/orange.png'>";  
+                              echo "<img src='assets/dashboard/images/legend/approved.png'>";  
                           }else if($row->status == 10){
-                             echo "<img src='assets/dashboard/images/legend/purple.png'>";
+                             echo "<img src='assets/dashboard/images/legend/paid1.png'>";
                           }else if($row->status >= 3){
                              echo "<img src='assets/dashboard/images/legend/default.png'>";
                           }
@@ -304,8 +310,8 @@ $(function () {
       plotOptions: {
           pie: {
               colors: [
-                '#006400',
-                '#ADFF2F', 
+                '#339933',
+                '#00cc00', 
                 '#808080', 
                 '#90EE90'                
               ],

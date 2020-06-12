@@ -1,31 +1,31 @@
 <style type="text/css">
-   .satu { border: 8px solid purple; border-radius: 8px; background: purple;}
-   .dua { border: 8px solid yellow; border-radius: 8px; }
-   .tiga { border: 8px solid lime; border-radius: 8px; }
-   .empat { border: 8px solid lime; border-radius: 8px; background: lime; }
-   .lima { border: 8px solid turquoise; border-radius: 8px; }
-   .enam { border: 8px solid turquoise; border-radius: 8px; background: turquoise;}
-   .tujuh { border: 8px solid yellow; border-radius: 8px; background: yellow;}
-   .box1{width:150px;
-				height:100px;
-        background: #132f6d;
-				border: solid #132f6d;
+   .satu { border: 6px solid orange; border-radius: 6px; background: orange;}
+   .dua { border: 6px solid #3399ff; border-radius: 6px; }
+   .tiga { border: 6px solid #3399ff; border-radius: 6px; background: #33ccff}
+   .empat { border: 6px solid #3399ff; border-radius: 6px; background: #3399ff; }
+   .lima { border: 6px solid #228B22; border-radius: 6px; }
+   .enam { border: 6px solid #228B22; border-radius: 6px; background: #9ACD32;}
+   .tujuh { border: 6px solid #228B22; border-radius: 6px; background: #228B22;}
+   .box1{width:250px;
+				height:90px;
+        background: linear-gradient(#339966, #0066CC) ;
+				border: linear-gradient(#339966, #0066CC);
         border-radius: 8px;
 				display: inline-block;
 				margin-left: 10px;
    }
-   .box2{width:150px;
-				height:100px;
-        background: #858e8e;
-				border: solid #858e8e;
+   .box2{width:200px;
+				height:90px;
+        background: linear-gradient(#339966, #0066CC);
+				border: linear-gradient(#339966, #0066CC);
         border-radius: 8px;
 				display: inline-block;
 				margin-left: 10px;
    }
-   .box3{width:150px;
-				height:100px;
-        background: #4dce8d;
-				border: solid #4dce8d;
+   .box3{width:250px;
+				height:90px;
+        background: linear-gradient(#339966, #0066CC);
+				border: linear-gradient(#339966, #0066CC);
         border-radius: 8px;
 				display: inline-block;
 				margin-left: 10px;
@@ -46,62 +46,68 @@
     <section class="content bg-white">
         <!-- Info boxes -->
         <div class="row">        
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/payment.png"></i></span>
-                <div class="info-box-content">
-                  <?php foreach ($tot_pay_req as $tot_req) { ?>
-                  <span class="info-box-number"><center><?php echo $tot_req->totalreq; ?></center></span>
-                  <?php } ?>    
-                  <span class="info-box-text bg-gray"><center>Total Payment </br>Request</center></span>     
-                </div>
-                <!-- /.info-box-content -->
+          <div class="col-md-3">
+          <div class="info-box bg-gray">
+            <span class="info-box-icon bg-green"><img align="center" src="assets/dashboard/images/legend/Total_payment_request.png"></i></span>
+            <div class="info-box-content bg-gray">
+              <br>
+              <?php foreach ($tot_pay_req as $tot_req) { ?>
+              <span class="info-box-number"><font color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span>
+              <?php } ?>    
+              <span class="info-box-text"><font color="green"><center>Total Payment Request</center></font></span>  
             </div>
-            <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
+            
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/outstanding.png"></i></span>
+          <div class="col-md-3">
+          <div class="info-box bg-gray">
+              <span class="info-box-icon bg-green"><img src="assets/dashboard/images/legend/Total_outstanding.png"></i></span>
+              <div class="info-box-content bg-gray">
+                <br>
+                <?php foreach ($outstanding as $tot_outstanding) { ?>  
+                <span class="info-box-number"><font color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span>
+                <?php } ?>            
+                <span class="info-box-text "><font color="green"><center>Total Outstanding Payment Request</center></font></span>
+              </div>
+              <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>            
+          <!-- /.col -->
+          <!-- fix for small devices only -->
+          <div class="clearfix visible-sm-block"></div>
 
-                <div class="info-box-content">
-                  <span class="info-box-number"><center>20</center></span>
-                  <span class="info-box-text bg-gray"><center>Total Outstanding </br> Payment Request</center></span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            </div>            
-            <!-- /.col -->
-            <!-- fix for small devices only -->
-            <div class="clearfix visible-sm-block"></div>
+          <div class="col-md-3">
+          <div class="info-box bg-gray">
+              <span class="info-box-icon bg-green"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
+              <div class="info-box-content bg-gray">
+                <br>  
+                <?php foreach ($draft as $tot_draft) { ?>
+                <span class="info-box-number"><font color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span>
+                <?php } ?>            
+                <span class="info-box-text "><font color="green"><center>Total Draft</center></font></span>
+              </div>
+              <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/draft.png"></i></span>
-                <div class="info-box-content">
-                  <?php foreach ($draft as $tot_draft) { ?>
-                  <span class="info-box-number"><center><?php echo $tot_draft->totaldraft; ?></center></span>
-                  <?php } ?>            
-                  <span class="info-box-text bg-gray"><center>Total Draft</center></span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-icon bg-gray"><img src="assets/dashboard/images/legend/user.png"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-number"><center><?php echo $this->session->userdata("display_name"); ?></center></span>
-                  <span class="info-box-text bg-gray"><center>View By</center></span>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            </div>
+          <div class="col-md-3">
+          <div class="info-box bg-gray">
+              <span class="info-box-icon bg-green"><img src="assets/dashboard/images/legend/user.png"></i></span>
+              <div class="info-box-content bg-gray">
+                <br>
+                <span class="info-box-number"><font color="green"><center><?php echo $this->session->userdata("display_name"); ?></center></font></span>
+                <span class="info-box-text "><font color="green"><center>View By</center></font></span>
+              </div>
+              <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>
         </div>
         
         <div class="row">
@@ -137,37 +143,53 @@
                 </div>
                 <div class="box-body">
                   <table width="100%"> 
-                    <tr><td colspan="45"><font size='6'><center>STATUS</center></font></td></tr>
-                  <tr> 
-                     
-                    
-                    <?php foreach ($draft as $tot_draft) { ?>
-                    <td><div class="dua"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <?php } ?>   
-                    <?php foreach ($draftprint as $draftprint) { ?>                    
-                    <td><div class="tiga"><center><font size='5'> <?php echo $draftprint->draftprint; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <?php } ?>               
-                    <?php foreach ($submit as $submit) { ?>
-                    <td><div class="empat"><center><font size='5'> <?php echo $submit->submit; ?> </div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <?php } ?>                  
-                    <?php foreach ($process as $process) { ?>
-                    <td><div class="lima"><center><font size='5'> <?php echo $process->process; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <?php } ?>
-                    <?php foreach ($verifikasi as $verifikasi) { ?>
-                    <td><div class="enam"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> </center></div> </td><td> &nbsp; <td> &nbsp; <td> &nbsp;
-                    <?php } ?>
-                    <?php foreach ($approval as $approval) { ?>
-                    <td><div class="tujuh"><center><font size='5'> <?php echo $approval->approval; ?> </center></div> </td><td> &nbsp;  <td> &nbsp;   <td> &nbsp;
-                    <?php } ?>
-                    <?php foreach ($paid as $paid) { ?>
-                    <td><div class="satu"><center><font size='5'> <?php echo $paid->paid; ?> </div> </td><td> &nbsp; <td> &nbsp; 
-                    <?php } ?>
-                                     
-                  </tr>   
+                    <tr>
+                      <td colspan="45"><font size='6'><center>STATUS</center></font></td>
+                    </tr>
+                    <tr>
+                      <?php foreach ($draft as $tot_draft) { ?>
+                      <td width="12%"><div class="dua"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </font> </center></div> </td><td> &nbsp; 
+                      <?php } ?>   
+                      <?php foreach ($draftprint as $draftprint) { ?>                    
+                      <td width="12%"><div class="tiga"><center><font size='5'> <?php echo $draftprint->draftprint; ?> </font></center></div> </td> <td> &nbsp;
+                      <?php } ?>               
+                      <?php foreach ($submit as $submit) { ?>
+                      <td width="12%"><div class="empat"><center><font size='5'> <?php echo $submit->submit; ?> </font> </div> </td> <td> &nbsp;
+                      <?php } ?>                  
+                      <?php foreach ($process as $process) { ?>
+                      <td width="12%"><div class="lima"><center><font size='5'> <?php echo $process->process; ?> </font></center></div> </td> <td> &nbsp;
+                      <?php } ?>
+                      <?php foreach ($verifikasi as $verifikasi) { ?>
+                      <td width="12%"><div class="enam"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> </font></center></div> </td> <td> &nbsp;
+                      <?php } ?>
+                      <?php foreach ($approval as $approval) { ?>
+                      <td width="15%"><div class="tujuh"><center><font size='5' color="white"> <?php echo $approval->approval; ?> </font></center></div> </td> <td> &nbsp;
+                      <?php } ?>
+                      <?php foreach ($paid as $paid) { ?>
+                      <td width="15%"><div class="satu"><center><font size='5' color="white"> <?php echo $paid->paid; ?> </font></div></td><td> &nbsp;  
+                      <?php } ?>
+                    </tr>
+                    <tr>   
+                      
+                      <td><center><font size='3'> Draft(Draft) </center></div> </td> <td> &nbsp;
+                                      
+                      <td><center><font size='3'> Draft(Print) </center></div> </td> <td> &nbsp;
+                      
+                      <td><center><font size='3'> Submitted </div> </td> <td> &nbsp;
+                      
+                      <td><center><font size='3'> Processing </center></div> </td> <td> &nbsp;
+                      
+                      <td><center><font size='3'> Verified </center></div> </td> <td> &nbsp;
+                      
+                      <td><center><font size='3' > Approval </center></div> </font></td> <td> &nbsp;
+                      
+                      <td><center><font size='3' > Paid </div> </font></td> <td> &nbsp;
+                      
+                    </tr>   
                   </table>
                 </div>
                 <br><br>               
-                <div class="box-body">
+                <!-- <div class="box-body">
                  
                   <td><img src="assets/dashboard/images/legend/yellow_nofull.png"></td>
                   <td>Draft (Draft)</td> &nbsp; &nbsp;
@@ -190,7 +212,7 @@
                   <td><img src="assets/dashboard/images/legend/purple.png"></td>
                   <td>Paid</td> &nbsp; &nbsp;
                   
-                </div>   
+                </div>    -->
               </div>     
             </div>
             
@@ -220,13 +242,26 @@
                               }
                         ?>                        
                       <?php } ?>
-                        <tr> 
-                          <td align="center" width="25%"><div class="box1"><center><font size='3' color="white">Upcoming Overdue<br> <?php echo $count_upcoming; ?> <br>ADVANCE</center></div></td>
-                          
-                          <td align="center" width="25%"><div class="box2"><center><font size='4' color="white">Overdue<br> <?php echo $count_overdue; ?> <br> ADVANCE</center></div></td>
-                          
-                          <td align="center" width="25%"><div class="box3"><center><font size='3' color="white">Submission in <br> 30 days <br> 20 <br>Credit Card </center></div></td>
-                        </tr>  
+                      <tr>                           
+                        <td align="center" width="25%"><div class="info-box box1">
+                          <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
+                          <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> <?php echo $count_upcoming; ?> </center></div>
+                        </td>                          
+                        <td align="center" width="25%"><div class="info-box box2">
+                          <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
+                          <center><font size='3' color="white">ADVANCE<br> Overdue <br> <?php echo $count_overdue; ?>  </center></div>
+                        </td>
+
+                        <td align="center" width="25%"><div class="info-box box3">
+                          <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
+                          <center><font size='3' color="white"> Credit Card
+                          <br>
+                          <center><font size='3' color="white">Submission in 30 days <br> 
+                          <?php foreach ($creditcard as $cc) { ?>
+                            <?php echo $cc->creditcard_pay;?>  </center></div>
+                          <?php } ?>
+                        </td> 
+                      </tr>  
                       </table>
                     </div>  
                   </div>
@@ -252,8 +287,9 @@
                   <script src="https://code.highcharts.com/modules/export-data.js"></script>
                   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-                    <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 600px; height: 400px; max-width: 600px; margin: 0 auto"></div> 
+                  <div class="col-md-9">
+                    <div id="pieChart" style="min-width: 600px; height: 400px; max-width: 600px; margin: 0 auto"></div> 
+                    </div>
                   </div>
                   <!-- /.box-body -->               
                 </div>
@@ -296,29 +332,29 @@
                     <tr>
                     <td><?php echo $i++; ?></td>
                     <td><?php if($row->status == 0){
-                            echo "<img src='assets/dashboard/images/legend/yellow_nofull.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                           }else if($row->status == 1){
-                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                           }else if($row->status == 11){
-                            echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                           }else if($row->status == 2){
-                            echo "<img src='assets/dashboard/images/legend/green.png'>";
+                            echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 3){
                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                           }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid.png'>"; 
                           }   
                         ?>
                     </td>                  
@@ -461,10 +497,10 @@ $(function () {
       plotOptions: {
           pie: {
               colors: [
-                '#006400',
-                '#ADFF2F', 
+                '#339933',
+                '#00cc00', 
                 '#808080', 
-                '#90EE90'                
+                '#90EE90'               
               ],
               allowPointSelect: true,
               cursor: 'pointer',

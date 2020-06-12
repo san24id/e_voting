@@ -6,14 +6,24 @@
 	border-radius: 80%;
 	}
    
-   .satu { border: 5px solid purple; }
-   .dua { border: 5px solid green; }
-   .tiga { border: 5px solid blue; }
-   .empat { border: 5px double blue; }
-   .lima { border: 5px solid orange; }
-   .enam {background:green; border: 5px solid green; }
-   .tujuh {background:aqua; border: 4px solid green; }
-   .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
+  .satu { border: 5px solid purple; }
+  .dua { border: 5px solid green; }
+  .tiga { border: 5px solid blue; }
+  .empat { border: 5px double blue; }
+  .lima { border: 5px solid orange; }
+  .enam {background:green; border: 5px solid green; }
+  .tujuh {background:aqua; border: 4px solid green; }
+  .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
+
+  .box1{
+    width:260px;
+    height:90px;
+    background: linear-gradient(#339966, #0066CC) ;
+    border: linear-gradient(#339966, #0066CC);
+    border-radius: 8px;
+    display: inline-block;
+    margin-left: 10px;
+  }
    	
 </style>
 
@@ -57,26 +67,27 @@
 
             <table width="100%">
               <tr>
-                <td>
-                  <center> <div class="lingkaran1 panel panel-primary">
-                  <br><br>
-                    <?php foreach ($wApproval as $wApproval) { ?>
-                    <center> <font size='7'> <?php echo $wApproval->approval; ?> </font> </center> 
-                    <?php } ?>
-                    <center> <font size='3'> Waiting for Approval </font> </center>
+                <td align="center" width="10%">
+                  <div class="info-box box1">
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified.png"></i></span>
+                      <br>
+                      <?php foreach ($wApproval as $wApproval) { ?>
+                      <font size='5' color="white"><center><?php echo $wApproval->approval; ?></center></font>
+                      <?php } ?>
+                      <center><font size='3' color="white">Waiting for Approval </center>
+                  </div>
                 </td>
-                <td>
-                  <center> <div class="lingkaran1 panel panel-primary">
-                    <br><br>
-                    <?php foreach ($tot_approved as $tot_approved) { ?>
-                    <center> <font size='7'> <?php echo $tot_approved->tot_approved; ?> </font> </center> 
-                    <?php } ?>
-                    <center> <font size='3'> Total Approved </font> </center> 
-                </td>
-              </tr>
-              <tr>           
-                <td align="center"><img src="assets/dashboard/images/legend/blue.png">Waiting for Approval</td>
-                <td align="center"><img src="assets/dashboard/images/legend/orange.png">Approved</td>
+                <td align="center" width="10%">
+                  <div class="info-box box1">
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approved.png"></i></span>
+                      <br>
+                      <?php foreach ($tot_approved as $tot_approved) { ?>
+
+                      <font size='5' color="white"><center><?php echo $tot_approved->tot_approved; ?></center></font>
+                      <?php } ?>
+                      <center><font size='3' color="white">Total Approved </center>
+                  </div>
+                </td>                                 
               </tr>
             </table>  
                 
@@ -148,13 +159,13 @@
                   <td><?php echo $i++; ?></td>
                   <td> <?php 
                         if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/blue.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>";  
                         }else if($row->status == 3){
                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
                         }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/orange.png'>";
+                          echo "<img src='assets/dashboard/images/legend/approved.png'>";
                         }else if($row->status == 10){
-                          echo "<img src='assets/dashboard/images/legend/purple.png'>";  
+                          echo "<img src='assets/dashboard/images/legend/paid1.png'>";  
                         }
                       ?>
                   </td>
@@ -346,10 +357,10 @@ $(function () {
       plotOptions: {
           pie: {
               colors: [
-                '#006400',
-                '#ADFF2F', 
+                '#339933',
+                '#00cc00', 
                 '#808080', 
-                '#90EE90'                
+                '#90EE90'               
               ],
               allowPointSelect: true,
               cursor: 'pointer',

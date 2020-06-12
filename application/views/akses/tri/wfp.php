@@ -42,9 +42,9 @@
                   <td><?php echo $i++; ?></td>                  
                   <td><?php 
                         if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/orange.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/approved.png'>";  
                         }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>";
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>";
                         }
                       ?>
                   </td>

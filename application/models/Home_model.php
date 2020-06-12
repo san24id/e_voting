@@ -187,6 +187,18 @@ class Home_model extends CI_Model{
         
     }
 
+    public function getDraft(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as totdraft FROM t_payment WHERE division_id='$dvs' AND status='0'";
+                
+        // var_dump($sql);exit;        
+        $query = $this->db->query($sql)->result();
+        return $query;
+        
+    }
+
     public function getRejected(){
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');

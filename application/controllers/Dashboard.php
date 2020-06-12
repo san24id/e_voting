@@ -53,6 +53,7 @@ class Dashboard extends CI_Controller {
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['draftprint'] = $this->Home_model->getDraftPrint();
+		$data['draft1'] = $this->Home_model->getDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -980,6 +981,8 @@ class Dashboard extends CI_Controller {
 
 	public function List_or(){
 
+		$data['reject'] = $this->Home_model->notifRejected();
+
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/mr_or', $data);
 	}
@@ -989,6 +992,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['tax'] = $this->Dashboard_model->getVTax();
 
@@ -1001,6 +1005,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['finance'] = $this->Dashboard_model->getVFinance();
 
@@ -1013,6 +1018,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['review'] = $this->Dashboard_model->getVReview();
 
@@ -1026,6 +1032,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vwaitverif'] = $this->Dashboard_model->getVWaitVerifikasi();
 
@@ -1039,6 +1046,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vwaitapprov'] = $this->Dashboard_model->getVWaitApproval();
 
@@ -1052,6 +1060,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vwaitpaid'] = $this->Dashboard_model->getVWaitPaid();
 
@@ -1065,6 +1074,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vpaid'] = $this->Dashboard_model->getVPaid();
 

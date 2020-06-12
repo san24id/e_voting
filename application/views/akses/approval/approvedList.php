@@ -30,26 +30,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                      $i = 1;
-                      foreach ($tot_approve as $row){
-                
-                      $test11 = $row->apf;                        
-                        $test22 = explode(";", $test11);
-                        $test33 = count($test22);                        
-                    ?>                           
-                
-                    <tr>
+                  <?php 
+                    $i = 1;
+                    foreach ($tot_approve as $row){
+              
+                    $test11 = $row->apf;                        
+                      $test22 = explode(";", $test11);
+                      $test33 = count($test22);                        
+                  ?>                           
+              
+                  <tr>
                     <td><?php echo $i++; ?></td>
                     <td> <?php 
                           if($row->status == 8){
-                              echo "<img src='assets/dashboard/images/legend/blue.png'>";  
+                              echo "<img src='assets/dashboard/images/legend/verified.png'>";  
                           }else if($row->status == 3){
                               echo "<img src='assets/dashboard/images/legend/reject.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/orange.png'>";
+                            echo "<img src='assets/dashboard/images/legend/approved.png'>";
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>";  
                           }
                         ?>
                     </td>

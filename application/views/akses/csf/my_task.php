@@ -42,30 +42,32 @@
                   ?>
                 <tr>
                     <td><?php echo $i++; ?></td>
-                    <td> <?php 
-                          if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
-                          }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/green.png'>";
-                          }else if($row->status == 3){
-                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
-                          }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/tax1.png'>";
-                          }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
-                          }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/review1.png'>";
-                          }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
-                          }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/yellow.png'>";
-                          }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                          }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                          }  
-
-                        ?>
+                    <td> <?php if($row->status == 0){
+                          echo "<img src='assets/dashboard/images/legend/draft.png'>";  
+                        }else if($row->status == 1){
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                        }else if($row->status == 11){
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                        }else if($row->status == 2){
+                          echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                        }else if($row->status == 3){
+                          echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                        }else if($row->status == 4){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 5){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 6){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 7){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 8){
+                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                        }else if($row->status == 9){
+                          echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                        }else if($row->status == 10){
+                          echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                        }   
+                      ?>
                     </td>
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php                     
@@ -142,19 +144,19 @@
                           //   echo "Waiting for processing/ Submitted by users";
                           // }else 
                           if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/tax1.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/review1.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/yellow.png'>";
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }
                         ?>
                   </td>                        
@@ -247,25 +249,33 @@
                   <tr>
                   <td><?php echo $i++; ?></td>
                   <td><?php 
-                          // if($row->status == 2){
-                          //   echo "Waiting for processing/ Submitted by users";
-                          // }else 
-                          if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/tax1.png'>";
-                          }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/finance1.png'>";
-                          }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/review1.png'>";
-                          }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/blue.png'>";
-                          }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/yellow.png'>";
-                          }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                          }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
-                          }
-                        ?>
+                        // if($row->status == 0){
+                        //   echo "<img src='assets/dashboard/images/legend/draft.png'>";  
+                        // }else if($row->status == 1){
+                        //   echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                        // }else if($row->status == 11){
+                        //   echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                        // }else if($row->status == 2){
+                        //   echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                        // }else if($row->status == 3){
+                        //   echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                        // }else
+                        if($row->status == 4){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 5){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 6){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 7){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 8){
+                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                        }else if($row->status == 9){
+                          echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                        }else if($row->status == 10){
+                          echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                        }   
+                      ?>
                   </td>                        
                   <td><?php echo $row->nomor_surat; ?> </td>
                   <td><?php echo $row->apf_doc;?> </td>
@@ -317,44 +327,43 @@
       <div class="row">
         <div class="col-xs-12 col-md-4">
           <!-- /.box -->
-          <div class="box">
+          <!-- <div class="box"> -->
             <!-- /.box-header -->
-            <div class="box-body">
-            
-                <table id="" class="table table-bordered table-striped">
+            <div class="box-body">            
+              <!-- <table id="" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th style="width: 10%">NO.</th>
-                  <th style="width: 10%">Status</th>
-                  <th>Keterangan</th>
-                </tr>
+                  <tr>
+                    <th style="width: 10%">NO.</th>
+                    <th style="width: 10%">Status</th>
+                    <th>Keterangan</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td><img src="assets/dashboard/images/legend/finance1.png"></td>
-                  <td>Proceed On Finance</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td><img src="assets/dashboard/images/legend/tax1.png"></td>
-                  <td>Proceed On Tax</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td><img src="assets/dashboard/images/legend/review1.png"></td>
-                  <td>Proceed On Review</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td><img src="assets/dashboard/images/legend/blue.png"></td>
-                  <td>Proceed On Verification</td>
-                </tr>
-              </tbody>
-              </table>
+                  <tr>
+                    <td>1</td>
+                    <td><img src="assets/dashboard/images/legend/finance1.png"></td>
+                    <td>Proceed On Finance</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><img src="assets/dashboard/images/legend/tax1.png"></td>
+                    <td>Proceed On Tax</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><img src="assets/dashboard/images/legend/review1.png"></td>
+                    <td>Proceed On Review</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><img src="assets/dashboard/images/legend/blue.png"></td>
+                    <td>Proceed On Verification</td>
+                  </tr>
+                </tbody>
+              </table> -->
             </div>
             <!-- /.box-body -->
-          </div>
+          <!-- </div> -->
           <!-- /.box -->
         </div>
         <!-- /.col -->
