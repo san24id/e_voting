@@ -622,7 +622,6 @@ function nominal(){
   var m = document.getElementById("jumlahuangmuka").value;
   var n = document.getElementById("jumlahuangmuka2").value;
   var o = document.getElementById("jumlahuangmuka3").value;
-
     
   var get_x = x.replace(/\D+/g, '');
   if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
@@ -655,7 +654,7 @@ function nominal(){
 	  get_e= Math.abs(get_e);		
   }
   var get_f = f.replace(/\D+/g, '');
-  if (f.substr(0,1)=="" && f.substr(f.length-1,1)==")"){		
+  if (f.substr(0,1)=="(" && f.substr(f.length-1,1)==")"){		
 		get_f= -Math.abs(get_f);		
   }else{
 	  get_f= Math.abs(get_f);		
@@ -703,44 +702,99 @@ function nominal(){
 	  get_l= Math.abs(get_l);		
   }
 
-  var get_m = m.replace(/\./g,'');
-  if (m.substr(0,1)=="(" && m.substr(m.length-1,1)==")"){		
+  var get_m = m.replace(/\D+/g, '');  
+  /*if (m.substr(0,1)=="(" && m.substr(m.length-1,1)==")"){		
 		get_m= -Math.abs(get_m);		
   }else{
 	  get_m= Math.abs(get_m);		
-  }
-  
-  var get_n = n.replace(/\./g,'');
-  if (n.substr(0,1)=="(" && n.substr(n.length-1,1)==")"){		
+  }*/
+
+  var get_n = n.replace(/\D+/g, '');
+  /*if (n.substr(0,1)=="(" && n.substr(n.length-1,1)==")"){		
 		get_n= -Math.abs(get_n);		
   }else{
-	  get_n= Math.abs(get_n);		
-  }
+	get_n= Math.abs(get_n);		
+  }*/
 
-  var get_o = o.replace(/\./g,'');
-  if (o.substr(0,1)=="(" && o.substr(o.length-1,1)==")"){		
+  var get_o = o.replace(/\D+/g,'');
+  /*if (o.substr(0,1)=="(" && o.substr(o.length-1,1)==")"){		
 		get_o= -Math.abs(get_o);		
   }else{
 	  get_o= Math.abs(get_o);		
-  }
+  }*/
 
-  var currency = Number(get_x) + Number(get_b) + Number(get_c) + Number(get_d) ;
-  var currency2 =  Number(get_e) + Number(get_f) + Number(get_g) + Number(get_h);
-  // alert(sum_b);
-  var currency3 =  Number(get_i) + Number(get_j) + Number(get_k) + Number(get_l) ;
+  //Currency1
+  var jumlah1 = Number(get_x) + 0;
+  var jumlah2 = Number(get_b) + 0;
+  var jumlah3 = Number(get_c) + 0;
+  var jumlah4 = Number(get_d) + 0;
+  // Currency2
+  var jumlah5 = Number(get_e);
+  var jumlah6 = Number(get_f);
+  var jumlah7 = Number(get_g);
+  var jumlah8 = Number(get_h);
+  // Currency3
+  var jumlah9 = Number(get_i);
+  var jumlah10 = Number(get_j);
+  var jumlah11 = Number(get_k);
+  var jumlah12 = Number(get_l);
+  
   var negatif = Number(get_m) + 0 ;
   var negatif2 = Number(get_n) + 0 ;
   var negatif3 = Number(get_o) + 0 ;
 
 //Jumlah -> Jumlah Pembayaran
-  var hasil_jumlah1 = currency;
-  var hasil_jumlah2 = currency2;
-  var hasil_jumlah3 = currency3;
+  var hasil_jumlah1 = jumlah1+jumlah2+jumlah3+jumlah4;
+  var hasil_jumlah2 = jumlah5+jumlah6+jumlah7+jumlah8;
+  var hasil_jumlah3 = jumlah9+jumlah10+jumlah11+jumlah12;
 
 // Jumlah Pembayaran - Jumlah Uang Muka
   var hasil = hasil_jumlah1-negatif;
   var hasil2 = hasil_jumlah2-negatif2;
   var hasil3 = hasil_jumlah3-negatif3;
+
+  // Total Expense   
+  if (hasil_jumlah1<0){
+	  var strhasil_jumlah1=Math.abs(hasil_jumlah1);
+	  document.getElementById("ulang").value = "(" + strhasil_jumlah1 + ")" ;
+  }else{
+	  document.getElementById("ulang").value = hasil_jumlah1 ;
+  }
+	
+  if (hasil_jumlah2<0){
+	  var strhasil_jumlah2=Math.abs(hasil_jumlah2);
+	  document.getElementById("ulang1").value = "(" + strhasil_jumlah2 + ")" ;
+  }else{
+	  document.getElementById("ulang1").value = hasil_jumlah2 ;
+  }
+  
+  if (hasil_jumlah3<0){
+	  var strhasil_jumlah3=Math.abs(hasil_jumlah3);
+	  document.getElementById("ulang2").value = "(" + strhasil_jumlah3 + ")" ;
+  }else{
+	  document.getElementById("ulang2").value = hasil_jumlah3 ;
+  }
+// Negatif(piutang)
+  if (hasil<0){
+	  var strhasil =Math.abs(hasil);
+	  document.getElementById("negatif").value = "(" + strhasil  + ")" ;
+  }else{
+	  document.getElementById("negatif").value = hasil  ;
+  }
+
+  if (hasil2<0){
+	  var strhasil2 =Math.abs(hasil2);
+	  document.getElementById("negatif2").value = "(" + strhasil2  + ")" ;
+  }else{
+	  document.getElementById("negatif2").value = hasil2  ;
+  }
+
+  if (hasil3<0){
+	  var strhasil3 =Math.abs(hasil3);
+	  document.getElementById("negatif3").value = "(" + strhasil3  + ")" ;
+  }else{
+	  document.getElementById("negatif3").value = hasil3  ;
+  }
 
   // var pembayaran = currency+ ';' +currency2+ ';' +currency3;
   // var str = pembayaran.replace(/\./g,'');
@@ -862,6 +916,10 @@ function nominal(){
       default:
       muncul = "";
     }
+
+    if (hasil<0){
+		  kalimat="( " + kalimat + ") ";
+	  }
     
     document.getElementById("terbilang").value=kalimat+muncul;
     
@@ -979,6 +1037,10 @@ function nominal(){
       muncul2 = "";
     }
 
+  if (hasil2<0){
+		kalimat2="( " + kalimat2 + ") ";
+	}
+
     document.getElementById("terbilang2").value=kalimat2+muncul2;
     // alert(kalimat2);
 
@@ -1094,12 +1156,16 @@ function nominal(){
       muncul3 = "";
     }
 
+    if (hasil3<0){
+		kalimat3="( " + kalimat3 + ") ";
+	}
+
     document.getElementById("terbilang3").value=kalimat3+muncul3;
     // alert(kalimat3);
 
-    document.getElementById("negatif").value = hasil ;
-    document.getElementById("negatif2").value = hasil2 ; 
-    document.getElementById("negatif3").value = hasil3 ;
+    // document.getElementById("negatif").value = hasil ;
+    // document.getElementById("negatif2").value = hasil2 ; 
+    // document.getElementById("negatif3").value = hasil3 ;
   var a = hasil ;
   if (a <= 100000000){
     document.getElementById("approval1").value = "Donny Hamdani";

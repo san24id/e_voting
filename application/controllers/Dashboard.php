@@ -47,6 +47,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
@@ -78,6 +79,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
@@ -569,6 +571,23 @@ class Dashboard extends CI_Controller {
 		redirect('Dashboard/monitoring');
 	}
 
+	public function rejectedtax(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 4,
+			'note' => $_POST['note'],
+			'rejected_by' => $_POST['rejected_by'],
+			'rejected_date' => $_POST['rejected_date'],
+			'handled_by' => $_POST['handled_by']
+			
+		);
+
+		$this->Dashboard_model->updaterejected($upd);
+
+		redirect('Dashboard/monitoring');
+	}
+
 	public function processing(){
 
 		$upd = array(
@@ -901,6 +920,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
@@ -1061,6 +1081,7 @@ class Dashboard extends CI_Controller {
 		$data['task'] = 'active';
 		$data['active4'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();

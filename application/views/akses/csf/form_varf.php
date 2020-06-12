@@ -320,7 +320,7 @@ td[rowspan="6"] {
                     
                     <?php if($get->status == 6){ ?>
                       <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
-                      <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Submit</button>
+                      <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Proceed For Verification</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-xl" role="document">
@@ -403,7 +403,7 @@ td[rowspan="6"] {
 
                     <?php if($get->status == 7){ ?>  
                     <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
-                    <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Verification</button>
+                    <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Proceed For Approval</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">

@@ -15,9 +15,9 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
         
-        $sql = "SELECT * FROM (SELECT b.dsc, a.id_user, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a 
-                RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.id_user = '$usr' GROUP by b.jenis_pembayaran ORDER by b.id_pay) 
-                otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
+        $sql = "SELECT * FROM (SELECT b.dsc, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a 
+                RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' GROUP by b.jenis_pembayaran ORDER by b.id_pay) 
+                otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
                
             //    var_dump($dvs);exit;
         $query = $this->db->query($sql)->result();
@@ -29,7 +29,7 @@ class Home_model extends CI_Model{
         $usr = $this->session->userdata('id_user');
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%4%' 
-        AND id_user = '$usr' AND division_id='$dvs' ";
+                AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -40,7 +40,7 @@ class Home_model extends CI_Model{
         $usr = $this->session->userdata('id_user');
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
-                AND id_user = '$usr' AND division_id='$dvs' ";
+                AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -61,7 +61,7 @@ class Home_model extends CI_Model{
         $usr = $this->session->userdata('id_user');
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
-        AND id_user = '$usr' AND division_id='$dvs' ";
+                AND division_id='$dvs' ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -71,7 +71,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status in ('1', '11') AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status in ('1', '11') AND division_id='$dvs' ";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -82,7 +82,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as submit FROM t_payment WHERE status='2' AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as submit FROM t_payment WHERE status='2' AND division_id='$dvs' ";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -93,7 +93,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','9') AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','9') AND division_id='$dvs'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -103,7 +103,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status in ('4','5','6','7') AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status in ('4','5','6','7') AND division_id='$dvs' ";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -114,7 +114,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND division_id='$dvs' ";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -123,7 +123,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9' AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9' AND division_id='$dvs' ";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -132,7 +132,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10' AND division_id='$dvs' AND id_user='$usr'";
+        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10' AND division_id='$dvs' ";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -176,10 +176,10 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT * FROM (SELECT b.status_laporan, a.id_user, a.division_id, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
-                a.status = b.id_status AND a.id_user = '$usr' AND a.status = '0'
-                GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.id_user = '$usr' 
-                AND otr.totaldraft != 0 AND otr.status_laporan IS NOT NULL";
+        $sql = "SELECT * FROM (SELECT b.status_laporan, a.division_id, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
+                a.status = b.id_status AND a.division_id = '$dvs' AND a.status = '0'
+                GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.totaldraft != 0 
+                AND otr.status_laporan IS NOT NULL";
                 
         // var_dump($sql);exit;        
         $query = $this->db->query($sql)->result();
@@ -191,7 +191,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT * FROM t_payment WHERE status='3' AND division_id='$dvs' AND id_user='$usr'";
+        $sql ="SELECT * FROM t_payment WHERE status='3' AND division_id='$dvs'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -201,10 +201,10 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as totrejected FROM t_payment WHERE division_id='$dvs' AND id_user='$usr' AND status='3'";
-        $count_rejected = $this->db->query($sql)->result();
-        
-        return $count_rejected;
+        $sql = "SELECT COUNT(status) as totrejected FROM t_payment WHERE division_id='$dvs' AND status='3'";
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
 
     }    
     
