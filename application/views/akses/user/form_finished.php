@@ -212,7 +212,7 @@
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
                       <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
@@ -227,7 +227,7 @@
                                             <option value="<?php echo $buka;?>"><?php echo $buka;?></option>
                                             <option value="">--Choose--</option>
                                             <?php foreach ($data_vendor as $nama){?> 
-                                              <option value="<?php echo $nama->npwp;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->npwp;?></option>
+                                              <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
                                             <?php } ?>
                                         </select>
                         </td>

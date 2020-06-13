@@ -176,7 +176,7 @@
                         <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
                                             <option value="">--Choose--</option>
                                             <?php foreach ($data_vendor as $nama){?> 
-                                              <option value="<?php echo $nama->npwp;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->npwp;?></option>
+                                              <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
                                             <?php } ?>
                                         </select>
                         </td>
