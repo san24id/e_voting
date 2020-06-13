@@ -37,7 +37,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->
-      <span><img width="60px" height="35px;" src="<?=base_url('assets/admin/images/login_app_logo.png');?>" /></span>
+      <span><img width="180px" height="100px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -108,7 +108,7 @@
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   
-  <aside class="main-sidebar">
+  <aside class="main-sidebar" style="background-image: url('assets/login/images/side_bar.png');">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->

@@ -44,29 +44,31 @@
                 <tr>
                   <td><?php echo $i++; ?></td>                  
                   <td><?php if($row->status == 0){
-                              echo "<img src='assets/dashboard/images/legend/yellow_nofull.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                           }else if($row->status == 1){
-                              echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          }else if($row->status == 11){
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                           }else if($row->status == 2){
-                             echo "<img src='assets/dashboard/images/legend/green.png'>";
+                            echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 3){
-                             echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                            echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                           }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/blue_nobackground.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/yellow.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/orange.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
-                        ?>
+                        ?>                    
                   </td>
                   <td><?php echo $row->label3; ?></td>
                   <td><?php                     
