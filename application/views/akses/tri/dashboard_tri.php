@@ -371,7 +371,7 @@
                     <td><?php echo $row->display_name; ?></td>
                     <td><?php echo $row->akun_bank; ?></td>
                     <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
