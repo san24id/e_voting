@@ -5,16 +5,16 @@ td[rowspan="6"] {
 }
 </style>
       <!-- Content Wrapper. Contains page content -->
+      <?php foreach ($ppayment as $row){ ?>          
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <!-- <section class="content-header">
+        <section class="content-header">
           <h1>
-          FORMULIR PERMINTAAN PEMBAYARAN <br> <i> PAYMENT REQUEST FORM (PRF)</i>
-            <small></small>
+            <a class="btn btn-warning" onclick="window.open('Dashboard/form_sp3/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
           </h1>
-        </section> -->
+        </section>
         <!-- Main content -->
-        <?php foreach ($ppayment as $row){ ?>          
+        
         <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name;?>">
           <input type="hidden" name="type" class="form-control" value="2"> 
