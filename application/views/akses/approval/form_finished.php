@@ -158,7 +158,7 @@
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"<?php echo $get->curr==bank? 'selected':''?>><?php echo $get->curr; ?></option>
+                                <option value="<?php echo $get->currency; ?>"<?php echo $get->currency==bank? 'selected':''?>><?php echo $get->currency; ?></option>
                               <?php } ?>
                             </select>
                         </td>
@@ -168,7 +168,7 @@
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
                           </td>
@@ -178,10 +178,10 @@
                                 <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
+                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
-                          </td>
+                        </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" > </td>          
                       </tr>                                                 
                       </tbody>
