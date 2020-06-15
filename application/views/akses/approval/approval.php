@@ -357,10 +357,10 @@ $(function () {
       plotOptions: {
           pie: {
               colors: [
-                '#339933',
-                '#00cc00', 
-                '#808080', 
-                '#90EE90'               
+                '#06717C',
+                '#0595A3', 
+                '#06C4D7', 
+                '#8EEBF4'               
               ],
               allowPointSelect: true,
               cursor: 'pointer',
