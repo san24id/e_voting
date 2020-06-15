@@ -7,11 +7,11 @@
       border: 5px solid #4dce8d;
 		}
    
-    .satu { border: 5px solid #3399ff; border-radius: 25px; background: #3399ff; }
-   .dua { border: 5px solid #228B22; border-radius: 25px}
-   .tiga { border: 5px solid #228B22;border-radius: 25px; background: #9ACD32; }
-   .empat { border: 5px solid #228B22; border-radius: 25px; background: #228B22;}
-   .lima { border: 5px solid orange; border-radius: 25px; background:orange; }
+    .satu { border: 5px solid #3399ff; border-radius: 10px; background: #3399ff; }
+   .dua { border: 5px solid #228B22; border-radius: 10px}
+   .tiga { border: 5px solid #228B22;border-radius: 10px; background: #9ACD32; }
+   .empat { border: 5px solid #228B22; border-radius: 10px; background: #228B22;}
+   .lima { border: 5px solid orange; border-radius: 10px; background:orange; }
    .enam {background:lime;  border: 5px solid lime; border-radius: 6px }
    .tujuh {background:turquoise; border: 4px solid turquoise; border-radius: 6px }
    .delapan {width: 120px; background:lime; border: 5px solid lime; border-radius: 6px }
@@ -120,6 +120,7 @@
                   <div class="box-body">      
                     <div class="row">
                       <div class="col-md-4"><!--Lingkaran-->
+                      <center>
                         <div class="lingkaran1 panel panel-primary">
                           <br><br><br>
                           <?php foreach ($tot_pay_req as $tot_req) { ?>
@@ -127,6 +128,7 @@
                           <?php } ?>
                         </div>
                         <div class="sembilan"><center><font size='5' color="white"> TOTAL REQUEST </font></center></div>
+                      </center>
                       </div>
 
                       <div class="col-md-8"><!--Status-->

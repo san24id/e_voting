@@ -29,7 +29,15 @@
         border-radius: 8px;
 				display: inline-block;
 				margin-left: 10px;
-   }  
+   } 
+   .box4{width:100px;
+				height:90px;
+        background: linear-gradient(#339966, #0066CC);
+				border: linear-gradient(#339966, #0066CC);
+        border-radius: 8px;
+				display: inline-block;
+				margin-left: 10px;
+   } 
    .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
    	
 </style>
@@ -48,12 +56,12 @@
         <div class="row">        
           <div class="col-md-3">
           <div class="info-box bg-gray">
-            <span class="info-box-icon bg-green"><img align="center" src="assets/dashboard/images/legend/Total_payment_request.png"></i></span>
+            <span class="info-box-icon box4"><img align="center" src="assets/dashboard/images/legend/Total_payment_request.png"></i></span>
             <div class="info-box-content bg-gray">
               <br>
               <?php foreach ($tot_pay_req as $tot_req) { ?>
-              <span class="info-box-number"><font color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span>
-              <?php } ?>    
+              <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span>
+              <?php } ?>       
               <span class="info-box-text"><font color="green"><center>Total Payment Request</center></font></span>  
             </div>
             
@@ -65,12 +73,12 @@
 
           <div class="col-md-3">
           <div class="info-box bg-gray">
-              <span class="info-box-icon bg-green"><img src="assets/dashboard/images/legend/Total_outstanding.png"></i></span>
+              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_outstanding.png"></i></span>
               <div class="info-box-content bg-gray">
                 <br>
                 <?php foreach ($outstanding as $tot_outstanding) { ?>  
-                <span class="info-box-number"><font color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span>
-                <?php } ?>            
+                <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span>
+                <?php } ?>           
                 <span class="info-box-text "><font color="green"><center>Total Outstanding Payment Request</center></font></span>
               </div>
               <!-- /.info-box-content -->
@@ -83,12 +91,12 @@
 
           <div class="col-md-3">
           <div class="info-box bg-gray">
-              <span class="info-box-icon bg-green"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
+              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
               <div class="info-box-content bg-gray">
                 <br>  
                 <?php foreach ($draft as $tot_draft) { ?>
-                <span class="info-box-number"><font color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span>
-                <?php } ?>            
+                <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span>
+                <?php } ?>              
                 <span class="info-box-text "><font color="green"><center>Total Draft</center></font></span>
               </div>
               <!-- /.info-box-content -->
@@ -98,10 +106,10 @@
 
           <div class="col-md-3">
           <div class="info-box bg-gray">
-              <span class="info-box-icon bg-green"><img src="assets/dashboard/images/legend/user.png"></i></span>
+              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/user.png"></i></span>
               <div class="info-box-content bg-gray">
                 <br>
-                <span class="info-box-number"><font color="green"><center><?php echo $this->session->userdata("display_name"); ?></center></font></span>
+                <span class="info-box-number"><font size='5' color="green"><center><?php echo $this->session->userdata("display_name"); ?></center></font></span>
                 <span class="info-box-text "><font color="green"><center>View By</center></font></span>
               </div>
               <!-- /.info-box-content -->
@@ -171,7 +179,7 @@
                     </tr>
                     <tr>   
                       
-                      <td><center><font size='3'> Draft(Draft) </center></div> </td> <td> &nbsp;
+                      <td><center><font size='3'> Draft </center></div> </td> <td> &nbsp;
                                       
                       <td><center><font size='3'> Draft(Print) </center></div> </td> <td> &nbsp;
                       
@@ -245,20 +253,20 @@
                         <tr> 
                           <td align="center" width="25%"><div class="info-box box1">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
-                            <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> <?php echo $count_upcoming; ?> </center></div>
+                            <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
+                            <font size='5' color="white"><?php echo $count_upcoming; ?> </font></center></div>
                           </td>                          
                           <td align="center" width="25%"><div class="info-box box2">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
-                            <center><font size='3' color="white">ADVANCE<br> Overdue <br> <?php echo $count_overdue; ?>  </center></div>
+                            <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
+                            <font size='5' color="white"><?php echo $count_overdue; ?> </font> </center></div>
                           </td>
 
                           <td align="center" width="25%"><div class="info-box box3">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
-                            <center><font size='3' color="white"> Credit Card
-                            <br>
-                            <center><font size='3' color="white">Submission in 30 days <br> 
+                            <center><font size='3' color="white"> Credit Card <br> Submission in 30 days <br> </font>
                             <?php foreach ($creditcard as $cc) { ?>
-                              <?php echo $cc->creditcard_pay;?>  </center></div>
+                            <font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </center></div>
                             <?php } ?>
                           </td>  
                         </tr>    
