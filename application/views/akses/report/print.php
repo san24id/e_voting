@@ -1,6 +1,7 @@
 <html>
 <body onload="window.print()">
 <style type="text/css">
+  .kolom { border: 1px solid gray;}
 @print {
     @page :footer {
         display: none
@@ -181,26 +182,28 @@
                     <table width="100%">
                       <tbody>
                       <p><font size="1">Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
-                      <tr>
-                        <td width="36%"><font size="1"><b>- Tujuan Penggunaan </b></td>
+                      <tr height="100px">
+                        <td width="15%"><font size="1"><b>- Tujuan Penggunaan </b></td>
                         <td width="1%"><font size="1"><b> : </b></td>
-                        <td colspan="8"><font size="1"><?php echo $row->label1; ?></td>
+                        <td colspan="8" class="kolom" align="top"><font size="1"><?php echo $row->label1; ?></font></td>
                         
                       </tr>
+                      
                       <tr>
                         <td><font size="1"><b>- Jumlah :</b></td>
                         <td><font size="1"><b> : </b></td>
 
-                        <td width="2%"><font size="1"> <?php echo $row->currency;?> </td>
-                        <td width="10%"><font size="1"><?php echo $row->label2; ?></td>
+                        <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency;?> </td>
+                        <td width="10%" class="kolom"><font size="1"><?php echo $row->label2; ?></td>
 
-                        <td width="2%"><font size="1"> <?php echo $row->currency2;?> </td>
-                        <td width="10%"><font size="1"><?php echo $row->jumlah2; ?></td>
+                        <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency2;?> </td>
+                        <td width="10%" class="kolom"><font size="1"><?php echo $row->jumlah2; ?></td>
 
-                        <td width="2%"><font size="1"> <?php echo $row->currency3;?> </td>
-                        <td width="10%"><font size="1"><?php echo $row->jumlah3; ?></td>
+                        <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency3;?> </td>
+                        <td width="10%" class="kolom"><font size="1"><?php echo $row->jumlah3; ?></td>
                       </tr>
-                                             
+                         
+                             
                       </tbody>
                     </table>
 
@@ -212,11 +215,11 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="48.5%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="35%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
                         </td>
                         <td align="right"><font size="1"><b> : </b></td>
-                        <td colspan="8" width="65%"><font size="1"><?php echo $row->label3; ?></td>     
+                        <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo $row->label3; ?></td>     
                       </tr> 
                       <tr>
                         <td><i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
@@ -228,7 +231,7 @@
                       <tbody>
                       <font size="1"><b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b>
                       <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
@@ -238,24 +241,26 @@
                           }
                         ?> 
                       <tr>
-                        <td width="47%"><font size="1">&nbsp; Nama</font></td>
+                        <td width="28%"><font size="1">&nbsp; Nama</font></td>
                         <td width="1%"><font size="1">:</font></td>
-                        <td  colspan="4"><font size="1"><?php echo $buka;?></font></td>
+                        <td  colspan="4" class="kolom"><font size="1"><?php echo $buka;?></font></td>
                       </tr>
                       <tr>  
                         <td><font size="1">&nbsp; Kode Vendor</font></td>
                         <td><font size="1">:</font></td>
-                        <td><font size="1"><?php echo $row->vendor;?></font></td>
+                        <td class="kolom"><font size="1"><?php echo $row->vendor;?></font></td>
                         <td width="15%"><font size="1">&nbsp; Bank </font></td>
                         <td><font size="1">:</font></td>
-                        <td><font size="1"><?php echo $row->akun_bank;?></font></td>
+                        <td class="kolom"><font size="1"><?php echo $row->akun_bank;?></font></td>
                         
                       </tr>
                       <tr>
                         <td></td>
                         <td></td>                           
                         <td></td>
-                        <td><font size="1">&nbsp; Nomor Rekening : &nbsp; <?php echo $row->no_rekening; ?></td>                                
+                        <td ><font size="1">&nbsp; Nomor Rekening</font></td>
+                        <td>:</td>
+                        <td class="kolom"><font size="1"> <?php echo $row->no_rekening; ?> </font></td>                                
                       </tr>
                       <tr>
                         <td colspan="2"><font size="1"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
@@ -314,8 +319,8 @@
                           }
                       ?> 
                       <tr>
-                        <td><font size="1"><b>- Lampiran Dokumen Pendukung :</b></td>
-                        <td><td>
+                        <td width="50%"><font size="1"><b>- Lampiran Dokumen Pendukung :</b></td>
+                        <td width="50%"><td>
                       </tr>
                       <tr>
                         <td><font size="1">  
@@ -365,7 +370,7 @@
                           }else{ 
                                 $showing="style=''" ;
                           } ?>                            
-                            <p id="text1" <?php echo $showing;?> style="display:none" > <?php echo $row->lainnya1;?></p> <br>
+                            <p class="kolom" id="text1" <?php echo $showing;?> style="display:none" > <?php echo $row->lainnya1;?></p> <br>
                             <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
                         </td>
                       </tr>    
@@ -386,7 +391,7 @@
                       <tr>
                         <td width="30%"><font size="1"><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
-                        <td><font size="1"> &nbsp; <?php echo $row->label5;?> </td>
+                        <td class="kolom"><font size="1"> &nbsp; <?php echo $row->label5;?> </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled><font size="1">Lampiran copy ARF tersedia</td>
                       </tr>
                       <tr>
@@ -402,17 +407,17 @@
                         <td><font size="1">Jumlah Biaya : </td>
                         <td>:</td>
                         <td> </td>
-                        <td align="center"><font size="1">&nbsp; <?php echo $row->label7;?><td>
+                        <td class="kolom"><font size="1">&nbsp; <?php echo $row->label7;?><td>
                       </tr>
                         <td><font size="1">Jumlah Uang Muka : </td>
                         <td>:</td>
                         <td> </td>
-                        <td align="center"><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
+                        <td class="kolom"><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
                       <tr>
                         <td><font size="1">Selisih Kurang/Lebih : </td> 
                         <td>:</td>
                         <td> </td>
-                        <td align="center"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
+                        <td class="kolom"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
                       </tr>                              
                       </tbody>
                     </table> 

@@ -196,15 +196,6 @@
                                 <?php } ?>
                             </select>
                         </td>
-                        <td>Bank</td>
-                        <td>:</td>
-                        <td><select id="dropdown" name="akun_bank" class="form-control">
-                                <option value="">--- Choose ---</option>
-                                <?php foreach ($bank as $get) {?>
-                                  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
                       </tr>
                       <tr>
                         <td></td>

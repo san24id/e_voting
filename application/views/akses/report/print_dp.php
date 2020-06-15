@@ -226,7 +226,7 @@
                       <tbody>
                       <font size="1"><b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
