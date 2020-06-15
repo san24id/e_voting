@@ -42,32 +42,31 @@
                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
                 <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>" >
                   <div class="box-header with-border">
-                    <p align="right">
-                      <?php if($row->status == 0){
-                          echo "<img src='assets/dashboard/images/legend/draft.png'>";  
+                  <p align="right">
+                      <?php 
+                        if($row->status == 0){
+                            echo "Draft (Draft)";
                         }else if($row->status == 1){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                        }else if($row->status == 11){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          echo "<img src='assets/dashboard/images/legend/green_nobackground.png'>";  
                         }else if($row->status == 2){
-                          echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                          echo "<img src='assets/dashboard/images/legend/green.png'>";
                         }else if($row->status == 3){
                           echo "<img src='assets/dashboard/images/legend/rejected.png'>";
                         }else if($row->status == 4){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "<img src='assets/dashboard/images/legend/tax1.png'>";
                         }else if($row->status == 5){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "<img src='assets/dashboard/images/legend/finance1.png'>";
                         }else if($row->status == 6){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "<img src='assets/dashboard/images/legend/review1.png'>";
                         }else if($row->status == 7){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/blue.png'>";
                         }else if($row->status == 8){
-                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                          echo "<img src='assets/dashboard/images/legend/yellow.png'>";
                         }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                          echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
                         }else if($row->status == 10){
-                          echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                        }   
+                          echo "<img src='assets/dashboard/images/legend/purple.png'>"; 
+                        }
                       ?>
                     </p>
                     <h5>
@@ -419,8 +418,10 @@
 
                     <?php if ($row->status == 5 ){ ?>
                       <hr style=" border: 0.5px solid #000;">
-                      <h6>
+					  
+					  <button type="button" id="btn_tax" class="btn btn-success" onclick="view_tax('<?php echo $row->nomor_surat;?>')" >Info Tax</button>
                       
+                      <h6>
                       <table border="1" class="table table-bordered table-striped" width="50%">
                       <thead>
                         <tr>
@@ -446,144 +447,25 @@
                        <?php foreach ($process_tax as $tampil) {?>
                         <!-- //Baris 1 -->
                         <tr>
-                          <td><?php echo $tampil->jenis_pajak1;?></td>
-                          <td><?php echo $tampil->kode_pajak1;?></td>
-                          <td><?php echo $tampil->kode_map1;?>
-                          </td>
-                          <td><?php echo $tampil->nama1;?></td>
-                          <td><?php echo $tampil->npwp1;?></td>
-                          <td><?php echo $tampil->alamat1;?></td>
-                          <td><?php echo $tampil->tarif1;?></td>
-                          <td><?php echo $tampil->fas_pajak1;?></td>
-                          <td><?php echo $tampil->special_tarif1;?></td>
-                          <td><?php echo $tampil->gross1;?></td>
-                          <td><?php echo $tampil->dpp1;?></td>
-                          <td><?php echo $tampil->dpp_gross1;?></td>
-                          <td><?php echo $tampil->pajak_terutang1;?></td>
-                          <td><?php echo $tampil->masa_pajak1;?></td>
-                          <td><?php echo $tampil->tahun1;?></td>
-                          <td><?php echo $tampil->keterangan1;?></td>
-                        </tr>
-                        <!-- //Baris 2 -->
-                        <tr>
-                          <td><?php echo $tampil->jenis_pajak2;?></td>
-                          <td><?php echo $tampil->kode_pajak2;?></td>
+                          <td><?php echo $tampil->jenis_pajak;?></td>
+                          <td><?php echo $tampil->kode_pajak;?></td>
                           <td><?php echo $tampil->kode_map;?>
                           </td>
-                          <td><?php echo $tampil->nama2;?></td>
-                          <td><?php echo $tampil->npwp2;?></td>
-                          <td><?php echo $tampil->alamat2;?></td>
-                          <td><?php echo $tampil->tarif2;?></td>
-                          <td><?php echo $tampil->fas_pajak2;?></td>
-                          <td><?php echo $tampil->special_tarif2;?></td>
-                          <td><?php echo $tampil->gross2;?></td>
-                          <td><?php echo $tampil->dpp2;?></td>
-                          <td><?php echo $tampil->dpp_gross2;?></td>
-                          <td><?php echo $tampil->pajak_terutang2;?></td>
-                          <td><?php echo $tampil->masa_pajak2;?></td>
-                          <td><?php echo $tampil->tahun2;?></td>
-                          <td><?php echo $tampil->keterangan2;?></td>
+                          <td><?php echo $tampil->nama;?></td>
+                          <td><?php echo $tampil->npwp;?></td>
+                          <td><?php echo $tampil->alamat;?></td>
+                          <td><?php echo $tampil->tarif;?></td>
+                          <td><?php echo $tampil->fas_pajak;?></td>
+                          <td><?php echo $tampil->special_tarif;?></td>
+                          <td><?php echo $tampil->gross;?></td>
+                          <td><?php echo $tampil->dpp;?></td>
+                          <td><?php echo $tampil->dpp_gross;?></td>
+                          <td><?php echo $tampil->pajak_terutang;?></td>
+                          <td><?php echo $tampil->masa_pajak;?></td>
+                          <td><?php echo $tampil->tahun;?></td>
+                          <td><?php echo $tampil->keterangan;?></td>
                         </tr>
-                        <!-- //Baris 3 -->
-                        <tr>
-                          <td><?php echo $tampil->jenis_pajak3;?></td>
-                          <td><?php echo $tampil->kode_pajak3;?></td>
-                          <td><?php echo $tampil->kode_map;?>
-                          </td>
-                          <td><?php echo $tampil->nama3;?></td>
-                          <td><?php echo $tampil->npwp3;?></td>
-                          <td><?php echo $tampil->alamat3;?></td>
-                          <td><?php echo $tampil->tarif3;?></td>
-                          <td><?php echo $tampil->fas_pajak3;?></td>
-                          <td><?php echo $tampil->special_tarif3;?></td>
-                          <td><?php echo $tampil->gross3;?></td>
-                          <td><?php echo $tampil->dpp3;?></td>
-                          <td><?php echo $tampil->dpp_gross3;?></td>
-                          <td><?php echo $tampil->pajak_terutang3;?></td>
-                          <td><?php echo $tampil->masa_pajak3;?></td>
-                          <td><?php echo $tampil->tahun3;?></td>
-                          <td><?php echo $tampil->keterangan3;?></td>
-                        </tr>
-                        <!-- //Baris 4 -->
-                        <tr>
-                          <td><?php echo $tampil->jenis_pajak4;?></td>
-                          <td><?php echo $tampil->kode_pajak4;?></td>
-                          <td><?php echo $tampil->kode_map;?>
-                          </td>
-                          <td><?php echo $tampil->nama4;?></td>
-                          <td><?php echo $tampil->npwp4;?></td>
-                          <td><?php echo $tampil->alamat4;?></td>
-                          <td><?php echo $tampil->tarif4;?></td>
-                          <td><?php echo $tampil->fas_pajak4;?></td>
-                          <td><?php echo $tampil->special_tarif4;?></td>
-                          <td><?php echo $tampil->gross4;?></td>
-                          <td><?php echo $tampil->dpp4;?></td>
-                          <td><?php echo $tampil->dpp_gross4;?></td>
-                          <td><?php echo $tampil->pajak_terutang4;?></td>
-                          <td><?php echo $tampil->masa_pajak4;?></td>
-                          <td><?php echo $tampil->tahun4;?></td>
-                          <td><?php echo $tampil->keterangan4;?></td>
-                        </tr>
-                        <!-- //Baris 5 -->
-                        <tr>
-                          <td><?php echo $tampil->jenis_pajak5;?></td>
-                          <td><?php echo $tampil->kode_pajak5;?></td>
-                          <td><?php echo $tampil->kode_map;?>
-                          </td>
-                          <td><?php echo $tampil->nama5;?></td>
-                          <td><?php echo $tampil->npwp5;?></td>
-                          <td><?php echo $tampil->alamat5;?></td>
-                          <td><?php echo $tampil->tarif5;?></td>
-                          <td><?php echo $tampil->fas_pajak5;?></td>
-                          <td><?php echo $tampil->special_tarif5;?></td>
-                          <td><?php echo $tampil->gross5;?></td>
-                          <td><?php echo $tampil->dpp5;?></td>
-                          <td><?php echo $tampil->dpp_gross5;?></td>
-                          <td><?php echo $tampil->pajak_terutang5;?></td>
-                          <td><?php echo $tampil->masa_pajak5;?></td>
-                          <td><?php echo $tampil->tahun5;?></td>
-                          <td><?php echo $tampil->keterangan5;?></td>
-                        </tr>
-                        <!-- //Baris 6 -->
-                        <tr>
-                          <td><?php echo $tampil->jenis_pajak6;?></td>
-                          <td><?php echo $tampil->kode_pajak6;?></td>
-                          <td><?php echo $tampil->kode_map;?>
-                          </td>
-                          <td><?php echo $tampil->nama6;?></td>
-                          <td><?php echo $tampil->npwp6;?></td>
-                          <td><?php echo $tampil->alamat6;?></td>
-                          <td><?php echo $tampil->tarif6;?></td>
-                          <td><?php echo $tampil->fas_pajak6;?></td>
-                          <td><?php echo $tampil->special_tarif6;?></td>
-                          <td><?php echo $tampil->gross6;?></td>
-                          <td><?php echo $tampil->dpp6;?></td>
-                          <td><?php echo $tampil->dpp_gross6;?></td>
-                          <td><?php echo $tampil->pajak_terutang6;?></td>
-                          <td><?php echo $tampil->masa_pajak6;?></td>
-                          <td><?php echo $tampil->tahun6;?></td>
-                          <td><?php echo $tampil->keterangan6;?></td>
-                        </tr>
-                        <!-- //Baris 7 -->
-                        <tr>
-                          <td><?php echo $tampil->jenis_pajak7;?></td>
-                          <td><?php echo $tampil->kode_pajak7;?></td>
-                          <td><?php echo $tampil->kode_map;?>
-                          </td>
-                          <td><?php echo $tampil->nama7;?></td>
-                          <td><?php echo $tampil->npwp7;?></td>
-                          <td><?php echo $tampil->alamat7;?></td>
-                          <td><?php echo $tampil->tarif7;?></td>
-                          <td><?php echo $tampil->fas_pajak7;?></td>
-                          <td><?php echo $tampil->special_tarif7;?></td>
-                          <td><?php echo $tampil->gross7;?></td>
-                          <td><?php echo $tampil->dpp7;?></td>
-                          <td><?php echo $tampil->dpp_gross7;?></td>
-                          <td><?php echo $tampil->pajak_terutang7;?></td>
-                          <td><?php echo $tampil->masa_pajak7;?></td>
-                          <td><?php echo $tampil->tahun7;?></td>
-                          <td><?php echo $tampil->keterangan7;?></td>
-                        </tr>
+                        
                       </tbody>
                        <?php } ?>  
                       </table>
@@ -617,7 +499,6 @@
                           <?php if ($row->jenis_pembayaran == 2) { ?> 
                             <?php if ($row->status == 5) { ?> 
                               <a class="btn btn-primary" href="Dashboard/form_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
-                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                             <?php } ?>                        
                           <?php } ?>
                           <?php if ($row->jenis_pembayaran == 3) { ?> 
@@ -625,25 +506,21 @@
                               <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
                                   
                               <a class="btn btn-primary" href="Dashboard/form_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
-                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                               <?php } ?>
 
                               <?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
                                 <a class="btn btn-primary" href="Dashboard/form_asf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a> 
-                                <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                               <?php } ?>  
                             <?php } ?>                       
                           <?php } ?>
                           <?php if ($row->jenis_pembayaran == 4) { ?> 
                             <?php if ($row->status == 5) { ?> 
                               <a class="btn btn-primary" href="Dashboard/form_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
-                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                             <?php } ?>                        
                           <?php } ?>
                           <?php if ($row->jenis_pembayaran == 5) { ?> 
                             <?php if ($row->status == 5) { ?> 
                               <a class="btn btn-primary" href="Dashboard/form_crf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
-                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                             <?php } ?>                        
                           <?php } ?>    
                         <?php } ?>        
@@ -724,29 +601,6 @@
         <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
         <label>Notes :</label>                
         <textarea type="text" class="form-control" name="note"></textarea>
-        <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
-        <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-      </div>
-      <div class="modal-footer">                        
-        <button type="submit" class="btn btn-success bye">Yes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="rejecttax<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-
-      <div class="modal-body">
-      <form id="rejectedtax" method="post" action="dashboard/rejectedtax">
-        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
-        <label>Notes :</label>                
-        <textarea type="text" class="form-control" name="note"></textarea>
-        <input type="hidden" name="handled_by" value="a.ester">
         <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
       </div>
@@ -859,6 +713,93 @@
     </div>
   </div>
 </div>    
+
+
+<!-- View Tax -->
+<div class="modal fade" id="mdl_view_tax" role="dialog" >
+  <div class="modal-dialog" style="width:1200px;overflow: auto;max-height: 95vh">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Informasi Pajak</h3>
+      </div>
+      <div class="modal-body form">
+        <form action="#" id="frm_view_tax" class="form-horizontal">
+          <div class="form-body">            
+           
+            
+
+            <div class="form-group" >
+              <label class="control-label col-md-3">Nomor Surat SP3</label>
+              <div class="col-md-6">
+                <input name="mdl_no_surat" id="mdl_no_surat" readonly="" placeholder="No Surat Permohonan" class="form-control " type="text">
+              </div>
+            </div>                       
+          </div>
+        
+
+        <div class="box box-primary">         
+            <!-- /.box-header -->
+            <div class="box-body">                           
+              <table  id="tblaksesuser" class="table table-bordered table-striped">
+                <thead>
+                        <tr>
+                          <th width="9%">Jenis Pajak</th>
+                          <th width="8%">Kode Pajak</th>
+                          <th width="9%">Kode MAP</th>
+                          <th width="10%">Nama</th>
+                          <th width="10%">NPWP/ID</th>
+                          <th width="8%">Alamat</th>
+                          <th width="6%">Tarif</th>
+                          <th width="3%">Fasilitas Pajak</th>
+                          <th>Special Tarif</th>
+                          <th>Gross Up</th>
+                          <th>DPP</th>
+                          <th>DPP <br>(Gross Up)</th>
+                          <th>Pajak Terutang</th>
+                          <th>Masa Pajak PPN</th>
+                          <th>Tahun Pajak</th>
+                          <th>Keterangan</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <?php foreach ($process_tax as $tampil) {?>
+                        <!-- //Baris 1 -->
+                        <tr>
+                          <td><?php echo $tampil->jenis_pajak;?></td>
+                          <td><?php echo $tampil->kode_pajak;?></td>
+                          <td><?php echo $tampil->kode_map;?>
+                          </td>
+                          <td><?php echo $tampil->nama;?></td>
+                          <td><?php echo $tampil->npwp;?></td>
+                          <td><?php echo $tampil->alamat;?></td>
+                          <td><?php echo $tampil->tarif;?></td>
+                          <td><?php echo $tampil->fas_pajak;?></td>
+                          <td><?php echo $tampil->special_tarif;?></td>
+                          <td><?php echo $tampil->gross;?></td>
+                          <td><?php echo $tampil->dpp;?></td>
+                          <td><?php echo $tampil->dpp_gross;?></td>
+                          <td><?php echo $tampil->pajak_terutang;?></td>
+                          <td><?php echo $tampil->masa_pajak;?></td>
+                          <td><?php echo $tampil->tahun;?></td>
+                          <td><?php echo $tampil->keterangan;?></td>
+                        </tr>
+					   <?php } ?>
+                      </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+          <!-- /.box -->
+          </form>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 <script>
 function printThis() {
   window.print();
@@ -907,6 +848,12 @@ function checkUangMuka2() {
   if (document.getElementById("checksettlement").checked == false){
     document.getElementById("auto").checked=false
   } 
+}
+
+function view_tax(param)
+{
+	$('#mdl_no_surat').val(param);
+	$('#mdl_view_tax').modal('show');
 }
 
 $(".accept").on('click', function(){

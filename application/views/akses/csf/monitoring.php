@@ -6,7 +6,8 @@
 			border-radius: 80%;
       border: 5px solid #4dce8d;
 		}
-   
+
+    .sekian { border: 5px solid #4dce8d; border-radius: 10px; background: #4dce8d; }
     .satu { border: 5px solid #3399ff; border-radius: 10px; background: #3399ff; }
    .dua { border: 5px solid #228B22; border-radius: 10px}
    .tiga { border: 5px solid #228B22;border-radius: 10px; background: #9ACD32; }
@@ -25,7 +26,7 @@
    .paid { width: 80px; height: 80px; border-radius: 80%; border: 5px solid purple; background: purple }
    .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
 
-   .box1{width:260px;
+   .box1{width:230px;
 				height:90px;
         background: linear-gradient(#339966, #0066CC) ;
 				border: linear-gradient(#339966, #0066CC);
@@ -123,11 +124,11 @@
                       <center>
                         <div class="lingkaran1 panel panel-primary">
                           <br><br><br>
-                          <?php foreach ($tot_pay_req as $tot_req) { ?>
-                          <center><font size="10"><?php echo $tot_req->totalreq; ?> </font></center>
+                          <?php foreach ($processing as $process) { ?>
+                          <center><font size="10"> <?php echo $process->process; ?> </font></center>
                           <?php } ?>
                         </div>
-                        <div class="sembilan"><center><font size='5' color="white"> TOTAL REQUEST </font></center></div>
+                        <div class="sembilan"><center><font size='5' color="white"> Waiting for Processing </font></center></div>
                       </center>
                       </div>
 
@@ -137,9 +138,16 @@
                         <?php } ?> -->
                         <div>
                           <table width="100%"> 
+                            <tr>
+                              <td><font size="5">&nbsp; &nbsp; <b>TOTAL REQUEST</b> </font></td>
+                              <?php foreach ($tot_pay_req as $tot_req) { ?>
+                              <td width="15%"><div class="sekian"><font size='5' color="white"><center><?php echo $tot_req->totalreq; ?></center></div> </td>                              
+                              <?php } ?>
+                            </tr>
                             <tr> 
                               <td colspan="2"><font size='5'> STATUS : </font> </td>
                             </tr>
+                            
                             <tr>
                               <td><font size="3">&nbsp; &nbsp; Waiting for processing / Submitted by users </font></td>
                               <?php foreach ($processing as $process) { ?>
@@ -195,7 +203,7 @@
                                 <?php foreach ($tax as $tax){ ?>
                                 <font size='3' color="white"><center><?php echo $tax->tax;?></center></font>
                                 <?php } ?>
-                                <center><font size='3' color="white">Under Processing-Tax </center>
+                                <center><font size='3' color="white">Under Processing <br> Tax </center>
                             </div>
                           </td>
                           <td align="center" width="10%">
@@ -205,7 +213,7 @@
                                 <?php foreach ($review as $review) { ?>
                                 <font size='3' color="white"><center><?php echo $review->wreview; ?></center></font>
                                 <?php } ?>
-                                <center><font size='3' color="white">Waiting For Review </center>
+                                <center><font size='3' color="white">Waiting For <br> Review </center>
                             </div>
                           </td>
                           <td align="center" width="10%">
@@ -215,7 +223,7 @@
                                 <?php foreach ($wApproval as $wApproval) { ?>
                                 <font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font>
                                 <?php } ?>
-                                <center><font size='3' color="white">Waiting For Approval </center>
+                                <center><font size='3' color="white">Waiting For <br> Approval </center>
                             </div>
                           </td>                    
                         </tr>
@@ -227,7 +235,7 @@
                                 <?php foreach ($finance as $finance){ ?>
                                 <font size='3' color="white"><center><?php echo $finance->finance;?></center></font>
                                 <?php } ?>
-                                <center><font size='3' color="white">Under Processing-Finance </center>
+                                <center><font size='3' color="white">Under Processing <br>Finance </center>
                             </div>
                           </td>
                           <td align="center" width="10%">
@@ -237,7 +245,7 @@
                                 <?php foreach ($wverifikasi as $wverifikasi) { ?>
                                 <font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font>
                                 <?php } ?>
-                                <center><font size='3' color="white">Waiting For Verification</center>
+                                <center><font size='3' color="white">Waiting For <br> Verification</center>
                             </div>
                           </td>
                           <td align="center" width="10%">
@@ -247,7 +255,7 @@
                                 <?php foreach ($wPaid as $wPaid) { ?>
                                 <font size='3' color="white"><center><?php echo $wPaid->wpaid; ?></center></font>
                                 <?php } ?>
-                                <center><font size='3' color="white">Waiting For Payment</center>
+                                <center><font size='3' color="white">Waiting For <br> Payment</center>
                             </div>
                           </td>
 

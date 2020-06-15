@@ -8,7 +8,37 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()">  
+		<?php
+		$arrjnspjk="";
+		$strjnspjk="";
+		$counter=0;
+		foreach($jenispajak as $jnspjk){
+                  $arrjnspjk= $arrjnspjk . $jnspjk->jenis_pajak .";" ;
+				  $counter=$counter+1;
+		}
+		$strjnspjk=substr($arrjnspjk,0,strlen($arrjnspjk)-1);
+		
+		$arrobjpjk="";
+		$strobjpjk="";
+		foreach($kodePajak as $kdpjk){
+                  $arrobjpjk= $arrobjpjk . $kdpjk->kode_objek_pajak .";" ;
+		}
+		$strobjpjk=substr($arrobjpjk,0,strlen($arrobjpjk)-1);
+		
+		$arrmappjk="";
+		$strmappjk="";
+		foreach($kodeMap as $kdmap){
+                  $arrmappjk= $arrmappjk . $kdmap->kode_map .";" ;
+		}
+		$strmappjk=substr($arrmappjk,0,strlen($arrmappjk)-1);
+		
+		?>
+         <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()"> 
+		<input type="hidden" id="strjnspjk" name="strjnspjk" value="<?php echo $strjnspjk; ?>">
+		<input type="hidden" id="strobjpjk" name="strobjpjk" value="<?php echo $strobjpjk; ?>">
+        <input type="hidden" id="strmappjk" name="strmappjk" value="<?php echo $strmappjk; ?>">
+		<input type="hidden" id="strcounter" name="strcounter" value="1">
+		
         <?php foreach ($ppayment as $row) { ?>
           <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
           <input type="hidden" name="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >
@@ -77,7 +107,7 @@
                       <tr>
                         <td><b>Objek Pajak</b></td>
                         <td><input id="ya" onclick="showed()" type="checkbox" name="objek_pajak[]" value="1"> Ya </td>
-                        <td> <input id="tidak" onclick="showed()" type="checkbox" name="objek_pajak[]" value=0"> Tidak</input> </td>
+                        <td> <input id="tidak" onclick="showed()" type="checkbox" name="objek_pajak[]" value="0"> Tidak</input> </td>
                         <td><input id="tidak2" type="checkbox" name="objek_pajak[]" value="2" > Employee</input> </td>
                         <td><input id="tidak3" type="checkbox" name="objek_pajak[]" value="3" > Tax at Settlement</input> </td>
                       </tr>                        
@@ -89,7 +119,7 @@
                     
                     <br>
               
-                  <div class="box">
+                  <div class="box" >
                     <table id="show" class="table table-bordered table-striped" width="100%">
                       <thead>
                         <tr>
@@ -107,6 +137,7 @@
                           <th>DPP <br>(Gross Up)</th>
                           <th>Pajak Terutang</th>
                           <th>Masa Pajak PPN</th>
+                          <th>Tahun</th>
                           <th>Keterangan</th>
                         </tr>
                       </thead>
@@ -133,9 +164,19 @@
                                 <?php } ?>
                             </select>
                           </td>
-                          <td><textarea type="text" class="form-control" name="nama[]"></textarea></td>
-                          <td><textarea type="text" class="form-control" name="npwp[]"></textarea></td>
-                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" required></textarea></td>
+                          <td><textarea type="text" class="form-control" name="nama[]"><?php echo $row->penerima;?></textarea></td>
+                              <?php 
+                                  $sql = "SELECT npwp FROM m_honorarium_konsultan WHERE nama='$row->penerima'";
+                                  $query = $this->db->query($sql)->result();
+                                  // return $query;
+                                  // var_dump($query[0]->npwp);exit; 
+                                  if ($query[0]->npwp) { $buka = $query[0]->npwp;
+                                  }else{
+                                    $buka = $row->penerima;
+                                  }
+                              ?>
+                          <td><textarea type="text" class="form-control" name="npwp[]"><?php echo $buka;?></textarea></td>
+                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" ></textarea></td>
                           <td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"></td>
                           <td><input type="checkbox" name="fas_pajak[]" value="Ya"></td>
                           <td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" ></td>
@@ -144,6 +185,7 @@
                           <td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>
                           <td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>
                           <td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>
+                          <td><input type="text" class="form-control" name="tahun[]" placeholder="Enter Text" ></td>
                           <td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>
                         </tr>                        
                       </tbody>
@@ -233,10 +275,64 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-   
+
+
+<script type="text/javascript">
+
+
+
 function tambah_baris()
 {
+	var strcounter=document.getElementById("strcounter").value;
+	var intcounter=parseInt(strcounter)+1;
+	document.getElementById("strcounter").value=intcounter;
+	strhtml='<tr>';
+	strhtml=strhtml + '<td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control"><option value="">Choose</option>';
+	strjnspjk =document.getElementById("strjnspjk").value;
+	arrjnspjk = strjnspjk.split(";");
+	
+	for (i=0;i<arrjnspjk.length; i++){
+		strhtml=strhtml + '<option value=' + arrjnspjk[i] + '>' + arrjnspjk[i] + '</option>';
+	}
+	strhtml=strhtml + '</select></td>'
+	
+	strhtml=strhtml + '<td><select id="kode_pajak" name="kode_pajak[]" class="form-control"><option value="">Choose</option>';
+	strobjpjk =document.getElementById("strobjpjk").value;
+	arrobjpjk = strobjpjk.split(";");
+	
+	for (i=0;i<arrobjpjk.length; i++){
+		strhtml=strhtml + '<option value=' + arrobjpjk[i] + '>' + arrobjpjk[i] + '</option>';
+	}
+	strhtml=strhtml + '</select></td>'
+	
+	strhtml=strhtml + '<td><select  name="kode_map[]" class="form-control"><option value="">Choose</option>';
+	strmappjk =document.getElementById("strmappjk").value;
+	arrmappjk = strmappjk.split(";");
+	
+	for (i=0;i<arrmappjk.length; i++){
+		strhtml=strhtml + '<option value=' + arrmappjk[i] + '>' + arrmappjk[i] + '</option>';
+	}
+	strhtml=strhtml + '</select></td>'
+	
+	strhtml=strhtml + '<td><textarea type="text" class="form-control" name="nama[]"></textarea> </td>'
+        + '<td><textarea type="text" class="form-control" name="npwp[]"></textarea> </td>'
+        + '<td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" required></textarea> </td>'
+        + '<td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"> </td>'
+        + '<td><input type="checkbox" name="fas_pajak[]" value="Ya"> </td>'
+        + '<td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" > </td>'
+        + '<td><input type="checkbox" name="gross[]" value="Ya"> </td>'
+        + '<td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>'
+        + '<td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>'
+        + '<td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>'
+        + '<td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>'
+		+ '<td><input type="text" class="form-control" name="tahun[]" placeholder="Enter Text" ></td>'                          
+        + '<td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>'
+	
+	strhtml=strhtml +'</tr>';
+		
+	/*for (i=1;i<=arrhtsl.length; i++){
+		html=html+ '<option value=' + arrhtsl[i]) + '>' + arrhtsl[i]) + '</option>';
+	}	
 	html='<tr>'
         + '<td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $get) {?><option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option><?php } ?></select> </td>'
         + '<td><select id="kode_pajak" name="kode_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $kode1) {?><option value="<?php echo $kode1->jenis_pajak; ?>"><?php echo $kode1->jenis_pajak; ?></option><?php } ?></select> </td>'
@@ -253,13 +349,11 @@ function tambah_baris()
         + '<td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>'
         + '<td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>'
         + '<td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>'
-        + '</tr>';
-	$('#show tbody').append(html);
+        + '</tr>';*/
+	$('#show tbody').append(strhtml);
 }     
         
-</script>
 
-<script>
 function penjumlahan(){
   var a = parseFloat(document.getElementById("tarif").value);
   // alert(a);
@@ -271,6 +365,7 @@ function penjumlahan(){
   
   
 }
+
 
 function tambah() {
   alert("Data Successfully to Save!");
@@ -298,12 +393,14 @@ function showed() {
   } 
   // alert(checkrequest);
 }
-</script>
 
-<script type="text/javascript">
   
+  
+  
+
+
   $(document).ready(function() { 
-    $('#jenis_pajak').change(function() {
+		$('#jenis_pajak').change(function() {
       if( $(this).val() == 'PPh Pasal 21') {
             $('#kode_pajak').prop( "disabled", true );
       } else {       

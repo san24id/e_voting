@@ -188,6 +188,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -206,6 +207,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -226,6 +228,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -243,6 +246,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		// $sid = $this->session->userdata("id_user");
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
@@ -279,6 +283,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -300,6 +305,7 @@ class Dashboard extends CI_Controller {
 
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['currency'] = $this->Home_model->getCurrency();
@@ -319,6 +325,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -339,6 +346,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -376,6 +384,7 @@ class Dashboard extends CI_Controller {
 
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -397,6 +406,7 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 
@@ -415,6 +425,7 @@ class Dashboard extends CI_Controller {
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -449,6 +460,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -469,6 +481,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -489,6 +502,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -656,25 +670,59 @@ class Dashboard extends CI_Controller {
 	}
 	
 	public function procees_tax(){
+		
+		$strcounter=intval($_POST['strcounter']);
 		$c_de = count($_POST['de']);
 		$de = "";
 		for($i=0; $i<=$c_de; $i++){
 			$de .= $_POST['de'][$i].";";
 		}
-
 		$c_opsional = count($_POST['opsional']);
 		$opsional = "";
-		for($i=0; $i<=$c_opsional; $i++){
+		for($i=0; $i<$c_opsional; $i++){
 			$opsional .= $_POST['opsional'][$i].";";
 		}
 
 		$c_objek_pajak = count($_POST['objek_pajak']);
 		$objek_pajak = "";
-		for($i=0; $i<=$c_objek_pajak; $i++){
+		for($i=0; $i<$c_objek_pajak; $i++){
 			$objek_pajak .= $_POST['objek_pajak'][$i].";";
 		}
+		
+		for($i=0; $i<$strcounter; $i++){
+			//$jenis_pajak .= $_POST['jenis_pajak'][$i];
+			$add = array(
+				'id_payment' => $_POST['id_payment'],
+				'status' => 5,
+				'handled_by' => $_POST['handled_by'],
+				'nomor_surat' => $_POST['nomor_surat'],
+				'de' => $de,
+				'opsional' => $opsional,
+				'nilai' => $_POST['nilai'],
+				'objek_pajak' => $objek_pajak,
+				'jenis_pajak' => $_POST['jenis_pajak'][$i],
+				'kode_pajak' => $_POST['kode_pajak'][$i],
+				'kode_map' => $_POST['kode_map'][$i],
+				'nama' => $_POST['nama'][$i],
+				'npwp' => $_POST['npwp'][$i],
+				'alamat' => $_POST['alamat'][$i],
+				'tarif' => $_POST['tarif'][$i],
+				'fas_pajak' => $_POST['fas_pajak'][$i],
+				'special_tarif' => $_POST['special_tarif'][$i],
+				'gross' => $_POST['gross'][$i][$i],
+				'dpp' => $_POST['dpp'][$i],
+				'dpp_gross' => $_POST['dpp_gross'][$i],
+				'pajak_terutang' => $_POST['pajak_terutang'][$i],
+				'masa_pajak' => $_POST['masa_pajak'][$i],
+				'keterangan' => $_POST['keterangan'][$i],
+				'tahun' => $_POST['tahun'][$i]				
+			);
 
-		$add = array(
+			$this->Dashboard_model->updatetax($add);
+			
+		}
+		
+		/*$add = array(
 			'id_payment' => $_POST['id_payment'],
 			'status' => 5,
 			'handled_by' => $_POST['handled_by'],
@@ -683,122 +731,26 @@ class Dashboard extends CI_Controller {
 			'opsional' => $opsional,
 			'nilai' => $_POST['nilai'],
 			'objek_pajak' => $objek_pajak,
-			'jenis_pajak1' => $_POST['jenis_pajak1'],
-			'jenis_pajak2' => $_POST['jenis_pajak2'],
-			'jenis_pajak3' => $_POST['jenis_pajak3'],
-			'jenis_pajak4' => $_POST['jenis_pajak4'],
-			'jenis_pajak5' => $_POST['jenis_pajak5'],
-			'jenis_pajak6' => $_POST['jenis_pajak6'],
-			'jenis_pajak7' => $_POST['jenis_pajak7'],
-			'kode_pajak1' => $_POST['kode_pajak1'],
-			'kode_pajak2' => $_POST['kode_pajak2'],
-			'kode_pajak3' => $_POST['kode_pajak3'],
-			'kode_pajak4' => $_POST['kode_pajak4'],
-			'kode_pajak5' => $_POST['kode_pajak5'],
-			'kode_pajak6' => $_POST['kode_pajak6'],
-			'kode_pajak7' => $_POST['kode_pajak7'],
+			'jenis_pajak' => $_POST['jenis_pajak1'],
+			'kode_pajak' => $_POST['kode_pajak1'],
 			'kode_map1' => $_POST['kode_map1'],
-			'kode_map2' => $_POST['kode_map2'],
-			'kode_map3' => $_POST['kode_map3'],
-			'kode_map4' => $_POST['kode_map4'],
-			'kode_map5' => $_POST['kode_map5'],
-			'kode_map6' => $_POST['kode_map6'],
-			'kode_map7' => $_POST['kode_map7'],
 			'nama1' => $_POST['nama1'],
-			'nama2' => $_POST['nama2'],
-			'nama3' => $_POST['nama3'],
-			'nama4' => $_POST['nama4'],
-			'nama5' => $_POST['nama5'],
-			'nama6' => $_POST['nama6'],
-			'nama7' => $_POST['nama7'],
 			'npwp1' => $_POST['npwp1'],
-			'npwp2' => $_POST['npwp2'],
-			'npwp3' => $_POST['npwp3'],
-			'npwp4' => $_POST['npwp4'],
-			'npwp5' => $_POST['npwp5'],
-			'npwp6' => $_POST['npwp6'],
-			'npwp7' => $_POST['npwp7'],
 			'alamat1' => $_POST['alamat1'],
-			'alamat2' => $_POST['alamat2'],
-			'alamat3' => $_POST['alamat3'],
-			'alamat4' => $_POST['alamat4'],
-			'alamat5' => $_POST['alamat5'],
-			'alamat6' => $_POST['alamat6'],
-			'alamat7' => $_POST['alamat7'],
 			'tarif1' => $_POST['tarif1'],
-			'tarif2' => $_POST['tarif2'],
-			'tarif3' => $_POST['tarif3'],
-			'tarif4' => $_POST['tarif4'],
-			'tarif5' => $_POST['tarif5'],
-			'tarif6' => $_POST['tarif6'],
-			'tarif7' => $_POST['tarif7'],
 			'fas_pajak1' => $_POST['fas_pajak1'],
-			'fas_pajak2' => $_POST['fas_pajak2'],
-			'fas_pajak3' => $_POST['fas_pajak3'],
-			'fas_pajak4' => $_POST['fas_pajak4'],
-			'fas_pajak5' => $_POST['fas_pajak5'],
-			'fas_pajak6' => $_POST['fas_pajak6'],
-			'fas_pajak7' => $_POST['fas_pajak7'],
 			'special_tarif1' => $_POST['special_tarif1'],
-			'special_tarif2' => $_POST['special_tarif2'],
-			'special_tarif3' => $_POST['special_tarif3'],
-			'special_tarif4' => $_POST['special_tarif4'],
-			'special_tarif5' => $_POST['special_tarif5'],
-			'special_tarif6' => $_POST['special_tarif6'],
-			'special_tarif7' => $_POST['special_tarif7'],
 			'gross1' => $_POST['gross1'],
-			'gross2' => $_POST['gross2'],
-			'gross3' => $_POST['gross3'],
-			'gross4' => $_POST['gross4'],
-			'gross5' => $_POST['gross5'],
-			'gross6' => $_POST['gross6'],
-			'gross7' => $_POST['gross7'],
 			'dpp1' => $_POST['dpp1'],
-			'dpp2' => $_POST['dpp2'],
-			'dpp3' => $_POST['dpp3'],
-			'dpp4' => $_POST['dpp4'],
-			'dpp5' => $_POST['dpp5'],
-			'dpp6' => $_POST['dpp6'],
-			'dpp7' => $_POST['dpp7'],
 			'dpp_gross1' => $_POST['dpp_gross1'],
-			'dpp_gross2' => $_POST['dpp_gross2'],
-			'dpp_gross3' => $_POST['dpp_gross3'],
-			'dpp_gross4' => $_POST['dpp_gross4'],
-			'dpp_gross5' => $_POST['dpp_gross5'],
-			'dpp_gross6' => $_POST['dpp_gross6'],
-			'dpp_gross7' => $_POST['dpp_gross7'],
 			'pajak_terutang1' => $_POST['pajak_terutang1'],
-			'pajak_terutang2' => $_POST['pajak_terutang2'],
-			'pajak_terutang3' => $_POST['pajak_terutang3'],
-			'pajak_terutang4' => $_POST['pajak_terutang4'],
-			'pajak_terutang5' => $_POST['pajak_terutang5'],
-			'pajak_terutang6' => $_POST['pajak_terutang6'],
-			'pajak_terutang7' => $_POST['pajak_terutang7'],
 			'masa_pajak1' => $_POST['masa_pajak1'],
-			'masa_pajak2' => $_POST['masa_pajak2'],
-			'masa_pajak3' => $_POST['masa_pajak3'],
-			'masa_pajak4' => $_POST['masa_pajak4'],
-			'masa_pajak5' => $_POST['masa_pajak5'],
-			'masa_pajak6' => $_POST['masa_pajak6'],
-			'masa_pajak7' => $_POST['masa_pajak7'],
 			'keterangan1' => $_POST['keterangan1'],
-			'keterangan2' => $_POST['keterangan2'],			
-			'keterangan3' => $_POST['keterangan3'],			
-			'keterangan4' => $_POST['keterangan4'],			
-			'keterangan5' => $_POST['keterangan5'],			
-			'keterangan6' => $_POST['keterangan6'],			
-			'keterangan7' => $_POST['keterangan7'],
-			'tahun1' => $_POST['tahun1'],
-			'tahun2' => $_POST['tahun2'],
-			'tahun3' => $_POST['tahun3'],
-			'tahun4' => $_POST['tahun4'],
-			'tahun5' => $_POST['tahun5'],
-			'tahun6' => $_POST['tahun6'],
-			'tahun7' => $_POST['tahun7']
-
+			'tahun1' => $_POST['tahun1']
+			
 		);
 
-		$this->Dashboard_model->updatetax($add);
+		$this->Dashboard_model->updatetax($add);*/
 		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by]);
 
 		redirect('Dashboard/my_task');
