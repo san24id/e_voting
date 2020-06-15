@@ -141,7 +141,7 @@
                             <tr>
                               <td><font size="5">&nbsp; &nbsp; <b>TOTAL REQUEST</b> </font></td>
                               <?php foreach ($tot_pay_req as $tot_req) { ?>
-                              <td width="15%"><div class="sekian"><font size='5' color="white"><center><?php echo $tot_req->totalreq; ?></center></div> </td>                              
+                              <td width="15%"><font size='6'><center><b><?php echo $tot_req->totalreq; ?><b></center></font> </td>                              
                               <?php } ?>
                             </tr>
                             <tr> 
@@ -377,19 +377,19 @@
                           if($row->status == 2){
                             echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/setting1.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/setting1.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/setting1.png'>";
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/review1.png'>";
+                              echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified2.png'>";
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approval1.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid2.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }
                         ?></center>
                     </td>                  
