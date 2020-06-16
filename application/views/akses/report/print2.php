@@ -1,5 +1,4 @@
 <html>
-<body onload="window.print()">
 <style type="text/css">
   .kolom { border: 1px solid gray;}
 @print {
@@ -72,7 +71,8 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/draftprintdp" onsubmit="update()">
+
+        <form id="form" method="post" action="Dashboard/draftprint" onsubmit="update()">
 
         <?php foreach ($ppayment as $row) { ?>
           
@@ -105,25 +105,25 @@
                             $test3 = count($test2);
                                     
                             for($b=0; $b<$test3; $b++){
-                            if($test2[$b] == '1'){
-                            $xxi1 .= "1";
-                            }
-                            
-                            if($test2[$b] == '2'){
-                            $xxi2 .= "2";
-                            }
-                            
-                            if($test2[$b] == '3'){
-                            $xxi3 .= "3";
-                            }
-                            
-                            if($test2[$b] == '4'){
-                            $xxi4 .= "4";
-                            }
+                              if($test2[$b] == '1'){
+                              $xxi1 .= "1";
+                              }
+                              
+                              if($test2[$b] == '2'){
+                              $xxi2 .= "2";
+                              }
+                              
+                              if($test2[$b] == '3'){
+                              $xxi3 .= "3";
+                              }
+                              
+                              if($test2[$b] == '4'){
+                              $xxi4 .= "4";
+                              }
 
-                            if($test2[$b] == '5'){
-                              $xxi5 .= "5";
-                            }
+                              if($test2[$b] == '5'){
+                                $xxi5 .= "5";
+                              }
                             }
                         ?>
                       <tr>
@@ -155,7 +155,7 @@
                         <td><font size="1">
                           <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
                         </td>
-                      </tr>                        
+                      </tr>                       
                     </table>
 
                     <table width="100%">
@@ -181,11 +181,13 @@
                     <table width="100%">
                       <tbody>
                       <p><font size="1">Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
-                      <tr>
-                        <td><font size="1"><b>- Tujuan Penggunaan </b></td>
-                        <td><font size="1"><b> : </b></td>
-                        <td colspan="8" class="kolom" align="top"><font size="1"><?php echo $row->label1; ?></font></td>                        
+                      <tr height="100px">
+                        <td width="15%"><font size="1"><b>- Tujuan Penggunaan </b></td>
+                        <td width="1%"><font size="1"><b> : </b></td>
+                        <td colspan="8" class="kolom" align="top"><font size="1"><?php echo $row->label1; ?></font></td>
+                        
                       </tr>
+                      
                       <tr>
                         <td><font size="1"><b>- Jumlah :</b></td>
                         <td><font size="1"><b> : </b></td>
@@ -199,6 +201,8 @@
                         <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency3;?> </td>
                         <td width="10%" class="kolom"><font size="1"><?php echo $row->jumlah3; ?></td>
                       </tr>
+                         
+                             
                       </tbody>
                     </table>
 
@@ -210,21 +214,21 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="48.5%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="35%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
                         </td>
                         <td align="right"><font size="1"><b> : </b></td>
-                        <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo $row->label3; ?></td>          
+                        <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo $row->label3; ?></td>     
                       </tr> 
                       <tr>
                         <td><i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
-                      </tr>                                                  
+                      </tr>                                                 
                       </tbody>
                     </table>
-
+                    
                     <table width="100%">
                       <tbody>
-                      <font size="1"><b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
+                      <font size="1"><b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b>
                       <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
@@ -234,14 +238,14 @@
                           }else{
                             $buka = $row->penerima;
                           }
-                        ?>
+                        ?> 
                       <tr>
                         <td width="28%"><font size="1">&nbsp; Nama</font></td>
                         <td width="1%"><font size="1">:</font></td>
                         <td  colspan="4" class="kolom"><font size="1"><?php echo $buka;?></font></td>
                       </tr>
                       <tr>  
-                      <td><font size="1">&nbsp; Kode Vendor</font></td>
+                        <td><font size="1">&nbsp; Kode Vendor</font></td>
                         <td><font size="1">:</font></td>
                         <td class="kolom"><font size="1"><?php echo $row->vendor;?></font></td>
                         <td width="15%"><font size="1">&nbsp; Bank </font></td>
@@ -255,7 +259,7 @@
                         <td></td>
                         <td ><font size="1">&nbsp; Nomor Rekening</font></td>
                         <td>:</td>
-                        <td class="kolom"><font size="1"> <?php echo $row->no_rekening; ?> </font></td>                                  
+                        <td class="kolom"><font size="1"> <?php echo $row->no_rekening; ?> </font></td>                                
                       </tr>
                       <tr>
                         <td colspan="2"><font size="1"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
@@ -314,8 +318,8 @@
                           }
                       ?> 
                       <tr>
-                        <td><font size="1"><b>- Lampiran Dokumen Pendukung :</b></td>
-                        <td><td>
+                        <td width="50%"><font size="1"><b>- Lampiran Dokumen Pendukung :</b></td>
+                        <td width="50%"><td>
                       </tr>
                       <tr>
                         <td><font size="1">  
@@ -364,12 +368,11 @@
                           <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
                           }else{ 
                                 $showing="style=''" ;
-                          } ?>
+                          } ?>                            
                             <p class="kolom" id="text1" <?php echo $showing;?> style="display:none" > <?php echo $row->lainnya1;?></p> <br>
-
                             <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
                         </td>
-                      </tr>      
+                      </tr>    
                     </table>
 
                     <br>
@@ -379,19 +382,19 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table id="show" <?php echo $showed;?> width="50%">
+                    <table id="show" <?php echo $showed;?> width="70%">
                       <tbody>
                       <tr>
-                        <td><font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b></td>
+                        <td colspan="4"><font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b></td>
                       </tr>  
                       <tr>
-                      <td width="30%"><font size="1"><b>- Nomor ARF terkait</b></td>
+                        <td width="30%"><font size="1"><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
                         <td class="kolom"><font size="1"> &nbsp; <?php echo $row->label5;?> </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled><font size="1">Lampiran copy ARF tersedia</td>
                       </tr>
                       <tr>
-                        <td><font size="1"><b>- Perhitungan Penggunaan Uang Muka : <b></td>
+                        <td colspan="3"><font size="1"><b>- Perhitungan Penggunaan Uang Muka : <b></td>
                       </tr>
                       <tr>
                         <td>
@@ -416,7 +419,9 @@
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
                       </tr>                              
                       </tbody>
-                    </table>          
+                    </table> 
+
+                    <br><br><br><br><br>         
                   
                     <table width="100%">
                     <tbody>
@@ -497,7 +502,7 @@
 
             </div>
           </section>  
-        </form>                  
+
         <!-- /.content -->
       </div>
 
@@ -511,6 +516,7 @@
 
 </body>
 </html>
+
 <script>
 
 function hide() {
@@ -595,4 +601,5 @@ function showInput() {
 
   }
 }
+
 </script>

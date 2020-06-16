@@ -7,15 +7,16 @@ td[rowspan="3"] {
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <!-- <section class="content-header">
+        <?php foreach ($ppayment as $get) { ?>  
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
           <h1>
-          FORMULIR PERMINTAAN PEMBAYARAN <br> <i> PAYMENT REQUEST FORM (PRF)</i>
-            <small></small>
+            <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+            <a class="btn btn-success" onclick="window.open('Dashboard/form_sp3_2/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form Tax</a>
           </h1>
-        </section> -->
+        </section>
         <!-- Main content -->
-        
-          <?php foreach ($ppayment as $get) { ?>  
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
 
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">

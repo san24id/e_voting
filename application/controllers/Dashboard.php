@@ -109,6 +109,28 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/dashboard_csf', $data);
 	}
 
+	public function report2($id_payment)	{
+
+		// $this->load->library('pdfgenerator');
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		
+		// $this->load->view('akses/user/header_user');
+		$this->load->view('akses/report/print2', $data);
+
+		// $html = $this->load->view('akses/report/print', $data, true);
+	 
+		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
 	public function report($id_payment)	{
 
 		// $this->load->library('pdfgenerator');

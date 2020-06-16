@@ -10,7 +10,7 @@ td[rowspan="6"] {
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            <a class="btn btn-warning" onclick="window.open('Dashboard/form_sp3/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+            <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
             <a class="btn btn-success" onclick="window.open('Dashboard/form_sp3_2/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form Tax</a>
           </h1>
         </section>
