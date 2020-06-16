@@ -500,6 +500,7 @@
                           <?php if ($row->jenis_pembayaran == 2) { ?> 
                             <?php if ($row->status == 5) { ?> 
                               <a class="btn btn-primary" href="Dashboard/form_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
+                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                             <?php } ?>                        
                           <?php } ?>
                           <?php if ($row->jenis_pembayaran == 3) { ?> 
@@ -507,21 +508,25 @@
                               <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
                                   
                               <a class="btn btn-primary" href="Dashboard/form_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
+                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                               <?php } ?>
 
                               <?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
                                 <a class="btn btn-primary" href="Dashboard/form_asf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a> 
+                                <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                               <?php } ?>  
                             <?php } ?>                       
                           <?php } ?>
                           <?php if ($row->jenis_pembayaran == 4) { ?> 
                             <?php if ($row->status == 5) { ?> 
                               <a class="btn btn-primary" href="Dashboard/form_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
+                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                             <?php } ?>                        
                           <?php } ?>
                           <?php if ($row->jenis_pembayaran == 5) { ?> 
                             <?php if ($row->status == 5) { ?> 
                               <a class="btn btn-primary" href="Dashboard/form_crf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
+                              <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
                             <?php } ?>                        
                           <?php } ?>    
                         <?php } ?>        
@@ -602,6 +607,29 @@
         <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
         <label>Notes :</label>                
         <textarea type="text" class="form-control" name="note"></textarea>
+        <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
+        <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+      </div>
+      <div class="modal-footer">                        
+        <button type="submit" class="btn btn-success bye">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="rejecttax<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+      <form id="rejectedtax" method="post" action="dashboard/rejectedtax">
+        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+        <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+        <label>Notes :</label>                
+        <textarea type="text" class="form-control" name="note"></textarea>
+        <input type="hidden" name="handled_by" value="a.ester">
         <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
       </div>

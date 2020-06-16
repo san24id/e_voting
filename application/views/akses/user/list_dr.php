@@ -51,7 +51,7 @@
                           }else if($row->status == 2){
                             echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 3){
-                            echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
                           }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 5){

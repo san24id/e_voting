@@ -28,7 +28,7 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT * FROM t_payment WHERE status='4' AND division_id='$dvs' AND rejected_by='h.harlina' ";
+        $sql ="SELECT * FROM t_payment WHERE status='4' AND rejected_by in ('h.harlina','i.akmal') ";
 
         $query = $this->db->query($sql)->result();
         return $query;

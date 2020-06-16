@@ -43,9 +43,8 @@
                   <td><?php echo $row->label1;?> </td>
                   <td><?php echo $row->display_name;?> </td>
                   <td><?php echo $row->note;?> </td>
-                  <td>
-                    <a href="Home/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
+                  <td>                    
+                    <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
