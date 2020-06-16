@@ -294,17 +294,17 @@
                   <td>
                     
                     <?php if ($row->status == 8) { ?>   
-                      <?php if ($row->jenis_pembayaran == 1) { ?>   
-                        <a href="Dashboard/report_prf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>            
+                      <?php if ($row->type == 1) { ?>   
+                        <a href="Dashboard/report_prf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>            
                       <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 2) { ?> 
-                        <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>            
+                      <?php if ($row->type == 2) { ?> 
+                        <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>            
                       <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 3) { ?> 
-                        <a href="Dashboard/report_asf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>                                
+                      <?php if ($row->type == 3) { ?> 
+                        <a href="Dashboard/report_asf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
                       <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 4) { ?> 
-                        <a href="Dashboard/report_crf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>                                
+                      <?php if ($row->type == 4) { ?> 
+                        <a href="Dashboard/report_crf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
                       <?php } ?>
                     <?php } ?>  
                   </td>      
