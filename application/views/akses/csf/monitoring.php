@@ -332,7 +332,6 @@
                     <th>SP3 Submitted Date</th>
                     <th>Description</th>
                     <th>Pemohon</th>
-                    <th>APF No</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -404,7 +403,6 @@
                     <td><?php echo $row->tanggal; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <td>XXX</td>
                     <td>
                         <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                          
                     </td>      
