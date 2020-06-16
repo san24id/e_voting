@@ -67,6 +67,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getOp(){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment  as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('4','5','6','7','8','9') 
+                AND division_id='$dvs'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getDraftPrint(){
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
@@ -97,7 +107,7 @@ class Home_model extends CI_Model{
 
         $query = $this->db->query($sql)->result();
         return $query;
-    }
+    }  
 
     public function getProcessing(){
         $dvs = $this->session->userdata('division_id');

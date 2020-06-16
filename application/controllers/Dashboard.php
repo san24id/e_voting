@@ -866,6 +866,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 		
+		$data['outstan'] = $this->Home_model->getOp();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();

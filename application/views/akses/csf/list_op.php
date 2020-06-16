@@ -35,7 +35,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    // foreach ($outstan as $row){
+                    foreach ($outstan as $row){
                       $test1 = $row->jenis_pembayaran;                        
                       $test2 = explode(";", $test1);
                       $test3 = count($test2);                        
@@ -95,8 +95,8 @@
                   <td>
                     <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
                   </td>      
-                  </tr>
-                          
+                </tr>
+                <?php } ?>          
               </tbody>
               </table>
             </div>
