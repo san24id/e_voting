@@ -198,7 +198,7 @@
                         <tr>
                           <td align="center" width="10%">
                             <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/setting.png"></i></span>
+                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/tax.png"></i></span>
                                 <br>
                                 <?php foreach ($tax as $tax){ ?>
                                 <font size='3' color="white"><center><?php echo $tax->tax;?></center></font>
@@ -230,7 +230,7 @@
                         <tr>
                           <td align="center" width="10%">
                             <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/setting.png"></i></span>
+                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/finance.png"></i></span>
                                 <br>
                                 <?php foreach ($finance as $finance){ ?>
                                 <font size='3' color="white"><center><?php echo $finance->finance;?></center></font>
@@ -376,11 +376,11 @@
                           if($row->status == 2){
                             echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/icon_gear_2.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/icon_gear_3.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/icon_gear_3.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 7){
                               echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
                           }else if($row->status == 8){

@@ -144,11 +144,11 @@
                           //   echo "Waiting for processing/ Submitted by users";
                           // }else 
                           if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/icon_gear_2.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/icon_gear_3.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/icon_gear_3.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 7){
                               echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
                           }else if($row->status == 8){
