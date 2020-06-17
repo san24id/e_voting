@@ -203,12 +203,12 @@ td[rowspan="6"] {
                       <tr>
                       </tr>
                       <tr align="right">
-                        <td width="5%"> </td>
+                        <td width="5%"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" readonly></td>     
+                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" ></td>     
                       </tr>
                       <tr align="right">
-                        <td width="5%"> </td>
+                        <td width="5%"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>
                         <td width="20%"><i>Date </i> &nbsp;</td>
                       </tr>
                       </tbody>

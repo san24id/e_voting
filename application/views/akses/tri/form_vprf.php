@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="prf_doc" class="form-control" value="<?php echo $get->prf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>

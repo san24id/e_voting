@@ -120,12 +120,12 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>CSF</th>
-                  <th>SP3 No</th>
+                  <th>Status CSF</th>
+                  <th>Nomor SP3</th>
                   <th>Jenis Pembayaran</th>
-                  <th>SP3 Submitted Date</th>
-                  <th>Description</th>
-                  <th>Pemohon</th>
+                  <th>Tanggal Submit SP3</th>
+                  <th>Deskripsi</th>
+                  <th>Nama Pemohon</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -144,17 +144,17 @@
                           //   echo "Waiting for processing/ Submitted by users";
                           // }else 
                           if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_gear_2.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_gear_3.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_gear_3.png'>";
                           }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                              echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_checklist.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/icon_user.png'>"; 
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }
@@ -295,16 +295,16 @@
                     
                     <?php if ($row->status == 8) { ?>   
                       <?php if ($row->type == 1) { ?>   
-                        <a href="Dashboard/report_prf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>            
+                        <a href="Dashboard/report_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>            
                       <?php } ?>
                       <?php if ($row->type == 2) { ?> 
-                        <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>            
+                        <a href="Dashboard/report_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>            
                       <?php } ?>
                       <?php if ($row->type == 3) { ?> 
-                        <a href="Dashboard/report_asf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
+                        <a href="Dashboard/report_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
                       <?php } ?>
                       <?php if ($row->type == 4) { ?> 
-                        <a href="Dashboard/report_crf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
+                        <a href="Dashboard/report_crf/<?php echo $row->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
                       <?php } ?>
                     <?php } ?>  
                   </td>      

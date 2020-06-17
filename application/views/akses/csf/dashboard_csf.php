@@ -295,13 +295,13 @@
                     <tr>
                       <th>NO.</th>
                       <th>Status</th>
-                      <th>Tanggal</th>
+                      <th>Tanggal SP3</th>
                       <th>Jenis Pembayaran</th>
-                      <th>Nomor Surat</th>
-                      <th>Description</th>
-                      <th>Pemohon</th>
-                      <th>Bank Account</th>
+                      <th>Nomor SP3</th>
+                      <th>Deskripsi</th>
+                      <th>Nama Pemohon</th>
                       <th>Nama Penerima</th>
+                      <th>Tanggal Submit SP3</th>
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -354,7 +354,6 @@
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <td><?php echo $row->akun_bank; ?></td>
                     <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
@@ -366,10 +365,10 @@
                           }
                         ?>
                     <td><?php echo $buka; ?></td>
-                    <td>
+                    <td><?php echo date('d-M-Y', strtotime($row->tanggal2));?></td>
 
-                    <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                        
+                    <td>
+                      <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                     </td>      
                     </tr>
                 <?php  } ?>

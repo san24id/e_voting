@@ -99,8 +99,8 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td>Status <i>Outstanding Advance</i> Pemohon<br>
-                            <input type="radio" name="label1" value="Akumulasi > Rp. 20 Juta"> <i>Akumulasi > Rp. 20 Juta</i></input><br>
-                            <input type="radio" name="label1" value="Outstanding Advance > 3 Transaksi"> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
+                            <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta"> <i>Akumulasi > Rp. 20 Juta</i></input><br>
+                            <input type="checkbox" name="label2" value="Outstanding Advance > 3 Transaksi"> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
                           </td>
                           <td> </td>
                           <td> &nbsp;</td>
@@ -281,7 +281,7 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses[]"></td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses"></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -387,7 +387,7 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
                           <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
-                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" name="label2" placeholder="Remarks"></textarea></td>                          
+                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" placeholder="Remarks"></textarea></td>                          
                         </tr>
                         <tr>
                           <td colspan="4"><br><br><br><br> </td>
@@ -453,7 +453,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Proceed For Review</button>
                   </div>
                 </div>                                                 
             </div>

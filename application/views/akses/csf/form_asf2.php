@@ -296,7 +296,7 @@ td[rowspan="6"] {
                           </td>
                         </tr>
                         <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
@@ -470,7 +470,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Proceed For Review</button>
                   </div>
                 </div>                                                 
             </div>

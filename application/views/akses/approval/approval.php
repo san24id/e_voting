@@ -69,7 +69,7 @@
               <tr>
                 <td align="center" width="10%">
                   <div class="info-box box1">
-                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified.png"></i></span>
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3verified.png"></i></span>
                       <br>
                       <?php foreach ($wApproval as $wApproval) { ?>
                       <font size='5' color="white"><center><?php echo $wApproval->approval; ?></center></font>
@@ -79,7 +79,7 @@
                 </td>
                 <td align="center" width="10%">
                   <div class="info-box box1">
-                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approved.png"></i></span>
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3approved.png"></i></span>
                       <br>
                       <?php foreach ($tot_approved as $tot_approved) { ?>
 

@@ -235,7 +235,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Dashboard/List_or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li>
+            <!-- <li><a href="Dashboard/List_or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li> -->
             <li><a href="Dashboard/List_upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
             <li><a href="Dashboard/List_upf"><i class="fa fa-circle-o"></i>List of Under <br>Processing (Finance)</a></li>
             <li><a href="Dashboard/List_wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
@@ -248,9 +248,10 @@
         <li class="<?php echo $task?>"><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>My Task</a></span></li>
         <?php foreach ($reject as $notif) { ?>
         <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
-        <?php } ?>
-        <!-- <li class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li> -->
-        <!-- <li class="header">MASTER DATA</li>
+        <?php } ?>        
+        <li class="header">MASTER DATA</li>
+          <li class=" "><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>Corporate Credit Card</a></span></li>
+        <!-- <li class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li>
           <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</a></span></li>
           <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-user"></i><span>Bank Account</a></span></li> -->
         <br>

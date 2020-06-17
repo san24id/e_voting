@@ -73,7 +73,7 @@
               <tr>
                 <td align="center" width="10%">
                   <div class="info-box box1">
-                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approved.png"></i></span>
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3approved.png"></i></span>
                       <br>
                       <?php foreach ($wPaid as $wPaid) { ?>
                       <font size='5' color="white"><center><?php echo $wPaid->wpaid;?></center></font>

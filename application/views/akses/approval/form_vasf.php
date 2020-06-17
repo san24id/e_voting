@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $get->asf_doc; ?>" readonly></td>
+                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -59,7 +59,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>" readonly></td>
                           <td>&nbsp; </td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->arf_doc; ?>" readonly></td>
+                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->apf1_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
@@ -203,12 +203,12 @@ td[rowspan="6"] {
                       <tr>
                       </tr>
                       <tr align="right">
-                        <td width="5%"> </td>
+                        <td width="5%"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
                         <td width="20%">Tanggal &nbsp;</td>
                         <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-M-Y", strtotime($get->verified_date));?>" readonly></td>     
                       </tr>
                       <tr align="right">
-                        <td width="5%"> </td>
+                        <td width="5%"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>
                         <td width="20%"><i>Date </i> &nbsp;</td>
                       </tr>
                       </tbody>
@@ -262,10 +262,10 @@ td[rowspan="6"] {
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
                           <!-- <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> disabled> <i>Akumulasi > Rp. 20 Juta</i></input><br> -->
 
                           <td><font size="+1"> Bank : &nbsp;<input type="text" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
@@ -347,7 +347,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="status" value="9">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
                         </div>
@@ -369,12 +369,12 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="status" value="4">
+                          <input type="hidden" name="status" value="5">
                           <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <textarea type="text" name="note"></textarea>
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                          <input type="hidden" name="rejected_date" value="<?php echo date("d-m-Y");?>">
+                          <input type="hidden" name="rejected_date" value="<?php echo date("d-M-Y");?>">
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        

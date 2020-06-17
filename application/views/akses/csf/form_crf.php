@@ -537,7 +537,7 @@ td[rowspan="3"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Proceed For Review</button>
                   </div>
                 </div>                                                 
             </div>

@@ -544,7 +544,7 @@ class Dashboard_model extends CI_Model{
                 description12, currency, currency1, currency2, currency3, currency4, currency5, currency6, currency7, currency8, currency9, currency10, currency11, jumlah, jumlah1, 
                 jumlah2, jumlah3, jumlah4, jumlah5, jumlah6, jumlah7, jumlah8, jumlah9, jumlah10, jumlah11, jumlah12, terbilang, terbilang2, terbilang3, dibayar_kepada, verified_date, penanggung_jawab,
                 jabatan, persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, total_expenses2, total_expenses3, cash_advance, 
-                cash_advance2, cash_advance3, piutang, piutang2, piutang3, metode_pembayaran, bank, no_rek, handled_by ) 
+                cash_advance2, cash_advance3, piutang, piutang2, piutang3, metode_pembayaran, bank, no_rek, handled_by, rejected_by, rejected_date, note ) 
 
         VALUES ('".$add['id_payment']."','".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['pr_doc']."','".$add['apf_doc']."','".$add['apf1_doc']."',
                 '".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."','".$add['label2']."','".$add['description']."','".$add['description2']."',
@@ -555,7 +555,7 @@ class Dashboard_model extends CI_Model{
                 '".$add['jumlah10']."','".$add['jumlah11']."','".$add['jumlah12']."','".$add['terbilang']."','".$add['terbilang2']."','".$add['terbilang3']."','".$add['dibayar_kepada']."','".$add['verified_date']."','".$add['penanggung_jawab']."',
                 '".$add['jabatan']."','".$add['persetujuan_pembayaran1']."','".$add['persetujuan_pembayaran2']."','".$add['persetujuan_pembayaran3']."','".$add['jabatan1']."','".$add['jabatan2']."','".$add['jabatan3']."','".$add['catatan']."',
                 '".$add['total_expenses']."','".$add['total_expenses2']."','".$add['total_expenses3']."','".$add['cash_advance']."','".$add['cash_advance2']."','".$add['cash_advance3']."','".$add['piutang']."','".$add['piutang2']."','".$add['piutang3']."',
-                '".$add['metode_pembayaran']."','".$add['bank']."','".$add['no_rek']."','".$add['handled_by']."')";
+                '".$add['metode_pembayaran']."','".$add['bank']."','".$add['no_rek']."','".$add['handled_by']."','".$add['rejected_by']."','".$add['rejected_date']."','".$add['note']."')";
         
         $query = $this->db->query($sql);
         // var_dump($sql);exit;
@@ -596,9 +596,12 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function updatepay($status,$nomor_surat,$handled_by){
+    function updatepay($status,$nomor_surat,$handled_by,$rejected_by,$rejected_date,$note){
         
-        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."' WHERE `nomor_surat`='".$nomor_surat."'";
+        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."',`rejected_by`='".$rejected_by."',`rejected_date`='".$rejected_date."',
+                `note`='".$note."'
+
+                WHERE `nomor_surat`='".$nomor_surat."'";
         
         $query = $this->db->query($sql);
 

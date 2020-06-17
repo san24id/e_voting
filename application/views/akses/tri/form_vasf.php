@@ -45,7 +45,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="asf_doc" class="form-control" value="<?php echo $get->asf_doc; ?>" readonly></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
@@ -59,7 +59,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>" readonly></td>
                           <td>&nbsp; </td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->arf_doc; ?>" readonly></td>
+                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $get->apf1_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
@@ -335,7 +335,7 @@ td[rowspan="6"] {
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="tri/listPayment" role="button">Cancel</a>     
                     
-                    <?php if ($row->status == 9) { ?>                  
+                    <?php if ($get->status == 9) { ?>                  
                     <button type="submit" data-toggle="modal" data-target="#approved<?php echo $get->id; ?>" class="btn btn-success">Paid</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="approved<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -347,9 +347,8 @@ td[rowspan="6"] {
                           <input type="hidden" name="status" value="10">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa kamu yakin akan Telah membayar Form APF ini : <?=$get->apf_doc?></p>
-                          <label>Notes :</label>                
-                          <p><b>Jika iya, Form APF ini telah selesai diajukan</b></p>                       
+                          <p align="justify">Apa anda yakin akan membayar Form APF ini : <?=$get->apf_doc?></p>
+                                               
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>

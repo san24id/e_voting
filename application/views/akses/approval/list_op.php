@@ -35,7 +35,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    // foreach ($outstan as $row){
+                    foreach ($outstan as $row){
                       $test1 = $row->dsc;                        
                       $test2 = explode(";", $test1);
                       $test3 = count($test2);                        
@@ -96,7 +96,7 @@
                     <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
-                          
+                      <?php } ?>        
               </tbody>
               </table>
             </div>

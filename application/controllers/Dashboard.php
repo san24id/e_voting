@@ -1306,6 +1306,9 @@ class Dashboard extends CI_Controller {
 		// var_dump(count($_POST['type']));exit;
 		if ($_POST['label1'] && $_POST['label2']){
 			$status = 3;
+			$note = "Telah melampui limit Outstanding Advance";
+			$rejected_by = $this->session->userdata("username");
+			$rejected_date = date('d-M-Y');
 		}else{
 			$status = 6;
 		}
@@ -1388,13 +1391,16 @@ class Dashboard extends CI_Controller {
 			'jabatan1' => $_POST['jabatan1'],
 			'jabatan2' => $_POST['jabatan2'],
 			'jabatan3' => $_POST['jabatan3'],
-			'catatan' => $_POST['catatan'],
-			'handled_by' => $_POST['handled_by']
+			'catatan' => $_POST['catatan'],			
+			'handled_by' => $_POST['handled_by'],
+			'rejected_by' => $rejected_by,
+			'rejected_date' => $rejected_date,
+			'note' => $note
 
 		);
 
 		$this->Dashboard_model->addpay($add);
-		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by]);
+		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by],$add[rejected_by],$add[rejected_date],$add[note]);
 		redirect('Dashboard/monitoring');
 	}
 

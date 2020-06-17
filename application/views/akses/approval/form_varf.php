@@ -351,12 +351,12 @@ td[rowspan="6"] {
                         <div class="modal-body">
                         <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="status" value="4">
+                          <input type="hidden" name="status" value="5">
                           <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <textarea type="text" name="note"></textarea>
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                          <input type="hidden" name="rejected_date" value="<?php echo date("d-m-Y");?>">
+                          <input type="hidden" name="rejected_date" value="<?php echo date("d-M-Y");?>">
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        

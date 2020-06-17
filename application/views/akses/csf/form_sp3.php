@@ -44,29 +44,29 @@
                   <div class="box-header with-border">
                     <p align="right">
                       <?php if($row->status == 0){
-                          echo "<img src='assets/dashboard/images/legend/draft.png'>";  
+                          echo "Draft";  
                         }else if($row->status == 1){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          echo "Draft(Print)";  
                         }else if($row->status == 11){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          echo "Draft(Print)";  
                         }else if($row->status == 2){
-                          echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                          echo "Submitted";
                         }else if($row->status == 3){
-                          echo "<img src='assets/dashboard/images/legend/rejected.png'>";
+                          echo "Draft (Print)";
                         }else if($row->status == 4){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "Processing On Tax";
                         }else if($row->status == 5){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "Processing On Finance";
                         }else if($row->status == 6){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "Waiting For Review";
                         }else if($row->status == 7){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "Waiting For Verification";
                         }else if($row->status == 8){
-                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                          echo "Waiting For Approval";
                         }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                          echo "Waiting For Payment"; 
                         }else if($row->status == 10){
-                          echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                          echo "Paid"; 
                         }   
                       ?>
                     </p>
@@ -219,7 +219,7 @@
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                         <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
@@ -484,7 +484,7 @@
 
                         <?php if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>
                           <?php if($row->status == 2){ ?>
-                            <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success">Proceed To Tax</button>
+                            <button type="button" data-toggle="modal" data-target="#processing<?php echo $row->id_payment; ?>" class="btn btn-success">Proceed For Processing</button>
                             <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
                           <?php } ?>
                         <?php } ?>  

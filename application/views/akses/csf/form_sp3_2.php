@@ -146,14 +146,14 @@
                           <td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control">
                                 <option value="">Choose</option>
                                 <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option>
+                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?> </option>
                                 <?php } ?>
                             </select>
                           </td>
                           <td><select id="kode_pajak" name="kode_pajak[]" class="form-control">
                                 <option value="">Choose</option>
                                 <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?></option>
+                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?> - <?php echo $get->nama_objek_pajak; ?></option>
                                 <?php } ?>
                             </select>
                           </td>
@@ -164,9 +164,19 @@
                                 <?php } ?>
                             </select>
                           </td>
-                          <td><textarea type="text" class="form-control" name="nama[]"><?php echo $row->penerima;?></textarea></td>
+                            <?php 
+                                  $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                                  $query = $this->db->query($sql)->result();
+                                  // return $query;
+                                  // var_dump($query[0]->npwp);exit; 
+                                  if ($query[0]->nama) { $buka1 = $query[0]->nama;
+                                  }else{
+                                    $buka1 = $row->penerima;
+                                  }
+                              ?>
+                          <td><textarea type="text" class="form-control" name="nama[]" readonly><?php echo $buka1;?></textarea></td>
                               <?php 
-                                  $sql = "SELECT npwp FROM m_honorarium_konsultan WHERE nama='$row->penerima'";
+                                  $sql = "SELECT npwp FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                                   $query = $this->db->query($sql)->result();
                                   // return $query;
                                   // var_dump($query[0]->npwp);exit; 
@@ -175,8 +185,18 @@
                                     $buka = $row->penerima;
                                   }
                               ?>
-                          <td><textarea type="text" class="form-control" name="npwp[]"><?php echo $buka;?></textarea></td>
-                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" ></textarea></td>
+                          <td><textarea type="text" class="form-control" name="npwp[]" readonly><?php echo $buka;?></textarea></td>
+                          <?php 
+                                  $sql = "SELECT alamat FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                                  $query = $this->db->query($sql)->result();
+                                  // return $query;
+                                  // var_dump($query[0]->alamat);exit; 
+                                  if ($query[0]->alamat) { $buka2 = $query[0]->alamat;
+                                  }else{
+                                    $buka2 = $row->penerima;
+                                  }
+                              ?>
+                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" readonly><?php echo $buka2;?></textarea></td>
                           <td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"></td>
                           <td><input type="checkbox" name="fas_pajak[]" value="Ya"></td>
                           <td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" ></td>
@@ -204,7 +224,7 @@
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Proceed For Finance</button>
                   </div>
                 </div>                                                 
             </div>

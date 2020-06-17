@@ -45,7 +45,7 @@ td[rowspan="3"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >ARF Doc. No : </font></td>
-                          <td><input type="text" name="arf_doc" class="form-control" value="<?php echo $get->arf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1" >Dir/Sub/Div :<br><i>Dir/Sub/Div </i><font></td>
