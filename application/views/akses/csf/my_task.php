@@ -41,8 +41,8 @@
                       $test3 = count($test2);                        
                   ?>
                 <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td> <?php if($row->status == 0){
+                    <td><center><?php echo $i++; ?></center></td>
+                    <td><center> <?php if($row->status == 0){
                           echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                         }else if($row->status == 1){
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
@@ -67,7 +67,7 @@
                         }else if($row->status == 10){
                           echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                         }   
-                      ?>
+                      ?></center>
                     </td>
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php                     
@@ -138,8 +138,8 @@
                       $test33 = count($test22);                        
                       ?>  
                   <tr>
-                  <td><?php echo $i++; ?></td>
-                  <td><?php 
+                  <td><center><?php echo $i++; ?></center></td>
+                  <td><center><?php 
                           // if($row->status == 2){
                           //   echo "Waiting for processing/ Submitted by users";
                           // }else 
@@ -158,7 +158,7 @@
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }
-                        ?>
+                        ?></center>
                   </td>                        
                   <td><?php echo $row->nomor_surat; ?> </td>
                   <td><?php                     
@@ -247,35 +247,27 @@
                       $test33 = count($test22);                        
                       ?>  
                   <tr>
-                  <td><?php echo $i++; ?></td>
-                  <td><?php 
-                        // if($row->status == 0){
-                        //   echo "<img src='assets/dashboard/images/legend/draft.png'>";  
-                        // }else if($row->status == 1){
-                        //   echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                        // }else if($row->status == 11){
-                        //   echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                        // }else if($row->status == 2){
-                        //   echo "<img src='assets/dashboard/images/legend/submitted.png'>";
-                        // }else if($row->status == 3){
-                        //   echo "<img src='assets/dashboard/images/legend/rejected.png'>";
-                        // }else
-                        if($row->status == 4){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 5){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 6){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 7){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 8){
-                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
-                        }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
-                        }else if($row->status == 10){
-                          echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                        }   
-                      ?>
+                  <td><center><?php echo $i++; ?></center></td>
+                  <td><center><?php 
+                          // if($row->status == 2){
+                          //   echo "Waiting for processing/ Submitted by users";
+                          // }else 
+                          if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
+                          }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
+                          }else if($row->status == 7){
+                              echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/icon_checklist.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/icon_user.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                          }
+                        ?></center>
                   </td>                        
                   <td><?php echo $row->nomor_surat; ?> </td>
                   <td><?php echo $row->apf_doc;?> </td>

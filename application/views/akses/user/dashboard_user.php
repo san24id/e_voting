@@ -340,8 +340,8 @@
                         $test3 = count($test2);                        
                         ?>
                     <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td><?php if($row->status == 0){
+                    <td><center><?php echo $i++; ?></center></td>
+                    <td><center><?php if($row->status == 0){
                             echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                           }else if($row->status == 1){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
@@ -366,7 +366,7 @@
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
-                        ?>
+                        ?></center>
                     </td>                  
                     <td><?php echo $row->tanggal; ?></td>
                     <td><?php                     

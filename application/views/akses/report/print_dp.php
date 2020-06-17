@@ -181,14 +181,14 @@
                     <table width="100%">
                       <tbody>
                       <p><font size="1">Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
-                      <tr>
-                        <td><font size="1"><b>- Tujuan Penggunaan </b></td>
-                        <td><font size="1"><b> : </b></td>
+                      <tr height="100px">
+                        <td width="10%"><font size="1"><b>- Tujuan Penggunaan </b></td>
+                        <td width="1%" align="right"><font size="1"><b> : </b></td>
                         <td colspan="8" class="kolom" align="top"><font size="1"><?php echo $row->label1; ?></font></td>                        
                       </tr>
                       <tr>
                         <td><font size="1"><b>- Jumlah :</b></td>
-                        <td><font size="1"><b> : </b></td>
+                        <td align="right"><font size="1"><b> : </b></td>
 
                         <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency;?> </td>
                         <td width="10%" class="kolom"><font size="1"><?php echo $row->label2; ?></td>
@@ -236,16 +236,16 @@
                           }
                         ?>
                       <tr>
-                        <td width="28%"><font size="1">&nbsp; Nama</font></td>
-                        <td width="1%"><font size="1">:</font></td>
+                        <td width="22%"><font size="1">&nbsp; Nama</font></td>
+                        <td width="1%"><font size="1"><b>:</b></font></td>
                         <td  colspan="4" class="kolom"><font size="1"><?php echo $buka;?></font></td>
                       </tr>
                       <tr>  
                       <td><font size="1">&nbsp; Kode Vendor</font></td>
-                        <td><font size="1">:</font></td>
+                        <td><font size="1"><b>:</b></font></td>
                         <td class="kolom"><font size="1"><?php echo $row->vendor;?></font></td>
                         <td width="15%"><font size="1">&nbsp; Bank </font></td>
-                        <td><font size="1">:</font></td>
+                        <td><font size="1"><b>:</b></font></td>
                         <td class="kolom"><font size="1"><?php echo $row->akun_bank;?></font></td>
                         
                       </tr>

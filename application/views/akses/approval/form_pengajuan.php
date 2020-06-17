@@ -324,7 +324,7 @@
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Approval" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary third">Save</button>
                   </div>
                 </div>                                                 
             </div>
@@ -419,10 +419,14 @@ function penjumlahan(){
   // }
 }
 
-
-function tambah() {
-  alert("Data Successfully to Save!");
-}
+document.querySelector(".third").addEventListener('click', function(){
+  swal("Data Successfully to Save!");
+  function tambah() {
+  location.reload(true);
+        tr.hide();
+  }
+  
+});
 
 function myFunction(){
   var x = document.getElementById("Select").value;

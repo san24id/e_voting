@@ -773,7 +773,7 @@ class Dashboard extends CI_Controller {
 		);
 
 		$this->Dashboard_model->updatetax($add);*/
-		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by]);
+		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by],$add[rejected_by],$add[rejected_date],$add[note]);
 
 		redirect('Dashboard/my_task');
 	}
@@ -1487,7 +1487,7 @@ class Dashboard extends CI_Controller {
 		);
 
 		$this->Dashboard_model->updpay($upd);
-		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by]);
+		$this->Dashboard_model->rejectapf($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 			
 		redirect('Dashboard/my_task');
 	}

@@ -1,3 +1,5 @@
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+
 <style type="text/css">
     @media print {
       body * {
@@ -447,7 +449,7 @@
                     <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success third">Save</button>
                         <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                     </div>
             </div>
@@ -497,6 +499,7 @@
 
 </div>
 <!-- ./wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script type="text/javascript">
 function fung(){
@@ -693,9 +696,17 @@ function printThis() {
   window.print();
 }
 
-function update() {
-  alert("Data Successfully to Update");
-}
+document.querySelector(".third").addEventListener('click', function(){
+  swal("Data Successfully to Update!");  
+  function update() {
+    location.reload(true);
+    tr.hide();
+  }   
+});
+
+// function update() {
+//   alert("Data Successfully to Update");
+// }
 
 function hide() {
   var checkBox = document.getElementById("checked");
