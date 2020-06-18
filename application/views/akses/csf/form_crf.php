@@ -536,8 +536,8 @@ td[rowspan="3"] {
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Home" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Proceed For Review</button>
+                    <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
+                    <button type="submit" class="btn btn-primary third">Proceed For Review</button>
                   </div>
                 </div>                                                 
             </div>
@@ -609,9 +609,14 @@ td[rowspan="3"] {
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script>
-function tambah() {
-  alert("Data Successfully to Submit");
-}
+document.querySelector(".third").addEventListener('click', function(){
+  swal("Data Successfully to Proceed For Review!");
+  function tambah() {
+  location.reload(true);
+        tr.hide();
+  }
+  
+});
 
 function myFunction(){
   var x = document.getElementById("Select").value;

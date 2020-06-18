@@ -588,8 +588,63 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function report_pajak(){
-        $sql = "SELECT * FROM `t_pajak`";
+    function getDivision(){
+        $sql = "SELECT * FROM m_division";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query; 
+    }
+
+    function credit_card(){
+        $sql = "SELECT * FROM t_creditcard";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+
+        return $query;
+    }
+
+    function addcc($add){
+        $sql = "INSERT INTO `t_creditcard` (id_div, pemegang_kartu, division_id, nama_pic, target_submission, tempo, jatah)
+
+                VALUES ('".$add['id_div']."','".$add['pemegang_kartu']."','".$add['division_id']."','".$add['nama_pic']."',
+                '".$add['target_submission']."','".$add['tempo']."','".$add['jatah']."')"; 
+        
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function updatecc($upd){
+        $sql = "UPDATE `t_creditcard` SET `pemegang_kartu`='".$upd['pemegang_kartu']."',`division_id`='".$upd['division_id']."',`nama_pic`='".$upd['nama_pic']."',`target_submission`='".$upd['target_submission']."',
+                `tempo`='".$upd['tempo']."',`jatah`='".$upd['jatah']."' 
+        
+                WHERE `id_div`='".$upd['id_div']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function deletecc($id){
+        $sql = "DELETE FROM `t_creditcard` WHERE `t_creditcard`.`id_div` = $id";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function report_pajak_pph(){
+        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPh%'";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+    
+    function report_pajak_ppn(){
+        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPN%'";
 
         $query = $this->db->query($sql)->result();
 

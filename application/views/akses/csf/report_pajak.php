@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        LIST OF REPORT PAJAK
+        LIST OF REPORT PPh
       </h1>
     </section>
 
@@ -19,46 +19,133 @@
               <div class="table-responsive">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
+                  <tr>
                     <th>No.</th>
-                    <th>SPPP No. </th>
+                    <th>Nomor SP3 </th>
                     <th>Jenis Pajak </th>
-                    <th>Tahun Pajak</th>
-                    <th>NPWP </th> 
-                    <th>NIK</th>
-                    <th>Nama Vendor</th>
-                    <th>Alamat</th>
                     <th>Kode Objek Pajak</th>
+                    <th>MAP</th>
+                    <th>Tanggal Pemotongan <br> (dd/MM/yyyy)</th>
+                    <th>Masa Pajak</th>
+                    <th>Nama</th>
+                    <th>Type ID </th> 
+                    <th>No. NPWP/KTP</th>
+                    <th>Alamat</th>
+                    <th>Mendapatkan Fasilitas ? (Y/N)</th>
                     <th>Nomor SKB</th>
-                    <th>Nilai PPN WAPU/OFFSHORE</th>
+                    <th>Tarif Pajak</th>
+                    <th>DPP</th>
+                    <th>Nilai Pajak Terutang</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
-                </tr>
+                  </tr>
                 </thead>
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($report as $row){
+                    foreach ($report_pph as $row){
                   ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->nomor_surat;?> </td>
-                  <td><?php echo $row->jenis_pajak; ?></td>
-                  <td><?php echo $row->tahun_pajak; ?></td>
-                  <td><?php echo $row->npwp; ?></td>
-                  <td><?php echo $row->nik; ?></td>
-                  <td><?php echo $row->nama_vendor; ?></td>
-                  <td><?php echo $row->alamat; ?></td>
-                  <td><?php echo $row->kode_pajak; ?></td>
-                  <td><?php echo $row->nomor_skb; ?></td>
-                  <td><?php echo $row->nilai_ppn; ?></td>
-                  <td>
-                    <a href="Dashboard/report_view/<?php echo $row->id_pajak; ?>"><button class="btn btn-primary btn-sm">Open</button></a>                    
-                  </td>      
+                  <tr>
+                    <td><?php echo $i++; ?></td>                  
+                    <td><?php echo $row->nomor_surat;?> </td>
+                    <td><?php echo $row->jenis_pajak; ?></td>
+                    <td><?php echo $row->kode_pajak; ?></td>
+                    <td><?php echo $row->kode_map; ?></td>
+                    <td>Tanggal Pemotongan</td>
+                    <td>Masa Pajak</td>
+                    <td><?php echo $row->nama; ?></td>
+                    <td>TYPE ID</td>
+                    <td><?php echo $row->npwp; ?></td>
+                    <td><?php echo $row->alamat; ?></td>
+                    <td>Mendapatkan Fasilitas ? (Y/N)</td>
+                    <td>Nomor SKB</td>
+                    <td><?php echo $row->tarif; ?></td>
+                    <td><?php echo $row->dpp; ?></td>
+                    <td><?php echo $row->pajak_terutang; ?></td>
+                    <td><?php echo $row->keterangan; ?></td>
+                    <td>
+                      <a href="Dashboard/report_view/<?php echo $row->id_pajak; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    </td>      
                   </tr>
                     <?php } ?>      
-              </tbody>
-              </table>
+                </tbody>
+                </table>
+              </div>
             </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>  
+
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+    <section class="content-header">
+      <h1>
+        LIST OF REPORT PPN
+      </h1>
+    </section>
+
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- /.box -->
+
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Nomor SP3 </th>
+                    <th>Jenis Pajak </th>
+                    <th>Masa Pajak</th>
+                    <th>Nama</th>
+                    <th>NPWP tersedia? <br> (YA/NO)</th>
+                    <th>Type ID</th>
+                    <th>No. NPWP/KTP</th>
+                    <th>Alamat </th> 
+                    <th>Tarif Pajak</th>
+                    <th>DPP</th>
+                    <th>Nilai Pajak Terutang</th>
+                    <th>Keterangan</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                    $i = 1;
+                    foreach ($report_ppn as $row){
+                  ?>
+                  <tr>
+                    <td><?php echo $i++; ?></td>                  
+                    <td><?php echo $row->nomor_surat;?> </td>
+                    <td><?php echo $row->jenis_pajak; ?></td>
+                    <td>Masa Pajak</td>
+                    <td><?php echo $row->nama; ?></td>
+                    <td>NPWP tersedia? <br> (YA/NO)</td>
+                    <td>Type ID</td>
+                    <td><?php echo $row->npwp; ?></td>
+                    <td><?php echo $row->alamat; ?></td>
+                    <td><?php echo $row->npwp; ?></td>
+                    <td><?php echo $row->tarif; ?></td>
+                    <td><?php echo $row->dpp; ?></td>
+                    <td><?php echo $row->pajak_terutang; ?></td>
+                    <td><?php echo $row->keterangan; ?></td>                    
+                    <td>
+                      <a href="Dashboard/report_view/<?php echo $row->id_pajak; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    </td>      
+                  </tr>
+                    <?php } ?>      
+                </tbody>
+                </table>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>

@@ -250,9 +250,9 @@
         <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <?php } ?>        
         <li class="header">MASTER DATA</li>
-          <li class=" "><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>Corporate Credit Card</a></span></li>
-        <!-- <li class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li>
-          <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</a></span></li>
+          <li class="<?php echo $credit_card?>"><a href="Dashboard/credit_card"><i class="glyphicon glyphicon-list-alt"></i><span>Corporate Credit Card</a></span></li>
+          <li class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li>
+          <!-- <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</a></span></li>
           <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-user"></i><span>Bank Account</a></span></li> -->
         <br>
         <?php 

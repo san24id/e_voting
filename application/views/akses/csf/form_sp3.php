@@ -582,11 +582,15 @@
 <!----.Accept -->
 <div class="modal fade" id="accept<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
-   <div class="modal-content">                                        
+   <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h3 class="modal-title">Message Box</h3>
+    </div>                                        
     <div class="modal-body">
     <form id="accepted" method="post" action="dashboard/accept">
     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-      <p align="justify">Apa kamu yakin telah menerima Form SP3 ini :  <?=$row->nomor_surat?></p>
+      <p align="justify">Apa anda yakin telah menerima Form SP3 ini :  <?=$row->nomor_surat?></p>
     </div>
     <div class="modal-footer">                        
      <button type="submit" class="btn btn-success bye">Yes</button>
@@ -601,11 +605,14 @@
 <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Message Box</h3>
+      </div>                        
       <div class="modal-body">
       <form id="rejected" method="post" action="dashboard/rejected">
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+        <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
         <label>Notes :</label>                
         <textarea type="text" class="form-control" name="note"></textarea>
         <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
@@ -623,11 +630,14 @@
 <div class="modal fade" id="rejecttax<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Message Box</h3>
+      </div>
       <div class="modal-body">
       <form id="rejectedtax" method="post" action="dashboard/rejectedtax">
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+        <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
         <label>Notes :</label>                
         <textarea type="text" class="form-control" name="note"></textarea>
         <input type="hidden" name="handled_by" value="a.ester">
@@ -646,11 +656,15 @@
 <!---.Processing-->          
 <div class="modal fade" id="processing<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">                                        
+    <div class="modal-content">    
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Message Box</h3>
+      </div>                                    
       <div class="modal-body">
       <form id="processed" method="post" action="dashboard/processing">
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa kamu yakin telah menerima Form SP3 ini :  <?=$row->nomor_surat?> ?</p>
+        <p align="justify">Apa anda yakin telah menerima Form SP3 ini :  <?=$row->nomor_surat?> ?</p>
         <label>Dan akan mengirimkan Form SP3 ini Kepada CSF Tax?</label> 
         <input type="hidden" name="handled_by" value="a.ester">                       
         <!-- <select class="form-control" name="handled_by">
@@ -668,82 +682,6 @@
     </div>
   </div>
 </div>  
-    
-
-<!---.Tax-->          
-<div class="modal fade" id="tax<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">                                        
-      <div class="modal-body">
-      <form id="processed" method="post" action="dashboard/tax">
-        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <table border="1" width="50%">
-          <tbody>
-              <tr>
-                <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
-              </tr>
-              <tr>
-                <td width="20%"><center><b>Jenis Pajak </b></center></td>
-                <td width="10%"><center><b>Tarif </b></center></td>
-                <td width="30%"><center><b>DPP </b></center></td>
-                <td width="20%"><center><b>Gross Up </b></center>  </td>
-                <td width="20%"><center><b>Pajak Terhitung </b></center>  </td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 21/26</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 22</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 23/26</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPh Pasal 4(2)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PPN WAPU/PPN Offshore</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>                                                          
-          </tbody>
-        </table>
-        <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini :  <?=$row->nomor_surat?></p>
-        <label>Kepada CSF Finance:</label>                        
-        <select class="form-control" name="handled_by">
-          <option>--- Choose ---</option>
-        <?php foreach ($csf as $get) {?>
-          <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-        <?php } ?>
-        </select>
-      </div>
-      <div class="modal-footer">                        
-          <button type="submit" class="btn btn-success bye">Yes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>    
-
 
 <!-- View Tax -->
 <div class="modal fade" id="mdl_view_tax" role="dialog" >

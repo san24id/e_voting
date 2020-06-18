@@ -253,17 +253,17 @@ td[rowspan="3"] {
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Dian Puspitasari </td>    
                           <td colspan="2" width="10%">No. Bilyet: </td>
                           <td colspan="2"> </td>
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; VP Treasury </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Cashier </td>
                           <td colspan="2" width="10%"><i>Check No.:</i> </td>
                           <td colspan="2"> </td>
                         </tr>
@@ -304,84 +304,96 @@ td[rowspan="3"] {
                       <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Proceed To Verification</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-xl" role="document">
-                        <div class="modal-content">                                        
-                          <div class="modal-body">
-                          <form id="processed" method="post" action="dashboard/updpay">
-                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
-                            <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                            <input type="hidden" name="status" value="7">
-                            <p align="justify">Apa kamu yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
-                            <label>Kepada CSF Verificator:</label>    
-                            <input type="hidden" name="handled_by" value="h.harlina">
-                            <!-- <select class="form-control" name="handled_by">
-                              <option>--- Choose ---</option>
-                            <?php foreach ($csf as $get) {?>
-                              <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                            <?php } ?>
-                            </select> -->
-                          </div>
-                          <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          </form>
+                        <div class="modal-dialog modal-xl" role="document">
+                          <div class="modal-content">  
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h3 class="modal-title">Message Box</h3>
+                            </div>                                      
+                            <div class="modal-body">
+                            <form id="processed" method="post" action="dashboard/updpay">
+                              <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
+                              <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                              <input type="hidden" name="status" value="7">
+                              <p align="justify">Apa anda yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
+                              <label>Kepada CSF Verificator:</label>    
+                              <input type="hidden" name="handled_by" value="h.harlina">
+                              <!-- <select class="form-control" name="handled_by">
+                                <option>--- Choose ---</option>
+                              <?php foreach ($csf as $get) {?>
+                                <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                              <?php } ?>
+                              </select> -->
+                            </div>
+                            <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       </div>
                       
                       <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
                       <!---Modal RejectRequestor-->
                       <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-xl" role="document">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                          <form id="rejected" method="post" action="dashboard/rejectreq">
-                            <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                            <input type="hidden" name="status" value="3">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
-                            <label>Notes :</label>                
-                            <textarea type="text" class="form-control" name="note"></textarea>
-                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
-                            <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          </div>
-                          <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          </form>
+                        <div class="modal-dialog modal-xl" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h3 class="modal-title">Message Box</h3>
+                            </div>
+                            <div class="modal-body">
+                            <form id="rejected" method="post" action="dashboard/rejectreq">
+                              <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                              <input type="hidden" name="status" value="3">
+                              <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                              <label>Notes :</label>                
+                              <textarea type="text" class="form-control" name="note"></textarea>
+                              <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
+                              <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
+                              <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                            </div>
+                            <div class="modal-footer">                        
+                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       </div> 
 
                       <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
                       <!---Modal RejectedFinance--> 
                       <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-xl" role="document">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                          <form id="rejected2" method="post" action="dashboard/rejectapf">
-                            <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                            <input type="hidden" name="status" value="5">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
-                            <label>Kepada CSF Finance:</label>
-                            <br>
-                            <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
-                            
-                            <label>Notes :</label>                
-                            <textarea type="text" class="form-control" name="note"></textarea>
-                            <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          </div>
-                          <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          </form>
+                        <div class="modal-dialog modal-xl" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h3 class="modal-title">Message Box</h3>
+                            </div>
+                            <div class="modal-body">
+                            <form id="rejected2" method="post" action="dashboard/rejectapf">
+                              <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                              <input type="hidden" name="status" value="5">
+                              <p align="justify">Apa anda yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
+                              <label>Kepada CSF Finance:</label>
+                              <br>
+                              <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                              <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
+                              
+                              <label>Notes :</label>                
+                              <textarea type="text" class="form-control" name="note"></textarea>
+                              <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
+                              <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                            </div>
+                            <div class="modal-footer">                        
+                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       </div>  
                     <?php } ?>
 
@@ -391,82 +403,94 @@ td[rowspan="3"] {
                     <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Proceed To Approval</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                      <div class="modal-content">                                        
-                        <div class="modal-body">
-                        <form id="processed1" method="post" action="dashboard/updpay">
-                          <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
-                          <input type="hidden" name="status" value="8">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
-                          <label>Kepada Approval? </label>                        
-                        </div>
-                        <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
+                      <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title">Message Box</h3>
+                          </div>                                        
+                          <div class="modal-body">
+                          <form id="processed1" method="post" action="dashboard/updpay">
+                            <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
+                            <input type="hidden" name="status" value="8">
+                            <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                            <label>Kepada Approval? </label>                        
+                          </div>
+                          <div class="modal-footer">                        
+                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </form>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     </div>
 
                     <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
                     <!---Modal RejectRequestor-->
                     <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                      <div class="modal-content">
-                        <div class="modal-body">
-                        <form id="rejected" method="post" action="dashboard/rejectreq">
-                          <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="status" value="3">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
-                          <label>Notes :</label>                
-                          <textarea type="text" class="form-control" name="note"></textarea>
-                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
-                          <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                        </div>
-                        <div class="modal-footer">                        
-                          <button type="submit" class="btn btn-success bye">Yes</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
+                      <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title">Message Box</h3>
+                          </div>
+                          <div class="modal-body">
+                          <form id="rejected" method="post" action="dashboard/rejectreq">
+                            <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                            <input type="hidden" name="status" value="3">
+                            <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                            <label>Notes :</label>                
+                            <textarea type="text" class="form-control" name="note"></textarea>
+                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
+                            <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
+                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          </div>
+                          <div class="modal-footer">                        
+                            <button type="submit" class="btn btn-success bye">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </form>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     </div> 
 
                     <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
                     <!---Modal RejectedFinance--> 
                     <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                      <div class="modal-content">
-                        <div class="modal-body">
-                        <form id="rejected2" method="post" action="dashboard/rejectapf">
-                          <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                          <input type="hidden" name="status" value="4">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
-                          <label>Kepada CSF Finance:</label>                        
-                          <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
-                          <!-- <select class="form-control" name="handled_by">
-                            <option>--- Choose ---</option>
-                          <?php foreach ($csf as $get) {?>
-                            <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                          <?php } ?>
-                          </select> -->
-                          <label>Notes :</label>                
-                          <textarea type="text" class="form-control" name="note"></textarea>
-                          <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                          <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                        </div>
-                        <div class="modal-footer">                        
-                          <button type="submit" class="btn btn-success bye">Yes</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </form>
+                      <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title">Message Box</h3>
+                          </div>
+                          <div class="modal-body">
+                          <form id="rejected2" method="post" action="dashboard/rejectapf">
+                            <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                            <input type="hidden" name="status" value="4">
+                            <p align="justify">Apa anda yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
+                            <label>Kepada CSF Finance:</label>                        
+                            <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
+                            <!-- <select class="form-control" name="handled_by">
+                              <option>--- Choose ---</option>
+                            <?php foreach ($csf as $get) {?>
+                              <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
+                            <?php } ?>
+                            </select> -->
+                            <label>Notes :</label>                
+                            <textarea type="text" class="form-control" name="note"></textarea>
+                            <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
+                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                          </div>
+                          <div class="modal-footer">                        
+                            <button type="submit" class="btn btn-success bye">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </form>
                         </div>
                       </div>
-                      </div>
-                      </div>       
+                    </div>
+                    </div>       
                     <?php } ?>
                   </div>
                 </div>                                              

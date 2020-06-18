@@ -175,6 +175,68 @@ class Dashboard extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
+	public function credit_card(){
+		
+		$data['active1'] = '';
+		$data['credit_card'] = 'active';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['division'] = $this->Dashboard_model->getDivision();
+		$data['creditcard'] = $this->Dashboard_model->credit_card();
+		$data['report_ppn'] = $this->Dashboard_model->report_pajak_ppn();
+		// $data['report_view'] = $this->Dashboard_model->report_view($id_pajak);
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/credit_card', $data);
+	}
+
+	function addcc(){
+
+		$add = array(
+
+			'id_div' => $_POST['id_div'],
+			'pemegang_kartu' => $_POST['pemegang_kartu'],
+			'division_id' => $_POST['division_id'],
+			'nama_pic' => $_POST['nama_pic'],
+			'target_submission' => $_POST['target_submission'],
+			'tempo' => $_POST['tempo'],
+			'jatah' => $_POST['jatah']					
+						
+		);
+
+		$this->Dashboard_model->addcc($add);
+
+		redirect('Dashboard/credit_card');
+	}
+
+	function updatecc(){
+
+		$upd = array(
+			
+			'id_div' => $_POST['id_div'],
+			'pemegang_kartu' => $_POST['pemegang_kartu'],
+			'division_id' => $_POST['division_id'],
+			'nama_pic' => $_POST['nama_pic'],
+			'target_submission' => $_POST['target_submission'],
+			'tempo' => $_POST['tempo'],
+			'jatah' => $_POST['jatah']					
+						
+		);
+
+		$this->Dashboard_model->updatecc($upd);
+
+		redirect('Dashboard/credit_card');
+	}
+
+	function deletecc(){
+
+		$this->Dashboard_model->deletecc($_POST['id_div']);
+
+		redirect('Dashboard/credit_card');
+
+	}
+
 	public function report_pajak(){
 		
 		$data['active1'] = '';
@@ -182,7 +244,8 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
-		$data['report'] = $this->Dashboard_model->report_pajak();
+		$data['report_pph'] = $this->Dashboard_model->report_pajak_pph();
+		$data['report_ppn'] = $this->Dashboard_model->report_pajak_ppn();
 		// $data['report_view'] = $this->Dashboard_model->report_view($id_pajak);
 
 		$this->load->view('akses/csf/header_csf', $data);
