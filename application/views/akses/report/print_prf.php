@@ -88,73 +88,75 @@ td[rowspan="6"] {
                         </tr>
                       </thead>
                       <tbody>                      
-                        <tr>
-                          <td rowspan="3"><font size="1"><center> 1 </center></td>
+                      <tr>
+                          <td><font size="1"><center> 1 </center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description;?></td>                  
                           <td><center><font size="1"><?php echo $get->currency;?></center> </td>
                           <td><font size="1"><?php echo $get->jumlah;?></td>
                         </tr>
                         <tr>
+                          <td><font size="1"><center> 2 </center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description2;?></td>
                           <td><center><font size="1"><?php echo $get->currency1;?></center> </td>
                           <td><font size="1"><?php echo $get->jumlah2;?> </td> 
                         </tr>
                         <tr>
+                          <td><font size="1"><center> 3 </center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description3;?> </td>
                           <td><center><font size="1"><?php echo $get->currency2;?> </center> </td>
                           <td><font size="1"><?php echo $get->jumlah3;?> </td> 
                         </tr>
                         <tr>
-                          <td><center><font size="1">2</center></td>
+                          <td><center><font size="1">4</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description4;?> </td>
                           <td><center><font size="1">  <?php echo $get->currency3;?></center> </td>
                           <td><font size="1"><?php echo $get->jumlah4;?> </td>
                         </tr>
                         <tr>
-                          <td><center><font size="1">3</center></td>
+                          <td><center><font size="1">5</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description5;?> </td>
                           <td><center><font size="1">  <?php echo $get->currency4;?></center> </td>
                           <td><font size="1"><?php echo $get->jumlah5;?>  </td> 
                         </tr>
                         <tr>
-                          <td><font size="1"><center>4</center></td>
+                          <td><font size="1"><center>6</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description6;?> </td>
                           <td><center><font size="1">  <?php echo $get->currency5;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah6;?> </td> 
                         </tr>
                         
                         <tr>
-                          <td><center><font size="1">5</center></td>
+                          <td><center><font size="1">7</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description7;?> </td>
                           <td><center><font size="1">  <?php echo $get->currency6;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah7;?>  </td> 
                         </tr>
                         <tr>
-                          <td><center><font size="1">6</center></td>
+                          <td><center><font size="1">8</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description8;?> </td>
                           <td><center><font size="1">  <?php echo $get->currency7;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah8;?></td> 
                         </tr>
                         <tr>
-                          <td><center><font size="1">7</center></td>
+                          <td><center><font size="1">9</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description9;?> </td>
                           <td><center><font size="1">  <?php echo $get->currency8;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah9;?> </td> 
                         </tr>
                         <tr>
-                          <td><center><font size="1">8</center></td>
+                          <td><center><font size="1">10</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description10;?> </td>
                           <td><center><font size="1">  <?php echo $get->currency9;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah10;?> </td> 
                         </tr>
                         <tr>
-                          <td><font size="1"><center>9</center></td>
+                          <td><font size="1"><center>11</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description11;?></td>
                           <td><font size="1"><center>  <?php echo $get->currency10;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah11;?></td> 
                         </tr>
                         <tr>
-                          <td><font size="1"><center>10</center></td>
+                          <td><font size="1"><center>12</center></td>
                           <td colspan="2"><font size="1"><?php echo $get->description12;?></td>
                           <td><font size="1"><center>  <?php echo $get->currency11;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah12;?></td> 
@@ -311,9 +313,69 @@ td[rowspan="6"] {
                 </div>
 
                 </div>
-          </section>    
-        <?php } ?>                        
-        <!-- </form> -->
+                <?php } ?>
+        </section>
+      </div>
+         <br>   
+      <div class="content-wrapper">
+        <section class="content">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td><img src="<?php echo base_url(); ?>assets/dashboard/images/logo.png" width="150px" alt="Logo Images"> </td>
+                </tr>
+                <tr>
+                  <td align="center"> <b><font size="2">FORM VERIFIKASI PAJAK</font></b></td>                                  
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th><font size="1">Jenis Pajak</th>
+                  <th><font size="1">Kode Pajak</th>
+                  <th><font size="1">Kode MAP</th>
+                  <th><font size="1">Nama</th>
+                  <th><font size="1">NPWP/ID</th>
+                  <th><font size="1">Alamat</th>
+                  <th><font size="1">Tarif</th>
+                  <th><font size="1">Fasilitas Pajak</th>
+                  <th><font size="1">Special Tarif</th>
+                  <th><font size="1">Gross Up</th>
+                  <th><font size="1">DPP</th>
+                  <th><font size="1">DPP <br>(Gross Up)</th>
+                  <th><font size="1">Pajak Terutang</th>
+                  <th><font size="1">Masa Pajak PPN</th>
+                  <th><font size="1">Tahun Pajak</th>
+                  <th><font size="1">Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach ($process_tax as $tampil) {?>
+                <!-- //Baris 1 -->
+                <tr>
+                  <td><font size="1"><?php echo $tampil->jenis_pajak;?></td>
+                  <td><font size="1"><?php echo $tampil->kode_pajak;?></td>
+                  <td><font size="1"><?php echo $tampil->kode_map;?> </td>
+                  <td><font size="1"><?php echo $tampil->nama;?></td>
+                  <td><font size="1"><?php echo $tampil->npwp;?></td>
+                  <td><font size="1"><?php echo $tampil->alamat;?></td>
+                  <td><font size="1"><?php echo $tampil->tarif;?></td>
+                  <td><font size="1"><?php echo $tampil->fas_pajak;?></td>
+                  <td><font size="1"><?php echo $tampil->special_tarif;?></td>
+                  <td><font size="1"><?php echo $tampil->gross;?></td>
+                  <td><font size="1"><?php echo $tampil->dpp;?></td>
+                  <td><font size="1"><?php echo $tampil->dpp_gross;?></td>
+                  <td><font size="1"><?php echo $tampil->pajak_terutang;?></td>
+                  <td><font size="1"><?php echo $tampil->masa_pajak;?></td>
+                  <td><font size="1"><?php echo $tampil->tahun;?></td>
+                  <td><font size="1"><?php echo $tampil->keterangan;?></td>
+                </tr>
+              <?php } ?>
+              </tbody>
+            </table>
+        </section>
         <!-- /.content -->
       </div>
 

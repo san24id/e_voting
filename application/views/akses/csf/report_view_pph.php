@@ -35,51 +35,51 @@
                   <hr style=" border: 0.5px solid #000;">
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
-                        <th>No.</th>
-                        <th>SPPP No. </th>
-                        <th>Jenis Pajak </th>
-                        <th>Masa Pajak </th>
-                        <th>Tahun Pajak</th>
-                        <th>Tgl Pemotongan (dd/MM/yyyy)</th>
-                        <th>NPWP ? (Y/N)</th>
-                        <th>NPWP (tanpa format/tanda baca)   </th> 
-                        <th>NIK (tanpa format/tanda baca) </th>
-                        <th>Nama Vendor</th>
-                        <th>Alamat</th>
-                        <th>Kode Objek Pajak</th>
-                        <th>Penghasilan Bruto</th>
-                        <th>Tarif Pajak</th>
-                        <th>Nilai Pajak Terutang</th>
-                        <th>Mendapatkan Fasilitas? (N/SKB/DTP)</th>
-                        <th>Nomor SKB</th>
-                        <th>Vendor PKP (Y/N)</th>
-                        <th>Nilai PPN WAPU/OFFSHORE</th>
+                      <tr>
+                          <th>No.</th>
+                          <th width="9%">Jenis Pajak</th>
+                          <th width="8%">Kode Pajak</th>
+                          <th width="9%">Kode MAP</th>
+                          <th width="10%">Nama</th>
+                          <th width="10%">NPWP/ID</th>
+                          <th width="8%">Alamat</th>
+                          <th width="6%">Tarif</th>
+                          <th width="3%">Fasilitas Pajak</th>
+                          <th>Special Tarif</th>
+                          <th>Gross Up</th>
+                          <th>DPP</th>
+                          <th>DPP <br>(Gross Up)</th>
+                          <th>Pajak Terutang</th>
+                          <th>Masa Pajak PPN</th>
+                          <th>Tahun Pajak</th>
+                          <th>Keterangan</th>
+                        </tr>
                       </thead>
                       <tbody>
+                        <?php 
+                          $i= 1;
+                          foreach ($process_tax as $tampil) {?>
+                        <!-- //Baris 1 -->
                         <tr>
-                          <?php foreach ($vreport as $get){ 
-
-                          ?>
-                          <td> 1 </td>   
-                          <td> <?php echo $get->nomor_surat;?> </td>    
-                          <td> <?php echo $get->jenis_pajak;?>  </td>    
-                          <td> <?php echo $get->masa_pajak;?>  </td>    
-                          <td> <?php echo $get->tahun_pajak;?>  </td> 
-                          <td> <?php echo $get->tgl_pemotongan;?>  </td>    
-                          <td> <?php echo $get->ber_npwp;?>  </td>                            
-                          <td> <?php echo $get->npwp;?>  </td>                            
-                          <td> <?php echo $get->nik;?>  </td>                            
-                          <td> <?php echo $get->nama_vendor;?>  </td>                            
-                          <td> <?php echo $get->alamat;?>  </td>                            
-                          <td> <?php echo $get->kode_pajak;?>  </td>     
-                          <td> <?php echo $get->penghasilan_bruto;?>  </td>     
-                          <td> <?php echo $get->tarif_pajak;?>  </td>     
-                          <td> <?php echo $get->pjk_terutang;?>  </td>     
-                          <td> <?php echo $get->fasilitas;?>  </td>     
-                          <td> <?php echo $get->nomor_skb;?>  </td>     
-                          <td> <?php echo $get->vendor;?>  </td>     
-                          <td> <?php echo $get->nilai_ppn;?>  </td>     
+                          <td><?php echo $i++; ?></td>  
+                          <td><?php echo $tampil->jenis_pajak;?></td>
+                          <td><?php echo $tampil->kode_pajak;?></td>
+                          <td><?php echo $tampil->kode_map;?></td>
+                          <td><?php echo $tampil->nama;?></td>
+                          <td><?php echo $tampil->npwp;?></td>
+                          <td><?php echo $tampil->alamat;?></td>
+                          <td><?php echo $tampil->tarif;?></td>
+                          <td><?php echo $tampil->fas_pajak;?></td>
+                          <td><?php echo $tampil->special_tarif;?></td>
+                          <td><?php echo $tampil->gross;?></td>
+                          <td><?php echo $tampil->dpp;?></td>
+                          <td><?php echo $tampil->dpp_gross;?></td>
+                          <td><?php echo $tampil->pajak_terutang;?></td>
+                          <td><?php echo $tampil->masa_pajak;?></td>
+                          <td><?php echo $tampil->tahun;?></td>
+                          <td><?php echo $tampil->keterangan;?></td>
                         </tr>
+					              <?php } ?>
                       </tbody>
                     </table>       
                       
@@ -88,14 +88,13 @@
 
                   <div class="box">
                     <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Dashboard/report_pajak" role="button">Back</a>
-                      <a class="btn btn-primary" href="Dashboard/form_sp3_2/<?php echo $get->id_payment;?>" target="_blank" role="button">Next</a>  
+                      <a class="btn btn-warning" href="Dashboard/report_pajak" role="button">Back</a>
+                      <!-- <a class="btn btn-primary" href="Dashboard/form_sp3_2/<?php echo $get->id_payment;?>" target="_blank" role="button">Next</a>   -->
                     </div>
                   </div>                                                 
             </div>
           </div>  
         </section>    
-        <?php } ?>  
         <!-- /.content -->
       </div>
 

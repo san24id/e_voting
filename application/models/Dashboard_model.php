@@ -343,8 +343,8 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function getProcessTax($id_payment){
-        $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id_payment'";
+    function getProcessTax($id){
+        $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
@@ -571,15 +571,7 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql);
         // var_dump($sql);exit;
         return $query;
-    }
-    
-    function report_view($id_pajak){
-        $sql = "SELECT * FROM `t_pajak` WHERE id_pajak= '$id_pajak' ";
-
-        $query = $this->db->query($sql)->result();
-        // var_dump($query);exit;
-        return $query;
-    }
+    }  
 
     function getDivision(){
         $sql = "SELECT * FROM m_division";
@@ -641,6 +633,22 @@ class Dashboard_model extends CI_Model{
 
         $query = $this->db->query($sql)->result();
 
+        return $query;
+    }
+
+    function report_view_pph($id_tax){
+        $sql = "SELECT * FROM `t_tax` WHERE id_tax= '$id_tax' AND jenis_pajak LIKE '%PPh%' ";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
+
+    function report_view_ppn($id_tax){
+        $sql = "SELECT * FROM `t_tax` WHERE id_tax= '$id_tax' AND jenis_pajak LIKE '%PPN%' ";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
         return $query;
     }
 

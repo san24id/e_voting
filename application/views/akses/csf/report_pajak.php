@@ -28,7 +28,6 @@
                     <th>Tanggal Pemotongan <br> (dd/MM/yyyy)</th>
                     <th>Masa Pajak</th>
                     <th>Nama</th>
-                    <th>Type ID </th> 
                     <th>No. NPWP/KTP</th>
                     <th>Alamat</th>
                     <th>Mendapatkan Fasilitas ? (Y/N)</th>
@@ -54,7 +53,6 @@
                     <td>Tanggal Pemotongan</td>
                     <td>Masa Pajak</td>
                     <td><?php echo $row->nama; ?></td>
-                    <td>TYPE ID</td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
                     <td>Mendapatkan Fasilitas ? (Y/N)</td>
@@ -64,7 +62,7 @@
                     <td><?php echo $row->pajak_terutang; ?></td>
                     <td><?php echo $row->keterangan; ?></td>
                     <td>
-                      <a href="Dashboard/report_view/<?php echo $row->id_pajak; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                      <a href="Dashboard/report_view_pph/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                     </td>      
                   </tr>
                     <?php } ?>      
@@ -108,7 +106,6 @@
                     <th>Masa Pajak</th>
                     <th>Nama</th>
                     <th>NPWP tersedia? <br> (YA/NO)</th>
-                    <th>Type ID</th>
                     <th>No. NPWP/KTP</th>
                     <th>Alamat </th> 
                     <th>Tarif Pajak</th>
@@ -130,7 +127,6 @@
                     <td>Masa Pajak</td>
                     <td><?php echo $row->nama; ?></td>
                     <td>NPWP tersedia? <br> (YA/NO)</td>
-                    <td>Type ID</td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
                     <td><?php echo $row->tarif; ?></td>
@@ -138,7 +134,7 @@
                     <td><?php echo $row->pajak_terutang; ?></td>
                     <td><?php echo $row->keterangan; ?></td>                    
                     <td>
-                      <a href="Dashboard/report_view/<?php echo $row->id_pajak; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                      <a href="Dashboard/report_view_ppn/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                     </td>      
                   </tr>
                     <?php } ?>      

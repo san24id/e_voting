@@ -252,6 +252,7 @@ class Dashboard extends CI_Controller {
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['report_pph'] = $this->Dashboard_model->report_pajak_pph();
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
 		$data['report_ppn'] = $this->Dashboard_model->report_pajak_ppn();
 		// $data['report_view'] = $this->Dashboard_model->report_view($id_pajak);
 
@@ -259,7 +260,7 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/report_pajak', $data);
 	}
 
-	public function report_view($id_pajak){
+	public function report_view_pph($id){
 		
 		$data['active1'] = '';
 		$data['report_pajak'] = 'active';
@@ -268,11 +269,27 @@ class Dashboard extends CI_Controller {
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['report'] = $this->Dashboard_model->report_pajak();
-		$data['vreport'] = $this->Dashboard_model->report_view($id_pajak);
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['vreport'] = $this->Dashboard_model->report_view_pph($id_tax);
 
 		$this->load->view('akses/csf/header_csf', $data);
-		$this->load->view('akses/csf/report_view', $data);
+		$this->load->view('akses/csf/report_view_pph', $data);
+	}
+
+	public function report_view_ppn($id){
+		
+		$data['active1'] = '';
+		$data['report_pajak'] = 'active';
+		$data['active3'] = '';
+
+		// $data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['vreport'] = $this->Dashboard_model->report_view_ppn($id_tax);
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/report_view_ppn', $data);
 	}
 
 	public function form_sp3($id_payment){
@@ -288,7 +305,7 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Home_model->getDivHead();
-		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id_payment);
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
 		// var_dump($data['process_tax']);exit;
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -361,6 +378,7 @@ class Dashboard extends CI_Controller {
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -464,6 +482,7 @@ class Dashboard extends CI_Controller {
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
