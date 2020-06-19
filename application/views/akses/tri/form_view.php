@@ -111,6 +111,10 @@
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
+
+                          if($test2[$b] == '6'){
+                            $xxi6 .= "6";
+                          }
                         }
                       ?>
                       <tr>
@@ -134,7 +138,10 @@
                         <td></td>
                         <td>
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                          </td>
                         <td>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Credit Card Corprate</input><br>
+                        </td>
                       </tr>
                       
                       <tr>
@@ -591,11 +598,96 @@
 function printThis() {
   window.print();
 }
-</script>
 
-<script>
 function update() {
   alert("Data Successfully to Update");
+}
+
+function hide() {
+  var checkBox = document.getElementById("checked");
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  var text1 = document.getElementById("show");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+  document.getElementById("checkcreditcard").checked = false;
+}
+
+function hide2() {
+  var checkBox = document.getElementById("checked").disabled = true;
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text1 = document.getElementById("show");
+  var text2 = document.getElementById("choose");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+
+}
+
+function checkUangMuka() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var text = document.getElementById("show");
+
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  } 
+  // alert(checkrequest);
+}
+
+function checkCreditCard() {
+
+  if($("#checkcreditcard").is(':checked')){
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', true);
+    $('#checked2').prop('checked', false);
+  }else{
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', false);
+    $('#checked2').prop('checked', false);
+  }
+}
+
+function checkUangMuka2() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+    text2.style.display = "block";
+  } else {
+    text2.style.display = "none";
+  }
 }
 </script>
     <!-- jQuery 2.2.3 -->

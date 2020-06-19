@@ -110,6 +110,10 @@
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
+
+                          if($test2[$b] == '6'){
+                            $xxi6 .= "6";
+                          }
                         }
                       ?>
                       <tr>
@@ -133,7 +137,10 @@
                         <td></td>
                         <td>
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                        </td>
                         <td>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Credit Card Corprate</input><br>
+                        </td>
                       </tr>
                       
                       <tr>
@@ -740,6 +747,7 @@ function hide() {
      text1.style.display = "none";
      text2.style.display = "none";
   }
+  document.getElementById("checkcreditcard").checked = false;
 }
 
 function hide2() {
@@ -776,6 +784,23 @@ function checkUangMuka() {
      text.style.display = "none";
   } 
   // alert(checkrequest);
+}
+
+function checkCreditCard() {
+
+  if($("#checkcreditcard").is(':checked')){
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', true);
+    $('#checked2').prop('checked', false);
+  }else{
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', false);
+    $('#checked2').prop('checked', false);
+  }
 }
 
 function checkUangMuka2() {

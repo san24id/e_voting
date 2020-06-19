@@ -528,7 +528,7 @@
                               <?php } ?>  
                             <?php } ?>                       
                           <?php } ?>
-                          <?php if ($row->jenis_pembayaran == 4) { ?> 
+                          <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?> 
                             <?php if ($row->status == 5) { ?> 
                               <a class="btn btn-primary" href="Dashboard/form_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
                               <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>

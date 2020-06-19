@@ -83,6 +83,10 @@
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
+                          
+                          if($test2[$b] == '6'){
+                            $xxi6 .= "6";
+                          }
                         }
                       ?>
                       <tr>
@@ -107,6 +111,9 @@
                         <td>
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
                         <td>
+                        <td>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?>> Credit Card Corprate</input><br>
+                        </td>
                       </tr>
                       
                       <tr>
@@ -669,6 +676,26 @@ function fung(){
 
   });
 
+  $("#checkcreditcard").on( "click", function() {
+    if($("#checkcreditcard").is(':checked')){
+      $('#auto').prop('checked', false);
+      $('#checkrequest').prop('checked', false);
+      $('#checksettlement').prop('checked', false);
+      $('#checked').prop('checked', true);
+      $('#checked2').prop('checked', false);
+      $('#show').hide();
+      $('#choose').hide();
+    }else{
+      $('#auto').prop('checked', false);
+      $('#checkrequest').prop('checked', false);
+      $('#checksettlement').prop('checked', false);
+      $('#checked').prop('checked', false);
+      $('#checked2').prop('checked', false);
+      $('#show').show();
+      $('#choose').show();
+    }
+});
+
 </script>
 
 <script>
@@ -715,7 +742,7 @@ function hide() {
   } else {
      text.style.display = "none";
   }
-
+  document.getElementById("checkcreditcard").checked = false;
 }
 
 function hide2() {
@@ -748,6 +775,23 @@ function checkUangMuka() {
   } 
   // alert(checkrequest);
 
+}
+
+function checkCreditCard() {
+
+  if($("#checkcreditcard").is(':checked')){
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', true);
+    $('#checked2').prop('checked', false);
+  }else{
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', false);
+    $('#checked2').prop('checked', false);
+  }
 }
 
 function checkUangMuka2() {

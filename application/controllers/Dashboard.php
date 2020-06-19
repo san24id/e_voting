@@ -817,7 +817,8 @@ class Dashboard extends CI_Controller {
 		$data['kodeMap'] = $this->Dashboard_model->getKodeMap();
 		$data['vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['persen'] = $this->Dashboard_model->getTarif();
-		// var_dump($data['tarif']);exit;
+		$data['getnpwp'] = $this->Dashboard_model->getDataNPWP($id_payment);
+		$data['getdatatax'] = $this->Dashboard_model->getDataTax($id_payment);
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_sp3_2', $data);
@@ -1793,11 +1794,9 @@ class Dashboard extends CI_Controller {
 	}
 	
 	public function form_info_tax($id_payment){		
-		
-		$data['ppayment'] = $this->Home_model->getform($id_payment);
-		$data['process_tax'] = $this->Dashboard_model->getProcessTax2($id_payment);
-		// var_dump($data['process_tax']);exit;
-
+		$data['ppayment']=$this->Home_model->getform($id_payment);
+		$data['process_tax']=$this->Dashboard_model->getProcessTax2($id_payment);
+		$data['process_tax_H']=$this->Dashboard_model->getProcessTaxHeader($id_payment);
 		$this->load->view('akses/csf/form_info_tax', $data);
 	}
 	
@@ -1854,7 +1853,7 @@ class Dashboard extends CI_Controller {
 	public function submittax()
 	{
 		$data = array(
-					'status' => 5,
+					'status' => $this->input->post('status'),
 					'handled_by' => $this->input->post('handled_by'),
 					'nomor_surat' => $this->input->post('nomor_surat')		
 					);

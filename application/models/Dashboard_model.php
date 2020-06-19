@@ -68,8 +68,7 @@ class Dashboard_model extends CI_Model{
     }
 
     public function updateaccept($upd){
-        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`submit_date`='".$upd['submit_date']."' 
-                WHERE `id_payment`='".$upd['id_payment']."'"; 
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 
@@ -361,6 +360,15 @@ class Dashboard_model extends CI_Model{
         return $query;
 
     }
+	
+	function getProcessTaxHeader($id_payment){
+        $sql = "SELECT DISTINCT de,opsional,objek_pajak,nilai FROM `t_tax` WHERE id_payment = '$id_payment'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+
+    }
 
     public function getProcessing(){
         $sql = "SELECT COUNT(status) as totalstatus FROM t_payment WHERE status in ('4','5','6','7')";
@@ -535,14 +543,6 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
 
-    }
-
-    function periode_tax($start_date,$end_date){
-        $sql = "SELECT * FROM t_tax WHERE masa_pajak BETWEEN '$start_date' AND '$end_date'";
-
-        $query = $this->db->query($sql)->result();
-        // var_dump($sql);exit;
-        return $query;
     }
 
     function periode($start_date,$end_date){

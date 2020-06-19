@@ -418,7 +418,7 @@ function submittax()
 		if ($('#vobjekpajak').val()==""){
 			alert("Objek Pajak belum di pilih");
 		}else{
-			var r = confirm("Anda Akan mengirimkan Form Tax : " + nmr_srt + " ?");
+			var r = confirm("Apakah Anda yakin Akan mengirimkan Form Tax : " + nmr_srt + " ?");
 			  if (r == true) {
 			
 			var url = "<?php echo base_url('dashboard/submittax')?>";
@@ -991,6 +991,7 @@ function PajakTerhutang(){
               
                 <div class="modal-body form">
                   <form action="#" id="form1" class="form-horizontal">
+				  	<input type="hidden" name="status" value="5">
 					<input type="hidden" name="handled_by" value="n.prasetyaningrum"> 
 					<?php foreach ($ppayment as $row) { ?>
 					<input type="hidden" name="id_payment" id="id_payment" value="<?php echo $row->id_payment; ?>" >

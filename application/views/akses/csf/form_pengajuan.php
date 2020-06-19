@@ -61,6 +61,9 @@
                           <td>
                             <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
                           </td>
+                          <td>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Credit Card Corprate</input><br>
+                          </td>
                         </tr>  
                         <tr>
                         <td></td>
@@ -458,6 +461,7 @@ function hide() {
      text1.style.display = "none";
      text2.style.display = "none";
   }
+  document.getElementById("checkcreditcard").checked = false;
 }
 
 function hide2() {
@@ -495,6 +499,24 @@ function checkUangMuka() {
   } 
   // alert(checkrequest);
 }
+
+function checkCreditCard() {
+
+  if($("#checkcreditcard").is(':checked')){
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', true);
+    $('#checked2').prop('checked', false);
+  }else{
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', false);
+    $('#checked2').prop('checked', false);
+  }
+}
+
 
 function checkUangMuka2() {
   // alert();
@@ -687,6 +709,26 @@ function showInput() {
       }
     });
   });
+
+  $("#checkcreditcard").on( "click", function() {
+    if($("#checkcreditcard").is(':checked')){
+      $('#auto').prop('checked', false);
+      $('#checkrequest').prop('checked', false);
+      $('#checksettlement').prop('checked', false);
+      $('#checked').prop('checked', true);
+      $('#checked2').prop('checked', false);
+      $('#show').hide();
+      $('#choose').hide();
+    }else{
+      $('#auto').prop('checked', false);
+      $('#checkrequest').prop('checked', false);
+      $('#checksettlement').prop('checked', false);
+      $('#checked').prop('checked', false);
+      $('#checked2').prop('checked', false);
+      $('#show').show();
+      $('#choose').show();
+    }
+});
 
   // $(document).ready(function() { 
   //   $('#penerima').change(function() {
