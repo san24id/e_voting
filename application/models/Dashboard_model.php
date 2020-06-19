@@ -36,7 +36,7 @@ class Dashboard_model extends CI_Model{
 
     public function getReturnedApprov(){    
     
-        $sql = "SELECT * FROM t_payment_l WHERE status='5' AND rejected_by !=NULL ";
+        $sql = "SELECT * FROM t_payment_l WHERE status='5' AND rejected_by IS NOT NULL ";
 
         $query = $this->db->query($sql)->result();
         return $query;

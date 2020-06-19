@@ -173,8 +173,8 @@
                   <td><?php echo $row->rejected_by; ?>  </td>
                   <td><?php echo $row->division_id; ?> </td>
                   <td><?php echo $row->nomor_surat; ?> </td>
-                  <!-- <td> XXX </td> -->
-                  <td><?php echo $row->label1;?> </td>
+                  <td><?php echo $row->apf_doc;?> </td>
+                  <td><?php echo $row->description;?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>
                     <!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
