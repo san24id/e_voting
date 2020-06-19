@@ -516,6 +516,14 @@ class Dashboard_model extends CI_Model{
 
     }
 
+    function periode_tax($start_date,$end_date){
+        $sql = "SELECT * FROM t_tax WHERE masa_pajak BETWEEN '$start_date' AND '$end_date'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+    }
+
     function periode($start_date,$end_date){
         $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE tanggal2 BETWEEN '$start_date' AND '$end_date'";
 

@@ -1,3 +1,7 @@
+<style type="text/css">
+.period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -15,6 +19,27 @@
 
           <div class="box">
             <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-12">
+                <!-- Periode   -->
+                <table width="50%">
+                <?php echo form_open("Dashboard/periode_tax");?>
+                  <tr>
+                    <td class="period"><font color="white" size="3">Period: </font></td>
+                    <td></td>
+                    <td class="period"><font color="white" size="3"> Date </font></td>
+                    <td class="period"><input type="date" name="start_date" id="start_date"></td>
+                    <td><font size="3">s/d</font></td>
+                    <td class="period"><font color="white" size="3"> Date </font></td>
+                    <td class="period"><input type="date" name="end_date"></td>
+                    <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
+                  </tr>
+                <?php echo form_close();?>  
+                </table>
+                </div>
+              </div>
+            </div>
             <div class="box-body">
               <div class="table-responsive">
                 <table id="example1" class="table table-bordered table-striped">

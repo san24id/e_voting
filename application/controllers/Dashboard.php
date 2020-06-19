@@ -243,6 +243,30 @@ class Dashboard extends CI_Controller {
 
 	}
 
+	function periode_tax(){
+		$data['active1'] = '';
+		$data['report_pajak'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['report_pph'] = $this->Dashboard_model->report_pajak_pph();
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['report_ppn'] = $this->Dashboard_model->report_pajak_ppn();
+
+		$data['start_date'] = $this->input->post("start_date");
+		$data['end_date'] = $this->input->post("end_date");
+
+		$data['report_pph'] = $this->Dashboard_model->periode_tax($data['start_date'],$data['end_date']);
+		$data['jumlah'] = count($data['report_pph']);
+
+		$data['report_ppn'] = $this->Dashboard_model->periode_tax($data['start_date'],$data['end_date']);
+		$data['jumlah1'] = count($data['report_ppn']);
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/report_pajak', $data);
+	}
+
 	public function report_pajak(){
 		
 		$data['active1'] = '';
