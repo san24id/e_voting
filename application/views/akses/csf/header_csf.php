@@ -118,11 +118,12 @@
 }
 */
 </style>
-<div class="wrapper">
-  <header class="main-header" >
+<div class="wrapper" >
+  <header class="main-header"  > 
 
     <!-- Logo -->
-    <a href="Dashboard" class="logo">
+    <a href="Dashboard" class="logo" style="background-image: url('assets/login/images/header1.png');background-repeat: no-repeat;
+  background-size: 300px 100px;">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->
@@ -130,7 +131,8 @@
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top" style="background-image: url('assets/login/images/header1.png');background-repeat: repeat;
+  background-size: 1200px 100px;">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
@@ -228,7 +230,7 @@
         <li class="<?php echo $monitoring?>"><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-list-alt"></i><span>Monitoring</a></span></li>
         <li class="treeview">
           <a href="">
-            <i class="glyphicon glyphicon-console"></i>
+            <i class="glyphicon glyphicon-th-list"></i>
             <span>Monitoring Report</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

@@ -329,7 +329,7 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Home_model->getDivHead();
-		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax2($id_payment);
 		// var_dump($data['process_tax']);exit;
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -800,10 +800,11 @@ class Dashboard extends CI_Controller {
 
 	public function form_sp3_2($id_payment){
 		$data['active1'] = '';
-		$data['monitoring'] = 'active';
+		$data['task'] = 'active';
 		$data['active3'] = '';
 
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
@@ -1789,5 +1790,75 @@ class Dashboard extends CI_Controller {
 		$this->SuperAdm_model->updatebank($upd);
 
 		redirect('SuperAdm/bank');
+	}
+	
+	public function form_info_tax($id_payment){		
+		
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['process_tax'] = $this->Dashboard_model->getProcessTax2($id_payment);
+		// var_dump($data['process_tax']);exit;
+
+		$this->load->view('akses/csf/form_info_tax', $data);
+	}
+	
+ 	public function gettarifbytax($id){
+		$data['tarif'] = $this->Dashboard_model->getTarifByTax($id);
+		echo json_encode($data);
+	}
+	
+	public function getkodemapbytax($id){
+		$data['kodemap'] = $this->Dashboard_model->getkodeMapbytax($id);
+		echo json_encode($data);
+	}
+	
+	public function gettabletax($id){
+		$data = $this->Dashboard_model->getDataTax($id);
+		echo json_encode($data);
+	}
+	
+	public function savetaxdraft()
+	{
+		$id = $this->input->post('id_payment');
+		$data = array(
+				'id_payment' => $this->input->post('id_payment'),
+				'status' => 999,
+				'handled_by' => $this->input->post('handled_by'),
+				'nomor_surat' => $this->input->post('nomor_surat'),
+				'de' => $this->input->post('vdeductible'),
+				'opsional' => $this->input->post('voptional'),
+				'nilai' => $this->input->post('strnilai'), //$this->input->post('nilai')
+				'objek_pajak' => $this->input->post('vobjekpajak'),
+				'jenis_pajak' => $this->input->post('vjnspjk'),
+				'kode_pajak' => $this->input->post('vkdpjk'),
+				'kode_map' => $this->input->post('selKdMap'),
+				'nama' => $this->input->post('txtnamanpwp'),
+				'npwp' => $this->input->post('txtnonpwp'),
+				'alamat' => $this->input->post('txtalamat'),
+				'tarif' => $this->input->post('vtarif'),
+				'fas_pajak' => $this->input->post('txtfasilitas'),
+				'special_tarif' => $this->input->post('vtarifspesial'),
+				'gross' => $this->input->post('vgross'),
+				'dpp' => $this->input->post('txtdpp'),
+				'dpp_gross' => $this->input->post('txtdppgross'),
+				'pajak_terutang' => $this->input->post('vpajakterhutang'),
+				'masa_pajak' => $this->input->post('selmasappn'),
+				'keterangan' => $this->input->post('txtketerangan'),
+				'tahun' => $this->input->post('seltahunppn')
+			);
+		$insert = $this->Dashboard_model->drafttax_add($data);
+		$data = $this->Dashboard_model->getDataTax($id);
+		//echo json_encode(array("status" => TRUE));
+		echo json_encode($data);
+	}
+
+	public function submittax()
+	{
+		$data = array(
+					'status' => 5,
+					'handled_by' => $this->input->post('handled_by'),
+					'nomor_surat' => $this->input->post('nomor_surat')		
+					);
+		$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
+		echo json_encode(array("status" => TRUE));
 	}
 }

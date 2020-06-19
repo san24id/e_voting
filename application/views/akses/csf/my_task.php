@@ -26,7 +26,7 @@
                   <th>CSF</th>
                   <th>SP3 No</th>
                   <th>Jenis Pembayaran</th>
-                  <th>SP3 Submitted Date</th>
+                  <th>Tanggal Submit SP3</th>
                   <th>Description</th>
                   <th>Pemohon</th>
                   <th>Action</th>
@@ -77,7 +77,7 @@
                           }
                         }  ?>
                     </td>
-                    <td><?php echo $row->tanggal; ?></td>
+                    <td><?php echo $row->submit_date; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <td>
@@ -188,6 +188,22 @@
                       <?php if ($row->jenis_pembayaran == 4) { ?> 
                         <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                       <?php } ?>
+                    <?php } ?>
+
+                    <?php 
+                        if($row->status == 5 && $row->rejected_by != NULL){ ?>
+                      <?php if ($row->jenis_pembayaran == 1) { ?>   
+                        <a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 2) { ?> 
+                        <a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 3) { ?> 
+                        <a href="Dashboard/form_easf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>                    
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 4) { ?> 
+                        <a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>                    
+                      <?php } ?>  
                     <?php } ?>  
                   </td>      
                   </tr>

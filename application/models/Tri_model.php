@@ -39,10 +39,21 @@ class Tri_model extends CI_Model{
     }
 
     public function updatepaid($upd){
-        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id`='".$upd['id']."'"; 
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`paid_date`='".$upd['paid_date']."' 
+                WHERE `id`='".$upd['id']."'"; 
         
         $query = $this->db->query($sql);
 
         return $query;
     }
+    
+    function approve($paid_date,$nomor_surat){
+        $sql = "UPDATE `t_tax` SET `paid_date`='".$paid_date."' WHERE `nomor_surat`='".$nomor_surat."' ";
+
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+
 }

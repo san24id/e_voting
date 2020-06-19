@@ -60,7 +60,7 @@
             <div class="info-box-content bg-gray">
               <br>
               <?php foreach ($tot_pay_req as $tot_req) { ?>
-              <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span>
+              <a href="<?php echo base_url('folderumum')?>"><span class="info-box-number"><font size='5' color="green"><center> <?php echo $tot_req->totalreq; ?></center></font></span></a>
               <?php } ?>    
               <span class="info-box-text"><font color="green"><center>Total Payment Request</center></font></span>  
             </div>
@@ -77,7 +77,7 @@
               <div class="info-box-content bg-gray">
                 <br>
                 <?php foreach ($outstanding as $tot_outstanding) { ?>  
-                <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span>
+                <a href="<?php echo base_url('folderumum')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span></a>
                 <?php } ?>            
                 <span class="info-box-text "><font color="green"><center>Total Outstanding Payment Request</center></font></span>
               </div>
@@ -95,7 +95,7 @@
               <div class="info-box-content bg-gray">
                 <br>  
                 <?php foreach ($draft as $tot_draft) { ?>
-                <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span>
+                <a href="<?php echo base_url('folderumum')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
                 <?php } ?>            
                 <span class="info-box-text "><font color="green"><center>Total Draft</center></font></span>
               </div>
@@ -231,19 +231,19 @@
                           <td align="center" width="25%"><div class="info-box box1">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                            <font size='5' color="white"><?php echo $count_upcoming; ?> </font></center></div>
+                            <a href="<?php echo base_url('folderumum')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
                           </td>                          
                           <td align="center" width="25%"><div class="info-box box2">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                            <font size='5' color="white"><?php echo $count_overdue; ?> </font> </center></div>
+                            <a href="<?php echo base_url('folderumum')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
                           </td>
 
                           <td align="center" width="25%"><div class="info-box box3">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
                             <center><font size='3' color="white"> Credit Card <br> Submission in 30 days <br> </font>
                             <?php foreach ($creditcard as $cc) { ?>
-                            <font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </center></div>
+                            <a href="<?php echo base_url('folderumum')?>"><font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </a></center></div>
                             <?php } ?>
                           </td>  
                         </tr>  
@@ -283,6 +283,61 @@
           </div>
         </div>
 
+		<div class="box box-default">
+			<div class="box-header with-border">
+				<!-- <h3 class="box-title">Pencarian</h3> -->
+				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Advanced Search</button>
+				
+			</div>
+			<!-- /.box-header -->
+			<div id="cari" class="collapse">
+				<div class="box-body">
+					<div class="row">
+						<form id="formCari">		
+							<div class="col-md-12">
+								<div class="form-group">
+									<label class="col-md-1">Criteria</label>
+									<div class="col-md-2">
+										 <select class="form-control select2" id="selprofilesearch" name="selprofilesearch" style="width: 100%;">
+											<option value='0'>== Pilih ==</option>
+											<option value='1'> Tanggal </option>
+											<option value='2'> Status </option>
+											<option value='3'> Jenis Pembayaran </option>
+											<option value='4'> Nomor Surat </option>
+											<option value='5'> Pemohon </option>
+											<option value='5'> Penerima </option>
+										</select>
+									</div> 	
+									<div class="col-md-6">
+										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+									</div>		
+										
+									<div class="col-md-3">
+								<!-- <div class="form-group">
+									<label>&nbsp;</label>      -->        
+									<span class="input-group-btn">
+										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="cariarsip1()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+									</span>   
+
+								<!-- </div> -->
+								<!-- /.form-group -->
+							</div>
+								</div>     
+								
+							</div>
+							
+							
+
+							
+						</form>
+						<!-- /.col -->
+					 </div>
+				  <!-- /.row -->
+				</div>
+			</div>
+			<!-- /.box-body -->        
+		</div>
+		
         <div class="row">
             <div class="col-xs-12">
             <!-- /.box -->
@@ -365,7 +420,7 @@
                           }
                         ?>
                     <td><?php echo $buka; ?></td>
-                    <td><?php echo date('d-M-Y', strtotime($row->tanggal2));?></td>
+                    <td><?php echo $row->submit_date;?></td>
 
                     <td>
                       <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 

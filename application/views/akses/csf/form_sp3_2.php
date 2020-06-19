@@ -32,18 +32,18 @@
 		}
 		$strmappjk=substr($arrmappjk,0,strlen($arrmappjk)-1);
 		
-		?>
-         <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()"> 
-		<input type="hidden" id="strjnspjk" name="strjnspjk" value="<?php echo $strjnspjk; ?>">
-		<input type="hidden" id="strobjpjk" name="strobjpjk" value="<?php echo $strobjpjk; ?>">
-        <input type="hidden" id="strmappjk" name="strmappjk" value="<?php echo $strmappjk; ?>">
-		<input type="hidden" id="strcounter" name="strcounter" value="1">
 		
-        <?php foreach ($ppayment as $row) { ?>
-          <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
-          <input type="hidden" name="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >
-          <input type="hidden" name="status" >
-           
+		$nonpwp ="";
+		$namanpwp ="";
+		$alamatnpwp ="";
+		foreach ($getnpwp as $vndr){
+			$nonpwp = $vndr->npwp ;
+			$namanpwp = $vndr->nama ;
+			$alamatnpwp = $vndr->alamat ;
+		}
+		
+		?>         
+		
           <section class="content">
             <div class="row">
               <div class="col-md-12">
@@ -68,69 +68,79 @@
                     </table> -->
 
                     <br>
-
+					<!-- <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()">  -->
+					<form id="form" action="#"> 
+						
+					
                     <table style="font-family: calibri;" width="70%">
                       <tr>
                         <td><b>Deductible Expense?</b></td>
                         <td>
-                          <input type="checkbox" name="de" value="1" checked> Ya<br>
+                          <input type="checkbox" id="chkdeY" name="de" value="1" checked> Ya<br>
                         </td>
                         <td>
-                          <input type="checkbox" name="de" value="0"> Tidak</input><br>
+                          <input type="checkbox" id="chkdeN" name="de" value="0"> Tidak</input><br>
                         </td>
                         </tr>  
                         <tr>
                           <td></td>
                           <td></td>
                           <td>
-                            &nbsp; &nbsp; <input type="checkbox" name="opsional[]" value="1"> NDE</input><br>
+                            &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="opsional[]" value="1" disabled> NDE</input><br>
                           </td>
                         </tr>  
                         <tr>
                         <td></td>
                         <td></td>
                         <td>
-                          &nbsp; &nbsp; <input type="checkbox" name="opsional[]" value="2"> NDE50</input><br>                            
+                          &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="opsional[]" value="2" disabled> NDE50</input><br>                            
                         </td>
                         </tr> 
                         <tr>
                         <td></td>
                         <td></td>
                         <td width="8%">
-                          &nbsp; &nbsp; <input type="checkbox" name="opsional[]" value="3"> PARTNDE</input><br>                            
+                          &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" disabled> PARTNDE</input><br>                            
                         </td>
                         <td width="2%"><font size="3">Rp</font></td>
-                        <td><input type="text" class="form-control" name="nilai" placeholder="Enter Text" ></td>
+                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='0' disabled></td>
                         </tr>
                     </table>
                     <table width=70%>   
                       <tr>
                         <td><b>Objek Pajak</b></td>
-                        <td><input id="ya" onclick="showed()" type="checkbox" name="objek_pajak[]" value="1"> Ya </td>
-                        <td> <input id="tidak" onclick="showed()" type="checkbox" name="objek_pajak[]" value="0"> Tidak</input> </td>
-                        <td><input id="tidak2" type="checkbox" name="objek_pajak[]" value="2" > Employee</input> </td>
-                        <td><input id="tidak3" type="checkbox" name="objek_pajak[]" value="3" > Tax at Settlement</input> </td>
+                        <td><input id="chkObjPjkY" type="checkbox" name="objek_pajak[]" value="1"> Ya </td>
+                        <td> <input id="chkObjPjkN"  type="checkbox" name="objek_pajak[]" value="0"> Tidak</input> </td>
+                        <td><input id="chkObjPjkE" type="checkbox" name="objek_pajak[]" value="2" > Employee</input> </td>
+                        <td><input id="chkObjPjkT" type="checkbox" name="objek_pajak[]" value="3" > Tax at Settlement</input> </td>
                       </tr>                        
                     </table>
-                    
+                    </form> 
                     <br>
                     
-                    <hr style=" border: 1px solid #000;">
                     
                     <br>
-              
-                  <div class="box" >
-                    <table id="show" class="table table-bordered table-striped" width="100%">
+				
+				<div id="divObjPjk" class="row" style="display:none;">
+					<div class="col-xs-12">
+					<!-- /.box -->
+					<div class="box">
+						<!-- /.box-header -->
+						<div class="box-body">
+						<div><button type="button" class="btn btn-success" onclick="view_tax()">&nbsp;&nbsp;Add Tax&nbsp;&nbsp;  </button>
+						</div>
+					<div class="table-responsive">
+                    <table id="show" class="table table-bordered table-striped">
                       <thead>
                         <tr>
-                          <th width="9%">Jenis Pajak</th>
-                          <th width="8%">Kode Pajak</th>
-                          <th width="9%">Kode MAP</th>
-                          <th width="10%">Nama</th>
-                          <th width="10%">NPWP/ID</th>
-                          <th width="10%">Alamat</th>
+                          <th>Jenis Pajak</th>
+                          <th>Kode Pajak</th>
+                          <th>Kode MAP</th>
+                          <th>Nama</th>
+                          <th>NPWP/ID</th>
+                          <th>Alamat</th>
                           <th>Tarif</th>
-                          <th width="3%">Fasilitas Pajak</th>
+                          <th>Fasilitas Pajak</th>
                           <th>Special Tarif</th>
                           <th>Gross Up</th>
                           <th>DPP</th>
@@ -142,95 +152,48 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?> </option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak" name="kode_pajak[]" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?> - <?php echo $get->nama_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="dropdown2" name="kode_map[]" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                            <?php 
-                                  $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                                  $query = $this->db->query($sql)->result();
-                                  // return $query;
-                                  // var_dump($query[0]->npwp);exit; 
-                                  if ($query[0]->nama) { $buka1 = $query[0]->nama;
-                                  }else{
-                                    $buka1 = $row->penerima;
-                                  }
-                              ?>
-                          <td><textarea type="text" class="form-control" name="nama[]" readonly><?php echo $buka1;?></textarea></td>
-                              <?php 
-                                  $sql = "SELECT npwp FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                                  $query = $this->db->query($sql)->result();
-                                  // return $query;
-                                  // var_dump($query[0]->npwp);exit; 
-                                  if ($query[0]->npwp) { $buka = $query[0]->npwp;
-                                  }else{
-                                    $buka = $row->penerima;
-                                  }
-                              ?>
-                          <td><textarea type="text" class="form-control" name="npwp[]" readonly><?php echo $buka;?></textarea></td>
-                          <?php 
-                                  $sql = "SELECT alamat FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                                  $query = $this->db->query($sql)->result();
-                                  // return $query;
-                                  // var_dump($query[0]->alamat);exit; 
-                                  if ($query[0]->alamat) { $buka2 = $query[0]->alamat;
-                                  }else{
-                                    $buka2 = $row->penerima;
-                                  }
-                              ?>
-                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" readonly><?php echo $buka2;?></textarea></td>
-                          <td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"></td>
-                          <td><input type="checkbox" name="fas_pajak[]" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross[]" value="Ya"></td>
-                          <td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>
-                          <td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun[]" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>
-                        </tr>                        
-                      </tbody>
-                      <tfoot>
-                        <td colspan="3"><input type="button" value="Tambah" onclick="tambah_baris()" ></td>
-                      </tfoot>  
+						<?php foreach($getdatatax as $gtax){?>
+						 <tr>
+						    <td><?php echo $gtax->jenis_pajak;?></td>
+							<td><?php echo $gtax->kode_pajak;?></td>
+							<td><?php echo $gtax->kode_map;?></td>
+							<td><?php echo $gtax->nama;?></td>
+							<td><?php echo $gtax->npwp;?></td>
+							<td><?php echo $gtax->alamat;?></td>
+							<td><?php echo $gtax->tarif;?></td>
+							<td><?php echo $gtax->fas_pajak;?></td>
+							<td><?php echo $gtax->special_tarif;?></td>
+							<td><?php echo $gtax->gross;?></td>
+							<td><?php echo $gtax->dpp;?></td>
+							<td><?php echo $gtax->dpp_gross;?></td>
+							<td><?php echo $gtax->pajak_terutang;?></td>
+							<td><?php echo $gtax->masa_pajak;?></td>
+							<td><?php echo $gtax->tahun;?></td>
+							<td><?php echo $gtax->keterangan;?></td>
+						  </tr>
+						 <?php }?>
+                                           
+                      </tbody> 
+                      
                     </table>
                   </div>             
 
-                   <p align="justify">Apa kamu yakin akan mengirimkan Form Tax ini : &nbsp; <?php echo $row->nomor_surat; ?></p>
-                    <label>Kepada CSF Finance?</label>   
-                    <input type="hidden" name="handled_by" value="n.prasetyaningrum">   
-           
-                </div>  
-
+                    </div> 
+					 </div> 
+					  </div> 
+					   </div> 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary">Proceed For Finance</button>
+                    <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
+                    <button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>
                   </div>
                 </div>                                                 
             </div>
+			</div>
+			</div>
+			</div>
           </section>  
-        <?php } ?>
-        </form>
+        
         <!-- /.content -->
       </div>
 
@@ -280,6 +243,7 @@
 <script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
     <!-- DataTables -->
 <script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
+
 <script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <!-- SlimScroll -->
 <script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
@@ -292,15 +256,273 @@
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
+
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
 
 
-<script type="text/javascript">
+<script>
+
+    //$("#show").DataTable();
 
 
 
+    $('#show').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": false,
+      "autoWidth": false
+    });
+	
+ 
+$("#chkdeY").on( "click", function() {
+  if($("#chkdeY").is(':checked')){
+	  $('#chkdeN').prop('checked', false);
+	  $('#chkNDE').prop('checked', false);
+	  $('#chkNDE50').prop('checked', false);
+	  $('#chkPARTNDE').prop('checked', false);
+	  $('#chkNDE').attr("disabled", "disabled"); 
+	  $('#chkNDE50').attr("disabled", "disabled"); 
+	  $('#chkPARTNDE').attr("disabled", "disabled"); 	  
+	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#vdeductible").val('1');
+	}else{
+		$("#vdeductible").val('');
+	}
+});
+
+$("#chkdeN").on( "click", function() {
+  if($("#chkdeN").is(':checked')){
+	  $('#chkdeY').prop('checked', false);
+	  $('#chkNDE').removeAttr("disabled"); 
+	  $('#chkNDE50').removeAttr("disabled"); 
+	  $('#chkPARTNDE').removeAttr("disabled"); 	  
+	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#vdeductible").val('0');
+	}else{
+	  $('#chkNDE').attr("disabled", "disabled"); 
+	  $('#chkNDE50').attr("disabled", "disabled"); 
+	  $('#chkPARTNDE').attr("disabled", "disabled"); 
+	  $('#chkNDE').prop('checked', false);
+	  $('#chkNDE50').prop('checked', false);
+	  $('#chkPARTNDE').prop('checked', false);		  
+	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#vdeductible").val('');
+	}
+});
+
+$("#chkNDE").on( "click", function() {
+  if($("#chkNDE").is(':checked')){
+	  $('#chkdeN').prop('checked', true);
+	  $('#chkNDE50').prop('checked', false);
+	  $('#chkPARTNDE').prop('checked', false);	  
+	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#voptional").val('1');
+	}else{
+	  $('#chkdeN').prop('checked', false);
+	  $("#voptional").val('');
+	}
+});
+
+$("#chkNDE50").on( "click", function() {
+  if($("#chkNDE50").is(':checked')){
+	  $('#chkdeN').prop('checked', true);
+	  $('#chkNDE').prop('checked', false);	 
+	  $('#chkPARTNDE').prop('checked', false);	 
+	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#voptional").val('2');
+	}else{
+	  $('#chkdeN').prop('checked', false);
+	  $("#voptional").val('');
+	}
+});
+
+$("#chkPARTNDE").on( "click", function() {
+  if($("#chkPARTNDE").is(':checked')){
+	  $('#chkdeN').prop('checked', true);
+	  $('#chkNDE').prop('checked', false);	 
+	  $('#chkNDE50').prop('checked', false);	 
+	  $("#nilai").removeAttr("disabled"); 
+	  $("#voptional").val('3');
+	}else{
+	  $('#chkdeN').prop('checked', false);
+	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#voptional").val('');
+	}
+});
+
+$("#chkObjPjkY").on( "click", function() {
+  if($("#chkObjPjkY").is(':checked')){
+	  $('#chkObjPjkN').prop('checked', false);	 
+	  $('#chkObjPjkE').prop('checked', false);	 
+	  $('#chkObjPjkT').prop('checked', false);	 
+	  $('#divObjPjk').show();	  
+	  $('#vobjekpajak').val('1');
+	}else{
+	  $('#divObjPjk').hide();
+	}
+});
+
+$("#chkObjPjkN").on( "click", function() {
+  if($("#chkObjPjkN").is(':checked')){
+	  $('#chkObjPjkY').prop('checked', false);	 
+	  $('#chkObjPjkE').prop('checked', false);	 
+	  $('#chkObjPjkT').prop('checked', false);
+	  $('#divObjPjk').hide();
+	  $('#vobjekpajak').val('0');
+	}
+});
+
+$("#chkObjPjkE").on( "click", function() {
+  if($("#chkObjPjkE").is(':checked')){
+	  $('#chkObjPjkY').prop('checked', false);	 
+	  $('#chkObjPjkN').prop('checked', false);	 
+	  $('#chkObjPjkT').prop('checked', false);
+	  $('#divObjPjk').hide();
+	  $('#vobjekpajak').val('2');
+	}
+});
+
+$("#chkObjPjkT").on( "click", function() {
+  if($("#chkObjPjkT").is(':checked')){
+	  $('#chkObjPjkY').prop('checked', false);	 
+	  $('#chkObjPjkN').prop('checked', false);	 
+	  $('#chkObjPjkE').prop('checked', false);
+	  $('#divObjPjk').hide();
+	  $('#vobjekpajak').val('3');
+	}
+});
+
+$("#chkgross").on( "click", function() {
+  if($("#chkgross").is(':checked')){
+	  var dppgross = parseFloat(dpp)/(parseFloat(1)-parseFloat(trf))
+	  $('#vgross').val('Ya');
+	}else{
+		$('#vgross').val('Tidak');
+	}
+});
+
+
+function view_tax()
+{
+	
+	$('#modal_tax').modal('show');
+}
+
+function submittax()
+    {
+		var nmr_srt = $('#nomor_surat').val();
+		if ($('#vobjekpajak').val()==""){
+			alert("Objek Pajak belum di pilih");
+		}else{
+			var r = confirm("Anda Akan mengirimkan Form Tax : " + nmr_srt + " ?");
+			  if (r == true) {
+			
+			var url = "<?php echo base_url('dashboard/submittax')?>";
+			$.ajax({
+                url : url,
+                type: "POST",
+                data: $("#form1,#form").serialize(),
+                dataType: "JSON",
+                success: function(data)
+                { 
+                  console.log(data);
+				   window.location = "<?php echo base_url('dashboard/my_task') ?>";    
+                },
+                error: function (data)
+                {
+					console.log(data);
+                  alert('Error adding / update data');
+                }
+              });
+			 } 
+		}
+		
+	}
+function savetaxdraft()
+    { 		
+	var $id = $('#id_payment').val();
+		if ($('#selJnsPjk').val()==""){
+			alert("Jenis Pajak belum di pilih");
+		  }else if ($('#selKdMap').val()==""){
+			alert("Kode MAP belum di pilih");    
+		  }else if ($('#txtnamanpwp').val()==""){
+			alert("Nama NPWP belum di input");
+		  }else if ($('#txtnonpwp').val()==""){
+			alert("Nomor NPWP belum di input");
+		  }else if ($('#txtrealtrf').val()=="0"){
+			alert("Tarif Pajak belum di pilih");		  
+		}else if ($('#txtdpp').val()==""){
+			alert("DPP belum di input");		  
+		}else if ($('#txtdppgross').val()==""){
+			alert("DPP Gross Up kosong");		  
+		}else{
+			var url = "<?php echo base_url('dashboard/savetaxdraft')?>";
+			$.ajax({
+                url : url,
+                type: "POST",
+                data: $("#form1,#form").serialize(),
+                dataType: "JSON",
+                success: function(data)
+                { 
+                  /*url : "<?php echo base_url('dashboard/gettabletax/')?>/" + $id,
+				  //Ajax Load data from ajax
+				  $.ajax({
+						url : url,
+						type: "GET",
+						data: $('#form1').serialize(),
+						dataType: "JSON",
+						success: function(data)
+						{*/
+
+						var tbl1 = $('#show').DataTable(); 
+						  tbl1.clear().draw();
+							$.each(data, function(key, item) 
+								  {       
+							  tbl1.row.add( [
+									  item.jenis_pajak,
+									  item.kode_pajak,
+									  item.kode_map,
+									  item.nama,
+									  item.npwp,
+									  item.alamat,
+										item.tarif,
+										item.fas_pajak,
+										item.special_tarif,
+										item.gross,
+										item.dpp,
+										item.dpp_gross,
+										item.pajak_terutang,
+										item.masa_pajak,
+										item.tahun,
+										item.keterangan
+									  ] ).draw(false);
+
+							})  
+						/*},
+						error: function (data)
+						{
+						  console.log(data);
+							alert('Error adding / update data');
+						}
+					});*/
+				  
+				  
+				  $('#modal_tax').modal('hide');
+				  //location.reload();   
+                },
+                error: function (data)
+                {
+					console.log(data);
+                  alert('Error adding / update data');
+                }
+              });
+        }      
+    }
+	
 function tambah_baris()
 {
 	var strcounter=document.getElementById("strcounter").value;
@@ -420,6 +642,8 @@ function showed() {
 
 
   $(document).ready(function() { 
+  
+  
 		$('#jenis_pajak').change(function() {
       if( $(this).val() == 'PPh Pasal 21') {
             $('#kode_pajak').prop( "disabled", true );
@@ -427,8 +651,172 @@ function showed() {
         $('#kode_pajak').prop( "disabled", false );
       }
     });
+	
+	$('#selKdPjk').change(function() {
+		$("#vkdpjk").val($("#selKdPjk option:selected").val());
+	});
+	
+	$('#selJnsPjk').change(function() {
+	  var $strid = $("#selJnsPjk option:selected").text();
+	  $("#vjnspjk").val($strid);
+	  
+	  var $id = $(this).val();
+      if( $strid == 'PPh Pasal 21') {
+            $('#txtnamanpwp').removeAttr("disabled"); 
+			$('#txtnonpwp').removeAttr("disabled"); 	
+			$('#txtalamat').removeAttr("disabled"); 			
+    
+      } else{
+		  if( $strid == 'PPN' || $strid == 'PPN WAPU' || $strid == 'PPN PKP') {
+				$('#divmasappn').show(); 			
+			}else{
+				$('#divmasappn').hide(); 
+			}
+			
+			if( $strid == 'PPh Pasal 23') {
+				$('#divKdPjk').show(); 			
+			}else{
+				$('#divKdPjk').hide(); 
+			}
+		$("#txtnamanpwp").attr("disabled", "disabled"); 
+		$("#txtnonpwp").attr("disabled", "disabled"); 
+		$("#txtalamat").attr("disabled", "disabled"); 
+	  }
+	  
+	  $.ajax({
+        url : "<?php echo base_url('dashboard/gettarifbytax/')?>/" + $id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+			{
+				var options =  '<option value=""><strong>Tarif</strong></option>'; 
+				$(data.tarif).each(function(index, value){ 
+					if(value.id_jenis_pjk == $id){ 
+						options += '<option value="'+value.tarif+'">'+value.tarif+'</option>'; //add the option element as a string
+					}
+				});
 
-  });  
+				$('#seltarif').html(options); 
+				  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getkodemapbytax/')?>/" + $id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+			{
+				var options =  '<option value=""><strong>Kode Map</strong></option>'; 
+				$(data.kodemap).each(function(index, value){ 
+					if(value.id_jenis_pjk == $id){ 
+						options += '<option value="'+value.kode_map+'">'+value.kode_map+'</option>'; //add the option element as a string
+					}
+				});
+
+				$('#selKdMap').html(options); 
+				  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+	
+    });
+	
+	$("#chkfasilitas").on( "click", function() {
+	  if($("#chkfasilitas").is(':checked')){
+		  $('#divfasilitas').show();
+		}else{
+			$('#divfasilitas').hide();
+		}
+	});
+	
+	$("#chktarifnormal").on( "click", function() {
+	  if($("#chktarifnormal").is(':checked')){
+		  $('#divtarifnormal').show();
+		  $('#divtarifspesial').hide();
+		  $('#chktarifspesial').prop('checked', false);
+		}else{
+			$('#divtarifnormal').hide();
+			$('#txtrealtrf').val('0');
+		}
+	});
+	
+	$("#chktarifspesial").on( "click", function() {
+	  if($("#chktarifspesial").is(':checked')){
+		  $('#divtarifnormal').hide();
+		  $('#divtarifspesial').show();
+		  $('#chktarifnormal').prop('checked', false);
+		}else{
+			$('#txtrealtrf').val('0');
+		  $('#divtarifspesial').hide();
+		}
+	});
+	
+	$("#chkgross").on( "click", function() {
+		var dpp = $('#txtdpp').val();
+		var trf = $('#txtrealtrf').val();
+	  if($("#chkgross").is(':checked')){
+		if(trf && dpp){
+			var trfgross = parseFloat(1)-parseFloat(trf);
+			if(trfgross==0){
+				$('#txtdppgross').val('0');
+			}else{
+				var dppgross = parseFloat(dpp)/(parseFloat(trfgross));
+				$('#txtdppgross').val(dppgross);
+			}
+		}else{
+			$('#txtdppgross').val('0');
+		}
+	  }else{
+		 $('#txtdppgross').val('0'); 
+	  }
+	});
+
+	
+  }); 
+
+function PajakTerhutang(){
+	var trf;
+	var dpp = $('#txtdpp').val();
+	if($("#chktarifspesial").is(':checked')){
+		trf =  $('#txttarif').val();	
+		$('#vtarifspesial').val(trf);
+	}else if($("#chktarifnormal").is(':checked')){
+		$('#vtarif').val($('#seltarif').val());
+		trf =  $('#seltarif').val();
+		trf = trf.replace('%','');
+	}
+	$('#txtrealtrf').val(trf);
+	var intrf = parseFloat(trf)/parseFloat(100);
+	var pjkutang = parseFloat(dpp)*parseFloat(intrf);;
+	if(trf && dpp){
+		if($("#chkgross").is(':checked')){
+			var trfgross = parseFloat(1)-parseFloat(trf);
+			if(trfgross==0){
+				$('#txtdppgross').val('0');
+			}else{
+				var dppgross = parseFloat(dpp)/(parseFloat(1)-parseFloat(trf));
+				$('#txtdppgross').val(dppgross);
+			}
+		}else{
+			$('#txtdppgross').val('0');
+		}
+		$("#txtpajakterhutang").val(pjkutang);	
+		$("#vpajakterhutang").val(pjkutang);	
+	}
+	
+}  
+
 
   var rupiah = document.getElementById('rupiah');
   rupiah.addEventListener('keyup', function(e){
@@ -554,4 +942,258 @@ function showed() {
     uangmuka = split[1] != undefined ? uangmuka + ',' + split[1] : uangmuka;
     return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
   }
+  
+  
+  //Script modal
+  /*$("#selJnsPjk").on('change', function() {
+	  var jnspjk = $(this).val();
+  alert( jnspjk );
+  if(jnspjk == "PPh Pasal 21"){ 
+            alert(jnspjk);
+        }
+});*/
+  
+  function getvalJnsPjk(sel)
+{
+	var jnspjk = sel.value;
+	if(jnspjk == "PPh Pasal 21"){
+            $('#txtnamanpwp').removeAttr("disabled"); 
+			$('#txtnonpwp').removeAttr("disabled"); 	
+			$('#txtalamat').removeAttr("disabled"); 	 			
+    }else{
+		$("#txtnamanpwp").attr("disabled", "disabled"); 
+		$("#txtnonpwp").attr("disabled", "disabled"); 
+		$("#txtalamat").attr("disabled", "disabled"); 
+	}
+}
+  //===========
 </script>
+
+<!-- View Tax -->
+<div class="modal fade" id="modal_tax" role="dialog">
+    <div class="modal-dialog" style="width:1200px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title">Tax Information</h3>
+        </div>
+        <div class="modal-body form" >
+          <div class="row">
+        <div class="col-xs-12">
+          
+          <div >   
+            <div class="box-body" style="width:1170px;overflow-y: auto;max-height: 75vh">         
+              <div class="col-md-12">
+          <!-- Custom Tabs -->
+          <div >
+            
+            <div class="tab-content">              
+              
+                <div class="modal-body form">
+                  <form action="#" id="form1" class="form-horizontal">
+					<input type="hidden" name="handled_by" value="n.prasetyaningrum"> 
+					<?php foreach ($ppayment as $row) { ?>
+					<input type="hidden" name="id_payment" id="id_payment" value="<?php echo $row->id_payment; ?>" >
+					<input type="hidden" name="nomor_surat" id="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >
+					<?php } ?>
+					<input type="hidden" name="txtrealtrf" id="txtrealtrf" value='0' />
+					<input type="hidden" name="vdeductible" id="vdeductible" value='1'  />
+					<input type="hidden" name="voptional" id="voptional" value='1' />
+					<input type="hidden" name="vobjekpajak" id="vobjekpajak" value='' />
+					<input type="hidden" name="vjnspjk" id="vjnspjk" />
+					<input type="hidden" name="vkdpjk" id="vkdpjk" />
+					<input type="hidden" name="vgross" id="vgross" />
+					<input type="hidden" name="vtarif" id="vtarif" />
+					<input type="hidden" name="vtarifspesial" id="vtarifspesial" />
+					<input type="hidden" name="vpajakterhutang" id="vpajakterhutang" value='0' />
+					                      
+                    <div class="form-body"> 
+						<div class="form-group">
+							<label class="control-label col-md-3">Jenis Pajak</label>
+								<div class="col-md-9">
+									<select class="form-control select2"  id="selJnsPjk" name="selJnsPjk" style="width: 100%;">
+										<option value=''>== Pilih ==</option>
+										<?php 										
+										foreach($jenispajak as $jnspjk)
+										  { 
+											echo '<option value="'.$jnspjk->id_jenis_pjk.'">'.$jnspjk->jenis_pajak.'</option>';
+										  }
+										?> 
+									</select>
+								</div>
+						</div>
+						
+						<div class="form-group" id="divKdPjk" style="display:none;">
+							<label class="control-label col-md-3">Kode Pajak</label>
+								<div class="col-md-9">
+									<select class="form-control select2" id="selKdPjk" name="selKdPjk" style="width: 100%;">
+										<option value=''>== Pilih ==</option>
+										<?php 										
+										foreach($kodePajak as $kdpjk)
+										  { 
+											echo '<option value="'.$kdpjk->kode_objek_pajak.'">'.$kdpjk->kode_objek_pajak.'-'.$kdpjk->nama_objek_pajak.'</option>';
+										  }
+										?> 
+									</select>
+								</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-3">Kode MAP</label>
+								<div class="col-md-9">
+									<select class="form-control select2" id="selKdMap" name="selKdMap" style="width: 100%;">
+										<option value=''>== Pilih ==</option>										
+									</select>
+								</div>
+						</div>
+						
+					
+						<div class="form-group">
+								<label class="control-label col-md-3">Nama NPWP</label>
+								<div class="col-md-9">
+								  <input name="txtnamanpwp" id="txtnamanpwp" value="<?php echo $namanpwp ; ?>"  placeholder="Nama NPWP" class="form-control" type="text" disabled>
+								</div>
+							</div>
+
+						<div class="form-group">
+								<label class="control-label col-md-3">No NPWP</label>
+								<div class="col-md-9">
+								  <input name="txtnonpwp" id="txtnonpwp" value="<?php echo $nonpwp; ?>"   placeholder="Nomor NPWP" class="form-control" type="text" disabled>
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">Alamat</label>
+								<div class="col-md-9">
+								  <textarea id="txtalamat" name="txtalamat"  value="<?php echo $alamatnpwp; ?>"  class="form-control" rows="3" placeholder="Alamat NPWP" disabled></textarea>
+								</div>
+						</div>
+						
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">Tarif Pajak</label>
+								<div class="col-md-2">
+									<span id="radiobutt">
+									  <input id="chktarifnormal" type="checkbox" name="tarif[]" value="0" checked> Normal</input> 
+									  </br>
+									  <input id="chktarifspesial" type="checkbox" name="tarif[]" value="1" > Spesial</input> 								  
+									</span>									
+								</div>
+								<div id="divtarifspesial" class="col-md-2" style="display:none;">
+									<input name="txttarif" id="txttarif"  placeholder="Spesial Tarif" onkeyup="PajakTerhutang()" class="form-control" type="text"/>
+								</div>
+								<div id="divtarifnormal" class="col-md-2" >
+								<select class="form-control select2" id="seltarif" onchange="PajakTerhutang()" name="seltarif" style="width: 100%;">
+										<option value='0'>== Pilih ==</option>										
+									</select>
+								</div>
+								
+						</div>
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">Fasilitas Pajak</label>
+								<div class="col-md-2">
+									<input id="chkfasilitas" type="checkbox" name="chkfasilitas" value="1" > Ya </input>
+								</div>
+								<div id="divfasilitas" class="col-md-7" style="display:none;">
+								  <input name="txtfasilitas" id="txtfasilitas"  placeholder="Fasilitas Pajak" class="form-control" type="text">
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">Gross Up</label>
+								<div class="col-md-9">
+								  <input id="chkgross" type="checkbox" name="chkgross"  > Ya </input>
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">DPP</label>
+								<div class="col-md-9">
+								  <input name="txtdpp" id="txtdpp" onkeyup="PajakTerhutang()" placeholder="DPP Kumulatif" value='0' class="form-control" type="text">
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">DPP (Gross Up)</label>
+								<div class="col-md-9">
+								  <input name="txtdppgross" id="txtdppgross"  placeholder="DPP Kumulatif (Gross Up)" value='0' class="form-control" type="text">
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">Pajak Terhutang</label>
+								<div class="col-md-9">
+								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" class="form-control" type="text" disabled>
+								</div>
+						</div>
+							
+						<div id="divmasappn" class="form-group" style="display:none;">
+							<label class="control-label col-md-3">Masa Pajak (PPN)</label>
+								<div class="col-md-3">
+									<select class="form-control select2" id="selmasappn" name="selmasappn" style="width: 100%;">
+										<option value=''>== Pilih ==</option>
+										<option value='Januari'>Januari</option>
+										<option value='Februari'>Februari</option>
+										<option value='Maret'>Maret</option>
+										<option value='April'>April</option>
+										<option value='Mei'>Mei</option>
+										<option value='Juni'>Juni</option>
+										<option value='Juli'>Juli</option>
+										<option value='Agustus'>Agustus</option>
+										<option value='September'>September</option>
+										<option value='Oktober'>Oktober</option>
+										<option value='Nopember'>Nopember</option>
+										<option value='Desember'>Desember</option>
+									</select>
+								</div>
+								<label class="control-label col-md-3">Tahun</label>
+								<div class="col-md-3">
+									<select class="form-control select2" id="seltahunppn" name="seltahunppn" style="width: 100%;">
+										<option value=''>== Pilih ==</option>
+										<?php 			
+										$curryear = date("Y");
+										$period = 5;
+										$minyear = intval($curryear)-intval($period);
+										for($i=$curryear; $i>=intval($minyear); $i--){
+											echo '<option value="'.$i.'">'.$i.'</option>';
+										}
+										?> 
+									</select>
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label class="control-label col-md-3">Keterangan</label>
+								<div class="col-md-9">
+								  <textarea id="txtketerangan" name="txtketerangan" class="form-control" rows="3" placeholder="Keterangan"></textarea>
+								</div>
+							</div>
+						  </div>
+                    </div>
+                  </form>
+                </div>
+
+             
+              
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+        </div>
+
+              </div>
+            <!-- /.box -->
+            <div class="modal-footer">            
+            <button type="button" id="btnSave" onclick="savetaxdraft()" class="btn btn-primary">Save Draft</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+            </div>
+        </div>
+        <!-- /.col -->
+      </div>
+        </div>
+        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

@@ -83,7 +83,7 @@
                 </td>
                 <td align="center" width="10%">
                   <div class="info-box box1">
-                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid1.png"></i></span>
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3paid.png"></i></span>
                       <br>
                       <?php foreach ($L_Paid as $Paid) { ?>
 
@@ -183,7 +183,7 @@
                     <td><?php echo $row->apf_doc;?></td>
                     <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <td>XXX</td>
+                    <td><?php echo $row->paid_date;?></td>
                     <td>
                         <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
                         <?php if ($row->type == 1) { ?>   

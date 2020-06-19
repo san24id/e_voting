@@ -523,7 +523,7 @@
                               <div class="modal-body">
                               <form id="accepted" method="post" action="Approval/submit">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
+                                <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                                 <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>

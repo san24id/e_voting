@@ -13,6 +13,7 @@ td[rowspan="3"] {
         <section class="content-header">
           <h1>
             <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+            <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
           </h1>
         </section>
                 
@@ -599,6 +600,13 @@ td[rowspan="3"] {
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script>
+
+function myPopup(myURL, myWidth, myHeight) {
+            var left = (screen.width - myWidth) / 2;
+            var top = (screen.height - myHeight) / 4;
+            var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+}
+
 document.querySelector(".third").addEventListener('click', function(){
   swal("Data Successfully to Proceed For Review!");
   function tambah() {

@@ -327,6 +327,7 @@
                       <th>Pemohon</th>
                       <th>Bank Account</th>
                       <th>Nama Penerima</th>
+                      <th>Tanggal Submit SP3</th>
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -391,6 +392,7 @@
                           }
                         ?>
                     <td><?php echo $buka; ?></td>
+                    <td><?php echo $row->submit_date; ?></td>
                     <td>
 
                      <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 

@@ -5,256 +5,223 @@
     <!--.SECTION 1 -->
     <section class="content-header">
       <h1>
-        LIST OF REJECTED (AS USERS)
+        My Inbox
       </h1>
     </section>
 
     <section class="content">
-      <!-- Info boxes -->
       <div class="row">
         <div class="col-xs-12">
-          <!-- /.box -->
-
           <div class="box">
-            <!-- /.box-header -->
             <div class="box-body">
-              <div class="table-responsive">
-                <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Nomor SP3</th>
-                  <th>Deskripsi</th>
-                  <th>Nama Pemohon</th>
-                  <th>Reason</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($rejected as $row){
-                  ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->rejected_date; ?></td>
-                  <td><?php echo $row->rejected_by; ?>  </td>
-                  <td><?php echo $row->division_id; ?> </td>
-                  <td><?php echo $row->nomor_surat; ?> </td>
-                  <td><?php echo $row->label1;?> </td>
-                  <td><?php echo $row->display_name;?> </td>
-                  <td><?php echo $row->note;?> </td>
-                  <td>
-                    <!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-                    <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                  </td>      
-                  </tr>
-                    <?php } ?>      
-              </tbody>
-              </table>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>  
+				<div class="box-header">
+				<div class="col-md-12">
+				<!-- Custom Tabs -->
+					<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs">
+						  <li class="active"><a href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED (AS USERS)</b></a></li>
+						  <li><a href="#tab_2" data-toggle="tab"><b>LIST OF RETURNED (AS VERIFICATOR)</b></a></li>
+						  <li><a href="#tab_3" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b></a></li>
+						  <li><a href="#tab_4" data-toggle="tab"><b>LIST OF REJECT (AS VERIFICATOR TO USERS)</b></a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab_1">						  
+								<div class="modal-body form">	
+									<div class="box-body">
+									<div class="table-responsive">
+										<table id="example1" class="table table-bordered table-striped">
+										<thead>
+										<tr>
+										  <th>NO.</th>
+										  <th>Rejected Date</th>
+										  <th>From</th>
+										  <th>To</th>
+										  <th>Nomor SP3</th>
+										  <th>Deskripsi</th>
+										  <th>Nama Pemohon</th>
+										  <th>Reason</th>
+										  <th>Action</th>
+										</tr>
+										</thead>
+										<tbody>
+										  <?php 
+											$i = 1;
+											foreach ($rejected as $row){
+										  ?>
+										<tr>
+										  <td><?php echo $i++; ?></td>                  
+										  <td><?php echo $row->rejected_date; ?></td>
+										  <td><?php echo $row->rejected_by; ?>  </td>
+										  <td><?php echo $row->division_id; ?> </td>
+										  <td><?php echo $row->nomor_surat; ?> </td>
+										  <td><?php echo $row->label1;?> </td>
+										  <td><?php echo $row->display_name;?> </td>
+										  <td><?php echo $row->note;?> </td>
+										  <td>
+											<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
+											<a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+										  </td>      
+										  </tr>
+											<?php } ?>      
+									  </tbody>
+									  </table>
+									</div>
+									</div>
+								</div>
+							</div>
 
-      <!-- /.row -->
+							<div class="tab-pane" id="tab_2">                
+								<div class="modal-body form">
+									<div class="box-body">
+									<div class="table-responsive">
+										<table id="example2" class="table table-bordered table-striped">
+										<thead>
+										<tr>
+										  <th>NO.</th>
+										  <th>Rejected Date</th>
+										  <th>From</th>
+										  <th>To</th>
+										  <th>Nomor SP3</th>
+										  <th>Deskripsi</th>
+										  <th>Reason</th>
+										  <th>Action</th>
+										</tr>
+										</thead>
+										<tbody>
+										  <?php 
+											$i = 1;
+											foreach ($returnedverif as $row){
+										  ?>
+										<tr>
+										  <td><?php echo $i++; ?></td>                  
+										  <td><?php echo $row->rejected_date; ?></td>
+										  <td><?php echo $row->rejected_by; ?>  </td>
+										  <td><?php echo $row->division_id; ?> </td>
+										  <td><?php echo $row->nomor_surat; ?> </td>
+										  <td><?php echo $row->label1;?> </td>
+										  <td><?php echo $row->note;?> </td>
+										  <td>
+											<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
+											
+										   	<?php 
+											   if($row->status == 5 && $row->rejected_by != NULL){ ?>
+												<?php if ($row->jenis_pembayaran == 1) { ?>   
+													<a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+												<?php } ?>
+												<?php if ($row->jenis_pembayaran == 2) { ?> 
+													<a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+												<?php } ?>
+												<?php if ($row->jenis_pembayaran == 3) { ?> 
+													<a href="Dashboard/form_easf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+												<?php } ?>
+												<?php if ($row->jenis_pembayaran == 4) { ?> 
+													<a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+												<?php } ?>  
+										   	<?php } ?>                 
+										  </td>      
+										  </tr>
+											<?php } ?>      
+									  </tbody>
+									  </table>
+									</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane" id="tab_3">				
+								<div class="modal-body form">
+									<div class="box-body">
+									<div class="table-responsive">
+										<table id="example3" class="table table-bordered table-striped">
+										<thead>
+										<tr>
+										  <th>NO.</th>
+										  <th>Rejected Date</th>
+										  <th>From</th>
+										  <th>To</th>
+										  <th>Nomor SP3</th>
+										  <th>Nomor APF</th>
+										  <th>Deskripsi</th>
+										  <th>Reason</th>
+										  <th>Action</th>
+										</tr>
+										</thead>
+										<tbody>
+										  <?php 
+											$i = 1;
+											foreach ($returnedapprov as $row){
+										  ?>
+										<tr>
+										  <td><?php echo $i++; ?></td>                  
+										  <td><?php echo $row->rejected_date; ?></td>
+										  <td><?php echo $row->rejected_by; ?>  </td>
+										  <td><?php echo $row->division_id; ?> </td>
+										  <td><?php echo $row->nomor_surat; ?> </td>
+										  <!-- <td> XXX </td> -->
+										  <td><?php echo $row->label1;?> </td>
+										  <td><?php echo $row->note;?> </td>
+										  <td>
+											<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
+											<a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+										  </td>      
+										</tr>
+											<?php } ?>      
+									  </tbody>
+									  </table>
+									</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane" id="tab_4">				
+								<div class="modal-body form">
+									<div class="box-body">
+									<div class="table-responsive">
+										<table id="example4" class="table table-bordered table-striped">
+										<thead>
+										<tr>
+										  <th>NO.</th>
+										  <th>Rejected Date</th>
+										  <th>From</th>
+										  <th>To</th>
+										  <th>Nomor SP3</th>
+										  <th>Deskripsi</th>
+										  <th>Reason</th>
+										</tr>
+										</thead>
+										<tbody>
+										  <?php 
+											$i = 1;
+											foreach ($returnedusr as $row){
+										  ?>
+										<tr>
+										  <td><?php echo $i++; ?></td>                  
+										  <td><?php echo $row->rejected_date; ?></td>
+										  <td><?php echo $row->rejected_by; ?>  </td>
+										  <td><?php echo $row->division_id; ?> </td>
+										  <td><?php echo $row->nomor_surat; ?> </td>
+										  <td><?php echo $row->label1;?> </td>
+										  <td><?php echo $row->note;?> </td>
+											  
+										</tr>
+											<?php } ?>      
+									  </tbody>
+									  </table>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>	
+		</div>	
+		</div>
+	  </div>
     </section>
     <!-- /.content -->
-
-    <!--.SECTION 2-->                  
-    <section class="content-header">
-      <h1>
-        LIST OF RETURNED (AS VERIFICATOR) 
-      </h1>
-    </section>
-
-    <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
-        <div class="col-xs-12">
-          <!-- /.box -->
-
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table id="example2" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Nomor SP3</th>
-                  <th>Deskripsi</th>
-                  <th>Reason</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($returnedverif as $row){
-                  ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->rejected_date; ?></td>
-                  <td><?php echo $row->rejected_by; ?>  </td>
-                  <td><?php echo $row->handled_by; ?> </td>
-                  <td><?php echo $row->nomor_surat; ?> </td>
-                  <td><?php echo $row->label1;?> </td>
-                  <td><?php echo $row->note;?> </td>
-                  <td>
-                    <!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-                    <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                  </td>      
-                  </tr>
-                    <?php } ?>      
-              </tbody>
-              </table>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>  
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-
-    <!--.SECTION 3-->                  
-    <section class="content-header">
-      <h1>
-        LIST OF REJECTED (BY APPROVER)
-      </h1>
-    </section>
-
-    <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
-        <div class="col-xs-12">
-          <!-- /.box -->
-
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table id="example3" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Nomor SP3</th>
-                  <th>Nomor APF</th>
-                  <th>Deskripsi</th>
-                  <th>Reason</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($returnedapprov as $row){
-                  ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->rejected_date; ?></td>
-                  <td><?php echo $row->rejected_by; ?>  </td>
-                  <td><?php echo $row->division_id; ?> </td>
-                  <td><?php echo $row->nomor_surat; ?> </td>
-                  <td><?php echo $row->apf_doc;?> </td>
-                  <td><?php echo $row->description;?> </td>
-                  <td><?php echo $row->note;?> </td>
-                  <td>
-                    <!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-                    <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                  </td>      
-                </tr>
-                    <?php } ?>      
-              </tbody>
-              </table>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>  
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-
-    <!--.SECTION 4-->                  
-    <section class="content-header">
-      <h1>
-        LIST OF REJECT (AS VERIFICATOR TO USERS)
-      </h1>
-    </section>
-
-    <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
-        <div class="col-xs-12">
-          <!-- /.box -->
-
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table id="example4" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Nomor SP3</th>
-                  <th>Deskripsi</th>
-                  <th>Reason</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($returnedusr as $row){
-                  ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->rejected_date; ?></td>
-                  <td><?php echo $row->rejected_by; ?>  </td>
-                  <td><?php echo $row->division_id; ?> </td>
-                  <td><?php echo $row->nomor_surat; ?> </td>
-                  <td><?php echo $row->label1;?> </td>
-                  <td><?php echo $row->note;?> </td>
-                      
-                </tr>
-                    <?php } ?>      
-              </tbody>
-              </table>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>  
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
+	</div>
   <!-- /.content-wrapper -->
 
 
@@ -265,36 +232,7 @@
     <strong>Copyright &copy; 2020 </strong>
   </footer>  
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <!--<li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>-->
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-       
-       
-        <!-- /.control-sidebar-menu -->
-
-     
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-
-      <!-- Settings tab content -->
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
- 
-
+  
 </div>
 <!-- ./wrapper -->
 

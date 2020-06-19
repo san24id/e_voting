@@ -28,7 +28,7 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT * FROM t_payment WHERE status='4' AND rejected_by in ('h.harlina','i.akmal') ";
+        $sql ="SELECT * FROM t_payment WHERE status='5' AND rejected_by in ('h.harlina','i.akmal') ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -353,6 +353,15 @@ class Dashboard_model extends CI_Model{
 
     }
 
+    function getProcessTax2($id_payment){
+        $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id_payment'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+
+    }
+
     public function getProcessing(){
         $sql = "SELECT COUNT(status) as totalstatus FROM t_payment WHERE status in ('4','5','6','7')";
         
@@ -388,6 +397,12 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+	function getkodeMapbytax($id){
+        $sql = "SELECT t.id_map,t.kode_map,t.keterangan,m.id_jenis_pjk FROM m_kode_map t , m_jenis_pajak m WHERE t.jenis_pajak=m.jenis_pajak AND m.id_jenis_pjk='" .$id."'";
+		$query=$this->db->query($sql);		
+		return $query->result();
+    }						   
+
     function getDataVendor(){
         $sql = "SELECT * FROM m_honorarium_konsultan";
         $query = $this->db->query($sql)->result();
@@ -401,6 +416,12 @@ class Dashboard_model extends CI_Model{
         // var_dump($query);exit;
         return $query;
     }
+
+	function getTarifByTax($id){
+        $sql = "SELECT t.id_tarif,t.tarif,t.jenis_pajak,m.id_jenis_pjk FROM t_tarif t , m_jenis_pajak m WHERE t.jenis_pajak=m.jenis_pajak AND m.id_jenis_pjk='" .$id."'";
+		$query=$this->db->query($sql);		
+		return $query->result();
+    }						 
 
     function getVTax() {
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='4' ";
@@ -718,5 +739,29 @@ class Dashboard_model extends CI_Model{
 
         return $query;
     }
+    
+	public function drafttax_add($data)
+	{
+		$this->db->insert('t_tax', $data);
+		return $this->db->insert_id();
+	}
+	
+	public function updatepaytax($where, $data)
+	{
+		$this->db->update('t_payment', $data, $where);
+		return $this->db->affected_rows();
+	}
+    
+	public function getDataNPWP($id) {
+        $sql = "SELECT m.nama,m.npwp,m.alamat FROM t_payment p, m_honorarium_konsultan m WHERE m.kode_vendor=p.vendor and p.id_payment = '$id'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getDataTax($id) {
+        $sql = "SELECT jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan FROM t_tax where id_payment = '$id'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }								
     
 }

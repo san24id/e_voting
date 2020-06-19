@@ -179,7 +179,7 @@
                   <td><?php echo $row->tanggal; ?></td>
                   <td> <?php echo $row->apf_doc; ?> </td>
                   <td><?php echo $row->description; ?></td>
-                  <td><?php echo $row->division_id; ?></td>
+                  <td><?php echo $row->display_name; ?></td>
                   <td>
                       <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
                       <?php if ($row->type == 1) { ?>   

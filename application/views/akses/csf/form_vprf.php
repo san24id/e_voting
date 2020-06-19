@@ -14,7 +14,7 @@ td[rowspan="6"] {
         <section class="content-header">
           <h1>
             <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
-            <a class="btn btn-success" onclick="window.open('Dashboard/form_sp3_2/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form Tax</a>
+            <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
           </h1>
         </section>
         <!-- Main content --> 
@@ -330,7 +330,7 @@ td[rowspan="6"] {
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="7">
-                              <p align="justify">Apa kamu yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
+                              <p align="justify">Apa anda yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
                               <label>Kepada CSF Verificator:</label>    
                               <input type="hidden" name="handled_by" value="h.harlina"> 
                               <!-- <select class="form-control" name="handled_by">
@@ -362,7 +362,7 @@ td[rowspan="6"] {
                             <form id="rejected" method="post" action="dashboard/rejectreq">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="3">
-                              <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                              <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                               <label>Notes :</label>                
                               <textarea type="text" class="form-control" name="note"></textarea>
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -391,7 +391,7 @@ td[rowspan="6"] {
                             <form id="rejected2" method="post" action="dashboard/rejectapf">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="5">
-                              <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
+                              <p align="justify">Apa anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
                               <label>Kepada CSF Finance:</label>
                               <br>
                               <input type="hidden" name="handled_by" value="n.prasetyaningrum">
@@ -428,7 +428,7 @@ td[rowspan="6"] {
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                             <input type="hidden" name="status" value="8">
-                            <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                            <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada Approval? </label>                        
                           </div>
                           <div class="modal-footer">                        
@@ -453,7 +453,7 @@ td[rowspan="6"] {
                           <form id="rejected" method="post" action="dashboard/rejectreq">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="3">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
                             <textarea type="text" class="form-control" name="note"></textarea>
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -482,7 +482,7 @@ td[rowspan="6"] {
                           <form id="rejected2" method="post" action="dashboard/rejectapf">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="4">
-                            <p align="justify">Apa kamu yakin akan me-rejected Form APF ini : <?=$get->apf_doc?></p>
+                            <p align="justify">Apa anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada CSF Finance:</label>                        
                             <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -576,6 +576,13 @@ td[rowspan="6"] {
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script>
+
+function myPopup(myURL, myWidth, myHeight) {
+            var left = (screen.width - myWidth) / 2;
+            var top = (screen.height - myHeight) / 4;
+            var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+}
+
 function update() {
   alert("Data Successfully to Update!");
 }

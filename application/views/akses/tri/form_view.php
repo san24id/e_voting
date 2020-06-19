@@ -476,7 +476,7 @@
                               <div class="modal-body">
                               <form id="approve" method="post" action="Tri/approve">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
                               <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>
@@ -502,7 +502,7 @@
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                   <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
                               <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>
@@ -526,7 +526,7 @@
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                   <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
                               <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>

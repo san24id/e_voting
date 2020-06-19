@@ -115,7 +115,12 @@
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
+
+							            if($test2[$b] == '6'){
+                            $xxi5 .= "6";
+                          }  
                         }
+                                                  
                       ?>
                       <tr>
                       <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
@@ -136,6 +141,8 @@
                         <td></td>
                         <td>
                         <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                      </td><td>
+                        <input id="checkcCC" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi2=="6"? 'checked':''?> disabled>Credit Card Corporate<br>
                       </td>
                       </tr>   
                       <tr>
@@ -418,7 +425,7 @@
                       </tbody>
                     </table>    
 
-                    <?php if ($row->status == 5 ){ ?>
+                    <!--<?php if ($row->status == 5 ){ ?>
                       <hr style=" border: 0.5px solid #000;">
 					  
 					  <button type="button" id="btn_tax" class="btn btn-success" onclick="view_tax('<?php echo $row->nomor_surat;?>')" >Info Tax</button>
@@ -445,9 +452,9 @@
                           <th>Keterangan</th>
                         </tr>
                       </thead>
-                      <tbody>
-                       <?php foreach ($process_tax as $tampil) {?>
-                        <!-- //Baris 1 -->
+                      <tbody> -->
+                       <!-- <?php foreach ($process_tax as $tampil) {?> -->
+                        <!-- //Baris 1 
                         <tr>
                           <td><?php echo $tampil->jenis_pajak;?></td>
                           <td><?php echo $tampil->kode_pajak;?></td>
@@ -471,14 +478,17 @@
                       </tbody>
                        <?php } ?>  
                       </table>
-                      </h6>
-                    <?php } ?>                   
+                      </h6> 
+                    <?php } ?> -->                    
                   </div>  
                 </div>                 
 
                     <div class="box">
                       <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Dashboard/monitoring" role="button">Back</a>
+                        <a class="btn btn-warning" href="Dashboard/monitoring" role="button">Back</a>&nbsp;&nbsp;
+                          <?php if ($row->status == 5 ){ ?>
+                            <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
+                          <?php } ?>
                         <!-- <?php if($row->status == 1){ ?>
                           <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>
                         <?php } ?>   -->
@@ -769,6 +779,12 @@
   </div><!-- /.modal -->
 
 <script>
+function myPopup(myURL, myWidth, myHeight) {
+            var left = (screen.width - myWidth) / 2;
+            var top = (screen.height - myHeight) / 4;
+            var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+}	
+															
 function printThis() {
   window.print();
 }
@@ -818,6 +834,13 @@ function checkUangMuka2() {
   } 
 }
 
+function checkCreditCard() {
+	
+  document.getElementById("check").checked = true;
+  if (document.getElementById("checkcreditcard").checked == false){
+    document.getElementById("check").checked=false
+  } 
+}												  
 function view_tax(param)
 {
 	$('#mdl_no_surat').val(param);

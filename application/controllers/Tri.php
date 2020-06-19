@@ -597,12 +597,14 @@ class Tri extends CI_Controller {
 			'id' => $_POST['id'],
 			'status' => $_POST['status'],
 			'handled_by' => $_POST['handled_by'],
-			'nomor_surat' => $_POST['nomor_surat']
+			'nomor_surat' => $_POST['nomor_surat'],
+			'paid_date' => $_POST['paid_date']
 
 		);
 
 		$this->Tri_model->updatepaid($upd);
 		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
+		$this->Tri_model->approve($upd[paid_date],$upd[nomor_surat]);
 
 		redirect('Tri/listPayment');
 	}
