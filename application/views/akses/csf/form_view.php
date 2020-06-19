@@ -439,27 +439,19 @@
                     <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
-                        <?php if ($row->status == 0) { ?>
+                        <?php if ($row->status == 0 || $row->status == 3) { ?>
                           <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
-                              <!-- <form id="form" method="post" action="Dashboard/" target="_blank" onsubmit="update()">
-                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
-                                <button type="submit" class="btn btn-primary">Print</button>
-                              </form>       -->                           
+                                                        
                               <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              <!-- <form id="form" method="post" action="Dashboard/draftprint" target="_blank" onsubmit="update()">
-                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
-                                <button type="submit" class="btn btn-primary">Print</button>
-                              </form>  -->
+                              
                               <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Set To Print</a>
 
-                              <!-- <a class="btn btn-danger" href="Dashboard/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
                             <?php } ?>    
-                            <!-- <button type="submit" class="btn btn-success">Save</button> -->
-                            <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
+                            
                         <?php } ?>
 
                         <?php 
@@ -481,11 +473,15 @@
                             <!----.Approve -->
                             <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
-                              <div class="modal-content">                                        
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h3 class="modal-title">Message Box</h3>
+                                </div>                                        
                                 <div class="modal-body">
                                 <form id="approve" method="post" action="dashboard/approve">
                                   <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                  <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
                                 <button type="submit" class="btn btn-success bye">Yes</button>
@@ -500,11 +496,15 @@
                             <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title">Message Box</h3>
+                                  </div>
 
                                   <div class="modal-body">
                                   <form id="rejected" method="post" action="dashboard/rejected">
                                     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+                                    <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
                                     <label>Notes :</label>                
                                     <textarea type="text" class="form-control" name="note"></textarea>
                                     <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
@@ -521,7 +521,7 @@
                           <?php } ?>                          
                         <?php } ?>  
 
-                          <?php if($row->status == 11 || $row->status == 3){ ?>
+                          <?php if($row->status == 11){ ?>
                             <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
@@ -529,12 +529,17 @@
                             <!----.Submit -->
                             <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
-                              <div class="modal-content">                                        
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h3 class="modal-title">Message Box</h3>
+                                </div>                                        
                                 <div class="modal-body">
                                 <form id="accepted" method="post" action="dashboard/accept">
                                   <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                   <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
+                                  <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
                                 <button type="submit" class="btn btn-success bye">Yes</button>
@@ -554,12 +559,17 @@
                           <!----.Accept -->
                           <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-xl" role="document">
-                            <div class="modal-content">                                        
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title">Message Box</h3>
+                              </div>                                        
                               <div class="modal-body">
                               <form id="accepted" method="post" action="dashboard/accept">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
                               <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>
@@ -580,11 +590,15 @@
                             <!----.Approve -->
                             <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
-                              <div class="modal-content">                                        
+                              <div class="modal-content"> 
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h3 class="modal-title">Message Box</h3>
+                                </div>                                       
                                 <div class="modal-body">
                                 <form id="approve" method="post" action="dashboard/approve">
                                   <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                  <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
                                 <button type="submit" class="btn btn-success bye">Yes</button>
@@ -599,11 +613,14 @@
                             <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
-
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title">Message Box</h3>
+                                  </div>
                                   <div class="modal-body">
                                   <form id="rejected" method="post" action="dashboard/rejected">
                                     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <p align="justify">Apa kamu yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+                                    <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
                                     <label>Notes :</label>                
                                     <textarea type="text" class="form-control" name="note"></textarea>
                                     <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
@@ -620,7 +637,7 @@
                           <?php } ?>                          
                           <?php } ?>
 
-                          <?php if($row->status == 11 || $row->status == 3){ ?> 
+                          <?php if($row->status == 11){ ?> 
                             <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
@@ -628,12 +645,17 @@
                             <!----.Submit -->
                             <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
-                              <div class="modal-content">                                        
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h3 class="modal-title">Message Box</h3>
+                                </div>                                        
                                 <div class="modal-body">
                                 <form id="accepted" method="post" action="dashboard/accept">
                                   <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                   <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
                                 <button type="submit" class="btn btn-success bye">Yes</button>

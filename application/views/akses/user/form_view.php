@@ -439,25 +439,16 @@
                     <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Home" role="button">Back</a>
-                        <?php if ($row->status == 0) { ?>
+                        <?php if ($row->status == 0 || $row->status == 3) { ?>
                           <a class="btn btn-primary" href="Home/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
-                              <!-- <form id="form" method="post" action="Home/draftprintdp" target="_blank" onsubmit="update()">
-                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
-                                <button type="submit" class="btn btn-danger">Print</button>
-                              </form>       -->
+                              
                               <a class="btn btn-danger" href="Home/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              <!-- <form id="form" method="post" action="Home/draftprint" target="_blank" onsubmit="update()">
-                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
-                                <button type="submit" class="btn btn-primary">Print</button>
-                              </form>  -->
+                              
                               <a class="btn btn-danger" href="Home/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Set To Print</a>
-                              <!-- <a class="btn btn-danger" href="Home/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
-                            <?php } ?>    
-                            <!-- <button type="submit" class="btn btn-success">Save</button> -->
-                            <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
+                            <?php } ?>   
                         <?php } ?>
                         
                         <?php 
@@ -507,6 +498,7 @@
                               <div class="modal-body">
                               <form id="accepted" method="post" action="Home/submit">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                                 <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
@@ -530,6 +522,7 @@
                               <div class="modal-body">
                               <form id="accepted" method="post" action="Home/submit">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                                 <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>

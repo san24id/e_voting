@@ -637,7 +637,7 @@
       <div class="modal-body">
       <form id="rejectedtax" method="post" action="dashboard/rejectedtax">
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+        <p align="justify">Apakah anda yakin akan mengembalikan Form SP3 ini : <?=$row->nomor_surat?> ke Bagian Tax?</p>
         <label>Notes :</label>                
         <textarea type="text" class="form-control" name="note"></textarea>
         <input type="hidden" name="handled_by" value="a.ester">

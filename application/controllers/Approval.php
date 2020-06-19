@@ -634,7 +634,8 @@ class Approval extends CI_Controller {
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
 			'status' => 2,
-			'handled_by' => $_POST['handled_by']
+			'handled_by' => $_POST['handled_by'],
+			'submit_date' => $_POST['submit_date']
 
 		);
 

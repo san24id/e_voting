@@ -68,7 +68,8 @@ class Dashboard_model extends CI_Model{
     }
 
     public function updateaccept($upd){
-        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`submit_date`='".$upd['submit_date']."' 
+                WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 
