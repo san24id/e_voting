@@ -521,7 +521,7 @@
                           <?php } ?>                          
                         <?php } ?>  
 
-                          <?php if($row->status == 11){ ?>
+                          <?php if($row->status == 11 || $row->status == 3){ ?>
                             <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
@@ -546,7 +546,7 @@
                             </div>  
                           <?php } ?>  
 
-                        <?php if($row->status == 1 && $iya == "Off" ){ ?>
+                        <?php if($row->status == 1 || $row->status == 3 && $iya == "Off" ){ ?>
                           <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
                           <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
@@ -620,7 +620,7 @@
                           <?php } ?>                          
                           <?php } ?>
 
-                          <?php if($row->status == 11){ ?> 
+                          <?php if($row->status == 11 || $row->status == 3){ ?> 
                             <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>

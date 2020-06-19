@@ -347,8 +347,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="status" value="10">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa anda yakin akan membayar Form APF ini : <?=$get->apf_doc?></p>
-                                               
+                          <p align="justify">Apa anda yakin akan membayar Form APF ini : <?=$get->apf_doc?></p>                                               
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>

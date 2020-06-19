@@ -329,7 +329,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="status" value="9">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa kamu yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
                         </div>
@@ -352,7 +352,7 @@ td[rowspan="6"] {
                         <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="5">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <textarea type="text" name="note"></textarea>
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">

@@ -133,7 +133,6 @@
                     <td>Type ID</td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
-                    <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->tarif; ?></td>
                     <td><?php echo $row->dpp; ?></td>
                     <td><?php echo $row->pajak_terutang; ?></td>

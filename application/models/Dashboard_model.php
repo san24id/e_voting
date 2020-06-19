@@ -34,19 +34,12 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    public function getReturnedApprov(){
-        $usr = $this->session->userdata('username');
-        $dvs = $this->session->userdata('division_id');
-        $role = $this->session->userdata('id_role_app');
+    public function getReturnedApprov(){    
+    
+        $sql = "SELECT * FROM t_payment_l WHERE status='5' AND rejected_by !=NULL ";
 
-        if ($role == 4){
-
-            $sql ="SELECT * FROM t_payment WHERE status='4' AND division_id='$dvs' AND rejected_by='$usr' ";
-
-            $query = $this->db->query($sql)->result();
-            return $query;
-
-        }
+        $query = $this->db->query($sql)->result();
+        return $query;
     }
 
     public function getReturnedUser(){
@@ -649,6 +642,16 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql)->result();
 
         return $query;
+    }
+
+    function notifTask(){
+        $usr = $this->session->userdata('username');
+
+        $sql = "SELECT COUNT(status) as totaltask FROM t_payment WHERE handled_by='$usr' AND status in ('2','4','5','6','7','8')";
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+
     }
 
     function updatepay($status,$nomor_surat,$handled_by,$rejected_by,$rejected_date,$note){

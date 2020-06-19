@@ -601,7 +601,7 @@ class Tri extends CI_Controller {
 		);
 
 		$this->Tri_model->updatepaid($upd);
-		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by]);
+		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 
 		redirect('Tri/listPayment');
 	}

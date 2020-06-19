@@ -310,7 +310,7 @@ class Approval extends CI_Controller {
 		);
 
 		$this->Approval_model->updateapprove($upd);
-		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by]);
+		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 
 		redirect('Approval/listApproval');
 	}

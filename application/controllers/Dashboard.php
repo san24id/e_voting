@@ -48,6 +48,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
@@ -80,6 +81,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -113,6 +115,7 @@ class Dashboard extends CI_Controller {
 
 		// $this->load->library('pdfgenerator');
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
@@ -135,6 +138,7 @@ class Dashboard extends CI_Controller {
 
 		// $this->load->library('pdfgenerator');
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
@@ -157,6 +161,7 @@ class Dashboard extends CI_Controller {
 
 		// $this->load->library('pdfgenerator');
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
@@ -181,6 +186,7 @@ class Dashboard extends CI_Controller {
 		$data['credit_card'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['division'] = $this->Dashboard_model->getDivision();
 		$data['creditcard'] = $this->Dashboard_model->credit_card();
@@ -243,6 +249,7 @@ class Dashboard extends CI_Controller {
 		$data['report_pajak'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['report_pph'] = $this->Dashboard_model->report_pajak_pph();
 		$data['report_ppn'] = $this->Dashboard_model->report_pajak_ppn();
@@ -260,6 +267,7 @@ class Dashboard extends CI_Controller {
 
 		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['report'] = $this->Dashboard_model->report_pajak();
 		$data['vreport'] = $this->Dashboard_model->report_view($id_pajak);
 
@@ -274,6 +282,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -293,6 +302,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -313,6 +323,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -332,6 +343,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
@@ -369,6 +381,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -389,6 +402,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -410,6 +424,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
@@ -431,6 +446,7 @@ class Dashboard extends CI_Controller {
 		// $sid = $this->session->userdata("id_user");
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -470,6 +486,7 @@ class Dashboard extends CI_Controller {
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -490,6 +507,7 @@ class Dashboard extends CI_Controller {
 
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -508,6 +526,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['reject'] = $this->Home_model->notifRejected();
@@ -546,6 +565,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -568,6 +588,7 @@ class Dashboard extends CI_Controller {
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -588,6 +609,7 @@ class Dashboard extends CI_Controller {
 
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -604,6 +626,7 @@ class Dashboard extends CI_Controller {
 
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -736,6 +759,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
@@ -847,6 +871,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -882,6 +907,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['advancerequest'] = $this->Home_model->getVar();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -900,6 +926,7 @@ class Dashboard extends CI_Controller {
 
 		$data['settlement'] = $this->Home_model->getVasr();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -914,6 +941,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -931,6 +959,7 @@ class Dashboard extends CI_Controller {
 		
 		$data['outstan'] = $this->Home_model->getOp();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -946,6 +975,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 		
 		$data['draftreq'] = $this->Home_model->getVdraftrequest();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -961,6 +991,7 @@ class Dashboard extends CI_Controller {
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['list_monitoring'] = $this->Dashboard_model->monitoring();
@@ -991,6 +1022,7 @@ class Dashboard extends CI_Controller {
 
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['list_monitoring'] = $this->Dashboard_model->monitoring();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['gprocess'] = $this->Dashboard_model->getProcessing();
@@ -1019,6 +1051,7 @@ class Dashboard extends CI_Controller {
 
 	public function List_or(){
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -1030,6 +1063,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['tax'] = $this->Dashboard_model->getVTax();
@@ -1044,6 +1078,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['finance'] = $this->Dashboard_model->getVFinance();
 
@@ -1057,6 +1092,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['review'] = $this->Dashboard_model->getVReview();
 
@@ -1071,6 +1107,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vwaitverif'] = $this->Dashboard_model->getVWaitVerifikasi();
 
@@ -1084,6 +1121,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vwaitapprov'] = $this->Dashboard_model->getVWaitApproval();
@@ -1099,6 +1137,7 @@ class Dashboard extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vwaitpaid'] = $this->Dashboard_model->getVWaitPaid();
 
@@ -1112,6 +1151,7 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['vpaid'] = $this->Dashboard_model->getVPaid();
@@ -1130,6 +1170,7 @@ class Dashboard extends CI_Controller {
 		$data['active4'] = '';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
@@ -1149,6 +1190,7 @@ class Dashboard extends CI_Controller {
 		$data['inbox'] = 'active';
 
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['rejected'] = $this->Home_model->getRejected();
 		$data['returnedverif'] = $this->Dashboard_model->getReturnedVerif();
 		$data['returnedapprov'] = $this->Dashboard_model->getReturnedApprov();
@@ -1168,6 +1210,7 @@ class Dashboard extends CI_Controller {
 
 		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
@@ -1327,6 +1370,7 @@ class Dashboard extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['reject'] = $this->Home_model->notifRejected();
@@ -1349,6 +1393,7 @@ class Dashboard extends CI_Controller {
 		$sid = $this->session->userdata("id_user");
 
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Home_model->getDivHead();

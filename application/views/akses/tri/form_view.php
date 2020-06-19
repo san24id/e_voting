@@ -147,11 +147,11 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="right">Tanggal : <?php echo $row->tanggal; ?></td>
+                      <td align="center">Tanggal : <?php echo $row->tanggal; ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<<?php echo $row->tanggal; ?>">
                       </tr>
                       <tr>

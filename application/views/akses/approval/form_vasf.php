@@ -370,7 +370,7 @@ td[rowspan="6"] {
                         <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="5">
-                          <p align="justify">Apa kamu yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <textarea type="text" name="note"></textarea>
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">

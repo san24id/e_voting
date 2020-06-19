@@ -26,8 +26,8 @@
                   <th>Rejected Date</th>
                   <th>From</th>
                   <th>To</th>
-                  <th>SP3 No</th>
-                  <th>Description</th>
+                  <th>Nomor SP3</th>
+                  <th>Deskripsi</th>
                   <th>Nama Pemohon</th>
                   <th>Reason</th>
                   <th>Action</th>
@@ -92,8 +92,8 @@
                   <th>Rejected Date</th>
                   <th>From</th>
                   <th>To</th>
-                  <th>SP3 No</th>
-                  <th>Description</th>
+                  <th>Nomor SP3</th>
+                  <th>Deskripsi</th>
                   <th>Reason</th>
                   <th>Action</th>
                 </tr>
@@ -155,9 +155,9 @@
                   <th>Rejected Date</th>
                   <th>From</th>
                   <th>To</th>
-                  <th>SP3 No</th>
-                  <th>APF No</th>
-                  <th>Description</th>
+                  <th>Nomor SP3</th>
+                  <th>Nomor APF</th>
+                  <th>Deskripsi</th>
                   <th>Reason</th>
                   <th>Action</th>
                 </tr>
@@ -220,8 +220,8 @@
                   <th>Rejected Date</th>
                   <th>From</th>
                   <th>To</th>
-                  <th>SP3 No</th>
-                  <th>Description</th>
+                  <th>Nomor SP3</th>
+                  <th>Deskripsi</th>
                   <th>Reason</th>
                 </tr>
                 </thead>

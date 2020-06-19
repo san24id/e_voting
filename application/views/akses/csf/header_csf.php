@@ -245,7 +245,9 @@
             <li><a href="Dashboard/List_pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
           </ul>  
         </li>
-        <li class="<?php echo $task?>"><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>My Task</a></span></li>
+        <?php foreach ($notif_task as $notiftask) {?>
+        <li class="<?php echo $task?>"><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>My Task</span><small class="label pull-right bg-red"><?php echo $notiftask->totaltask; ?> </small></a></li>
+        <?php } ?>
         <?php foreach ($reject as $notif) { ?>
         <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <?php } ?>        
