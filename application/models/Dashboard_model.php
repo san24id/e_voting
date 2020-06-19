@@ -621,7 +621,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function report_pajak_pph(){
-        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPh%'";
+        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPh%' GROUP BY nomor_surat";
 
         $query = $this->db->query($sql)->result();
 
@@ -629,7 +629,7 @@ class Dashboard_model extends CI_Model{
     }
     
     function report_pajak_ppn(){
-        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPN%'";
+        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPN%' GROUP BY nomor_surat";
 
         $query = $this->db->query($sql)->result();
 
