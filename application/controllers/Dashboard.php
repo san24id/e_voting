@@ -402,7 +402,7 @@ class Dashboard extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
@@ -486,7 +486,6 @@ class Dashboard extends CI_Controller {
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['currency'] = $this->Home_model->getCurrency();
-		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
 
@@ -507,7 +506,6 @@ class Dashboard extends CI_Controller {
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['currency'] = $this->Home_model->getCurrency();
-		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
 
@@ -588,8 +586,7 @@ class Dashboard extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
-		$data['ppayment'] = $this->Dashboard_model->getform($id);
-		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['prf_doc'] = $this->Dashboard_model->buat_kode_prf();
 		$data['currency'] = $this->Home_model->getCurrency();
 
@@ -668,7 +665,7 @@ class Dashboard extends CI_Controller {
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
-		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['crf_doc'] = $this->Dashboard_model->buat_kode_crf();

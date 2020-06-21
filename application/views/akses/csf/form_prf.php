@@ -4,11 +4,8 @@ td[rowspan="6"] {
   text-align: left;
 }
 </style>
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <?php foreach ($payment as $row){ ?>
+      <!-- Content Wrapper. Contains page content -->   
+      <?php foreach ($payment as $row){ ?>          
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -17,11 +14,12 @@ td[rowspan="6"] {
             <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
           </h1>
         </section>
-        <!-- Main content -->             
+        <!-- Main content -->
+        
         <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name;?>">
-          <input type="hidden" name="type" class="form-control" value="1"> 
-          <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>"> 
+          <input type="hidden" name="type" class="form-control" value="2"> 
+          <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>">
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -52,24 +50,26 @@ td[rowspan="6"] {
                                     'Thu' => 'Kamis',
                                     'Fri' => 'Jumat',
                                     'Sat' => 'Sabtu'
-                              );
+                                );
                                 $hari_ing = date('D');
                                 // echo date("D");
-                              $monthList = array(
-                                    'Jan' => 'Jan',
-                                    'Feb' => 'Feb',
-                                    'Mar' => 'Mar',
-                                    'Apr' => 'Apr',
-                                    'May' => 'Mei',
-                                    'Jun' => 'Jun',
-                                    'Jul' => 'Jul',
-                                    'Aug' => 'Ags',
-                                    'Sep' => 'Sep',
-                                    'Oct' => 'Okt',
-                                    'Nov' => 'Nov',
-                                    'Dec' => 'Des'                                    
-                              );
-                                $bulan_ing = date('M');  
+                                $monthList = array(
+                                  'Jan' => 'Jan',
+                                  'Feb' => 'Feb',
+                                  'Mar' => 'Mar',
+                                  'Apr' => 'Apr',
+                                  'May' => 'Mei',
+                                  'Jun' => 'Jun',
+                                  'Jul' => 'Jul',
+                                  'Aug' => 'Ags',
+                                  'Sep' => 'Sep',
+                                  'Oct' => 'Okt',
+                                  'Nov' => 'Nov',
+                                  'Dec' => 'Des'                                    
+                                                                                                                                                                     
+                                );
+                                  $bulan_ing = date('M');                               
+                                                               
                             ?>     
                         <tr>
                           <td><font size="+1" >Tanggal : </td>
@@ -79,10 +79,10 @@ td[rowspan="6"] {
                           <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $prf_doc; ?>"></td>
                         </tr>
                         <tr>
-                          <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>"></td>
+                          <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" required></td>
                           <td> &nbsp;</td>
-                          <td><font size="+1" style="font-family: calibri;">SPPP Doc. No : </font></td>
+                          <td><font size="+1">SPPP Doc. No : </font></td>
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>" readonly>
                               <!-- <select class="form-control" name="nomor_surat">
                                 <option>--- Choose ---</option>
@@ -90,14 +90,14 @@ td[rowspan="6"] {
                                 <option value="<?php echo $got->number1; ?>"><?php echo $got->number1; ?></option>
                               <?php } ?>
                               </select> -->
-                          </td>
+                          </td>    
                         </tr>
                         <tr>
-                          <td><font size="+1" >PR Doc. No : </font></td>
+                          <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" class="form-control" value="PR - ---/PII/--/--"></td>
                           <td> &nbsp;</td>
-                          <td><font size="+1" style="font-family: calibri;">Kode Proyek : <br> <i>Project Code</i><font></td>
-                          <td><input type="text" name="kode_proyek" class="form-control" placeholder="Project Code"></td>
+                          <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
+                          <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
                         </tr>
                       </tbody>
                     </table>
@@ -283,7 +283,7 @@ td[rowspan="6"] {
                           <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang"></td>
                         </tr>
                         <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
@@ -298,103 +298,6 @@ td[rowspan="6"] {
                         </tr>
                       </tbody>
                     </table>
-
-                    <!-- <table border="1" style="font-family: calibri;" width="100%">
-                      <thead>
-                        <tr>
-                          <th width="5%"><center>NO. <br> <i>No.</i></center></th>
-                          <th height="50%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
-                        </tr>
-                      </thead>
-                      <tbody>                      
-                      <tr>
-                          <td rowspan="9"><center> 1 </center></td>
-                          <td colspan="2"><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea></td>                  
-                          <td><select id="Select" class="form-control" onchange="myFunction()" name="currency">
-                                <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td>
-                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description2" ></td>
-                          <td> </td>
-                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah1" > </td>
-                        </tr>
-
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
-                          <td><select id="Select1" onchange="myFunction1()" name="currency2">
-                                <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                                <?php } ?>
-                              </select>
-                          </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description4" ></td>
-                          <td>  </td>
-                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah3" > </td> 
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description5" ></td>
-                          <td>                         </td>
-                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah4"></td> 
-                        </tr>
-                        
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description6" ></td>
-                          <td>     </td>
-                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah5">  </td> 
-                        </tr>
-
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description7" ></td>
-                          <td><select id="Select2" onchange="myFunction2()" name="currency3">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
-                            <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->curr; ?>"><?php echo $get->curr; ?></option>
-                            <?php } ?>
-                            </select>
-                          </td>
-                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $row->jumlah3;?>" ></td> 
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description8" ></td>
-                          <td>       </td>
-                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah7" ></td> 
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form-control" name="description9" ></td>
-                          <td> </td>
-                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah8"></td> 
-                        </tr>
-
-                        <tr>
-                          <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><p id="demo"> </p> <p id="demo1"> </p></center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses">  </td>
-                        </tr>
-                        <tr> 
-                          <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang" required></td>
-                        </tr>
-                        <tr> 
-                          <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima;?>" required></td>
-                        </tr>
-                      </tbody>
-                    </table> -->
                     
                     <br>
 
@@ -402,7 +305,7 @@ td[rowspan="6"] {
                       <tbody>
                       <tr> 
                         <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks" required></textarea></td>
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks"></textarea></td>
                       </tr>
                       <tr>
                       </tr>
@@ -483,13 +386,13 @@ td[rowspan="6"] {
                         </tr>
                       </tbody>
                     </table>
-                    
+
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
                           <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
                           <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
-                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" name="label2" placeholder="Remarks"></textarea></td>                          
+                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" placeholder="Remarks"></textarea></td>                          
                         </tr>
                         <tr>
                           <td colspan="4"><br><br><br><br> </td>
@@ -514,7 +417,7 @@ td[rowspan="6"] {
                           <td colspan="2">&nbsp; VP Treasury </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
                           <td colspan="2">&nbsp; Cashier </td>
-                        </tr>                      
+                        </tr>                 
                       </tbody> 
                     </table>
 
@@ -526,7 +429,7 @@ td[rowspan="6"] {
                           <td colspan="2">Diterima Oleh/ : <br> <i>Received by :</i></td>
                         </tr>
                         <tr>
-                          <td ">Nama/ <i>Name</i> </td>
+                          <td>Nama/ <i>Name</i> </td>
                         <td> </td>		
                         </tr>
                         <tr>
@@ -535,19 +438,19 @@ td[rowspan="6"] {
                         </tr>
                       </tbody>
                     </table>
-
+                                
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
-
-                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?=$row->nomor_surat?></p>
-                    <label>Kepada CSF Reviewer?</label>            
+                   
+                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini : &nbsp; <?php echo $arf_doc; ?></p>
+                    <label>Kepada CSF Reviewer?</label>   
                     <input type="hidden" name="handled_by" value="i.akmal">                       
 
                     <!-- <select name="handled_by">
                         <option>--- Choose ---</option>
                     <?php foreach ($csf as $get) {?>
                         <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                    <?php } ?>
-                    </select>             -->
+                    <?php } ?> -->
+                    </select>            
                   </div>  
                 </div>
                      
@@ -562,7 +465,7 @@ td[rowspan="6"] {
           </section>    
 
         </form>
-        <?php } ?>
+        <?php } ?>  
         <!-- /.content -->
       </div>
 
@@ -686,7 +589,7 @@ function nominal(){
   // alert(k);
   var l = document.getElementById("nilai11").value;
   // alert(l);
-
+    
   var get_x = x.replace(/\D+/g, '');
   if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
 		get_x= -Math.abs(get_x);		
@@ -781,9 +684,11 @@ function nominal(){
   var sum_l = Number(get_l) + 0 ;
 
   var hasil = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
+  
   // alert(b)
   // if(x && b && c){
-    // document.getElementById("ulang").value = hasil ;
+    //document.getElementById("ulang").value = hasil ;
+    // document.getElementById("ulang1").value = hasil ;
   // }  
   var bilangan= ''+hasil+'';
   // alert(bilangan);
@@ -898,18 +803,19 @@ function nominal(){
     }
     
     document.getElementById("terbilang").value=kalimat+muncul;
-    // alert(kalimat);
+    // alert(kalimat);  
 
   var a = hasil ;
   if (a <= 100000000){
     document.getElementById("approval1").value = "Donny Hamdani";
     document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+
     <?php if ($row->display_name == "Donny Hamdani"){ ?>
       document.getElementById("approval1").value = "Salusra Satria";
       document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
     <?php } ?>
   }
-
+  
   if (a >= 100000000 && a <= 500000000) {
     // document.getElementById("approval1").value = "Donny Hamdani";
     // document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
@@ -922,7 +828,7 @@ function nominal(){
       document.getElementById("jabatan1").value = "Direktur Utama / CEO";
     <?php } ?>
   }
-  
+
   if (a >= 500000000) {
     document.getElementById("approval1").value = "Salusra Satria";
     document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
@@ -932,7 +838,7 @@ function nominal(){
 
     document.getElementById("approval3").value = "M. Wahid Sutopo";
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
-  }  
+  }
 
   if (hasil<0){
 	  hasil=Math.abs(hasil);
@@ -960,6 +866,7 @@ function nominal(){
 	}else{
 		nilai.value = formatnilai(this.value);
 	}
+    //nilai.value = formatnilai(this.value);
   });
 
   /* Fungsi formatnilai */
@@ -991,6 +898,7 @@ function nominal(){
 	}else{
 		nilai1.value = formatnilai1(this.value);
 	}
+    //nilai1.value = formatnilai1(this.value);
   });
 
   /* Fungsi formatnilai1 */
@@ -1011,7 +919,8 @@ function nominal(){
     return prefix == undefined ? nilai1 : (nilai1 ? + nilai1 : '');
   }
 
-  // Format Separator Id Nilai 2
+
+  // // Format Separator Id Nilai 2
   var nilai2 = document.getElementById('nilai2');
   nilai2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
@@ -1022,6 +931,7 @@ function nominal(){
 	}else{
 		nilai2.value = formatnilai2(this.value);
 	}
+    //nilai2.value = formatnilai2(this.value);
   });
 
   /* Fungsi formatnilai2 */
@@ -1042,7 +952,7 @@ function nominal(){
     return prefix == undefined ? nilai2 : (nilai2 ? + nilai2 : '');
   }
 
-  var nilai3 = document.getElementById('nilai3');
+  var nilai3 = document.getElementById('nilai3');  
   nilai3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai3() untuk mengubah angka yang di ketik menjadi format angka	
@@ -1052,11 +962,13 @@ function nominal(){
 	}else{
 		nilai3.value = formatnilai3(this.value);
 	}
+    //nilai3.value = formatnilai3(this.value);
+    
   });
 
   /* Fungsi formatnilai3 */
-  function formatnilai3(angka, prefix){
-    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
+  function formatnilai3(angka, prefix){	  
+	var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai3     		= split[0].substr(0, sisa),
@@ -1082,6 +994,7 @@ function nominal(){
 	}else{
 		nilai4.value = formatnilai4(this.value);
 	}
+    //nilai4.value = formatnilai4(this.value);
   });
 
   /* Fungsi formatnilai4 */
@@ -1112,6 +1025,7 @@ function nominal(){
 	}else{
 		nilai5.value = formatnilai5(this.value);
 	}
+    //nilai5.value = formatnilai5(this.value);
   });
 
   /* Fungsi formatnilai5 */
@@ -1142,6 +1056,7 @@ function nominal(){
 	}else{
 		nilai6.value = formatnilai6(this.value);
 	}
+    //nilai6.value = formatnilai6(this.value);
   });
 
   /* Fungsi formatnilai6 */
@@ -1172,6 +1087,7 @@ function nominal(){
 	}else{
 		nilai7.value = formatnilai7(this.value);
 	}
+    //nilai7.value = formatnilai7(this.value);
   });
 
   /* Fungsi formatnilai7 */
@@ -1202,6 +1118,7 @@ function nominal(){
 	}else{
 		nilai8.value = formatnilai8(this.value);
 	}
+    //nilai8.value = formatnilai8(this.value);
   });
 
   /* Fungsi formatnilai8 */
@@ -1232,6 +1149,7 @@ function nominal(){
 	}else{
 		nilai9.value = formatnilai9(this.value);
 	}
+    //nilai9.value = formatnilai9(this.value);
   });
 
   /* Fungsi formatnilai9 */
@@ -1262,9 +1180,10 @@ function nominal(){
 	}else{
 		nilai10.value = formatnilai10(this.value);
 	}
+    //nilai10.value = formatnilai8(this.value);
   });
 
-  /* Fungsi formatnilai8 */
+  /* Fungsi formatnilai10 */
   function formatnilai10(angka, prefix){
     var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
@@ -1292,6 +1211,7 @@ function nominal(){
 	}else{
 		nilai11.value = formatnilai11(this.value);
 	}
+	//nilai11.value = formatnilai11(this.value);
   });
 
   /* Fungsi formatnilai11 */
@@ -1311,7 +1231,7 @@ function nominal(){
     nilai11 = split[1] != undefined ? nilai11 + ',' + split[1] : nilai11;
     return prefix == undefined ? nilai11 : (nilai11 ? + nilai11 : '');
   }
-
+  
   // Format Separator Id Ulang (Jumlah Pembayaran)
   var ulang = document.getElementById('ulang');
   ulang.addEventListener('mousemove', function(e){
@@ -1323,6 +1243,7 @@ function nominal(){
 	}else{
 		ulang.value = formatulang(this.value);
 	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatulang */
@@ -1341,9 +1262,100 @@ function nominal(){
 
     ulang = split[1] != undefined ? ulang + ',' + split[1] : ulang;
     return prefix == undefined ? ulang : (ulang ? + ulang : '');
-  }
+  }  
+
+// function math() {
+// 	var a = parseInt(document.getElementById("1").value);
+//   // alert(a);
+// 	var b = parseInt(document.getElementById("2").value);
+//   // alert(b);
+// 	if(a && b){
+//     document.getElementById("msg").value= a*(b/100);
+//   }		
+//   if(a){
+//     document.getElementById("msg2").value= a*(10/100);
+//   }  
+// }
 </script>
 
+<!-- <script charset="utf-8" type="text/javascript">
+function penyebut(){
+    var bilangan=document.getElementById("ulang1").value;
+    var kalimat="";
+    var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+    var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+    var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
+    var panjang_bilangan = bilangan.length;
+     
+    /* pengujian panjang bilangan */
+    if(panjang_bilangan > 15){
+        kalimat = "Diluar Batas";
+    }else{
+        /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+        for(i = 1; i <= panjang_bilangan; i++) {
+            angka[i] = bilangan.substr(-(i),1);
+        }
+         
+        var i = 1;
+        var j = 0;
+         
+        /* mulai proses iterasi terhadap array angka */
+        while(i <= panjang_bilangan){
+            subkalimat = "";
+            kata1 = "";
+            kata2 = "";
+            kata3 = "";
+             
+            /* untuk Ratusan */
+            if(angka[i+2] != "0"){
+                if(angka[i+2] == "1"){
+                    kata1 = "Seratus";
+                }else{
+                    kata1 = kata[angka[i+2]] + " Ratus";
+                }
+            }
+             
+            /* untuk Puluhan atau Belasan */
+            if(angka[i+1] != "0"){
+                if(angka[i+1] == "1"){
+                    if(angka[i] == "0"){
+                        kata2 = "Sepuluh";
+                    }else if(angka[i] == "1"){
+                        kata2 = "Sebelas";
+                    }else{
+                        kata2 = kata[angka[i]] + " Belas";
+                    }
+                }else{
+                    kata2 = kata[angka[i+1]] + " Puluh";
+                }
+            }
+             
+            /* untuk Satuan */
+            if (angka[i] != "0"){
+                if (angka[i+1] != "1"){
+                    kata3 = kata[angka[i]];
+                }
+            }
+             
+            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+            if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
+                subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+            }
+             
+            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+            kalimat = subkalimat + kalimat;
+            i = i + 3;
+            j = j + 1;
+        }
+         
+        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+        if ((angka[5] == "0") && (angka[6] == "0")){
+            kalimat = kalimat.replace("Satu Ribu","Seribu");
+        }
+    }
+    document.getElementById("terbilang").value=kalimat;
+}
+</script> -->
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -5,7 +5,7 @@ td[rowspan="6"] {
 }
 </style>
       <!-- Content Wrapper. Contains page content -->
-      <?php foreach ($ppayment as $row){ ?>          
+      <?php foreach ($payment as $row){ ?>          
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -291,6 +291,16 @@ td[rowspan="6"] {
                           <td>Terbilang/ <i>Say :</i> </td>
                           <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang"></td>
                         </tr>
+                        <?php 
+                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                          $query = $this->db->query($sql)->result();
+                          // return $query;
+                          // var_dump($query[0]->nama);exit; 
+                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          }else{
+                            $buka = $row->penerima;
+                          }
+                        ?>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
                           <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima; ?>"></td>
