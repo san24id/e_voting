@@ -42,7 +42,8 @@
 			$alamatnpwp = $vndr->alamat ;
 		}
 		
-		?>         
+		?>
+         
 		
           <section class="content">
             <div class="row">
@@ -172,7 +173,72 @@
 							<td><?php echo $gtax->keterangan;?></td>
 						  </tr>
 						 <?php }?>
-                                           
+                        <!-- <tr>
+                          <td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control">
+                                <option value="">Choose</option>
+                                <?php foreach ($jenispajak as $get) {?>
+                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?> </option>
+                                <?php } ?>
+                            </select>
+                          </td>
+                          <td><select id="kode_pajak" name="kode_pajak[]" class="form-control">
+                                <option value="">Choose</option>
+                                <?php foreach ($kodePajak as $kode) {?>
+                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?> - <?php echo $get->nama_objek_pajak; ?></option>
+                                <?php } ?>
+                            </select>
+                          </td>
+                          <td><select id="dropdown2" name="kode_map[]" class="form-control">
+                                <option value="">Choose</option>
+                                <?php foreach ($kodeMap as $map) {?>
+                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
+                                <?php } ?>
+                            </select>
+                          </td>
+                            <?php 
+                                  $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                                  $query = $this->db->query($sql)->result();
+                                  // return $query;
+                                  // var_dump($query[0]->npwp);exit; 
+                                  if ($query[0]->nama) { $buka1 = $query[0]->nama;
+                                  }else{
+                                    $buka1 = $row->penerima;
+                                  }
+                              ?>
+                          <td><textarea type="text" class="form-control" name="nama[]" readonly><?php echo $buka1;?></textarea></td>
+                              <?php 
+                                  $sql = "SELECT npwp FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                                  $query = $this->db->query($sql)->result();
+                                  // return $query;
+                                  // var_dump($query[0]->npwp);exit; 
+                                  if ($query[0]->npwp) { $buka = $query[0]->npwp;
+                                  }else{
+                                    $buka = $row->penerima;
+                                  }
+                              ?>
+                          <td><textarea type="text" class="form-control" name="npwp[]" readonly><?php echo $buka;?></textarea></td>
+                          <?php 
+                                  $sql = "SELECT alamat FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                                  $query = $this->db->query($sql)->result();
+                                  // return $query;
+                                  // var_dump($query[0]->alamat);exit; 
+                                  if ($query[0]->alamat) { $buka2 = $query[0]->alamat;
+                                  }else{
+                                    $buka2 = $row->penerima;
+                                  }
+                              ?>
+                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" readonly><?php echo $buka2;?></textarea></td>
+                          <td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"></td>
+                          <td><input type="checkbox" name="fas_pajak[]" value="Ya"></td>
+                          <td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" ></td>
+                          <td><input type="checkbox" name="gross[]" value="Ya"></td>
+                          <td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>
+                          <td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>
+                          <td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>
+                          <td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>
+                          <td><input type="text" class="form-control" name="tahun[]" placeholder="Enter Text" ></td>
+                          <td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>
+                        </tr>   -->                     
                       </tbody> 
                       
                     </table>
@@ -184,7 +250,7 @@
 					   </div> 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
+                    <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>  
                     <button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>
                   </div>
                 </div>                                                 
@@ -447,9 +513,9 @@ function savetaxdraft()
 	var $id = $('#id_payment').val();
 		if ($('#selJnsPjk').val()==""){
 			alert("Jenis Pajak belum di pilih");
-		  }else if ($('#selKdMap').val()==""){
+		  }/*else if ($('#selKdMap').val()==""){
 			alert("Kode MAP belum di pilih");    
-		  }else if ($('#txtnamanpwp').val()==""){
+		  }*/else if ($('#txtnamanpwp').val()==""){
 			alert("Nama NPWP belum di input");
 		  }else if ($('#txtnonpwp').val()==""){
 			alert("Nomor NPWP belum di input");
@@ -662,15 +728,26 @@ function showed() {
 	  
 	  var $id = $(this).val();
       if( $strid == 'PPh Pasal 21') {
-            $('#txtnamanpwp').removeAttr("disabled"); 
-			$('#txtnonpwp').removeAttr("disabled"); 	
-			$('#txtalamat').removeAttr("disabled"); 			
+		    $("#txtnamanpwp").prop('readonly', false);
+            //$('#txtnamanpwp').removeAttr("disabled"); 
+			$('#txtnonpwp').prop('readonly', false);	
+			$('#txtalamat').prop('readonly', false);		
     
       } else{
-		  if( $strid == 'PPN' || $strid == 'PPN WAPU' || $strid == 'PPN PKP') {
-				$('#divmasappn').show(); 			
+		  $("#txtnamanpwp").prop('readonly', true);
+            //$('#txtnamanpwp').removeAttr("disabled"); 
+			$('#txtnonpwp').prop('readonly', true);	
+			$('#txtalamat').prop('readonly', true);	
+			
+			if($strid.substring(0, 3)=='PPN'){
+				$('#divKdMap').hide();
 			}else{
-				$('#divmasappn').hide(); 
+				$('#divKdMap').show(); 
+			};
+		  if( $strid == 'PPN' || $strid == 'PPN WAPU' || $strid == 'PPN PKP') {
+				$('#divmasappn').show();
+			}else{
+				$('#divmasappn').hide();
 			}
 			
 			if( $strid == 'PPh Pasal 23') {
@@ -678,9 +755,9 @@ function showed() {
 			}else{
 				$('#divKdPjk').hide(); 
 			}
-		$("#txtnamanpwp").attr("disabled", "disabled"); 
+		/*$("#txtnamanpwp").attr("disabled", "disabled"); 
 		$("#txtnonpwp").attr("disabled", "disabled"); 
-		$("#txtalamat").attr("disabled", "disabled"); 
+		$("#txtalamat").attr("disabled", "disabled"); */
 	  }
 	  
 	  $.ajax({
@@ -812,13 +889,14 @@ function PajakTerhutang(){
 			$('#txtdppgross').val('0');
 		}
 		$("#txtpajakterhutang").val(pjkutang);	
+		//$('#txtpajakterhutang').prop('readonly', true);
 		$("#vpajakterhutang").val(pjkutang);	
 	}
 	
 }  
 
 
-  var rupiah = document.getElementById('rupiah');
+  var rupiah = document.getElementById('txtdpp');
   rupiah.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
@@ -843,7 +921,7 @@ function PajakTerhutang(){
     return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
   }
 
-  var rupiah2 = document.getElementById('rupiah2');
+  var rupiah2 = document.getElementById('txtdppgross');
   rupiah2.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
@@ -868,7 +946,7 @@ function PajakTerhutang(){
     return prefix == undefined ? rupiah2 : (rupiah2 ? + rupiah2 : '');
   }
 
-  var rupiah3 = document.getElementById('rupiah3');
+  var rupiah3 = document.getElementById('txtpajakterhutang');
   rupiah3.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
@@ -957,13 +1035,15 @@ function PajakTerhutang(){
 {
 	var jnspjk = sel.value;
 	if(jnspjk == "PPh Pasal 21"){
-            $('#txtnamanpwp').removeAttr("disabled"); 
-			$('#txtnonpwp').removeAttr("disabled"); 	
-			$('#txtalamat').removeAttr("disabled"); 	 			
+            $("#txtnamanpwp").prop('readonly', false);
+            //$('#txtnamanpwp').removeAttr("disabled"); 
+			$('#txtnonpwp').prop('readonly', false);	
+			$('#txtalamat').prop('readonly', false);	 			
     }else{
-		$("#txtnamanpwp").attr("disabled", "disabled"); 
-		$("#txtnonpwp").attr("disabled", "disabled"); 
-		$("#txtalamat").attr("disabled", "disabled"); 
+		$("#txtnamanpwp").prop('readonly', true);
+            //$('#txtnamanpwp').removeAttr("disabled"); 
+			$('#txtnonpwp').prop('readonly', true);	
+			$('#txtalamat').prop('readonly', true);
 	}
 }
   //===========
@@ -991,7 +1071,6 @@ function PajakTerhutang(){
               
                 <div class="modal-body form">
                   <form action="#" id="form1" class="form-horizontal">
-				  	<input type="hidden" name="status" value="5">
 					<input type="hidden" name="handled_by" value="n.prasetyaningrum"> 
 					<?php foreach ($ppayment as $row) { ?>
 					<input type="hidden" name="id_payment" id="id_payment" value="<?php echo $row->id_payment; ?>" >
@@ -1039,7 +1118,7 @@ function PajakTerhutang(){
 								</div>
 						</div>
 						
-						<div class="form-group">
+						<div class="form-group" id="divKdMap" style="display:none;">
 							<label class="control-label col-md-3">Kode MAP</label>
 								<div class="col-md-9">
 									<select class="form-control select2" id="selKdMap" name="selKdMap" style="width: 100%;">
@@ -1052,21 +1131,21 @@ function PajakTerhutang(){
 						<div class="form-group">
 								<label class="control-label col-md-3">Nama NPWP</label>
 								<div class="col-md-9">
-								  <input name="txtnamanpwp" id="txtnamanpwp" value="<?php echo $namanpwp ; ?>"  placeholder="Nama NPWP" class="form-control" type="text" disabled>
+								  <input name="txtnamanpwp" id="txtnamanpwp" value="<?php echo $namanpwp ; ?>"  placeholder="Nama NPWP" class="form-control" type="text" >
 								</div>
 							</div>
 
 						<div class="form-group">
 								<label class="control-label col-md-3">No NPWP</label>
 								<div class="col-md-9">
-								  <input name="txtnonpwp" id="txtnonpwp" value="<?php echo $nonpwp; ?>"   placeholder="Nomor NPWP" class="form-control" type="text" disabled>
+								  <input name="txtnonpwp" id="txtnonpwp" value="<?php echo $nonpwp; ?>"   placeholder="Nomor NPWP" class="form-control" type="text" >
 								</div>
 						</div>
 						
 						<div class="form-group">
 								<label class="control-label col-md-3">Alamat</label>
 								<div class="col-md-9">
-								  <textarea id="txtalamat" name="txtalamat"  value="<?php echo $alamatnpwp; ?>"  class="form-control" rows="3" placeholder="Alamat NPWP" disabled></textarea>
+								  <textarea id="txtalamat" name="txtalamat"  value="<?php echo $alamatnpwp; ?>"  class="form-control" rows="3" placeholder="Alamat NPWP" ></textarea>
 								</div>
 						</div>
 						
@@ -1125,7 +1204,7 @@ function PajakTerhutang(){
 						<div class="form-group">
 								<label class="control-label col-md-3">Pajak Terhutang</label>
 								<div class="col-md-9">
-								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" class="form-control" type="text" disabled>
+								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" class="form-control" type="text" readonly>
 								</div>
 						</div>
 							

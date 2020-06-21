@@ -127,7 +127,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->
-      <span><img width="200px" height="100px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
+      <span><img width="180px" height="140px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -253,15 +253,29 @@
         <?php foreach ($reject as $notif) { ?>
         <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <?php } ?>        
-        <li class="header">MASTER DATA</li>
-          <li class="<?php echo $credit_card?>"><a href="Dashboard/credit_card"><i class="glyphicon glyphicon-list-alt"></i><span>Corporate Credit Card</a></span></li>
-          <li class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li>
-          <!-- <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</a></span></li>
-          <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-user"></i><span>Bank Account</a></span></li> -->
+        <li class="treeview">
+          <a href="">
+            <i class="glyphicon glyphicon-th-list"></i>
+            <span>Master Data</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="<?php echo $credit_card?>"><a href="Dashboard/credit_card"><i class="glyphicon glyphicon-list-alt"></i><span>Corporate Credit Card</a></span></li>
+            <li class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li>
+            <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="fa fa-dollar"></i><span>Currency</a></span></li>
+            <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-hdd"></i><span>Bank Account</a></span></li>
+            <li class="<?php echo $d_vendor?> "><a href="Dashboard/d_vendor"><i class="glyphicon glyphicon-user"></i><span>Data Vendor</a></span></li>
+            <li class="<?php echo $d_pajak?> "><a href="Dashboard/DataPajak"><i class="glyphicon glyphicon-folder-open"></i><span>Data Jenis Pajak</a></span></li>
+            <li class="<?php echo $d_kode_bukpot?> "><a href="Dashboard/kode_bukpot "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Bukpot</a></span></li>
+            <li class="<?php echo $d_kode_map?>"><a href="Dashboard/kode_map "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Map</a></span></li>
+          </ul>
+        <li>    
         <br>
         <?php 
          if($this->session->userdata("role_id") == 4){ ?>
-        <li><center><button type="button" data-toggle="modal" data-target="#activate" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;ACTIVATED APPROVAL</button></a></center></li>
+        <li><center><button type="button" data-toggle="modal" data-target="#activate" class="btn btn-success"><i class="glyphicon glyphicon-wrench"></i>&nbsp;ACTIVATED APPROVAL</button></a></center></li>
         <?php } ?> 
         <br>
         <br>

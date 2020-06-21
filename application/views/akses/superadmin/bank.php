@@ -192,7 +192,7 @@
        <p align="justify">Apa kamu yakin akan menghapus Bank Account ini :  <?=$row->nama_bank?></p>
       </div>
       <div class="modal-footer">
-      <form id="deleted" method="post" action="superadm/deletebak">
+      <form id="deleted" method="post" action="superadm/deletebank">
           <input type="hidden" name="id_bank" value="<?php echo $row->id_bank; ?> ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

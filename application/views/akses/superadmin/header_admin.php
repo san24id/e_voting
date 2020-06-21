@@ -26,21 +26,23 @@
     <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dashboard/bower_components/select2/dist/css/select2.min.css">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" style="background-image: url('assets/login/images/header1.png');">
 <div class="wrapper">
 
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="Dashboard" class="logo">
+    <a href="SuperAdm" class="logo"style="background-image: url('assets/login/images/header1.png');background-repeat: no-repeat;
+  background-size: 300px 100px;">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>IP</span>
       <!-- logo for regular state and mobile devices -->
-      <span><img width="180px" height="100px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
+      <span><img width="180px" height="130px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top"style="background-image: url('assets/login/images/header1.png');background-repeat: repeat;
+  background-size: 1200px 100px;">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
@@ -116,10 +118,11 @@
       <ul class="sidebar-menu">
         <?php 
             if($this->session->userdata("id_role_app") == 1){?>
-               <li class="<?php echo $active1?>"><a href="superadm"><i class="glyphicon glyphicon-user"></i><span>Admin Staff</span></a></li>
-               <li class="header">MASTER DATA</li>
+               <li class="<?php echo $active1?>"><a href="superadm"><i class="glyphicon glyphicon-user"></i><span>Data Nama Karyawan</span></a></li>
+               <li class="<?php echo $divisi?>"><a href="SuperAdm/division"><i class="glyphicon glyphicon-user"></i><span>Data Nama Divisi</span></a></li>
+               <!-- <li class="header">MASTER DATA</li>
                <li class="<?php echo $active3?>"><a href="superadm/currency"><i class="glyphicon glyphicon-user"></i><span>Currency</span></a></li>
-               <li class="<?php echo $active4?>"><a href="superadm/bank"><i class="glyphicon glyphicon-user"></i><span>Bank</span></a></li>
+               <li class="<?php echo $active4?>"><a href="superadm/bank"><i class="glyphicon glyphicon-user"></i><span>Bank</span></a></li> -->
 
                <!-- <li class="<?php echo $active2?>"><a href="superadm/supplier"><i class="glyphicon glyphicon-user"></i><span>Data Supplier</span></a></li> -->
                <!-- <li class="<?php echo $active4?>"><a href="superadm/user"><i class="glyphicon glyphicon-user"></i><span>Status User</span></a></li> -->

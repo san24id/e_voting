@@ -37,35 +37,37 @@ class SuperAdm_model extends CI_model {
         return $query;
     }
 
-    public function getSupplier(){
-        $sql = "SELECT * FROM `m_supplier`";
+    public function getDivisi(){
+        $sql = "SELECT * FROM `m_division`";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql)->result();
 
         return $query;
     }
 
-    function addsupplier($add){
-        $sql = "INSERT INTO `m_supplier` (id_supplier, kode_supplier, nama_supplier, npwp, badan_usaha, pic, direktur, alamat, telepon, nama_bank, mata_uang, no_rek) VALUES 
-                ('".$add['id_supplier']."','".$add['kode_supplier']."','".$add['nama_supplier']."','".$add['npwp']."','".$add['badan_usaha']."','".$add['pic']."',
-                '".$add['direktur']."','".$add['alamat']."','".$add['telepon']."','".$add['nama_bank']."','".$add['mata_uang']."','".$add['no_rek']."')"; 
+    function adddivisi($add){
+        $sql = "INSERT INTO `m_division` (id_div, division_id, division_name, shor_division, created_by, created_date, status)
+                VALUES 
+                ('".$add['id_div']."','".$add['division_id']."','".$add['division_name']."','".$add['shor_division']."','".$add['created_by']."','".$add['created_date']."',
+                '".$add['status']."')"; 
 
         $query = $this->db->query($sql);
 
         return $query;        
     }
-     function updatesupplier($upd){
-        $sql = "UPDATE `m_supplier` SET `kode_supplier`='".$upd['kode_supplier']."',`nama_supplier`='".$upd['nama_supplier']."',`npwp`='".$upd['npwp']."',
-                `badan_usaha`='".$upd['badan_usaha']."',`pic`='".$upd['pic']."',`direktur`='".$upd['direktur']."',`alamat` = '".$upd['alamat']."',
-                `telepon` = '".$upd['telepon']."',`nama_bank` = '".$upd['nama_bank']."',`mata_uang` = '".$upd['mata_uang']."',`no_rek` = '".$upd['no_rek']."' WHERE id_supplier = '".$upd['id_supplier']."'";
+     function updatedivisi($upd){
+        $sql = "UPDATE `m_division` SET `division_id`='".$upd['division_id']."',`division_name`='".$upd['division_name']."',`shor_division`='".$upd['shor_division']."',
+                `created_by`='".$upd['created_by']."',`created_date`='".$upd['created_date']."',`status`='".$upd['status']."' 
+                
+                WHERE id_div = '".$upd['id_div']."'";
        
        $query = $this->db->query($sql);
 
         return $query;       
      }
 
-     function deletesupplier($id){
-        $sql = "DELETE FROM `m_supplier` WHERE `m_supplier`.`id_supplier` = $id";
+     function deletedivisi($id){
+        $sql = "DELETE FROM `m_division` WHERE `m_division`.`id_div` = $id";
 
         $query = $this->db->query($sql);
 
@@ -78,7 +80,7 @@ class SuperAdm_model extends CI_model {
      }
 
      function addcurr($add){
-        $sql = "INSERT INTO `m_currency` (id_curr, mata_uang, currency) VALUES ('".$add['id_curr']."','".$add['mata_uang']."','".$add['currency']."')";
+        $sql = "INSERT INTO `m_currency` (id_curr, mata_uang, currency, kurs) VALUES ('".$add['id_curr']."','".$add['mata_uang']."','".$add['currency']."','".$add['kurs']."')";
 
         $query = $this->db->query($sql);
 
@@ -86,7 +88,7 @@ class SuperAdm_model extends CI_model {
     }
     
     public function updatecurr($upd){
-        $sql = "UPDATE `m_currency` SET `mata_uang`='".$upd['mata_uang']."',`currency`='".$upd['currency']."' WHERE id_curr = '".$upd['id_curr']."'";
+        $sql = "UPDATE `m_currency` SET `mata_uang`='".$upd['mata_uang']."',`currency`='".$upd['currency']."',`kurs`='".$upd['kurs']."' WHERE id_curr = '".$upd['id_curr']."'";
 
         $query = $this->db->query($sql);
 
@@ -97,6 +99,7 @@ class SuperAdm_model extends CI_model {
         $sql = "DELETE FROM `m_currency` WHERE `m_currency`.`id_curr` = $id";
 
         $query = $this->db->query($sql);
+        // var_dump($sql);exit;
 
         return $query;
     }

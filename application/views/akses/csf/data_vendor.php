@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        DATA SUPPLIER
+        DATA VENDOR
         <small></small>
       </h1>
     </section>
 
-        <!-- Main content -->
-        <section class="content">
+    <!-- Main content -->
+    <section class="content">
       <!-- Info boxes -->
       <div class="row">
         <div class="col-xs-12">
@@ -25,43 +25,28 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Kode Supplier</th>
-                  <th>Nama Supplier</th>
+                  <th>Kode Vendor</th>
                   <th>NPWP</th>
-                  <th>Badan Usaha</th>
-                  <th>PIC</th>
-                  <th>Direktur</th>
+                  <th>Nama</th>
                   <th>Alamat</th>
-                  <th>Telepon</th>
-                  <th>Nama Bank</th>
-                  <th>No. Rekening</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($supplier as $row){
+                    foreach ($getVendor as $row){
                    ?>
                 <tr>
                   <td><?php echo $i++; ?></td>
-                  <td><?php echo $row->kode_supplier; ?></td>
-                  <td><?php echo $row->nama_supplier; ?></td>
+                  <td><?php echo $row->kode_vendor; ?></td>
                   <td><?php echo $row->npwp; ?></td>
-                  <td><?php echo $row->badan_usaha; ?></td>
-                  <td><?php echo $row->pic; ?></td>
-                  <td><?php echo $row->direktur; ?></td>
-                  <td><?php echo $row->alamat; ?> </td>
-                  <td><?php echo $row->telepon; ?> </td>
-                  <td><?php echo $row->nama_bank; ?> </td>
-                  <td><?php echo $row->no_rek; ?> </td>
+                  <td><?php echo $row->nama; ?></td>
+                  <td><?php echo $row->alamat; ?></td>
                   <td>
-                    <?php if($row->id_role_app == 1){ ?>
-                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_supplier; ?>">Ubah</button>
-                    <?php }else{ ?>
-                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_supplier; ?>">Ubah</button>
-                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_supplier; ?>">Hapus</button>
-                    <?php } ?>
+                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_honor; ?>">Ubah</button>
+                    <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_honor; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_honor; ?>">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>
@@ -87,7 +72,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2020 </footer>
+    <strong>Copyright &copy; 2019 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -123,28 +108,28 @@
 <!-- ./wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="tambah" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+  <div class="modal fade" id="tambah" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Data Supplier</h4>
+          <h4 class="modal-title">Tambah Data Vendor</h4>
         </div>
         <div class="modal-body">
           <h5>
-            <form id="acc" method="post" action="superadm/addsupplier">
+            <form id="acc" method="post" action="dashboard/addvendor">
              <table class="table">
                 <tr>
-                  <th>Kode Supplier</th>
+                  <th>Kode Vendor</th>
                   <td>:</td>
-                  <td><input type="text" name="kode_supplier" class="form-control"></td>
+                  <td><input type="text" name="kode_vendor" class="form-control"></td>
                 </tr>
                 <tr>
-                  <th>Nama Supplier</th>
+                  <th>Nama</th>
                   <td>:</td>
-                  <td><input type="text" name="nama_supplier" class="form-control"></td>
+                  <td><input type="text" name="nama" class="form-control"></td>
                 </tr>
                 <tr>
                   <th>NPWP</th>
@@ -152,46 +137,10 @@
                   <td><input type="text" name="npwp" class="form-control"></td>
                 </tr>
                 <tr>
-                  <th>Badan Usaha</th>
-                  <td>:</td>
-                  <td><input type="text" name="badan_usaha" class="form-control"></td>
-                </tr>
-                <tr>
-                  <th>PIC</th>
-                  <td>:</td>
-                  <td><input type="text" name="pic" class="form-control"></td>
-                </tr>
-                <tr>
-                  <th>Direktur</th>
-                  <td>:</td>
-                  <td><input type="text" name="direktur" class="form-control"></td>
-                </tr>
-                <tr>
                   <th>Alamat</th>
                   <td>:</td>
                   <td><input type="text" name="alamat" class="form-control"></td>
                 </tr>
-                <tr>
-                  <th>Telepon</th>
-                  <td>:</td>
-                  <td><input type="text" name="telepon" class="form-control"></td>
-                </tr>
-                <tr>
-                  <th>Nama Bank</th>
-                  <td>:</td>
-                  <td><input type="text" name="nama_bank" class="form-control"></td>
-                </tr>
-                <tr>
-                  <th>Mata Uang</th>
-                  <td>:</td>
-                  <td><input type="text" name="mata_uang" class="form-control"></td>
-                </tr>
-                <tr>
-                  <th>No. Rekening</th>
-                  <td>:</td>
-                  <td><input type="text" name="no_rekening" class="form-control"></td>
-                </tr>
-                
              </table>
           </h5>
         </div>
@@ -206,81 +155,47 @@
   </div>
 
 <?php 
-  foreach ($supplier as $row){
+  foreach ($getVendor as $row){
 ?>
 
 <!-- Modal -->
-  <div class="modal fade" id="ubah<?php echo $row->id_supplier; ?>" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+  <div class="modal fade" id="ubah<?php echo $row->id_honor; ?>" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ubah Supplier</h4>
+          <h4 class="modal-title">Ubah Data Vendor</h4>
            
         </div>
         <div class="modal-body">
           <h5>
-            <form id="ganti" method="post" action="superadm/updatesupplier">
-              <input type="hidden" name="id_supplier" value="<?php echo $row->id_supplier; ?>">
-             <table class="table">  
-             <tr>
-                <th>Kode Supplier</th>
-                <td>:</td>
-                <td><input type="text" name="kode_supplier" class="form-control" value="<?php echo $row->kode_supplier; ?>"></td>
+            <form id="ganti" method="post" action="dashboard/updatevendor">
+              <input type="hidden" name="id_honor" value="<?php echo $row->id_honor; ?>">
+             <table class="table">
+             <table class="table">
+                <tr>
+                  <th>Kode Vendor</th>
+                  <td>:</td>
+                  <td><input type="text" name="kode_vendor" class="form-control" value="<?php echo $row->kode_vendor; ?>"></td>
                 </tr>
-            <tr>
-                <th>Nama Supplier</th>
-                <td>:</td>
-                <td><input type="text" name="nama_supplier" class="form-control" value="<?php echo $row->nama_supplier; ?>"></td>
-            </tr>
-            <tr>
-                <th>NPWP</th>
-                <td>:</td>
-                <td><input type="text" name="npwp" class="form-control" value="<?php echo $row->npwp; ?>"></td>
-            </tr>
-            <tr>
-                <th>Badan Usaha</th>
-                <td>:</td>
-                <td><input type="text" name="badan_usaha" class="form-control" value="<?php echo $row->badan_usaha; ?>"></td>
+                <tr>
+                  <th>Nama</th>
+                  <td>:</td>
+                  <td><input type="text" name="nama" class="form-control" value="<?php echo $row->nama; ?>"></td>
                 </tr>
-            <tr>
-                <th>PIC</th>
-                <td>:</td>
-                <td><input type="text" name="pic" class="form-control" value="<?php echo $row->pic; ?>"></td>
-            </tr>
-            <tr>
-                <th>Direktur</th>
-                <td>:</td>
-                <td><input type="text" name="direktur" class="form-control" value="<?php echo $row->direktur; ?>"></td>
-            </tr>
-            <tr>
-                <th>Alamat</th>
-                <td>:</td>
-                <td><input type="text" name="alamat" class="form-control" value="<?php echo $row->alamat; ?>"></td>
+                <tr>
+                  <th>NPWP</th>
+                  <td>:</td>
+                  <td><input type="text" name="npwp" class="form-control" value="<?php echo $row->npwp; ?>"></td>
                 </tr>
-            <tr>
-                <th>Telepon</th>
-                <td>:</td>
-                <td><input type="text" name="telepon" class="form-control" value="<?php echo $row->telepon; ?>"></td>
-            </tr>
-            <tr>
-                <th>Nama Bank</th>
-                <td>:</td>
-                <td><input type="text" name="nama_bank" class="form-control" value="<?php echo $row->nama_bank; ?>"></td>
-            </tr>
-            <tr>
-                <th>Mata Uang</th>
-                <td>:</td>
-                <td><input type="text" name="mata_uang" class="form-control" value="<?php echo $row->mata_uang; ?>"></td>
-            </tr>
-            <tr>
-                <th>No. Rekening</th>
-                <td>:</td>
-                <td><input type="text" name="no_rek" class="form-control" value="<?php echo $row->no_rek; ?>"></td>
-            </tr>                
-            </table>
+                <tr>
+                  <th>Alamat</th>
+                  <td>:</td>
+                  <td><input type="text" name="alamat" class="form-control" value="<?php echo $row->alamat; ?>"></td>
+                </tr>
+             </table>
           </h5>
         </div>
         <div class="modal-footer">
@@ -293,17 +208,16 @@
     </div>
   </div>
 
-  <div class="modal fade" id="hapus<?php echo $row->supplier; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="hapus<?php echo $row->id_honor; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Data Supplier ini :  <?=$row->nama_supplier?></p>
-       <p> Kode Supplier : <?=$row->kode_supplier?> </p>
+       <p align="justify">Apa kamu yakin akan menghapus Data Vendor ini :  <?=$row->nama?></p>
       </div>
       <div class="modal-footer">
-      <form id="deleted" method="post" action="superadm/deletesupplier">
-          <input type="hidden" name="supplier" value="<?php echo $row->supplier; ?>">
+      <form id="deleted" method="post" action="dashboard/deletevendor">
+          <input type="hidden" name="id_honor" value="<?php echo $row->id_honor; ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
@@ -344,12 +258,12 @@
   $("#nambah").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/addstaff"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#acc").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#tambah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Create User success')
+              alert('Create Vendor success')
           }      
       });
     });
@@ -357,12 +271,12 @@
   $(".rubah").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/updatestaff"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/updatecurr"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#ganti").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#ubah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Update User success')
+              alert('Update Vendor success')
           }      
       });
   });  
@@ -370,12 +284,12 @@
   $(".bye").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/deletecurr"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#deleted").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#hapus").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Deleted User success')
+              alert('Deleted Vendor success')
           }      
       });
   });  

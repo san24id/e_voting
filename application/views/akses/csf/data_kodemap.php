@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        BANK ACCOUNT
+        DATA KODE MAP
         <small></small>
       </h1>
     </section>
@@ -25,24 +25,26 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Nama Bank</th>
-                  <th>Alias</th>
+                  <th>Kode MAP</th>
+                  <th>Jenis Pajak</th>
+                  <th>Keterangan</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($bank as $row){
+                    foreach ($getDatakode_map as $row){
                    ?>
                 <tr>
                   <td><?php echo $i++; ?></td>
-                  <td><?php echo $row->nama_bank; ?></td>
-                  <td><?php echo $row->singkatan; ?></td>
+                  <td><?php echo $row->kode_map; ?></td>
+                  <td><?php echo $row->jenis_pajak; ?></td>
+                  <td><?php echo $row->keterangan; ?></td>
                   <td>
-                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_bank; ?>">Ubah</button>
-                      <!-- <a href="SuperAdm/deletecurr/<?php echo $row->id_bank; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
-                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_bank; ?>">Hapus</button>
+                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_map; ?>">Ubah</button>
+                    <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_map; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_map; ?>">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>
@@ -111,21 +113,26 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Bank Account</h4>
+          <h4 class="modal-title">Tambah Data Kode Map</h4>
         </div>
         <div class="modal-body">
           <h5>
-            <form id="acc" method="post" action="dashboard/addbank">
+            <form id="acc" method="post" action="dashboard/addkodemap">
              <table class="table">
                 <tr>
-                  <th>Nama Bank</th>
+                  <th>Kode MAP</th>
                   <td>:</td>
-                  <td><input type="text" name="nama_bank" class="form-control"></td>
+                  <td><input type="text" name="kode_map" class="form-control"></td>
                 </tr>
                 <tr>
-                  <th>Alias</th>
+                  <th>Jenis Pajak</th>
                   <td>:</td>
-                  <td><input type="text" name="singkatan" class="form-control"></td>
+                  <td><input type="text" name="jenis_pajak" class="form-control"></td>
+                </tr>
+                <tr>
+                  <th>Keterangan</th>
+                  <td>:</td>
+                  <td><input type="text" name="keterangan" class="form-control"></td>
                 </tr>
              </table>
           </h5>
@@ -141,35 +148,40 @@
   </div>
 
 <?php 
-  foreach ($bank as $row){
+  foreach ($getDatakode_map as $row){
 ?>
 
 <!-- Modal -->
-  <div class="modal fade" id="ubah<?php echo $row->id_bank; ?>" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+  <div class="modal fade" id="ubah<?php echo $row->id_map; ?>" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ubah Bank Account</h4>
+          <h4 class="modal-title">Ubah Data Kode Map</h4>
            
         </div>
         <div class="modal-body">
           <h5>
-            <form id="ganti" method="post" action="dashboard/updatebank">
-              <input type="hidden" name="id_bank" value="<?php echo $row->id_bank; ?> ?>">
+            <form id="ganti" method="post" action="dashboard/updatekodemap">
+              <input type="hidden" name="id_map" value="<?php echo $row->id_map; ?>">
              <table class="table">
              <table class="table">
                 <tr>
-                  <th>Nama Bank</th>
+                  <th>Kode MAP</th>
                   <td>:</td>
-                  <td><input type="text" name="nama_bank" class="form-control" value="<?php echo $row->nama_bank; ?>"></td>
+                  <td><input type="text" name="kode_map" class="form-control" value="<?php echo $row->kode_map; ?>"></td>
                 </tr>
                 <tr>
-                  <th>Alias</th>
+                  <th>Jenis Pajak</th>
                   <td>:</td>
-                  <td><input type="text" name="singkatan" class="form-control" value="<?php echo $row->singkatan; ?>"></td>
+                  <td><input type="text" name="jenis_pajak" class="form-control" value="<?php echo $row->jenis_pajak; ?>"></td>
+                </tr>
+                <tr>
+                  <th>Keterangan</th>
+                  <td>:</td>
+                  <td><input type="text" name="keterangan" class="form-control" value="<?php echo $row->keterangan; ?>"></td>
                 </tr>
              </table>
           </h5>
@@ -184,16 +196,16 @@
     </div>
   </div>
 
-<div class="modal fade" id="hapus<?php echo $row->id_bank; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="hapus<?php echo $row->id_map; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Bank Account ini :  <?=$row->nama_bank?></p>
+       <p align="justify">Apa kamu yakin akan menghapus Data Kode MAP ini :  <?=$row->kode_map?></p>
       </div>
       <div class="modal-footer">
-      <form id="deleted" method="post" action="dashboard/deletebank">
-          <input type="hidden" name="id_bank" value="<?php echo $row->id_bank; ?> ?>">
+      <form id="deleted" method="post" action="dashboard/deletekodemap">
+          <input type="hidden" name="id_map" value="<?php echo $row->id_map; ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
@@ -239,7 +251,7 @@
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#tambah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Create Mata Uang success')
+              alert('Create Data Kode MAP success')
           }      
       });
     });
@@ -252,7 +264,7 @@
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#ubah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Update Mata Uang success')
+              alert('Update Data Kode MAP success')
           }      
       });
   });  
@@ -265,7 +277,7 @@
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#hapus").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Deleted Mata Uang success')
+              alert('Deleted Data Kode MAP success')
           }      
       });
   });  

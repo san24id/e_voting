@@ -27,6 +27,7 @@
                   <th>NO.</th>
                   <th>Currency Code</th>
                   <th>Mata Uang</th>
+                  <th>Kurs</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -39,6 +40,7 @@
                   <td><?php echo $i++; ?></td>
                   <td><?php echo $row->currency; ?></td>
                   <td><?php echo $row->mata_uang; ?></td>
+                  <td><?php echo $row->kurs; ?></td>
                   <td>
                       <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_curr; ?>">Ubah</button>
                       <!-- <a href="SuperAdm/deletecurr/<?php echo $row->id_curr; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
@@ -127,6 +129,11 @@
                   <td>:</td>
                   <td><input type="text" name="mata_uang" class="form-control"></td>
                 </tr>
+                <tr>
+                  <th>Kurs</th>
+                  <td>:</td>
+                  <td><input type="text" name="kurs" class="form-control"></td>
+                </tr>
              </table>
           </h5>
         </div>
@@ -171,6 +178,11 @@
                   <td>:</td>
                   <td><input type="text" name="mata_uang" class="form-control" value="<?php echo $row->mata_uang; ?>"></td>
                 </tr>
+                <tr>
+                  <th>Kurs</th>
+                  <td>:</td>
+                  <td><input type="text" name="kurs" class="form-control" value="<?php echo $row->kurs; ?>"></td>
+                </tr>
              </table>
           </h5>
         </div>
@@ -193,7 +205,7 @@
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletecurr">
-          <input type="hidden" name="id_currr" value="<?php echo $row->id_curr; ?> ?>">
+          <input type="hidden" name="id_curr" value="<?php echo $row->id_curr; ?> ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>

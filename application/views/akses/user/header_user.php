@@ -34,7 +34,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" style="background-image: url('assets/login/images/header1.png');">
 <style type="text/css">
 /*
 .cbx {
@@ -129,15 +129,17 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="Home" class="logo">
+    <a href="Home" class="logo" style="background-image: url('assets/login/images/header1.png');background-repeat: no-repeat;
+  background-size: 300px 100px;">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->
-      <span><img width="180px" height="100px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
+      <span><img width="180px" height="130px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top" style="background-image: url('assets/login/images/header1.png');background-repeat: repeat;
+  background-size: 1200px 100px;">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>

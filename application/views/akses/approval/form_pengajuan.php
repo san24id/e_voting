@@ -50,7 +50,7 @@
                           <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
                         </td>
                         <td>
-                          <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
+                          <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4"> Direct Payment</input><br>
                         </td>
                         <td>
                           <input id="checked2" onclick="hide2()" type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
@@ -62,7 +62,7 @@
                             <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
                           </td>
                           <td>
-                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Credit Card Corprate</input><br>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Corporate Credit Card </input><br>
                           </td>
                       </tr>  
                       <tr>
@@ -162,7 +162,7 @@
                       <tr>
                         <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
+                        </td>
                         <td align="right"><b> : </b></td>
                         <td colspan="8" width="65%"><input type="date" class="form-control" name="label3"></input></td>     
                       </tr>
@@ -208,9 +208,7 @@
                         <td>:</td>                           
                         <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
                       </tr>
-                      <tr>
-                        <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
-                      </tr>
+                      
                       </tbody>
                     </table>
 

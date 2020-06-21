@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        BANK ACCOUNT
+        DATA DIVISI
         <small></small>
       </h1>
     </section>
 
-    <!-- Main content -->
-    <section class="content">
+        <!-- Main content -->
+        <section class="content">
       <!-- Info boxes -->
       <div class="row">
         <div class="col-xs-12">
@@ -25,24 +25,31 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Nama Bank</th>
-                  <th>Alias</th>
+                  <th>Divisi ID</th>
+                  <th>Division Name</th>
+                  <th>Short Divisi</th>
+                  <th>Created BY</th>
+                  <th>Date Created</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($bank as $row){
+                    foreach ($division as $row){
                    ?>
                 <tr>
                   <td><?php echo $i++; ?></td>
-                  <td><?php echo $row->nama_bank; ?></td>
-                  <td><?php echo $row->singkatan; ?></td>
+                  <td><?php echo $row->division_id; ?></td>
+                  <td><?php echo $row->division_name; ?></td>
+                  <td><?php echo $row->short_division; ?></td>
+                  <td><?php echo $row->created_by; ?></td>
+                  <td><?php echo $row->created_date; ?></td>
+                  <td><?php echo $row->status; ?></td>
                   <td>
-                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_bank; ?>">Ubah</button>
-                      <!-- <a href="SuperAdm/deletecurr/<?php echo $row->id_bank; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
-                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_bank; ?>">Hapus</button>
+                      <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_div; ?>">Ubah</button>
+                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_div; ?>">Hapus</button>
                   </td>
                 </tr>
               <?php } ?>
@@ -68,7 +75,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong>Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -104,29 +111,41 @@
 <!-- ./wrapper -->
 
 <!-- Modal -->
-  <div class="modal fade" id="tambah" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="tambah" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Bank Account</h4>
+          <h4 class="modal-title">Tambah Data Divisi</h4>
         </div>
         <div class="modal-body">
           <h5>
-            <form id="acc" method="post" action="dashboard/addbank">
+            <form id="acc" method="post" action="superadm/adddivisi">
              <table class="table">
-                <tr>
-                  <th>Nama Bank</th>
-                  <td>:</td>
-                  <td><input type="text" name="nama_bank" class="form-control"></td>
-                </tr>
-                <tr>
-                  <th>Alias</th>
-                  <td>:</td>
-                  <td><input type="text" name="singkatan" class="form-control"></td>
-                </tr>
+              <tr>
+                <th>Division ID</th>
+                <td>:</td>
+                <td><input type="text" name="division_id" class="form-control"></td>
+              </tr>
+              <tr>
+                <th>Division Name</th>
+                <td>:</td>
+                <td><input type="text" name="division_name" class="form-control"></td>
+              </tr>
+              <tr>
+                <th>Short Divisi</th>
+                <td>:</td>
+                <td><input type="text" name="short_division" class="form-control"></td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                <td>:</td>
+                <td><input type="text" name="status" class="form-control"></td>
+              </tr>
+              <input type="hidden" name="created_date" value="<?php echo date("d-M-Y h:i:s");?>" >      
+              <input type="hidden" name="created_by" value="<?php echo $this->session->userdata("display_name"); ?>" >      
              </table>
           </h5>
         </div>
@@ -141,37 +160,46 @@
   </div>
 
 <?php 
-  foreach ($bank as $row){
+  foreach ($division as $row){
 ?>
 
 <!-- Modal -->
-  <div class="modal fade" id="ubah<?php echo $row->id_bank; ?>" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+  <div class="modal fade" id="ubah<?php echo $row->id_div; ?>" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ubah Bank Account</h4>
+          <h4 class="modal-title">Ubah Nama Divisi</h4>
            
         </div>
         <div class="modal-body">
           <h5>
-            <form id="ganti" method="post" action="dashboard/updatebank">
-              <input type="hidden" name="id_bank" value="<?php echo $row->id_bank; ?> ?>">
-             <table class="table">
-             <table class="table">
-                <tr>
-                  <th>Nama Bank</th>
-                  <td>:</td>
-                  <td><input type="text" name="nama_bank" class="form-control" value="<?php echo $row->nama_bank; ?>"></td>
+            <form id="ganti" method="post" action="superadm/updatedivisi">
+              <input type="hidden" name="id_div" value="<?php echo $row->id_div; ?>">
+             <table class="table">  
+             <tr>
+                <th>Division ID</th>
+                <td>:</td>
+                <td><input type="text" name="div_id" class="form-control" value="<?php echo $row->division_id; ?>"></td>
                 </tr>
-                <tr>
-                  <th>Alias</th>
-                  <td>:</td>
-                  <td><input type="text" name="singkatan" class="form-control" value="<?php echo $row->singkatan; ?>"></td>
+            <tr>
+                <th>Division Name</th>
+                <td>:</td>
+                <td><input type="text" name="division_name" class="form-control" value="<?php echo $row->division_name; ?>"></td>
+            </tr>
+            <tr>
+                <th>Short Divisi</th>
+                <td>:</td>
+                <td><input type="text" name="short_division" class="form-control" value="<?php echo $row->short_division; ?>"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>:</td>
+                <td><input type="text" name="status" class="form-control" value="<?php echo $row->status; ?>"></td>
                 </tr>
-             </table>
+            </table>
           </h5>
         </div>
         <div class="modal-footer">
@@ -184,16 +212,17 @@
     </div>
   </div>
 
-<div class="modal fade" id="hapus<?php echo $row->id_bank; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" id="hapus<?php echo $row->id_div; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Bank Account ini :  <?=$row->nama_bank?></p>
+       <p align="justify">Apa kamu yakin akan menghapus Data Divisi ini :  <?=$row->division_name?></p>
+       <p> Division ID : <?=$row->division_id?> </p>
       </div>
       <div class="modal-footer">
-      <form id="deleted" method="post" action="dashboard/deletebank">
-          <input type="hidden" name="id_bank" value="<?php echo $row->id_bank; ?> ?>">
+      <form id="deleted" method="post" action="superadm/deletedivisi">
+          <input type="hidden" name="id_div" value="<?php echo $row->id_div; ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
@@ -234,12 +263,12 @@
   $("#nambah").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/addstaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#acc").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#tambah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Create Mata Uang success')
+              alert('Create Division success')
           }      
       });
     });
@@ -247,12 +276,12 @@
   $(".rubah").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/updatecurr"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/updatestaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#ganti").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#ubah").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Update Mata Uang success')
+              alert('Update Division success')
           }      
       });
   });  
@@ -260,12 +289,12 @@
   $(".bye").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/deletecurr"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("index.php/superadm/deletestaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#deleted").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#hapus").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
-              alert('Deleted Mata Uang success')
+              alert('Deleted Division success')
           }      
       });
   });  

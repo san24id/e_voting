@@ -243,6 +243,63 @@ class Dashboard extends CI_Controller {
 
 	}
 
+	public function d_vendor(){
+
+		$data['active1'] = '';
+		$data['d_vendor'] = 'active';
+		$data['active3'] = '';
+
+		$data['getVendor'] = $this->Dashboard_model->getVendor();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/data_vendor', $data);
+	}
+
+	function addvendor(){
+
+		$add = array(
+
+			'id_honor' => $_POST['id_honor'],
+			'kode_vendor' => $_POST['kode_vendor'],
+			'npwp' => $_POST['npwp'],
+			'nama' => $_POST['nama'],
+			'alamat' => $_POST['alamat'],
+						
+						
+		);
+
+		$this->Dashboard_model->addvendor($add);
+
+		redirect('Dashboard/d_vendor');
+	}
+
+	function updatevendor(){
+
+		$upd = array(
+			
+			'id_honor' => $_POST['id_honor'],
+			'kode_vendor' => $_POST['kode_vendor'],
+			'npwp' => $_POST['npwp'],
+			'nama' => $_POST['nama'],
+			'alamat' => $_POST['alamat'],
+						
+		);
+
+		$this->Dashboard_model->updatevendor($upd);
+
+		redirect('Dashboard/d_vendor');
+	}
+
+	function deletevendor(){
+
+		$this->Dashboard_model->deletevendor($_POST['id_honor']);
+
+		redirect('Dashboard/d_vendor');
+
+	}
+
 	function periode_tax(){
 		$data['active1'] = '';
 		$data['report_pajak'] = 'active';
@@ -1710,6 +1767,8 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = 'active';
 
 		$data['currency'] = $this->SuperAdm_model->getCurrency();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
 
 		$this->load->view('akses/csf/header_csf', $data);
         $this->load->view('akses/csf/currency', $data);
@@ -1719,7 +1778,8 @@ class Dashboard extends CI_Controller {
 		$add = array(
 
 			'mata_uang' => $_POST['mata_uang'],
-			'currency' => $_POST['currency']
+			'currency' => $_POST['currency'],
+			'kurs' => $_POST['kurs']
 			
 		);
 
@@ -1740,7 +1800,8 @@ class Dashboard extends CI_Controller {
 		$upd = array(
 			'id_curr' => $_POST['id_curr'],
 			'mata_uang' => $_POST['mata_uang'],
-			'currency' => $_POST['currency']
+			'currency' => $_POST['currency'],
+			'kurs' => $_POST['kurs']
 		);
 
 		$this->SuperAdm_model->updatecurr($upd);
@@ -1753,7 +1814,8 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['bank'] = 'active';
 
-
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
 		$data['bank'] = $this->SuperAdm_model->getBank();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -1770,14 +1832,14 @@ class Dashboard extends CI_Controller {
 
 		$this->SuperAdm_model->addbank($add);
 
-		redirect('SuperAdm/bank');
+		redirect('Dashboard/bank');
 	}
 
 	public function deletebank(){
 		
 		$this->SuperAdm_model->deletebank($_POST['id_bank']);
 
-		redirect('SuperAdm/bank');
+		redirect('Dashboard/bank');
 
 	}
 
@@ -1790,7 +1852,146 @@ class Dashboard extends CI_Controller {
 
 		$this->SuperAdm_model->updatebank($upd);
 
-		redirect('SuperAdm/bank');
+		redirect('Dashboard/bank');
+	}
+
+	function DataPajak(){
+		$data['active1'] = '';
+		$data['d_pajak'] = 'active';
+		$data['active3'] = '';
+
+		$data['getDataPajak'] = $this->Dashboard_model->getPajak();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/data_pajak', $data);
+		
+	}
+
+	public function addpajak(){
+		$add = array(
+
+			'jenis_pajak' => $_POST['jenis_pajak'],
+			
+		);
+
+		$this->Dashboard_model->addpajak($add);
+
+		redirect('Dashboard/DataPajak');
+	}
+
+	public function deletepajak(){
+		
+		$this->Dashboard_model->deletepajak($_POST['id_jenis_pjk']);
+
+		redirect('Dashboard/DataPajak');
+
+	}
+
+	public function updatepajak(){
+		$upd = array(
+			'id_jenis_pjk' => $_POST['id_jenis_pjk'],
+			'jenis_pajak' => $_POST['jenis_pajak'],
+		);
+
+		$this->Dashboard_model->updatepajak($upd);
+
+		redirect('Dashboard/DataPajak');
+	}
+
+	function kode_bukpot(){
+		$data['active1'] = '';
+		$data['d_kode_bukpot'] = 'active';
+		$data['active3'] = '';
+
+		$data['getDatakode_bukpot'] = $this->Dashboard_model->getkode_bukpot();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/data_bukpot', $data);
+	}
+
+	function addbukpot(){
+		$add = array(
+
+			'nama_objek_pajak' => $_POST['nama_objek_pajak'],
+			'kode_objek_pajak' => $_POST['kode_objek_pajak'],
+			
+		);
+
+		$this->Dashboard_model->addbukpot($add);
+
+		redirect('Dashboard/kode_bukpot');
+	}
+
+	function deletebukpot(){
+		
+		$this->Dashboard_model->deletebukpot($_POST['id_bukpot']);
+
+		redirect('Dashboard/kode_bukpot');
+
+	}
+
+	function updatebukpot(){
+		$upd = array(
+			'id_bukpot' => $_POST['id_bukpot'],
+			'kode_objek_pajak' => $_POST['kode_objek_pajak'],
+			'nama_objek_pajak' => $_POST['nama_objek_pajak'],
+		);
+
+		$this->Dashboard_model->updatebukpot($upd);
+
+		redirect('Dashboard/kode_bukpot');
+	}
+
+	function kode_map(){
+		$data['active1'] = '';
+		$data['d_kode_map'] = 'active';
+		$data['active3'] = '';
+
+		$data['getDatakode_map'] = $this->Dashboard_model->getkode_map();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/data_kodemap', $data);
+	}
+
+	function addkodemap(){
+		$add = array(
+
+			'keterangan' => $_POST['keterangan'],
+			'kode_map' => $_POST['kode_map'],
+			'jenis_pajak' => $_POST['jenis_pajak'],
+			
+		);
+
+		$this->Dashboard_model->addkodemap($add);
+
+		redirect('Dashboard/kode_map');
+	}
+
+	function deletekodemap(){
+		
+		$this->Dashboard_model->deletekodemap($_POST['id_map']);
+
+		redirect('Dashboard/kode_map');
+
+	}
+
+	function updatekodemap(){
+		$upd = array(
+			'id_map' => $_POST['id_map'],
+			'kode_map' => $_POST['kode_map'],
+			'jenis_pajak' => $_POST['jenis_pajak'],
+			'keterangan' => $_POST['keterangan'],
+		);
+
+		$this->Dashboard_model->updatekodemap($upd);
+
+		redirect('Dashboard/kode_map');
 	}
 	
 	public function form_info_tax($id_payment){		
@@ -1853,7 +2054,7 @@ class Dashboard extends CI_Controller {
 	public function submittax()
 	{
 		$data = array(
-					'status' => $this->input->post('status'),
+					'status' => 5,
 					'handled_by' => $this->input->post('handled_by'),
 					'nomor_surat' => $this->input->post('nomor_surat')		
 					);

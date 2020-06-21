@@ -127,7 +127,7 @@
                         </td>
 
                         <td>
-                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
+                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Direct Payment<br>
                         </td>
                         <td>
                           <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
@@ -140,7 +140,7 @@
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
                           </td>
                         <td>
-                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Credit Card Corprate</input><br>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Corporate Credit Card </input><br>
                         </td>
                       </tr>
                       
@@ -212,7 +212,7 @@
                       <tr>
                         <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
+                        </td>
                         <td align="right"><b> : </b></td>
                         <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
                       </tr>
@@ -256,9 +256,7 @@
                         <td>:</td>                           
                         <td><input type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>" readonly></td>                                
                       </tr>
-                      <tr>
-                        <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
-                      </tr>
+                      
                       </tbody>
                     </table>
 

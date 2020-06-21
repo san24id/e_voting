@@ -68,7 +68,8 @@ class Dashboard_model extends CI_Model{
     }
 
     public function updateaccept($upd){
-        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`submit_date`='".$upd['submit_date']."' 
+                WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 
@@ -601,7 +602,149 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql);
         // var_dump($sql);exit;
         return $query;
-    }  
+    } 
+
+    function getPajak(){
+        $sql = "SELECT * FROM m_jenis_pajak";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function addpajak($add){
+        $sql = "INSERT INTO `m_jenis_pajak` (id_jenis_pjk, jenis_pajak)
+
+                VALUES ('".$add['id_jenis_pjk']."','".$add['jenis_pajak']."')"; 
+        
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function updatepajak($upd){
+        $sql = "UPDATE `m_jenis_pajak` SET `jenis_pajak`='".$upd['jenis_pajak']."'
+        
+                WHERE `id_jenis_pjk`='".$upd['id_jenis_pjk']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function deletepajak($id){
+        $sql = "DELETE FROM `m_jenis_pajak` WHERE `m_jenis_pajak`.`id_jenis_pjk` = $id";
+
+        $query = $this->db->query($sql);
+        return $query;
+    }
+
+    function getkode_bukpot(){
+        $sql = "SELECT * FROM m_kode_bukpot";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function addbukpot($add){
+        $sql = "INSERT INTO `m_kode_bukpot` (id_bukpot, nama_objek_pajak, kode_objek_pajak)
+
+                VALUES ('".$add['id_bukpot']."','".$add['nama_objek_pajak']."','".$add['kode_objek_pajak']."')"; 
+        
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function updatebukpot($upd){
+        $sql = "UPDATE `m_kode_bukpot` SET `nama_objek_pajak`='".$upd['nama_objek_pajak']."',`kode_objek_pajak`='".$upd['kode_objek_pajak']."'
+        
+                WHERE `id_bukpot`='".$upd['id_bukpot']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function deletebukpot($id){
+        $sql = "DELETE FROM `m_kode_bukpot` WHERE `m_kode_bukpot`.`id_bukpot` = $id";
+
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function getkode_map(){
+        $sql = "SELECT * FROM m_kode_map";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function addkodemap($add){
+        $sql = "INSERT INTO `m_kode_map` (id_map, keterangan, jenis_pajak, kode_map)
+
+                VALUES ('".$add['id_map']."','".$add['keterangan']."','".$add['jenis_pajak']."','".$add['kode_map']."')"; 
+        
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function updatekodemap($upd){
+        $sql = "UPDATE `m_kode_map` SET `keterangan`='".$upd['keterangan']."',`jenis_pajak`='".$upd['jenis_pajak']."',`kode_map`='".$upd['kode_map']."'
+        
+                WHERE `id_map`='".$upd['id_map']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
+    function deletekodemap($id){
+        $sql = "DELETE FROM `m_kode_map` WHERE `m_kode_map`.`id_map` = $id";
+
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function getVendor(){
+        $sql = "SELECT * FROM m_honorarium_konsultan";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function addvendor(){
+        $sql = "INSERT INTO `m_honorarium_konsultan` (id_honor, kode_vendor, nama, npwp, alamat ) 
+
+                VALUES ('".$add['id_honor']."','".$add['kode_vendor']."','".$add['nama']."','".$add['npwp']."','".$add['alamat']."')";
+        
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function updatevendor($upd){
+        $sql = "UPDATE `m_honorarium_konsultan` SET `kode_vendor`='".$upd['kode_vendor']."',`nama`='".$upd['nama']."',`npwp`='".$upd['npwp']."',`alamat`='".$upd['alamat']."'
+               
+                WHERE `id_honor`='".$upd['id_honor']."'";
+
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+    function deletevendor($id){
+        $sql = "DELETE FROM `m_honorarium_konsultan` WHERE `m_honorarium_konsultan`.`id_honor` = $id";
+
+        $query = $this->db->query($sql);
+        return $query;
+    }
 
     function getDivision(){
         $sql = "SELECT * FROM m_division";
@@ -646,7 +789,6 @@ class Dashboard_model extends CI_Model{
         $sql = "DELETE FROM `t_creditcard` WHERE `t_creditcard`.`id_div` = $id";
 
         $query = $this->db->query($sql);
-
         return $query;
     }
 

@@ -158,7 +158,7 @@
         <div class="modal-body">
           <h5>
             <form id="ganti" method="post" action="superadm/updatecurr">
-              <input type="hidden" name="id_curr" value="<?php echo $row->id_curr; ?> ?>">
+              <input type="hidden" name="id_curr" value="<?php echo $row->id_curr; ?>">
              <table class="table">
              <table class="table">
                 <tr>
@@ -193,7 +193,7 @@
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="superadm/deletecurr">
-          <input type="hidden" name="id_currr" value="<?php echo $row->id_curr; ?> ?>">
+          <input type="hidden" name="id_curr" value="<?php echo $row->id_curr; ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
@@ -260,7 +260,7 @@
   $(".bye").on('click', function(){
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
-          // url: "<?php echo base_url("index.php/superadm/deletecurr"); ?>", // Isi dengan url/path file php yang dituju       
+          // url: "<?php echo base_url("SuperAdm/deletecurr"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#deleted").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
               $("#hapus").modal('hide'); // Sembunyikan loadingnya   
