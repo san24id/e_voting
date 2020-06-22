@@ -21,12 +21,12 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Description</th>
+                  <th>Tanggal Reject</th>
+                  <th>Dari</th>
+                  <th>Kepada</th>
+                  <th>Deskripsi</th>
                   <th>Nama Pemohon</th>
-                  <th>Reason</th>
+                  <th>Note</th>
                   <th>Action</th>
                 </tr>
                 </thead>

@@ -835,6 +835,25 @@ class Dashboard_model extends CI_Model{
 
     }
 
+    function getPejabat(){
+        $sql = "SELECT * FROM t_approval";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+
+    }
+
+    function updatewewenang($upd){
+        $sql = "UPDATE `t_approval` SET `nama_user`='".$upd['nama_user']."',`jabatan`='".$upd['jabatan']."',`activate`='".$upd['activate']."'
+        
+                WHERE `idapproval`='".$upd['idapproval']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
     function updatepay($status,$nomor_surat,$handled_by,$rejected_by,$rejected_date,$note){
         
         $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."',`rejected_by`='".$rejected_by."',`rejected_date`='".$rejected_date."',

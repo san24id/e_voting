@@ -27,7 +27,7 @@
                   <th>SP3 No</th>
                   <th>Jenis Pembayaran</th>
                   <th>Tanggal Submit SP3</th>
-                  <th>Description</th>
+                  <th>Deskripsi</th>
                   <th>Pemohon</th>
                   <th>Action</th>
                 </tr>
@@ -243,11 +243,10 @@
                   <tr>
                     <th>NO.</th>
                     <th>Status</th>
-                    <th>SP3 No</th>
-                    <th>APF No</th>
-                    <th>APF Created Date</th>
+                    <th>Nomor SP3</th>
+                    <th>Nomor APF</th>
                     <th>Jenis Pembayaran</th>
-                    <th>Description</th>
+                    <th>Deskripsi</th>
                     <th>Divisi Pemohon</th>
                     <th>Currency</th>
                     <th>Jumlah</th>
@@ -287,7 +286,6 @@
                   </td>                        
                   <td><?php echo $row->nomor_surat; ?> </td>
                   <td><?php echo $row->apf_doc;?> </td>
-                  <td><?php echo $row->tanggal; ?></td>
                   <td><?php                     
                         for($b=0; $b<$test33; $b++){
                           if($test22[$b]){

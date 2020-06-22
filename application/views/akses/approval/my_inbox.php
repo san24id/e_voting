@@ -23,13 +23,13 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>SP3 No</th>
-                  <th>Description</th>
+                  <th>Tanggal Reject</th>
+                  <th>Dari</th>
+                  <th>Kepada</th>
+                  <th>Nomor SP3</th>
+                  <th>Deskripsi</th>
                   <th>Nama Pemohon</th>
-                  <th>Reason</th>
+                  <th>Note</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -88,13 +88,13 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Rejected Date</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>SP3 No</th>
-                  <th>APF No</th>
-                  <th>Description</th>
-                  <th>Reason</th>
+                  <th>Tanggal Reject</th>
+                  <th>Dari</th>
+                  <th>Kepada</th>
+                  <th>Nomor SP3</th>
+                  <th>Nomor APF</th>
+                  <th>Deskripsi</th>
+                  <th>Note</th>
                   <th>Action</th>
                 </tr>
                 </thead>

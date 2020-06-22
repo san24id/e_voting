@@ -407,6 +407,8 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		// var_dump($data['d_wewenang']);exit;
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_arf', $data);
@@ -489,6 +491,7 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf', $data);
@@ -509,6 +512,7 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf2', $data);
@@ -591,6 +595,7 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['prf_doc'] = $this->Dashboard_model->buat_kode_prf();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_prf', $data);
@@ -671,7 +676,7 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['crf_doc'] = $this->Dashboard_model->buat_kode_crf();
-
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_crf', $data);
@@ -738,6 +743,33 @@ class Dashboard extends CI_Controller {
 		// $html = $this->load->view('akses/report/print', $data, true);
 	 
 		// $this->pdfgenerator->generate($html,'Form_SP3');
+	}
+
+	public function d_pejabat(){
+		$data['d_pejabat'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/data_pejabat', $data);
+
+	}
+
+	function updatewewenang(){
+		$upd = array(
+			'idapproval' => $_POST['idapproval'],
+			'nama_user' => $_POST['nama_user'],
+			'jabatan' => $_POST['jabatan'],
+			'activate' => $_POST['activate']
+		);
+
+		$this->Dashboard_model->updatewewenang($upd);
+
+		redirect('Dashboard/d_pejabat');
 	}
 
 	function activated(){
