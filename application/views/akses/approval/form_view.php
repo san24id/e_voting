@@ -493,6 +493,33 @@
                             </div>
                             </div>
                           </div>
+
+                          <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
+                            <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title">Message Box</h3>
+                                  </div>
+
+                                  <div class="modal-body">
+                                  <form id="rejected" method="post" action="dashboard/rejected">
+                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                    <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+                                    <label>Notes :</label>                
+                                    <textarea type="text" class="form-control" name="note" require></textarea>
+                                    <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
+                                    <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                                  </div>
+                                  <div class="modal-footer">                        
+                                    <button type="submit" class="btn btn-success bye">Yes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                                                       
                           <?php } ?>
                         <?php } ?>  

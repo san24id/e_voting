@@ -2082,6 +2082,14 @@ class Dashboard extends CI_Controller {
 			echo json_encode($data);
 	}
 	
+	public function caridatadashboard2()
+	{
+			$profileid=$this->input->post('selsearch');
+			$txtsearch=$this->input->post('txtpencarian');
+			$data = $this->Dashboard_model->getdatabysearch2($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
 	public function tax_edit($id)
 	{
 		$id_payment=$this->input->post('id_payment');		

@@ -274,6 +274,11 @@
         <li>    
         <br>
         <?php 
+          $sql = "SELECT activate FROM `m_status` WHERE id_status = '11' ";
+          $query = $this->db->query($sql)->result();
+          
+          foreach ($query as $row)
+          // var_dump($row);exit;
          if($this->session->userdata("role_id") == 4){ ?>
         <li><center><button type="button" data-toggle="modal" data-target="#activate" class="btn btn-success"><i class="glyphicon glyphicon-wrench"></i>&nbsp;ACTIVATED APPROVAL</button></a></center></li>
         <?php } ?> 
@@ -301,8 +306,8 @@
     <div class="modal-body">
     <form id="activated" method="post" action="dashboard/activated">
       <p align="justify">Apakah anda ingin mengaktifkan/menon-aktifkan Approval Requestor Signature?</p>
-      <input type="radio" name="activate" value="On"> ON</input><br>
-      <input type="radio" name="activate" value="Off"> OFF</input><br>
+      <input type="radio" name="activate" value="On" <?php echo $row->activate==On? 'checked':''?>> ON</input><br>
+      <input type="radio" name="activate" value="Off" <?php echo $row->activate==Off? 'checked':''?>> OFF</input><br>
     </div>
     <div class="modal-footer">                        
      <button type="submit" class="btn btn-success bye">Yes</button>

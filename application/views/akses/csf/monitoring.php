@@ -86,234 +86,284 @@
     </section>
 
     <section class="content">
-            <div class="col-md-7">
-              <div class="box-body">
-                <!-- USERS LIST -->
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <div class="box-tools pull-right">
-                      <span class="label label-success"></span>
+          <div class="col-md-7">
+            <div class="box-body">
+              <!-- USERS LIST -->
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <div class="box-tools pull-right">
+                    <span class="label label-success"></span>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                    <!-- Periode   -->
+                    <table width="100%">
+                    <?php echo form_open("Dashboard/periode_monitoring");?>
+                      <tr>
+                        <td class="period"><font color="white" size="3">Period: </font></td>
+                        <td></td>
+                        <td class="period"><font color="white" size="3"> Date </font></td>
+                        <td class="period"><input type="date" name="start_date" id="start_date"></td>
+                        <td><font size="3">s/d</font></td>
+                        <td class="period"><font color="white" size="3"> Date </font></td>
+                        <td class="period"><input type="date" name="end_date"></td>
+                        <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
+                      </tr>
+                    <?php echo form_close();?>  
+                    </table>
                     </div>
                   </div>
-                  <!-- /.box-header -->
+                </div>
+
+                <div class="box-body">      
+                  <div class="row">
+                    <div class="col-md-4"><!--Lingkaran-->
+                    <center>
+                      <div class="lingkaran1 panel panel-primary">
+                        <br><br><br>
+                        <?php foreach ($processing as $process) { ?>
+                        <center><font size="10"> <?php echo $process->process; ?> </font></center>
+                        <?php } ?>
+                      </div>
+                      <div class="sembilan"><center><font size='5' color="white"> Waiting for Processing </font></center></div>
+                    </center>
+                    </div>
+
+                    <div class="col-md-8"><!--Status-->
+                      <!-- <?php foreach ($tot_pay_req as $tot_req) { ?>
+                      <font size='5'> TOTAL REQUEST : </font><font size="10"><?php echo $tot_req->totalreq; ?> </font><br>
+                      <?php } ?> -->
+                      <div>
+                        <table width="100%"> 
+                          <tr>
+                            <td><font size="5">&nbsp; &nbsp; <b>TOTAL REQUEST</b> </font></td>
+                            <?php foreach ($tot_pay_req as $tot_req) { ?>
+                            <td width="15%"><font size='6'><center><b><?php echo $tot_req->totalreq; ?><b></center></font> </td>                              
+                            <?php } ?>
+                          </tr>
+                          <tr> 
+                            <td colspan="2"><font size='5'> STATUS : </font> </td>
+                          </tr>
+                          
+                          <tr>
+                            <td><font size="3">&nbsp; &nbsp; Waiting for processing / Submitted by users </font></td>
+                            <?php foreach ($processing as $process) { ?>
+                            <td width="15%"><div class="satu"><font size='5' color="white"><center><?php echo $process->process; ?></center></div> </td>
+                            
+                            <?php } ?>
+                          </tr>
+                          <tr>
+                            <td><font size="3">&nbsp; &nbsp; Processing</font></td>
+                            <?php foreach ($gprocess as $tot_process) { ?>
+                            <td><div class="dua"><font size='5'><center><?php echo $tot_process->totalstatus; ?></center></div> </td>
+                              
+                            <?php } ?>
+                          </tr>
+                          <tr>
+                            <td><font size="3">&nbsp; &nbsp; Verified</font></td>
+                            <?php foreach ($verifikasi as $verifikasi) { ?>
+                            <td><div class="tiga"><font size='5'><center><?php echo $verifikasi->verifikasi; ?></center></div> </td>
+                            
+                            <?php } ?>
+                          </tr>
+                          <tr>
+                            <td><font size="3">&nbsp; &nbsp; Approved</font></td>
+                            <?php foreach ($approval as $approval) { ?>
+                            <td><div class="empat"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></div> </td>
+                                
+                            <?php } ?>
+                          </tr>
+                          <tr>
+                            <td><font size="3">&nbsp; &nbsp; Paid</font></td>
+                            <?php foreach ($Paid as $Paid) { ?>
+                            <td><div class="lima"><font size='5' color="white"><center><?php echo $Paid->paid;?></center></div> </td>
+                            <?php } ?>
+                          </tr>
+
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!--row  -->
+                </div>
+                <!-- /.box-body -->
+
+                <div class="row">
+                  <div class="box-body">
+                  <div class="col-md-12"> <!--waiting for-->
+                    <table width="10%">                        
+                      <tr>
+                        <td align="center" width="10%">
+                          <div class="info-box box1">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/tax.png"></i></span>
+                              <br>
+                              <?php foreach ($tax as $tax){ ?>
+                              <font size='3' color="white"><center><?php echo $tax->tax;?></center></font>
+                              <?php } ?>
+                              <center><font size='3' color="white">Under Processing <br> Tax </center>
+                          </div>
+                        </td>
+                        <td align="center" width="10%">
+                          <div class="info-box box1">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/review.png"></i></span>
+                              <br>
+                              <?php foreach ($review as $review) { ?>
+                              <font size='3' color="white"><center><?php echo $review->wreview; ?></center></font>
+                              <?php } ?>
+                              <center><font size='3' color="white">Waiting For <br> Review </center>
+                          </div>
+                        </td>
+                        <td align="center" width="10%">
+                          <div class="info-box box1">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approval.png"></i></span>
+                              <br>
+                              <?php foreach ($wApproval as $wApproval) { ?>
+                              <font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font>
+                              <?php } ?>
+                              <center><font size='3' color="white">Waiting For <br> Approval </center>
+                          </div>
+                        </td>                    
+                      </tr>
+                      <tr>
+                        <td align="center" width="10%">
+                          <div class="info-box box1">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/finance.png"></i></span>
+                              <br>
+                              <?php foreach ($finance as $finance){ ?>
+                              <font size='3' color="white"><center><?php echo $finance->finance;?></center></font>
+                              <?php } ?>
+                              <center><font size='3' color="white">Under Processing <br>Finance </center>
+                          </div>
+                        </td>
+                        <td align="center" width="10%">
+                          <div class="info-box box1">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified1.png"></i></span>
+                              <br>
+                              <?php foreach ($wverifikasi as $wverifikasi) { ?>
+                              <font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font>
+                              <?php } ?>
+                              <center><font size='3' color="white">Waiting For <br> Verification</center>
+                          </div>
+                        </td>
+                        <td align="center" width="10%">
+                          <div class="info-box box1">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid.png"></i></span>
+                              <br>
+                              <?php foreach ($wPaid as $wPaid) { ?>
+                              <font size='3' color="white"><center><?php echo $wPaid->wpaid; ?></center></font>
+                              <?php } ?>
+                              <center><font size='3' color="white">Waiting For <br> Payment</center>
+                          </div>
+                        </td>
+
+                      </tr>
+                      <!-- <td colspan="6"><center><font size="5">Unde Processing</font></center></td> -->
+                      <!-- <tr>
+                        <td align="center"><font size="3"> Tax (A1)</font></td>
+                        <td align="center"><font size="3"> Finance (A2) </font></td>
+                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Review (B) </font></center></td>
+                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Verification (C) </font></center></td>
+                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Approval </font></center></td>
+                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Payment </font></center></td>
+                      </tr> -->
+                      <!-- <tr>
+                        <td colspan="2"><center><font size="3"> Under Processing (A) </font></center></td>
+                      </tr>                    -->
+                    </table>
+                  </div>  
+                  </div>  
+                </div>              
+                              
+              </div>
+              <!--/.box success-->
+            </div>            
+          </div>             
+
+          <div class="col-md-5"><!--PieChart-->
+            <div class="box-body">
+              <!-- USERS LIST -->
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <div class="box-tools pull-right">
+                    <span class="label label-success"></span>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                  <div class="col-md-9">
+                    <div id="pieChart" style="min-width: 600px; height: 425px; max-width: 400px; margin: 0 auto"></div>  
+                    <br><br><br>        
+                    
+                    </div>  
+                  </div>
+                <!-- /.box-body -->               
+              </div>
+              <!--/.box -->              
+            </div>
+          </div>
+
+		      <div class="col-md-12"><!--Filter BY-->
+            <div class="box-body">
+              <!-- USERS LIST -->
+              <div class="box box-success">           
+                <div class="box-header with-border">
+                  <!-- <h3 class="box-title">Pencarian</h3> -->
+                  <button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Advanced Search</button>
+                </div>
+                <!-- /.box-header -->
+                <div id="cari" class="collapse">
                   <div class="box-body">
                     <div class="row">
-                      <div class="col-md-12">
-                      <!-- Periode   -->
-                      <table width="100%">
-                      <?php echo form_open("Dashboard/periode_monitoring");?>
-                        <tr>
-                          <td class="period"><font color="white" size="3">Period: </font></td>
-                          <td></td>
-                          <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="date" name="start_date" id="start_date"></td>
-                          <td><font size="3">s/d</font></td>
-                          <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="date" name="end_date"></td>
-                          <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
-                        </tr>
-                      <?php echo form_close();?>  
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="box-body">      
-                    <div class="row">
-                      <div class="col-md-4"><!--Lingkaran-->
-                      <center>
-                        <div class="lingkaran1 panel panel-primary">
-                          <br><br><br>
-                          <?php foreach ($processing as $process) { ?>
-                          <center><font size="10"> <?php echo $process->process; ?> </font></center>
-                          <?php } ?>
-                        </div>
-                        <div class="sembilan"><center><font size='5' color="white"> Waiting for Processing </font></center></div>
-                      </center>
-                      </div>
-
-                      <div class="col-md-8"><!--Status-->
-                        <!-- <?php foreach ($tot_pay_req as $tot_req) { ?>
-                        <font size='5'> TOTAL REQUEST : </font><font size="10"><?php echo $tot_req->totalreq; ?> </font><br>
-                        <?php } ?> -->
-                        <div>
-                          <table width="100%"> 
-                            <tr>
-                              <td><font size="5">&nbsp; &nbsp; <b>TOTAL REQUEST</b> </font></td>
-                              <?php foreach ($tot_pay_req as $tot_req) { ?>
-                              <td width="15%"><font size='6'><center><b><?php echo $tot_req->totalreq; ?><b></center></font> </td>                              
-                              <?php } ?>
-                            </tr>
-                            <tr> 
-                              <td colspan="2"><font size='5'> STATUS : </font> </td>
-                            </tr>
-                            
-                            <tr>
-                              <td><font size="3">&nbsp; &nbsp; Waiting for processing / Submitted by users </font></td>
-                              <?php foreach ($processing as $process) { ?>
-                              <td width="15%"><div class="satu"><font size='5' color="white"><center><?php echo $process->process; ?></center></div> </td>
+                      <form id="formCari">		
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="col-md-1">Criteria</label>
+                            <div class="col-md-2">
+                                <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+                                <option value='0'>== Pilih ==</option>
+                                <option value='1'> Tanggal </option>
+                                <option value='2'> Jenis Pembayaran </option>
+                                <option value='3'> Nomor Surat </option>
+                                <option value='4'> Pemohon </option>
+                              </select>
+                            </div> 	
+                            <div class="col-md-6">
+                              <input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+                            </div>		
                               
-                              <?php } ?>
-                            </tr>
-                            <tr>
-                              <td><font size="3">&nbsp; &nbsp; Processing</font></td>
-                              <?php foreach ($gprocess as $tot_process) { ?>
-                              <td><div class="dua"><font size='5'><center><?php echo $tot_process->totalstatus; ?></center></div> </td>
-                                
-                              <?php } ?>
-                            </tr>
-                            <tr>
-                              <td><font size="3">&nbsp; &nbsp; Verified</font></td>
-                              <?php foreach ($verifikasi as $verifikasi) { ?>
-                              <td><div class="tiga"><font size='5'><center><?php echo $verifikasi->verifikasi; ?></center></div> </td>
-                              
-                              <?php } ?>
-                            </tr>
-                            <tr>
-                              <td><font size="3">&nbsp; &nbsp; Approved</font></td>
-                              <?php foreach ($approval as $approval) { ?>
-                              <td><div class="empat"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></div> </td>
-                                  
-                              <?php } ?>
-                            </tr>
-                            <tr>
-                              <td><font size="3">&nbsp; &nbsp; Paid</font></td>
-                              <?php foreach ($Paid as $Paid) { ?>
-                              <td><div class="lima"><font size='5' color="white"><center><?php echo $Paid->paid;?></center></div> </td>
-                              <?php } ?>
-                            </tr>
+                            <div class="col-md-3">
+                          <!-- <div class="form-group">
+                            <label>&nbsp;</label>      -->        
+                            <span class="input-group-btn">
+                              <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+                            </span>   
 
-                          </table>
+                          <!-- </div> -->
+                          <!-- /.form-group -->
                         </div>
+                          </div>     
+                          
+                        </div>
+                      </form>
+                      <!-- /.col -->
                       </div>
-                    </div>
-                    <!--row  -->
+                    <!-- /.row -->
                   </div>
-                  <!-- /.box-body -->
-
-                  <div class="row">
-                    <div class="box-body">
-                    <div class="col-md-12"> <!--waiting for-->
-                      <table width="10%">                        
-                        <tr>
-                          <td align="center" width="10%">
-                            <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/tax.png"></i></span>
-                                <br>
-                                <?php foreach ($tax as $tax){ ?>
-                                <font size='3' color="white"><center><?php echo $tax->tax;?></center></font>
-                                <?php } ?>
-                                <center><font size='3' color="white">Under Processing <br> Tax </center>
-                            </div>
-                          </td>
-                          <td align="center" width="10%">
-                            <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/review.png"></i></span>
-                                <br>
-                                <?php foreach ($review as $review) { ?>
-                                <font size='3' color="white"><center><?php echo $review->wreview; ?></center></font>
-                                <?php } ?>
-                                <center><font size='3' color="white">Waiting For <br> Review </center>
-                            </div>
-                          </td>
-                          <td align="center" width="10%">
-                            <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approval.png"></i></span>
-                                <br>
-                                <?php foreach ($wApproval as $wApproval) { ?>
-                                <font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font>
-                                <?php } ?>
-                                <center><font size='3' color="white">Waiting For <br> Approval </center>
-                            </div>
-                          </td>                    
-                        </tr>
-                        <tr>
-                          <td align="center" width="10%">
-                            <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/finance.png"></i></span>
-                                <br>
-                                <?php foreach ($finance as $finance){ ?>
-                                <font size='3' color="white"><center><?php echo $finance->finance;?></center></font>
-                                <?php } ?>
-                                <center><font size='3' color="white">Under Processing <br>Finance </center>
-                            </div>
-                          </td>
-                          <td align="center" width="10%">
-                            <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified1.png"></i></span>
-                                <br>
-                                <?php foreach ($wverifikasi as $wverifikasi) { ?>
-                                <font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font>
-                                <?php } ?>
-                                <center><font size='3' color="white">Waiting For <br> Verification</center>
-                            </div>
-                          </td>
-                          <td align="center" width="10%">
-                            <div class="info-box box1">
-                              <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid.png"></i></span>
-                                <br>
-                                <?php foreach ($wPaid as $wPaid) { ?>
-                                <font size='3' color="white"><center><?php echo $wPaid->wpaid; ?></center></font>
-                                <?php } ?>
-                                <center><font size='3' color="white">Waiting For <br> Payment</center>
-                            </div>
-                          </td>
-
-                        </tr>
-                        <!-- <td colspan="6"><center><font size="5">Unde Processing</font></center></td> -->
-                        <!-- <tr>
-                          <td align="center"><font size="3"> Tax (A1)</font></td>
-                          <td align="center"><font size="3"> Finance (A2) </font></td>
-                          <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Review (B) </font></center></td>
-                          <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Verification (C) </font></center></td>
-                          <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Approval </font></center></td>
-                          <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Payment </font></center></td>
-                        </tr> -->
-                        <!-- <tr>
-                          <td colspan="2"><center><font size="3"> Under Processing (A) </font></center></td>
-                        </tr>                    -->
-                      </table>
-                    </div>  
-                    </div>  
-                  </div>              
-                               
                 </div>
-                <!--/.box success-->
-              </div>            
-            </div>             
-
-            <div class="col-md-5"><!--PieChart-->
-              <div class="box-body">
-                <!-- USERS LIST -->
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <div class="box-tools pull-right">
-                      <span class="label label-success"></span>
-                    </div>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body no-padding">
-                  <script src="https://code.highcharts.com/highcharts.js"></script>
-                  <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
-                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-                    <div class="col-md-9">
-                      <div id="pieChart" style="min-width: 600px; height: 425px; max-width: 400px; margin: 0 auto"></div>  
-                      <br><br><br>        
-                      
-                      </div>  
-                    </div>
-                  <!-- /.box-body -->               
-                </div>
-                <!--/.box -->              
-              </div>
-            </div>
-
-             
-
-
+                <!-- /.box-body -->  
+              </div>  
+            </div>     
+          </div>
+        
         <div class="row">
           <div class="col-xs-12">
             <!-- /.box -->
@@ -328,8 +378,8 @@
                     <th>Status CSF</th>
                     <th>Nomor SP3</th>
                     <th>Type</th>
-                    <th>SP3 Submitted Date</th>
-                    <th>Description</th>
+                    <th>Tanggal SP3 Submit</th>
+                    <th>Deskripsi</th>
                     <th>Pemohon</th>
                     <th>Action</th>
                     </tr>
@@ -519,4 +569,88 @@ $(function () {
       }]
   });
 
+</script>
+
+<script type="text/javascript"> 
+ function caridata()
+    {
+	  url = "<?php echo base_url('dashboard/caridatadashboard2') ?>";
+      $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#formCari').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data);
+			    var status; 
+				var istatus;
+				var ino=1;
+				var tbl1 = $('#example1').DataTable(); 
+				tbl1.clear().draw();
+                $.each(data, function(key, item) 
+                      {       
+					    status =  item.status;
+						switch(status) {
+						  case "0":
+							istatus ='<img src="assets/dashboard/images/legend/draft.png">';  
+							break;
+						  case "1":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+						  case "11":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+                          case "2":
+							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
+							break;
+                          case "3":
+							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
+							break;
+                          case "4":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "5":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "6":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "7":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "8":
+							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							break;
+                          case "9":
+							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							break; 
+                          case "10":
+							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
+							break;  
+						  default:
+							istatus = '';
+						}
+						
+						tbl1.row.add( [
+						  ino,
+						  istatus,
+						  item.jenis_pembayaran,
+						  item.nomor_surat,
+              item.submit_date,
+						  item.label1,
+						  item.display_name,
+						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+                        ] ).draw(false);
+						ino++; 
+                })  
+            },
+            error: function (data)
+            {
+              console.log(data);
+                alert('Error get data');
+            }
+        });
+    }
+	
 </script>
