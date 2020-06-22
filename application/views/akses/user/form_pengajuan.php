@@ -175,39 +175,39 @@
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
-                      <tr>
-                        <td width="33%">Nama</td>
-                        <td align="right"><b>:</b></td>
-                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
-                                            <option value="">--Choose--</option>
-                                            <?php foreach ($data_vendor as $nama){?> 
-                                              <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
-                                            <?php } ?>
-                                        </select>
-                        </td>
-                      </tr>
-                      <tr>  
-                        <td>Kode Vendor</td>
-                        <td align="right"><b>:</b></td>
-                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
-                        <td>Bank</td>
-                        <td>:</td>
-                        <td><select id="dropdown" name="akun_bank" class="form-control">
-                                <option>--- Choose ---</option>
-                                <?php foreach ($bank as $get) {?>
-                                  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Nomor Rekening</td> 
-                        <td>:</td>                           
-                        <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
-                      </tr>
+                        <tr>
+                          <td width="33%">Nama</td>
+                          <td align="right"><b>:</b></td>
+                          <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                                              <option value="">--Choose--</option>
+                                              <?php foreach ($data_vendor as $nama){?> 
+                                                <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
+                                              <?php } ?>
+                                          </select>
+                          </td>
+                        </tr>
+                        <tr>  
+                          <td>Kode Vendor</td>
+                          <td align="right"><b>:</b></td>
+                          <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                          <td>Bank</td>
+                          <td>:</td>
+                          <td><select id="dropdown" name="akun_bank" class="form-control">
+                                  <option>--- Choose ---</option>
+                                  <?php foreach ($bank as $get) {?>
+                                    <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+                                  <?php } ?>
+                              </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>Nomor Rekening</td> 
+                          <td>:</td>                           
+                          <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
+                        </tr>
                       
                       </tbody>
                     </table>
@@ -410,7 +410,21 @@ function penjumlahan(){
   // var b = parseInt(document.getElementById("uangmuka").value);
 
   // if(reva && revb){
-    document.getElementById("hasil").value = hasil; 
+	  if(hasil<0){
+		  document.getElementById("hasil").value = '('+Math.abs(hasil)+')'; 
+	  }else{
+	  	document.getElementById("hasil").value = ''+hasil+''; 
+    
+	  }
+	  
+	  var strhasil=document.getElementById("hasil");
+	  var strulang1 =strhasil.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		strhasil.value = formatuangmuka(strulang1);
+	} 
+	  
   // }
 }
 
@@ -722,7 +736,7 @@ function showInput() {
       $('#show').show();
       $('#choose').show();
     }
-});
+  });
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

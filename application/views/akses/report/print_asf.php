@@ -341,8 +341,67 @@ td[rowspan="6"] {
           <?php } ?>
         </section>
       </div>
+         
          <br>   
+
       <div class="content-wrapper">
+          <?php 						
+						$deN='unchecked';
+						$deY='unchecked';
+						$nde='unchecked';
+						$nde50='unchecked';
+						$part='unchecked';
+						$objY='unchecked';
+						$objN='unchecked';
+						$objE='unchecked';
+						$objT='unchecked';
+						
+					   $de='0';
+					   $opsi='0';
+					   $objek='0';
+					   $nilai='0';
+					   
+					   foreach ($process_tax_H as $taxH) {
+						   
+					   $de= $taxH->de;
+					   $opsi= $taxH->opsional;
+					   $objek= $taxH->objek_pajak;
+					   $nilai= $taxH->nilai;
+						   
+					   }
+					   if($de=='1'){
+						   $deY='checked';
+					   }else{
+						   $deN='checked';
+					   }
+					   
+					   if($opsi=='1'){
+						   $nde='checked';
+					   }
+					   
+					   if($opsi=='2'){
+						   $nde50='checked';
+					   }
+						
+						if($opsi=='3'){
+						   $part='checked';
+					   }
+
+						if($objek=='1'){
+							$objY='checked';
+						}
+						if($objek=='0'){
+							$objN='checked';
+						}
+						
+						if($objek=='2'){
+							$objE='checked';
+						}
+						
+						if($objek=='3'){
+							$objT='checked';
+            }
+          ?>
         <section class="content">
             <table width="100%">
               <tbody>
@@ -354,7 +413,55 @@ td[rowspan="6"] {
                 </tr>
               </tbody>
             </table>
+            
             <br>
+            
+            <table width="70%">
+              <tr>
+                <td><font size="1"><b>Deductible Expense</b></td>
+                <td>
+                  <input type="checkbox" id="chkdeY" name="de"  <?php echo $deY; ?>  disabled><font size="1"> Ya<br>
+                </td>
+                <td>
+                  <input type="checkbox" id="chkdeN" name="de" <?php echo $deN; ?>  disabled><font size="1"> Tidak</input><br>
+                </td>
+                </tr>  
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="chkNDE"  <?php echo $nde; ?> disabled><font size="1"> NDE</input><br>
+                  </td>
+                </tr>  
+                <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled><font size="1"> NDE50</input><br>                            
+                </td>
+                </tr> 
+                <tr>
+                <td></td>
+                <td></td>
+                <td width="8%">
+                  &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled><font size="1"> PARTNDE</input><br>                            
+                </td>
+                <td width="2%"><font size="1">Rp</font></td>
+                <td><font size="1"><?php echo $nilai; ?></td>
+                </tr>
+            </table>
+            <table width="100%">   
+              <tr>
+                <td><b><font size="1">Objek Pajak</b></td>
+                <td><input id="chkObjPjkY" type="checkbox" name="chkObjPjkY" <?php echo $objY; ?>  disabled ><font size="1"> Ya </td>
+                <td> <input id="chkObjPjkN"  type="checkbox" name="chkObjPjkN" <?php echo $objN; ?>  disabled><font size="1"> Tidak</input> </td>
+                <td><input id="chkObjPjkE" type="checkbox" name="chkObjPjkE" <?php echo $objE; ?>  disabled><font size="1"> Employee</input> </td>
+                <td><input id="chkObjPjkT" type="checkbox" name="chkObjPjkT" <?php echo $objT; ?>  disabled><font size="1"> Tax at Settlement</input> </td>
+              </tr>                        
+            </table>
+
+            <br>
+            
             <table border="1">
               <thead>
                 <tr>

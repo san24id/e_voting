@@ -42,11 +42,21 @@
 			$alamatnpwp = $vndr->alamat ;
 		}
 		
+		$nourut="1";
+		foreach ($getnouruttax as $no){
+			$nourut = $no->no_urut ;
+		}
+		
 		?>
          
 		
           <section class="content">
-            <div class="row">
+          	<h1>
+			  <?php foreach($payment as $row) { ?>
+			  <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+			  <?php } ?>	
+			</h1>
+			<div class="row">
               <div class="col-md-12">
                 <!-- /.box -->
                 <div class="box">
@@ -134,6 +144,8 @@
                     <table id="show" class="table table-bordered table-striped">
                       <thead>
                         <tr>
+                          <th>Action</th>
+                          <th>No Urut</th>
                           <th>Jenis Pajak</th>
                           <th>Kode Pajak</th>
                           <th>Kode MAP</th>
@@ -155,7 +167,14 @@
                       <tbody>
 						<?php foreach($getdatatax as $gtax){?>
 						 <tr>
-						    <td><?php echo $gtax->jenis_pajak;?></td>
+						 
+						  	<td style="text-align: center">						  
+								<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(<?php echo $gtax->id_payment;?>,<?php echo $gtax->no_urut;?>)"><i class="glyphicon glyphicon-pencil"></i></button>
+                  				<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus" <?php echo $btndelete; ?> onclick="delete_tax(<?php echo $gtax->id_payment;?>,<?php echo $gtax->no_urut;?>)"><i class="glyphicon glyphicon-trash"></i></button>
+					
+							</td>
+							<td><?php echo $gtax->no_urut;?></td>
+							<td><?php echo $gtax->jenis_pajak;?></td>
 							<td><?php echo $gtax->kode_pajak;?></td>
 							<td><?php echo $gtax->kode_map;?></td>
 							<td><?php echo $gtax->nama;?></td>
@@ -173,72 +192,7 @@
 							<td><?php echo $gtax->keterangan;?></td>
 						  </tr>
 						 <?php }?>
-                        <!-- <tr>
-                          <td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($jenispajak as $get) {?>
-                                  <option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?> </option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="kode_pajak" name="kode_pajak[]" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodePajak as $kode) {?>
-                                  <option value="<?php echo $kode->kode_objek_pajak; ?>"><?php echo $kode->kode_objek_pajak; ?> - <?php echo $get->nama_objek_pajak; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                          <td><select id="dropdown2" name="kode_map[]" class="form-control">
-                                <option value="">Choose</option>
-                                <?php foreach ($kodeMap as $map) {?>
-                                  <option value="<?php echo $map->kode_map; ?>"><?php echo $map->kode_map; ?></option>
-                                <?php } ?>
-                            </select>
-                          </td>
-                            <?php 
-                                  $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                                  $query = $this->db->query($sql)->result();
-                                  // return $query;
-                                  // var_dump($query[0]->npwp);exit; 
-                                  if ($query[0]->nama) { $buka1 = $query[0]->nama;
-                                  }else{
-                                    $buka1 = $row->penerima;
-                                  }
-                              ?>
-                          <td><textarea type="text" class="form-control" name="nama[]" readonly><?php echo $buka1;?></textarea></td>
-                              <?php 
-                                  $sql = "SELECT npwp FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                                  $query = $this->db->query($sql)->result();
-                                  // return $query;
-                                  // var_dump($query[0]->npwp);exit; 
-                                  if ($query[0]->npwp) { $buka = $query[0]->npwp;
-                                  }else{
-                                    $buka = $row->penerima;
-                                  }
-                              ?>
-                          <td><textarea type="text" class="form-control" name="npwp[]" readonly><?php echo $buka;?></textarea></td>
-                          <?php 
-                                  $sql = "SELECT alamat FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                                  $query = $this->db->query($sql)->result();
-                                  // return $query;
-                                  // var_dump($query[0]->alamat);exit; 
-                                  if ($query[0]->alamat) { $buka2 = $query[0]->alamat;
-                                  }else{
-                                    $buka2 = $row->penerima;
-                                  }
-                              ?>
-                          <td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" readonly><?php echo $buka2;?></textarea></td>
-                          <td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"></td>
-                          <td><input type="checkbox" name="fas_pajak[]" value="Ya"></td>
-                          <td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" ></td>
-                          <td><input type="checkbox" name="gross[]" value="Ya"></td>
-                          <td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>
-                          <td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>
-                          <td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>
-                          <td><input type="text" class="form-control" name="tahun[]" placeholder="Enter Text" ></td>
-                          <td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>
-                        </tr>   -->                     
+                                           
                       </tbody> 
                       
                     </table>
@@ -250,7 +204,7 @@
 					   </div> 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>  
+                    <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
                     <button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>
                   </div>
                 </div>                                                 
@@ -330,10 +284,8 @@
 
 <script>
 
+var save_method; 
     //$("#show").DataTable();
-
-
-
     $('#show').DataTable({
       "paging": false,
       "lengthChange": false,
@@ -464,7 +416,7 @@ $("#chkObjPjkT").on( "click", function() {
 
 $("#chkgross").on( "click", function() {
   if($("#chkgross").is(':checked')){
-	  var dppgross = parseFloat(dpp)/(parseFloat(1)-parseFloat(trf))
+	  //var dppgross = parseFloat(dpp)/(parseFloat(1)-parseFloat(trf))
 	  $('#vgross').val('Ya');
 	}else{
 		$('#vgross').val('Tidak');
@@ -474,7 +426,7 @@ $("#chkgross").on( "click", function() {
 
 function view_tax()
 {
-	
+	save_method = 'add';
 	$('#modal_tax').modal('show');
 }
 
@@ -484,7 +436,7 @@ function submittax()
 		if ($('#vobjekpajak').val()==""){
 			alert("Objek Pajak belum di pilih");
 		}else{
-			var r = confirm("Apakah Anda yakin Akan mengirimkan Form Tax : " + nmr_srt + " ?");
+			var r = confirm("Anda Akan mengirimkan Form Tax : " + nmr_srt + " ?");
 			  if (r == true) {
 			
 			var url = "<?php echo base_url('dashboard/submittax')?>";
@@ -508,6 +460,126 @@ function submittax()
 		}
 		
 	}
+	
+	function delete_tax(id,urut)
+    {
+		var r = confirm('Apakah anda yakin akan menghapus data ini..?');
+		if (r == true) {
+			var form_data = new FormData();
+			form_data.append('id_payment', id);
+			form_data.append('no_urut', urut);
+			$.ajax({
+				url : "<?php echo base_url('dashboard/delete_tax')?>",
+				type: "POST",
+				cache: false,
+			  contentType: false,
+			  processData: false,
+				data: form_data,
+				dataType: "json",
+				success: function(data)
+				{
+				   var tbl1 = $('#show').DataTable(); 
+						  tbl1.clear().draw();
+							$.each(data, function(key, item) 
+								  {       
+							  tbl1.row.add( [
+									'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_payment + ','+ item.no_urut +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_payment + ',' + item.no_urut + '")"><i class="glyphicon glyphicon-trash"></i></button>',
+                        			item.no_urut,
+									  item.jenis_pajak,
+									  item.kode_pajak,
+									  item.kode_map,
+									  item.nama,
+									  item.npwp,
+									  item.alamat,
+										item.tarif,
+										item.fas_pajak,
+										item.special_tarif,
+										item.gross,
+										item.dpp,
+										item.dpp_gross,
+										item.pajak_terutang,
+										item.masa_pajak,
+										item.tahun,
+										item.keterangan
+										
+									  ] ).draw(false);
+
+							})  
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
+			});
+		  } 
+    }
+
+function edit_tax(id,urut)
+    {
+		save_method = 'update';
+      	var form_data = new FormData();
+		form_data.append('id_payment', id);
+		form_data.append('no_urut', urut);
+				
+      //Ajax Load data from ajax
+      $.ajax({
+        url : "<?php echo base_url('dashboard/tax_edit')?>",
+        type: "POST",
+		cache: false,
+			  contentType: false,
+			  processData: false,
+				data: form_data,
+        dataType: "JSON",
+        success: function(data)
+        {
+			console.log(data);
+			$('[name="handled_by"]').val('n.prasetyaningrum');
+			$('[name="id_payment"]').val(data[0].id_payment);
+			$('[name="nomor_surat"]').val(data[0].nomor_surat);
+			$('[name="txtrealtrf"]').val(data[0].tarif);
+			$('[name="vdeductible"]').val('1');
+			$('[name="voptional"]').val('1');
+			$('[name="vobjekpajak"]').val('1');
+			$('[name="vjnspjk"]').val(data[0].jenis_pajak);
+			$('[name="vkdpjk"]').val(data[0].kode_pajak);
+			$('[name="vgross"]').val(data[0].gross);
+			$('[name="vtarif"]').val(data.tarif);
+			$('[name="vtarifspesial"]').val(data.spesial_tarif);
+			$('[name="vpajakterhutang"]').val(data.pajak_terutang);
+			$('[name="txtnourut"]').val(data[0].no_urut);
+			$('[name="txtnourutold"]').val(data[0].no_urut);
+			$('[name="selJnsPjk"]').val(data[0].jenis_pajak);
+			$('[name="selKdPjk"]').val(data[0].kode_pajak);
+			$('[name="selKdMap"]').val(data[0].kode_map);
+			$('[name="txtnamanpwp"]').val(data[0].nama);			
+			$('[name="txtnonpwp"]').val(data[0].npwp);			
+			$('[name="txtalamat"]').val(data[0].alamat);			
+			$('#chktarifnormal').val('1');			
+			$('#chktarifspesial').val('1');			
+			$('[name="txttarif"]').val(data[0].tarif);			
+			$('[name="txtfasilitas"]').val(data[0].spesial_tarif);	
+			$('#chkfasilitas').val('1');	
+			$('#chkgross').val('1');	
+			$('[name="txtdpp"]').val(data[0].dpp);
+			$('[name="txtdppgross"]').val(data[0].dpp_gross);	
+			$('[name="txtpajakterhutang"]').val(data[0].pajak_terutang);	
+			$('#selmasappn').val(data[0].masa_pajak);
+			$('#seltahunppn').val(data[0].tahun);		
+			$('[name="txtketerangan"]').val(data[0].keterangan);	
+            
+            $('#modal_tax').modal('show'); // show bootstrap modal when complete loaded
+            
+        },
+        error: function (data)
+        {
+            console.log(data);
+            alert('Error get data from ajax');
+        }
+    });
+    }
+
+
+
 function savetaxdraft()
     { 		
 	var $id = $('#id_payment').val();
@@ -526,7 +598,16 @@ function savetaxdraft()
 		}else if ($('#txtdppgross').val()==""){
 			alert("DPP Gross Up kosong");		  
 		}else{
-			var url = "<?php echo base_url('dashboard/savetaxdraft')?>";
+			var url ;
+			 if(save_method == 'add')
+				{
+					url = "<?php echo base_url('dashboard/savetaxdraft')?>";
+				}
+				else
+				{
+				  url = "<?php echo base_url('dashboard/updatetaxdraft')?>";
+				}
+			//var url = "<?php echo base_url('dashboard/savetaxdraft')?>";
 			$.ajax({
                 url : url,
                 type: "POST",
@@ -549,6 +630,8 @@ function savetaxdraft()
 							$.each(data, function(key, item) 
 								  {       
 							  tbl1.row.add( [
+									'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_payment + ','+ item.no_urut +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_payment + ',' + item.no_urut + ')"><i class="glyphicon glyphicon-trash"></i></button>',
+                        			item.no_urut,
 									  item.jenis_pajak,
 									  item.kode_pajak,
 									  item.kode_map,
@@ -564,7 +647,7 @@ function savetaxdraft()
 										item.pajak_terutang,
 										item.masa_pajak,
 										item.tahun,
-										item.keterangan
+										item.keterangan										
 									  ] ).draw(false);
 
 							})  
@@ -732,7 +815,7 @@ function showed() {
             //$('#txtnamanpwp').removeAttr("disabled"); 
 			$('#txtnonpwp').prop('readonly', false);	
 			$('#txtalamat').prop('readonly', false);		
-    
+		$('#divKdMap').show(); 
       } else{
 		  $("#txtnamanpwp").prop('readonly', true);
             //$('#txtnamanpwp').removeAttr("disabled"); 
@@ -792,7 +875,7 @@ function showed() {
 				var options =  '<option value=""><strong>Kode Map</strong></option>'; 
 				$(data.kodemap).each(function(index, value){ 
 					if(value.id_jenis_pjk == $id){ 
-						options += '<option value="'+value.kode_map+'">'+value.kode_map+'</option>'; //add the option element as a string
+						options += '<option value="'+value.kode_map+'">'+value.kode_map+' - '+value.keterangan+'</option>'; //add the option element as a string
 					}
 				});
 
@@ -840,7 +923,7 @@ function showed() {
 	});
 	
 	$("#chkgross").on( "click", function() {
-		var dpp = $('#txtdpp').val();
+		var dpp = $('#txtdpp').val().replace(/[^,\d]/g, '').toString();
 		var trf = $('#txtrealtrf').val();
 	  if($("#chkgross").is(':checked')){
 		if(trf && dpp){
@@ -849,7 +932,11 @@ function showed() {
 				$('#txtdppgross').val('0');
 			}else{
 				var dppgross = parseFloat(dpp)/(parseFloat(trfgross));
-				$('#txtdppgross').val(dppgross);
+				if(dppgross<0){
+					$('#txtdppgross').val('(' + formatRupiah(dppgross.toString()) + ')');
+				}else{
+					$('#txtdppgross').val(formatRupiah(dppgross.toString()));
+				}
 			}
 		}else{
 			$('#txtdppgross').val('0');
@@ -864,7 +951,7 @@ function showed() {
 
 function PajakTerhutang(){
 	var trf;
-	var dpp = $('#txtdpp').val();
+	var dpp = $('#txtdpp').val().replace(/[^,\d]/g, '').toString();
 	if($("#chktarifspesial").is(':checked')){
 		trf =  $('#txttarif').val();	
 		$('#vtarifspesial').val(trf);
@@ -883,20 +970,25 @@ function PajakTerhutang(){
 				$('#txtdppgross').val('0');
 			}else{
 				var dppgross = parseFloat(dpp)/(parseFloat(1)-parseFloat(trf));
-				$('#txtdppgross').val(dppgross);
+				if(dppgross<0){
+					$('#txtdppgross').val('(' + formatRupiah(dppgross.toString()) +')');
+				}else{
+					$('#txtdppgross').val(formatRupiah(dppgross));
+				}
 			}
 		}else{
 			$('#txtdppgross').val('0');
 		}
-		$("#txtpajakterhutang").val(pjkutang);	
+		$("#txtpajakterhutang").val(formatRupiah(pjkutang.toString()));	
 		//$('#txtpajakterhutang').prop('readonly', true);
-		$("#vpajakterhutang").val(pjkutang);	
+		$("#vpajakterhutang").val(formatRupiah(pjkutang.toString()));	
+		$('#txtdpp').val(formatRupiah(dpp.toString()))
 	}
 	
 }  
 
 
-  var rupiah = document.getElementById('txtdpp');
+  var rupiah = document.getElementById('rupiah');
   rupiah.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
@@ -921,7 +1013,7 @@ function PajakTerhutang(){
     return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
   }
 
-  var rupiah2 = document.getElementById('txtdppgross');
+  var rupiah2 = document.getElementById('rupiah2');
   rupiah2.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
@@ -946,7 +1038,7 @@ function PajakTerhutang(){
     return prefix == undefined ? rupiah2 : (rupiah2 ? + rupiah2 : '');
   }
 
-  var rupiah3 = document.getElementById('txtpajakterhutang');
+  var rupiah3 = document.getElementById('rupiah3');
   rupiah3.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
@@ -1086,11 +1178,18 @@ function PajakTerhutang(){
 					<input type="hidden" name="vtarif" id="vtarif" />
 					<input type="hidden" name="vtarifspesial" id="vtarifspesial" />
 					<input type="hidden" name="vpajakterhutang" id="vpajakterhutang" value='0' />
+					<input type="hidden" name="txtnourutold" id="txtnourutold"  />
 					                      
-                    <div class="form-body"> 
+                    <div class="form-body">
+						<div class="form-group">
+							<label class="control-label col-md-3">No Urut</label>
+								<div class="col-md-9">
+									<input name="txtnourut" id="txtnourut" value="<?php echo $nourut ; ?>"  placeholder="No Urut" class="form-control" type="text" >
+								</div>
+						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">Jenis Pajak</label>
-								<div class="col-md-9">
+								<div class="col-md-2">
 									<select class="form-control select2"  id="selJnsPjk" name="selJnsPjk" style="width: 100%;">
 										<option value=''>== Pilih ==</option>
 										<?php 										
@@ -1102,7 +1201,7 @@ function PajakTerhutang(){
 									</select>
 								</div>
 						</div>
-						
+																		
 						<div class="form-group" id="divKdPjk" style="display:none;">
 							<label class="control-label col-md-3">Kode Pajak</label>
 								<div class="col-md-9">
@@ -1145,7 +1244,7 @@ function PajakTerhutang(){
 						<div class="form-group">
 								<label class="control-label col-md-3">Alamat</label>
 								<div class="col-md-9">
-								  <textarea id="txtalamat" name="txtalamat"  value="<?php echo $alamatnpwp; ?>"  class="form-control" rows="3" placeholder="Alamat NPWP" ></textarea>
+								  <textarea id="txtalamat" name="txtalamat"  value="<?php echo $alamatnpwp; ?>"  class="form-control" rows="3" placeholder="Alamat NPWP" ><?php echo $alamatnpwp; ?></textarea>
 								</div>
 						</div>
 						

@@ -687,6 +687,7 @@ function checkUangMuka2() {
     text2.style.display = "none";
   }
 }
+
 </script>
     <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>

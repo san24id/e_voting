@@ -110,10 +110,6 @@
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
-
-                          if($test2[$b] == '6'){
-                            $xxi6 .= "6";
-                          }
                         }
                       ?>
                       <tr>
@@ -126,7 +122,7 @@
                         </td>
 
                         <td>
-                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Direct Payment<br>
+                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
                         </td>
                         <td>
                           <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
@@ -137,10 +133,7 @@
                         <td></td>
                         <td>
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
-                        </td>
                         <td>
-                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Corporate Credit Card </input><br>
-                        </td>
                       </tr>
                       
                       <tr>
@@ -211,7 +204,7 @@
                       <tr>
                         <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        </td>
+                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
                         <td align="right"><b> : </b></td>
                         <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
                       </tr>
@@ -255,7 +248,9 @@
                         <td>:</td>                           
                         <td><input type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>" readonly></td>                                
                       </tr>
-                      
+                      <tr>
+                        <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
+                      </tr>
                       </tbody>
                     </table>
 
@@ -444,17 +439,25 @@
                 <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Approval" role="button">Back</a>
-                        <?php if ($row->status == 0 || $row->status == 3) { ?>
+                        <?php if ($row->status == 0) { ?>
                           <a class="btn btn-primary" href="Approval/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
-                              
+                              <!-- <form id="form" method="post" action="Home/draftprintdp" target="_blank" onsubmit="update()">
+                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
+                                <button type="submit" class="btn btn-danger">Print</button>
+                              </form>       -->
                               <a class="btn btn-danger" href="Approval/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              
+                              <!-- <form id="form" method="post" action="Approval/draftprint" target="_blank" onsubmit="update()">
+                                <input type='hidden' value='<?php echo $row->id_payment; ?>' name='id_payment' id='id_payment'>
+                                <button type="submit" class="btn btn-primary">Print</button>
+                              </form>  -->
                               <a class="btn btn-danger" href="Approval/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Set To Print</a>
+                              <!-- <a class="btn btn-danger" href="Approval/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>     -->
                             <?php } ?>    
-                            
+                            <!-- <button type="submit" class="btn btn-success">Save</button> -->
+                            <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                         <?php } ?>
                         
                         <?php 
@@ -504,7 +507,6 @@
                               <div class="modal-body">
                               <form id="accepted" method="post" action="Approval/submit">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                                 <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
@@ -528,7 +530,6 @@
                               <div class="modal-body">
                               <form id="accepted" method="post" action="Approval/submit">
                                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                 <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                                 <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                               </div>
@@ -830,96 +831,11 @@
 function printThis() {
   window.print();
 }
+</script>
 
+<script>
 function update() {
   alert("Data Successfully to Update");
-}
-
-function hide() {
-  var checkBox = document.getElementById("checked");
-  var checkBox1 = document.getElementById("auto").disabled = true;
-  var checkBox2 = document.getElementById("checked2").disabled = true;
-  var checkBox3 = document.getElementById("checksettlement").disabled = true;
-  var checkBox4 = document.getElementById("checkrequest").disabled = true;
-  var text2 = document.getElementById("choose");
-  var text1 = document.getElementById("show");
-
-  if (checkBox.checked == false && checkBox2.checked == false ){
-    text1.style.display = "block";
-    text2.style.display = "block";
-  } else {
-     text1.style.display = "none";
-     text2.style.display = "none";
-  }
-  document.getElementById("checkcreditcard").checked = false;
-}
-
-function hide2() {
-  var checkBox = document.getElementById("checked").disabled = true;
-  var checkBox1 = document.getElementById("auto").disabled = true;
-  var checkBox2 = document.getElementById("checked2");
-  var checkBox3 = document.getElementById("checksettlement").disabled = true;
-  var checkBox4 = document.getElementById("checkrequest").disabled = true;
-  var text1 = document.getElementById("show");
-  var text2 = document.getElementById("choose");
-
-  if (checkBox.checked == false && checkBox2.checked == false ){
-    text1.style.display = "block";
-    text2.style.display = "block";
-  } else {
-     text1.style.display = "none";
-     text2.style.display = "none";
-  }
-
-}
-
-function checkUangMuka() {
-  // alert();
-  var checkBox1 = document.getElementById("checked").disabled = true;
-  var checkBox2 = document.getElementById("checked2").disabled = true;
-  var checkBox3 = document.getElementById("checksettlement").disabled = true;
-  var text = document.getElementById("show");
-
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checkrequest").checked == false){
-    document.getElementById("auto").checked=false
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  } 
-  // alert(checkrequest);
-}
-
-function checkCreditCard() {
-
-  if($("#checkcreditcard").is(':checked')){
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', true);
-    $('#checked2').prop('checked', false);
-  }else{
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', false);
-    $('#checked2').prop('checked', false);
-  }
-}
-
-function checkUangMuka2() {
-  // alert();
-  var checkBox1 = document.getElementById("checked").disabled = true;
-  var checkBox2 = document.getElementById("checked2").disabled = true;
-  var checkBox3 = document.getElementById("checkrequest").disabled = true;
-  var text2 = document.getElementById("choose");
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checksettlement").checked == false){
-    document.getElementById("auto").checked=false
-    text2.style.display = "block";
-  } else {
-    text2.style.display = "none";
-  }
 }
 </script>
     <!-- jQuery 2.2.3 -->

@@ -608,4 +608,12 @@ class Tri extends CI_Controller {
 
 		redirect('Tri/listPayment');
 	}
+
+	public function caridatadashboard()
+	{
+			$profileid=$this->input->post('selsearch');
+			$txtsearch=$this->input->post('txtpencarian');
+			$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
+			echo json_encode($data);
+	}
 }    

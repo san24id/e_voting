@@ -272,24 +272,24 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses">
-                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2">
-                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3"> 
+                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" readonly>
+                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" readonly>
+                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" readonly> 
                           </td>
                         </tr>
                         <tr>
                             <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
                             <td><center><p id="demo3"> </p> <p id="demo4"> </p> <p id="demo5"> </p> </center></td>
-                            <td><?php echo $row->currency;?>&nbsp;<input id="jumlahuangmuka" onchange="nominal()" type="text" name="cash_advance"> 
+                            <td><?php echo $row->currency;?>&nbsp;<input id="jumlahuangmuka" onchange="nominal()" type="text" name="cash_advance" value="<?php echo $row->label8;?>"> 
                                 <?php echo $row->currency2;?>&nbsp;<input id="jumlahuangmuka2" onchange="nominal()" type="text" name="cash_advance2">
                                 <?php echo $row->currency3;?>&nbsp;<input id="jumlahuangmuka3" onchange="nominal()" type="text" name="cash_advance3"></td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
                           <td><center><p id="demo6"> </p> <p id="demo7"> </p> <p id="demo8"> </p></center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" >
-                              <?php echo $row->currency2;?>&nbsp;<input id="negatif2" type="text" name="piutang2" > 
-                              <?php echo $row->currency3;?>&nbsp;<input id="negatif3" type="text" name="piutang3" ></td>
+                          <td><?php echo $row->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" readonly>
+                              <?php echo $row->currency2;?>&nbsp;<input id="negatif2" type="text" name="piutang2" readonly> 
+                              <?php echo $row->currency3;?>&nbsp;<input id="negatif3" type="text" name="piutang3" readonly></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -445,7 +445,7 @@ td[rowspan="6"] {
                           <td colspan="2">Diterima Oleh/ : <br> <i>Received by :</i></td>
                         </tr>
                         <tr>
-                          <td ">Nama/ <i>Name</i> </td>
+                          <td>Nama/ <i>Name</i> </td>
                         <td> </td>		
                         </tr>
                         <tr>
@@ -456,16 +456,9 @@ td[rowspan="6"] {
                     </table>
 
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
-
-                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini :  <?php echo $asf_doc; ?></p>
-                    <label>Kepada CSF Reviewer?</label>      
+                     
                     <input type="hidden" name="handled_by" value="i.akmal">                       
-                    <!-- <select name="handled_by">
-                        <option>--- Choose ---</option>
-                    <?php foreach ($csf as $get) {?>
-                        <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                    <?php } ?>
-                    </select>             -->
+                    
                   </div>  
                 </div>
                      
@@ -639,104 +632,104 @@ function nominal(){
   var o = document.getElementById("jumlahuangmuka3").value;
     
   var get_x = x.replace(/\D+/g, '');
-  if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
+  if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
 		get_x= -Math.abs(get_x);		
   }else{
 	  get_x= Math.abs(get_x);		
   }
   var get_b = b.replace(/\D+/g, '');
-  if (b.substr(0,1)=="(" && b.substr(b.length-1,1)==")"){		
+  if ((b.substr(0,1)=="(" && b.substr(b.length-1,1)==")")|| b.substr(0,1)=="-"){		
 		get_b= -Math.abs(get_b);		
   }else{
 	  get_b= Math.abs(get_b);		
   }
   var get_c = c.replace(/\D+/g, '');
-  if (c.substr(0,1)=="(" && c.substr(c.length-1,1)==")"){		
+  if ((c.substr(0,1)=="(" && c.substr(c.length-1,1)==")")|| c.substr(0,1)=="-"){		
 		get_c= -Math.abs(get_c);		
   }else{
 	  get_c= Math.abs(get_c);		
   }
   var get_d = d.replace(/\D+/g, ''); 
-  if (d.substr(0,1)=="(" && d.substr(d.length-1,1)==")"){		
+  if ((d.substr(0,1)=="(" && d.substr(d.length-1,1)==")")|| d.substr(0,1)=="-"){		
 		get_d= -Math.abs(get_d);		
   }else{
 	  get_d= Math.abs(get_d);		
   }  
   var get_e = e.replace(/\D+/g, '');
-  if (e.substr(0,1)=="(" && e.substr(e.length-1,1)==")"){		
+  if ((e.substr(0,1)=="(" && e.substr(e.length-1,1)==")")|| e.substr(0,1)=="-"){		
 		get_e= -Math.abs(get_e);		
   }else{
 	  get_e= Math.abs(get_e);		
   }
   var get_f = f.replace(/\D+/g, '');
-  if (f.substr(0,1)=="(" && f.substr(f.length-1,1)==")"){		
+  if ((f.substr(0,1)=="(" && f.substr(f.length-1,1)==")") || f.substr(0,1)=="-"){		
 		get_f= -Math.abs(get_f);		
   }else{
 	  get_f= Math.abs(get_f);		
   }
   
   var get_g = g.replace(/\D+/g, '');
-  if (g.substr(0,1)=="(" && g.substr(g.length-1,1)==")"){		
+  if ((g.substr(0,1)=="(" && g.substr(g.length-1,1)==")") || g.substr(0,1)=="-"){		
 		get_g= -Math.abs(get_g);		
   }else{
 	  get_g= Math.abs(get_g);		
   }
   
   var get_h = h.replace(/\D+/g, '');
-  if (h.substr(0,1)=="(" && h.substr(h.length-1,1)==")"){		
+  if ((h.substr(0,1)=="(" && h.substr(h.length-1,1)==")") || h.substr(0,1)=="-"){		
 		get_h= -Math.abs(get_h);		
   }else{
 	  get_h= Math.abs(get_h);		
   }
   
   var get_i = i.replace(/\D+/g, '');
-  if (i.substr(0,1)=="(" && i.substr(i.length-1,1)==")"){		
+  if ((i.substr(0,1)=="(" && i.substr(i.length-1,1)==")")|| i.substr(0,1)=="-"){		
 		get_i= -Math.abs(get_i);		
   }else{
 	  get_i= Math.abs(get_i);		
   }
   
   var get_j = j.replace(/\D+/g, '');
-  if (j.substr(0,1)=="(" && j.substr(j.length-1,1)==")"){		
+  if ((j.substr(0,1)=="(" && j.substr(j.length-1,1)==")") || j.substr(0,1)=="-"){		
 		get_j= -Math.abs(get_j);		
   }else{
 	  get_j= Math.abs(get_j);		
   }
   
   var get_k = k.replace(/\D+/g, '');
-  if (k.substr(0,1)=="(" && k.substr(k.length-1,1)==")"){		
+  if ((k.substr(0,1)=="(" && k.substr(k.length-1,1)==")") || k.substr(0,1)=="-"){		
 		get_k= -Math.abs(get_k);		
   }else{
 	  get_k= Math.abs(get_k);		
   }
 
   var get_l = l.replace(/\D+/g, '');  
-  if (l.substr(0,1)=="(" && l.substr(l.length-1,1)==")"){		
+  if ((l.substr(0,1)=="(" && l.substr(l.length-1,1)==")") || l.substr(0,1)=="-"){		
 		get_l= -Math.abs(get_l);		
   }else{
 	  get_l= Math.abs(get_l);		
   }
 
   var get_m = m.replace(/\D+/g, '');  
-  /*if (m.substr(0,1)=="(" && m.substr(m.length-1,1)==")"){		
+  if ((m.substr(0,1)=="(" && m.substr(m.length-1,1)==")") || m.substr(0,1)=="-"){		
 		get_m= -Math.abs(get_m);		
   }else{
 	  get_m= Math.abs(get_m);		
-  }*/
+  }
 
   var get_n = n.replace(/\D+/g, '');
-  /*if (n.substr(0,1)=="(" && n.substr(n.length-1,1)==")"){		
+  if ((n.substr(0,1)=="(" && n.substr(n.length-1,1)==")") || n.substr(0,1)=="-"){		
 		get_n= -Math.abs(get_n);		
   }else{
 	get_n= Math.abs(get_n);		
-  }*/
+  }
 
   var get_o = o.replace(/\D+/g,'');
-  /*if (o.substr(0,1)=="(" && o.substr(o.length-1,1)==")"){		
+  if ((o.substr(0,1)=="(" && o.substr(o.length-1,1)==")") || o.substr(0,1)=="-"){		
 		get_o= -Math.abs(get_o);		
   }else{
 	  get_o= Math.abs(get_o);		
-  }*/
+  }
 
   //Currency1
   var jumlah1 = Number(get_x) + 0;
@@ -775,9 +768,9 @@ function nominal(){
   }else{
 	  document.getElementById("ulang").value = hasil_jumlah1 ;
   }
-	
+  	
   if (hasil_jumlah2<0){
-	  var strhasil_jumlah2=Math.abs(hasil_jumlah2);
+	  var strhasil_jumlah2=Math.abs(hasil_jumlah2);	  
 	  document.getElementById("ulang1").value = "(" + strhasil_jumlah2 + ")" ;
   }else{
 	  document.getElementById("ulang1").value = hasil_jumlah2 ;
@@ -820,7 +813,7 @@ function nominal(){
     // document.getElementById("ulang2").value = hasil_jumlah3 ;
     // alert(ulang);    
 
-    var bilangan= ''+hasil+'';
+    var bilangan= ''+Math.abs(hasil)+'';
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -935,12 +928,16 @@ function nominal(){
     if (hasil<0){
 		  kalimat="( " + kalimat + ") ";
 	  }
+	 
+	 if (hasil==0){
+		  kalimat="Nol ";
+	  }
     
-    document.getElementById("terbilang").value=kalimat+muncul;
+    document.getElementById("terbilang").value=kalimat+ " " + muncul;
     
     // alert(kalimat);
 
-    var bilangan2= ''+hasil2+'';
+    var bilangan2= ''+Math.abs(hasil2)+'';
   // alert(bilangan2);
     var kalimat2="";
     var angka2   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -1055,11 +1052,15 @@ function nominal(){
   if (hasil2<0){
 		kalimat2="( " + kalimat2 + ") ";
 	}
+	
+	if (hasil2==0){
+		  kalimat2="Nol ";
+	  }
 
-    document.getElementById("terbilang2").value=kalimat2+muncul2;
+    document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;
     // alert(kalimat2);
 
-    var bilangan3= ''+hasil3+'';
+    var bilangan3= ''+ Math.abs(hasil3)+'';
   // alert(bilangan3);
     var kalimat3="";
     var angka3   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -1175,7 +1176,10 @@ function nominal(){
 		kalimat3="( " + kalimat3 + ") ";
 	}
 
-    document.getElementById("terbilang3").value=kalimat3+muncul3;
+	if (hasil3==0){
+		  kalimat3="Nol ";
+	  }
+    document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;
     // alert(kalimat3);
 
     // document.getElementById("negatif").value = hasil ;
@@ -1210,6 +1214,12 @@ function nominal(){
   }else{
 	  document.getElementById("ulang").value = hasil_jumlah1 ;
   }
+  var strulang =ulang.value;
+	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else{
+		ulang.value = formatulang(strulang);
+	} 
 
   if (hasil_jumlah2<0){
 	  hasil_jumlah2=Math.abs(hasil_jumlah2);
@@ -1217,6 +1227,13 @@ function nominal(){
   }else{
 	  document.getElementById("ulang1").value = hasil_jumlah2 ;
   }
+  
+  var strulang1 =ulang1.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		ulang1.value = "(" + formatulang1(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		ulang1.value = formatulang1(strulang1);
+	} 
 
   if (hasil_jumlah3<0){
 	  hasil_jumlah3=Math.abs(hasil_jumlah3);
@@ -1224,6 +1241,19 @@ function nominal(){
   }else{
 	  document.getElementById("ulang2").value = hasil_jumlah3 ;
   }   
+  var strulang2 =ulang2.value;
+	if (strulang2.substr(0,1)=="(" && strulang2.substr(strulang2.length-1,1)==")"){
+		ulang2.value = "(" + formatulang2(strulang2.substr(1,strulang2.length-2)) + ")";
+	}else{
+		ulang2.value = formatulang2(strulang2);
+	} 
+}
+	} 
+}
+	} 
+
+  
+  
 }
 
 // Format Separator Id Nilai 
@@ -1234,6 +1264,8 @@ var nilai = document.getElementById('nilai');
     var strnilai =nilai.value;
 	if (strnilai.substr(0,1)=="(" && strnilai.substr(strnilai.length-1,1)==")"){
 		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-2)) + ")";
+	}else if(strnilai.substr(0,1)=="-") {
+		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-1)) + ")";
 	}else{
 		nilai.value = formatnilai(this.value);
 	}
@@ -1266,6 +1298,8 @@ var nilai = document.getElementById('nilai');
 	var strnilai1 =nilai1.value;
 	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")"){
 		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-2)) + ")";
+	}else if(strnilai1.substr(0,1)=="-") {
+		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-1)) + ")";
 	}else{
 		nilai1.value = formatnilai1(this.value);
 	}
@@ -1299,6 +1333,8 @@ var nilai = document.getElementById('nilai');
     var strnilai2 =nilai2.value;
 	if (strnilai2.substr(0,1)=="(" && strnilai2.substr(strnilai2.length-1,1)==")"){
 		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-2)) + ")";
+	}else if(strnilai2.substr(0,1)=="-") {
+		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-1)) + ")";
 	}else{
 		nilai2.value = formatnilai2(this.value);
 	}
@@ -1330,6 +1366,8 @@ var nilai = document.getElementById('nilai');
 	var strnilai3 =nilai3.value;
 	if (strnilai3.substr(0,1)=="(" && strnilai3.substr(strnilai3.length-1,1)==")"){
 		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-2)) + ")";
+	}else if(strnilai3.substr(0,1)=="-") {
+		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-1)) + ")";
 	}else{
 		nilai3.value = formatnilai3(this.value);
 	}
@@ -1362,6 +1400,8 @@ var nilai = document.getElementById('nilai');
     var strnilai4 =nilai4.value;
 	if (strnilai4.substr(0,1)=="(" && strnilai4.substr(strnilai4.length-1,1)==")"){
 		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-2)) + ")";
+	}else if(strnilai4.substr(0,1)=="-") {
+		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-1)) + ")";
 	}else{
 		nilai4.value = formatnilai4(this.value);
 	}
@@ -1393,6 +1433,8 @@ var nilai = document.getElementById('nilai');
     var strnilai5 =nilai5.value;
 	if (strnilai5.substr(0,1)=="(" && strnilai5.substr(strnilai5.length-1,1)==")"){
 		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-2)) + ")";
+	}else if(strnilai5.substr(0,1)=="-") {
+		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-1)) + ")";
 	}else{
 		nilai5.value = formatnilai5(this.value);
 	}
@@ -1424,6 +1466,8 @@ var nilai = document.getElementById('nilai');
     var strnilai6 =nilai6.value;
 	if (strnilai6.substr(0,1)=="(" && strnilai6.substr(strnilai6.length-1,1)==")"){
 		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-2)) + ")";
+	}else if(strnilai6.substr(0,1)=="-") {
+		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-1)) + ")";
 	}else{
 		nilai6.value = formatnilai6(this.value);
 	}
@@ -1455,6 +1499,8 @@ var nilai = document.getElementById('nilai');
     var strnilai7 =nilai7.value;
 	if (strnilai7.substr(0,1)=="(" && strnilai7.substr(strnilai7.length-1,1)==")"){
 		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-2)) + ")";
+	}else if(strnilai7.substr(0,1)=="-") {
+		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-1)) + ")";
 	}else{
 		nilai7.value = formatnilai7(this.value);
 	}
@@ -1486,6 +1532,8 @@ var nilai = document.getElementById('nilai');
     var strnilai8 =nilai8.value;
 	if (strnilai8.substr(0,1)=="(" && strnilai8.substr(strnilai8.length-1,1)==")"){
 		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-2)) + ")";
+	}else if(strnilai8.substr(0,1)=="-") {
+		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-1)) + ")";
 	}else{
 		nilai8.value = formatnilai8(this.value);
 	}
@@ -1517,6 +1565,8 @@ var nilai = document.getElementById('nilai');
     var strnilai9 =nilai9.value;
 	if (strnilai9.substr(0,1)=="(" && strnilai9.substr(strnilai9.length-1,1)==")"){
 		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-2)) + ")";
+	}else if(strnilai9.substr(0,1)=="-") {
+		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-1)) + ")";
 	}else{
 		nilai9.value = formatnilai9(this.value);
 	}
@@ -1548,6 +1598,8 @@ var nilai = document.getElementById('nilai');
     var strnilai10 =nilai10.value;
 	if (strnilai10.substr(0,1)=="(" && strnilai10.substr(strnilai10.length-1,1)==")"){
 		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-2)) + ")";
+	}else if(strnilai10.substr(0,1)=="-") {
+		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-1)) + ")";
 	}else{
 		nilai10.value = formatnilai10(this.value);
 	}
@@ -1579,6 +1631,8 @@ var nilai = document.getElementById('nilai');
     var strnilai11 =nilai11.value;
 	if (strnilai11.substr(0,1)=="(" && strnilai11.substr(strnilai11.length-1,1)==")"){
 		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-2)) + ")";
+	}else if(strnilai11.substr(0,1)=="-") {
+		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-1)) + ")";
 	}else{
 		nilai11.value = formatnilai11(this.value);
 	}
@@ -1611,6 +1665,8 @@ var nilai = document.getElementById('nilai');
     var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else if(strulang.substr(0,1)=="-") {
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
 		ulang.value = formatulang(this.value);
 	}
@@ -1620,7 +1676,7 @@ var nilai = document.getElementById('nilai');
   /* Fungsi formatulang */
   function formatulang(angka, prefix){
     var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
+	split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     ulang     		= split[0].substr(0, sisa),
     ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
@@ -1640,9 +1696,11 @@ var nilai = document.getElementById('nilai');
   ulang1.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatulang1() untuk mengubah angka yang di ketik menjadi format angka
-    var strulang1 =ulang.value;
+    var strulang1 =ulang1.value;
 	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
 		ulang1.value = "(" + formatulang(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else if(strulang1.substr(0,1)=="-") {
+		ulang1.value = "(" + formatulang1(strulang1.substr(1,strulang1.length-1)) + ")";
 	}else{
 		ulang1.value = formatulang1(this.value);
 	}
@@ -1674,6 +1732,8 @@ var nilai = document.getElementById('nilai');
     var strulang2 =ulang2.value;
 	if (strulang2.substr(0,1)=="(" && strulang2.substr(strulang2.length-1,1)==")"){
 		ulang2.value = "(" + formatulang(strulang2.substr(1,strulang2.length-2)) + ")";
+	}else if(strulang2.substr(0,1)=="-") {
+		ulang2.value = "(" + formatulang2(strulang2.substr(1,strulang2.length-1)) + ")";
 	}else{
 		ulang2.value = formatulang2(this.value);
 	}
@@ -1705,6 +1765,8 @@ var nilai = document.getElementById('nilai');
     var strjumlahuangmuka =jumlahuangmuka.value;
 	if (strjumlahuangmuka.substr(0,1)=="(" && strjumlahuangmuka.substr(strjumlahuangmuka.length-1,1)==")"){
 		jumlahuangmuka.value = "(" + formatjumlahuangmuka(strjumlahuangmuka.substr(1,strjumlahuangmuka.length-2)) + ")";
+	}else if(strjumlahuangmuka.substr(0,1)=="-") {
+		jumlahuangmuka.value = "(" + formatjumlahuangmuka(strjumlahuangmuka.substr(1,strjumlahuangmuka.length-1)) + ")";
 	}else{
 		jumlahuangmuka.value = formatjumlahuangmuka(this.value);
 	}
@@ -1735,6 +1797,8 @@ var nilai = document.getElementById('nilai');
     var strjumlahuangmuka2 =jumlahuangmuka2.value;
 	if (strjumlahuangmuka2.substr(0,1)=="(" && strjumlahuangmuka2.substr(strjumlahuangmuka2.length-1,1)==")"){
 		jumlahuangmuka2.value = "(" + formatjumlahuangmuka2(strjumlahuangmuka2.substr(1,strjumlahuangmuka2.length-2)) + ")";
+	}else if(strjumlahuangmuka2.substr(0,1)=="-") {
+		jumlahuangmuka2.value = "(" + formatjumlahuangmuka2(strjumlahuangmuka2.substr(1,strjumlahuangmuka2.length-1)) + ")";
 	}else{
 		jumlahuangmuka2.value = formatjumlahuangmuka2(this.value);
 	}
@@ -1765,6 +1829,8 @@ var nilai = document.getElementById('nilai');
     var strjumlahuangmuka3 =jumlahuangmuka3.value;
 	if (strjumlahuangmuka3.substr(0,1)=="(" && strjumlahuangmuka3.substr(strjumlahuangmuka3.length-1,1)==")"){
 		jumlahuangmuka3.value = "(" + formatjumlahuangmuka3(strjumlahuangmuka3.substr(1,strjumlahuangmuka3.length-2)) + ")";
+	}else if(strjumlahuangmuka3.substr(0,1)=="-") {
+		jumlahuangmuka3.value = "(" + formatjumlahuangmuka3(strjumlahuangmuka3.substr(1,strjumlahuangmuka3.length-1)) + ")";
 	}else{
 		jumlahuangmuka3.value = formatjumlahuangmuka3(this.value);
 	}
@@ -1792,7 +1858,14 @@ var nilai = document.getElementById('nilai');
   negatif.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnegatif() untuk mengubah angka yang di ketik menjadi format angka
-    negatif.value = formatnegatif(this.value);
+	var strnegatif =negatif.value;
+	if (strnegatif.substr(0,1)=="(" && strnegatif.substr(strnegatif.length-1,1)==")"){
+		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-2)) + ")";
+	}else if(strnegatif.substr(0,1)=="-") {
+		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-1)) + ")";
+	}else{
+		negatif.value = formatnegatif(this.value);
+	}
   });
 
   /* Fungsi formatnegatif */
@@ -1817,7 +1890,14 @@ var nilai = document.getElementById('nilai');
   negatif2.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnegatif2() untuk mengubah angka yang di ketik menjadi format angka
-    negatif2.value = formatnegatif2(this.value);
+	var strnegatif2 =negatif2.value;
+	if (strnegatif2.substr(0,1)=="(" && strnegatif2.substr(strnegatif2.length-1,1)==")"){
+		negatif2.value = "(" + formatnegatif2(strnegatif2.substr(1,strnegatif2.length-2)) + ")";
+	}else if(strnegatif2.substr(0,1)=="-") {
+		negatif2.value = "(" + formatnegatif2(strnegatif2.substr(1,strnegatif2.length-1)) + ")";
+	}else{
+		negatif2.value = formatnegatif2(this.value);
+	}						 
   });
 
   /* Fungsi formatnegatif2 */
@@ -1842,7 +1922,14 @@ var nilai = document.getElementById('nilai');
   negatif3.addEventListener('mousemove', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnegatif3() untuk mengubah angka yang di ketik menjadi format angka
-    negatif3.value = formatnegatif3(this.value);
+	var strnegatif3 =negatif3.value;
+	if (strnegatif3.substr(0,1)=="(" && strnegatif3.substr(strnegatif3.length-1,1)==")"){
+		negatif3.value = "(" + formatnegatif3(strnegatif3.substr(1,strnegatif3.length-2)) + ")";
+	}else if(strnegatif3.substr(0,1)=="-") {
+		negatif3.value = "(" + formatnegatif3(strnegatif3.substr(1,strnegatif3.length-1)) + ")";
+	}else{
+		negatif3.value = formatnegatif3(this.value);
+	}
   });
 
   /* Fungsi formatnegatif3 */

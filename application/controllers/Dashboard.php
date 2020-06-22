@@ -323,7 +323,7 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/report_pajak', $data);
 	}
-
+	
 	public function report_pajak(){
 		
 		$data['active1'] = '';
@@ -460,6 +460,7 @@ class Dashboard extends CI_Controller {
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['process_tax_H']=$this->Dashboard_model->getProcessTaxHeader($id_payment);
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -562,6 +563,7 @@ class Dashboard extends CI_Controller {
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['process_tax_H']=$this->Dashboard_model->getProcessTaxHeader($id_payment);
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -644,8 +646,8 @@ class Dashboard extends CI_Controller {
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['process_tax_H']=$this->Dashboard_model->getProcessTaxHeader($id_payment);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
-
 		
 		// $this->load->view('akses/user/header_user');
 		$this->load->view('akses/report/print_prf', $data);
@@ -726,6 +728,7 @@ class Dashboard extends CI_Controller {
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['process_tax_H']=$this->Dashboard_model->getProcessTaxHeader($id_payment);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 
 		
@@ -862,7 +865,7 @@ class Dashboard extends CI_Controller {
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['gprocess'] = $this->Dashboard_model->getProcessing();
 		$data['tax'] = $this->Dashboard_model->getTax();
@@ -873,6 +876,7 @@ class Dashboard extends CI_Controller {
 		$data['persen'] = $this->Dashboard_model->getTarif();
 		$data['getnpwp'] = $this->Dashboard_model->getDataNPWP($id_payment);
 		$data['getdatatax'] = $this->Dashboard_model->getDataTax($id_payment);
+		$data['getnouruttax'] = $this->Dashboard_model->getUrutTax($id_payment);
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_sp3_2', $data);
@@ -1851,7 +1855,7 @@ class Dashboard extends CI_Controller {
 
 		redirect('Dashboard/bank');
 	}
-
+	
 	function DataPajak(){
 		$data['active1'] = '';
 		$data['d_pajak'] = 'active';
@@ -1998,7 +2002,7 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_info_tax', $data);
 	}
 	
- 	public function gettarifbytax($id){
+	public function gettarifbytax($id){
 		$data['tarif'] = $this->Dashboard_model->getTarifByTax($id);
 		echo json_encode($data);
 	}
@@ -2048,6 +2052,16 @@ class Dashboard extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function delete_tax()
+	{
+		$id_payment=$this->input->post('id_payment');		
+		$no_urut=$this->input->post('no_urut');
+		
+		$this->Dashboard_model->delete_tax($id_payment, $no_urut);
+		$data = $this->Dashboard_model->getDataTax($id_payment);
+		echo json_encode($data);
+	}
+	
 	public function submittax()
 	{
 		$data = array(
@@ -2056,6 +2070,37 @@ class Dashboard extends CI_Controller {
 					'nomor_surat' => $this->input->post('nomor_surat')		
 					);
 		$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
+		$this->Dashboard_model->updatestatustax(array('id_payment' => $this->input->post('id_payment')), $data);
 		echo json_encode(array("status" => TRUE));
+	}
+	
+	public function caridatadashboard()
+	{
+			$profileid=$this->input->post('selsearch');
+			$txtsearch=$this->input->post('txtpencarian');
+			$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+	
+	public function tax_edit($id)
+	{
+		$id_payment=$this->input->post('id_payment');		
+		$no_urut=$this->input->post('no_urut');
+		$data = $this->Dashboard_model->get_tax_by_nourut($id_payment,$no_urut);
+		echo json_encode($data);
+	}
+	
+	public function updatetaxdraft()
+	{
+		$id = $this->input->post('id_payment');
+		$urutold = $this->input->post('txtnourutold');
+		$urutnew = $this->input->post('txtnourut');
+		$data = array(
+				'no_urut' => $this->input->post('no_urut'),
+		);
+		$this->Dashboard_model->tax_update($id,$urutold,$urutnew);
+		$data = $this->Dashboard_model->getDataTax($id);
+		
+		echo json_encode($data);
 	}
 }

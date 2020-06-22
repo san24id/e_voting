@@ -115,8 +115,8 @@
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
-
-							            if($test2[$b] == '6'){
+                          
+						              if($test2[$b] == '6'){
                             $xxi5 .= "6";
                           }  
                         }
@@ -142,7 +142,7 @@
                         <td>
                         <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
                       </td><td>
-                        <input id="checkcCC" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi2=="6"? 'checked':''?> disabled>Corporate Credit Card <br>
+                        <input id="checkcCC" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi2=="6"? 'checked':''?> disabled>Corporate Credit Card<br>
                       </td>
                       </tr>   
                       <tr>
@@ -450,9 +450,9 @@
                           <th>Keterangan</th>
                         </tr>
                       </thead>
-                      <tbody> -->
-                       <!-- <?php foreach ($process_tax as $tampil) {?> -->
-                        <!-- //Baris 1 
+                      <tbody> 
+                       <?php foreach ($process_tax as $tampil) {?>
+                         //Baris 1 
                         <tr>
                           <td><?php echo $tampil->jenis_pajak;?></td>
                           <td><?php echo $tampil->kode_pajak;?></td>
@@ -484,9 +484,9 @@
                     <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Dashboard/monitoring" role="button">Back</a>&nbsp;&nbsp;
-                          <?php if ($row->status == 5 ){ ?>
-                            <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
-                          <?php } ?>
+                        <?php if ($row->status == 5 ){ ?>
+                          <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
+                        <?php } ?>
                         <!-- <?php if($row->status == 1){ ?>
                           <button type="button" data-toggle="modal" data-target="#accept<?php echo $row->id_payment; ?>" class="btn btn-success">Accept</button>
                         <?php } ?>   -->
@@ -622,7 +622,7 @@
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
         <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
         <label>Notes :</label>                
-        <textarea type="text" class="form-control" name="note"></textarea>
+        <textarea type="text" class="form-control" name="note" required></textarea>
         <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
       </div>
@@ -647,7 +647,7 @@
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
         <p align="justify">Apakah anda yakin akan mengembalikan Form SP3 ini : <?=$row->nomor_surat?> ke Bagian Tax?</p>
         <label>Notes :</label>                
-        <textarea type="text" class="form-control" name="note"></textarea>
+        <textarea type="text" class="form-control" name="note" required></textarea>
         <input type="hidden" name="handled_by" value="a.ester">
         <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
@@ -781,8 +781,8 @@ function myPopup(myURL, myWidth, myHeight) {
             var left = (screen.width - myWidth) / 2;
             var top = (screen.height - myHeight) / 4;
             var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
-}	
-															
+}
+																																																													 
 function printThis() {
   window.print();
 }

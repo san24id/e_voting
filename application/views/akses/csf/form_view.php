@@ -511,7 +511,7 @@
                                     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                     <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
                                     <label>Notes :</label>                
-                                    <textarea type="text" class="form-control" name="note"></textarea>
+                                    <textarea type="text" class="form-control" name="note" require></textarea>
                                     <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
                                     <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                                   </div>
@@ -627,7 +627,7 @@
                                     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                     <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
                                     <label>Notes :</label>                
-                                    <textarea type="text" class="form-control" name="note"></textarea>
+                                    <textarea type="text" class="form-control" name="note" required></textarea>
                                     <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
                                     <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                                   </div>

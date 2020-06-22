@@ -70,6 +70,14 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/dashboard_user', $data);
 	}
 
+	public function caridatadashboard()
+	{
+			$profileid=$this->input->post('selsearch');
+			$txtsearch=$this->input->post('txtpencarian');
+			$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
 	function periode(){
 		$sid = $this->session->userdata("id_user");
 

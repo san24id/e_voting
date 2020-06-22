@@ -298,13 +298,12 @@
 								<div class="form-group">
 									<label class="col-md-1">Criteria</label>
 									<div class="col-md-2">
-										 <select class="form-control select2" id="selprofilesearch" name="selprofilesearch" style="width: 100%;">
+										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
 											<option value='1'> Tanggal </option>
-											<option value='2'> Status </option>
-											<option value='3'> Jenis Pembayaran </option>
-											<option value='4'> Nomor Surat </option>
-											<option value='5'> Pemohon </option>
+											<option value='2'> Jenis Pembayaran </option>
+											<option value='3'> Nomor Surat </option>
+											<option value='4'> Pemohon </option>
 											<option value='5'> Penerima </option>
 										</select>
 									</div> 	
@@ -316,7 +315,7 @@
 								<!-- <div class="form-group">
 									<label>&nbsp;</label>      -->        
 									<span class="input-group-btn">
-										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="cariarsip1()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
 									</span>   
 
 								<!-- </div> -->
@@ -421,7 +420,6 @@
                         ?>
                     <td><?php echo $buka; ?></td>
                     <td><?php echo $row->submit_date;?></td>
-
                     <td>
                       <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                     </td>      
@@ -563,6 +561,93 @@ $(function () {
               ]
       }]
   });
+  
+ </script>
+
+<script type="text/javascript"> 
+ function caridata()
+    {
+	  url = "<?php echo base_url('dashboard/caridatadashboard') ?>";
+      $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#formCari').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data);
+			    var status; 
+				var istatus;
+				var ino=1;
+				var tbl1 = $('#example1').DataTable(); 
+				tbl1.clear().draw();
+                $.each(data, function(key, item) 
+                      {       
+					    status =  item.status;
+						switch(status) {
+						  case "0":
+							istatus ='<img src="assets/dashboard/images/legend/draft.png">';  
+							break;
+						  case "1":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+						  case "11":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+                          case "2":
+							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
+							break;
+                          case "3":
+							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
+							break;
+                          case "4":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "5":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "6":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "7":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "8":
+							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							break;
+                          case "9":
+							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							break; 
+                          case "10":
+							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
+							break;  
+						  default:
+							istatus = '';
+						}
+						
+						tbl1.row.add( [
+						  ino,
+						  istatus,
+              item.tanggal,
+						  item.jenis_pembayaran,
+						  item.nomor_surat,
+						  item.label1,
+						  item.display_name,
+						  item.penerima,
+						  item.submit_date,
+						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+                        ] ).draw(false);
+						ino++; 
+                })  
+            },
+            error: function (data)
+            {
+              console.log(data);
+                alert('Error get data');
+            }
+        });
+    }
+	
 </script>
 
 <script>

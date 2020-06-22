@@ -4,7 +4,8 @@ td[rowspan="6"] {
   text-align: left;
 }
 </style>
-      <!-- Content Wrapper. Contains page content -->   
+
+      <!-- Content Wrapper. Contains page content -->
       <?php foreach ($payment as $row){ ?>          
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -68,8 +69,7 @@ td[rowspan="6"] {
                                   'Dec' => 'Des'                                    
                                                                                                                                                                      
                                 );
-                                  $bulan_ing = date('M');                               
-                                                               
+                                  $bulan_ing = date('M');
                             ?>     
                         <tr>
                           <td><font size="+1" >Tanggal : </td>
@@ -98,6 +98,16 @@ td[rowspan="6"] {
                           <td> &nbsp;</td>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
+                        </tr>
+                        <tr>
+                          <td>Status <i>Outstanding Advance</i> Pemohon<br>
+                            <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta"> <i>Akumulasi > Rp. 20 Juta</i></input><br>
+                            <input type="checkbox" name="label2" value="Outstanding Advance > 3 Transaksi"> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
+                          </td>
+                          <td> </td>
+                          <td> &nbsp;</td>
+                          <td><font size="+1">Perkiraan Tanggal Selesai Pekerjaan : <br> Terima Barang</i><font></td>
+                          <td><input type="text" name="tanggal_selesai" class="form-control" value="<?php echo date("d-M-Y", strtotime($row->label3));?>" required></td>
                         </tr>
                       </tbody>
                     </table>
@@ -294,7 +304,7 @@ td[rowspan="6"] {
                         ?>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $buka; ?>"></td>
+                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima; ?>"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -439,18 +449,10 @@ td[rowspan="6"] {
                       </tbody>
                     </table>
                                 
-                    <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
-                   
-                    <p align="justify">Apa kamu yakin akan mengirimkan Form APF ini : &nbsp; <?php echo $arf_doc; ?></p>
-                    <label>Kepada CSF Reviewer?</label>   
-                    <input type="hidden" name="handled_by" value="i.akmal">                       
-
-                    <!-- <select name="handled_by">
-                        <option>--- Choose ---</option>
-                    <?php foreach ($csf as $get) {?>
-                        <option value="<?php echo $get->username; ?>"><?php echo $get->username; ?></option>
-                    <?php } ?> -->
-                    </select>            
+                    <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">                   
+                    
+                    <input type="hidden" name="handled_by" value="i.akmal">                    
+                    
                   </div>  
                 </div>
                      
@@ -462,10 +464,10 @@ td[rowspan="6"] {
                   </div>
                 </div>                                                 
             </div>
-          </section>    
+          </section>     
 
         </form>
-        <?php } ?>  
+        <?php } ?>
         <!-- /.content -->
       </div>
 
@@ -591,83 +593,98 @@ function nominal(){
   // alert(l);
     
   var get_x = x.replace(/\D+/g, '');
-  if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
+  if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
 		get_x= -Math.abs(get_x);		
   }else{
 	  get_x= Math.abs(get_x);		
   }
   var get_b = b.replace(/\D+/g, '');
-  if (b.substr(0,1)=="(" && b.substr(b.length-1,1)==")"){		
+  if ((b.substr(0,1)=="(" && b.substr(b.length-1,1)==")")|| b.substr(0,1)=="-"){		
 		get_b= -Math.abs(get_b);		
   }else{
 	  get_b= Math.abs(get_b);		
   }
   var get_c = c.replace(/\D+/g, '');
-  if (c.substr(0,1)=="(" && c.substr(c.length-1,1)==")"){		
+  if ((c.substr(0,1)=="(" && c.substr(c.length-1,1)==")")|| c.substr(0,1)=="-"){		
 		get_c= -Math.abs(get_c);		
   }else{
 	  get_c= Math.abs(get_c);		
   }
   var get_d = d.replace(/\D+/g, ''); 
-  if (d.substr(0,1)=="(" && d.substr(d.length-1,1)==")"){		
+  if ((d.substr(0,1)=="(" && d.substr(d.length-1,1)==")")|| d.substr(0,1)=="-"){		
 		get_d= -Math.abs(get_d);		
   }else{
 	  get_d= Math.abs(get_d);		
   }  
   var get_e = e.replace(/\D+/g, '');
-  if (e.substr(0,1)=="(" && e.substr(e.length-1,1)==")"){		
+  if ((e.substr(0,1)=="(" && e.substr(e.length-1,1)==")")|| e.substr(0,1)=="-"){		
 		get_e= -Math.abs(get_e);		
   }else{
 	  get_e= Math.abs(get_e);		
   }
   var get_f = f.replace(/\D+/g, '');
-  if (f.substr(0,1)=="" && f.substr(f.length-1,1)==")"){		
+  if ((f.substr(0,1)=="" && f.substr(f.length-1,1)==")")|| f.substr(0,1)=="-"){		
 		get_f= -Math.abs(get_f);		
   }else{
 	  get_f= Math.abs(get_f);		
   }
   
   var get_g = g.replace(/\D+/g, '');
-  if (g.substr(0,1)=="(" && g.substr(g.length-1,1)==")"){		
+  if ((g.substr(0,1)=="(" && g.substr(g.length-1,1)==")")|| g.substr(0,1)=="-"){		
 		get_g= -Math.abs(get_g);		
   }else{
 	  get_g= Math.abs(get_g);		
   }
   
   var get_h = h.replace(/\D+/g, '');
-  if (h.substr(0,1)=="(" && h.substr(h.length-1,1)==")"){		
+  if ((h.substr(0,1)=="(" && h.substr(h.length-1,1)==")")|| h.substr(0,1)=="-"){		
 		get_h= -Math.abs(get_h);		
   }else{
 	  get_h= Math.abs(get_h);		
   }
   
   var get_i = i.replace(/\D+/g, '');
-  if (i.substr(0,1)=="(" && i.substr(i.length-1,1)==")"){		
+  if ((i.substr(0,1)=="(" && i.substr(i.length-1,1)==")")|| i.substr(0,1)=="-"){		
 		get_i= -Math.abs(get_i);		
   }else{
 	  get_i= Math.abs(get_i);		
   }
   
   var get_j = j.replace(/\D+/g, '');
-  if (j.substr(0,1)=="(" && j.substr(j.length-1,1)==")"){		
+  if ((j.substr(0,1)=="(" && j.substr(j.length-1,1)==")")|| j.substr(0,1)=="-"){		
 		get_j= -Math.abs(get_j);		
   }else{
 	  get_j= Math.abs(get_j);		
   }
   
   var get_k = k.replace(/\D+/g, '');
-  if (k.substr(0,1)=="(" && k.substr(k.length-1,1)==")"){		
+  if ((k.substr(0,1)=="(" && k.substr(k.length-1,1)==")")|| k.substr(0,1)=="-"){		
 		get_k= -Math.abs(get_k);		
   }else{
 	  get_k= Math.abs(get_k);		
   }
 
   var get_l = l.replace(/\D+/g, '');  
-  if (l.substr(0,1)=="(" && l.substr(l.length-1,1)==")"){		
+  if ((l.substr(0,1)=="(" && l.substr(l.length-1,1)==")")|| l.substr(0,1)=="-"){		
 		get_l= -Math.abs(get_l);		
   }else{
 	  get_l= Math.abs(get_l);		
   }
+  
+  
+  /*var get_x = x.replace(/\./g,'');
+  // alert(get_x);
+  var get_b = b.replace(/\./g,'');
+  var get_c = c.replace(/\./g,'');
+  var get_d = d.replace(/\./g,''); 
+  var get_e = e.replace(/\./g,'');
+  var get_f = f.replace(/\./g,'');
+  var get_g = g.replace(/\./g,'');
+  var get_h = h.replace(/\./g,'');
+  var get_i = i.replace(/\./g,'');
+  var get_j = j.replace(/\./g,'');
+  var get_k = k.replace(/\./g,'');
+  var get_l = l.replace(/\./g,'');*/
 
   var sum_x = Number(get_x) + 0 ;
   var sum_b = Number(get_b) + 0 ;
@@ -690,7 +707,9 @@ function nominal(){
     //document.getElementById("ulang").value = hasil ;
     // document.getElementById("ulang1").value = hasil ;
   // }  
-  var bilangan= ''+hasil+'';
+  var bilangan= ''+Math.abs(hasil)+'';
+  
+  
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -801,7 +820,14 @@ function nominal(){
       default:
       muncul = "";
     }
-    
+	
+     if(hasil<0){
+		  kalimat="(" + kalimat + ") ";
+	  }
+	  if(hasil==0){
+		  kalimat="Nol ";
+	  }
+	  
     document.getElementById("terbilang").value=kalimat+muncul;
     // alert(kalimat);  
 
@@ -847,12 +873,15 @@ function nominal(){
 	  document.getElementById("ulang").value = hasil ;
   }
   
+  
   var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else if (strulang.substr(0,1)=="-" ){
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
-		ulang.value = formatulang(this.value);
-	}  
+		ulang.value = formatulang(strulang);
+	} 
 }
 
   // Format Separator Id Nilai 
@@ -863,6 +892,8 @@ function nominal(){
     var strnilai =nilai.value;
 	if (strnilai.substr(0,1)=="(" && strnilai.substr(strnilai.length-1,1)==")"){
 		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-2)) + ")";
+	}else if(strnilai.substr(0,1)=="-") {
+		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-1)) + ")";
 	}else{
 		nilai.value = formatnilai(this.value);
 	}
@@ -892,9 +923,11 @@ function nominal(){
   nilai1.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai1() untuk mengubah angka yang di ketik menjadi format angka
-	var strnilai1 =nilai1.value;
-	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")"){
+	 var strnilai1 =nilai1.value;
+	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")") {
 		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-2)) + ")";
+	}else if(strnilai1.substr(0,1)=="-") {
+		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-1)) + ")";
 	}else{
 		nilai1.value = formatnilai1(this.value);
 	}
@@ -928,6 +961,8 @@ function nominal(){
     var strnilai2 =nilai2.value;
 	if (strnilai2.substr(0,1)=="(" && strnilai2.substr(strnilai2.length-1,1)==")"){
 		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-2)) + ")";
+	}else if(strnilai2.substr(0,1)=="-") {
+		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-1)) + ")";
 	}else{
 		nilai2.value = formatnilai2(this.value);
 	}
@@ -959,6 +994,8 @@ function nominal(){
 	var strnilai3 =nilai3.value;
 	if (strnilai3.substr(0,1)=="(" && strnilai3.substr(strnilai3.length-1,1)==")"){
 		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-2)) + ")";
+	}else if(strnilai3.substr(0,1)=="-") {
+		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-1)) + ")";
 	}else{
 		nilai3.value = formatnilai3(this.value);
 	}
@@ -991,6 +1028,8 @@ function nominal(){
     var strnilai4 =nilai4.value;
 	if (strnilai4.substr(0,1)=="(" && strnilai4.substr(strnilai4.length-1,1)==")"){
 		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-2)) + ")";
+	}else if(strnilai4.substr(0,1)=="-") {
+		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-1)) + ")";
 	}else{
 		nilai4.value = formatnilai4(this.value);
 	}
@@ -1022,6 +1061,8 @@ function nominal(){
     var strnilai5 =nilai5.value;
 	if (strnilai5.substr(0,1)=="(" && strnilai5.substr(strnilai5.length-1,1)==")"){
 		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-2)) + ")";
+	}else if(strnilai5.substr(0,1)=="-") {
+		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-1)) + ")";
 	}else{
 		nilai5.value = formatnilai5(this.value);
 	}
@@ -1053,6 +1094,8 @@ function nominal(){
     var strnilai6 =nilai6.value;
 	if (strnilai6.substr(0,1)=="(" && strnilai6.substr(strnilai6.length-1,1)==")"){
 		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-2)) + ")";
+	}else if(strnilai6.substr(0,1)=="-") {
+		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-1)) + ")";
 	}else{
 		nilai6.value = formatnilai6(this.value);
 	}
@@ -1084,6 +1127,8 @@ function nominal(){
     var strnilai7 =nilai7.value;
 	if (strnilai7.substr(0,1)=="(" && strnilai7.substr(strnilai7.length-1,1)==")"){
 		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-2)) + ")";
+	}else if(strnilai7.substr(0,1)=="-") {
+		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-1)) + ")";
 	}else{
 		nilai7.value = formatnilai7(this.value);
 	}
@@ -1115,6 +1160,8 @@ function nominal(){
     var strnilai8 =nilai8.value;
 	if (strnilai8.substr(0,1)=="(" && strnilai8.substr(strnilai8.length-1,1)==")"){
 		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-2)) + ")";
+	}else if(strnilai8.substr(0,1)=="-") {
+		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-1)) + ")";
 	}else{
 		nilai8.value = formatnilai8(this.value);
 	}
@@ -1146,6 +1193,8 @@ function nominal(){
     var strnilai9 =nilai9.value;
 	if (strnilai9.substr(0,1)=="(" && strnilai9.substr(strnilai9.length-1,1)==")"){
 		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-2)) + ")";
+	}else if(strnilai9.substr(0,1)=="-") {
+		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-1)) + ")";
 	}else{
 		nilai9.value = formatnilai9(this.value);
 	}
@@ -1177,6 +1226,8 @@ function nominal(){
     var strnilai10 =nilai10.value;
 	if (strnilai10.substr(0,1)=="(" && strnilai10.substr(strnilai10.length-1,1)==")"){
 		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-2)) + ")";
+	}else if(strnilai10.substr(0,1)=="-") {
+		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-1)) + ")";
 	}else{
 		nilai10.value = formatnilai10(this.value);
 	}
@@ -1208,6 +1259,8 @@ function nominal(){
     var strnilai11 =nilai11.value;
 	if (strnilai11.substr(0,1)=="(" && strnilai11.substr(strnilai11.length-1,1)==")"){
 		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-2)) + ")";
+	}else if(strnilai11.substr(0,1)=="-") {
+		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-1)) + ")";
 	}else{
 		nilai11.value = formatnilai11(this.value);
 	}
@@ -1240,6 +1293,8 @@ function nominal(){
     var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else if(strulang.substr(0,1)=="-") {
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
 		ulang.value = formatulang(this.value);
 	}
@@ -1262,100 +1317,8 @@ function nominal(){
 
     ulang = split[1] != undefined ? ulang + ',' + split[1] : ulang;
     return prefix == undefined ? ulang : (ulang ? + ulang : '');
-  }  
-
-// function math() {
-// 	var a = parseInt(document.getElementById("1").value);
-//   // alert(a);
-// 	var b = parseInt(document.getElementById("2").value);
-//   // alert(b);
-// 	if(a && b){
-//     document.getElementById("msg").value= a*(b/100);
-//   }		
-//   if(a){
-//     document.getElementById("msg2").value= a*(10/100);
-//   }  
-// }
+  }
 </script>
-
-<!-- <script charset="utf-8" type="text/javascript">
-function penyebut(){
-    var bilangan=document.getElementById("ulang1").value;
-    var kalimat="";
-    var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
-    var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
-    var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
-    var panjang_bilangan = bilangan.length;
-     
-    /* pengujian panjang bilangan */
-    if(panjang_bilangan > 15){
-        kalimat = "Diluar Batas";
-    }else{
-        /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
-        for(i = 1; i <= panjang_bilangan; i++) {
-            angka[i] = bilangan.substr(-(i),1);
-        }
-         
-        var i = 1;
-        var j = 0;
-         
-        /* mulai proses iterasi terhadap array angka */
-        while(i <= panjang_bilangan){
-            subkalimat = "";
-            kata1 = "";
-            kata2 = "";
-            kata3 = "";
-             
-            /* untuk Ratusan */
-            if(angka[i+2] != "0"){
-                if(angka[i+2] == "1"){
-                    kata1 = "Seratus";
-                }else{
-                    kata1 = kata[angka[i+2]] + " Ratus";
-                }
-            }
-             
-            /* untuk Puluhan atau Belasan */
-            if(angka[i+1] != "0"){
-                if(angka[i+1] == "1"){
-                    if(angka[i] == "0"){
-                        kata2 = "Sepuluh";
-                    }else if(angka[i] == "1"){
-                        kata2 = "Sebelas";
-                    }else{
-                        kata2 = kata[angka[i]] + " Belas";
-                    }
-                }else{
-                    kata2 = kata[angka[i+1]] + " Puluh";
-                }
-            }
-             
-            /* untuk Satuan */
-            if (angka[i] != "0"){
-                if (angka[i+1] != "1"){
-                    kata3 = kata[angka[i]];
-                }
-            }
-             
-            /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
-            if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
-                subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
-            }
-             
-            /* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
-            kalimat = subkalimat + kalimat;
-            i = i + 3;
-            j = j + 1;
-        }
-         
-        /* mengganti Satu Ribu jadi Seribu jika diperlukan */
-        if ((angka[5] == "0") && (angka[6] == "0")){
-            kalimat = kalimat.replace("Satu Ribu","Seribu");
-        }
-    }
-    document.getElementById("terbilang").value=kalimat;
-}
-</script> -->
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">

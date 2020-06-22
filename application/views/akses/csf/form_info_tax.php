@@ -54,9 +54,67 @@
   
       <!-- Content Wrapper. Contains page content -->
       <div >
-       
+           <?php 
+						
+						$deN='unchecked';
+						$deY='unchecked';
+						$nde='unchecked';
+						$nde50='unchecked';
+						$part='unchecked';
+						$objY='unchecked';
+						$objN='unchecked';
+						$objE='unchecked';
+						$objT='unchecked';
+						
+					   $de='0';
+					   $opsi='0';
+					   $objek='0';
+					   $nilai='0';
+					   
+					   foreach ($process_tax_H as $taxH) {
+						   
+					   $de= $taxH->de;
+					   $opsi= $taxH->opsional;
+					   $objek= $taxH->objek_pajak;
+					   $nilai= $taxH->nilai;
+						   
+					   }
+					   if($de=='1'){
+						   $deY='checked';
+					   }else{
+						   $deN='checked';
+					   }
+					   
+					   if($opsi=='1'){
+						   $nde='checked';
+					   }
+					   
+					   if($opsi=='2'){
+						   $nde50='checked';
+					   }
+						
+						if($opsi=='3'){
+						   $part='checked';
+					   }
 
-          <?php foreach ($ppayment as $row){ ?>          
+						if($objek=='1'){
+							$objY='checked';
+						}
+						if($objek=='0'){
+							$objN='checked';
+						}
+						
+						if($objek=='2'){
+							$objE='checked';
+						}
+						
+						if($objek=='3'){
+							$objT='checked';
+						}
+						//var_dump($objek);
+						//exit();
+
+			foreach ($ppayment as $row){ ?>          
             <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -65,6 +123,34 @@
                 <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>" >
                 <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>" >
                   <div class="box-header with-border">
+                    <p align="right">
+                      <?php if($row->status == 0){
+                          echo "<img src='assets/dashboard/images/legend/draft.png'>";  
+                        }else if($row->status == 1){
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                        }else if($row->status == 11){
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                        }else if($row->status == 2){
+                          echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                        }else if($row->status == 3){
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
+                        }else if($row->status == 4){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 5){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 6){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 7){
+                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                        }else if($row->status == 8){
+                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                        }else if($row->status == 9){
+                          echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                        }else if($row->status == 10){
+                          echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                        }
+                      ?>
+                    </p>
                     <h5>
                       <br>                        
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
@@ -76,14 +162,63 @@
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td align="center"><b><font size="3" style="font-family: calibri;">No Surat : &nbsp; <?php echo $row->nomor_surat;?></b></td>
+                        <td align="center"><b><font size="3" style="font-family: calibri;">No Surat : &nbsp; <?php echo $row->nomor_surat;?></font></b></td>
                         </tr>
                       </tbody>
                     </table>
                                      
-					          </br>
+					</br>
+					</br>
                        
-
+					   <form id="form" action="#"> 
+					 
+					   <font size="3" style="font-family: calibri;">
+					<table width="70%">
+                      <tr>
+                        <td><b>Deductible Expense</b></td>
+                        <td>
+                          <input type="checkbox" id="chkdeY" name="de"  <?php echo $deY; ?>  disabled> Ya<br>
+                        </td>
+                        <td>
+                          <input type="checkbox" id="chkdeN" name="de" <?php echo $deN; ?>  disabled> Tidak</input><br>
+                        </td>
+                        </tr>  
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="chkNDE"  <?php echo $nde; ?> disabled> NDE</input><br>
+                          </td>
+                        </tr>  
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled> NDE50</input><br>                            
+                        </td>
+                        </tr> 
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td width="8%">
+                          &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled> PARTNDE</input><br>                            
+                        </td>
+                        <td width="2%"><font size="3">Rp</font></td>
+                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='<?php echo $nilai; ?>' disabled></td>
+                        </tr>
+                    </table>
+                    <table width="70%">   
+                      <tr>
+                        <td><b>Objek Pajak</b></td>
+                        <td><input id="chkObjPjkY" type="checkbox" name="chkObjPjkY" <?php echo $objY; ?>  disabled > Ya </td>
+                        <td> <input id="chkObjPjkN"  type="checkbox" name="chkObjPjkN" <?php echo $objN; ?>  disabled> Tidak</input> </td>
+                        <td><input id="chkObjPjkE" type="checkbox" name="chkObjPjkE" <?php echo $objE; ?>  disabled> Employee</input> </td>
+                        <td><input id="chkObjPjkT" type="checkbox" name="chkObjPjkT" <?php echo $objT; ?>  disabled> Tax at Settlement</input> </td>
+                      </tr>                        
+                    </table>
+					</font>
+					</form>
+					</br>
                     <?php if ($row->status == 5 ){ ?>
                        
                       <h6>

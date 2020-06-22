@@ -411,7 +411,21 @@ function penjumlahan(){
   // var b = parseInt(document.getElementById("uangmuka").value);
 
   // if(reva && revb){
-    document.getElementById("hasil").value = ''+hasil+''; 
+	  if(hasil<0){
+		  document.getElementById("hasil").value = '('+Math.abs(hasil)+')'; 
+	  }else{
+	  	document.getElementById("hasil").value = ''+hasil+''; 
+    
+	  }
+	  
+	  var strhasil=document.getElementById("hasil");
+	  var strulang1 =strhasil.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		strhasil.value = formatuangmuka(strulang1);
+	} 
+	  
   // }
 }
 
@@ -500,19 +514,19 @@ function checkUangMuka() {
 
 function checkCreditCard() {
 
-  if($("#checkcreditcard").is(':checked')){
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', true);
-    $('#checked2').prop('checked', false);
-  }else{
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', false);
-    $('#checked2').prop('checked', false);
-  }
+	if($("#checkcreditcard").is(':checked')){
+		$('#auto').prop('checked', false);
+	  $('#checkrequest').prop('checked', false);
+	  $('#checksettlement').prop('checked', false);
+	  $('#checked').prop('checked', true);
+	  $('#checked2').prop('checked', false);
+	}else{
+		$('#auto').prop('checked', false);
+	  $('#checkrequest').prop('checked', false);
+	  $('#checksettlement').prop('checked', false);
+	  $('#checked').prop('checked', false);
+	  $('#checked2').prop('checked', false);
+	}
 }
 
 
@@ -708,7 +722,7 @@ function showInput() {
     });
   });
 
-  $("#checkcreditcard").on( "click", function() {
+	$("#checkcreditcard").on( "click", function() {
     if($("#checkcreditcard").is(':checked')){
       $('#auto').prop('checked', false);
       $('#checkrequest').prop('checked', false);
@@ -726,8 +740,7 @@ function showInput() {
       $('#show').show();
       $('#choose').show();
     }
-});
-
+});											 
   // $(document).ready(function() { 
   //   $('#penerima').change(function() {
   //         $('#kode_vendor').val() = $(this).val());

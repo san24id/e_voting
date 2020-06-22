@@ -602,9 +602,9 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql);
         // var_dump($sql);exit;
         return $query;
-    } 
-
-    function getPajak(){
+    }
+	
+	function getPajak(){
         $sql = "SELECT * FROM m_jenis_pajak";
 
         $query = $this->db->query($sql)->result();
@@ -789,6 +789,7 @@ class Dashboard_model extends CI_Model{
         $sql = "DELETE FROM `t_creditcard` WHERE `t_creditcard`.`id_div` = $id";
 
         $query = $this->db->query($sql);
+
         return $query;
     }
 
@@ -894,6 +895,12 @@ class Dashboard_model extends CI_Model{
 		return $this->db->affected_rows();
 	}
     
+	public function updatestatustax($where, $data)
+	{
+		$this->db->update('t_tax', $data, $where);
+		return $this->db->affected_rows();
+	}
+    
 	public function getDataNPWP($id) {
         $sql = "SELECT m.nama,m.npwp,m.alamat FROM t_payment p, m_honorarium_konsultan m WHERE m.kode_vendor=p.vendor and p.id_payment = '$id'";
         $query = $this->db->query($sql)->result();
@@ -901,9 +908,64 @@ class Dashboard_model extends CI_Model{
     }
 	
 	public function getDataTax($id) {
-        $sql = "SELECT jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan FROM t_tax where id_payment = '$id'";
+        $sql = "select id_payment,no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan FROM t_tax where id_payment = '$id' order by no_urut";
         $query = $this->db->query($sql)->result();
         return $query;
     }								
     
+	public function getdatabysearch($profileid,$txtsearch)
+	{
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' ";
+		
+		switch ($profileid) {
+			  case "1":
+				$sql .=" and a.tanggal like '%" . $txtsearch . "%'";
+				break;
+			  case "2":
+				$sql .=" and b.jenis_pembayaran like '%" . $txtsearch . "%'";
+				break;
+			  case "3":
+				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+				break;
+			  case "4":
+				$sql .=" and a.display_name like '%" . $txtsearch . "%'";
+				break;
+			  case "5":
+				$sql .=" and a.penerima like '%" . $txtsearch . "%'";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+            
+        $query=$this->db->query($sql);
+		return $query->result();
+	}
+	
+		public function delete_tax($id,$urut)
+	{
+		$sqldel  ="delete from t_tax where id_payment=" . $id . " and no_urut='" . $urut . "'";
+		$this->db->query($sqldel);
+	}
+	
+	public function getUrutTax($id) {
+        $sql = "select max(no_urut) as no_urut from t_tax where id_payment = '$id'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function get_tax_by_nourut($id,$urut)
+	{
+		$sql = "select * ";
+		$sql .="FROM t_tax where id_payment = ".$id. " and no_urut =" .$urut;
+        $query=$this->db->query($sql);
+		return $query->result();
+	}
+	
+	public function tax_update($id, $urutold,$urutnew)
+	{
+		$sqldel  ="update t_tax set no_urut='" .$urutnew. "' where id_payment=" . $id . " and no_urut='" . $urutold . "'";
+		$this->db->query($sqldel);
+	}
 }

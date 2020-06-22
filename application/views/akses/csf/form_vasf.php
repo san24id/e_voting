@@ -383,7 +383,7 @@ td[rowspan="6"] {
                               <input type="hidden" name="status" value="3">
                               <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                               <label>Notes :</label>                
-                              <textarea type="text" class="form-control" name="note"></textarea>
+                              <textarea type="text" class="form-control" name="note" required></textarea>
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
                               <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
                               <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
@@ -417,7 +417,7 @@ td[rowspan="6"] {
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
                               
                               <label>Notes :</label>                
-                              <textarea type="text" class="form-control" name="note"></textarea>
+                              <textarea type="text" class="form-control" name="note" required></textarea>
                               <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
                               <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                             </div>
@@ -475,7 +475,7 @@ td[rowspan="6"] {
                             <input type="hidden" name="status" value="3">
                             <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
-                            <textarea type="text" class="form-control" name="note"></textarea>
+                            <textarea type="text" class="form-control" name="note" required></textarea>
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
                             <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
@@ -513,7 +513,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select> -->
                             <label>Notes :</label>                
-                            <textarea type="text" class="form-control" name="note"></textarea>
+                            <textarea type="text" class="form-control" name="note" required></textarea>
                             <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
                             <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           </div>

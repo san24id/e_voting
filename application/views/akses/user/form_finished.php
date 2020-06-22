@@ -110,9 +110,9 @@
                         <td></td>
                         <td>
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
+                        </td>
                         <td>
-                        <td>
-                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?>> Corporate Credit Card </input><br>
+                          <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> > Corporate Credit Card </input><br>
                         </td>
                       </tr>
                       
@@ -204,7 +204,7 @@
                       <tr>
                         <td width="30%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        </td>
+                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
                         <td align="right"><b> : </b></td>
                         <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
                       </tr>
@@ -263,7 +263,7 @@
                         <td><input id="textInput" type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>"></td>                                
                       </tr>
                       <tr>
-                        </td>
+                        <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
                       </tr>
                       </tbody>
                     </table>
@@ -676,26 +676,6 @@ function fung(){
 
   });
 
-  $("#checkcreditcard").on( "click", function() {
-    if($("#checkcreditcard").is(':checked')){
-      $('#auto').prop('checked', false);
-      $('#checkrequest').prop('checked', false);
-      $('#checksettlement').prop('checked', false);
-      $('#checked').prop('checked', true);
-      $('#checked2').prop('checked', false);
-      $('#show').hide();
-      $('#choose').hide();
-    }else{
-      $('#auto').prop('checked', false);
-      $('#checkrequest').prop('checked', false);
-      $('#checksettlement').prop('checked', false);
-      $('#checked').prop('checked', false);
-      $('#checked2').prop('checked', false);
-      $('#show').show();
-      $('#choose').show();
-    }
-});
-
 </script>
 
 <script>
@@ -713,7 +693,21 @@ function penjumlahan(){
   // var b = parseInt(document.getElementById("uangmuka").value);
 
   // if(reva && revb){
-    document.getElementById("hasil").value = hasil; 
+	  if(hasil<0){
+		  document.getElementById("hasil").value = '('+Math.abs(hasil)+')'; 
+	  }else{
+	  	document.getElementById("hasil").value = ''+hasil+''; 
+    
+	  }
+	  
+	  var strhasil=document.getElementById("hasil");
+	  var strulang1 =strhasil.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		strhasil.value = formatuangmuka(strulang1);
+	} 
+	  
   // }
 }
 
@@ -742,7 +736,7 @@ function hide() {
   } else {
      text.style.display = "none";
   }
-  document.getElementById("checkcreditcard").checked = false;
+
 }
 
 function hide2() {
@@ -775,23 +769,6 @@ function checkUangMuka() {
   } 
   // alert(checkrequest);
 
-}
-
-function checkCreditCard() {
-
-  if($("#checkcreditcard").is(':checked')){
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', true);
-    $('#checked2').prop('checked', false);
-  }else{
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', false);
-    $('#checked2').prop('checked', false);
-  }
 }
 
 function checkUangMuka2() {

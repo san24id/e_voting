@@ -453,7 +453,8 @@
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
                               
                               <a class="btn btn-danger" href="Home/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Set To Print</a>
-                            <?php } ?>   
+                            <?php } ?>    
+                            
                         <?php } ?>
                         
                         <?php 
@@ -593,7 +594,9 @@
 function printThis() {
   window.print();
 }
+</script>
 
+<script>
 function update() {
   alert("Data Successfully to Update");
 }

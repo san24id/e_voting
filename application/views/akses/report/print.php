@@ -125,6 +125,10 @@
                               if($test2[$b] == '5'){
                                 $xxi5 .= "5";
                               }
+
+                              if($test2[$b] == '6'){
+                                $xxi6 .= "6";
+                              }
                             }
                         ?>
                       <tr>
@@ -137,7 +141,7 @@
                         </td>
 
                         <td><font size="1">
-                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance<br>
+                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Direct Payment<br>
                         </td>
                         <td><font size="1">
                           <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
@@ -146,9 +150,12 @@
 
                       <tr>
                         <td></td>
-                        <td><font size="1">
-                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
                         <td>
+                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                        </td>
+                        <td>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Corporate Credit Card </input><br>
+                        </td>
                       </tr>
                       
                       <tr>

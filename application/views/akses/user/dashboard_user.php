@@ -308,6 +308,60 @@
           </div>
         </div>
 
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <!-- <h3 class="box-title">Pencarian</h3> -->
+            <button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Advanced Search</button>
+            
+          </div>
+          <!-- /.box-header -->
+          <div id="cari" class="collapse">
+            <div class="box-body">
+              <div class="row">
+                <form id="formCari">		
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="col-md-1">Criteria</label>
+                      <div class="col-md-2">
+                        <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+                          <option value='0'>== Pilih ==</option>
+                          <option value='1'> Tanggal </option>
+                          <option value='2'> Jenis Pembayaran </option>
+                          <option value='3'> Nomor Surat </option>
+                          <option value='4'> Pemohon </option>
+                          <option value='5'> Penerima </option>
+                        </select>
+                      </div> 	
+                      <div class="col-md-6">
+                        <input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+                      </div>		
+                        
+                      <div class="col-md-3">
+                    <!-- <div class="form-group">
+                      <label>&nbsp;</label>      -->        
+                      <span class="input-group-btn">
+                        <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+                      </span>   
+
+                    <!-- </div> -->
+                    <!-- /.form-group -->
+                  </div>
+                    </div>     
+                    
+                  </div>
+                  
+                  
+
+                  
+                </form>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.box-body -->        
+        </div>
+
         <div class="row">
             <div class="col-xs-12">
             <!-- /.box -->
@@ -325,7 +379,6 @@
                       <th>Nomor Surat</th>
                       <th>Description</th>
                       <th>Pemohon</th>
-                      <th>Bank Account</th>
                       <th>Nama Penerima</th>
                       <th>Tanggal Submit SP3</th>
                       <th>Action</th>
@@ -536,6 +589,92 @@ $(function () {
               ]
       }]
   });
+</script>
+
+<script type="text/javascript"> 
+ function caridata()
+    {
+	  url = "<?php echo base_url('home/caridatadashboard') ?>";
+      $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#formCari').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data);
+			    var status; 
+				var istatus;
+				var ino=1;
+				var tbl1 = $('#example1').DataTable(); 
+				tbl1.clear().draw();
+                $.each(data, function(key, item) 
+                      {       
+					    status =  item.status;
+						switch(status) {
+						  case "0":
+							istatus ='<img src="assets/dashboard/images/legend/draft.png">';  
+							break;
+						  case "1":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+						  case "11":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+                          case "2":
+							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
+							break;
+                          case "3":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+                          case "4":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "5":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "6":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "7":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "8":
+							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							break;
+                          case "9":
+							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							break; 
+                          case "10":
+							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
+							break;  
+						  default:
+							istatus = '';
+						}
+						
+						tbl1.row.add( [
+						  ino,
+						  istatus,
+              item.tanggal,
+						  item.jenis_pembayaran,
+						  item.nomor_surat,
+						  item.label1,
+						  item.display_name,
+						  item.penerima,
+						  item.submit_date,
+						  '<a href="home/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+                        ] ).draw(false);
+						ino++; 
+                })  
+            },
+            error: function (data)
+            {
+              console.log(data);
+                alert('Error get data');
+            }
+        });
+    }
+	
 </script>
 
 <script>
