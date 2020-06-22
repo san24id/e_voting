@@ -157,7 +157,7 @@
 										  <td><?php echo $row->rejected_by; ?>  </td>
 										  <td><?php echo $row->division_id; ?> </td>
 										  <td><?php echo $row->nomor_surat; ?> </td>
-										  <!-- <td> XXX </td> -->
+										  <td> <?php echo $row->apf_doc;?> </td>
 										  <td><?php echo $row->label1;?> </td>
 										  <td><?php echo $row->note;?> </td>
 										  <td>

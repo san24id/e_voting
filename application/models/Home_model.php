@@ -185,13 +185,13 @@ class Home_model extends CI_Model{
     public function getTotalDraft(){
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
-
+		
         $sql = "SELECT * FROM (SELECT b.status_laporan, a.division_id, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
                 a.status = b.id_status AND a.division_id = '$dvs' AND a.status = '0'
                 GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.totaldraft != 0 
                 AND otr.status_laporan IS NOT NULL";
                 
-        // var_dump($sql);exit;        
+         //var_dump($sql);exit;        
         $query = $this->db->query($sql)->result();
         return $query;
         
@@ -332,5 +332,48 @@ class Home_model extends CI_Model{
 
         return $query;
     }
+	
 
+	public function getDetailOutstanding($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('4','5','6','7','8','9') and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getDetailDraft($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '0' and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	function getDetailUpcomingOverdue(){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql ="SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	function getDetailOverdue(){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql ="SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	function getDeatilCreditCard(){
+        $sql ="SELECT * FROM t_creditcard";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
 }

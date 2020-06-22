@@ -149,10 +149,10 @@
 
                       <tr>
                         <td></td>
-                        <td>
+                        <td><font size="1">
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
                         </td>
-                        <td>
+                        <td><font size="1">
                             <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Corporate Credit Card </input><br>
                         </td>
                       </tr>

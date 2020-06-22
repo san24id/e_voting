@@ -69,8 +69,8 @@
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
                       <center><b><u><font size="+2" style="font-family: calibri;">FORM VERIFIKASI PAJAK</font></u></b></center>
-                    </h5>
-
+                    </h5>                    
+                    
                     <br>
 					<!-- <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()">  -->
 					<form id="form" action="#"> 
@@ -161,13 +161,11 @@
 						<?php foreach($getdatatax as $gtax){?>
 						 <tr>
 						 
-						  	<td style="text-align: center">					  
-						  					  
+						  	<td style="text-align: center">	  						  					  
 								<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(<?php echo $gtax->id_tax;?>)"><i class="glyphicon glyphicon-pencil"></i></button>
 								<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus" <?php echo $btndelete; ?> onclick="delete_tax(<?php echo $gtax->id_tax;?>,<?php echo $gtax->id_payment;?>)"><i class="glyphicon glyphicon-trash"></i></button>
-												
 							</td>
-							<td><?php echo $gtax->no_urut;?></td>
+							<td> <?php echo $gtax->no_urut;?></td>
 						    <td><?php echo $gtax->jenis_pajak;?></td>
 							<td><?php echo $gtax->kode_pajak;?></td>
 							<td><?php echo $gtax->kode_map;?></td>
@@ -185,7 +183,8 @@
 							<td><?php echo $gtax->tahun;?></td>
 							<td><?php echo $gtax->keterangan;?></td>
 						  </tr>
-						 <?php }?>                                         
+						 <?php }?>
+                                           
                       </tbody> 
                       
                     </table>
@@ -577,7 +576,7 @@ function edit_tax(id)
 			$('[name="txtalamat"]').val(data[0].alamat);			
 			$strid=data[0].jenis_pajak;
 			if( $strid == 'PPh Pasal 21') {
-				alert($strid);
+				
 					$("#txtnamanpwp").prop('readonly', false);
 					$('#txtnonpwp').prop('readonly', false);	
 					$('#txtalamat').prop('readonly', false);		
@@ -968,7 +967,7 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				alert('Error get data from ajax');
+				// alert('Error get data from ajax');
 			}
 		});
 		
@@ -991,7 +990,7 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				alert('Error get data from ajax');
+				// alert('Error get data from ajax');
 			}
 		});
 		
@@ -1281,7 +1280,7 @@ function PajakTerhutang(){
                 <div class="modal-body form">
                   <form action="#" id="form1" class="form-horizontal">
 					<input type="hidden" name="handled_by" value="n.prasetyaningrum"> 
-					<?php foreach ($ppayment as $row) { ?>
+					<?php foreach ($payment as $row) { ?>
 					<input type="hidden" name="id_tax" id="id_tax" value="<?php echo $row->id_tax; ?>" >
 					<input type="hidden" name="id_payment" id="id_payment" value="<?php echo $row->id_payment; ?>" >
 					<input type="hidden" name="nomor_surat" id="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >

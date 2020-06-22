@@ -60,7 +60,7 @@
             <div class="info-box-content bg-gray">
               <br>
               <?php foreach ($tot_pay_req as $tot_req) { ?>
-              <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span>
+                <a href="<?php echo base_url('approval/all_detail_payment/1')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span>
               <?php } ?>       
               <span class="info-box-text"><font color="green"><center>Total Payment Request</center></font></span>  
             </div>
@@ -77,7 +77,7 @@
               <div class="info-box-content bg-gray">
                 <br>
                 <?php foreach ($outstanding as $tot_outstanding) { ?>  
-                <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span>
+                  <a href="<?php echo base_url('approval/all_detail_payment/2')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span>
                 <?php } ?>           
                 <span class="info-box-text "><font color="green"><center>Total Outstanding Payment Request</center></font></span>
               </div>
@@ -95,7 +95,7 @@
               <div class="info-box-content bg-gray">
                 <br>  
                 <?php foreach ($draft as $tot_draft) { ?>
-                <span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span>
+                  <a href="<?php echo base_url('approval/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span>
                 <?php } ?>              
                 <span class="info-box-text "><font color="green"><center>Total Draft</center></font></span>
               </div>
@@ -197,30 +197,7 @@
                   </table>
                 </div>
                 <br><br>               
-                <!-- <div class="box-body">
-                 
-                  <td><img src="assets/dashboard/images/legend/yellow_nofull.png"></td>
-                  <td>Draft (Draft)</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/green_nobackground.png"></td>
-                  <td>Draft (Print)</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/green.png"></td>
-                  <td>Submitted</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/blue_nobackground.png"></td>
-                  <td>Processing</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/blue.png"></td>
-                  <td>Verified</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/yellow.png"></td>
-                  <td>Approved</td> &nbsp; &nbsp;
-
-                  <td><img src="assets/dashboard/images/legend/purple.png"></td>
-                  <td>Paid</td> &nbsp; &nbsp;
-                  
-                </div>    -->
+                
               </div>     
             </div>
             
@@ -254,11 +231,11 @@
                           <td align="center" width="25%"><div class="info-box box1">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                            <font size='5' color="white"><?php echo $count_upcoming; ?> </font></center></div>
+                            <a href="<?php echo base_url('approval/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></center></div>
                           </td>                          
                           <td align="center" width="25%"><div class="info-box box2">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
-                            <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
+                            <a href="<?php echo base_url('approval/all_detail_payment/5')?>"><center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
                             <font size='5' color="white"><?php echo $count_overdue; ?> </font> </center></div>
                           </td>
 
@@ -372,12 +349,11 @@
                     <tr>
                       <th>NO.</th>
                       <th>Status</th>
-                      <th>Tanggal</th>
+                      <th>Tanggal SP3</th>
                       <th>Jenis Pembayaran</th>
-                      <th>Nomor Surat</th>
-                      <th>Description</th>
-                      <th>Pemohon</th>
-                      <th>Bank Account</th>
+                      <th>Nomor SP3</th>
+                      <th>Deskripsi</th>
+                      <th>Nama Pemohon</th>
                       <th>Nama Penerima</th>
                       <th>Tanggal Submit SP3</th>
                       <th>Action</th>
@@ -432,7 +408,6 @@
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <td><?php echo $row->akun_bank; ?></td>
                     <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();

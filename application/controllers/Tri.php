@@ -616,4 +616,54 @@ class Tri extends CI_Controller {
 			$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
 			echo json_encode($data);
 	}
+
+	public function all_detail_payment($id)
+	{
+		$sid = $this->session->userdata("id_user");
+		$data['dashboard'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+		
+		switch($id){
+			
+		}
+		
+		switch ($id) {
+		  case "1":
+			$data['payment'] = $this->Home_model->getPayment($sid);
+			$this->session->set_userdata('titleHeader','All Payment Request List');
+			$this->session->set_userdata('filter','1');
+			break;
+		  case "2":
+			$data['payment'] = $this->Home_model->getDetailOutstanding($sid);
+			$this->session->set_userdata('titleHeader','Outstanding Payment Request List');
+			$this->session->set_userdata('filter','2');
+			break;
+		  case "3":
+			$data['payment'] = $this->Home_model->getDetailDraft($sid);
+			$this->session->set_userdata('titleHeader','Draft Payment Request List');
+			$this->session->set_userdata('filter','3');
+			break;
+		  case "4":
+			$data['payment'] = $this->Home_model->getDetailUpcomingOverdue($sid);
+			$this->session->set_userdata('titleHeader','Advance Upcoming Overdue List');
+			$this->session->set_userdata('filter','4');
+			break;
+		  case "5":
+			$data['payment'] = $this->Home_model->getDetailOverdue($sid);
+			$this->session->set_userdata('titleHeader','Advance Overdue List');
+			$this->session->set_userdata('filter','5');
+			break;
+		  case "6":
+			$data['creditcard'] = $this->Home_model->getDeatilCreditCard($sid);
+			$this->session->set_userdata('titleHeader','Credit Card Corporate List');
+			$this->session->set_userdata('filter','6');
+			break;
+		  default:
+			$data['payment'] = $this->Home_model->getPayment($sid);
+		}
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/view_detail', $data);
+	}
 }    

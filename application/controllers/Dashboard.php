@@ -2115,19 +2115,9 @@ class Dashboard extends CI_Controller {
 			echo json_encode($data);
 	}
 	
-	public function caridatadashboard2()
+	public function tax_edit($id_tax)
 	{
-			$profileid=$this->input->post('selsearch');
-			$txtsearch=$this->input->post('txtpencarian');
-			$data = $this->Dashboard_model->getdatabysearch2($profileid,$txtsearch);
-			echo json_encode($data);
-	}
-
-	public function tax_edit($id)
-	{
-		$id_payment=$this->input->post('id_payment');		
-		$no_urut=$this->input->post('no_urut');
-		$data = $this->Dashboard_model->get_tax_by_nourut($id_payment,$no_urut);
+		$data= $this->Dashboard_model->get_tax_by_nourut($id_tax);
 		echo json_encode($data);
 	}
 	
@@ -2140,6 +2130,7 @@ class Dashboard extends CI_Controller {
 				'no_urut' => $urutnew,
 		);*/
 		$id = $this->input->post('id_payment');
+		$idtax = $this->input->post('id_tax');
 		$data = array(
 				'jenis_pajak' => $this->input->post('vjnspjk'),
 				'kode_pajak' => $this->input->post('vkdpjk'),
@@ -2159,7 +2150,7 @@ class Dashboard extends CI_Controller {
 				'tahun' => $this->input->post('seltahunppn'),
 				'no_urut' => $this->input->post('txtnourut')
 			);
-			
+		
 		$this->Dashboard_model->tax_update('t_tax',array('id_tax' => $idtax), $data);
 		$data = $this->Dashboard_model->getDataTax($id);
 		
@@ -2171,5 +2162,56 @@ class Dashboard extends CI_Controller {
 		$data= $this->Dashboard_model->getUrutTax($id_payment);
 		echo json_encode($data);
 	}
+	
+	public function all_detail_payment($id)
+	{
+		$sid = $this->session->userdata("id_user");
+		$data['dashboard'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+		
+		switch($id){
+			
+		}
+		
+		switch ($id) {
+		  case "1":
+			$data['payment'] = $this->Home_model->getPayment($sid);
+			$this->session->set_userdata('titleHeader','All Payment Request List');
+			$this->session->set_userdata('filter','1');
+			break;
+		  case "2":
+			$data['payment'] = $this->Home_model->getDetailOutstanding($sid);
+			$this->session->set_userdata('titleHeader','Outstanding Payment Request List');
+			$this->session->set_userdata('filter','2');
+			break;
+		  case "3":
+			$data['payment'] = $this->Home_model->getDetailDraft($sid);
+			$this->session->set_userdata('titleHeader','Draft Payment Request List');
+			$this->session->set_userdata('filter','3');
+			break;
+		  case "4":
+			$data['payment'] = $this->Home_model->getDetailUpcomingOverdue($sid);
+			$this->session->set_userdata('titleHeader','Advance Upcoming Overdue List');
+			$this->session->set_userdata('filter','4');
+			break;
+		  case "5":
+			$data['payment'] = $this->Home_model->getDetailOverdue($sid);
+			$this->session->set_userdata('titleHeader','Advance Overdue List');
+			$this->session->set_userdata('filter','5');
+			break;
+		  case "6":
+			$data['creditcard'] = $this->Home_model->getDeatilCreditCard($sid);
+			$this->session->set_userdata('titleHeader','Credit Card Corporate List');
+			$this->session->set_userdata('filter','6');
+			break;
+		  default:
+			$data['payment'] = $this->Home_model->getPayment($sid);
+		}
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/view_detail', $data);
+	}
+
 	
 }

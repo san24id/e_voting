@@ -46,243 +46,25 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <!-- <h1>
-        Data Pengajuan Payment        
-      </h1> -->
+       <h1>
+        <?php echo $this->session->userdata("titleHeader"); 
+		
+		$divpayment='';
+		$divcreditcard='';
+		if($this->session->userdata('filter')=='6'){
+			$divcreditcard=' ';
+			$divpayment='style="display:none;"';
+		}else{
+			$divpayment=' ';
+			$divcreditcard='style="display:none;"';
+		}
+		?>     
+      </h1> 
     </section>
 
     <section class="content bg-white">
-        <!-- Info boxes -->
-        <div class="row">        
-          <div class="col-md-3">
-          <div class="info-box bg-gray">
-            <span class="info-box-icon box4"><img align="center" src="assets/dashboard/images/legend/Total_payment_request.png"></i></span>
-            <div class="info-box-content bg-gray">
-              <br>
-              <?php foreach ($tot_pay_req as $tot_req) { ?>
-              <a href="<?php echo base_url('dashboard/all_detail_payment/1')?>"><span class="info-box-number"><font size='5' color="green"><center> <?php echo $tot_req->totalreq; ?></center></font></span></a>
-              <?php } ?>    
-              <span class="info-box-text"><font color="green"><center>Total Payment Request</center></font></span>  
-            </div>
-            
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-3">
-          <div class="info-box bg-gray">
-              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_outstanding.png"></i></span>
-              <div class="info-box-content bg-gray">
-                <br>
-                <?php foreach ($outstanding as $tot_outstanding) { ?>  
-                <a href="<?php echo base_url('dashboard/all_detail_payment/2')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span></a>
-                <?php } ?>            
-                <span class="info-box-text "><font color="green"><center>Total Outstanding Payment Request</center></font></span>
-              </div>
-              <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          </div>            
-          <!-- /.col -->
-          <!-- fix for small devices only -->
-          <div class="clearfix visible-sm-block"></div>
-
-          <div class="col-md-3">
-          <div class="info-box bg-gray">
-              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
-              <div class="info-box-content bg-gray">
-                <br>  
-                <?php foreach ($draft as $tot_draft) { ?>
-                <a href="<?php echo base_url('dashboard/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
-                <?php } ?>            
-                <span class="info-box-text "><font color="green"><center>Total Draft</center></font></span>
-              </div>
-              <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          </div>
-
-          <div class="col-md-3">
-          <div class="info-box bg-gray">
-              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/user.png"></i></span>
-              <div class="info-box-content bg-gray">
-                <br>
-                <span class="info-box-number"><font size='5' color="green"><center><?php echo $this->session->userdata("display_name"); ?></center></font></span>
-                <span class="info-box-text "><font color="green"><center>View By</center></font></span>
-              </div>
-              <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          </div>
-        </div>
-                
-        <div class="row">
-          <div class="col-md-6">
-            <div class="box-body">
-              <!-- USERS LIST -->
-              <div class="box box-success">
-                <div class="box-header with-border">
-                  <div class="box-tools pull-right">
-                    <span class="label label-success"></span>
-                  </div>
-                </div>
-                <div class="box-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                    <!-- periode -->
-                    <table width="100%">
-                      <?php echo form_open("Dashboard/periode_dashboard");?>
-                        <tr>
-                          <td class="period"><font color="white" size="3">Period: </font></td>
-                          <td></td>
-                          <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="date" name="start_date" id="start_date"></td>
-                          <td><font size="3">s/d</font></td>
-                          <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="date" name="end_date"></td>
-                          <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
-                        </tr>
-                      <?php echo form_close();?>  
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <div class="box-body">
-                  <table width="100%"> 
-                    <tr>
-                      <td colspan="45"><font size='6'><center>STATUS</center></font></td>
-                    </tr>
-                    <tr>
-                      <?php foreach ($draft as $tot_draft) { ?>
-                      <td width="12%"><div class="dua"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </font> </center></div> </td><td> &nbsp; 
-                      <?php } ?>   
-                      <?php foreach ($draftprint as $draftprint) { ?>                    
-                      <td width="12%"><div class="tiga"><center><font size='5'> <?php echo $draftprint->draftprint; ?> </font></center></div> </td> <td> &nbsp;
-                      <?php } ?>               
-                      <?php foreach ($submit as $submit) { ?>
-                      <td width="12%"><div class="empat"><center><font size='5'> <?php echo $submit->submit; ?> </font> </div> </td> <td> &nbsp;
-                      <?php } ?>                  
-                      <?php foreach ($process as $process) { ?>
-                      <td width="12%"><div class="lima"><center><font size='5'> <?php echo $process->process; ?> </font></center></div> </td> <td> &nbsp;
-                      <?php } ?>
-                      <?php foreach ($verifikasi as $verifikasi) { ?>
-                      <td width="12%"><div class="enam"><center><font size='5'> <?php echo $verifikasi->verifikasi; ?> </font></center></div> </td> <td> &nbsp;
-                      <?php } ?>
-                      <?php foreach ($approval as $approval) { ?>
-                      <td width="15%"><div class="tujuh"><center><font size='5' color="white"> <?php echo $approval->approval; ?> </font></center></div> </td> <td> &nbsp;
-                      <?php } ?>
-                      <?php foreach ($paid as $paid) { ?>
-                      <td width="15%"><div class="satu"><center><font size='5' color="white"> <?php echo $paid->paid; ?> </font></div></td><td> &nbsp;  
-                      <?php } ?>
-                    </tr>
-                    <tr>   
-                      
-                      <td><center><font size='3'> Draft </center></div> </td> <td> &nbsp;
-                                      
-                      <td><center><font size='3'> Draft(Print) </center></div> </td> <td> &nbsp;
-                      
-                      <td><center><font size='3'> Submitted </div> </td> <td> &nbsp;
-                      
-                      <td><center><font size='3'> Processing </center></div> </td> <td> &nbsp;
-                      
-                      <td><center><font size='3'> Verified </center></div> </td> <td> &nbsp;
-                      
-                      <td><center><font size='3' > Approval </center></div> </font></td> <td> &nbsp;
-                      
-                      <td><center><font size='3' > Paid </div> </font></td> <td> &nbsp;
-                      
-                    </tr>
-                  </table>
-                </div>
-                <br><br>               
-                
-              </div>     
-            </div>
-            
-            <div class="row">
-              <div class="col-md-12">
-                <div class="box-body">
-                  <!-- USERS LIST -->
-                  <div class="box box-success">
-                    <div class="box-header with-border">
-                      <div class="box-tools pull-right">
-                        <span class="label label-success"></span>
-                      </div>
-                    </div>
-                    <div class="box-body">
-                      <table width="100%">
-                      <?php foreach ($upcoming_over as $sebentar) { $tanggal_sekarang = date('Ymd');   ?>
-                        <?php 
-                              $string = $sebentar->upcoming;
-                              $stringBuka = str_replace("-", "", $string);
-                              // echo $stringBuka;              
-                        ?>
-
-                        <?php if ($tanggal_sekarang >= $stringBuka) {
-                              $count_overdue += 1;
-                              }else{
-                              $count_upcoming += 1;
-                              }
-                        ?>                        
-                      <?php } ?>
-                        <tr> 
-                          <td align="center" width="25%"><div class="info-box box1">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
-                            <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                            <a href="<?php echo base_url('dashboard/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
-                          </td>                          
-                          <td align="center" width="25%"><div class="info-box box2">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
-                            <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                            <a href="<?php echo base_url('dashboard/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
-                          </td>
-
-                          <td align="center" width="25%"><div class="info-box box3">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
-                            <center><font size='3' color="white"> Credit Card <br> Submission in 30 days <br> </font>
-                            <?php foreach ($creditcard as $cc) { ?>
-                            <a href="<?php echo base_url('dashboard/all_detail_payment/6')?>"><font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </a></center></div>
-                            <?php } ?>
-                          </td>  
-                        </tr>  
-                      </table>
-                    </div>  
-                  </div>
-                </div>
-              </div>      
-            </div>
-          </div>
-
-          <div class="col-md-6"><!--PieChart-->
-            <div class="box-body">
-                <!-- USERS LIST -->
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <div class="box-tools pull-right">
-                      <span class="label label-success"></span>
-                    </div>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body no-padding">
-                  <script src="https://code.highcharts.com/highcharts.js"></script>
-                  <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
-                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-                  <div class="col-md-9">
-                    <div id="pieChart" style="min-width: 600px; height: 400px; max-width: 600px; margin: 0 auto"></div> 
-                    </div>
-                  </div>
-                  <!-- /.box-body -->               
-                </div>
-                <!--/.box -->              
-            </div>
-          </div>
-        </div>
-
+        
+		<div id="divPayment" <?php echo $divpayment;?>>
 		<div class="box box-default">
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
@@ -352,6 +134,7 @@
                       <th>Nama Pemohon</th>
                       <th>Nama Penerima</th>
                       <th>Tanggal Submit SP3</th>
+												 
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -365,8 +148,8 @@
                         $test3 = count($test2);                        
                         ?>
                     <tr>
-                    <td><center><?php echo $i++; ?></center></td>
-                    <td><center><?php if($row->status == 0){
+                    <td><?php echo $i++; ?></td>
+                    <td><?php if($row->status == 0){
                             echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                           }else if($row->status == 1){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
@@ -391,7 +174,7 @@
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
-                        ?></center>
+                        ?>
                     </td>                  
                     <td><?php echo $row->tanggal; ?></td>
                     <td><?php                     
@@ -417,8 +200,54 @@
                     <td><?php echo $buka; ?></td>
                     <td><?php echo $row->submit_date;?></td>
                     <td>
-                      <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
+                      <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                     </td>      
+                    </tr>
+                <?php  } ?>
+                </tbody>
+                </table>
+                </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>  
+		</div>
+		
+		<div class="row" id="divCreditCard" <?php echo $divcreditcard;?>>
+            <div class="col-xs-12">
+            <!-- /.box -->
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                <div class="table-responsive">
+                    <table id="example2" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Divisi</th>
+                      <th>Pemegang Karut</th>
+                      <th>Nama PIC</th>
+                      <th>Target Submission</th>
+                      <th>Jatuh Tempo</th>
+                      <th>Jumlah</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                        $i = 1;
+                        foreach ($creditcard as $row){ 
+                        ?>
+                    <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $row->division_id; ?></td>                  
+                    <td><?php echo $row->pemegang_kartu; ?></td>
+                    <td><?php echo $row->nama_pic; ?></td>
+                    <td><?php echo $row->target_submission; ?></td>
+                    <td><?php echo $row->tempo; ?></td>
+                    <td><?php echo $row->jatah; ?></td> 
                     </tr>
                 <?php  } ?>
                 </tbody>
@@ -501,14 +330,7 @@
 <script>
 $(function () {
     $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+    $('#example2').DataTable();
   });
 
   Highcharts.chart('pieChart', {
@@ -624,13 +446,13 @@ $(function () {
 						tbl1.row.add( [
 						  ino,
 						  istatus,
-              item.tanggal,
+                          item.tanggal,
 						  item.jenis_pembayaran,
 						  item.nomor_surat,
 						  item.label1,
 						  item.display_name,
+						  item.akun_bank,
 						  item.penerima,
-						  item.submit_date,
 						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 

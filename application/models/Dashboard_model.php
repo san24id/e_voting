@@ -885,14 +885,14 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    // function rejectedapf($upd){
-    //     $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`nomor_surat`='".$upd['nomor_surat']."',
-    //             `rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."' WHERE `id`='".$upd['id']."'"; 
+    function rejectedapf($upd){
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`nomor_surat`='".$upd['nomor_surat']."',
+                `rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."' WHERE `id`='".$upd['id']."'"; 
         
-    //     $query = $this->db->query($sql);
+        $query = $this->db->query($sql);
 
-    //     return $query;
-    // }
+        return $query;
+    }
 
     function deletepay($id){
         $sql = "DELETE FROM `t_payment_l` WHERE `t_payment_l`.`id` = $id";
@@ -934,9 +934,34 @@ class Dashboard_model extends CI_Model{
     
 	public function getdatabysearch($profileid,$txtsearch)
 	{
+		$filter = $this->session->userdata("filter");
 		$dvs = $this->session->userdata('division_id');
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' ";
 		
+		switch ($filter) {
+			  case "1":
+				$sql .=" ";
+				break;
+			  case "2":
+				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				break;
+			  case "3":
+				$sql .=" and a.status = '0' ";
+				break;
+			  case "4":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate()  ";
+				break;
+			  case "5":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;
+			  /*case "6":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;*/
+			  default:
+				$sql .=" ";
+				
+			}
+			
 		switch ($profileid) {
 			  case "1":
 				$sql .=" and a.tanggal like '%" . $txtsearch . "%'";
@@ -960,7 +985,7 @@ class Dashboard_model extends CI_Model{
             
         $query=$this->db->query($sql);
 		return $query->result();
-    }
+	}
     
     public function getdatabysearch2($profileid,$txtsearch)
 	{
@@ -992,14 +1017,14 @@ class Dashboard_model extends CI_Model{
 		return $query->result();
 	}
 	
-		public function delete_tax($id,$urut)
+	public function delete_tax($id)
 	{
-		$sqldel  ="delete from t_tax where id_payment=" . $id . " and no_urut='" . $urut . "'";
+		$sqldel  ="DELETE FROM t_tax WHERE id_tax=" .$id ;
 		$this->db->query($sqldel);
 	}
 	
 	public function getUrutTax($id) {
-        $sql = "select max(ifnull(no_urut,1))+1 as no_urut from t_tax where id_payment = '$id'";
+        $sql = "SELECT max(ifnull(no_urut,1))+1 as no_urut FROM t_tax WHERE id_payment = '$id'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
