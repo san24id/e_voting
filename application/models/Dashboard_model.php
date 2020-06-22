@@ -913,7 +913,7 @@ class Dashboard_model extends CI_Model{
 		$this->db->update('t_payment', $data, $where);
 		return $this->db->affected_rows();
 	}
-    
+	
 	public function updatestatustax($where, $data)
 	{
 		$this->db->update('t_tax', $data, $where);
@@ -927,8 +927,8 @@ class Dashboard_model extends CI_Model{
     }
 	
 	public function getDataTax($id) {
-        $sql = "select id_payment,no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan FROM t_tax where id_payment = '$id' order by no_urut";
-        $query = $this->db->query($sql)->result();
+        $sql = "select id_tax,id_payment,ifnull(no_urut,1) no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan FROM t_tax where id_payment = '$id' order by no_urut";
+		$query = $this->db->query($sql)->result();
         return $query;
     }								
     
@@ -999,22 +999,25 @@ class Dashboard_model extends CI_Model{
 	}
 	
 	public function getUrutTax($id) {
-        $sql = "select max(no_urut) as no_urut from t_tax where id_payment = '$id'";
+        $sql = "select max(ifnull(no_urut,1))+1 as no_urut from t_tax where id_payment = '$id'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
 	
-	public function get_tax_by_nourut($id,$urut)
+	public function get_tax_by_nourut($id)
 	{
-		$sql = "select * ";
-		$sql .="FROM t_tax where id_payment = ".$id. " and no_urut =" .$urut;
-        $query=$this->db->query($sql);
-		return $query->result();
+		$sql = "select t.id_tax,t.id_payment,ifnull(t.no_urut,1) no_urut, t.nomor_surat, t.jenis_pajak,t.kode_pajak,t.kode_map,t.nama,t.npwp,t.alamat,t.tarif,";
+		$sql .= "t.special_tarif,t.fas_pajak,t.gross,t.dpp,t.dpp_gross,t.pajak_terutang,t.masa_pajak,t.tahun,t.keterangan,p.id_jenis_pjk , ";		
+		$sql .= "(select id_map from m_kode_map where trim(kode_map)=trim(t.kode_map)) id_map,";
+		$sql .= "t.de,t.opsional,t.nilai,t.objek_pajak  ";		
+		$sql .="FROM t_tax t, m_jenis_pajak p where trim(t.jenis_pajak)=trim(p.jenis_pajak) and t.id_tax = ".$id;
+		$query = $this->db->query($sql)->result();
+        return $query;
 	}
 	
-	public function tax_update($id, $urutold,$urutnew)
+	public function tax_update($table,$where, $data)
 	{
-		$sqldel  ="update t_tax set no_urut='" .$urutnew. "' where id_payment=" . $id . " and no_urut='" . $urutold . "'";
-		$this->db->query($sqldel);
+		$this->db->update($table, $data, $where);
+		return $this->db->affected_rows();
 	}
 }

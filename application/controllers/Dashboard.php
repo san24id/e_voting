@@ -2059,7 +2059,7 @@ class Dashboard extends CI_Controller {
 				'nomor_surat' => $this->input->post('nomor_surat'),
 				'de' => $this->input->post('vdeductible'),
 				'opsional' => $this->input->post('voptional'),
-				'nilai' => $this->input->post('strnilai'), //$this->input->post('nilai')
+				'nilai' => $this->input->post('nilai'),
 				'objek_pajak' => $this->input->post('vobjekpajak'),
 				'jenis_pajak' => $this->input->post('vjnspjk'),
 				'kode_pajak' => $this->input->post('vkdpjk'),
@@ -2076,7 +2076,8 @@ class Dashboard extends CI_Controller {
 				'pajak_terutang' => $this->input->post('vpajakterhutang'),
 				'masa_pajak' => $this->input->post('selmasappn'),
 				'keterangan' => $this->input->post('txtketerangan'),
-				'tahun' => $this->input->post('seltahunppn')
+				'tahun' => $this->input->post('seltahunppn'),
+				'no_urut' => $this->input->post('txtnourut')
 			);
 		$insert = $this->Dashboard_model->drafttax_add($data);
 		$data = $this->Dashboard_model->getDataTax($id);
@@ -2087,9 +2088,9 @@ class Dashboard extends CI_Controller {
 	public function delete_tax()
 	{
 		$id_payment=$this->input->post('id_payment');		
-		$no_urut=$this->input->post('no_urut');
+		$id_tax=$this->input->post('id_tax');	
 		
-		$this->Dashboard_model->delete_tax($id_payment, $no_urut);
+		$this->Dashboard_model->delete_tax($id_tax);
 		$data = $this->Dashboard_model->getDataTax($id_payment);
 		echo json_encode($data);
 	}
@@ -2132,15 +2133,43 @@ class Dashboard extends CI_Controller {
 	
 	public function updatetaxdraft()
 	{
-		$id = $this->input->post('id_payment');
-		$urutold = $this->input->post('txtnourutold');
-		$urutnew = $this->input->post('txtnourut');
+		/*$id = $this->input->post('id_payment');
+		$idtax = $this->input->post('id_tax');
+		$urutnew = $this->input->post('txtnourut');						
 		$data = array(
-				'no_urut' => $this->input->post('no_urut'),
-		);
-		$this->Dashboard_model->tax_update($id,$urutold,$urutnew);
+				'no_urut' => $urutnew,
+		);*/
+		$id = $this->input->post('id_payment');
+		$data = array(
+				'jenis_pajak' => $this->input->post('vjnspjk'),
+				'kode_pajak' => $this->input->post('vkdpjk'),
+				'kode_map' => $this->input->post('selKdMap'),
+				'nama' => $this->input->post('txtnamanpwp'),
+				'npwp' => $this->input->post('txtnonpwp'),
+				'alamat' => $this->input->post('txtalamat'),
+				'tarif' => $this->input->post('vtarif'),
+				'fas_pajak' => $this->input->post('txtfasilitas'),
+				'special_tarif' => $this->input->post('vtarifspesial'),
+				'gross' => $this->input->post('vgross'),
+				'dpp' => $this->input->post('txtdpp'),
+				'dpp_gross' => $this->input->post('txtdppgross'),
+				'pajak_terutang' => $this->input->post('vpajakterhutang'),
+				'masa_pajak' => $this->input->post('selmasappn'),
+				'keterangan' => $this->input->post('txtketerangan'),
+				'tahun' => $this->input->post('seltahunppn'),
+				'no_urut' => $this->input->post('txtnourut')
+			);
+			
+		$this->Dashboard_model->tax_update('t_tax',array('id_tax' => $idtax), $data);
 		$data = $this->Dashboard_model->getDataTax($id);
 		
 		echo json_encode($data);
 	}
+	
+	public function getnourut($id_payment)
+	{
+		$data= $this->Dashboard_model->getUrutTax($id_payment);
+		echo json_encode($data);
+	}
+	
 }
