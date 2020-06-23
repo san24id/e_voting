@@ -155,7 +155,7 @@
                       <tr>
                         <td width="35%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
@@ -204,7 +204,7 @@
                       <tr>
                         <td width="30%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
+                        </td>
                         <td align="right"><b> : </b></td>
                         <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
                       </tr>
@@ -262,9 +262,7 @@
                         <td>:</td>                           
                         <td><input id="textInput" type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>"></td>                                
                       </tr>
-                      <tr>
-                        <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
-                      </tr>
+                     
                       </tbody>
                     </table>
 
