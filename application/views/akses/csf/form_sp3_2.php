@@ -967,7 +967,7 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				alert('Error get data from ajax');
+				// alert('Error get data from ajax');
 			}
 		});
 		
@@ -990,7 +990,7 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				alert('Error get data from ajax');
+				// alert('Error get data from ajax');
 			}
 		});
 		

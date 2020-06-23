@@ -70,7 +70,7 @@
                       <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
-                      <center><b><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></b></center>
+                      <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
@@ -157,7 +157,7 @@
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="center">Tanggal : <?php echo $row->tanggal; ?></td>
+                      <td align="right">Tanggal : <?php echo $row->tanggal; ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<<?php echo $row->tanggal; ?>">
                       </tr>
                       <tr>
@@ -180,7 +180,7 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="35%"><b>- Tujuan Penggunaan </b></td>
+                        <td width="36%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
                         <td colspan="8"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
@@ -213,7 +213,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
+                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>" readonly></td>     
                       </tr>
                                                   
                       </tbody>
@@ -235,7 +235,7 @@
                           }
                         ?>
                       <tr>
-                        <td width="35%"> &nbsp; &nbsp; Nama</td>
+                        <td width="36%"> &nbsp; &nbsp; Nama</td>
                         <td><b> : </b></td>
                         <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $buka;?>" readonly></td>
                       </tr>
@@ -446,7 +446,7 @@
                         <a class="btn btn-warning" href="Home" role="button">Exit</a>
                         <?php if ($row->status == 0 || $row->status == 3) { ?>
                           <a class="btn btn-primary" href="Home/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
+                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6) { ?>
                               
                               <a class="btn btn-danger" href="Home/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
 

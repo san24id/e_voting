@@ -101,27 +101,27 @@
                         </td>
 
                         <td>
-                          <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Direct Payment<br>
+                          <input id="checked" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Direct Payment<br>
                         </td>
                         <td>
-                          <input id="checked2" onclick="hide2()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> > Cash Received</input><br>
+                          <input id="checked2" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> > Cash Received</input><br>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
                         <td>
-                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
+                          <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
                         </td>
                         <td>
-                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> > Corporate Credit Card </input><br>
+                            <input id="checkcreditcard" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> > Corporate Credit Card </input><br>
                         </td>
                       </tr>
                       
                       <tr>
                         <td></td>
                         <td>
-                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                          <input id="checksettlement" type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
                         </td>
                       </tr>                      
                     </table>
@@ -505,14 +505,186 @@
 </div>
 <!-- ./wrapper -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+<!-- jQuery 2.2.3 -->
+<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="assets/dashboard/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="assets/dashboard/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="assets/dashboard/dist/js/demo.js"></script>
+<script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
+<!-- Select2 -->
+<script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    
+<script>
 
-<script type="text/javascript">
+function penjumlahan(){
+  var a = document.getElementById("biaya").value;
+  var b = document.getElementById("uangmuka").value;
+  // var c = document.getElementById("hasil").value;
+  var reva = a.replace(/\./g,'');
+  var revb = b.replace(/\./g,'');
+  // var revc = c.replace(".","");
+  // alert(reva);
+  var hasil = parseInt(reva)-parseInt(revb);
+  // var aa = parseInt(rev).value;
+  // var b = parseInt(document.getElementById("uangmuka").value);
+
+  // if(reva && revb){
+	  if(hasil<0){
+		  document.getElementById("hasil").value = '('+Math.abs(hasil)+')'; 
+	  }else{
+	  	document.getElementById("hasil").value = ''+hasil+''; 
+    
+	  }
+	  
+	  var strhasil=document.getElementById("hasil");
+	  var strulang1 =strhasil.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		strhasil.value = formatuangmuka(strulang1);
+	} 
+	  
+  // }
+}
+
 function fung(){
   // alert();  
   var data = document.getElementById("penerima").value;
   
   document.getElementById("kode_vendor").value = data;
 }
+
+document.querySelector(".third").addEventListener('click', function(){
+  swal("Data Successfully to Save!");
+  function tambah() {
+  location.reload(true);
+        tr.hide();
+  }
+  
+});
+
+function myFunction(){
+  var x = document.getElementById("Select").value;
+
+  document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo2").innerHTML = x;
+  document.getElementById("demo3").innerHTML = x;
+}
+
+/*function hide() {
+  var checkBox = document.getElementById("checked");
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  var text1 = document.getElementById("show");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+  document.getElementById("checkcreditcard").checked = false;
+}*/
+
+function hide2() {
+  var checkBox = document.getElementById("checked").disabled = true;
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text1 = document.getElementById("show");
+  var text2 = document.getElementById("choose");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+
+}
+
+function checkUangMuka() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var text = document.getElementById("show");
+
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  } 
+  // alert(checkrequest);
+}
+
+function checkCreditCard() {
+
+  if($("#checkcreditcard").is(':checked')){
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', true);
+    $('#checked2').prop('checked', false);
+  }else{
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', false);
+    $('#checked2').prop('checked', false);
+  }
+}
+
+function checkUangMuka2() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+    text2.style.display = "block";
+  } else {
+    text2.style.display = "none";
+  }
+}
+
+function showInput() {
+  var checkBox = document.getElementById("lainnya");
+  var text = document.getElementById("text1");
+  var text2 = document.getElementById("text2");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text.style.display = "none"; 
+     text2.style.display = "none";
+
+  }
+}
+</script>
+
+<script type="text/javascript">
   
   var rupiah = document.getElementById('rupiah');
   rupiah.addEventListener('keyup', function(e){
@@ -694,165 +866,74 @@ function fung(){
       $('#show').show();
       $('#choose').show();
     }
-});
+  });
+
+  $("#auto").on( "click", function() {
+		$('#checkrequest').prop('checked', false);
+		$('#checksettlement').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		
+		if($("#auto").is(':checked')){
+		  $('#choose').show();
+		}else{		  
+		  $('#choose').hide();
+		}
+	});	
+
+	$("#checked").on( "click", function() {	
+		$('#checkrequest').prop('checked', false);
+		$('#checksettlement').prop('checked', false);
+		$('#auto').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		$('#choose').hide();
+
+	});	
+
+	$("#checked2").on( "click", function() {	
+		$('#checkrequest').prop('checked', false);
+		$('#checksettlement').prop('checked', false);
+		$('#auto').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		$('#choose').hide();
+
+	});	
+	
+	$("#checkrequest").on( "click", function() {
+		$('#auto').prop('checked', true);
+		$('#checksettlement').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		  
+		if($("#checkrequest").is(':checked')){
+		  $('#choose').show();
+		}else{
+		  $('#choose').hide();
+		}
+	});	
+	
+	$("#checksettlement").on( "click", function() {
+		$('#checkrequest').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#choose').hide();
+		if($("#checksettlement").is(':checked')){
+			$('#auto').prop('checked', true);	
+			$('#show').show();
+			
+		}else{
+			$('#show').hide();
+		}
+		
+		
+	});	
 </script>
-
-<script>
-
-function penjumlahan(){
-  var a = document.getElementById("biaya").value;
-  var b = document.getElementById("uangmuka").value;
-  // var c = document.getElementById("hasil").value;
-  var reva = a.replace(/\./g,'');
-  var revb = b.replace(/\./g,'');
-  // var revc = c.replace(".","");
-  // alert(reva);
-  var hasil = parseInt(reva)-parseInt(revb);
-  // var aa = parseInt(rev).value;
-  // var b = parseInt(document.getElementById("uangmuka").value);
-
-  // if(reva && revb){
-	  if(hasil<0){
-		  document.getElementById("hasil").value = '('+Math.abs(hasil)+')'; 
-	  }else{
-	  	document.getElementById("hasil").value = ''+hasil+''; 
-    
-	  }
-	  
-	  var strhasil=document.getElementById("hasil");
-	  var strulang1 =strhasil.value;
-	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
-		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
-	}else{
-		strhasil.value = formatuangmuka(strulang1);
-	} 
-	  
-  // }
-}
-
-function printThis() {
-  window.print();
-}
-
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Update!");  
-  function update() {
-    location.reload(true);
-    tr.hide();
-  }   
-});
-
-// function update() {
-//   alert("Data Successfully to Update");
-// }
-
-function hide() {
-  var checkBox = document.getElementById("checked");
-  var checkBox1 = document.getElementById("auto").disabled = true;
-  var checkBox2 = document.getElementById("checked2").disabled = true;
-  var checkBox3 = document.getElementById("checksettlement").disabled = true;
-  var checkBox4 = document.getElementById("checkrequest").disabled = true;
-  var text = document.getElementById("show");
-  if (checkBox.checked == false && checkBox2.checked == false ){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
-  document.getElementById("checkcreditcard").checked = false;
-}
-
-function hide2() {
-  var checkBox = document.getElementById("checked").disabled = true;
-  var checkBox1 = document.getElementById("auto").disabled = true;
-  var checkBox2 = document.getElementById("checked2");
-  var checkBox3 = document.getElementById("checksettlement").disabled = true;
-  var checkBox4 = document.getElementById("checkrequest").disabled = true;
-  var text = document.getElementById("show");
-  if (checkBox.checked == false && checkBox2.checked == false ){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
-
-}
-
-function checkUangMuka() {
-  // alert();
-  var checkBox1 = document.getElementById("checked").disabled = true;
-  // alert(checkBox1);
-  var checkBox2 = document.getElementById("checked2").disabled = true;
-  // alert(checkBox2);
-  var checkBox3 = document.getElementById("checksettlement").disabled = true;
-  // alert(checkBox3);
-
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checkrequest").checked == false){
-    document.getElementById("auto").checked=false
-  } 
-  // alert(checkrequest);
-
-}
-
-function checkCreditCard() {
-
-  if($("#checkcreditcard").is(':checked')){
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', true);
-    $('#checked2').prop('checked', false);
-  }else{
-    $('#auto').prop('checked', false);
-    $('#checkrequest').prop('checked', false);
-    $('#checksettlement').prop('checked', false);
-    $('#checked').prop('checked', false);
-    $('#checked2').prop('checked', false);
-  }
-}
-
-function checkUangMuka2() {
-  // alert();
-  var checkBox1 = document.getElementById("checked").disabled = true;
-  // alert(checkBox1);
-  var checkBox2 = document.getElementById("checked2").disabled = true;
-  var checkBox3 = document.getElementById("checkrequest").disabled = true;
-  document.getElementById("auto").checked = true;
-  if (document.getElementById("checksettlement").checked == false){
-    document.getElementById("auto").checked=false
-  } 
-}
-
-function showInput() {
-  var checkBox = document.getElementById("lainnya");
-  var text = document.getElementById("text1");
-  var text2 = document.getElementById("text2");
-  if (checkBox.checked == true){
-    text.style.display = "block";
-    text2.style.display = "block";
-  } else {
-     text.style.display = "none"; 
-     text2.style.display = "none";
-
-  }
-}
-</script>
-
-    <!-- jQuery 2.2.3 -->
-<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
-    <!-- Bootstrap 3.3.6 -->
-<script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
-<script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-<script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-<script src="assets/dashboard/plugins/fastclick/fastclick.js"></script>
-    <!-- AdminLTE App -->
-<script src="assets/dashboard/dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-<script src="assets/dashboard/dist/js/demo.js"></script>
-<script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
-    <!-- Select2 -->
-<script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>

@@ -25,7 +25,7 @@
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>                       
-                        <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td>
+                        <td align="center" width="50%"><b><font size="4" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td>
                             <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">                            
                         <!-- <td width="50%"><center><b>No ARF/ASF   :</b></center></td> -->
                         </tr>
@@ -92,7 +92,7 @@
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="center">Tanggal : <?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?></td>
+                      <td align="right">Tanggal : <?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>">
                         <input type="hidden" name="tanggal2" value="<?php echo date('Y-m-d');?>">
                       </tr>
@@ -176,9 +176,9 @@
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                         <tr>
-                          <td width="33%">Nama</td>
+                          <td width="36%">Nama</td>
                           <td align="right"><b>:</b></td>
-                          <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                          <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima" required>
                                               <option value="">--Choose--</option>
                                               <?php foreach ($data_vendor as $nama){?> 
                                                 <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
@@ -189,7 +189,7 @@
                         <tr>  
                           <td>Kode Vendor</td>
                           <td align="right"><b>:</b></td>
-                          <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                          <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
                           <td>Bank</td>
                           <td>:</td>
                           <td><select id="dropdown" name="akun_bank" class="form-control">

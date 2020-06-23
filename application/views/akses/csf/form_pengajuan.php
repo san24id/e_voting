@@ -178,7 +178,7 @@
                       <tr>
                         <td width="33%">Nama</td>
                         <td align="right"><b>:</b></td>
-                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima" required>
                                             <option value="">--Choose--</option>
                                             <?php foreach ($data_vendor as $nama){?> 
                                               <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
@@ -189,10 +189,10 @@
                       <tr>  
                         <td>Kode Vendor</td>
                         <td align="right"><b>:</b></td>
-                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
                         <td>Bank</td>
                         <td>:</td>
-                        <td><select id="dropdown" name="akun_bank" class="form-control">
+                        <td><select id="dropdown" name="akun_bank" class="form-control" >
                                 <option>--- Choose ---</option>
                                 <?php foreach ($bank as $get) {?>
                                   <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>

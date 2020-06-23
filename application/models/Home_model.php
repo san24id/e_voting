@@ -281,7 +281,8 @@ class Home_model extends CI_Model{
                 `currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',
                 `label3`='".$upd['label3']."',`label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',`label8`='".$upd['label8']."',`label9`='".$upd['label9']."',
                 `penerima`='".$upd['penerima']."',`vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',`lainnya1`='".$upd['lainnya1']."',`lainnya2`='".$upd['lainnya2']."'
-        WHERE `id_payment`='".$upd['id_payment']."'"; 
+                
+                WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 
