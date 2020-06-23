@@ -909,6 +909,7 @@ class Dashboard extends CI_Controller {
 		$data['getnpwp'] = $this->Dashboard_model->getDataNPWP($id_payment);
 		$data['getdatatax'] = $this->Dashboard_model->getDataTax($id_payment);
 		$data['getnouruttax'] = $this->Dashboard_model->getUrutTax($id_payment);
+		$data['getdatataxFlag'] = $this->Dashboard_model->getDataTaxFlag($id_payment);
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_sp3_2', $data);

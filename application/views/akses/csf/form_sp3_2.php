@@ -50,6 +50,89 @@
 		if($nourut==""){
 			$nourut="1";
 		}
+		
+		$chkDY='checked';
+		$chkDN='unchecked';
+		$chkY='unchecked';
+		$chkN='unchecked';
+		$chkE='unchecked';
+		$chkT='unchecked';
+		$chkopsi1='unchecked';
+		$chkopsi2='unchecked';
+		$chkopsi3='unchecked';
+		$disabled1='disabled';
+		$disabled2='disabled';
+		$disabled3='disabled';
+		$disablednilai='disabled';
+		$divtax='style="display:none;"';
+		$nilai='0';
+		foreach($getdatataxFlag as $gtaxFlag){
+			switch ($gtaxFlag->objek_pajak) {
+			  case "0":
+				$chkN='checked';
+				break;
+			  case "1":
+				$chkY='checked';
+				$divtax='style="display:block;"';
+				break;
+			  case "2":
+				$chkE='checked';
+				break;
+			  case "3":
+				$chkT='checked';
+				break;
+			  default:
+				$chkY='unchecked';
+				$chkN='unchecked';
+				$chkE='unchecked';
+				$chkT='unchecked';	
+				$divtax='style="display:none;"';
+		
+			}
+			switch ($gtaxFlag->de) {
+			  case "0":
+				$chkDN='checked';
+				$disabled1='';
+				$disabled2='';
+				$disabled3='';
+				break;
+			  case "1":
+				$chkDY='checked';
+				$disabled1='disabled';
+				$disabled2='disabled';
+				$disabled3='disabled';
+				break;
+			  default:
+				$chkDY='unchecked';
+				$chkDN='unchecked';	
+				$disabled1='disabled';
+				$disabled2='disabled';
+				$disabled3='disabled';
+			}
+			
+			switch ($gtaxFlag->opsional) {
+			  case "1":
+				$chkopsi1='checked';
+				$disablednilai='disabled';
+				break;
+			  case "2":
+				$chkopsi2='checked';
+				$disablednilai='disabled';
+				break;
+			  case "3":
+				$chkopsi3='checked';
+				$disablednilai='';
+				$nilai=$gtaxFlag->nilai;	
+				break;
+			  default:
+				$chkopsi1='unchecked';
+				$chkopsi2='unchecked';
+				$chkopsi3='unchecked';	
+				$disablednilai='disabled';
+				$nilai='0';
+			}
+			
+		}
 		?>
          
 		
@@ -80,43 +163,43 @@
                       <tr>
                         <td><b>Deductible Expense?</b></td>
                         <td>
-                          <input type="checkbox" id="chkdeY" name="de" value="1" checked> Ya<br>
+                          <input type="checkbox" id="chkdeY" name="de" value="1" <?php echo $chkDY; ?>> Ya<br>
                         </td>
                         <td>
-                          <input type="checkbox" id="chkdeN" name="de" value="0"> Tidak</input><br>
+                          <input type="checkbox" id="chkdeN" name="de" value="0" <?php echo $chkDN; ?> > Tidak</input><br>
                         </td>
                         </tr>  
                         <tr>
                           <td></td>
                           <td></td>
                           <td>
-                            &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="opsional[]" value="1" disabled> NDE</input><br>
+                            &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="opsional[]" value="1" <?php echo $chkopsi1 .'  '.$disabled1; ?> > NDE</input><br>
                           </td>
                         </tr>  
                         <tr>
                         <td></td>
                         <td></td>
                         <td>
-                          &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="opsional[]" value="2" disabled> NDE50</input><br>                            
+                          &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="opsional[]" value="2" <?php echo $chkopsi2.'  '.$disabled2;?>> NDE50</input><br>                            
                         </td>
                         </tr> 
                         <tr>
                         <td></td>
                         <td></td>
                         <td width="8%">
-                          &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" disabled> PARTNDE</input><br>                            
+                          &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" <?php echo $chkopsi3.'  '.$disabled3;?>> PARTNDE</input><br>                            
                         </td>
                         <td width="2%"><font size="3">Rp</font></td>
-                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='0' ></td>
+                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
                         </tr>
                     </table>
                     <table width=70%>   
                       <tr>
                         <td><b>Objek Pajak</b></td>
-                        <td><input id="chkObjPjkY" type="checkbox" name="objek_pajak[]" value="1"> Ya </td>
-                        <td> <input id="chkObjPjkN"  type="checkbox" name="objek_pajak[]" value="0"> Tidak</input> </td>
-                        <td><input id="chkObjPjkE" type="checkbox" name="objek_pajak[]" value="2" > Employee</input> </td>
-                        <td><input id="chkObjPjkT" type="checkbox" name="objek_pajak[]" value="3" > Tax at Settlement</input> </td>
+                        <td><input id="chkObjPjkY" type="checkbox" name="objek_pajak[]" value="1" <?php echo $chkY; ?> > Ya </td>
+                        <td> <input id="chkObjPjkN"  type="checkbox" name="objek_pajak[]" value="0" <?php echo $chkN; ?> > Tidak</input> </td>
+                        <td><input id="chkObjPjkE" type="checkbox" name="objek_pajak[]" value="2" <?php echo $chkE; ?> > Employee</input> </td>
+                        <td><input id="chkObjPjkT" type="checkbox" name="objek_pajak[]" value="3" <?php echo $chkT; ?> > Tax at Settlement</input> </td>
                       </tr>                        
                     </table>
                     </form> 
@@ -125,7 +208,7 @@
                     
                     <br>
 				
-				<div id="divObjPjk" class="row" style="display:none;">
+				<div id="divObjPjk" class="row" <?php echo $divtax; ?> >
 					<div class="col-xs-12">
 					<!-- /.box -->
 					<div class="box">
@@ -409,14 +492,7 @@ $("#chkObjPjkT").on( "click", function() {
 	}
 });
 
-$("#chkgross").on( "click", function() {
-  if($("#chkgross").is(':checked')){
-	  //var dppgross = parseFloat(dpp)/(parseFloat(1)-parseFloat(trf))
-	  $('#vgross').val('Ya');
-	}else{
-		$('#vgross').val('Tidak');
-	}
-});
+
 
 
 function view_tax()
@@ -566,8 +642,8 @@ function edit_tax(id)
 			$('[name="id_tax"]').val(data[0].id_tax);
 			$('[name="handled_by"]').val('n.prasetyaningrum');
 			$('[name="id_payment"]').val(data[0].id_payment);
-			$('[name="nilai"]').val(data[0].nilai);
-			$('[name="voptional"]').val(data[0].opsional);
+			//$('[name="nilai"]').val(data[0].nilai);
+			//$('[name="voptional"]').val(data[0].opsional);
 			$('[name="vobjekpajak"]').val(data[0].objek_pajak);
 			$('[name="vjnspjk"]').val(data[0].jenis_pajak);
 			$('[name="selJnsPjk"]').val(data[0].id_jenis_pjk).change();
@@ -646,7 +722,6 @@ function edit_tax(id)
 			}else{
 				$('#chkgross').prop('checked', false);	
 			}
-			$('[name="txttarif"]').val(data[0].tarif);			
 			$('[name="txtdpp"]').val(data[0].dpp);
 			$('[name="txtdppgross"]').val(data[0].dpp_gross);	
 			$('#selmasappn').val(data[0].masa_pajak).change();
@@ -656,13 +731,16 @@ function edit_tax(id)
 			$('[name="vdeductible"]').val(data[0].de);
 			$('[name="voptional"]').val(data[0].opsional);
 			$('[name="vobjekpajak"]').val(data[0].objek_pajak);
-			$('#vtarif').val(data[0].tarif.trim());
 			$('[name="nomor_surat"]').val(data[0].nomor_surat);
-			$('[name="txtpajakterhutang"]').val(data[0].pajak_terutang);	
-			$('[name="vpajakterhutang"]').val(data[0].pajak_terutang);
-			$('#seltarif').val(data[0].tarif).change();
 			$('[name="selKdPjk"]').val(data[0].kode_pajak).change();
 			$('[name="vkdmap"]').val(data[0].kode_map);
+			$('#seltarif').val(data[0].tarif).change();
+			$('#vtarif').val(data[0].tarif.trim());
+			$('[name="txttarif"]').val(data[0].special_tarif);			
+			
+			$('[name="txtpajakterhutang"]').val(data[0].pajak_terutang);	
+			$('[name="vpajakterhutang"]').val(data[0].pajak_terutang);
+			
 			$('#modal_tax').modal('show');
 			
              // show bootstrap modal when complete loaded
@@ -954,7 +1032,7 @@ function showed() {
         dataType: "JSON",
         success: function(data)
 			{
-				var options =  '<option value=""><strong>Tarif</strong></option>'; 
+				var options =  '<option value="0"><strong>Tarif</strong></option>'; 
 				$(data.tarif).each(function(index, value){ 
 					if(value.id_jenis_pjk == $id){ 
 						options += '<option value="'+value.tarif+'">'+value.tarif+'</option>'; //add the option element as a string
@@ -1027,28 +1105,22 @@ function showed() {
 		}
 	});
 	
-	$("#chkgross").on( "click", function() {
-		var dpp = $('#txtdpp').val().replace(/[^,\d]/g, '').toString();
-		var trf = $('#txtrealtrf').val();
+	$("#chkgross").on( "click", function() {	
 	  if($("#chkgross").is(':checked')){
-		if(trf && dpp){
-			var trfgross = parseFloat(1)-parseFloat(trf);
-			if(trfgross==0){
-				$('#txtdppgross').val('0');
-			}else{
-				var dppgross = parseFloat(dpp)/(parseFloat(trfgross));
-				if(dppgross<0){
-					$('#txtdppgross').val('(' + formatRupiah(dppgross.toString()) + ')');
-				}else{
-					$('#txtdppgross').val(formatRupiah(dppgross.toString()));
-				}
-			}
-		}else{
-			$('#txtdppgross').val('0');
-		}
+		  $('#txtdppgross').val('0');
+		   $('#vgross').val('Ya');
+		   $('#txtdppgross').val('0');
+	  $('#vpajakterhutang').val('0');	
 	  }else{
 		 $('#txtdppgross').val('0'); 
+		 $('#vgross').val('Ya');
+		  $('#txtdppgross').val('0');
+	  $('#txtpajakterhutang').val('0');	
+	  $('#vpajakterhutang').val('0');	
 	  }
+	  $("#txtpajakterhutang").attr("placeholder", "0");
+		$("#txtdppgross").attr("placeholder", "0");
+		PajakTerhutang();
 	});
 
 	
@@ -1057,6 +1129,11 @@ function showed() {
 function PajakTerhutang(){
 	var trf;
 	var dpp=$('#txtdpp').val();
+	
+	$('#txtdppgross').val('0');
+	$('#txtpajakterhutang').val('0');	
+	$('#vpajakterhutang').val('0');	
+		
 	if(dpp){
 		dpp = $('#txtdpp').val().replace(/[^,\d]/g, '').toString();
 	}else{
@@ -1077,30 +1154,37 @@ function PajakTerhutang(){
 		
 	}
 	$('#txtrealtrf').val(trf);
-	var intrf = parseFloat(trf)/parseFloat(100);
-	var pjkutang = parseFloat(dpp)*parseFloat(intrf);;
-	if(trf && dpp){
+	var intrf = (parseFloat(trf)/100);
+	var pjkutang = parseFloat(dpp)*intrf;
+	if (trf && dpp){
 		if($("#chkgross").is(':checked')){
-			var trfgross = parseFloat(1)-parseFloat(trf);
+			var trfgross = parseFloat(1-parseFloat(intrf));
 			if(trfgross==0){
 				$('#txtdppgross').val('0');
 			}else{
-				var dppgross = parseFloat(dpp)/(parseFloat(1)-parseFloat(trf));
-				if(dppgross<0){
+				var dppgross = Math.round(parseFloat(dpp)/trfgross); //-parseFloat(dpp);
+				if(parseFloat(dppgross)<0){
 					$('#txtdppgross').val('(' + formatRupiah(dppgross.toString()) +')');
 				}else{
-					$('#txtdppgross').val(formatRupiah(dppgross));
+					$('#txtdppgross').val(formatRupiah(dppgross.toString()));
+					
 				}
 			}
+			pjkutang=Math.round(parseFloat(dpp)/trfgross)-parseFloat(dpp);
 		}else{
 			$('#txtdppgross').val('0');
 		}
+		$('#txtpajakterhutang').prop('readonly', false);
+	  $('#txtpajakterhutang').val('0');	
+	  $('#vpajakterhutang').val('0');	
 		$("#txtpajakterhutang").val(formatRupiah(pjkutang.toString()));	
 		//$('#txtpajakterhutang').prop('readonly', true);
 		$("#vpajakterhutang").val(formatRupiah(pjkutang.toString()));	
 		$('#txtdpp').val(formatRupiah(dpp.toString()))
+		$('#txtpajakterhutang').prop('readonly', true);
 	}
 	
+				
 }  
 
 
@@ -1286,8 +1370,8 @@ function PajakTerhutang(){
 					<input type="hidden" name="nomor_surat" id="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >
 					<?php } ?>
 					<input type="hidden" name="txtrealtrf" id="txtrealtrf" value='0' />
-					<input type="hidden" name="vdeductible" id="vdeductible" value='1'  />
-					<input type="hidden" name="voptional" id="voptional" value='1' />
+					<input type="hidden" name="vdeductible" id="vdeductible"   />
+					<input type="hidden" name="voptional" id="voptional"  />
 					<input type="hidden" name="vobjekpajak" id="vobjekpajak" value='' />
 					<input type="hidden" name="vjnspjk" id="vjnspjk" />
 					<input type="hidden" name="vkdpjk" id="vkdpjk" />
@@ -1295,7 +1379,7 @@ function PajakTerhutang(){
 					<input type="hidden" name="vgross" id="vgross" />
 					<input type="hidden" name="vtarif" id="vtarif" />
 					<input type="hidden" name="vtarifspesial" id="vtarifspesial" />
-					<input type="hidden" name="vpajakterhutang" id="vpajakterhutang" value='0' />
+					<input type="hidden" name="vpajakterhutang" id="vpajakterhutang" />
 					<input type="hidden" name="txtnourutold" id="txtnourutold"  />
 					                      
                     <div class="form-body">
@@ -1421,7 +1505,7 @@ function PajakTerhutang(){
 						<div class="form-group">
 								<label class="control-label col-md-3">Pajak Terhutang</label>
 								<div class="col-md-9">
-								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" class="form-control" type="text" readonly>
+								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" value='0' class="form-control" type="text" readonly>
 								</div>
 						</div>
 							

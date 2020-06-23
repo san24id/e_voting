@@ -354,7 +354,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function getProcessTax2($id_payment){
-        $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id_payment'";
+        $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id_payment'  order by no_urut asc";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
@@ -1065,4 +1065,9 @@ class Dashboard_model extends CI_Model{
 		$this->db->update($table, $data, $where);
 		return $this->db->affected_rows();
 	}
+	public function getDataTaxFlag($id) {
+        $sql = "select distinct id_payment, objek_pajak,de,opsional,nilai from t_tax where id_payment = '$id' order by no_urut";
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
 }
