@@ -55,8 +55,8 @@
 		
           <section class="content">
           	<h1>
-			  <?php foreach($payment as $row) { ?>
-			  <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+			  <?php foreach ($payment as $row1) { ?>
+			  <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row1->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
 			  <?php } ?>	
 			</h1>
             <div class="row">
@@ -107,7 +107,7 @@
                           &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" disabled> PARTNDE</input><br>                            
                         </td>
                         <td width="2%"><font size="3">Rp</font></td>
-                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='0' readonly></td>
+                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='0' ></td>
                         </tr>
                     </table>
                     <table width=70%>   
@@ -967,7 +967,7 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				// alert('Error get data from ajax');
+				alert('Error get data from ajax');
 			}
 		});
 		
@@ -990,7 +990,7 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				// alert('Error get data from ajax');
+				alert('Error get data from ajax');
 			}
 		});
 		

@@ -272,9 +272,9 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" readonly>
-                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" readonly>
-                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" readonly> 
+                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses">
+                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2">
+                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3"> 
                           </td>
                         </tr>
                         <tr>
@@ -287,9 +287,9 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
                           <td><center><p id="demo6"> </p> <p id="demo7"> </p> <p id="demo8"> </p></center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" readonly>
-                              <?php echo $row->currency2;?>&nbsp;<input id="negatif2" type="text" name="piutang2" readonly> 
-                              <?php echo $row->currency3;?>&nbsp;<input id="negatif3" type="text" name="piutang3" readonly></td>
+                          <td><?php echo $row->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" >
+                              <?php echo $row->currency2;?>&nbsp;<input id="negatif2" type="text" name="piutang2" > 
+                              <?php echo $row->currency3;?>&nbsp;<input id="negatif3" type="text" name="piutang3" ></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -445,7 +445,7 @@ td[rowspan="6"] {
                           <td colspan="2">Diterima Oleh/ : <br> <i>Received by :</i></td>
                         </tr>
                         <tr>
-                          <td>Nama/ <i>Name</i> </td>
+                          <td ">Nama/ <i>Name</i> </td>
                         <td> </td>		
                         </tr>
                         <tr>
@@ -456,9 +456,9 @@ td[rowspan="6"] {
                     </table>
 
                     <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
-                     
-                    <input type="hidden" name="handled_by" value="i.akmal">                       
                     
+                    <input type="hidden" name="handled_by" value="i.akmal">                       
+              
                   </div>  
                 </div>
                      
@@ -1259,13 +1259,7 @@ function nominal(){
 	}else{
 		ulang2.value = formatulang2(strulang2);
 	} 
-}
-	} 
-}
-	} 
-
-  
-  
+ 
 }
 
 // Format Separator Id Nilai 

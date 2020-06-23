@@ -50,22 +50,25 @@
                           <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
                         </td>
                         <td>
-                          <input id="checked" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4"> Non-Uang Muka/Non-Advance</input><br>
+                          <input id="checked"  type="checkbox" name="jenis_pembayaran[]" value="4"> Direct Payment</input><br>
                         </td>
                         <td>
-                          <input id="checked2" onclick="hide2()" type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
+                          <input id="checked2"  type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
                         </td>
                         </tr>  
                         <tr>
                           <td></td>
                           <td>
-                            <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                            <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                          </td>
+                          <td>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Corporate Credit Card </input><br>
                           </td>
                         </tr>  
                         <tr>
                         <td></td>
                         <td>
-                          <input id="checksettlement" onclick="checkUangMuka2()" type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                          <input id="checksettlement"  type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
                         </td>
                       </tr>                       
                     </table>
@@ -154,12 +157,12 @@
                       </tbody>
                     </table>
 
-                    <table id="choose" style="font-family: calibri;" width="100%">
+                    <table id="choose" style="font-family: calibri;display:none;" width="100%; ">
                       <tbody>
                       <tr>
                         <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
-                        <i>(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
+                        </td>
                         <td align="right"><b> : </b></td>
                         <td colspan="8" width="65%"><input type="date" class="form-control" name="label3"></input></td>     
                       </tr>
@@ -186,7 +189,7 @@
                       <tr>  
                         <td>Kode Vendor</td>
                         <td align="right"><b>:</b></td>
-                        <td><input type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
                         <td>Bank</td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
@@ -204,9 +207,6 @@
                         <td>Nomor Rekening</td> 
                         <td>:</td>                           
                         <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
-                      </tr>
-                      <tr>
-                        <td colspan="3"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
                       </tr>
                       </tbody>
                     </table>
@@ -276,7 +276,7 @@
 
                     <br>
 
-                    <table id="show" style="font-family: calibri;" width="70%">
+                    <table id="show" style="font-family: calibri;display:none" width="70%"; >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
@@ -443,6 +443,10 @@ document.querySelector(".third").addEventListener('click', function(){
   
 });
 
+// function tambah() {
+//   alert("Data Successfully to Save!");
+// }
+
 function myFunction(){
   var x = document.getElementById("Select").value;
 
@@ -451,7 +455,7 @@ function myFunction(){
   document.getElementById("demo3").innerHTML = x;
 }
 
-function hide() {
+/*function hide() {
   var checkBox = document.getElementById("checked");
   var checkBox1 = document.getElementById("auto").disabled = true;
   var checkBox2 = document.getElementById("checked2").disabled = true;
@@ -467,7 +471,8 @@ function hide() {
      text1.style.display = "none";
      text2.style.display = "none";
   }
-}
+  document.getElementById("checkcreditcard").checked = false;
+}*/
 
 function hide2() {
   var checkBox = document.getElementById("checked").disabled = true;
@@ -504,6 +509,24 @@ function checkUangMuka() {
   } 
   // alert(checkrequest);
 }
+
+function checkCreditCard() {
+
+	if($("#checkcreditcard").is(':checked')){
+		$('#auto').prop('checked', false);
+	  $('#checkrequest').prop('checked', false);
+	  $('#checksettlement').prop('checked', false);
+	  $('#checked').prop('checked', true);
+	  $('#checked2').prop('checked', false);
+	}else{
+		$('#auto').prop('checked', false);
+	  $('#checkrequest').prop('checked', false);
+	  $('#checksettlement').prop('checked', false);
+	  $('#checked').prop('checked', false);
+	  $('#checked2').prop('checked', false);
+	}
+}
+
 
 function checkUangMuka2() {
   // alert();
@@ -662,31 +685,30 @@ function showInput() {
     return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
   }
 
-  var hasil = document.getElementById('hasil');
-  hasil.addEventListener('mousemove', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    hasil.value = formathasil(this.value);
-  });
+  // var hasil = document.getElementById('hasil');
+  // hasil.addEventListener('mousemove', function(e){
+  //   // tambahkan 'Rp.' pada saat form di ketik
+  //   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+  //   hasil.value = formathasil(this.value);
+  // });
 
-  /* Fungsi formatRupiah */
-  function formathasil(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    hasil     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+  // /* Fungsi formatRupiah */
+  // function formathasil(angka, prefix){
+  //   var number_string = angka.replace(/[^,\d]/g, '').toString(),
+  //   split   		= number_string.split(','),
+  //   sisa     		= split[0].length % 3,
+  //   hasil     		= split[0].substr(0, sisa),
+  //   ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
 
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      hasil += separator + ribuan.join('.');
-    }
+  //   // tambahkan titik jika yang di input sudah menjadi angka ribuan
+  //   if(ribuan){
+  //     separator = sisa ? '.' : '';
+  //     hasil += separator + ribuan.join('.');
+  //   }
 
-    hasil = split[1] != undefined ? hasil + ',' + split[1] : hasil;
-    return prefix == undefined ? '('+hasil+')' : (hasil? + hasil : '');
-
-  }
+  //   hasil = split[1] != undefined ? hasil + ',' + split[1] : hasil;
+  //   return prefix == undefined ? '-'+hasil+'' : (hasil? + hasil : '');
+  // }
 
   $(document).ready(function() { 
     $('#dropdown').change(function() {
@@ -696,8 +718,96 @@ function showInput() {
         $('#textInput').prop( "disabled", false );
       }
     });
-
   });
+
+	$("#checkcreditcard").on( "click", function() {
+    if($("#checkcreditcard").is(':checked')){
+      $('#auto').prop('checked', false);
+      $('#checkrequest').prop('checked', false);
+      $('#checksettlement').prop('checked', false);
+      $('#checked').prop('checked', true);
+      $('#checked2').prop('checked', false);
+      $('#show').hide();
+      $('#choose').hide();
+    }else{
+      $('#auto').prop('checked', false);
+      $('#checkrequest').prop('checked', false);
+      $('#checksettlement').prop('checked', false);
+      $('#checked').prop('checked', false);
+      $('#checked2').prop('checked', false);
+      $('#show').show();
+      $('#choose').show();
+    }
+});		
+
+	$("#auto").on( "click", function() {
+		$('#checkrequest').prop('checked', false);
+		$('#checksettlement').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		
+		if($("#auto").is(':checked')){
+		  $('#choose').show();
+		}else{		  
+		  $('#choose').hide();
+		}
+	});	
+
+	$("#checked").on( "click", function() {	
+		$('#checkrequest').prop('checked', false);
+		$('#checksettlement').prop('checked', false);
+		$('#auto').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		$('#choose').hide();
+
+	});	
+
+	$("#checked2").on( "click", function() {	
+		$('#checkrequest').prop('checked', false);
+		$('#checksettlement').prop('checked', false);
+		$('#auto').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		$('#choose').hide();
+
+	});	
+	
+	$("#checkrequest").on( "click", function() {
+		$('#auto').prop('checked', true);
+		$('#checksettlement').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#show').hide();
+		  
+		if($("#checkrequest").is(':checked')){
+		  $('#choose').show();
+		}else{
+		  $('#choose').hide();
+		}
+	});	
+	
+	$("#checksettlement").on( "click", function() {
+		$('#checkrequest').prop('checked', false);
+		$('#checked').prop('checked', false);
+		$('#checked2').prop('checked', false);
+		$('#checkcreditcard').prop('checked', false);
+		$('#choose').hide();
+		if($("#checksettlement").is(':checked')){
+			$('#auto').prop('checked', true);	
+			$('#show').show();
+			
+		}else{
+			$('#show').hide();
+		}
+		
+		
+	});
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

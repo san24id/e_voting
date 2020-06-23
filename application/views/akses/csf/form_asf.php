@@ -322,7 +322,7 @@ td[rowspan="6"] {
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" required></td>     
+                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control"></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>

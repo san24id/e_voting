@@ -546,6 +546,15 @@ class Dashboard_model extends CI_Model{
 
     }
 
+    function periode_tax($start_date,$end_date){
+        $sql = "SELECT * FROM t_tax WHERE masa_pajak BETWEEN '$start_date' AND '$end_date'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+    }
+
+
     function periode($start_date,$end_date){
         $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
@@ -587,7 +596,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function edit_pay($upd){
-        $sql = "UPDATE `t_payment_l` SET `display_name`='".$upd['display_name']."',`tanggal`='".$upd['tanggal']."',`pr_doc`='".$upd['pr_doc']."',`apf_doc`='".$upd['apf_doc']."',`apf1_doc`='".$upd['apf1_doc']."',
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`display_name`='".$upd['display_name']."',`tanggal`='".$upd['tanggal']."',`pr_doc`='".$upd['pr_doc']."',`apf_doc`='".$upd['apf_doc']."',`apf1_doc`='".$upd['apf1_doc']."',
                 `nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`tanggal_selesai`='".$upd['tanggal_selesai']."',`division_id`='".$upd['division_id']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`cash_advance`='".$upd['cash_advance']."',
                 `piutang`='".$upd['piutang']."',`total_expenses`='".$upd['total_expenses']."',`total_expenses2`='".$upd['total_expenses2']."',`total_expenses3`='".$upd['total_expenses3']."',`description`='".$upd['description']."',`description2`='".$upd['description2']."',
                 `description3`='".$upd['description3']."',`description4`='".$upd['description4']."',`description5`='".$upd['description5']."',`description6`='".$upd['description6']."',`description7`='".$upd['description7']."',`description8`='".$upd['description8']."',
@@ -595,7 +604,8 @@ class Dashboard_model extends CI_Model{
                 `currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`currency4`='".$upd['currency4']."',`currency5`='".$upd['currency5']."',`currency6`='".$upd['currency6']."',`currency7`='".$upd['currency7']."',`currency8`='".$upd['currency8']."',
                 `currency9`='".$upd['currency9']."',`currency10`='".$upd['currency10']."',`currency11`='".$upd['currency11']."',`jumlah`='".$upd['jumlah']."',`jumlah1`='".$upd['jumlah1']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',`jumlah4`='".$upd['jumlah4']."',
                 `jumlah5`='".$upd['jumlah5']."',`jumlah6`='".$upd['jumlah6']."',`jumlah7`='".$upd['jumlah7']."',`jumlah8`='".$upd['jumlah8']."',`jumlah9`='".$upd['jumlah9']."',`jumlah10`='".$upd['jumlah10']."',`jumlah11`='".$upd['jumlah11']."',`jumlah12`='".$upd['jumlah12']."',
-                `terbilang`='".$upd['terbilang']."',`terbilang2`='".$upd['terbilang2']."',`terbilang3`='".$upd['terbilang3']."',`dibayar_kepada`='".$upd['dibayar_kepada']."',`verified_date`='".$upd['verified_date']."',`catatan`='".$upd['catatan']."'
+                `terbilang`='".$upd['terbilang']."',`terbilang2`='".$upd['terbilang2']."',`terbilang3`='".$upd['terbilang3']."',`dibayar_kepada`='".$upd['dibayar_kepada']."',`verified_date`='".$upd['verified_date']."',`catatan`='".$upd['catatan']."',`handled_by`='".$upd['handled_by']."',
+                `rejected_by`='".$upd['rejected_by']."'
                
                 WHERE `id`='".$upd['id']."'";
 
@@ -603,6 +613,16 @@ class Dashboard_model extends CI_Model{
         // var_dump($sql);exit;
         return $query;
     }
+
+    function send_back($upd,$status,$handled_by,$rejected_by){
+        
+        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."',`rejected_by`='".$rejected_by."'
+                WHERE `nomor_surat`='".$upd['nomor_surat']."'";
+        
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    } 
 	
 	function getPajak(){
         $sql = "SELECT * FROM m_jenis_pajak";

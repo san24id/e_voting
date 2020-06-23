@@ -191,8 +191,9 @@ class Home_model extends CI_Model{
                 GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.totaldraft != 0 
                 AND otr.status_laporan IS NOT NULL";
                 
-         //var_dump($sql);exit;        
         $query = $this->db->query($sql)->result();
+        //  var_dump($query);exit;        
+
         return $query;
         
     }

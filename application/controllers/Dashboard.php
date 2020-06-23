@@ -1655,18 +1655,25 @@ class Dashboard extends CI_Controller {
 		for($i=0; $i<=$c_pembayaran; $i++){
 			$total_expenses .= $_POST['total_expenses'][$i].", ";
 		}		
+		// var_dump($_POST['rejected_by']);exit;
+		if ($_POST['status'] == 5 && $_POST['rejected_by'] != NULL){
+			$status = 6;
+			$handled_by = "i.akmal";
+			$rejected_by = "";
+			// $nomor_surat = 
+		}
 
 		// echo $type;
 		// var_dump(count($_POST['type']));exit;
 		$upd = array(
 					
+			
 			'id' => $_POST['id'],
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'pr_doc' => $_POST['pr_doc'],
 			'apf_doc' => $_POST['apf_doc'],
 			'apf1_doc' => $_POST['apf1_doc'],
-			'nomor_surat' => $_POST['nomor_surat'],
 			'kode_proyek' => $_POST['kode_proyek'],
 			'tanggal_selesai' => $_POST['tanggal_selesai'],
 			'division_id' => $_POST['division_id'],
@@ -1706,11 +1713,17 @@ class Dashboard extends CI_Controller {
 			'terbilang3' => $_POST['terbilang3'],
 			'dibayar_kepada' => $_POST['dibayar_kepada'],
 			'verified_date' => $_POST['verified_date'],
-			'catatan' => $_POST['catatan']
+			'catatan' => $_POST['catatan'],
+			'status' => $status,
+			'nomor_surat' => $_POST['nomor_surat'],
+			'handled_by' => $handled_by,
+			'rejected_by' => $rejected_by
 
 		);
+		// var_dump($_POST['nomor_surat']);exit;
 
 		$this->Dashboard_model->edit_pay($upd);
+		$this->Dashboard_model->send_back($upd,$upd[status],$upd[handled_by],$upd[rejected_by]);
 		redirect('Dashboard/my_task');
 	}
 	

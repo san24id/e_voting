@@ -17,7 +17,9 @@ td[rowspan="6"] {
         <form id="form" method="post" action="Dashboard/edit_pay" onsubmit="update()">
           <?php foreach ($ppayment as $get) { ?>  
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
-
+            <input type="hidden" name="status" value="<?php echo $get->status?>">
+          <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
+          
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
           <section class="content">
             <div class="row">

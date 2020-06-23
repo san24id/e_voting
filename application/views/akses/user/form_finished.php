@@ -57,7 +57,7 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <?php 
                         $test1 = $row->jenis_pembayaran;
                         $test2 = explode(";", $test1);
@@ -126,7 +126,7 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
