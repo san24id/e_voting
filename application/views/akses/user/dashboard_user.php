@@ -60,7 +60,7 @@
             <div class="info-box-content bg-gray">
               <br>
               <?php foreach ($tot_pay_req as $tot_req) { ?>
-                <a href="<?php echo base_url('home/all_detail_payment/1')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span>
+                <a href="<?php echo base_url('home/all_detail_payment/1')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_req->totalreq; ?></center></font></span></a>
               <?php } ?>     
               <span class="info-box-text"><font color="green"><center>Total Payment Request</center></font></span>  
             </div>
@@ -77,7 +77,7 @@
               <div class="info-box-content bg-gray">
                 <br>
                 <?php foreach ($outstanding as $tot_outstanding) { ?>  
-                  <a href="<?php echo base_url('home/all_detail_payment/2')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span>
+                  <a href="<?php echo base_url('home/all_detail_payment/2')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span></a>
                 <?php } ?>              
                 <span class="info-box-text "><font color="green"><center>Total Outstanding Payment Request</center></font></span>
               </div>
@@ -95,7 +95,7 @@
               <div class="info-box-content bg-gray">
                 <br>  
                 <?php foreach ($draft as $tot_draft) { ?>
-                  <a href="<?php echo base_url('home/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span>
+                  <a href="<?php echo base_url('home/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
                 <?php } ?>            
                 <span class="info-box-text "><font color="green"><center>Total Draft</center></font></span>
               </div>
@@ -231,12 +231,12 @@
                         <td align="center" width="25%"><div class="info-box box1">
                           <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                           <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                          <a href="<?php echo base_url('home/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></center></div>
+                          <a href="<?php echo base_url('home/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></center></div></a>
                         </td>                          
                         <td align="center" width="25%"><div class="info-box box2">
                           <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                           <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                          <a href="<?php echo base_url('home/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font> </center></div>
+                          <a href="<?php echo base_url('home/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font> </center></div></a>
                         </td>
 
                         <td align="center" width="25%"><div class="info-box box3">
