@@ -155,8 +155,8 @@
                       <td colspan="45"><font size='6'><center>STATUS</center></font></td>
                     </tr>
                     <tr>
-                      <?php foreach ($draft as $tot_draft) { ?>
-                      <td width="12%"><div class="dua"><center><font size='5'> <?php echo $tot_draft->totaldraft; ?> </font> </center></div> </td><td> &nbsp; 
+                      <?php foreach ($draft1 as $tot_draft) { ?>
+                      <td width="12%"><div class="dua"><center><font size='5'> <?php echo $tot_draft->totdraft; ?> </font> </center></div> </td><td> &nbsp; 
                       <?php } ?>   
                       <?php foreach ($draftprint as $draftprint) { ?>                    
                       <td width="12%"><div class="tiga"><center><font size='5'> <?php echo $draftprint->draftprint; ?> </font></center></div> </td> <td> &nbsp;
