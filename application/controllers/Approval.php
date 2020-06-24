@@ -37,6 +37,7 @@ class Approval extends CI_Controller {
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['submit'] = $this->Home_model->getSubmitted();
@@ -64,6 +65,7 @@ class Approval extends CI_Controller {
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['submit'] = $this->Home_model->getSubmitted();
 		$data['process'] = $this->Home_model->getProcessing();

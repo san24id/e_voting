@@ -274,16 +274,16 @@ td[rowspan="6"] {
                           <td width="15%"> </td>
                         </tr>
                         <tr>
-                          <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
-                          <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2">&nbsp; Dian Puspitasari </td>        
+                          <td colspan="2" width="10%"><font size="1">Nama/ <i>Name</i> </td>
+                          <td colspan="2"><font size="1">&nbsp; Fitri Dwi Arianawati </td>
+                          <td colspan="2" width="10%"><font size="1">Nama/ <i>Name</i> </td>
+                          <td colspan="2"><font size="1">&nbsp; Dian Puspitasari </td>        
                         </tr>
                         <tr>
-                          <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2">&nbsp; VP Treasury </td>
-                          <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2">&nbsp; Cashier </td>
+                          <td colspan="2" width="10%"><font size="1">Jabatan/ <i>Title</i> </td>
+                          <td colspan="2"><font size="1">&nbsp; VP Treasury </td>
+                          <td colspan="2" width="10%"><font size="1">Jabatan/ <i>Title</i> </td>
+                          <td colspan="2"><font size="1">&nbsp; Cashier </td>
                         </tr>                        
                       </tbody> 
                     </table>
@@ -389,36 +389,26 @@ td[rowspan="6"] {
             <table width="70%">
               <tr>
                 <td><font size="1"><b>Deductible Expense</b></td>
-                <td>
-                  <input type="checkbox" id="chkdeY" name="de"  <?php echo $deY; ?>  disabled><font size="1"> Ya<br>
-                </td>
-                <td>
-                  <input type="checkbox" id="chkdeN" name="de" <?php echo $deN; ?>  disabled><font size="1"> Tidak</input><br>
-                </td>
-                </tr>  
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="chkNDE"  <?php echo $nde; ?> disabled><font size="1"> NDE</input><br>
-                  </td>
-                </tr>  
-                <tr>
+                <td>  <input type="checkbox" id="chkdeY" name="de"  <?php echo $deY; ?>  disabled><font size="1"> Ya  </td>
+                <td> <input type="checkbox" id="chkdeN" name="de" <?php echo $deN; ?>  disabled><font size="1"> Tidak </td>
+              </tr>  
+              <tr>
                 <td></td>
                 <td></td>
-                <td>
-                  &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled><font size="1"> NDE50</input><br>                            
-                </td>
-                </tr> 
-                <tr>
+                <td>&nbsp; &nbsp;<input type="checkbox" id="chkNDE" name="chkNDE"  <?php echo $nde; ?> disabled><font size="1"> NDE </td>
+              </tr>  
+              <tr>
                 <td></td>
                 <td></td>
-                <td width="8%">
-                  &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled><font size="1"> PARTNDE</input><br>                            
-                </td>
-                <td width="2%"><font size="1">Rp</font></td>
+                <td>&nbsp; &nbsp;<input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled><font size="1"> NDE50</td>
+              </tr> 
+              <tr>
+                <td></td>
+                <td></td>
+                <td> &nbsp; &nbsp;<input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled><font size="1"> PARTNDE </td>
+                <td ><font size="1">Rp</font></td>
                 <td><font size="1"><?php echo $nilai; ?></td>
-                </tr>
+              </tr>
             </table>
             <table width="100%">   
               <tr>

@@ -61,7 +61,7 @@ class Dashboard_model extends CI_Model{
 
     public function getTotal(){
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE status in ('2','3','4','5','7','8','9','10')";
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE status in ('2','3','4','5','6','7','8','9','10')";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -600,9 +600,7 @@ class Dashboard_model extends CI_Model{
                 `nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`tanggal_selesai`='".$upd['tanggal_selesai']."',`division_id`='".$upd['division_id']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`cash_advance`='".$upd['cash_advance']."',
                 `piutang`='".$upd['piutang']."',`total_expenses`='".$upd['total_expenses']."',`total_expenses2`='".$upd['total_expenses2']."',`total_expenses3`='".$upd['total_expenses3']."',`description`='".$upd['description']."',`description2`='".$upd['description2']."',
                 `description3`='".$upd['description3']."',`description4`='".$upd['description4']."',`description5`='".$upd['description5']."',`description6`='".$upd['description6']."',`description7`='".$upd['description7']."',`description8`='".$upd['description8']."',
-                `description9`='".$upd['description9']."',`description10`='".$upd['description10']."',`description11`='".$upd['description11']."',`description12`='".$upd['description12']."',`currency`='".$upd['currency']."',`currency1`='".$upd['currency1']."',
-                `currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`currency4`='".$upd['currency4']."',`currency5`='".$upd['currency5']."',`currency6`='".$upd['currency6']."',`currency7`='".$upd['currency7']."',`currency8`='".$upd['currency8']."',
-                `currency9`='".$upd['currency9']."',`currency10`='".$upd['currency10']."',`currency11`='".$upd['currency11']."',`jumlah`='".$upd['jumlah']."',`jumlah1`='".$upd['jumlah1']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',`jumlah4`='".$upd['jumlah4']."',
+                `description9`='".$upd['description9']."',`description10`='".$upd['description10']."',`description11`='".$upd['description11']."',`description12`='".$upd['description12']."',`jumlah`='".$upd['jumlah']."',`jumlah1`='".$upd['jumlah1']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',`jumlah4`='".$upd['jumlah4']."',
                 `jumlah5`='".$upd['jumlah5']."',`jumlah6`='".$upd['jumlah6']."',`jumlah7`='".$upd['jumlah7']."',`jumlah8`='".$upd['jumlah8']."',`jumlah9`='".$upd['jumlah9']."',`jumlah10`='".$upd['jumlah10']."',`jumlah11`='".$upd['jumlah11']."',`jumlah12`='".$upd['jumlah12']."',
                 `terbilang`='".$upd['terbilang']."',`terbilang2`='".$upd['terbilang2']."',`terbilang3`='".$upd['terbilang3']."',`dibayar_kepada`='".$upd['dibayar_kepada']."',`verified_date`='".$upd['verified_date']."',`catatan`='".$upd['catatan']."',`handled_by`='".$upd['handled_by']."',
                 `rejected_by`='".$upd['rejected_by']."'

@@ -191,7 +191,7 @@
                         </td>
                         <td width="2%"><font size="3">Rp</font></td>
                         <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
-                        </tr>
+					 </tr>
                     </table>
                     <table width=70%>   
                       <tr>

@@ -37,6 +37,7 @@ class Tri extends CI_Controller {
 		$data['draftprint'] = $this->Home_model->getDraftPrint();
 		$data['draft1'] = $this->Home_model->getDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -71,6 +72,7 @@ class Tri extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['apayment'] = $this->Dashboard_model->payment();
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
+		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['submit'] = $this->Home_model->getSubmitted();
 		$data['process'] = $this->Home_model->getProcessing();

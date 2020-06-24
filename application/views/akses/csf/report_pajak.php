@@ -76,7 +76,7 @@
                     <td><?php echo $row->kode_pajak; ?></td>
                     <td><?php echo $row->kode_map; ?></td>
                     <td><?php echo $row->paid_date;?></td>
-                    <td><?php echo $row->masa_pajak;?></td>
+                    <td><?php echo date("M-Y", strtotime($row->paid_date));?></td>
                     <td><?php echo $row->nama; ?></td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
