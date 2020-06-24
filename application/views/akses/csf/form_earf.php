@@ -20,7 +20,7 @@ td[rowspan="6"] {
             <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
           
-          <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
+          <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>">
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -47,7 +47,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->arf_doc; ?>" readonly></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>

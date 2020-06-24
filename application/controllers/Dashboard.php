@@ -1662,6 +1662,12 @@ class Dashboard extends CI_Controller {
 			$handled_by = "i.akmal";
 			$rejected_by = "";
 			// $nomor_surat = 
+		}else if($_POST['status'] == 6){
+			$status = 6;
+			$handled_by = "i.akmal";
+		}else if($_POST['status'] == 7){
+			$status = 7;
+			$handled_by = "h.harlina";
 		}
 
 		// echo $type;

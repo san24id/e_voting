@@ -21,7 +21,7 @@ td[rowspan="6"] {
             <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
           
-          <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>"> 
+          <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>"> 
           <section class="content">
             <div class="row">
               <div class="col-xs-12">

@@ -309,7 +309,7 @@ td[rowspan="6"] {
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Approval/listApproval" role="button">Cancel</a>                   
                   
-                    <?php if ($row->status == 8) { ?>
+                    <?php if ($get->status == 8) { ?>
                     <button type="submit" data-toggle="modal" data-target="#approved<?php echo $get->id; ?>" class="btn btn-success">Proceed For Payment - Approved</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="approved<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">

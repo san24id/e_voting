@@ -20,7 +20,7 @@ td[rowspan="6"] {
         <!-- Main content --> 
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
 
-          <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>"> 
+          <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>"> 
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
