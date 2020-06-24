@@ -120,12 +120,12 @@
                 <tr>
                   <th>Nama Bank</th>
                   <td>:</td>
-                  <td><input type="text" name="nama_bank" class="form-control"></td>
+                  <td><input type="text" name="nama_bank" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Alias</th>
                   <td>:</td>
-                  <td><input type="text" name="singkatan" class="form-control"></td>
+                  <td><input type="text" name="singkatan" class="form-control" required></td>
                 </tr>
              </table>
           </h5>
@@ -230,8 +230,11 @@
       "autoWidth": false
     });
   });
+</script>
 
+<script>
   $("#nambah").on('click', function(){
+    var acc = $('#acc').val():
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
@@ -242,7 +245,7 @@
               alert('Create Mata Uang success')
           }      
       });
-    });
+  });
 
   $(".rubah").on('click', function(){
       $.ajax({        

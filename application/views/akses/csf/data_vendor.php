@@ -124,22 +124,22 @@
                 <tr>
                   <th>Kode Vendor</th>
                   <td>:</td>
-                  <td><input type="text" name="kode_vendor" class="form-control"></td>
+                  <td><input type="text" name="kode_vendor" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Nama</th>
                   <td>:</td>
-                  <td><input type="text" name="nama" class="form-control"></td>
+                  <td><input type="text" name="nama" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>NPWP</th>
                   <td>:</td>
-                  <td><input type="text" name="npwp" class="form-control"></td>
+                  <td><input type="text" name="npwp" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Alamat</th>
                   <td>:</td>
-                  <td><input type="text" name="alamat" class="form-control"></td>
+                  <td><input type="text" name="alamat" class="form-control" required></td>
                 </tr>
              </table>
           </h5>
@@ -254,8 +254,12 @@
       "autoWidth": false
     });
   });
+</script>
+
+<script>
 
   $("#nambah").on('click', function(){
+    var acc = $('#acc').val():
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       

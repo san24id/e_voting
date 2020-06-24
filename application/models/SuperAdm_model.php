@@ -1,4 +1,4 @@
- <?php
+<?php
 
 class SuperAdm_model extends CI_model {
   
@@ -46,15 +46,16 @@ class SuperAdm_model extends CI_model {
     }
 
     function adddivisi($add){
-        $sql = "INSERT INTO `m_division` (id_div, division_id, division_name, shor_division, created_by, created_date, status)
+        $sql = "INSERT INTO `m_division` (id_div, division_id, division_name, short_division, created_by, created_date, status)
                 VALUES 
-                ('".$add['id_div']."','".$add['division_id']."','".$add['division_name']."','".$add['shor_division']."','".$add['created_by']."','".$add['created_date']."',
+                ('".$add['id_div']."','".$add['division_id']."','".$add['division_name']."','".$add['short_division']."','".$add['created_by']."','".$add['created_date']."',
                 '".$add['status']."')"; 
-
+        // var_dump($sql);exit;
         $query = $this->db->query($sql);
-
+        
         return $query;        
     }
+
      function updatedivisi($upd){
         $sql = "UPDATE `m_division` SET `division_id`='".$upd['division_id']."',`division_name`='".$upd['division_name']."',`shor_division`='".$upd['shor_division']."',
                 `created_by`='".$upd['created_by']."',`created_date`='".$upd['created_date']."',`status`='".$upd['status']."' 

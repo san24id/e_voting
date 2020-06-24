@@ -113,7 +113,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Data Pajak</h4>
+          <h4 class="modal-title">Tambah Data Pejabat</h4>
         </div>
         <div class="modal-body">
           <h5>
@@ -149,7 +149,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ubah Data Pajak</h4>
+          <h4 class="modal-title">Ubah Data Pejabat</h4>
            
         </div>
         <div class="modal-body">
@@ -235,8 +235,12 @@
       "autoWidth": false
     });
   });
+</script>
+
+<script>
 
   $("#nambah").on('click', function(){
+    var acc = $('#acc').val():
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       

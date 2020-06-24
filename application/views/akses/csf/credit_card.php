@@ -127,12 +127,12 @@
                 <tr>
                   <th>Nama Pemegang Kartu</th>
                     <td>:</td>
-                    <td><input type="text" name="pemegang_kartu" class="form-control"></td>
+                    <td><input id="kartu" type="text" name="pemegang_kartu" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Divisi</th>
                     <td>:</td>
-                    <td><select name="division_id" class="form-control">
+                    <td><select id="divisi" name="division_id" class="form-control">
                             <option value="">--Choose--</option>
                             <?php foreach ($division as $dvs) { ?>
                             <option value="<?php echo $dvs->division_id; ?>"><?php echo $dvs->division_name; ?> - <?php echo $dvs->division_id; ?></option>
@@ -143,28 +143,28 @@
                 <tr>
                   <th>Nama PIC</th>
                     <td>:</td>
-                    <td><input type="text" name="nama_pic" class="form-control"></td>
+                    <td><input id="pic" type="text" name="nama_pic" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Target Submission Credit Card</th>
                     <td>:</td>
-                    <td><input type="date" name="target_submission" class="form-control"></td>
+                    <td><input id="target" type="date" name="target_submission" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Jatuh Tempo</th>
                     <td>:</td>
-                    <td><input type="date" name="tempo" class="form-control"></td>
+                    <td><input id="tempo" type="date" name="tempo" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Credit Card Submission</th>
                     <td>:</td>
-                    <td><input type="text" name="jatah" class="form-control"></td>
+                    <td><input id="cc" type="text" name="jatah" class="form-control" required></td>
                 </tr>
              </table>
           </h5>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" id="nambah">Add</button>
+          <button type="submit" class="btn btn-success third" id="nambah">Add</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </form>
         </div>
@@ -288,19 +288,21 @@
       "autoWidth": false
     });
   });
-
+</script>
+<script>
   $("#nambah").on('click', function(){
+      var acc = $('#acc').val():
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addstaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#acc").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
-              $("#tambah").modal('hide'); // Sembunyikan loadingnya   
-               location.reload();       
-              alert('Create Data Corporate Credit Card Success!')
+            $("#tambah").modal('hide'); // Sembunyikan loadingnya   
+            location.reload();       
+            alert('Create Data Corporate Credit Card Success!')
           }      
       });
-    });
+  });
 
   $(".rubah").on('click', function(){
       $.ajax({        

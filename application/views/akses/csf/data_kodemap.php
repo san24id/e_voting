@@ -122,17 +122,17 @@
                 <tr>
                   <th>Kode MAP</th>
                   <td>:</td>
-                  <td><input type="text" name="kode_map" class="form-control"></td>
+                  <td><input type="text" name="kode_map" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Jenis Pajak</th>
                   <td>:</td>
-                  <td><input type="text" name="jenis_pajak" class="form-control"></td>
+                  <td><input type="text" name="jenis_pajak" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Keterangan</th>
                   <td>:</td>
-                  <td><input type="text" name="keterangan" class="form-control"></td>
+                  <td><input type="text" name="keterangan" class="form-control" required></td>
                 </tr>
              </table>
           </h5>
@@ -242,8 +242,12 @@
       "autoWidth": false
     });
   });
+</script>
+
+<script>
 
   $("#nambah").on('click', function(){
+    var acc = $('#acc').val():
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       

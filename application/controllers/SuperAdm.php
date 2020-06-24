@@ -99,67 +99,62 @@ class SuperAdm extends CI_Controller {
 
 		redirect('SuperAdm');
 	}
+	
 
-	public function supplier(){
+	public function division(){
 		$data['active1'] = '';
-		$data['active2'] = 'active';
+		$data['divisi'] = 'active';
 		$data['active3'] = '';
 
-		$data['supplier'] = $this->SuperAdm_model->getSupplier();
+		$data['division'] = $this->SuperAdm_model->getDivisi();
+		// var_dump($data['division']);exit;
 
 		$this->load->view('akses/superadmin/header_admin', $data);
-        $this->load->view('akses/superadmin/data_supplier', $data);
+        $this->load->view('akses/superadmin/data_divisi', $data);
 	}
 	
-	public function addsupplier(){
+	public function adddivisi(){
 		$add = array(
 
-			'kode_supplier' => $_POST['kode_supplier'],
-			'nama_supplier' => $_POST['nama_supplier'],
-			'npwp' => $_POST['npwp'],
-			'badan_usaha' =>  $_POST['badan_usaha'],
-			'pic' =>  $_POST['pic'],
-			'direktur' =>  $_POST['direktur'],
-			'alamat' => $_POST['alamat'],
-			'telepon' => $_POST['telepon'],
-			'nama_bank' => $_POST['nama_bank'],
-			'mata_uang' => $_POST['mata_uang'],
-			'no_rek' => $POST['no_rek']
+			'id_div' => $_POST['id_div'],
+			'division_id' => $_POST['division_id'],
+			'division_name' => $_POST['division_name'],
+			'short_division' => $_POST['short_division'],
+			'created_by' =>  $_POST['created_by'],
+			'created_date' =>  $_POST['created_date'],
+			'status' =>  $_POST['status'],
 			
 		);
 
-		$this->SuperAdm_model->addsupplier($add);
+		$this->SuperAdm_model->adddivisi($add);
 
-		redirect('SuperAdm/supplier');
+		redirect('SuperAdm/division');
 	}
 
-	public function deletesupplier(){
+	public function deletedivisi(){
 
-		$this->SuperAdm_model->deletesupplier($_POST['id_supplier']);
+		$this->SuperAdm_model->deletedivisi($_POST['id_div']);
 
-		redirect('SuperAdm/supplier');
+		redirect('SuperAdm/division');
 
 	}
 
-	public function updatesupplier(){
+	public function updatedivisi(){
+
 		$upd = array(
-			'id_supplier' => $_POST['id_supplier'],
-			'kode_supplier' => $_POST['kode_supplier'],
-			'nama_supplier' => $_POST['nama_supplier'],
-			'npwp' => $_POST['npwp'],
-			'badan_usaha' =>  $_POST['badan_usaha'],
-			'pic' =>  $_POST['pic'],
-			'direktur' =>  $_POST['direktur'],
-			'alamat' => $_POST['alamat'],
-			'telepon' => $_POST['telepon'],
-			'nama_bank' => $_POST['nama_bank'],
-			'mata_uang' => $_POST['mata_uang'],
-			'no_rek' => $POST['no_rek']
+
+			'id_div' => $_POST['id_div'],
+			'division_id' => $_POST['division_id'],
+			'division_name' => $_POST['division_name'],
+			'short_division' => $_POST['short_division'],
+			'created_by' =>  $_POST['created_by'],
+			'created_date' =>  $_POST['created_date'],
+			'status' =>  $_POST['status'],
 		);
 
-		$this->SuperAdm_model->updatesupplier($upd);
+		$this->SuperAdm_model->updatedivisi($upd);
 
-		redirect('SuperAdm/supplier');
+		redirect('SuperAdm/division');
 	}
 
 	public function currency(){
@@ -186,7 +181,7 @@ class SuperAdm extends CI_Controller {
 		redirect('SuperAdm/currency');
 	}
 
-	public function deletecurr(){
+	function deletecurr(){
 		
 		$this->SuperAdm_model->deletecurr($_POST['id_curr']);
 

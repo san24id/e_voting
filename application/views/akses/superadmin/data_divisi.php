@@ -122,7 +122,7 @@
         </div>
         <div class="modal-body">
           <h5>
-            <form id="acc" method="post" action="superadm/adddivisi">
+            <form id="acc" method="post" action="SuperAdm/adddivisi">
              <table class="table">
               <tr>
                 <th>Division ID</th>
@@ -176,7 +176,7 @@
         </div>
         <div class="modal-body">
           <h5>
-            <form id="ganti" method="post" action="superadm/updatedivisi">
+            <form id="ganti" method="post" action="SuperAdm/updatedivisi">
               <input type="hidden" name="id_div" value="<?php echo $row->id_div; ?>">
              <table class="table">  
              <tr>
@@ -221,7 +221,7 @@
        <p> Division ID : <?=$row->division_id?> </p>
       </div>
       <div class="modal-footer">
-      <form id="deleted" method="post" action="superadm/deletedivisi">
+      <form id="deleted" method="post" action="SuperAdm/deletedivisi">
           <input type="hidden" name="id_div" value="<?php echo $row->id_div; ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
