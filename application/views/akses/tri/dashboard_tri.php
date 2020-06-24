@@ -94,8 +94,8 @@
               <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
               <div class="info-box-content bg-gray">
                 <br>  
-                <?php foreach ($draft as $tot_draft) { ?>
-                  <a href="<?php echo base_url('tri/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
+                <?php foreach ($draft1 as $tot_draft) { ?>
+                  <a href="<?php echo base_url('tri/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totdraft; ?></center></font></span></a>
                 <?php } ?>            
                 <span class="info-box-text "><font color="green"><center>Total Draft</center></font></span>
               </div>

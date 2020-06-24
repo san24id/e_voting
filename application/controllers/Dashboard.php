@@ -2184,6 +2184,9 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 		
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+
 		switch($id){
 			
 		}
