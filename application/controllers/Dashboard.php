@@ -804,7 +804,7 @@ class Dashboard extends CI_Controller {
 			'submit_date' => $_POST['submit_date']
 
 		);
-
+		$this->Dashboard_model->updatejatahCC($upd);
 		$this->Dashboard_model->updateaccept($upd);
 
 		redirect('Dashboard');
@@ -2152,6 +2152,10 @@ class Dashboard extends CI_Controller {
 		$id = $this->input->post('id_payment');
 		$idtax = $this->input->post('id_tax');
 		$data = array(
+				'de' => $this->input->post('vdeductible'),
+				'opsional' => $this->input->post('voptional'),
+				'nilai' => $this->input->post('nilai'),
+				'objek_pajak' => $this->input->post('vobjekpajak'),
 				'jenis_pajak' => $this->input->post('vjnspjk'),
 				'kode_pajak' => $this->input->post('vkdpjk'),
 				'kode_map' => $this->input->post('selKdMap'),
@@ -2171,11 +2175,21 @@ class Dashboard extends CI_Controller {
 				'no_urut' => $this->input->post('txtnourut')
 			);
 		
-		$this->Dashboard_model->tax_update('t_tax',array('id_tax' => $idtax), $data);
+		
+		$dataH = array(
+				'de' => $this->input->post('vdeductible'),
+				'opsional' => $this->input->post('voptional'),
+				'nilai' => $this->input->post('nilai'),
+				'objek_pajak' => $this->input->post('vobjekpajak')
+			);
+		
+		$this->Dashboard_model->tax_update('t_tax',array('id_tax' => $idtax), $data);		
+		$this->Dashboard_model->tax_update('t_tax',array('id_payment' => $id), $dataH);
 		$data = $this->Dashboard_model->getDataTax($id);
 		
 		echo json_encode($data);
 	}
+	
 	
 	public function getnourut($id_payment)
 	{

@@ -216,17 +216,17 @@
                 <tr>
                   <th>Target Submission Credit Card</th>
                   <td>:</td>
-                  <td><input type="date" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
+                  <td><input type="number" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
                 </tr>
                 <tr>
                   <th>Jatuh Tempo</th>
                   <td>:</td>
-                  <td><input type="date" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
+                  <td><input type="number" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
                 </tr>
                 <tr>
                   <th>Credit Card Submission</th>
                   <td>:</td>
-                  <td><input type="text" name="jatah" class="form-control" value="<?php echo $row->jatah; ?>"></td>
+                  <td><input type="number" name="jatah" class="form-control" value="<?php echo $row->jatah; ?>"></td>
                 </tr>
              </table>
           </h5>
@@ -297,12 +297,12 @@
           // url: "<?php echo base_url("index.php/superadm/addstaff"); ?>", // Isi dengan url/path file php yang dituju       
           data: $("#acc").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
-            $("#tambah").modal('hide'); // Sembunyikan loadingnya   
-            location.reload();       
-            alert('Create Data Corporate Credit Card Success!')
+              $("#tambah").modal('hide'); // Sembunyikan loadingnya               
+              location.reload();       
+              alert('Create Data Corporate Credit Card Success!')
           }      
       });
-  });
+    });
 
   $(".rubah").on('click', function(){
       $.ajax({        

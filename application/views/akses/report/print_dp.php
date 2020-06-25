@@ -222,10 +222,7 @@
                         </td>
                         <td align="right"><font size="1"><b> : </b></td>
                         <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo $row->label3; ?></td>          
-                      </tr> 
-                      <tr>
-                        <td><i><font size="1">(Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</i></td>
-                      </tr>                                                  
+                      </tr>                                                                      
                       </tbody>
                     </table>
 
@@ -264,9 +261,7 @@
                         <td>:</td>
                         <td class="kolom"><font size="1"> <?php echo $row->no_rekening; ?> </font></td>                                  
                       </tr>
-                      <tr>
-                        <td colspan="2"><font size="1"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
-                      </tr>
+                      
                       </tbody>
                     </table>
 

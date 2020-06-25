@@ -201,8 +201,8 @@ class Dashboard_model extends CI_Model{
         // $sql = "SELECT * FROM (SELECT b.dsc, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
         //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$test' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
 
-        $sql = "SELECT * FROM (SELECT b.dsc, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
-                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
+        $sql = "SELECT * FROM (SELECT a.status, b.dsc, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL AND otr.status in ('2','4','5','6','7','8','9','10')";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1068,4 +1068,14 @@ class Dashboard_model extends CI_Model{
 		$query = $this->db->query($sql)->result();
         return $query;
     }
+	
+	public function updatejatahCC($upd){
+		$dvs = $this->session->userdata('division_id');
+        
+        $sql = "UPDATE t_creditcard SET jatah=jatah-1 WHERE trim(division_id) = "; 
+		$sql = "(select trim(division_id) from t_payment where jenis_pembayaran='6' and status='1' and id_payment='".$upd['id_payment']."' and division_id='".$dvs."')";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+	
 }

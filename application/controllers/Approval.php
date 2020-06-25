@@ -641,6 +641,7 @@ class Approval extends CI_Controller {
 
 		);
 
+		$this->Dashboard_model->updatejatahCC($upd);
 		$this->Dashboard_model->updateaccept($upd);
 
 		redirect('Approval');

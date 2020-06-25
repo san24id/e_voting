@@ -53,6 +53,7 @@ class Login extends CI_Controller {
                     $sess_data['role_id'] = $row->role_id;
                     $sess_data['division_id'] = $row->division_id;                       
                		$sess_data['display_name'] = $row->display_name;
+               		$sess_data['jabatan'] = $row->jabatan;
                     $sess_data['status'] = $row->status;
                     $sess_data['id_role_app'] = $row->id_role_app;
 

@@ -132,7 +132,7 @@
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="center">Tanggal : <?php echo $row->tanggal; ?></td>
+                      <td align="right">Tanggal : <?php echo $row->tanggal; ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<?php echo $row->tanggal; ?>">
                       </tr>
                       <tr>

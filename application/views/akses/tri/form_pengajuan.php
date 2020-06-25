@@ -103,6 +103,7 @@
                       <tr>
                         <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $this->session->userdata('display_name') ?></td>
                         <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
+                        <input type="hidden" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>">
                       </tr> 
                       <tr>
                         <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $this->session->userdata('division_id') ?></td>

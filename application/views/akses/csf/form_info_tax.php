@@ -173,49 +173,50 @@
 					   <form id="form" action="#"> 
 					 
 					   <font size="3" style="font-family: calibri;">
-					<table width="70%">
-                      <tr>
-                        <td><b>Deductible Expense</b></td>
-                        <td>
-                          <input type="checkbox" id="chkdeY" name="de"  <?php echo $deY; ?>  disabled> Ya<br>
-                        </td>
-                        <td>
-                          <input type="checkbox" id="chkdeN" name="de" <?php echo $deN; ?>  disabled> Tidak</input><br>
-                        </td>
-                        </tr>  
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>
-                            &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="chkNDE"  <?php echo $nde; ?> disabled> NDE</input><br>
-                          </td>
-                        </tr>  
-                        <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled> NDE50</input><br>                            
-                        </td>
-                        </tr> 
-                        <tr>
-                        <td></td>
-                        <td></td>
-                        <td width="8%">
-                          &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled> PARTNDE</input><br>                            
-                        </td>
-                        <td width="2%"><font size="3">Rp</font></td>
-                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='<?php echo $nilai; ?>' disabled></td>
-                        </tr>
-                    </table>
-                    <table width="70%">   
-                      <tr>
-                        <td><b>Objek Pajak</b></td>
-                        <td><input id="chkObjPjkY" type="checkbox" name="chkObjPjkY" <?php echo $objY; ?>  disabled > Ya </td>
-                        <td> <input id="chkObjPjkN"  type="checkbox" name="chkObjPjkN" <?php echo $objN; ?>  disabled> Tidak</input> </td>
-                        <td><input id="chkObjPjkE" type="checkbox" name="chkObjPjkE" <?php echo $objE; ?>  disabled> Employee</input> </td>
-                        <td><input id="chkObjPjkT" type="checkbox" name="chkObjPjkT" <?php echo $objT; ?>  disabled> Tax at Settlement</input> </td>
-                      </tr>                        
-                    </table>
+					    <table width="70%">
+                <tr>
+                  <td><b>Deductible Expense</b></td>
+                  <td>
+                    <input type="checkbox" id="chkdeY" name="de"  <?php echo $deY; ?>  disabled> Ya<br>
+                  </td>
+                  <td>
+                    <input type="checkbox" id="chkdeN" name="de" <?php echo $deN; ?>  disabled> Tidak</input><br>
+                  </td>
+                  </tr>  
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="chkNDE"  <?php echo $nde; ?> disabled> NDE</input><br>
+                    </td>
+                  </tr>  
+                  <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled> NDE50</input><br>                            
+                  </td>
+                  </tr> 
+                  <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled> PARTNDE</input><br>                            
+                  </td>
+                  <td><font size="3">Rp</font></td>
+                  <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='<?php echo $nilai; ?>' disabled></td>
+                  </tr>
+              </table>
+              <br>
+              <table width="70%">   
+                <tr>
+                  <td><b>Objek Pajak</b></td>
+                  <td><input id="chkObjPjkY" type="checkbox" name="chkObjPjkY" <?php echo $objY; ?>  disabled > Ya </td>
+                  <td> <input id="chkObjPjkN"  type="checkbox" name="chkObjPjkN" <?php echo $objN; ?>  disabled> Tidak</input> </td>
+                  <td><input id="chkObjPjkE" type="checkbox" name="chkObjPjkE" <?php echo $objE; ?>  disabled> Employee</input> </td>
+                  <td><input id="chkObjPjkT" type="checkbox" name="chkObjPjkT" <?php echo $objT; ?>  disabled> Tax at Settlement</input> </td>
+                </tr>                        
+              </table>
 					</font>
 					</form>
 					</br>
@@ -244,13 +245,18 @@
                         </tr>
                       </thead>
                       <tbody>
-                       <?php foreach ($process_tax as $tampil) {?>
+                       <?php 
+                        $ttlpjk=0;
+                        $pjkH='';
+                        foreach ($process_tax as $tampil) {
+                          $pjkH=str_replace(".","",$tampil->pajak_terutang);
+                          $ttlpjk=$ttlpjk+(float)$pjkH;  
+                        ?>
                         <!-- //Baris 1 -->
                         <tr>
                           <td><?php echo $tampil->jenis_pajak;?></td>
                           <td><?php echo $tampil->kode_pajak;?></td>
-                          <td><?php echo $tampil->kode_map;?>
-                          </td>
+                          <td><?php echo $tampil->kode_map;?></td>
                           <td><?php echo $tampil->nama;?></td>
                           <td><?php echo $tampil->npwp;?></td>
                           <td><?php echo $tampil->alamat;?></td>
@@ -260,14 +266,21 @@
                           <td><?php echo $tampil->gross;?></td>
                           <td><?php echo $tampil->dpp;?></td>
                           <td><?php echo $tampil->dpp_gross;?></td>
-                          <td><?php echo $tampil->pajak_terutang;?></td>
+                          <td><center><?php echo $tampil->pajak_terutang;?></center></td>
                           <td><?php echo $tampil->masa_pajak;?></td>
                           <td><?php echo $tampil->tahun;?></td>
                           <td><?php echo $tampil->keterangan;?></td>
                         </tr>
+                       <?php } ?>  
                         
                       </tbody>
-                       <?php } ?>  
+                       <tfoot align="right">
+                          <tr> 
+                            <th colspan="12" style="text-align:center;"> Total Pajak</th>
+                            <th><label class="control-label col-md-3" id="lbltotal"><?php echo number_format($ttlpjk,0,",","."); ?></label></th>
+                            <th colspan="3"></th>
+                          </tr>
+                        </tfoot>
                       </table>
                       </h6>
                     <?php } ?>                   
@@ -298,6 +311,17 @@
 function printThis() {
   window.print();
 }
+
+</script>
+<script>
+
+var $totpjkx=0;
+var pjktrx;
+
+pjktrx=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
+$totpjkx=$totpjkx+parseFloat(pjktrx);
+
+$('#lbltotal').text(formatRupiah($totpjkx.toString()));
 
 </script>
 

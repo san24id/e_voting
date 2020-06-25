@@ -103,7 +103,7 @@
 				$disabled3='disabled';
 				break;
 			  default:
-				$chkDY='unchecked';
+				$chkDY='checked';
 				$chkDN='unchecked';	
 				$disabled1='disabled';
 				$disabled2='disabled';
@@ -191,7 +191,7 @@
                         </td>
                         <td width="2%"><font size="3">Rp</font></td>
                         <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
-					 </tr>
+                        </tr>
                     </table>
                     <table width=70%>   
                       <tr>
@@ -234,14 +234,20 @@
                           <th>Gross Up</th>
                           <th>DPP</th>
                           <th>DPP <br>(Gross Up)</th>
-                          <th>Pajak Terutang</th>
+                          <th style="text-align:center;">Pajak Terutang</th>
                           <th>Masa Pajak PPN</th>
                           <th>Tahun</th>
                           <th>Keterangan</th>
                         </tr>
                       </thead>
                       <tbody>
-						<?php foreach($getdatatax as $gtax){?>
+						<?php 
+						$ttlpjk=0;
+						$pjkH='';
+						foreach($getdatatax as $gtax){
+							$pjkH=str_replace(".","",$gtax->pajak_terutang);
+							$ttlpjk=$ttlpjk+(float)$pjkH;
+							?>
 						 <tr>
 						 
 						  	<td style="text-align: center">	  						  					  
@@ -261,7 +267,7 @@
 							<td><?php echo $gtax->gross;?></td>
 							<td><?php echo $gtax->dpp;?></td>
 							<td><?php echo $gtax->dpp_gross;?></td>
-							<td><?php echo $gtax->pajak_terutang;?></td>
+							<td style="text-align:center;"><?php echo $gtax->pajak_terutang;?></td>
 							<td><?php echo $gtax->masa_pajak;?></td>
 							<td><?php echo $gtax->tahun;?></td>
 							<td><?php echo $gtax->keterangan;?></td>
@@ -269,7 +275,13 @@
 						 <?php }?>
                                            
                       </tbody> 
-                      
+						<tfoot align="right">
+							<tr> 
+							<th colspan="14" style="text-align:center;"> Total Pajak</th>
+                          <th><label class="control-label col-md-3" id="lbltotal"><?php echo number_format($ttlpjk,0,",","."); ?></label></th>
+                          <th colspan="3">
+						  </th></tr>
+						</tfoot>
                     </table>
                   </div>             
 
@@ -360,9 +372,8 @@
 <script>
 
 var save_method; 
-    //$("#show").DataTable();
-
-
+var skdmap;
+var starif;
 
     $('#show').DataTable({
       "paging": false,
@@ -592,10 +603,14 @@ function submittax()
 				dataType: "json",
 				success: function(data)
 				{
+					var $totpjkx=0;
+						var pjktrx;
 				   var tbl1 = $('#show').DataTable(); 
 						  tbl1.clear().draw();
 							$.each(data, function(key, item) 
 								  {       
+							  pjktrx=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
+							  $totpjkx=$totpjkx+parseFloat(pjktrx);
 							  tbl1.row.add( [
 									'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_tax +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_tax + ',' + item.id_payment + ')"><i class="glyphicon glyphicon-trash"></i></button>',
                         			item.no_urut,
@@ -618,7 +633,9 @@ function submittax()
 										
 									  ] ).draw(false);
 
-							})  
+							})
+							$('#lbltotal').text(formatRupiah($totpjkx.toString()));
+				  
 				},
 				error: function (jqXHR, textStatus, errorThrown)
 				{
@@ -632,6 +649,9 @@ function edit_tax(id)
     {
 		save_method = 'update';			
       //Ajax Load data from ajax
+	  
+	  $('#chktarifnormal').prop('readonly', false);
+	$('#chktarifnormal').removeAttr("disabled"); 
       $.ajax({
         url : "<?php echo base_url('dashboard/tax_edit/')?>/" + id,
         type: "GET",
@@ -639,6 +659,8 @@ function edit_tax(id)
         success: function(data)
         {
 			console.log(data);
+			skdmap=data[0].kode_map;
+			starif=data[0].tarif;
 			$('[name="id_tax"]').val(data[0].id_tax);
 			$('[name="handled_by"]').val('n.prasetyaningrum');
 			$('[name="id_payment"]').val(data[0].id_payment);
@@ -658,6 +680,7 @@ function edit_tax(id)
 					$('#txtalamat').prop('readonly', false);		
 					$('#divKdMap').show(); 
 					$('#divKdPjk').hide(); 
+					$('#divmasappn').hide();
 			} else{
 					$("#txtnamanpwp").prop('readonly', true);
 					$('#txtnonpwp').prop('readonly', true);	
@@ -735,11 +758,12 @@ function edit_tax(id)
 			$('[name="selKdPjk"]').val(data[0].kode_pajak).change();
 			$('[name="vkdmap"]').val(data[0].kode_map);
 			$('#seltarif').val(data[0].tarif).change();
-			$('#vtarif').val(data[0].tarif.trim());
+			$('#vtarif').val(data[0].tarif);
 			$('[name="txttarif"]').val(data[0].special_tarif);			
 			
 			$('[name="txtpajakterhutang"]').val(data[0].pajak_terutang);	
 			$('[name="vpajakterhutang"]').val(data[0].pajak_terutang);
+			//$('[name="selKdMap"]').val(data[0].kode_map).change();
 			
 			$('#modal_tax').modal('show');
 			
@@ -758,23 +782,47 @@ function edit_tax(id)
 
 function savetaxdraft()
     { 		
+	var $jnspajak=$('#selJnsPjk').val();
+	var $kdmap=$('#selKdMap').val();
+	var $kdobjek=$('#selKdPjk').val();
+	var $tarif="";
+	var $de="X";
+	if($("#chktarifnormal").is(':checked')){
+		$tarif=$('#seltarif').val();
+	}else if($("#chktarifspesial").is(':checked')){
+		$tarif=$('#txttarif').val();
+	}
+	
+	if($("#chkdeY").is(':checked') || $("#chkdeN").is(':checked')){
+		$de="Y";
+	}
+	
+				  
 	var $id = $('#id_payment').val();
-		if ($('#selJnsPjk').val()==""){
-			alert("Jenis Pajak belum di pilih");
-		  }/*else if ($('#selKdMap').val()==""){
-			alert("Kode MAP belum di pilih");    
-		  }*/else if ($('#txtnamanpwp').val()==""){
-			alert("Nama NPWP belum di input");
-		  }else if ($('#txtnonpwp').val()==""){
-			alert("Nomor NPWP belum di input");
-		  }else if ($('#txtrealtrf').val()=="0"){
-			alert("Tarif Pajak belum di pilih");		  
-		}else if ($('#txtdpp').val()==""){
-			alert("DPP belum di input");		  
-		}else if ($('#txtdppgross').val()==""){
-			alert("DPP Gross Up kosong");		  
-		}else{
-			var url ;
+	if ($de=="X"){
+		alert("Deductible Expense belum di pilih");
+	}else if ($('#selJnsPjk').val()==""){
+		alert("Jenis Pajak belum di pilih");
+	}else if ($('#txtnamanpwp').val()==""){
+		alert("Nama NPWP belum di input");
+	}else if ($('#txtnonpwp').val()==""){
+		alert("Nomor NPWP belum di input");
+	}else if ($tarif=="0" || $tarif==""){
+		alert("Tarif Pajak belum di pilih");		  
+	}else if ($('#txtdpp').val()==""){
+		alert("DPP belum di input");		  
+	}else if ($('#txtdppgross').val()==""){
+		alert("DPP Gross Up kosong");		  
+	}else if ($kdmap=="" && $jnspajak.substring(0, 3)!='PPN'){
+		alert("Kode MAP belum di pilih");		
+	}else if($kdobjek=="" && $jnspajak=='PPh Pasal 23'){
+		alert("Kode Objek Pajak belum di pilih");
+	}else if(($('#selmasappn').val()=="" || $('#seltahunppn').val()=="") && ($jnspajak == 'PPN' || $jnspajak == 'PPN WAPU' || $jnspajak == 'PPN PKP')) {
+			alert("Masa Pajak PPN belum di pilih");		
+	}else if($("#chkfasilitas").is(':checked') && $('#txtfasilitas').val()==""){
+		alert("Fasilitas Pajak belum di input");
+	}else{
+		var url ;
 			 if(save_method == 'add')
 				{
 					url = "<?php echo base_url('dashboard/savetaxdraft')?>";
@@ -800,11 +848,15 @@ function savetaxdraft()
 						dataType: "JSON",
 						success: function(data)
 						{*/
-
+						var $totpjk=0;
+						var pjktr;
 						var tbl1 = $('#show').DataTable(); 
 						  tbl1.clear().draw();
 							$.each(data, function(key, item) 
 								  {       
+								  
+							  pjktr=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
+							  $totpjk=$totpjk+parseFloat(pjktr);
 							  tbl1.row.add( [
 									'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_tax +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_tax + ',' + item.id_payment + ')"><i class="glyphicon glyphicon-trash"></i></button>',
                         			item.no_urut,
@@ -835,7 +887,7 @@ function savetaxdraft()
 						}
 					});*/
 				  
-				  
+				  $('#lbltotal').text(formatRupiah($totpjk.toString()));
 				  $('#modal_tax').modal('hide');
 				  //location.reload();   
                 },
@@ -998,7 +1050,8 @@ function showed() {
             //$('#txtnamanpwp').removeAttr("disabled"); 
 			$('#txtnonpwp').prop('readonly', false);	
 			$('#txtalamat').prop('readonly', false);		
-			
+			$('#divmasappn').hide();
+			$('#divKdPjk').hide(); 
       } else{
 		  $("#txtnamanpwp").prop('readonly', true);
             //$('#txtnamanpwp').removeAttr("disabled"); 
@@ -1032,11 +1085,16 @@ function showed() {
         dataType: "JSON",
         success: function(data)
 			{
+				var seltrf='';
 				var options =  '<option value="0"><strong>Tarif</strong></option>'; 
 				$(data.tarif).each(function(index, value){ 
-					if(value.id_jenis_pjk == $id){ 
-						options += '<option value="'+value.tarif+'">'+value.tarif+'</option>'; //add the option element as a string
+				if(value.tarif == starif){ 
+						$seltrf='selected';
+					}else{
+						$seltrf='';
 					}
+					options += '<option value="'+value.tarif+'" '+$seltrf+'>'+value.tarif+'</option>'; //add the option element as a string
+					
 				});
 
 				$('#seltarif').html(options); 
@@ -1055,11 +1113,15 @@ function showed() {
         dataType: "JSON",
         success: function(data)
 			{
+				var $selected='';
 				var options =  '<option value=""><strong>Kode Map</strong></option>'; 
 				$(data.kodemap).each(function(index, value){ 
-					if(value.id_jenis_pjk == $id){ 
-						options += '<option value="'+value.kode_map+'">'+value.kode_map+ ' ( ' + value.keterangan + ' )</option>'; //add the option element as a string
+					if(value.kode_map == skdmap){ 
+						$selected='selected';
+					}else{
+						$selected='';
 					}
+					options += '<option value="'+value.kode_map+'" '+$selected+'>'+value.kode_map+ ' ( ' + value.keterangan + ' )</option>'; //add the option element as a string
 				});
 
 				$('#selKdMap').html(options); 
@@ -1078,9 +1140,22 @@ function showed() {
 	$("#chkfasilitas").on( "click", function() {
 	  if($("#chkfasilitas").is(':checked')){
 		  $('#divfasilitas').show();
+		  $('#chktarifnormal').prop('checked', false);
+		  $('#chktarifnormal').prop('readonly', true);			
+		  $('#chktarifnormal').prop('disabled', "disabled");
+		  $('#divtarifnormal').hide();  
 		}else{
 			$('#divfasilitas').hide();
+			$('#chktarifnormal').prop('readonly', false);
+			$('#chktarifnormal').removeAttr("disabled"); 
+			$('#seltarif').prop('readonly', false);
+			$('#seltarif').removeAttr("disabled"); 
+			$('#divtarifnormal').show();  
 		}
+		$('#seltarif').val('').change();
+		$('#vtarif').val('');
+		
+				
 	});
 	
 	$("#chktarifnormal").on( "click", function() {
@@ -1088,9 +1163,12 @@ function showed() {
 		  $('#divtarifnormal').show();
 		  $('#divtarifspesial').hide();
 		  $('#chktarifspesial').prop('checked', false);
+		  $('#vtarifspesial').val('');
+		   $('#txttarif').val('');
 		}else{
 			$('#divtarifnormal').hide();
 			$('#txtrealtrf').val('0');
+			$('#seltarif').val('').change();
 		}
 	});
 	
@@ -1099,9 +1177,13 @@ function showed() {
 		  $('#divtarifnormal').hide();
 		  $('#divtarifspesial').show();
 		  $('#chktarifnormal').prop('checked', false);
+		  $('#seltarif').val('').change();
+		  $('#txttarif').val('');
 		}else{
-			$('#txtrealtrf').val('0');
+		  $('#txtrealtrf').val('0');
 		  $('#divtarifspesial').hide();
+		  $('#vtarifspesial').val('');
+		  $('#txttarif').val('');
 		}
 	});
 	
@@ -1370,9 +1452,9 @@ function PajakTerhutang(){
 					<input type="hidden" name="nomor_surat" id="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >
 					<?php } ?>
 					<input type="hidden" name="txtrealtrf" id="txtrealtrf" value='0' />
-					<input type="hidden" name="vdeductible" id="vdeductible"   />
-					<input type="hidden" name="voptional" id="voptional"  />
-					<input type="hidden" name="vobjekpajak" id="vobjekpajak" value='' />
+					<input type="hidden" name="vdeductible" id="vdeductible"  value='1' />
+					<input type="hidden" name="voptional" id="voptional"   />
+					<input type="hidden" name="vobjekpajak" id="vobjekpajak" value='1' />
 					<input type="hidden" name="vjnspjk" id="vjnspjk" />
 					<input type="hidden" name="vkdpjk" id="vkdpjk" />
 					<input type="hidden" name="vkdmap" id="vkdmap" />
