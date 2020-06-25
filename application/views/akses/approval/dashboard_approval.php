@@ -189,7 +189,7 @@
                       
                       <td><center><font size='3'> Verified </center></div> </td> <td> &nbsp;
                       
-                      <td><center><font size='3' > Approval </center></div> </font></td> <td> &nbsp;
+                      <td><center><font size='3' > Approved </center></div> </font></td> <td> &nbsp;
                       
                       <td><center><font size='3' > Paid </div> </font></td> <td> &nbsp;
                       
