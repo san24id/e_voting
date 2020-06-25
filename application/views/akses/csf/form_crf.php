@@ -363,12 +363,16 @@ td[rowspan="3"] {
                       </tbody>
                     </table>                    
 
+                    <!---TREASURY--->
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
+                          <td colspan="12"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
+                        </tr>
+                        <tr>
                           <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
                           <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
-                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" placeholder="Remarks"></textarea></td>                          
+                          <td colspan="4" rowspan="3">Catatan : <br><i>Remarks :</i> </td>                          
                         </tr>
                         <tr>
                           <td colspan="4"><br><br><br><br> </td>
@@ -384,21 +388,21 @@ td[rowspan="3"] {
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2">&nbsp; Dian Puspitasari </td>    
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%">No. Bilyet: </td>
                           <td colspan="2"> </td>
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2">&nbsp; VP Treasury </td>
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2">&nbsp; Cashier </td>
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%"><i>Check No.:</i> </td>
                           <td colspan="2"> </td>
-                        </tr>                 
-                      </tbody> 
+                        </tr>
+                      </tbody>
                     </table>
 
                     <br>

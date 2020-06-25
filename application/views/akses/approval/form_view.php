@@ -525,49 +525,55 @@
                         <?php } ?>  
 
                         <?php if($row->status == 11){ ?>
-                          <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
-                          <!----.Modal -->
-                          <!----.Accept -->
-                          <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document">
-                            <div class="modal-content">                                        
-                              <div class="modal-body">
-                              <form id="accepted" method="post" action="Approval/submit">
-                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                          <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
+                        
+                            <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
+                            <!----.Modal -->
+                            <!----.Accept -->
+                            <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-content">                                        
+                                <div class="modal-body">
+                                <form id="accepted" method="post" action="Approval/submit">
+                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                </div>
+                                <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                                </div>
                               </div>
-                              <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              </form>
                               </div>
-                            </div>
-                            </div>
-                          </div>  
+                            </div> 
+                          <?php } ?>   
                         <?php } ?>  
 
                         <?php if($row->status == 1 && $iya == "Off" ){ ?>
-                          <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
-                          <!----.Modal -->
-                          <!----.Accept -->
-                          <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document">
-                            <div class="modal-content">                                        
-                              <div class="modal-body">
-                              <form id="accepted" method="post" action="Approval/submit">
-                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                          <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
+
+                            <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
+                            <!----.Modal -->
+                            <!----.Accept -->
+                            <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-content">                                        
+                                <div class="modal-body">
+                                <form id="accepted" method="post" action="Approval/submit">
+                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                </div>
+                                <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form>
+                                </div>
                               </div>
-                              <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              </form>
                               </div>
-                            </div>
-                            </div>
-                          </div>  
+                            </div>  
+                          <?php } ?>
                         <?php } ?>  
                       </div>
                     </div>

@@ -5,9 +5,7 @@ td[rowspan="3"] {
 }
 </style>
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <?php foreach ($ppayment as $get) { ?>  
+      <?php foreach ($ppayment as $get) { ?>  
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -17,6 +15,7 @@ td[rowspan="3"] {
           </h1>
         </section>
         <!-- Main content -->
+        <!-- <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()"> -->
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
 
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>">
@@ -31,7 +30,7 @@ td[rowspan="3"] {
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td <b><font size="+2" style="font-family: calibri;">FORMULIR PENERIMAAN KAS <br> <i> CASH RECEIVED FORM (PRF)</i></font></b>                                  
+                        <td <b><font size="+2" style="font-family: calibri;">FORMULIR PERMINTAAN PEMBAYARAN <br> <i> CASH ADVANCE FORM (CRF)</i></font></b>                                  
                         <td><img src="assets/dashboard/images/logo.png" alt="Logo Images"></td>
                         </tr>
                       </tbody>
@@ -45,8 +44,8 @@ td[rowspan="3"] {
                           <td><font size="+1" >Tanggal : </td>
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly> </td>
                           <td> &nbsp;</td>
-                          <td><font size="+1" >ARF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
+                          <td><font size="+1" style="font-family: calibri;">CRF Doc. No : </font></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1" >Dir/Sub/Div :<br><i>Dir/Sub/Div </i><font></td>
@@ -58,7 +57,7 @@ td[rowspan="3"] {
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" class="form-control" value="<?php echo $get->pr_doc; ?>" readonly></td>
-                        </tr>  
+                        </tr>
                       </tbody>
                     </table>
 
@@ -73,8 +72,8 @@ td[rowspan="3"] {
                           <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                       </thead>
-                      <tbody>                      
-                      <tr>
+                      <tbody>       
+                        <tr>
                           <td><center> 1 </center></td>
                           <td colspan="2"><textarea type="text" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
                           <td><center><?php echo $get->currency;?></center> </td>
@@ -149,17 +148,17 @@ td[rowspan="3"] {
                         </tr>
 
                         <tr>
-                          <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
                           <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="3"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>" readonly></td>
+                          <td colspan="4"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang" value="<?php echo $get->terbilang;?>" readonly></td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada;?>"readonly></td>
+                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada; ?>" readonly></td>
                         </tr>
                       </tbody>
                     </table>
@@ -223,9 +222,9 @@ td[rowspan="3"] {
                           <td><input type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
                           <td><input type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
-                        </tr> 
+                        </tr>  
                       </tbody>
-                    </table>
+                    </table>                    
 
                     <!---TREASURY--->
                     <table border="1" style="font-family: calibri;" width="100%">
@@ -236,7 +235,7 @@ td[rowspan="3"] {
                         <tr>
                           <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
                           <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
-                          <td colspan="4" rowspan="3">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" name="label2" placeholder="Remarks"></textarea></td>                          
+                          <td colspan="4" rowspan="3">Catatan : <br><i>Remarks :</i> </td>                          
                         </tr>
                         <tr>
                           <td colspan="4"><br><br><br><br> </td>
@@ -252,17 +251,17 @@ td[rowspan="3"] {
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2">&nbsp; Dian Puspitasari </td>    
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%">No. Bilyet: </td>
                           <td colspan="2"> </td>
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2">&nbsp; VP Treasury </td>
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2">&nbsp; Cashier </td>
+                          <td colspan="2"> </td>
                           <td colspan="2" width="10%"><i>Check No.:</i> </td>
                           <td colspan="2"> </td>
                         </tr>
@@ -287,9 +286,9 @@ td[rowspan="3"] {
                       </tbody>
                     </table>
 
-                    <img align="right" src="assets/dashboard/images/footer_form2.png" alt="Logo Images">    
-                    
-                    </div>  
+                    <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
+
+                  </div>                    
                 </div>
                      
 

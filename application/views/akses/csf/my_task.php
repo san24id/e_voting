@@ -175,33 +175,34 @@
                     <?php if ($row->status <= 5) { ?>
                     <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     <?php } ?>
-                    <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>   
-                      <?php if ($row->jenis_pembayaran == 1) { ?>   
-                        <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                      <?php } ?>
+                    <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
                         <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                       <?php } ?>
                       <?php if ($row->jenis_pembayaran == 3) { ?> 
                         <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                       <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 4) { ?> 
+                      <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+                        <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 5) { ?> 
                         <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                       <?php } ?>
                     <?php } ?>
 
                     <?php 
                         if($row->status == 5 && $row->rejected_by != NULL){ ?>
-                      <?php if ($row->jenis_pembayaran == 1) { ?>   
-                        <a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
-                      <?php } ?>
+                      
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
                         <a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
                       <?php } ?>
                       <?php if ($row->jenis_pembayaran == 3) { ?> 
                         <a href="Dashboard/form_easf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>                    
                       <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 4) { ?> 
+                      <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6 ) { ?>   
+                        <a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
+                      <?php } ?>
+                      <?php if ($row->jenis_pembayaran == 5) { ?> 
                         <a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>                    
                       <?php } ?>  
                     <?php } ?>  

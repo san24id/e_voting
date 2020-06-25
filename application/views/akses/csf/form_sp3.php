@@ -117,7 +117,7 @@
                           }
                           
 						              if($test2[$b] == '6'){
-                            $xxi5 .= "6";
+                            $xxi6 .= "6";
                           }  
                         }
                                                   
@@ -142,7 +142,7 @@
                         <td>
                         <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
                       </td><td>
-                        <input id="checkcCC" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi2=="6"? 'checked':''?> disabled>Corporate Credit Card<br>
+                        <input id="checkcCC" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled>Corporate Credit Card<br>
                       </td>
                       </tr>   
                       <tr>
@@ -787,58 +787,97 @@ function printThis() {
   window.print();
 }
 
-function hide() {
-  var checkBox = document.getElementById("checked");
-  var checkBox2 = document.getElementById("checked2");
-  var text = document.getElementById("show");
-  if (checkBox.checked == false && checkBox2.checked == false ){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
+function update() {
+  alert("Data Successfully to Update");
 }
 
-function showInput() {
-  var checkBox = document.getElementById("lainnya");
-  var text = document.getElementById("text1");
-  var text2 = document.getElementById("text2");
-  if (checkBox.checked == true){
-    text.style.display = "block";
+function hide() {
+  var checkBox = document.getElementById("checked");
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  var text1 = document.getElementById("show");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
     text2.style.display = "block";
   } else {
-     text.style.display = "none"; 
+     text1.style.display = "none";
      text2.style.display = "none";
-
   }
+  document.getElementById("checkcreditcard").checked = false;
+}
+
+function hide2() {
+  var checkBox = document.getElementById("checked").disabled = true;
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text1 = document.getElementById("show");
+  var text2 = document.getElementById("choose");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+
 }
 
 function checkUangMuka() {
   // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var text = document.getElementById("show");
+
   document.getElementById("auto").checked = true;
   if (document.getElementById("checkrequest").checked == false){
     document.getElementById("auto").checked=false
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
   } 
+  // alert(checkrequest);
+}
+
+function checkCreditCard() {
+
+  if($("#checkcreditcard").is(':checked')){
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', true);
+    $('#checked2').prop('checked', false);
+  }else{
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', false);
+    $('#checked2').prop('checked', false);
+  }
 }
 
 function checkUangMuka2() {
   // alert();
-  // var checkBox1 = document.getElementById("checkrequest");
-  // var checkBox2 = document.getElementById("checksettlement");
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
   document.getElementById("auto").checked = true;
   if (document.getElementById("checksettlement").checked == false){
     document.getElementById("auto").checked=false
-  } 
+    text2.style.display = "block";
+  } else {
+    text2.style.display = "none";
+  }
 }
 
-function checkCreditCard() {
-	
-  document.getElementById("check").checked = true;
-  if (document.getElementById("checkcreditcard").checked == false){
-    document.getElementById("check").checked=false
-  } 
-}												  
 function view_tax(param)
 {
 	$('#mdl_no_surat').val(param);

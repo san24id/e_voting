@@ -6,9 +6,8 @@ td[rowspan="6"] {
 </style>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <?php foreach ($ppayment as $get) { ?>  
+      <?php foreach ($ppayment as $get) { ?>  
+      
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -17,10 +16,11 @@ td[rowspan="6"] {
             <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
           </h1>
         </section>
-        <!-- Main content --> 
+        <!-- Main content -->
+        <!-- <form id="form" method="post" action="Dashboard/updpay" onsubmit="update()"> -->
             <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
 
-          <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>"> 
+          <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>">
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -47,21 +47,21 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1" style="font-family: calibri;">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $get->division_id; ?>"></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $get->division_id; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">SPPP Doc. No : </font></td>
-                          <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat; ?>"></td>
+                          <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $get->nomor_surat; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td> 
                           <td><input type="text" name="pr_doc" class="form-control" value="<?php echo $get->pr_doc; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">Kode Proyek : <br> <i>Project Code</i><font></td>
-                          <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>"></td>
+                          <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>" readonly></td>
                         </tr>
                       </tbody>
                     </table>
@@ -69,16 +69,16 @@ td[rowspan="6"] {
                     <br>
 
                     <table border="1" style="font-family: calibri;" width="100%">
-                      <thead>
+                        <thead>
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="50%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
                           <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
                           <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
-                      </thead>
-                      <tbody>                      
-                      <tr>
+                        </thead>
+                        <tbody>
+                        <tr>
                           <td><center> 1 </center></td>
                           <td colspan="2"><textarea type="text" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
                           <td><center><?php echo $get->currency;?></center> </td>
@@ -153,19 +153,19 @@ td[rowspan="6"] {
                         </tr>
 
                         <tr>
-                          <td colspan="2" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
                           <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="3"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>" readonly></td>
+                          <td colspan="4"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang" value="<?php echo $get->terbilang;?>" readonly></td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada;?>"readonly></td>
+                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada; ?>" readonly></td>
                         </tr>
-                      </tbody>
+                        </tbody>
                     </table>
                     
                     <br>
@@ -242,7 +242,6 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
-                          <!-- <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> disabled> <i>Akumulasi > Rp. 20 Juta</i></input><br> -->
 
                           <td><font size="+1"> Bank : &nbsp;<input type="text" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
                           <td><font size="+1"> No. Rek : &nbsp;<input type="text" name="no_rek" value="<?php echo $get->no_rek; ?>" readonly> </input></font></td>                        
