@@ -301,6 +301,18 @@ class Dashboard_model extends CI_Model{
 
     }
 
+    function getApprovalDivHead(){
+        $dvs = $this->session->userdata("division_id");
+        
+        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status = '1' AND division_id= '$dvs'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+
+        return $query;
+    }
+
+
     function getmyTask() {
         $usr= $this->session->userdata("username");
 
@@ -772,6 +784,14 @@ class Dashboard_model extends CI_Model{
         return $query; 
     }
 
+    function getPIC(){
+        $sql = "SELECT * FROM m_user WHERE role_id = 5";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
     function credit_card(){
         $sql = "SELECT * FROM t_creditcard";
 
@@ -782,9 +802,9 @@ class Dashboard_model extends CI_Model{
     }
 
     function addcc($add){
-        $sql = "INSERT INTO `t_creditcard` (id_div, pemegang_kartu, division_id, nama_pic, target_submission, tempo, jatah)
+        $sql = "INSERT INTO `t_creditcard` (id_div, pemegang_kartu ,no_billing, division_id, id_user, nama_pic, target_submission, tempo, jatah)
 
-                VALUES ('".$add['id_div']."','".$add['pemegang_kartu']."','".$add['division_id']."','".$add['nama_pic']."',
+                VALUES ('".$add['id_div']."','".$add['pemegang_kartu']."','".$add['no_billing']."','".$add['division_id']."','".$add['id_user']."','".$add['nama_pic']."',
                 '".$add['target_submission']."','".$add['tempo']."','".$add['jatah']."')"; 
         
         $query = $this->db->query($sql);
@@ -793,8 +813,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function updatecc($upd){
-        $sql = "UPDATE `t_creditcard` SET `pemegang_kartu`='".$upd['pemegang_kartu']."',`division_id`='".$upd['division_id']."',`nama_pic`='".$upd['nama_pic']."',`target_submission`='".$upd['target_submission']."',
-                `tempo`='".$upd['tempo']."',`jatah`='".$upd['jatah']."' 
+        $sql = "UPDATE `t_creditcard` SET `pemegang_kartu`='".$upd['pemegang_kartu']."',`no_billing`='".$upd['no_billing']."',`division_id`='".$upd['division_id']."',`id_user`='".$upd['id_user']."',
+                `nama_pic`='".$upd['nama_pic']."',`target_submission`='".$upd['target_submission']."',`tempo`='".$upd['tempo']."',`jatah`='".$upd['jatah']."' 
         
                 WHERE `id_div`='".$upd['id_div']."'"; 
         
@@ -851,6 +871,16 @@ class Dashboard_model extends CI_Model{
         // var_dump($query);exit;
         return $query;
 
+    }
+
+    function notifApproval(){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT COUNT(status) as taskapproval FROM t_payment WHERE status = 1 AND division_id='$dvs'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
     }
 
     function getPejabat(){

@@ -247,9 +247,30 @@
             <li><a href="Dashboard/List_pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
           </ul>  
         </li>
-        <?php foreach ($notif_task as $notiftask) {?>
+        <?php 
+          foreach ($notif_task as $notiftask) {?>
         <li class="<?php echo $task?>"><a href="Dashboard/my_task"><i class="glyphicon glyphicon-list-alt"></i><span>My Task</span><small class="label pull-right bg-red"><?php echo $notiftask->totaltask; ?> </small></a></li>
         <?php } ?>
+
+        <?php 
+          if($this->session->userdata("role_id") == 4){
+            $sql = "SELECT activate FROM m_status WHERE id_status=11";
+            $query = $this->db->query($sql)->result();
+            // return $query;
+            // var_dump($query);exit; 
+            $iya = "";
+            foreach ($query as $signature):
+              $iya.= $signature->activate;
+            endforeach;
+
+              if ($iya == "On"){
+                foreach ($notif_approval as $notifapproval) {?>
+                  <li class="<?php echo $waiting_approval?>"><a href="Dashboard/wait_for_approval"><i class="glyphicon glyphicon-print"></i><span>Waiting For Approval</span><small class="label pull-right bg-red"><?php echo $notifapproval->taskapproval; ?> </small></a></li>
+                <?php } ?> 
+              <?php } ?> 
+        <?php } ?> 
+
+            
         <?php foreach ($reject as $notif) { ?>
         <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <?php } ?>        
@@ -272,7 +293,8 @@
             <li class="<?php echo $d_kode_bukpot?> "><a href="Dashboard/kode_bukpot "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Bukpot</a></span></li>
             <li class="<?php echo $d_kode_map?>"><a href="Dashboard/kode_map "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Map</a></span></li>
           </ul>
-        <li>    
+        <li>  
+         
         <br>
         <?php 
           $sql = "SELECT activate FROM `m_status` WHERE id_status = '11' ";

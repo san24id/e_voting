@@ -365,60 +365,60 @@
                         $test3 = count($test2);                        
                         ?>
                     <tr>
-                    <td><center><?php echo $i++; ?></center></td>
-                    <td><center><?php if($row->status == 0){
-                            echo "<img src='assets/dashboard/images/legend/draft.png'>";  
-                          }else if($row->status == 1){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                          }else if($row->status == 11){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                          }else if($row->status == 2){
-                            echo "<img src='assets/dashboard/images/legend/submitted.png'>";
-                          }else if($row->status == 3){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
-                          }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
-                          }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
-                          }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                          }   
-                        ?></center>
-                    </td>                  
-                    <td><?php echo $row->tanggal; ?></td>
-                    <td><?php                     
-                        for($a=0; $a<$test3; $a++){
-                          if($test2[$a]){
-                            echo $test2[$a]."<br>";
-                          }
-                        }  ?>
-                    </td>
-                    <td><?php echo $row->nomor_surat; ?></td>
-                    <td><?php echo $row->label1; ?></td>
-                    <td><?php echo $row->display_name; ?></td>
-                    <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                          $query = $this->db->query($sql)->result();
-                          // return $query;
-                          // var_dump($query[0]->nama);exit; 
-                          if ($query[0]->nama) { $buka = $query[0]->nama;
-                          }else{
-                            $buka = $row->penerima;
-                          }
-                        ?>
-                    <td><?php echo $buka; ?></td>
-                    <td><?php echo $row->submit_date;?></td>
-                    <td>
-                      <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                    </td>      
+                      <td><center><?php echo $i++; ?></center></td>
+                      <td><center><?php if($row->status == 0){
+                              echo "<img src='assets/dashboard/images/legend/draft.png'>";  
+                            }else if($row->status == 1){
+                              echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                            }else if($row->status == 11){
+                              echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                            }else if($row->status == 2){
+                              echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                            }else if($row->status == 3){
+                              echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
+                            }else if($row->status == 4){
+                              echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            }else if($row->status == 5){
+                              echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            }else if($row->status == 6){
+                              echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            }else if($row->status == 7){
+                              echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            }else if($row->status == 8){
+                              echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                            }else if($row->status == 9){
+                              echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                            }else if($row->status == 10){
+                              echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                            }   
+                          ?></center>
+                      </td>                  
+                      <td><?php echo $row->tanggal; ?></td>
+                      <td><?php                     
+                          for($a=0; $a<$test3; $a++){
+                            if($test2[$a]){
+                              echo $test2[$a]."<br>";
+                            }
+                          }  ?>
+                      </td>
+                      <td><?php echo $row->nomor_surat; ?></td>
+                      <td><?php echo $row->label1; ?></td>
+                      <td><?php echo $row->display_name; ?></td>
+                      <?php 
+                            $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                            $query = $this->db->query($sql)->result();
+                            // return $query;
+                            // var_dump($query[0]->nama);exit; 
+                            if ($query[0]->nama) { $buka = $query[0]->nama;
+                            }else{
+                              $buka = $row->penerima;
+                            }
+                          ?>
+                      <td><?php echo $buka; ?></td>
+                      <td><?php echo $row->submit_date;?></td>
+                      <td>
+                        <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
+                      </td>      
                     </tr>
                 <?php  } ?>
                 </tbody>

@@ -26,6 +26,7 @@
                 <tr>
                   <th><center>NO.</center></th>
                   <th>Nama Pemegang Kartu</th>
+                  <th>No. Billing</th>
                   <th>Division</th>
                   <th>Nama PIC</th>
                   <th>Target Submission Credit Card</th>
@@ -42,6 +43,7 @@
                 <tr>
                   <td><center><?php echo $i++; ?></center></td>
                   <td><?php echo $row->pemegang_kartu;?></td>
+                  <td><?php echo $row->no_billing;?></td>
                   <td><?php echo $row->division_id; ?></td>
                   <td><?php echo $row->nama_pic;?></td>
                   <td><?php echo $row->target_submission;?></td>
@@ -130,6 +132,11 @@
                     <td><input id="kartu" type="text" name="pemegang_kartu" class="form-control" required></td>
                 </tr>
                 <tr>
+                  <th>No. Billing</th>
+                    <td>:</td>
+                    <td><input id="billing" type="number" name="no_billing" class="form-control" required></td>
+                </tr>
+                <tr>
                   <th>Divisi</th>
                     <td>:</td>
                     <td><select id="divisi" name="division_id" class="form-control">
@@ -143,7 +150,14 @@
                 <tr>
                   <th>Nama PIC</th>
                     <td>:</td>
-                    <td><input id="pic" type="text" name="nama_pic" class="form-control" required></td>
+                    <td><select name="nama_pic" class="form-control">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($pic as $get) { ?>
+                            <option value="<?php echo $get->display_name; ?>"><?php echo $get->display_name; ?> - <?php echo $get->division_id; ?></option>
+                            <?php } ?>                                 
+                        </select>
+                        <input type="hidden" name="id_user">
+                    </td>
                 </tr>
                 <tr>
                   <th>Target Submission Credit Card</th>
@@ -198,6 +212,11 @@
                   <td><input type="text" name="pemegang_kartu" class="form-control" value="<?php echo $row->pemegang_kartu; ?>"></td>
                 </tr>
                 <tr>
+                  <th>No. Billing</th>
+                  <td>:</td>
+                  <td><input type="number" name="no_billing" class="form-control" value="<?php echo $row->no_billing; ?>"></td>
+                </tr>
+                <tr>
                   <th>Divisi</th>
                   <td>:</td>
                   <td><select name="division_id" class="form-control">
@@ -211,7 +230,15 @@
                 <tr>
                   <th>Nama PIC</th>
                   <td>:</td>
-                  <td><input type="text" name="nama_pic" class="form-control" value="<?php echo $row->nama_pic; ?>"></td>
+                  <td><select name="nama_pic" class="form-control">
+                          <option value="<?php echo $row->nama_pic;?>"><?php echo $row->nama_pic;?></option>
+                          <option value="">--Choose--</option>
+                            <?php foreach ($pic as $get) { ?>
+                            <option value="<?php echo $get->display_name; ?>"><?php echo $get->display_name; ?> - <?php echo $get->division_id; ?></option>
+                            <?php } ?>                                 
+                        </select>
+                        <input type="hidden" name="id_user" value="<?php echo $row->id_user; ?>">
+                  </td>
                 </tr>
                 <tr>
                   <th>Target Submission Credit Card</th>

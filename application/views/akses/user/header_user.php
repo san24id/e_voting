@@ -236,8 +236,28 @@
             <li class="<?php echo $dr?>"><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
+
+        <?php 
+          if($this->session->userdata("role_id") == 4){
+            $sql = "SELECT activate FROM m_status WHERE id_status=11";
+            $query = $this->db->query($sql)->result();
+            // return $query;
+            // var_dump($query);exit; 
+            $iya = "";
+            foreach ($query as $signature):
+              $iya.= $signature->activate;
+            endforeach;
+
+              if ($iya == "On"){
+                foreach ($notif_approval as $notifapproval) {?>
+                  <li class="<?php echo $waiting_approval?>"><a href="Home/wait_for_approval"><i class="glyphicon glyphicon-print"></i><span>Waiting For Approval</span><small class="label pull-right bg-red"><?php echo $notifapproval->taskapproval; ?> </small></a></li>
+                <?php } ?> 
+              <?php } ?> 
+        <?php } ?>
+
+
         <?php foreach ($reject as $notif) { ?>
-        <li class="<?php echo $active3?>"><a href="Home/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+          <li class="<?php echo $active3?>"><a href="Home/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <?php } ?>
         <br>
         <br>

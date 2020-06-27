@@ -782,7 +782,8 @@ function edit_tax(id)
 
 function savetaxdraft()
     { 		
-	var $jnspajak=$('#selJnsPjk').val();
+	//var $jnspajak=$('#selJnsPjk').val();
+	var $jnspajak=$("#selJnsPjk option:selected").text();	
 	var $kdmap=$('#selKdMap').val();
 	var $kdobjek=$('#selKdPjk').val();
 	var $tarif="";
@@ -813,7 +814,7 @@ function savetaxdraft()
 		alert("DPP belum di input");		  
 	}else if ($('#txtdppgross').val()==""){
 		alert("DPP Gross Up kosong");		  
-	}else if ($kdmap=="" && $jnspajak.substring(0, 3)!='PPN'){
+	}else if ($kdmap=="" && $jnspajak.substring(0, 3) !='PPN'){
 		alert("Kode MAP belum di pilih");		
 	}else if($kdobjek=="" && $jnspajak=='PPh Pasal 23'){
 		alert("Kode Objek Pajak belum di pilih");
@@ -1080,8 +1081,11 @@ function showed() {
 	  }
 	  
 	  $.ajax({
-        url : "<?php echo base_url('dashboard/gettarifbytax/')?>/" + $id,
-        type: "GET",
+        /*url : "<?php echo base_url('dashboard/gettarifbytax/')?>/" + $id,
+        type: "GET",*/
+        url : "<?php echo base_url('dashboard/gettarifbytax')?>",
+        type: "POST",
+        data: $("#form1,#form").serialize(),
         dataType: "JSON",
         success: function(data)
 			{
@@ -1103,13 +1107,16 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				// alert('Error get data from ajax');
+				alert('Error get data from ajax');
 			}
 		});
 		
 		$.ajax({
-        url : "<?php echo base_url('dashboard/getkodemapbytax/')?>/" + $id,
-        type: "GET",
+        /*url : "<?php echo base_url('dashboard/getkodemapbytax/')?>/" + $id,
+        type: "GET",*/
+        url : "<?php echo base_url('dashboard/getkodemapbytax')?>",
+        type: "POST",
+        data: $("#form1,#form").serialize(),
         dataType: "JSON",
         success: function(data)
 			{
@@ -1130,7 +1137,7 @@ function showed() {
 			error: function (data)
 			{
 				console.log(data);
-				// alert('Error get data from ajax');
+				alert('Error get data from ajax');
 			}
 		});
 		
