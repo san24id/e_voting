@@ -220,7 +220,6 @@
 					</font>
 					</form>
 					</br>
-                    <?php if ($row->status == 5 ){ ?>
                        
                       <h6>
                       <table border="1" class="table table-bordered table-striped" width="50%">
@@ -283,7 +282,6 @@
                         </tfoot>
                       </table>
                       </h6>
-                    <?php } ?>                   
                   </div>  
                 </div>                 
 

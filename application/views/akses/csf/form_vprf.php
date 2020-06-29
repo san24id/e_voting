@@ -13,7 +13,7 @@ td[rowspan="6"] {
         <section class="content-header">
           <h1>
             <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $get->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
-            <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
+            <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $get->id_payment; ?>', 1050, 550);">View Tax</button>
           </h1>
         </section>
         <!-- Main content -->
@@ -398,7 +398,7 @@ td[rowspan="6"] {
                               <label>Notes :</label>                
                               <textarea type="text" class="form-control" name="note" required></textarea>
                               <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                              <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                              <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("username"); ?>">
                             </div>
                             <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>
@@ -494,7 +494,7 @@ td[rowspan="6"] {
                             <label>Notes :</label>                
                             <textarea type="text" class="form-control" name="note" required></textarea>
                             <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("username"); ?>">
                           </div>
                           <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>

@@ -95,7 +95,17 @@
 										<tr>
 										  <td><?php echo $i++; ?></td>                  
 										  <td><?php echo $row->rejected_date; ?></td>
-										  <td><?php echo $row->rejected_by; ?>  </td>
+										 	<?php 
+												$sql = "SELECT display_name FROM m_user WHERE username = '$row->rejected_by'";
+												$query = $this->db->query($sql)->result();
+												// return $query;
+												// var_dump($query[0]->nama);exit; 
+												if ($query[0]->display_name) { $buka = $query[0]->display_name;
+												}else{
+												$buka = $row->rejected_by;
+												}
+											?>
+										  <td><?php echo $buka; ?>  </td>
 										  <td><?php echo $row->division_id; ?> </td>
 										  <td><?php echo $row->nomor_surat; ?> </td>
 										  <td><?php echo $row->label1;?> </td>
@@ -154,11 +164,21 @@
 										<tr>
 										  <td><?php echo $i++; ?></td>                  
 										  <td><?php echo $row->rejected_date; ?></td>
-										  <td><?php echo $row->rejected_by; ?>  </td>
+										  	<?php 
+												$sql = "SELECT display_name FROM m_user WHERE username = '$row->rejected_by'";
+												$query = $this->db->query($sql)->result();
+												// return $query;
+												// var_dump($query[0]->nama);exit; 
+												if ($query[0]->display_name) { $buka = $query[0]->display_name;
+												}else{
+												$buka = $row->rejected_by;
+												}
+											?>
+										  <td><?php echo $buka; ?>  </td>
 										  <td><?php echo $row->division_id; ?> </td>
 										  <td><?php echo $row->nomor_surat; ?> </td>
 										  <td> <?php echo $row->apf_doc;?> </td>
-										  <td><?php echo $row->label1;?> </td>
+										  <td><?php echo $row->description;?> </td>
 										  <td><?php echo $row->note;?> </td>
 										  <td>
 											<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->

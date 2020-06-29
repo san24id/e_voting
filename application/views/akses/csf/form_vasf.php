@@ -419,7 +419,7 @@ td[rowspan="6"] {
                               <label>Notes :</label>                
                               <textarea type="text" class="form-control" name="note" required></textarea>
                               <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                              <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                              <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("username"); ?>">
                             </div>
                             <div class="modal-footer">                        
                               <button type="submit" class="btn btn-success bye">Yes</button>
@@ -515,7 +515,7 @@ td[rowspan="6"] {
                             <label>Notes :</label>                
                             <textarea type="text" class="form-control" name="note" required></textarea>
                             <input type="hidden" name="rejected_date" value="<?php echo date('d-M-Y'); ?>">
-                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                            <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("username"); ?>">
                           </div>
                           <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>
