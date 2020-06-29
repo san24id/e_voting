@@ -162,7 +162,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs'";
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','2','3','4','5','6','7','8','9')";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -186,10 +186,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 		
-        $sql = "SELECT * FROM (SELECT b.status_laporan, a.division_id, COUNT(a.status) AS totaldraft FROM t_payment a RIGHT JOIN m_status b ON 
-                a.status = b.id_status AND a.division_id = '$dvs' AND a.status = '0'
-                GROUP by b.status_laporan ORDER by b.id_status) otr WHERE otr.status_laporan != '' AND otr.division_id = '$dvs' AND otr.totaldraft != 0 
-                AND otr.status_laporan IS NOT NULL";
+        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','3')";
                 
         $query = $this->db->query($sql)->result();
         //  var_dump($query);exit;        
@@ -348,7 +345,7 @@ class Home_model extends CI_Model{
 	public function getDetailDraft($sid=0) {
         $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '0' and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('0','1') and division_id='$dvs'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -375,6 +372,69 @@ class Home_model extends CI_Model{
 	function getDeatilCreditCard(){
         $sql ="SELECT * FROM t_creditcard";
 
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getDetailDraftStatus($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '0' and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getDetailDraftPrint($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','11','3') and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getDetailSubmitted($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '2' and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getDetailProcessing($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('4','5','6','7') and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getDetailVerified($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '8' and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getDetailApproved($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '9' and division_id='$dvs'";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getDetailPaid($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '10' and division_id='$dvs'";
+                
         $query = $this->db->query($sql)->result();
         return $query;
     }

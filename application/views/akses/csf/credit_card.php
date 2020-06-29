@@ -318,7 +318,7 @@
 </script>
 <script>
   $("#nambah").on('click', function(){
-      var acc = $('#acc').val():
+      var acc = $('#acc').val();
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addstaff"); ?>", // Isi dengan url/path file php yang dituju       

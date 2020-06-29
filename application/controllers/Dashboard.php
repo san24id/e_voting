@@ -2347,6 +2347,41 @@ class Dashboard extends CI_Controller {
 			$this->session->set_userdata('titleHeader','Credit Card Corporate List');
 			$this->session->set_userdata('filter','6');
 			break;
+		  case "7":
+			$data['payment'] = $this->Home_model->getDetailDraftStatus($sid);
+			$this->session->set_userdata('titleHeader','Draft List');
+			$this->session->set_userdata('filter','7');
+			break;
+		  case "8":
+			$data['payment'] = $this->Home_model->getDetailDraftPrint($sid);
+			$this->session->set_userdata('titleHeader','Draft(Print) List');
+			$this->session->set_userdata('filter','8');
+			break;
+		  case "9":
+			$data['payment'] = $this->Home_model->getDetailSubmitted($sid);
+			$this->session->set_userdata('titleHeader','Submitted List');
+			$this->session->set_userdata('filter','9');
+			break;
+		  case "10":
+			$data['payment'] = $this->Home_model->getDetailProcessing($sid);
+			$this->session->set_userdata('titleHeader','Processing List');
+			$this->session->set_userdata('filter','10');
+			break;
+		  case "11":
+			$data['payment'] = $this->Home_model->getDetailVerified($sid);
+			$this->session->set_userdata('titleHeader','Verified List');
+			$this->session->set_userdata('filter','11');
+			break;
+		  case "12":
+			$data['payment'] = $this->Home_model->getDetailApproved($sid);
+			$this->session->set_userdata('titleHeader','Approved List');
+			$this->session->set_userdata('filter','12');
+			break;
+		  case "13":
+			$data['payment'] = $this->Home_model->getDetailPaid($sid);
+			$this->session->set_userdata('titleHeader','Paid List');
+			$this->session->set_userdata('filter','13');
+			break;
 		  default:
 			$data['payment'] = $this->Home_model->getPayment($sid);
 		}
