@@ -37,23 +37,7 @@
         border-radius: 8px;
 				display: inline-block;
 				/* margin-left: 10px; */
-   } 
-   .box5{width:110px;
-				height:105px;
-        background: linear-gradient(#339966, #0066CC);
-				border: linear-gradient(#339966, #0066CC);
-        border-radius: 8px;
-				display: inline-block;
-				/* margin-left: 10px; */
-   }
-   .box6{width:100px;
-				height:94px;
-        background: linear-gradient(#339966, #0066CC);
-				border: linear-gradient(#339966, #0066CC);
-        border-radius: 8px;
-				display: inline-block;
-				/* margin-left: 10px; */
-   } 
+   }  
    .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
    	
 </style>
@@ -72,13 +56,13 @@
         <div class="row">        
           <div class="col-md-3">
           <div class="info-box bg-gray">
-            <span class="info-box-icon box5"><img align="center" src="assets/dashboard/images/legend/Total_payment_request.png"></i></span>
+            <span class="info-box-icon box4"><img align="center" src="assets/dashboard/images/legend/Total_payment_request.png"></i></span>
             <div class="info-box-content bg-gray">
               <br>
               <?php foreach ($tot_pay_req as $tot_req) { ?>
               <a href="<?php echo base_url('dashboard/all_detail_payment/1')?>"><span class="info-box-number"><font size='5' color="green"><center> <?php echo $tot_req->totalreq; ?></center></font></span></a>
               <?php } ?>    
-              <span class="info-box-text"><font color="green"><center>Total Payment <br>Request(*)</center></font></span>  
+              <span class="info-box-text"><font color="green"><center>Total Payment Request(*)</center></font></span>  
             </div>            
             <!-- /.info-box-content -->
           </div>
@@ -90,13 +74,13 @@
 
           <div class="col-md-3">
           <div class="info-box bg-gray">
-              <span class="info-box-icon box5"><img src="assets/dashboard/images/legend/Total_outstanding.png"></i></span>
+              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_outstanding.png"></i></span>
               <div class="info-box-content bg-gray">
                 <br>
                 <?php foreach ($outstanding as $tot_outstanding) { ?>  
                 <a href="<?php echo base_url('dashboard/all_detail_payment/2')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span></a>
                 <?php } ?>            
-                <span class="info-box-text "><font color="green"><center>&nbsp; Total Outstanding Payment <br> Request (**)</center></font></span>
+                <span class="info-box-text "><font color="green"><center>&nbsp; Total Outstanding Payment Request (**)</center></font></span>
               </div>
               <!-- /.info-box-content -->
           </div>
@@ -105,18 +89,19 @@
 
           </div>            
           <!-- /.col -->
+
           <!-- fix for small devices only -->
           <div class="clearfix visible-sm-block"></div>
 
           <div class="col-md-3">
           <div class="info-box bg-gray">
-            <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
-            <div class="info-box-content bg-gray">
-              <br>  
-              <?php foreach ($draft1 as $tot_draft) { ?>
-              <a href="<?php echo base_url('dashboard/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totdraft; ?></center></font></span></a>
-              <?php } ?>            
-              <span class="info-box-text "><font color="green"><center>Total Draft (***) </center></font></span>
+              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
+              <div class="info-box-content bg-gray">
+                <br>  
+                <?php foreach ($draft as $tot_draft) { ?>
+                <a href="<?php echo base_url('dashboard/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
+                <?php } ?>            
+                <span class="info-box-text "><font color="green"><center>Total Draft (***) </center></font></span>
             </div>
             <!-- /.info-box-content -->
             
@@ -126,12 +111,13 @@
 
           </div>
 
+
           <div class="col-md-3">
           <div class="info-box bg-gray">
-              <span class="info-box-icon box6"><img src="assets/dashboard/images/legend/user.png"></i></span>
+              <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/user.png"></i></span>
               <div class="info-box-content bg-gray">
                 <br>
-                <span class="info-box-number"><font size='3' color="green"><center><?php echo $this->session->userdata("display_name"); ?></center></font></span>
+                <span class="info-box-number"><font size='5' color="green"><center><?php echo $this->session->userdata("display_name"); ?></center></font></span>
                 <span class="info-box-text "><font color="green"><center>View By</center></font></span>
               </div>
               <!-- /.info-box-content -->
@@ -154,12 +140,11 @@
                   <div class="row">
                     <div class="col-md-12">
                     <!-- periode -->
-                    <table width="60%">
+                    <table width="100%">
                       <?php echo form_open("Dashboard/periode_dashboard");?>
                         <tr>
                           <td class="period"><font color="white" size="3">Period: </font></td>
-                        </tr>  
-                        <tr>  
+                          <td></td>
                           <td class="period"><font color="white" size="3"> Date </font></td>
                           <td class="period"><input type="date" name="start_date" id="start_date"></td>
                           <td><font size="3">s/d</font></td>
@@ -197,27 +182,24 @@
                       <td width="12%"><div class="tujuh"><center><a href="<?php echo base_url('dashboard/all_detail_payment/12')?>"><font size='5' color="white"> <?php echo $approval->approval; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>
                       <?php foreach ($paid as $paid) { ?>
-                      <td width="12%"><div class="satu"><center><a href="<?php echo base_url('dashboard/all_detail_payment/13')?>"><font size='5' color="white"> <?php echo $paid->paid; ?> <br>  </font> </div> </a> </td><td> &nbsp;  
+                      <td width="12%"><div class="satu"><center><a href="<?php echo base_url('dashboard/all_detail_payment/13')?>"><font size='5' color="white"> <?php echo $paid->paid; ?> </font></div></a> </td><td> &nbsp;  
                       <?php } ?>
                     </tr>
-                  </table>
-                  <table width=100%>
-
                     <tr>   
                       
-                      <td width="12%"><center><font size='3'> Draft </center></div> </td> <td> &nbsp;
+                      <td><center><font size='3'> Draft </center></div> </td> <td> &nbsp;
                                       
-                      <td width="12%"><center><font size='3'> Draft(Print) </center></div> </td> <td> &nbsp;
+                      <td><center><font size='3'> Draft(Print) </center></div> </td> <td> &nbsp;
                       
-                      <td width="12%"><center><font size='3'> Submitted </div> </td> <td> &nbsp;
+                      <td><center><font size='3'> Submitted </div> </td> <td> &nbsp;
                       
-                      <td width="12%"><center><font size='3'> Processing </center></div> </td> <td> &nbsp;
+                      <td><center><font size='3'> Processing </center></div> </td> <td> &nbsp;
                       
-                      <td width="12%"><center><font size='3'> Verified </center></div> </td> <td> &nbsp;
+                      <td><center><font size='3'> Verified </center></div> </td> <td> &nbsp;
                       
-                      <td width="12%"><center><font size='3' > Approved </center></div> </font></td> <td> &nbsp;
+                      <td><center><font size='3' > Approved </center></div> </font></td> <td> &nbsp;
                       
-                      <td width="12%"><center><font size='3' > Paid </div> </font></td> <td> &nbsp;
+                      <td><center><font size='3' > Paid </div> </font></td> <td> &nbsp;
                       
                     </tr>
                   </table>
@@ -225,8 +207,60 @@
                 <br><br>               
                 
               </div>     
-            </div>      
+            </div>
             
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box-body">
+                  <!-- USERS LIST -->
+                  <div class="box box-success">
+                    <div class="box-header with-border">
+                      <div class="box-tools pull-right">
+                        <span class="label label-success"></span>
+                      </div>
+                    </div>
+                    <div class="box-body">
+                      <table width="100%">
+                      <?php foreach ($upcoming_over as $sebentar) { $tanggal_sekarang = date('Ymd');   ?>
+                        <?php 
+                              $string = $sebentar->upcoming;
+                              $stringBuka = str_replace("-", "", $string);
+                              // echo $stringBuka;              
+                        ?>
+
+                        <?php if ($tanggal_sekarang >= $stringBuka) {
+                              $count_overdue += 1;
+                              }else{
+                              $count_upcoming += 1;
+                              }
+                        ?>                        
+                      <?php } ?>
+                        <tr> 
+                          <td align="center" width="25%"><div class="info-box box1">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
+                            <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
+                            <a href="<?php echo base_url('dashboard/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
+                          </td>                          
+                          <td align="center" width="25%"><div class="info-box box2">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
+                            <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
+                            <a href="<?php echo base_url('dashboard/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
+                          </td>
+
+                          <td align="center" width="25%"><div class="info-box box3">
+                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
+                            <center><font size='3' color="white"> Credit Card <br> Submission in 30 days <br> </font>
+                            <?php foreach ($creditcard as $cc) { ?>
+                            <a href="<?php echo base_url('dashboard/all_detail_payment/6')?>"><font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </a></center></div>
+                            <?php } ?>
+                          </td>  
+                        </tr>  
+                      </table>
+                    </div>  
+                  </div>
+                </div>
+              </div>      
+            </div>
           </div>
 
           <div class="col-md-6"><!--PieChart-->
@@ -247,7 +281,7 @@
                   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
                   <div class="col-md-6">
-                    <div id="pieChart" style="min-width: 480px; height: 230px; margin: 0 auto"></div> 
+                    <div id="pieChart" style="min-width: 580px; height: 400px; max-width: 600px; margin: 0 auto"></div> 
                     </div>
                   </div>
                   <!-- /.box-body -->               
@@ -255,59 +289,6 @@
                 <!--/.box -->              
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="box-body">
-              <!-- USERS LIST -->
-              <div class="box box-success">
-                <div class="box-header with-border">
-                  <div class="box-tools pull-right">
-                    <span class="label label-success"></span>
-                  </div>
-                </div>
-                <div class="box-body">
-                  <table width="100%">
-                  <?php foreach ($upcoming_over as $sebentar) { $tanggal_sekarang = date('Ymd');   ?>
-                    <?php 
-                          $string = $sebentar->upcoming;
-                          $stringBuka = str_replace("-", "", $string);
-                          // echo $stringBuka;              
-                    ?>
-
-                    <?php if ($tanggal_sekarang >= $stringBuka) {
-                          $count_overdue += 1;
-                          }else{
-                          $count_upcoming += 1;
-                          }
-                    ?>                        
-                  <?php } ?>
-                    <tr> 
-                      <td align="center" width="25%"><div class="info-box box1">
-                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
-                        <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                        <a href="<?php echo base_url('dashboard/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
-                      </td>                          
-                      <td align="center" width="25%"><div class="info-box box2">
-                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
-                        <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                        <a href="<?php echo base_url('dashboard/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
-                      </td>
-
-                      <td align="center" width="25%"><div class="info-box box3">
-                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
-                        <center><font size='3' color="white"> Credit Card <br> Submission in 30 days <br> </font>
-                        <?php foreach ($creditcard as $cc) { ?>
-                        <a href="<?php echo base_url('dashboard/all_detail_payment/6')?>"><font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </a></center></div>
-                        <?php } ?>
-                      </td>  
-                    </tr>  
-                  </table>
-                </div>  
-              </div>
-            </div>
-          </div>      
         </div>
 
 		<div class="box box-default">

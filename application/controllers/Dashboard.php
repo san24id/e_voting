@@ -2318,7 +2318,7 @@ class Dashboard extends CI_Controller {
 		
 		switch ($id) {
 		  case "1":
-			$data['payment'] = $this->Home_model->getPayment($sid);
+			$data['payment'] = $this->Home_model->getPaymentDetail($sid);
 			$this->session->set_userdata('titleHeader','All Payment Request List');
 			$this->session->set_userdata('filter','1');
 			break;

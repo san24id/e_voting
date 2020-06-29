@@ -11,6 +11,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getPaymentDetail($sid=0) {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND status in ('0','1','2','3','4','5','6','7','8','9')";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getVPayment() {
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
