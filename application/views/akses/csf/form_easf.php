@@ -972,17 +972,27 @@ function nominal(){
   
   var a = hasil ;
   if (a <= 100000000){
-    document.getElementById("approval1").value = "Donny Hamdani";
-    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
-  }
-  if (a >= 100000000 && a <= 500000000) {
-    document.getElementById("approval1").value = "Donny Hamdani";
-    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
-    
-    document.getElementById("approval2").value = "Salusra Satria";
-    document.getElementById("jabatan2").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
-  }
-  if (a >= 500000000) {
+    <?php foreach ($d_wewenang as $pejabat) { ?>
+      <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
+      document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
+      document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
+
+      <?php } else {  ?>
+        document.getElementById("approval1").value = "Salusra Satria";;
+        document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+      <?php } ?>
+
+  }else if (a > 100000000 && a <= 500000000) {
+    <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "2"){ ?>
+    document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
+    document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
+
+    <?php } else {  ?>
+      document.getElementById("approval1").value = "M. Wahid Sutopo";
+      document.getElementById("jabatan1").value = "Direktur Utama / CEO";  
+    <?php } ?>
+
+  }else if (a > 500000000) {
     document.getElementById("approval1").value = "Salusra Satria";
     document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
     
@@ -991,6 +1001,8 @@ function nominal(){
 
     document.getElementById("approval3").value = "M. Wahid Sutopo";
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
+  <?php }?>
+
   }
 // Jumlah Uang Muka
   if (hasil_jumlah1<0){

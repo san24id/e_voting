@@ -484,6 +484,7 @@ class Dashboard extends CI_Controller {
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -591,6 +592,7 @@ class Dashboard extends CI_Controller {
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -673,6 +675,7 @@ class Dashboard extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -759,6 +762,7 @@ class Dashboard extends CI_Controller {
 
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();

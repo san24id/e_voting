@@ -92,74 +92,158 @@ td[rowspan="6"] {
                         <tr>
                           <td><center> 1 </center></td>
                           <td colspan="2"><textarea type="text" class="form-control" name="description"><?php echo $get->description;?></textarea></td>                  
-                          <td><center><?php echo $get->currency;?></center> </td>
+                          <td><select id="Select" class="form-control" onchange="myFunction()" name="currency">
+                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?> </option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $row) {?>
+                                  <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                                <?php } ?>
+                              </select>
+                          </td>
                           <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>"></td>
                         </tr>
                         <tr>
                           <td><center> 2 </center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description2" value="<?php echo $get->description2;?>"></td>
-                          <td><center><?php echo $get->currency1;?></center> </td>
+                          <td><select id="Select1" class="form-control" onchange="myFunction1()" name="currency1">
+                                <option value="<?php echo $get->currency2; ?>"> <?php echo $get->currency2; ?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $row) {?>
+                                  <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                                <?php } ?>
+                              </select>
+                          </td>
                           <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>"></td> 
                         </tr>
                         <tr>
                           <td><center> 3 </center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description3" value="<?php echo $get->description3;?>"></td>
-                          <td><center><?php echo $get->currency2;?> </center> </td>
+                          <td><select id="Select2" class="form-control" onchange="myFunction2()" name="currency2">
+                            <option value="<?php echo $get->currency3; ?>"> <?php echo $get->currency3; ?></option>                              
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                              <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>4</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description4" value="<?php echo $get->description4;?>"></td>
-                          <td><center>  <?php echo $get->currency3;?></center> </td>
+                          <td><select id="Select3" class="form-control" onchange="myFunction3()" name="currency3">
+                            <!-- <option value="<?php echo $row->currency4; ?>"> <?php echo $row->currency4; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                              <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>"> </td>
                         </tr>
                         <tr>
                           <td><center>5</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description5" value="<?php echo $get->description5;?>"></td>
-                          <td><center>  <?php echo $get->currency4;?></center> </td>
+                          <td><select id="Select4" class="form-control" onchange="myFunction4()" name="currency4">
+                            <!-- <option value="<?php echo $row->currency5; ?>"> <?php echo $row->currency5; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>"> </td> 
                         </tr>
                         <tr>
                           <td><center>6</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description6" value="<?php echo $get->description6;?>" ></td>
-                          <td><center>  <?php echo $get->currency5;?></center></td>
+                          <td><select id="Select5" class="form-control" onchange="myFunction5()" name="currency5">
+                            <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>"></td> 
                         </tr>
                         
                         <tr>
                           <td><center>7</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description7" value="<?php echo $get->description7;?>"></td>
-                          <td><center>  <?php echo $get->currency6;?></center></td>
+                          <td><select id="Select6" class="form-control" onchange="myFunction6()" name="currency6">
+                            <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>">  </td> 
                         </tr>
                         <tr>
                           <td><center>8</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description8" value="<?php echo $get->description8;?>"></td>
-                          <td><center>  <?php echo $get->currency7;?></center></td>
+                          <td><select id="Select7" class="form-control" onchange="myFunction7()" name="currency7">
+                            <!-- <option value="<?php echo $row->currency9; ?>"> <?php echo $row->currency9; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>" ></td> 
                         </tr>
                         <tr>
                           <td><center>9</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description9" value="<?php echo $get->description9;?>" ></td>
-                          <td><center>  <?php echo $get->currency8;?></center></td>
+                          <td><select id="Select8" class="form-control" onchange="myFunction8()" name="currency8">
+                            <!-- <option value="<?php echo $row->currency10; ?>"> <?php echo $row->currency10; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>10</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description10" value="<?php echo $get->description10;?>"></td>
-                          <td><center>  <?php echo $get->currency9;?></center></td>
+                          <td><select id="Select9" class="form-control" onchange="myFunction9()" name="currency9">
+                            <!-- <option value="<?php echo $row->currency11; ?>"> <?php echo $row->currency11; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>11</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description11" value="<?php echo $get->description11;?>"></td>
-                          <td><center>  <?php echo $get->currency10;?></center></td>
+                          <td><select id="Select10" class="form-control" onchange="myFunction10()" name="currency10">
+                            <!-- <option value="<?php echo $row->currency12; ?>"> <?php echo $row->currency13; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai10" onchange="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>12</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description12" value="<?php echo $get->description12;?>"></td>
-                          <td><center>  <?php echo $get->currency11;?></center></td>
+                          <td><select id="Select11" class="form-control" onchange="myFunction11()" name="currency11">
+                            <!-- <option value="<?php echo $row->currency12; ?>"> <?php echo $row->currency14; ?></option>                               -->
+                            <option value="">--Choose--</option>
+                            <?php foreach ($currency as $row) {?>
+                            <option value="<?php echo $row->currency; ?>"><?php echo $row->currency . " - " . $row->mata_uang ; ?> </option>
+                            <?php } ?>
+                            </select>
+                          </td>
                           <td><input id="nilai11" onchange="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>"></td> 
                         </tr>
 
@@ -225,19 +309,19 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>" readonly> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>" readonly> </td>
+                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>" readonly> </td>
+                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>" readonly> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>" readonly> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
+                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
+                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
                         </tr>  
                       </tbody>
                     </table>
@@ -409,85 +493,104 @@ function myFunction(){
 
 function nominal(){
   var x = document.getElementById("nilai").value;
-
-  document.getElementById("ulang").innerHTML = x;
-}
-
+  // alert(x);
+  var b = document.getElementById("nilai1").value;
+  // alert(b);
+  var c = document.getElementById("nilai2").value;
+  // alert(c);
+  var d = document.getElementById("nilai3").value;
+  // alert(d);
+  var e = document.getElementById("nilai4").value;
+  // alert(e);
+  var f = document.getElementById("nilai5").value;
+  // alert(f);
+  var g = document.getElementById("nilai6").value;
+  // alert(g);
+  var h = document.getElementById("nilai7").value;
+  // alert(h);
+  var i = document.getElementById("nilai8").value;
+  // alert(i);
+  var j = document.getElementById("nilai9").value;
+  // alert(j);
+  var k = document.getElementById("nilai10").value;
+  // alert(k);
+  var l = document.getElementById("nilai11").value;
+  // alert(l);
     
-var get_x = x.replace(/\D+/g, '');
-  if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
+  var get_x = x.replace(/\D+/g, '');
+  if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
 		get_x= -Math.abs(get_x);		
   }else{
 	  get_x= Math.abs(get_x);		
   }
   var get_b = b.replace(/\D+/g, '');
-  if (b.substr(0,1)=="(" && b.substr(b.length-1,1)==")"){		
+  if ((b.substr(0,1)=="(" && b.substr(b.length-1,1)==")")|| b.substr(0,1)=="-"){		
 		get_b= -Math.abs(get_b);		
   }else{
 	  get_b= Math.abs(get_b);		
   }
   var get_c = c.replace(/\D+/g, '');
-  if (c.substr(0,1)=="(" && c.substr(c.length-1,1)==")"){		
+  if ((c.substr(0,1)=="(" && c.substr(c.length-1,1)==")")|| c.substr(0,1)=="-"){		
 		get_c= -Math.abs(get_c);		
   }else{
 	  get_c= Math.abs(get_c);		
   }
   var get_d = d.replace(/\D+/g, ''); 
-  if (d.substr(0,1)=="(" && d.substr(d.length-1,1)==")"){		
+  if ((d.substr(0,1)=="(" && d.substr(d.length-1,1)==")")|| d.substr(0,1)=="-"){		
 		get_d= -Math.abs(get_d);		
   }else{
 	  get_d= Math.abs(get_d);		
   }  
   var get_e = e.replace(/\D+/g, '');
-  if (e.substr(0,1)=="(" && e.substr(e.length-1,1)==")"){		
+  if ((e.substr(0,1)=="(" && e.substr(e.length-1,1)==")")|| e.substr(0,1)=="-"){		
 		get_e= -Math.abs(get_e);		
   }else{
 	  get_e= Math.abs(get_e);		
   }
   var get_f = f.replace(/\D+/g, '');
-  if (f.substr(0,1)=="" && f.substr(f.length-1,1)==")"){		
+  if ((f.substr(0,1)=="" && f.substr(f.length-1,1)==")")|| f.substr(0,1)=="-"){		
 		get_f= -Math.abs(get_f);		
   }else{
 	  get_f= Math.abs(get_f);		
   }
   
   var get_g = g.replace(/\D+/g, '');
-  if (g.substr(0,1)=="(" && g.substr(g.length-1,1)==")"){		
+  if ((g.substr(0,1)=="(" && g.substr(g.length-1,1)==")")|| g.substr(0,1)=="-"){		
 		get_g= -Math.abs(get_g);		
   }else{
 	  get_g= Math.abs(get_g);		
   }
   
   var get_h = h.replace(/\D+/g, '');
-  if (h.substr(0,1)=="(" && h.substr(h.length-1,1)==")"){		
+  if ((h.substr(0,1)=="(" && h.substr(h.length-1,1)==")")|| h.substr(0,1)=="-"){		
 		get_h= -Math.abs(get_h);		
   }else{
 	  get_h= Math.abs(get_h);		
   }
   
   var get_i = i.replace(/\D+/g, '');
-  if (i.substr(0,1)=="(" && i.substr(i.length-1,1)==")"){		
+  if ((i.substr(0,1)=="(" && i.substr(i.length-1,1)==")")|| i.substr(0,1)=="-"){		
 		get_i= -Math.abs(get_i);		
   }else{
 	  get_i= Math.abs(get_i);		
   }
   
   var get_j = j.replace(/\D+/g, '');
-  if (j.substr(0,1)=="(" && j.substr(j.length-1,1)==")"){		
+  if ((j.substr(0,1)=="(" && j.substr(j.length-1,1)==")")|| j.substr(0,1)=="-"){		
 		get_j= -Math.abs(get_j);		
   }else{
 	  get_j= Math.abs(get_j);		
   }
   
   var get_k = k.replace(/\D+/g, '');
-  if (k.substr(0,1)=="(" && k.substr(k.length-1,1)==")"){		
+  if ((k.substr(0,1)=="(" && k.substr(k.length-1,1)==")")|| k.substr(0,1)=="-"){		
 		get_k= -Math.abs(get_k);		
   }else{
 	  get_k= Math.abs(get_k);		
   }
 
   var get_l = l.replace(/\D+/g, '');  
-  if (l.substr(0,1)=="(" && l.substr(l.length-1,1)==")"){		
+  if ((l.substr(0,1)=="(" && l.substr(l.length-1,1)==")")|| l.substr(0,1)=="-"){		
 		get_l= -Math.abs(get_l);		
   }else{
 	  get_l= Math.abs(get_l);		
@@ -524,12 +627,14 @@ var get_x = x.replace(/\D+/g, '');
 
   var hasil = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
   
-  // alert(b)
+  // alert(hasil)
   // if(x && b && c){
     //document.getElementById("ulang").value = hasil ;
     // document.getElementById("ulang1").value = hasil ;
   // }  
-  var bilangan= ''+hasil+'';
+  var bilangan= ''+Math.abs(hasil)+'';
+  // alert(bilangan)
+  
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -606,7 +711,7 @@ var get_x = x.replace(/\D+/g, '');
     }
     
     var matauang = document.getElementById("Select").value;
-    // var namamatauang =String(matauang);
+    var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
@@ -640,35 +745,43 @@ var get_x = x.replace(/\D+/g, '');
       default:
       muncul = "";
     }
-    
+	
+     if(hasil<0){
+		  kalimat="(" + kalimat + ") ";
+	  }
+	  if(hasil==0){
+		  kalimat="Nol ";
+	  }
+	  
     document.getElementById("terbilang").value=kalimat+muncul;
     // alert(kalimat);  
 
-  var a = hasil ;
+    var a = hasil ;
+
+// alert(a)
+
   if (a <= 100000000){
-    document.getElementById("approval1").value = "Donny Hamdani";
-    document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
+    <?php foreach ($d_wewenang as $pejabat) { ?>
+      <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
+      document.getElementById("approval1").value = "<?= $pejabat->nama_user?> ";
+      document.getElementById("jabatan1").value = " <?= $pejabat->jabatan?>";
 
-    <?php if ($row->display_name == "Donny Hamdani"){ ?>
-      document.getElementById("approval1").value = "Salusra Satria";
-      document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
-    <?php } ?>
-  }
-  
-  if (a >= 100000000 && a <= 500000000) {
-    // document.getElementById("approval1").value = "Donny Hamdani";
-    // document.getElementById("jabatan1").value = "Deputi Direktur Keuangan";
-    
-    document.getElementById("approval1").value = "Salusra Satria";
-    document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+      <?php } else {  ?>
+        document.getElementById("approval1").value = "Salusra Satria";
+        document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
+      <?php } ?>
 
-    <?php if ($row->display_name == "Salusra Satria"){ ?>
+  }else if (a > 100000000 && a <= 500000000) {
+    <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "2"){ ?>
+    document.getElementById("approval1").value = "<?= $pejabat->nama_user?>";
+    document.getElementById("jabatan1").value = "<?= $pejabat->jabatan?>";
+
+    <?php } else {  ?>
       document.getElementById("approval1").value = "M. Wahid Sutopo";
-      document.getElementById("jabatan1").value = "Direktur Utama / CEO";
+      document.getElementById("jabatan1").value = "Direktur Utama / CEO";  
     <?php } ?>
-  }
 
-  if (a >= 500000000) {
+  }else if (a > 500000000) {
     document.getElementById("approval1").value = "Salusra Satria";
     document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
     
@@ -677,8 +790,11 @@ var get_x = x.replace(/\D+/g, '');
 
     document.getElementById("approval3").value = "M. Wahid Sutopo";
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
-  }
+  <?php }?>
 
+  } 
+
+    // alert(a)
   if (hasil<0){
 	  hasil=Math.abs(hasil);
 	  document.getElementById("ulang").value = "(" + hasil + ")" ;
@@ -689,9 +805,13 @@ var get_x = x.replace(/\D+/g, '');
   var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else if (strulang.substr(0,1)=="-" ){
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
-		ulang.value = formatulang(this.value);
-	}  
+		ulang.value = formatulang(strulang);
+	}
+
+  
 }
 
   // Format Separator Id Nilai 
@@ -702,6 +822,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai =nilai.value;
 	if (strnilai.substr(0,1)=="(" && strnilai.substr(strnilai.length-1,1)==")"){
 		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-2)) + ")";
+	}else if(strnilai.substr(0,1)=="-") {
+		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-1)) + ")";
 	}else{
 		nilai.value = formatnilai(this.value);
 	}
@@ -731,9 +853,11 @@ var get_x = x.replace(/\D+/g, '');
   nilai1.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai1() untuk mengubah angka yang di ketik menjadi format angka
-	var strnilai1 =nilai1.value;
-	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")"){
+	 var strnilai1 =nilai1.value;
+	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")") {
 		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-2)) + ")";
+	}else if(strnilai1.substr(0,1)=="-") {
+		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-1)) + ")";
 	}else{
 		nilai1.value = formatnilai1(this.value);
 	}
@@ -767,6 +891,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai2 =nilai2.value;
 	if (strnilai2.substr(0,1)=="(" && strnilai2.substr(strnilai2.length-1,1)==")"){
 		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-2)) + ")";
+	}else if(strnilai2.substr(0,1)=="-") {
+		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-1)) + ")";
 	}else{
 		nilai2.value = formatnilai2(this.value);
 	}
@@ -798,6 +924,8 @@ var get_x = x.replace(/\D+/g, '');
 	var strnilai3 =nilai3.value;
 	if (strnilai3.substr(0,1)=="(" && strnilai3.substr(strnilai3.length-1,1)==")"){
 		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-2)) + ")";
+	}else if(strnilai3.substr(0,1)=="-") {
+		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-1)) + ")";
 	}else{
 		nilai3.value = formatnilai3(this.value);
 	}
@@ -806,8 +934,7 @@ var get_x = x.replace(/\D+/g, '');
   });
 
   /* Fungsi formatnilai3 */
-  function formatnilai3(angka, prefix){
-	  
+  function formatnilai3(angka, prefix){	  
 	var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
@@ -831,6 +958,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai4 =nilai4.value;
 	if (strnilai4.substr(0,1)=="(" && strnilai4.substr(strnilai4.length-1,1)==")"){
 		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-2)) + ")";
+	}else if(strnilai4.substr(0,1)=="-") {
+		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-1)) + ")";
 	}else{
 		nilai4.value = formatnilai4(this.value);
 	}
@@ -862,6 +991,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai5 =nilai5.value;
 	if (strnilai5.substr(0,1)=="(" && strnilai5.substr(strnilai5.length-1,1)==")"){
 		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-2)) + ")";
+	}else if(strnilai5.substr(0,1)=="-") {
+		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-1)) + ")";
 	}else{
 		nilai5.value = formatnilai5(this.value);
 	}
@@ -893,6 +1024,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai6 =nilai6.value;
 	if (strnilai6.substr(0,1)=="(" && strnilai6.substr(strnilai6.length-1,1)==")"){
 		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-2)) + ")";
+	}else if(strnilai6.substr(0,1)=="-") {
+		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-1)) + ")";
 	}else{
 		nilai6.value = formatnilai6(this.value);
 	}
@@ -924,6 +1057,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai7 =nilai7.value;
 	if (strnilai7.substr(0,1)=="(" && strnilai7.substr(strnilai7.length-1,1)==")"){
 		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-2)) + ")";
+	}else if(strnilai7.substr(0,1)=="-") {
+		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-1)) + ")";
 	}else{
 		nilai7.value = formatnilai7(this.value);
 	}
@@ -955,6 +1090,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai8 =nilai8.value;
 	if (strnilai8.substr(0,1)=="(" && strnilai8.substr(strnilai8.length-1,1)==")"){
 		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-2)) + ")";
+	}else if(strnilai8.substr(0,1)=="-") {
+		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-1)) + ")";
 	}else{
 		nilai8.value = formatnilai8(this.value);
 	}
@@ -986,6 +1123,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai9 =nilai9.value;
 	if (strnilai9.substr(0,1)=="(" && strnilai9.substr(strnilai9.length-1,1)==")"){
 		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-2)) + ")";
+	}else if(strnilai9.substr(0,1)=="-") {
+		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-1)) + ")";
 	}else{
 		nilai9.value = formatnilai9(this.value);
 	}
@@ -1017,6 +1156,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai10 =nilai10.value;
 	if (strnilai10.substr(0,1)=="(" && strnilai10.substr(strnilai10.length-1,1)==")"){
 		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-2)) + ")";
+	}else if(strnilai10.substr(0,1)=="-") {
+		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-1)) + ")";
 	}else{
 		nilai10.value = formatnilai10(this.value);
 	}
@@ -1048,6 +1189,8 @@ var get_x = x.replace(/\D+/g, '');
     var strnilai11 =nilai11.value;
 	if (strnilai11.substr(0,1)=="(" && strnilai11.substr(strnilai11.length-1,1)==")"){
 		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-2)) + ")";
+	}else if(strnilai11.substr(0,1)=="-") {
+		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-1)) + ")";
 	}else{
 		nilai11.value = formatnilai11(this.value);
 	}
@@ -1080,6 +1223,8 @@ var get_x = x.replace(/\D+/g, '');
     var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else if(strulang.substr(0,1)=="-") {
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
 		ulang.value = formatulang(this.value);
 	}
