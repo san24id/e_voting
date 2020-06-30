@@ -601,6 +601,29 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_easf', $data);
 
 	}
+	
+	public function form_easf2($id)
+	{
+		$data['task'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_easf2', $data);
+
+	}
 
 	public function report_asf($id)	{
 

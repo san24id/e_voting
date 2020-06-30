@@ -122,8 +122,13 @@
 													<a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
 												<?php } ?>
 												<?php if ($row->jenis_pembayaran == 3) { ?> 
-													<a href="Dashboard/form_easf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>                    
-												<?php } ?>
+													<?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
+														<a class="btn btn-primary" href="Dashboard/form_easf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Edit</a>
+													<?php } ?>
+													<?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
+														<a class="btn btn-primary" href="Dashboard/form_easf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Edit</a> 
+													<?php } ?>                      
+												<?php } ?>                   
 												<?php if ($row->jenis_pembayaran == 4) { ?> 
 													<a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>                    
 												<?php } ?>  
