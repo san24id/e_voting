@@ -50,8 +50,6 @@
                           <th>DPP</th>
                           <th>DPP <br>(Gross Up)</th>
                           <th>Pajak Terutang</th>
-                          <th>Masa Pajak PPN</th>
-                          <th>Tahun Pajak</th>
                           <th>Keterangan</th>
                         </tr>
                       </thead>
@@ -75,8 +73,6 @@
                           <td><?php echo $tampil->dpp;?></td>
                           <td><?php echo $tampil->dpp_gross;?></td>
                           <td><?php echo $tampil->pajak_terutang;?></td>
-                          <td><?php echo $tampil->masa_pajak;?></td>
-                          <td><?php echo $tampil->tahun;?></td>
                           <td><?php echo $tampil->keterangan;?></td>
                         </tr>
 					              <?php } ?>

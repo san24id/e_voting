@@ -80,8 +80,19 @@
                     <td><?php echo $row->nama; ?></td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
-                    <td>Mendapatkan Fasilitas ? (Y/N)</td>
-                    <td>Nomor SKB</td>
+                    <?php
+                      $sql = "SELECT fas_pajak FROM t_tax WHERE fas_pajak IS NOT NULL AND id_payment=$row->id_payment";
+                      $query = $this->db->query($sql)->result();
+                            // return $query;
+                            // var_dump($query[0]->nama);exit; 
+                            if ($query[0]->fas_pajak) { 
+                              $buka = "Ya";
+                            }else{
+                              $buka = "No";
+                            }
+                    ?>
+                    <td><?php echo $buka; ?></td>
+                    <td><?php echo $row->fas_pajak; ?></td>
                     <td><?php echo $row->tarif; ?></td>
                     <td><?php echo $row->dpp; ?></td>
                     <td><?php echo $row->pajak_terutang; ?></td>
@@ -149,9 +160,22 @@
                     <td><?php echo $i++; ?></td>                  
                     <td><?php echo $row->nomor_surat;?> </td>
                     <td><?php echo $row->jenis_pajak; ?></td>
-                    <td>Masa Pajak</td>
+                    <td><?php echo $row->masa_pajak;?></td>
                     <td><?php echo $row->nama; ?></td>
-                    <td>NPWP tersedia? <br> (YA/NO)</td>
+
+                    <?php
+                      $sql = "SELECT npwp FROM t_tax WHERE npwp IS NOT NULL AND id_payment=$row->id_payment";
+                      $query = $this->db->query($sql)->result();
+                            // return $query;
+                            // var_dump($query[0]->nama);exit; 
+                            if ($query[0]->npwp) { 
+                              $npwp = "Ya";
+                            }else{
+                              $npwp = "No";
+                            }
+                    ?>
+
+                    <td><?php echo $npwp; ?></td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
                     <td><?php echo $row->tarif; ?></td>

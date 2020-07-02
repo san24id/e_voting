@@ -58,5 +58,21 @@ class Login_model extends CI_Model{
     //     $query=$this->db->query("SELECT * FROM t_user WHERE email = '".$addfp['email']."' LIMIT 1")->result();
     //     return $query;
     // }
+	
+	function checknotification($id){
+        $query=$this->db->query("select * from t_notification where notif_date=curdate() and notif_flag=1 and notif_id=".$id);
+        return $query;
+    }
+	
+	function updatenotification(){
+        $sql = "update t_notification set notif_date=curdate()";         
+        $query = $this->db->query($sql);
+        return $query;
+    }
+	
+	function sendnotification(){
+        $query=$this->db->query("select c.division_id,concat(c.tempo,'-',DATE_FORMAT(curdate(), '%M-%Y')) tempo,d.division_name,u.display_name,u.email,c.no_billing from t_creditcard c, m_division d, m_user u where c.division_id=d.division_id and c.id_user=u.id_user and (c.jatah > 1 or (c.jatah=1 and c.target_submission<=day(curdate())))");
+        return $query;
+    }
 
 }

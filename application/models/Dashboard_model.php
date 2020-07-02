@@ -356,6 +356,24 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getProcessTaxPPh($id){
+        $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id' AND jenis_pajak LIKE '%PPh%'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+
+    }
+
+    function getProcessTaxPPN($id){
+        $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id' AND jenis_pajak LIKE '%PPN%'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+
+    }
+
     function getProcessTax($id){
         $sql = "SELECT * FROM `t_tax` WHERE id_payment = '$id'";
 
@@ -1121,7 +1139,7 @@ class Dashboard_model extends CI_Model{
 		$dvs = $this->session->userdata('division_id');
         
         $sql = "UPDATE t_creditcard SET jatah=jatah-1 WHERE trim(no_billing) = "; 
-		$sql .= "(select trim(no_rekening) from t_payment where jenis_pembayaran='6' and status='1' and id_payment='".$upd['id_payment']."' and division_id='".$dvs."') ";
+		$sql .= "(select trim(no_rekening) from t_payment where jenis_pembayaran like '%6%' and status='1' and id_payment='".$upd['id_payment']."' and division_id='".$dvs."') ";
         $sql .= " and division_id='".$dvs."'";
 		$query = $this->db->query($sql);
         return $query;

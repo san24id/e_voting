@@ -1786,7 +1786,7 @@ function PajakTerhutang(){
 									<input id="chkfasilitas" type="checkbox" name="chkfasilitas" value="1" > Ya </input>
 								</div>
 								<div id="divfasilitas" class="col-md-7" style="display:none;">
-								  <input name="txtfasilitas" id="txtfasilitas"  placeholder="Fasilitas Pajak" class="form-control" type="text">
+								  <input name="txtfasilitas" id="txtfasilitas"  placeholder="Nomor SKB" class="form-control" type="text">
 								</div>
 						</div>
 						

@@ -40,9 +40,32 @@ class Login extends CI_Controller {
 	public function auth(){
         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
         $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
- 
-        $cek_login=$this->Login_model->auth_user($username,$password);
+		
+		$cek_notif=$this->Login_model->checknotification('1');
+		if($cek_notif->num_rows() == 0){
+			$send_notif=$this->Login_model->sendnotification();
+			foreach ($send_notif->result() as $notif) {
+				$to = $notif->email;
+				$subject = "Reminder For Submit SP3 (Corporate Credit Card)";
+				$message = "<html><head><title>Email Notification</title></head>";
+				$message .= "<body><p>Dear Bpk/Ibu. ".$notif->display_name." </p>";
+				$message .= "<p>Corporate Credit Card anda belum di proses pembayaran.";
+				$message .= "</br>Harap segera mengajukan SP3 sebelum jatuh tempo tanggal " .$notif->tempo;
+				$message .= "</p><table><tr><th>No. Kartu Kredit</th><th>Divisi</th></tr>";
+				$message .= "<tr><td>".$notif->credit_card_no."</td><td>".$notif->division_name."</td>";
+				$message .= "</tr></table></br><p><i>Hormat Kami</i></br></br><b><i>";
+				$message .= "Finance Administration</i></b></p></body></html>";
 
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+				$headers .= 'From: <webadmin@pii.co.id>' . "\r\n";
+				
+				//mail($to,$subject,$message,$headers);
+			}
+			$this->Login_model->updatenotification();
+		}
+		$cek_login=$this->Login_model->auth_user($username,$password);
+		
         session_start();
  
        if($cek_login->num_rows() > 0){

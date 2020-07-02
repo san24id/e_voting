@@ -381,7 +381,7 @@ class Dashboard extends CI_Controller {
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['process_tax'] = $this->Dashboard_model->getProcessTaxPPh($id);
 		$data['vreport'] = $this->Dashboard_model->report_view_pph($id_tax);
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -398,7 +398,7 @@ class Dashboard extends CI_Controller {
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['process_tax'] = $this->Dashboard_model->getProcessTax($id);
+		$data['process_tax'] = $this->Dashboard_model->getProcessTaxPPN($id);
 		$data['vreport'] = $this->Dashboard_model->report_view_ppn($id_tax);
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -2178,6 +2178,7 @@ class Dashboard extends CI_Controller {
 		$data['ppayment']=$this->Home_model->getform($id_payment);
 		$data['process_tax']=$this->Dashboard_model->getProcessTax2($id_payment);
 		$data['process_tax_H']=$this->Dashboard_model->getProcessTaxHeader($id_payment);
+		$data['getdatanontax']=$this->Dashboard_model->getDataNonTax($id_payment);
 		$this->load->view('akses/csf/form_info_tax', $data);
 	}
 	

@@ -222,7 +222,7 @@
 					</br>
                        
                       <h6>
-                      <table border="1" class="table table-bordered table-striped" width="50%">
+                      <table border="1" class="table table-bordered table-striped" >
                       <thead>
                         <tr>
                           <th width="9%">Jenis Pajak</th>
@@ -281,6 +281,42 @@
                           </tr>
                         </tfoot>
                       </table>
+					  </br>
+					  </br>
+					  <b><font size="3" style="font-family: calibri;">Transaksi Non Tax </font></b>
+					  <table class="table table-bordered table-striped" style="width:75%"> 
+						<thead>
+							<tr>
+								<th width="5%">No</th>
+								<th width="50%">Item Description</th>
+								<th width="15%">Nominal</th>
+							</tr>
+						</thead>
+						<tbody>
+						  <?php 
+							$ttlpjk=0;
+							$pjkH='';
+							$nontaxtrow=0;
+							foreach($getdatanontax as $gnontax){
+								$pjknonH=str_replace(".","",$gnontax->nominal);
+								$ttlnonpjk=$ttlnonpjk+(float)$pjknonH;
+								$nontaxtrow++;
+							?>
+								<tr>
+									<td style="text-align:right;" width="5%"><?php echo $nontaxtrow; ?></td>
+									<td style="text-align:left;" width="50%"><?php echo $gnontax->item_desc; ?></td>
+									<td style="text-align:right;" width="15%"><?php echo number_format($gnontax->nominal,0,",","."); ?></td>								
+								</tr>
+							<?php } ?>
+															
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="2" style="text-align:center;">Total Non Tax</th>
+								<th style="text-align:right;"><?php echo number_format($ttlnonpjk,0,",","."); ?></th>								  
+							</tr>
+						</tfoot>
+					  </table>							
                       </h6>
                   </div>  
                 </div>                 

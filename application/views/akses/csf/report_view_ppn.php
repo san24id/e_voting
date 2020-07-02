@@ -59,10 +59,22 @@
                           <td><?php echo $i++; ?></td>  
                           <td><?php echo $tampil->nomor_surat;?></td>
                           <td><?php echo $tampil->jenis_pajak;?></td>
-                          <td>Masa Pajak </td>
+                          <td><?php echo $tampil->masa_pajak;?> </td>
                           <td><?php echo $tampil->nama;?></td>
-                          <td>NPWP tersedia?</td>
-                          <td><?php echo $tampil->npwp;?></td>
+                          <?php
+                            $sql = "SELECT npwp FROM t_tax WHERE npwp IS NOT NULL AND id_payment=$tampil->id_payment";
+                            $query = $this->db->query($sql)->result();
+                                  // return $query;
+                                  // var_dump($query[0]->nama);exit; 
+                                  if ($query[0]->npwp) { 
+                                    $npwp = "Ya";
+                                  }else{
+                                    $npwp = "No";
+                                  }
+                          ?>
+
+                          <td><?php echo $npwp; ?></td>
+                          <td><?php echo $tampil->npwp; ?></td>
                           <td><?php echo $tampil->alamat;?></td>
                           <td><?php echo $tampil->tarif;?></td>
                           <td><?php echo $tampil->dpp;?></td>
