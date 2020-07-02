@@ -142,160 +142,262 @@
 			  <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row1->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
 			  <?php } ?>	
 			</h1>
-            <div class="row">
-              <div class="col-md-12">
-                <!-- /.box -->
-                <div class="box">
-                  <div class="box-header with-border">
-                    <h5>
-                      <br>
-                      <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
-                      <br>
-                      <center><b><u><font size="+2" style="font-family: calibri;">FORM VERIFIKASI PAJAK</font></u></b></center>
-                    </h5>                    
-                    
-                    <br>
-					<!-- <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()">  -->
-					<form id="form" action="#"> 
-						
-					
-                    <table style="font-family: calibri;" width="70%">
-                      <tr>
-                        <td><b>Deductible Expense?</b></td>
-                        <td>
-                          <input type="checkbox" id="chkdeY" name="de" value="1" <?php echo $chkDY; ?>> Ya<br>
-                        </td>
-                        <td>
-                          <input type="checkbox" id="chkdeN" name="de" value="0" <?php echo $chkDN; ?> > Tidak</input><br>
-                        </td>
-                        </tr>  
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td>
-                            &nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="opsional[]" value="1" <?php echo $chkopsi1 .'  '.$disabled1; ?> > NDE</input><br>
-                          </td>
-                        </tr>  
-                        <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="opsional[]" value="2" <?php echo $chkopsi2.'  '.$disabled2;?>> NDE50</input><br>                            
-                        </td>
-                        </tr> 
-                        <tr>
-                        <td></td>
-                        <td></td>
-                        <td width="8%">
-                          &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" <?php echo $chkopsi3.'  '.$disabled3;?>> PARTNDE</input><br>                            
-                        </td>
-                        <td width="2%"><font size="3">Rp</font></td>
-                        <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
-                        </tr>
-                    </table>
-                    <table width=70%>   
-                      <tr>
-                        <td><b>Objek Pajak</b></td>
-                        <td><input id="chkObjPjkY" type="checkbox" name="objek_pajak[]" value="1" <?php echo $chkY; ?> > Ya </td>
-                        <td> <input id="chkObjPjkN"  type="checkbox" name="objek_pajak[]" value="0" <?php echo $chkN; ?> > Tidak</input> </td>
-                        <td><input id="chkObjPjkE" type="checkbox" name="objek_pajak[]" value="2" <?php echo $chkE; ?> > Employee</input> </td>
-                        <td><input id="chkObjPjkT" type="checkbox" name="objek_pajak[]" value="3" <?php echo $chkT; ?> > Tax at Settlement</input> </td>
-                      </tr>                        
-                    </table>
-                    </form> 
-                    <br>
-                    
-                    
-                    <br>
+             <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-body">
+				<div class="box-header">
+				<div class="col-md-12">
+							<h5>
+							  <br>
+							  <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
+							  <br>
+							  <center><b><u><font size="+2" style="font-family: calibri;">FORM VERIFIKASI PAJAK</font></u></b></center>
+							</h5>  
+							<br>
+							<!-- <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()">  -->
+							<form id="form" action="#"> 
+							<table style="font-family: calibri;" width="70%">
+							  <tr>
+								<td><b>Deductible Expense?</b></td>
+								<td>
+								  <input type="checkbox" id="chkdeY" name="de" value="1" <?php echo $chkDY; ?>> Ya<br>
+								</td>
+								<td>
+								  <input type="checkbox" id="chkdeN" name="de" value="0" <?php echo $chkDN; ?> > Tidak</input><br>
+								</td>
+								</tr>  
+								<tr>
+								  <td></td>
+								  <td></td>
+								  <td>
+									&nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="opsional[]" value="1" <?php echo $chkopsi1 .'  '.$disabled1; ?> > NDE</input><br>
+								  </td>
+								</tr>  
+								<tr>
+								<td></td>
+								<td></td>
+								<td>
+								  &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="opsional[]" value="2" <?php echo $chkopsi2.'  '.$disabled2;?>> NDE50</input><br>                            
+								</td>
+								</tr> 
+								<tr>
+								<td></td>
+								<td></td>
+								<td width="8%">
+								  &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" <?php echo $chkopsi3.'  '.$disabled3;?>> PARTNDE</input><br>                            
+								</td>
+								<td width="2%"><font size="3">Rp</font></td>
+								<td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
+								</tr>
+							</table>
+							<table width=70%>   
+							  <tr>
+								<td><b>Objek Pajak</b></td>
+								<td><input id="chkObjPjkY" type="checkbox" name="objek_pajak[]" value="1" <?php echo $chkY; ?> > Ya </td>
+								<td> <input id="chkObjPjkN"  type="checkbox" name="objek_pajak[]" value="0" <?php echo $chkN; ?> > Tidak</input> </td>
+								<td><input id="chkObjPjkE" type="checkbox" name="objek_pajak[]" value="2" <?php echo $chkE; ?> > Employee</input> </td>
+								<td><input id="chkObjPjkT" type="checkbox" name="objek_pajak[]" value="3" <?php echo $chkT; ?> > Tax at Settlement</input> </td>
+							  </tr>                        
+							</table>
+							</form> 
+							<br><br>
+							<div id="divObjPjk"  <?php echo $divtax; ?> class="box"></br>
+								<div class="nav-tabs-custom">
+										<ul class="nav nav-tabs">
+										  <li class="active"><a href="#tab_1" data-toggle="tab"><b>Tax</b></a></li>
+										  <li><a href="#tab_2" data-toggle="tab"><b>Non Tax</b></a></li>
+										</ul>
+										
+										<div class="tab-content">
+											<div class="tab-pane active" id="tab_1">
+												<div class="modal-body form">	
+													<div class="box-body">
+													<div><button type="button" class="btn btn-success" onclick="view_tax()">&nbsp;&nbsp;Add Tax&nbsp;&nbsp;  </button>
+														</div>
+													<div class="table-responsive">
+													
+													<table id="show" class="table table-bordered table-striped">
+													  <thead>
+														<tr>
+														  <th>Action</th>
+														  <th>No Urut</th>
+														  <th>Jenis Pajak</th>
+														  <th>Kode Pajak</th>
+														  <th>Kode MAP</th>
+														  <th>Nama</th>
+														  <th>NPWP/ID</th>
+														  <th>Alamat</th>
+														  <th>Tarif</th>
+														  <th>Fasilitas Pajak</th>
+														  <th>Special Tarif</th>
+														  <th>Gross Up</th>
+														  <th style="text-align:right;">DPP</th>
+														  <th style="text-align:right;">DPP <br>(Gross Up)</th>
+														  <th style="text-align:right;">Pajak Terutang</th>
+														  <th>Masa Pajak PPN</th>
+														  <th>Tahun</th>
+														  <th>Keterangan</th>
+														</tr>
+													  </thead>
+													  <tbody>
+														<?php 
+														$ttlpjk=0;
+														$pjkH='';
+														$ttldpp=0;
+														$pjkdpp='';
+														$ttlgross=0;
+														$pjkgross='';
+														foreach($getdatatax as $gtax){
+															$pjkH=str_replace(".","",$gtax->pajak_terutang);
+															$ttlpjk=$ttlpjk+(float)$pjkH;
+															$pjkdpp=str_replace(".","",$gtax->dpp);
+															$ttldpp=$ttldpp+(float)$pjkdpp;
+															$pjkgross=str_replace(".","",$gtax->dpp_gross);
+															$ttlgross=$ttlgross+(float)$pjkgross;
+															?>
+														 <tr>
+														 
+															<td style="text-align: center">	  						  					  
+																<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(<?php echo $gtax->id_tax;?>)"><i class="glyphicon glyphicon-pencil"></i></button>
+																<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus" <?php echo $btndelete; ?> onclick="delete_tax(<?php echo $gtax->id_tax;?>,<?php echo $gtax->id_payment;?>)"><i class="glyphicon glyphicon-trash"></i></button>
+															</td>
+															<td> <?php echo $gtax->no_urut;?></td>
+															<td><?php echo $gtax->jenis_pajak;?></td>
+															<td><?php echo $gtax->kode_pajak;?></td>
+															<td><?php echo $gtax->kode_map;?></td>
+															<td><?php echo $gtax->nama;?></td>
+															<td><?php echo $gtax->npwp;?></td>
+															<td><?php echo $gtax->alamat;?></td>
+															<td><?php echo $gtax->tarif;?></td>
+															<td><?php echo $gtax->fas_pajak;?></td>
+															<td><?php echo $gtax->special_tarif;?></td>
+															<td><?php echo $gtax->gross;?></td>
+															<td style="text-align:right;"><?php echo $gtax->dpp;?></td>
+															<td style="text-align:right;"><?php echo $gtax->dpp_gross;?></td>
+															<td style="text-align:right;"><?php echo $gtax->pajak_terutang;?></td>
+															<td><?php echo $gtax->masa_pajak;?></td>
+															<td><?php echo $gtax->tahun;?></td>
+															<td><?php echo $gtax->keterangan;?></td>
+														  </tr>
+														 <?php }?>
+																		   
+													  </tbody> 
+														<tfoot align="right">
+															<tr> 
+															<th colspan="12" style="text-align:center;"> Total</th>
+														  <th style="text-align:right;"><label class="control-label col-md-3" id="lbltotaldpp" style="text-align:right;"><?php echo number_format($ttldpp,0,",","."); ?></label></th>
+														  <th style="text-align:right;"><label class="control-label col-md-3" id="lbltotaldppgross" style="text-align:right;"><?php echo number_format($ttlgross,0,",","."); ?></label></th>
+														  <th style="text-align:right;"><label class="control-label col-md-3" id="lbltotal" style="text-align:right;"><?php echo number_format($ttlpjk,0,",","."); ?></label></th>
+														  <th colspan="3">
+														  </th></tr>
+														</tfoot>
+													</table>
+												  
+													 </div> 
+													</div> 
+												</div> 
+											</div> 
+											
+											
+											<div class="tab-pane" id="tab_2">
+												<div class="modal-body form">	
+													<div class="box-body">
+													<div><button type="button" class="btn btn-success" onclick="savenontax()">&nbsp;&nbsp;Save Non Tax&nbsp;&nbsp;  </button>
+													</div>
+													<div class="col-md-10">
+														<form id="frmnontax" action="#"> 
+														<input type="hidden" id="txtcounternontax" name="txtcounternontax" value="3" />
+														<div class="table-responsive">
+														<table id="show1" class="table table-bordered table-striped"> 
+														  <thead>
+															<tr>
+																<th>Item Description</th>
+																<th>Nominal</th>
+																<th>&nbsp;</th>
+															 </tr>
+														  </thead>
+														  <tbody>
+														  <?php 
+															$ttlpjk=0;
+															$pjkH='';
+															$nontaxtrow=0;
+															if ($getdatanontax == null){ ?>
+																<tr id="tr1">
+																<td ><textarea rows="1" cols="120" type="text" class="form-control" name="itemdesc[]" placeholder="Item Description" ></textarea></td>
+																<td ><input class="form-control" id="nontax1" name="nontaxnominal[]" onkeyup="gettotalnontax()" type="text"></td>
+																
+																<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('tr1')"> 
+																	  <i class="glyphicon glyphicon-minus"></i>
+																	  </span>
+																</td></tr>
+																<tr id="tr2">
+																<td><textarea rows="1" cols="120" type="text" class="form-control" name="itemdesc[]" placeholder="Item Description" ></textarea></td>
+																<td><input class="form-control" id="nontax2" name="nontaxnominal[]" onkeyup="gettotalnontax()" type="text"></td>
+																<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('tr2')"> 
+																	  <i class="glyphicon glyphicon-minus"></i>
+																	  </span>
+																</td>
+																</tr>
+																
+																<tr id="tr3">
+																<td><textarea rows="1" cols="120" type="text" class="form-control" name="itemdesc[]" placeholder="Item Description" ></textarea></td>
+																<td><input class="form-control" id="nontax3" name="nontaxnominal[]" onkeyup="gettotalnontax()" type="text"></td>
+																<td><span class="btn btn-danger btn-xs" title="Hapus Baris"  name='removeButton' onclick="RemoveIndeks('tr3')"> 
+																	  <i class="glyphicon glyphicon-minus"></i>
+																	  </span>
+																</td>
+																</tr>
+															
+															<?php	
+															}else{
+															foreach($getdatanontax as $gnontax){
+																$pjknonH=str_replace(".","",$gnontax->nominal);
+																$ttlnonpjk=$ttlnonpjk+(float)$pjknonH;
+																$nontaxtrow++;
+															?>
+															<tr id="tr<?php echo $nontaxtrow; ?>">
+															<td ><textarea rows="1" cols="120" type="text" class="form-control" name="itemdesc[]" placeholder="Item Description" ><?php echo $gnontax->item_desc; ?></textarea></td>
+															<td ><input class="form-control" id="<?php echo 'nontax'.$nontaxtrow; ?>" name="nontaxnominal[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gnontax->nominal,0,",",".");  ?>"></td>
+															
+															<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$nontaxtrow; ?>')"> 
+																  <i class="glyphicon glyphicon-minus"></i>
+																  </span>
+															</td>
+															</tr>
+															<?php } }?>
+															
+														  </tbody>
+														  <tfoot>
+															<tr>
+																<th><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
+																  <i class="glyphicon glyphicon-plus"></i>
+																  </span></th>
+																  <th><label class="control-label col-md-3" id="lbltotalnontax"><?php echo number_format($ttlnonpjk,0,",","."); ?></label></th>
+																  <input type="text" style="display:none;" name="txttotnontax" id="txttotnontax"  value="<?php echo number_format($ttlnonpjk,0,",","."); ?>" />
 				
-				<div id="divObjPjk" class="row" <?php echo $divtax; ?> >
-					<div class="col-xs-12">
-					<!-- /.box -->
-					<div class="box">
-						<!-- /.box-header -->
-						<div class="box-body">
-						<div><button type="button" class="btn btn-success" onclick="view_tax()">&nbsp;&nbsp;Add Tax&nbsp;&nbsp;  </button>
+															</tr>
+														</tfoot>
+														</table>
+														</div> 
+														</form>
+														 </div>
+													
+													
+												</div> 
+											</div> 
+										</div> 
+								</div>
+							</div>
+							<div class="box">
+							  <div class="box-header with-border">
+								<a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
+								<button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>
+							  </div>
+							</div>                                                 
 						</div>
-					<div class="table-responsive">
-                    <table id="show" class="table table-bordered table-striped">
-                      <thead>
-                        <tr>
-                          <th>Action</th>
-                          <th>No Urut</th>
-                          <th>Jenis Pajak</th>
-                          <th>Kode Pajak</th>
-                          <th>Kode MAP</th>
-                          <th>Nama</th>
-                          <th>NPWP/ID</th>
-                          <th>Alamat</th>
-                          <th>Tarif</th>
-                          <th>Fasilitas Pajak</th>
-                          <th>Special Tarif</th>
-                          <th>Gross Up</th>
-                          <th>DPP</th>
-                          <th>DPP <br>(Gross Up)</th>
-                          <th style="text-align:center;">Pajak Terutang</th>
-                          <th>Masa Pajak PPN</th>
-                          <th>Tahun</th>
-                          <th>Keterangan</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-						<?php 
-						$ttlpjk=0;
-						$pjkH='';
-						foreach($getdatatax as $gtax){
-							$pjkH=str_replace(".","",$gtax->pajak_terutang);
-							$ttlpjk=$ttlpjk+(float)$pjkH;
-							?>
-						 <tr>
-						 
-						  	<td style="text-align: center">	  						  					  
-								<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(<?php echo $gtax->id_tax;?>)"><i class="glyphicon glyphicon-pencil"></i></button>
-								<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus" <?php echo $btndelete; ?> onclick="delete_tax(<?php echo $gtax->id_tax;?>,<?php echo $gtax->id_payment;?>)"><i class="glyphicon glyphicon-trash"></i></button>
-							</td>
-							<td> <?php echo $gtax->no_urut;?></td>
-						    <td><?php echo $gtax->jenis_pajak;?></td>
-							<td><?php echo $gtax->kode_pajak;?></td>
-							<td><?php echo $gtax->kode_map;?></td>
-							<td><?php echo $gtax->nama;?></td>
-							<td><?php echo $gtax->npwp;?></td>
-							<td><?php echo $gtax->alamat;?></td>
-							<td><?php echo $gtax->tarif;?></td>
-							<td><?php echo $gtax->fas_pajak;?></td>
-							<td><?php echo $gtax->special_tarif;?></td>
-							<td><?php echo $gtax->gross;?></td>
-							<td><?php echo $gtax->dpp;?></td>
-							<td><?php echo $gtax->dpp_gross;?></td>
-							<td style="text-align:center;"><?php echo $gtax->pajak_terutang;?></td>
-							<td><?php echo $gtax->masa_pajak;?></td>
-							<td><?php echo $gtax->tahun;?></td>
-							<td><?php echo $gtax->keterangan;?></td>
-						  </tr>
-						 <?php }?>
-                                           
-                      </tbody> 
-						<tfoot align="right">
-							<tr> 
-							<th colspan="14" style="text-align:center;"> Total Pajak</th>
-                          <th><label class="control-label col-md-3" id="lbltotal"><?php echo number_format($ttlpjk,0,",","."); ?></label></th>
-                          <th colspan="3">
-						  </th></tr>
-						</tfoot>
-                    </table>
-                  </div>             
-
-                    </div> 
-					 </div> 
-					  </div> 
-					   </div> 
-                <div class="box">
-                  <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
-                    <button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>
-                  </div>
-                </div>                                                 
-            </div>
+					</div>
+				</div>
 			</div>
 			</div>
 			</div>
@@ -374,8 +476,10 @@
 var save_method; 
 var skdmap;
 var starif;
-
-    $('#show').DataTable({
+var counternontax=3;
+var szcounternontax;
+	
+$('#show').DataTable({
       "paging": false,
       "lengthChange": false,
       "searching": true,
@@ -383,6 +487,67 @@ var starif;
       "info": false,
       "autoWidth": false
     });
+	
+var table1=$('#show1').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": false,
+	  "autoWidth": false
+    });
+
+function AddIndeks(){
+		szcounternontax = parseInt(counternontax)+1;
+		var zstr="'tr" + szcounternontax + "'";
+		var xstr="nontax" + szcounternontax ;
+		var newTextBoxDiv = $(document.createElement('tr')).attr("id", 'tr' + szcounternontax);
+		newTextBoxDiv.after().html('<td><textarea rows="1" cols="120" type="text" class="form-control" name="itemdesc[]" placeholder="Item Description" ></textarea></td>' + 
+				'<td ><input class="form-control" id="'+xstr+'" name="nontaxnominal[]" onkeyup="gettotalnontax()" type="text"></td>' + 
+				'<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
+				'<i class="glyphicon glyphicon-minus"></i></span></td>');
+				
+		$('#show1 tbody').append(newTextBoxDiv);
+		$('#txtcounternontax').val(szcounternontax);
+		
+		counternontax++;
+	}
+	
+	function RemoveIndeks(param){
+		$('#'+param ).remove();		
+		counternontax--;
+		$('#txtcounternontax').val(counternontax);		
+		
+		var itotal=0;
+		var inps = document.getElementsByName('nontaxnominal[]');
+		for (var i = 0; i <inps.length; i++) {
+			var inp=inps[i];
+			var xj=inp.value;
+			var yz=xj.replace(/[^,\d]/g, '').toString();
+			itotal = itotal+parseFloat(yz);
+		}
+		//alert(itotal.toString());
+		$('#lbltotalnontax').text(formatRupiah(itotal.toString()));		
+    }
+	
+	function gettotalnontax(){
+		var itotal=0;
+		var inps = document.getElementsByName('nontaxnominal[]');
+		for (var i = 0; i <inps.length; i++) {
+			var inp=inps[i];
+			var xj=inp.value;
+			var yz=xj.replace(/[^,\d]/g, '').toString();
+			if (yz==""){
+				itotal = itotal+0;
+			}else{
+			itotal = itotal+parseFloat(yz);
+			}
+			inps[i].value=formatRupiah(yz.toString());
+		}
+		$('#lbltotalnontax').text(formatRupiah(itotal.toString()));		
+    }
+
+    
 	
  
 $("#chkdeY").on( "click", function() {
@@ -561,7 +726,18 @@ function submittax()
 		if ($('#vobjekpajak').val()==""){
 			alert("Objek Pajak belum di pilih");
 		}else{
-			var r = confirm("Anda Akan mengirimkan Form Tax : " + nmr_srt + " ?");
+			var ntax=$('#txttotnontax').val();//$('#lbltotalnontax').text();
+			var ndpp=$('#lbltotaldpp').text();
+			var intax = ntax.replace(/[^,\d]/g, '').toString();
+			var indpp = ndpp.replace(/[^,\d]/g, '').toString();
+			var ntot=parseFloat(intax)+parseFloat(indpp);
+			var totpay=$('#txttotpayment').val();
+			var itotpay = totpay.replace(/[^,\d]/g, '').toString();
+			var balance=parseFloat(itotpay)-parseFloat(ntot);
+			if(balance != 0){
+				alert("Jumlah Transaksi tidak sama dengan Jumlah pengajuan");
+			}else if(balance == 0){
+				var r = confirm("Anda Akan mengirimkan Form Tax : " + nmr_srt + " ?");
 			  if (r == true) {
 			
 			var url = "<?php echo base_url('dashboard/submittax')?>";
@@ -581,7 +757,8 @@ function submittax()
                   alert('Error adding / update data');
                 }
               });
-			 } 
+			 }
+			}			 
 		}
 		
 	}
@@ -604,13 +781,21 @@ function submittax()
 				success: function(data)
 				{
 					var $totpjkx=0;
-						var pjktrx;
+					var pjktrx;
+					var $totdpp=0;
+					var pjkdpp;
+					var $totgross=0;
+					var pjkgross;
 				   var tbl1 = $('#show').DataTable(); 
 						  tbl1.clear().draw();
 							$.each(data, function(key, item) 
 								  {       
 							  pjktrx=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
 							  $totpjkx=$totpjkx+parseFloat(pjktrx);
+							  pjkdpp=item.dpp.replace(/[^,\d]/g, '').toString();
+							  $totdpp=$totdpp+parseFloat(pjkdpp);
+							  pjkgross=item.dpp_gross.replace(/[^,\d]/g, '').toString();
+							  $totgross=$totgross+parseFloat(pjkgross);
 							  tbl1.row.add( [
 									'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_tax +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_tax + ',' + item.id_payment + ')"><i class="glyphicon glyphicon-trash"></i></button>',
                         			item.no_urut,
@@ -634,6 +819,8 @@ function submittax()
 									  ] ).draw(false);
 
 							})
+							$('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
+							$('#lbltotalgross').text(formatRupiah($totgross.toString()));
 							$('#lbltotal').text(formatRupiah($totpjkx.toString()));
 				  
 				},
@@ -778,7 +965,48 @@ function edit_tax(id)
     });
     }
 
-
+function savenontax(){
+	var url = "<?php echo base_url('dashboard/savenontax')?>";
+			$.ajax({
+                url : url,
+                type: "POST",
+                data: $("#form1,#form,#frmnontax").serialize(),
+                dataType: "JSON",
+                success: function(data)
+                {                   
+				alert("Data sudah tersimpan");
+						var $totnonpjk=0;
+						var nontax;
+						var irow=1;
+						var zstr;
+						var tbl1 = $('#show1').DataTable(); 
+						  tbl1.clear().draw();
+							$.each(data, function(key, item) 
+								  {       								  
+							  nontax=item.nominal.replace(/[^,\d]/g, '').toString();
+							  $totnonpjk=$totnonpjk+parseFloat(nontax);
+							  zstr="'tr" + irow + "'";
+							  tbl1.row.add( [
+							  
+								'<textarea rows="1" cols="120" type="text" class="form-control" name="itemdesc[]" placeholder="Item Description" >' + item.item_desc + '</textarea>', 
+								'<input class="form-control" name="nontaxnominal[]" onchange="formatRupiah(this.value)" type="text" value="' + formatRupiah(item.nominal.toString()) +'">',
+								'<span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
+								'<i class="glyphicon glyphicon-minus"></i></span>'																		
+									  ] ).node().id = 'tr'+irow;
+								tbl1.draw(false);
+								irow++;
+							})  
+						
+				  $('#lbltotalnontax').text(formatRupiah($totnonpjk.toString()));
+				  $('#txttotnontax').val(formatRupiah($totnonpjk.toString()));
+				},
+                error: function (data)
+                {
+					console.log(data);
+                  alert('Error adding / update data');
+                }
+              });
+}
 
 function savetaxdraft()
     { 		
@@ -851,6 +1079,10 @@ function savetaxdraft()
 						{*/
 						var $totpjk=0;
 						var pjktr;
+						var $totdpp=0;
+						var pjkdpp;
+						var $totgross=0;
+						var pjkgross;
 						var tbl1 = $('#show').DataTable(); 
 						  tbl1.clear().draw();
 							$.each(data, function(key, item) 
@@ -858,6 +1090,10 @@ function savetaxdraft()
 								  
 							  pjktr=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
 							  $totpjk=$totpjk+parseFloat(pjktr);
+							  pjkdpp=item.dpp.replace(/[^,\d]/g, '').toString();
+							  $totdpp=$totdpp+parseFloat(pjkdpp);
+							  pjkgross=item.dpp_gross.replace(/[^,\d]/g, '').toString();
+							  $totgross=$totgross+parseFloat(pjkgross);
 							  tbl1.row.add( [
 									'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_tax +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_tax + ',' + item.id_payment + ')"><i class="glyphicon glyphicon-trash"></i></button>',
                         			item.no_urut,
@@ -888,6 +1124,9 @@ function savetaxdraft()
 						}
 					});*/
 				  
+				  $('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
+					$('#lbltotalgross').text(formatRupiah($totgross.toString()));
+							
 				  $('#lbltotal').text(formatRupiah($totpjk.toString()));
 				  $('#modal_tax').modal('hide');
 				  //location.reload();   
@@ -949,27 +1188,6 @@ function tambah_baris()
         + '<td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>'
 	
 	strhtml=strhtml +'</tr>';
-		
-	/*for (i=1;i<=arrhtsl.length; i++){
-		html=html+ '<option value=' + arrhtsl[i]) + '>' + arrhtsl[i]) + '</option>';
-	}	
-	html='<tr>'
-        + '<td><select id="jenis_pajak" name="jenis_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $get) {?><option value="<?php echo $get->jenis_pajak; ?>"><?php echo $get->jenis_pajak; ?></option><?php } ?></select> </td>'
-        + '<td><select id="kode_pajak" name="kode_pajak[]" class="form-control"><option value="">Choose</option><?php foreach ($jenispajak as $kode1) {?><option value="<?php echo $kode1->jenis_pajak; ?>"><?php echo $kode1->jenis_pajak; ?></option><?php } ?></select> </td>'
-        + '<td><input id="dropdown2" class="form-control" name="kode_map[]" onchange="penjumlahan()" type="text"> </td>'
-        + '<td><textarea type="text" class="form-control" name="nama[]"></textarea> </td>'
-        + '<td><textarea type="text" class="form-control" name="npwp[]"></textarea> </td>'
-        + '<td><textarea type="text" class="form-control" name="alamat[]" placeholder="Enter Text" required></textarea> </td>'
-        + '<td><input id="tarif" class="form-control" name="tarif[]" onchange="penjumlahan()" type="text"> </td>'
-        + '<td><input type="checkbox" name="fas_pajak[]" value="Ya"> </td>'
-        + '<td><input type="text" class="form-control" name="special_tarif[]" placeholder="Enter Text" > </td>'
-        + '<td><input type="checkbox" name="gross[]" value="Ya"> </td>'
-        + '<td><input id="dpp" onchange="penjumlahan()" type="text" class="form-control" name="dpp[]" placeholder="Enter Text" required></td>'
-        + '<td><input type="text" class="form-control" name="dpp_gross[]" placeholder="Enter Text" ></td>'
-        + '<td><input id="hasil" type="text" class="form-control" name="pajak_terutang[]" placeholder="Enter Text" required></td>'
-        + '<td><input type="text" class="form-control" name="masa_pajak[]" placeholder="Enter Text" ></td>'
-        + '<td><textarea type="text" class="form-control" name="keterangan[]" placeholder="Enter Text" required></textarea></td>'
-        + '</tr>';*/
 	$('#show tbody').append(strhtml);
 }     
         
@@ -1021,7 +1239,7 @@ function showed() {
 
   $(document).ready(function() { 
   
-  
+	
 		$('#jenis_pajak').change(function() {
       if( $(this).val() == 'PPh Pasal 21') {
             $('#kode_pajak').prop( "disabled", true );
@@ -1286,6 +1504,7 @@ function PajakTerhutang(){
 
   /* Fungsi formatRupiah */
   function formatRupiah(angka, prefix){
+	  
     var number_string = angka.replace(/[^,\d]/g, '').toString(),
     split       = number_string.split(','),
     sisa        = split[0].length % 3,
@@ -1299,7 +1518,7 @@ function PajakTerhutang(){
     }
 
     rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-    return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
+	return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
   }
 
   /*var rupiah2 = document.getElementById('rupiah2');
@@ -1470,6 +1689,7 @@ function PajakTerhutang(){
 					<input type="hidden" name="vtarifspesial" id="vtarifspesial" />
 					<input type="hidden" name="vpajakterhutang" id="vpajakterhutang" />
 					<input type="hidden" name="txtnourutold" id="txtnourutold"  />
+					<input type="hidden" name="txttotpayment" id="txttotpayment"  value="<?php echo $row->label2; ?>" />
 					                      
                     <div class="form-body">
 						<div class="form-group">

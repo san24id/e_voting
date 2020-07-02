@@ -956,6 +956,12 @@ class Dashboard_model extends CI_Model{
 		return $this->db->insert_id();
 	}
 	
+	public function draftnontax_add($data)
+	{
+		$this->db->insert('t_nontax', $data);
+		return $this->db->insert_id();
+	}
+	
 	public function updatepaytax($where, $data)
 	{
 		$this->db->update('t_payment', $data, $where);
@@ -980,6 +986,12 @@ class Dashboard_model extends CI_Model{
         return $query;
     }								
     
+	public function getDataNonTax($id) {
+        $sql = "select id_nontax,id_payment,item_desc,replace(nominal,'.','') nominal FROM t_nontax where id_payment = '$id' order by id_nontax asc ";
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
 	public function getdatabysearch($profileid,$txtsearch)
 	{
 		$filter = $this->session->userdata("filter");
@@ -1071,6 +1083,12 @@ class Dashboard_model extends CI_Model{
 		$this->db->query($sqldel);
 	}
 	
+	public function delete_nontax($id)
+	{
+		$sqldel  ="delete from t_nontax where id_payment=" .$id ;
+		$this->db->query($sqldel);
+	}
+	
 	public function getUrutTax($id) {
         $sql = "SELECT max(ifnull(no_urut,1))+1 as no_urut FROM t_tax WHERE id_payment = '$id'";
         $query = $this->db->query($sql)->result();
@@ -1102,9 +1120,10 @@ class Dashboard_model extends CI_Model{
 	public function updatejatahCC($upd){
 		$dvs = $this->session->userdata('division_id');
         
-        $sql = "UPDATE t_creditcard SET jatah=jatah-1 WHERE trim(division_id) = "; 
-		$sql = "(select trim(division_id) from t_payment where jenis_pembayaran='6' and status='1' and id_payment='".$upd['id_payment']."' and division_id='".$dvs."')";
-        $query = $this->db->query($sql);
+        $sql = "UPDATE t_creditcard SET jatah=jatah-1 WHERE trim(no_billing) = "; 
+		$sql .= "(select trim(no_rekening) from t_payment where jenis_pembayaran='6' and status='1' and id_payment='".$upd['id_payment']."' and division_id='".$dvs."') ";
+        $sql .= " and division_id='".$dvs."'";
+		$query = $this->db->query($sql);
         return $query;
     }
 	

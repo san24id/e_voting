@@ -984,6 +984,7 @@ class Dashboard extends CI_Controller {
 		$data['persen'] = $this->Dashboard_model->getTarif();
 		$data['getnpwp'] = $this->Dashboard_model->getDataNPWP($id_payment);
 		$data['getdatatax'] = $this->Dashboard_model->getDataTax($id_payment);
+		$data['getdatanontax'] = $this->Dashboard_model->getDataNonTax($id_payment);
 		$data['getnouruttax'] = $this->Dashboard_model->getUrutTax($id_payment);
 		$data['getdatataxFlag'] = $this->Dashboard_model->getDataTaxFlag($id_payment);
 		
@@ -2236,6 +2237,28 @@ class Dashboard extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function savenontax()
+	{
+		$strcounter=intval($_POST['txtcounternontax']);
+		$id = $this->input->post('id_payment');
+		$this->Dashboard_model->delete_nontax($id);
+		for($i=0; $i<$strcounter; $i++){
+			$nominal=preg_replace("/[^0-9]/", "", $_POST['nontaxnominal'][$i] );
+			if($nominal != ""){
+				$data = array(
+						'id_payment' => $id,
+						'status' => '999',
+						'item_desc' => $_POST['itemdesc'][$i],
+						'nominal' => number_format($nominal,0,",",".")
+					);
+					
+				$insert = $this->Dashboard_model->draftnontax_add($data);
+			}
+		}
+		$data = $this->Dashboard_model->getDataNonTax($id);
+		echo json_encode($data);
+	}
+	
 	public function delete_tax()
 	{
 		$id_payment=$this->input->post('id_payment');		
