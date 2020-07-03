@@ -587,8 +587,21 @@ class Tri extends CI_Controller {
 			'submit_date' => $_POST['submit_date']
 
 		);
-
-		$this->Dashboard_model->updatejatahCC($upd);
+		$activests='';
+		
+		$getactive=$this->Dashboard_model->getApprovalActivated();
+		foreach ($getactive->result() as $geactive) {
+			$activests = $geactive->activate;
+		}
+		
+		$sts='';
+		if($activests=='On'){
+			$sts='11';
+		}else{
+			$sts='1';
+		}
+		
+		$this->Dashboard_model->updatejatahCC($upd,$sts);
 		$this->Dashboard_model->updateaccept($upd);
 
 		redirect('Tri');

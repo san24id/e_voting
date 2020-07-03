@@ -1135,14 +1135,18 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 	
-	public function updatejatahCC($upd){
+	public function updatejatahCC($upd,$sts){
 		$dvs = $this->session->userdata('division_id');
         
         $sql = "UPDATE t_creditcard SET jatah=jatah-1 WHERE trim(no_billing) = "; 
-		$sql .= "(select trim(no_rekening) from t_payment where jenis_pembayaran like '%6%' and status='1' and id_payment='".$upd['id_payment']."' and division_id='".$dvs."') ";
+		$sql .= "(select trim(no_rekening) from t_payment where jenis_pembayaran like '%6%' and status='".$sts."' and id_payment='".$upd['id_payment']."' and division_id='".$dvs."') ";
         $sql .= " and division_id='".$dvs."'";
 		$query = $this->db->query($sql);
         return $query;
     }
 	
+	function getApprovalActivated(){
+        $query=$this->db->query("select activate from m_status where id_status=11");
+        return $query;
+    }							 
 }

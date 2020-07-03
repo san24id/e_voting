@@ -249,7 +249,7 @@
                           <td align="center" width="25%"><div class="info-box box3">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
                             <center><font size='3' color="white"> Credit Card <br> Submission in 30 days <br> </font>
-                            <?php foreach ($creditcard as $cc) { ?>
+                            <?php foreach ($credit_card as $cc) { ?>
                             <font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </center></div>
                             <?php } ?>
                           </td>  

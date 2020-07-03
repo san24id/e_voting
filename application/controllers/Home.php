@@ -66,6 +66,7 @@ class Home extends CI_Controller {
 		$data['paid'] = $this->Home_model->getPaid();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+		$data['credit_card'] = $this->Home_model->CreditCard();
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
@@ -476,8 +477,21 @@ class Home extends CI_Controller {
 			'submit_date' => $_POST['submit_date']
 
 		);
-
-		$this->Dashboard_model->updatejatahCC($upd);
+		$activests='';
+		
+		$getactive=$this->Dashboard_model->getApprovalActivated();
+		foreach ($getactive->result() as $geactive) {
+			$activests = $geactive->activate;
+		}
+		
+		$sts='';
+		if($activests=='On'){
+			$sts='11';
+		}else{
+			$sts='1';
+		}
+		
+		$this->Dashboard_model->updatejatahCC($upd,$sts);
 		$this->Dashboard_model->updateaccept($upd);
 
 		redirect('Home');

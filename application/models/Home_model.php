@@ -448,4 +448,15 @@ class Home_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
+
+    function CreditCard() {
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT SUM(jatah) as creditcard_pay FROM t_creditcard WHERE division_id = '$dvs'";
+
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
+    
 }
