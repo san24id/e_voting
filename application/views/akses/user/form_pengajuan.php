@@ -127,7 +127,7 @@
                       <tr>
                         <td><b>- Jumlah </b></td>
                         <td><b> : </b></td>
-                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
+                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" required>
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
@@ -194,7 +194,7 @@
                           <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
                           <td>Bank</td>
                           <td>:</td>
-                          <td><select id="dropdown" name="akun_bank" class="form-control">
+                          <td><select id="dropdown" name="akun_bank" class="form-control" required>
                                   <option>--- Choose ---</option>
                                   <?php foreach ($bank as $get) {?>
                                     <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
@@ -208,7 +208,7 @@
                           <td></td>
                           <td>Nomor Rekening</td> 
                           <td>:</td>                           
-                          <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text"></td>                                
+                          <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required></td>                                
                         </tr>
                       
                       </tbody>

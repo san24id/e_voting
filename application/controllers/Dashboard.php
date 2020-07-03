@@ -82,14 +82,15 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['draftprint'] = $this->Home_model->getDraftPrint();
+		$data['draft1'] = $this->Home_model->getDraft();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -99,9 +100,9 @@ class Dashboard extends CI_Controller {
 		$data['submit'] = $this->Home_model->getSubmitted();
 		$data['process'] = $this->Home_model->getProcessing();
 		$data['verifikasi'] = $this->Home_model->getVerifikasi();
-		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 				
 		$data['start_date'] = $this->input->post("start_date");
 		$data['end_date'] = $this->input->post("end_date");
@@ -1257,10 +1258,12 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['list_monitoring'] = $this->Dashboard_model->monitoring();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
 		$data['gprocess'] = $this->Dashboard_model->getProcessing();
@@ -1276,6 +1279,7 @@ class Dashboard extends CI_Controller {
 		
 		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
 		$data['Paid'] = $this->Dashboard_model->getPaid();
+
 
 		$data['start_date'] = $this->input->post("start_date");
 		$data['end_date'] = $this->input->post("end_date");
@@ -1597,7 +1601,7 @@ class Dashboard extends CI_Controller {
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
 		$this->Home_model->updatepayment($upd);
 
-		redirect('Dashboard');
+		redirect('Dashboard/formfinished');
 	}
 
 	public function draftprintdp($id_payment){

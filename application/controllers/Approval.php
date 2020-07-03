@@ -407,7 +407,7 @@ class Approval extends CI_Controller {
 		$add = array(
 			
 			'id_payment' => $_POST['id_payment'],
-			'status' => 1,
+			'status' => 0,
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
 			'jenis_pembayaran' => $jenis_pembayaran,
@@ -415,10 +415,14 @@ class Approval extends CI_Controller {
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
 			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
@@ -430,6 +434,8 @@ class Approval extends CI_Controller {
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
 			'no_rekening' => $_POST['no_rekening'],
+			'lainnya1' => $_POST['lainnya1'],
+			'lainnya2' => $_POST['lainnya2']
 		);
 
 		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
@@ -461,10 +467,14 @@ class Approval extends CI_Controller {
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
@@ -476,6 +486,8 @@ class Approval extends CI_Controller {
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
 			'no_rekening' => $_POST['no_rekening'],
+			'lainnya1' => $_POST['lainnya1'],
+			'lainnya2' => $_POST['lainnya2']
 		);
 		
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');

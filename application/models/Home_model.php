@@ -172,7 +172,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','2','3','4','5','6','7','8','9')";
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','2','3','4','5','6','7','8','9')";
                 
         $query = $this->db->query($sql)->result();
         return $query;

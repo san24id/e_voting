@@ -586,7 +586,8 @@ class Dashboard_model extends CI_Model{
 
 
     function periode($start_date,$end_date){
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE tanggal2 BETWEEN '$start_date' AND '$end_date'";
+       
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
@@ -594,7 +595,9 @@ class Dashboard_model extends CI_Model{
     }
 
     function periode2($start_date,$end_date){
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $dvs = $this->session->userdata('division_id');
+        
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;

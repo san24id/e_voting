@@ -92,6 +92,7 @@ class Home extends CI_Controller {
 		$data['draft'] = $this->Home_model->getTotalDraft();
 		$data['draftprint'] = $this->Home_model->getDraftPrint();
 		$data['draft1'] = $this->Home_model->getDraft();
+		$data['outstanding'] = $this->Home_model->getOutstanding();
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
@@ -103,8 +104,9 @@ class Home extends CI_Controller {
 		$data['verifikasi'] = $this->Home_model->getVerifikasi();
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
-		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+		$data['credit_card'] = $this->Home_model->CreditCard();
 
 		$data['start_date'] = $this->input->post("start_date");
 		$data['end_date'] = $this->input->post("end_date");
@@ -351,10 +353,14 @@ class Home extends CI_Controller {
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
 			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
@@ -435,10 +441,14 @@ class Home extends CI_Controller {
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
