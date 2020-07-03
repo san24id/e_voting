@@ -458,6 +458,8 @@ class Approval extends CI_Controller {
 		}
 		// echo $label4;
 		// var_dump(count($_POST['label$label4']));exit;
+		$id_apa = $_POST['id_payment'];
+
 		$upd = array(
 
 			'id_payment' => $_POST['id_payment'],
@@ -493,7 +495,7 @@ class Approval extends CI_Controller {
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
 		$this->Home_model->updatepayment($upd);
 
-		redirect('Approval');
+		redirect(site_url('Approval/formfinished/'.$id_apa));
 	}
 
 	public function deletepayment(){

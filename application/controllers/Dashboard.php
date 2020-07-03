@@ -1549,7 +1549,8 @@ class Dashboard extends CI_Controller {
 		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
 		$this->Home_model->addpayment($add);
 			
-		redirect('Dashboard');
+		// redirect('Dashboard');
+		echo json_encode(array("status" => TRUE));
 	}
 
 	public function updatepayment(){
@@ -1566,6 +1567,7 @@ class Dashboard extends CI_Controller {
 		}
 		// echo $label4;
 		// var_dump(count($_POST['label$label4']));exit;
+		$id_apa = $_POST['id_payment'];
 		$upd = array(
 
 			'id_payment' => $_POST['id_payment'],
@@ -1601,7 +1603,7 @@ class Dashboard extends CI_Controller {
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
 		$this->Home_model->updatepayment($upd);
 
-		redirect('Dashboard/formfinished');
+		redirect(site_url('Dashboard/formfinished/'.$id_apa));
 	}
 
 	public function draftprintdp($id_payment){
@@ -2305,6 +2307,14 @@ class Dashboard extends CI_Controller {
 			$profileid=$this->input->post('selsearch');
 			$txtsearch=$this->input->post('txtpencarian');
 			$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function exportdashboard()
+	{
+			$profileid=$this->input->post('selexport');
+			// $txtsearch=$this->input->post('txtpencarian');
+			$data = $this->Dashboard_model->getdatabysearch($profileid);
 			echo json_encode($data);
 	}
 	

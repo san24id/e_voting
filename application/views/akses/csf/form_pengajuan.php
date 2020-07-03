@@ -9,7 +9,7 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/addpayment" onsubmit="tambah()">
+        <form id="formadd" action="#" >
           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
           <section class="content">
             <div class="row">
@@ -56,8 +56,8 @@
                         <td>
                           <input id="checked2"  type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
                         </td>
-                        </tr>  
-                        <tr>
+                      </tr>  
+                      <tr>
                           <td></td>
                           <td>
                             <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
@@ -65,8 +65,8 @@
                           <td>
                             <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Corporate Credit Card </input><br>
                           </td>
-                        </tr>  
-                        <tr>
+                      </tr>  
+                      <tr>
                         <td></td>
                         <td>
                           <input id="checksettlement"  type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
@@ -121,20 +121,20 @@
                         <td width="36%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="8"><textarea type="text" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
+                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" ></textarea></td>
                         
                       </tr>
                       <tr>
                         <td><b>- Jumlah </b></td>
                         <td><b> : </b></td>
-                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" required>
+                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" >
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" required> </td>
+                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" > </td>
 
                         <td><select name="currency2" class="form-control">
                                       <option value="">--Choose--</option>
@@ -166,7 +166,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3"></input></td>     
+                        <td colspan="8" width="65%"><input type="date" id="perkiraanSelesai" class="form-control" name="label3"></input></td>     
                       </tr>
                                                   
                       </tbody>
@@ -180,7 +180,7 @@
                       <tr>
                         <td width="33%">Nama</td>
                         <td align="right"><b>:</b></td>
-                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima" required>
+                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima" >
                                             <option value="">--Choose--</option>
                                             <?php foreach ($data_vendor as $nama){?> 
                                               <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
@@ -191,11 +191,11 @@
                       <tr>  
                         <td>Kode Vendor</td>
                         <td align="right"><b>:</b></td>
-                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text" required></td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text" ></td>
                         <td>Bank</td>
                         <td>:</td>
-                        <td><select id="dropdown" name="akun_bank" class="form-control" required>
-                                <option>--- Choose ---</option>
+                        <td><select id="dropdown" name="akun_bank" class="form-control" >
+                                <option value="">--- Choose ---</option>
                                 <?php foreach ($bank as $get) {?>
                                   <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
                                 <?php } ?>
@@ -208,7 +208,7 @@
                         <td></td>
                         <td>Nomor Rekening</td> 
                         <td>:</td>                           
-                        <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required></td>                                
+                        <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text" ></td>                                
                       </tr>
                       
                       </tbody>
@@ -288,7 +288,7 @@
                         <td><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
                         <td>
-                          <input type="text" class="form-control" name="label5" placeholder="Enter Text">                          
+                          <input id="arf_number" type="text" class="form-control" name="label5" placeholder="Enter Text">                          
                         </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
                       </tr>
@@ -327,7 +327,7 @@
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary third">Save</button>
+                    <button type="button" id="btnSave" onclick="savedraft()" class="btn btn-primary">Save</button>
                   </div>
                 </div>                                                 
             </div>
@@ -396,7 +396,7 @@
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>  
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> 
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>  -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script>
@@ -439,14 +439,14 @@ function fung(){
   document.getElementById("kode_vendor").value = data;
 }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Save!");
-  function tambah() {
-  location.reload(true);
-        tr.hide();
-  }
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Save!");
+//   function tambah() {
+//   location.reload(true);
+//         tr.hide();
+//   }
   
-});
+// });
 
 // function tambah() {
 //   alert("Data Successfully to Save!");
@@ -823,6 +823,87 @@ function showInput() {
   //   });
 
   // });
+</script>
+
+<script type="text/javascript">
+
+var save_method; 
+
+function myFunction2() {
+  var input = document.getElementById("tujuanPenggunaan");
+
+  console.log(input);
+
+  // alert("Hello! I am an alert box!");
+}
+
+function savedraft() {
+  
+  // var input = document.getElementById("tujuanPenggunaan");
+
+  // var_dump(input);exit;
+  // var $tujuan=$("#tujuanPenggunaan").val();
+  // var $currency=$("#Select option:selected").text();
+  // var $rupiah=$("#rupiah").val();
+  var penerima=$("#penerima option:selected").val();
+  var bank=$("#dropdown option:selected").text();
+  var norek=$("#textInput").val();
+  var arf_ref=$("#arf_number").val();
+  var biaya=$("#biaya").val();
+  var uangmuka=$("#uangmuka").val();
+  // var $hasil=$("#hasil").val();
+
+  var checkrequest = $("#checkrequest").is(':checked');
+  var perkiraanSelesai=$("#perkiraanSelesai").val();
+  var checksettlement = $("#checksettlement").is(':checked');
+  // console.log(bank=="--- Choose ---");
+  
+  if(checkrequest==true && perkiraanSelesai==""){
+    alert("Perkiraan Tanggal Selesai Belum Diisi");  
+  }
+  if(penerima==""){
+    alert("Nama Penerima Belum diisi");
+  }
+  if(bank=="--- Choose ---"){
+    alert("Bank Belum Diisi");
+  }
+
+  if(bank!="Tunai" && norek==""){
+    alert("Nomor Rekening Belum Diisi");
+  }
+  if(checksettlement==true && arf_ref=="" && biaya=="" && uangmuka==""){
+    alert("Data Settlement Belum Lengkap");  
+  }
+
+  if ($("#tujuanPenggunaan").val()==""){
+    alert("Tujuan Penggunaan Belum Diisi");
+  }else if($("#Select").val()==""){
+    alert("Mata Uang Belum Diisi");
+  }else if($("#rupiah").val()==""){
+    alert("Jumlah Pengajuan Belum Diisi");
+  }else{
+    var url = "<?php echo base_url('dashboard/addpayment')?>";
+       
+		$.ajax({
+          url : url,
+          type : "POST",
+          data: $("#formadd").serialize(),
+          dataType: "JSON",
+          success: function(data){ // Ketika proses pengiriman berhasil          
+              //location.reload();  
+			    alert('Data Berhasil Di simpan');
+				window.location = "<?php echo base_url('dashboard') ?>";    
+          },      
+          error: function (data)
+          {
+            console.log(data);
+            alert('Error adding / update data');
+          }
+        });
+  }
+
+  
+}
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

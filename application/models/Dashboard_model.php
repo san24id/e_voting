@@ -1096,6 +1096,61 @@ class Dashboard_model extends CI_Model{
             
         $query=$this->db->query($sql);
 		return $query->result();
+    }
+    
+    public function getdatatoExport($profileid)
+	{
+		$filter = $this->session->userdata("filter");
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' ";
+		
+		switch ($filter) {
+			  case "1":
+				$sql .=" ";
+				break;
+			  case "2":
+				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				break;
+			  case "3":
+				$sql .=" and a.status = '0' ";
+				break;
+			  case "4":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate()  ";
+				break;
+			  case "5":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;
+			  /*case "6":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;*/
+			  default:
+				$sql .=" ";
+				
+			}
+			
+		switch ($profileid) {
+			  case "1":
+				$sql .=" and a.tanggal like '%" . $txtsearch . "%'";
+				break;
+			  case "2":
+				$sql .=" and b.jenis_pembayaran like '%" . $txtsearch . "%'";
+				break;
+			  case "3":
+				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+				break;
+			  case "4":
+				$sql .=" and a.display_name like '%" . $txtsearch . "%'";
+				break;
+			  case "5":
+				$sql .=" and a.penerima like '%" . $txtsearch . "%'";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+            
+        $query=$this->db->query($sql);
+		return $query->result();
 	}
 	
 	public function delete_tax($id)
