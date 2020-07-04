@@ -81,8 +81,8 @@ class Tri extends CI_Controller {
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
 
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['payment']);
@@ -321,8 +321,8 @@ class Tri extends CI_Controller {
 		$data['wPaid'] = $this->Tri_model->getWaitPaid();
 		$data['L_Paid'] = $this->Tri_model->getPaid();
 
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['payment'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['payment']);

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style type="text/css">
 		.lingkaran1{
 			width: 200px;
@@ -106,10 +107,10 @@
                         <td class="period"><font color="white" size="3">Period: </font></td>
                         <td></td>
                         <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="date" name="start_date" id="start_date"></td>
+                        <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo date("01-01-Y"); ?>"></td>
                         <td><font size="3">s/d</font></td>
                         <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="date" name="end_date"></td>
+                        <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo date("d-m-Y"); ?>"></td>
                         <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
                       </tr>
                     <?php echo form_close();?>  
@@ -489,7 +490,9 @@
 <!----.Modal -->
 
 <!-- jQuery 2.2.3 -->
-<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- DataTables -->
 <script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
@@ -507,6 +510,13 @@
 <script src="assets/admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- ChartJS -->
 <script src="assets/admin/bower_components/chart.js/Chart.js"></script>
+
+<script>
+  $( function() {
+    $( "#end_date" ).datepicker();
+    $( "#start_date" ).datepicker();
+  } );
+</script>
 
 <script>
 

@@ -104,8 +104,9 @@ class Dashboard extends CI_Controller {
 		$data['paid'] = $this->Home_model->getPaid();
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 				
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
+		// var_dump($data['start_date']);exit;
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['payment']);
@@ -341,8 +342,8 @@ class Dashboard extends CI_Controller {
 		$data['report_ppn'] = $this->Dashboard_model->report_pajak_ppn();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['report_pph'] = $this->Dashboard_model->periode_tax($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['report_pph']);
@@ -1280,9 +1281,8 @@ class Dashboard extends CI_Controller {
 		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
 		$data['Paid'] = $this->Dashboard_model->getPaid();
 
-
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['list_monitoring'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['list_monitoring']);

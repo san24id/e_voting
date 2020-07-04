@@ -74,8 +74,8 @@ class Approval extends CI_Controller {
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 		$data['paid'] = $this->Home_model->getPaid();
 
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['payment']);
@@ -215,8 +215,8 @@ class Approval extends CI_Controller {
 		$data['tot_approved'] = $this->Approval_model->TotalApproved();
 		$data['wApproval'] = $this->Approval_model->getWaitApproval();
 
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['approved'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['approved']);

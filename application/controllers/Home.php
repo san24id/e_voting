@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$sid = $this->session->userdata("id_user");
-
+		$tanggalHariIni = new DateTime();
 		$data['active1'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
@@ -108,8 +108,8 @@ class Home extends CI_Controller {
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 		$data['credit_card'] = $this->Home_model->CreditCard();
 
-		$data['start_date'] = $this->input->post("start_date");
-		$data['end_date'] = $this->input->post("end_date");
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['jumlah'] = count($data['payment']);
