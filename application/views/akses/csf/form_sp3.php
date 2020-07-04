@@ -50,6 +50,8 @@
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
                         }else if($row->status == 11){
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
+                        }else if($row->status == 99){
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
                         }else if($row->status == 3){

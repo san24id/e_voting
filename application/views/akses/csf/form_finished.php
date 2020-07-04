@@ -157,7 +157,7 @@
                       <tr>
                         <td width="35%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
@@ -208,7 +208,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
+                        <td colspan="8" width="65%"><input type="date" id="perkiraanSelesai" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
                       </tr>
                                                   
                       </tbody>
@@ -394,7 +394,7 @@
                         <td><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
                         <td>
-                          <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>">                          
+                          <input id="arf_number" type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>">                          
                         </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> > Lampiran copy ARF tersedia</input></td>
                       </tr>
@@ -435,12 +435,20 @@
                         <td>Menyetujui, <br><br><br><br></td>
                       </tr>
                       <tr> 
-                        <td>Nama : &nbsp; <input type="text" name="display_name" value="<?php echo $row->display_name?>"></td>
+                        <td>Nama : &nbsp; <select id="pegawai" name="display_name" >
+                                          <option value="<?php echo $row->display_name?>"><?php echo $row->display_name?></option>
+                                          <option value="">--Choose--</option>
+                                          <?php foreach($pegawai as $pgw){ ?>
+                                          <option value="<?php echo $pgw->display_name?>"><?php echo $pgw->display_name?> - <?php echo $pgw->jabatan?></option>
+                                          <?php } ?>
+
+                                          </select>
+                        </td>
                         <?php foreach ($divhead as $divhead) { ?>
                         <td>Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
                       </tr>
                       <tr>
-                        <td>Jabatan : &nbsp; <input type="text" name="jabatan" value="<?php echo $row->jabatan?>"></td>
+                        <td>Jabatan : &nbsp; <input id="jabatan" type="text" name="jabatan" value="<?php echo $row->jabatan?>"></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
                                                 echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
                         <?php } ?>                        
@@ -453,7 +461,7 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Dashboard" role="button">Cancel</a>
+                        <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
                         <button type="submit" class="btn btn-success third">Save</button>
                         <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                     </div>
@@ -565,6 +573,13 @@ function fung(){
   
   document.getElementById("kode_vendor").value = data;
 }
+
+// function pegawaii(){
+//   // alert();  
+//   var data = document.getElementById("pegawai").value;
+  
+//   document.getElementById("jabatan").value = data;
+// }
 
 document.querySelector(".third").addEventListener('click', function(){
   swal("Data Successfully to Save!");

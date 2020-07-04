@@ -1604,13 +1604,28 @@ class Dashboard extends CI_Controller {
 		$this->Home_model->updatepayment($upd);
 
 		redirect(site_url('Dashboard/formfinished/'.$id_apa));
+		// echo json_encode(array("status" => TRUE));
+
+	}
+
+	public function draftsent($id_payment){
+
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1
+		);
+		
+		$this->Dashboard_model->updateprint($upd);
+
+		redirect('Dashboard');
 	}
 
 	public function draftprintdp($id_payment){
 
 		$upd = array(
 			'id_payment' => $id_payment,
-			'status' => 1
+			'status' => 99
+			
 		);
 		
 		$this->Dashboard_model->updateprint($upd);
@@ -1622,7 +1637,8 @@ class Dashboard extends CI_Controller {
 
 		$upd = array(
 			'id_payment' => $id_payment,
-			'status' => 1
+			'status' => 99
+			
 		);
 
 		$this->Dashboard_model->updateprint($upd);
@@ -1656,6 +1672,7 @@ class Dashboard extends CI_Controller {
 		$data['bank'] = $this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['pegawai'] = $this->Home_model->getPegawai();
 
 		$this->load->view('akses/csf/header_csf', $data);	
        	$this->load->view('akses/csf/form_finished', $data);

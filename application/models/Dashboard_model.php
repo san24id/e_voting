@@ -304,7 +304,7 @@ class Dashboard_model extends CI_Model{
     function getApprovalDivHead(){
         $dvs = $this->session->userdata("division_id");
         
-        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status = '1' AND division_id= '$dvs'";
+        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','99') AND division_id= '$dvs'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;

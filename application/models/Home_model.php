@@ -91,11 +91,19 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status in ('1', '3', '11') AND division_id='$dvs' ";
+        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status in ('1', '3', '11', '99') AND division_id='$dvs' ";
         
         $query = $this->db->query($sql)->result();
         return $query;
     
+    }
+
+    public function getPegawai(){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT * FROM `m_user` WHERE division_id='$dvs'";
+        $query = $this->db->query($sql)->result();
+        return $query;
     }
     
     public function getSubmitted(){

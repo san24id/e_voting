@@ -157,13 +157,13 @@
 							<br>
 							<!-- <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()">  -->
 							<form id="form" action="#"> 
-							<table style="font-family: calibri;" width="70%">
+							<table style="font-family: calibri;" width="50%">
 							  <tr>
-								<td><b>Deductible Expense?</b></td>
-								<td>
+								<td width="30%"><b>Deductible Expense?</b></td>
+								<td width="10%">
 								  <input type="checkbox" id="chkdeY" name="de" value="1" <?php echo $chkDY; ?>> Ya<br>
 								</td>
-								<td>
+								<td width="20%">
 								  <input type="checkbox" id="chkdeN" name="de" value="0" <?php echo $chkDN; ?> > Tidak</input><br>
 								</td>
 								</tr>  
@@ -187,14 +187,16 @@
 								<td width="8%">
 								  &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" <?php echo $chkopsi3.'  '.$disabled3;?>> PARTNDE</input><br>                            
 								</td>
-								<td width="2%"><font size="3">Rp</font></td>
+								<td width="5%"><font size="3">Rp</font></td>
 								<td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
 								</tr>
+
 							</table>
-							<table width=70%>   
+								<br>
+							<table width=50%>   
 							  <tr>
-								<td><b>Objek Pajak</b></td>
-								<td><input id="chkObjPjkY" type="checkbox" name="objek_pajak[]" value="1" <?php echo $chkY; ?> > Ya </td>
+								<td width="30%"><b>Objek Pajak</b></td>
+								<td width="10%"><input id="chkObjPjkY" type="checkbox" name="objek_pajak[]" value="1" <?php echo $chkY; ?> > Ya </td>
 								<td> <input id="chkObjPjkN"  type="checkbox" name="objek_pajak[]" value="0" <?php echo $chkN; ?> > Tidak</input> </td>
 								<td><input id="chkObjPjkE" type="checkbox" name="objek_pajak[]" value="2" <?php echo $chkE; ?> > Employee</input> </td>
 								<td><input id="chkObjPjkT" type="checkbox" name="objek_pajak[]" value="3" <?php echo $chkT; ?> > Tax at Settlement</input> </td>

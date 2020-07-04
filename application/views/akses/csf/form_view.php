@@ -45,6 +45,8 @@
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
                         }else if($row->status == 11){
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
+                        }else if($row->status == 99){
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
                         }else if($row->status == 3){
@@ -189,13 +191,13 @@
                         <td><b>- Jumlah :</b></td>
                         <td><b> : </b></td>
 
-                        <td> <?php echo $row->currency;?> </td>
+                        <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency;?>" readonly> </td>
                         <td><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
 
-                        <td> <?php echo $row->currency2;?> </td>
+                        <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency2;?>" readonly> </td>
                         <td><input type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" readonly></td>
 
-                        <td> <?php echo $row->currency3;?> </td>
+                        <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency3;?>" readonly></td>
                         <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
                       </tr>                                                 
                       </tbody>
@@ -245,7 +247,7 @@
                         <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" readonly></td>
                         <td>Bank</td>
                         <td>:</td>
-                        <td><?php echo $row->akun_bank; ?> </td>
+                        <td><input type="text" class="form-control" value="<?php echo $row->akun_bank; ?>" readonly> </td>
                       </tr>
                       <tr>
                       <td></td>
@@ -446,17 +448,9 @@
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
                         <?php if ($row->status == 0 || $row->status == 3) { ?>
                           <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-
-                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
-                                                        
-                              <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
-
-                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              
-                              <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Set To Print</a>
-
-                            <?php } ?>    
                             
+                            <a class="btn btn-danger" href="Dashboard/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>
+
                         <?php } ?>
 
                         <?php 
@@ -471,8 +465,20 @@
                         ?>
                         
                         <?php 
+                            if($row->display_name == $this->session->userdata("display_name") && $row->status == 1){ ?>
+                              <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                                                        
+                                <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+  
+                              <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                                
+                                <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+  
+                              <?php }
+                            } 
+
                           if($this->session->userdata("role_id") == 4){ ?>      
-                          <?php if($row->status == 1 && $iya == "On"){ ?>
+                          <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>
                             <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
                             <!----.Modal -->
                             <!----.Approve -->
@@ -526,9 +532,19 @@
                           <?php } ?>                          
                         <?php } ?>  
 
-                          <?php if($row->status == 11){ ?>
+                          <?php if($row->status == 11 || $row->status == 99){ ?>
                             <!-- <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>   -->
                             <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
+                              <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                                                        
+                                <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+  
+                              <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                                
+                                <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+  
+                              <?php } ?>    
+
                               <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                               <!----.Modal -->
                               <!----.Submit -->
@@ -559,6 +575,16 @@
 
                         <?php if($row->status == 1 && $iya == "Off" ){ ?>
                           <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+
+                          <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                                                        
+                            <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+
+                          <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                            
+                            <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+
+                          <?php } ?>
 
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>

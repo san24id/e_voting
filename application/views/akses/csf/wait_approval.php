@@ -54,29 +54,31 @@
                     <td><center><?php echo $i++; ?></center></td>
                     <td><center><?php if($row->status == 0){
                             echo "<img src='assets/dashboard/images/legend/draft.png'>";  
-                        }else if($row->status == 1){
+                          }else if($row->status == 1){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                        }else if($row->status == 11){
+                          }else if($row->status == 11){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                        }else if($row->status == 2){
+                          }else if($row->status == 99){
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          }else if($row->status == 2){
                             echo "<img src='assets/dashboard/images/legend/submitted.png'>";
-                        }else if($row->status == 3){
+                          }else if($row->status == 3){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
-                        }else if($row->status == 4){
+                          }else if($row->status == 4){
                             echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 5){
+                          }else if($row->status == 5){
                             echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 6){
+                          }else if($row->status == 6){
                             echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 7){
+                          }else if($row->status == 7){
                             echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                        }else if($row->status == 8){
+                          }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/verified.png'>";
-                        }else if($row->status == 9){
+                          }else if($row->status == 9){
                             echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
-                        }else if($row->status == 10){
+                          }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                        }   
+                          }   
                         ?></center>
                     </td>                  
                     <td><?php echo $row->tanggal; ?></td>
