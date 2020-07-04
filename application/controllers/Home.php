@@ -562,6 +562,120 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/wait_approval', $data);
 	}
 
+	public function exportdashboard()
+	{
+		$data['dashboard'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['draft'] = $this->Home_model->getTotalDraft();
+		$data['draftprint'] = $this->Home_model->getDraftPrint();
+		$data['draft1'] = $this->Home_model->getDraft();
+		$data['outstanding'] = $this->Home_model->getOutstanding();
+		$data['tot_pay_req'] = $this->Home_model->getTotal();
+		$data['pembayaran'] = $this->Home_model->getVPayment();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['submit'] = $this->Home_model->getSubmitted();
+		$data['process'] = $this->Home_model->getProcessing();
+		$data['verifikasi'] = $this->Home_model->getVerifikasi();
+		$data['approval'] = $this->Home_model->getApproval();
+		$data['paid'] = $this->Home_model->getPaid();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+		$data['credit_card'] = $this->Home_model->CreditCard();
+		
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/report/data_export', $data);
+
+	}
+
+	function export_ar(){
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['advancerequest'] = $this->Home_model->getVar();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/report/export_ar', $data);
+
+	}
+
+	function export_asr(){
+		
+		$data['settlement'] = $this->Home_model->getVasr();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/report/export_asr', $data);
+
+	}
+
+	function export_dp(){
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['directpayment'] 	= $this->Home_model->getVdp();	
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/report/export_dp', $data);
+
+	}
+
+	function export_dr(){
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['draftreq'] = $this->Home_model->getVdraftrequest();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/report/export_dr', $data);
+
+	}
+
+	function export_op(){
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+		
+		$data['outstan'] = $this->Home_model->getOp();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/user/header_user', $data);
+		$this->load->view('akses/report/export_op', $data);
+
+	}
+
 	public function myprofile()
 	{
 		$data['active1'] = 'active';

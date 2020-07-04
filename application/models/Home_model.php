@@ -204,7 +204,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 		
-        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','3')";
+        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','3','99')";
                 
         $query = $this->db->query($sql)->result();
         //  var_dump($query);exit;        

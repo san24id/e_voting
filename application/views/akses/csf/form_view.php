@@ -447,10 +447,13 @@
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
                         <?php if ($row->status == 0 || $row->status == 3) { ?>
-                          <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-                            
-                            <a class="btn btn-danger" href="Dashboard/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>
+                          
+                            <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+                            <?php if($row->akun_bank !="" || $row->no_rekening !=""){ ?>
+                              <a class="btn btn-danger" href="Dashboard/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>      
+                            <?php }else{ ?>
 
+                            <?php } ?>
                         <?php } ?>
 
                         <?php 
@@ -466,16 +469,15 @@
                         
                         <?php 
                             if($row->display_name == $this->session->userdata("display_name") && $row->status == 1){ ?>
-                              <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
-                                                        
-                                <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
-  
-                              <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                                
-                                <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
-  
-                              <?php }
-                            } 
+                                <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                                  <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+    
+                                <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                                  <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+    
+                                <?php }
+                              
+                          } 
 
                           if($this->session->userdata("role_id") == 4){ ?>      
                           <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>
