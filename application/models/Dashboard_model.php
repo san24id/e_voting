@@ -897,7 +897,7 @@ class Dashboard_model extends CI_Model{
     function notifApproval(){
         $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT COUNT(status) as taskapproval FROM t_payment WHERE status = 1 AND division_id='$dvs'";
+        $sql = "SELECT COUNT(status) as taskapproval FROM t_payment WHERE status in('1','99') AND division_id='$dvs'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;

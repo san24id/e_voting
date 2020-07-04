@@ -379,6 +379,20 @@ class Home extends CI_Controller {
 		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
 		$this->Home_model->addpayment($add);
 			
+		// redirect('Home');
+		echo json_encode(array("status" => TRUE));
+
+	}
+
+	public function draftsent($id_payment){
+
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1
+		);
+		
+		$this->Dashboard_model->updateprint($upd);
+
 		redirect('Home');
 	}
 
@@ -386,7 +400,7 @@ class Home extends CI_Controller {
 
 		$upd = array(
 			'id_payment' => $id_payment,
-			'status' => 1
+			'status' => 99
 		);
 
 		$this->Dashboard_model->updateprint($upd);
@@ -398,7 +412,7 @@ class Home extends CI_Controller {
 
 		$upd = array(
 			'id_payment' => $id_payment,
-			'status' => 1
+			'status' => 99
 		);
 
 		$this->Dashboard_model->updateprint($upd);

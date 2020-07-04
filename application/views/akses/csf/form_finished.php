@@ -44,7 +44,7 @@
                       <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
-                      <center><b><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></b></center>
+                      <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
@@ -157,7 +157,7 @@
                       <tr>
                         <td width="35%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" rows="5" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>

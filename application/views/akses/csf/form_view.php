@@ -72,7 +72,7 @@
                       <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
-                      <center><b><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></b></center>
+                      <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
@@ -402,17 +402,17 @@
                       <tr>  
                         <td>Jumlah Biaya</td>
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
                       </tr>
                       <td>Jumlah Uang Muka</td>
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
                       <tr>
                       <td>Selisih Kurang/Lebih</td> 
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
                       </tr>                              
                       </tbody>
@@ -574,19 +574,18 @@
                           <?php } ?>  
 
                         <?php if($row->status == 1 && $iya == "Off" ){ ?>
-                          <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-
-                          <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
-                                                        
-                            <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
-
-                          <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                            
-                            <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
-
-                          <?php } ?>
-
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
+                            <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+
+                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                                                          
+                              <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              
+                              <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+
+                            <?php } ?>
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                             <!----.Modal -->
                             <!----.Accept -->

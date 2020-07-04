@@ -48,7 +48,7 @@
                       <tr>
                         <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
                         <td>
-                          <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
+                          <input id="auto" type="checkbox" disabled> <b>Uang Muka/Advance</b><br>
                         </td>
                         <td>
                           <input id="checked"  type="checkbox" name="jenis_pembayaran[]" value="4"> Direct Payment</input><br>

@@ -2,6 +2,9 @@
 <body onload="window.print()">
 <style type="text/css">
   .kolom { border: 1px solid gray;}
+  .kolom1 { border: 1px solid gray;
+            vertical-align: top;
+  }
 @print {
     @page :footer {
         display: none
@@ -192,8 +195,7 @@
                       <tr height="100px">
                         <td width="15%"><font size="1"><b>- Tujuan Penggunaan </b></td>
                         <td width="1%"><font size="1"><b> : </b></td>
-                        <td colspan="8" class="kolom" align="top"><font size="1"><?php echo $row->label1; ?></font></td>
-                        
+                        <td colspan="8" class="kolom1" align="top"><font size="1"><?php echo $row->label1; ?></font></td>                                               
                       </tr>
                       
                       <tr>
@@ -411,17 +413,17 @@
                       <tr>  
                         <td><font size="1">Jumlah Biaya : </td>
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label7;?><td>
                       </tr>
                         <td><font size="1">Jumlah Uang Muka : </td>
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
                       <tr>
                         <td><font size="1">Selisih Kurang/Lebih : </td> 
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
                       </tr>                              
                       </tbody>
