@@ -301,7 +301,7 @@
                 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
                   <div class="col-md-9">
-                    <div id="pieChart" style="min-width: 600px; height: 425px; max-width: 400px; margin: 0 auto"></div>  
+                    <div id="pieChart" style="min-width: 580px; height: 400px; max-width: 400px; margin: 0 auto"></div>  
                     <br><br><br>        
                     
                     </div>  
@@ -390,7 +390,7 @@
                         $i = 1;
                         foreach ($list_monitoring as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->dsc;                        
+                        $test1 = $row->jenis_pembayaran;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
@@ -571,7 +571,7 @@ $(function () {
 
             <?php foreach ($pembayaran as $key) { ?>
               {
-                name: '<?php echo $key->dsc; ?>',
+                name: '<?php echo $key->jenis_pembayaran; ?>',
                 y: <?php echo $key->jmlpembayaran; ?>
               },
             <?php } ?>
