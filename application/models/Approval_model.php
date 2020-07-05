@@ -42,8 +42,19 @@ class Approval_model extends CI_Model{
         return $query;
     }
 
+    function getWaitApprovalPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status=8 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function TotalApproved(){
         $sql = "SELECT COUNT(status) as tot_approved FROM t_payment_l WHERE status=9";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+    function TotalApprovedPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as tot_approved FROM t_payment WHERE status=9 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }

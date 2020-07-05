@@ -87,32 +87,45 @@ class Home extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		$data['reject'] = $this->Home_model->notifRejected();
-		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['draft'] = $this->Home_model->getTotalDraft();
-		$data['draftprint'] = $this->Home_model->getDraftPrint();
-		$data['draft1'] = $this->Home_model->getDraft();
-		$data['outstanding'] = $this->Home_model->getOutstanding();
-		$data['tot_pay_req'] = $this->Home_model->getTotal();
-		$data['pembayaran'] = $this->Home_model->getVPayment();
-		$data['ppayment'] = $this->Home_model->getform($id_payment);
-		$data['dp'] = $this->Home_model->getVdp();
-		$data['payment'] = $this->Home_model->getPayment($sid);
-		$data['surat'] = $this->Home_model->buat_kode();
-		$data['submit'] = $this->Home_model->getSubmitted();
-		$data['process'] = $this->Home_model->getProcessing();
-		$data['verifikasi'] = $this->Home_model->getVerifikasi();
-		$data['approval'] = $this->Home_model->getApproval();
-		$data['paid'] = $this->Home_model->getPaid();
-		$data['divhead'] = $this->Home_model->getDivHead();
-		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
-		$data['credit_card'] = $this->Home_model->CreditCard();
-
 		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
 		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
+		$data['draft'] = $this->Home_model->getTotalDraftPeriode($data['start_date'],$data['end_date']);
+		$data['tot_pay_req'] = $this->Home_model->getTotalPeriode($data['start_date'],$data['end_date']);
+		$data['submit'] = $this->Home_model->getSubmitted($data['start_date'],$data['end_date']);
+		$data['outstanding'] = $this->Home_model->getOutstandingPeriode($data['start_date'],$data['end_date']);
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverduePeriode($data['start_date'],$data['end_date']);
+		$data['draftprint'] = $this->Home_model->getDraftPrintPeriode($data['start_date'],$data['end_date']);
+		$data['draft1'] = $this->Home_model->getDraftPeriode($data['start_date'],$data['end_date']);
+		$data['process'] = $this->Home_model->getProcessingPeriode($data['start_date'],$data['end_date']);
+		$data['verifikasi'] = $this->Home_model->getVerifikasiPeriode($data['start_date'],$data['end_date']);
+		$data['approval'] = $this->Home_model->getApprovalPeriode($data['start_date'],$data['end_date']);
+		$data['paid'] = $this->Home_model->getPaidPeriode($data['start_date'],$data['end_date']);
+
+		$data['pembayaran'] = $this->Home_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['dp'] = $this->Home_model->getVdp();
+		$data['surat'] = $this->Home_model->buat_kode();
+		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['credit_card'] = $this->Home_model->CreditCard();
+		
 		$data['jumlah'] = count($data['payment']);
+		$data['jumlahdraft'] = count($data['draft']);
+		$data['jumlahtotalpayment'] = count($data['tot_pay_req']);
+		$data['jumlahpembayaran'] = count($data['pembayaran']);
+		$data['jumlahsubmit'] = count($data['submit']);
+		$data['jumlahoutstanding'] = count($data['outstanding']);
+		$data['jumlahupcoming_over'] = count($data['upcoming_over']);
+		$data['jumlahdrafprint'] = count($data['draftprint']);
+		$data['jumlahdraft'] = count($data['draft1']);
+		$data['jumlahprocess'] = count($data['process']);
+		$data['jumlahverifikasi'] = count($data['verifikasi']);
+		$data['jumlahapproval'] = count($data['approval']);
+		$data['jumlahpaid'] = count($data['paid']);
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);

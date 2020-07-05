@@ -24,6 +24,14 @@ class Dashboard_model extends CI_Model{
     
     }
 
+    public function processingPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status=2 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    
+    }
+
     public function getReturnedVerif(){
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
@@ -62,6 +70,15 @@ class Dashboard_model extends CI_Model{
     public function getTotal(){
 
         $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE status in ('2','3','4','5','6','7','8','9','10')";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getTotalPeriode($start_date,$end_date){
+
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE status in ('2','3','4','5','6','7','8','9','10')
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -202,7 +219,19 @@ class Dashboard_model extends CI_Model{
         //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$test' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
 
         $sql = "SELECT * FROM (SELECT a.status, b.dsc, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
-                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL AND otr.status in ('2','4','5','6','7','8','9','10')";
+                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL AND otr.status in ('2','4','5','6','7','8','9','10')";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVPaymentPeriode($start_date,$end_date) {
+        // $sql = "SELECT * FROM (SELECT b.dsc, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+        //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$test' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
+
+        $sql = "SELECT * FROM (SELECT a.status, b.dsc, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+                GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL AND otr.status in ('2','4','5','6','7','8','9','10')
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -409,8 +438,23 @@ class Dashboard_model extends CI_Model{
     
     }
 
+    public function getProcessingPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as totalstatus FROM t_payment WHERE status in ('4','5','6','7') 
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    
+    }
+
     function getTax() {
         $sql = "SELECT COUNT(status) as tax FROM t_payment WHERE status= '4'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getTaxPeriode($start_date,$end_date) {
+        $sql = "SELECT COUNT(status) as tax FROM t_payment WHERE status= '4' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -474,6 +518,12 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getFinancePeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as finance FROM t_payment WHERE status= '5' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getVFinance() {
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='5' ";
         $query = $this->db->query($sql)->result();
@@ -486,6 +536,12 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getWaitReviewPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as wreview FROM t_payment WHERE status= '6' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getVReview() {
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='6' ";
         $query = $this->db->query($sql)->result();
@@ -494,6 +550,13 @@ class Dashboard_model extends CI_Model{
 
     function getWaitVerifikasi(){
         $sql = "SELECT COUNT(status) as wverifikasi FROM t_payment WHERE status='7'";
+        // var_dump ($sql);exit;
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitVerifikasiPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as wverifikasi FROM t_payment WHERE status='7' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
@@ -513,8 +576,21 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getVerifikasiPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        // var_dump ($sql);exit;
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getWaitApproval(){
         $sql = "SELECT COUNT(status) as wapproval FROM t_payment WHERE status='8'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitApprovalPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as wapproval FROM t_payment WHERE status='8' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -532,8 +608,20 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function getApprovalPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getWaitPaid(){
         $sql = "SELECT COUNT(status) as wpaid FROM t_payment WHERE status='9'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getWaitPaidPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as wpaid FROM t_payment WHERE status='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -548,7 +636,17 @@ class Dashboard_model extends CI_Model{
     function getUpcomingOverdue(){
         $dvs = $this->session->userdata('division_id');
 
-        $sql ="SELECT label3 + INTERVAL '14' DAY as upcoming from `t_payment` WHERE division_id='$dvs' AND jenis_pembayaran LIKE '%2%' ";
+        $sql = "SELECT label3 + INTERVAL '14' DAY as upcoming from `t_payment` WHERE division_id='$dvs' AND jenis_pembayaran LIKE '%2%' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getUpcomingOverduePeriode($start_date,$end_date){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT label3 + INTERVAL '14' DAY as upcoming from `t_payment` WHERE division_id='$dvs' AND jenis_pembayaran LIKE '%2%' 
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -556,6 +654,12 @@ class Dashboard_model extends CI_Model{
 
     function getPaid(){
         $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getPaidPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }

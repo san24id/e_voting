@@ -82,34 +82,47 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		$data['reject'] = $this->Home_model->notifRejected();
-		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
-		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-		$data['draft'] = $this->Home_model->getTotalDraft();
-		$data['outstanding'] = $this->Home_model->getOutstanding();
-		$data['draftprint'] = $this->Home_model->getDraftPrint();
-		$data['draft1'] = $this->Home_model->getDraft();
-		$data['tot_pay_req'] = $this->Home_model->getTotal();
-		$data['pembayaran'] = $this->Home_model->getVPayment();
-		$data['ppayment'] = $this->Home_model->getform($id_payment);
-		$data['payment'] = $this->Home_model->getPayment($sid);
-		$data['apayment'] = $this->Dashboard_model->payment();
-		$data['mytask'] = $this->Dashboard_model->getmyTask();
-		$data['submit'] = $this->Home_model->getSubmitted();
-		$data['process'] = $this->Home_model->getProcessing();
-		$data['verifikasi'] = $this->Home_model->getVerifikasi();
-		$data['approval'] = $this->Home_model->getApproval();
-		$data['paid'] = $this->Home_model->getPaid();
-		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
-				
 		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
 		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 		// var_dump($data['start_date']);exit;
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
+		$data['draft'] = $this->Home_model->getTotalDraftPeriode($data['start_date'],$data['end_date']);
+		$data['tot_pay_req'] = $this->Home_model->getTotalPeriode($data['start_date'],$data['end_date']);
+		$data['submit'] = $this->Home_model->getSubmitted($data['start_date'],$data['end_date']);
+		$data['outstanding'] = $this->Home_model->getOutstandingPeriode($data['start_date'],$data['end_date']);
+		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverduePeriode($data['start_date'],$data['end_date']);
+		$data['draftprint'] = $this->Home_model->getDraftPrintPeriode($data['start_date'],$data['end_date']);
+		$data['draft1'] = $this->Home_model->getDraftPeriode($data['start_date'],$data['end_date']);
+		$data['process'] = $this->Home_model->getProcessingPeriode($data['start_date'],$data['end_date']);
+		$data['verifikasi'] = $this->Home_model->getVerifikasiPeriode($data['start_date'],$data['end_date']);
+		$data['approval'] = $this->Home_model->getApprovalPeriode($data['start_date'],$data['end_date']);
+		$data['paid'] = $this->Home_model->getPaidPeriode($data['start_date'],$data['end_date']);
+		// var_dump($data['submit']);exit;
+
+		$data['pembayaran'] = $this->Home_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['creditcard'] = $this->Dashboard_model->getCreditCard();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['mytask'] = $this->Dashboard_model->getmyTask();	
+
 		$data['jumlah'] = count($data['payment']);
+		$data['jumlahdraft'] = count($data['draft']);
+		$data['jumlahtotalpayment'] = count($data['tot_pay_req']);
+		$data['jumlahpembayaran'] = count($data['pembayaran']);
+		$data['jumlahsubmit'] = count($data['submit']);
+		$data['jumlahoutstanding'] = count($data['outstanding']);
+		$data['jumlahupcoming_over'] = count($data['upcoming_over']);
+		$data['jumlahdrafprint'] = count($data['draftprint']);
+		$data['jumlahdraft'] = count($data['draft1']);
+		$data['jumlahprocess'] = count($data['process']);
+		$data['jumlahverifikasi'] = count($data['verifikasi']);
+		$data['jumlahapproval'] = count($data['approval']);
+		$data['jumlahpaid'] = count($data['paid']);
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/dashboard_csf', $data);
@@ -1259,33 +1272,44 @@ class Dashboard extends CI_Controller {
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
 
-		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['reject'] = $this->Home_model->notifRejected();
-		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['processing'] = $this->Dashboard_model->processing();
-		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['list_monitoring'] = $this->Dashboard_model->monitoring();
-		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
-		$data['gprocess'] = $this->Dashboard_model->getProcessing();
-		$data['tax'] = $this->Dashboard_model->getTax();
-		$data['finance'] = $this->Dashboard_model->getFinance();
-		$data['review'] = $this->Dashboard_model->getWaitReview();
-		
-		$data['wverifikasi'] = $this->Dashboard_model->getWaitVerifikasi();
-		$data['verifikasi'] = $this->Dashboard_model->getVerifikasi();
-
-		$data['wApproval'] = $this->Dashboard_model->getWaitApproval();
-		$data['approval'] = $this->Dashboard_model->getApproval();
-		
-		$data['wPaid'] = $this->Dashboard_model->getWaitPaid();
-		$data['Paid'] = $this->Dashboard_model->getPaid();
-
 		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
 		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['list_monitoring'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
+		$data['processing'] = $this->Dashboard_model->processingPeriode($data['start_date'],$data['end_date']);
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotalPeriode($data['start_date'],$data['end_date']);
+		$data['gprocess'] = $this->Dashboard_model->getProcessingPeriode($data['start_date'],$data['end_date']);
+		$data['tax'] = $this->Dashboard_model->getTaxPeriode($data['start_date'],$data['end_date']);
+		$data['finance'] = $this->Dashboard_model->getFinancePeriode($data['start_date'],$data['end_date']);
+		$data['review'] = $this->Dashboard_model->getWaitReviewPeriode($data['start_date'],$data['end_date']);
+		$data['wverifikasi'] = $this->Dashboard_model->getWaitVerifikasiPeriode($data['start_date'],$data['end_date']);
+		$data['verifikasi'] = $this->Dashboard_model->getVerifikasiPeriode($data['start_date'],$data['end_date']);
+		$data['wApproval'] = $this->Dashboard_model->getWaitApprovalPeriode($data['start_date'],$data['end_date']);
+		$data['approval'] = $this->Dashboard_model->getApprovalPeriode($data['start_date'],$data['end_date']);
+		$data['wPaid'] = $this->Dashboard_model->getWaitPaidPeriode($data['start_date'],$data['end_date']);
+		$data['Paid'] = $this->Dashboard_model->getPaidPeriode($data['start_date'],$data['end_date']);
+
+		$data['pembayaran'] = $this->Dashboard_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+
 		$data['jumlah'] = count($data['list_monitoring']);
+		$data['jumlahprocessing'] = count($data['processing']);
+		$data['jumlahtotalpayment'] = count($data['tot_pay_req']);
+		$data['jumlahgprocess'] = count($data['gprocess']);
+		$data['jumlahtax'] = count($data['tax']);
+		$data['jumlahfinance'] = count($data['finance']);
+		$data['jumlahreview'] = count($data['review']);
+		$data['jumlahwait_verifikasi'] = count($data['wverifikasi']);
+		$data['jumlahverifikasi'] = count($data['verifikasi']);
+		$data['jumlahwait_approval'] = count($data['wApproval']);
+		$data['jumlahapproval'] = count($data['approval']);
+		$data['jumlahwait_paid'] = count($data['wPaid']);
+		$data['jumlahpaid'] = count($data['Paid']);
+		$data['jumlahpembayaran'] = count($data['pembayaran']);
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/monitoring', $data);

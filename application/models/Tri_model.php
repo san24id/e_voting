@@ -16,8 +16,20 @@ class Tri_model extends CI_Model{
         return $query;
     }
 
+    function getWaitPaidPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as wpaid FROM t_payment_l WHERE status='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getPaid(){
         $sql = "SELECT COUNT(status) as paid FROM t_payment_l WHERE status='10'";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function getPaidPeriode($start_date,$end_date){
+        $sql = "SELECT COUNT(status) as paid FROM t_payment_l WHERE status='10' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
