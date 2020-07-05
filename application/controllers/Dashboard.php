@@ -101,6 +101,7 @@ class Dashboard extends CI_Controller {
 		// var_dump($data['submit']);exit;
 
 		$data['pembayaran'] = $this->Home_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+		// var_dump($data['pembayaran']);exit;
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();

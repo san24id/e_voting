@@ -25,11 +25,11 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
         
-        $sql = "SELECT * FROM (SELECT b.dsc, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a 
+        $sql = "SELECT * FROM (SELECT b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a 
                 RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' GROUP by b.jenis_pembayaran ORDER by b.id_pay) 
                 otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.jmlpembayaran != 0 ";
                
-            //    var_dump($dvs);exit;
+            //    var_dump($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -38,10 +38,10 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
         
-        $sql = "SELECT * FROM (SELECT a.tanggal2, b.dsc, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a 
-                RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' GROUP by b.jenis_pembayaran ORDER by b.id_pay) 
-                otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.jmlpembayaran != 0 AND otr.tanggal2 BETWEEN '$start_date' AND '$end_date'";
-               
+        $sql = "SELECT a.tanggal2, b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b 
+                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
+                AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' GROUP BY b.jenis_pembayaran";
+                
         $query = $this->db->query($sql)->result();
             //    var_dump($query);exit;
 

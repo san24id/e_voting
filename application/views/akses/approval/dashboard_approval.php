@@ -553,6 +553,7 @@
 <script src="assets/admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- ChartJS -->
 <script src="assets/admin/bower_components/chart.js/Chart.js"></script>
+<script src="assets/admin/bower_components/chart.js/canvasjs.min.js"></script>
 
 <script>
 $(function () {
@@ -567,52 +568,64 @@ $(function () {
     });
   });
 
-  Highcharts.chart('pieChart', {
-      chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
-      },
-      title: {
-          text: 'Jumlah Data Payment Request Divisi'
-      },
-      credits: {
-          enabled: false
-      },
-      tooltip: {
-          pointFormat: '{series.name}: <b>{point.y}</b>'
-      },
-      plotOptions: {
-          pie: {
-              colors: [
+  CanvasJS.addColorSet("greenShades",
+                [//colorSet Array
+
+                  '#06717C',
+                  '#0595A3', 
+                  '#06C4D7', 
+                  '#8EEBF4'                
+                ]);
+  var chart = new CanvasJS.Chart('pieChart', {
+
+  colorSet: "greenShades",
+
+  title:{
+      text: "Jumlah Data Payment Request Divisi"
+  },
+  data: [
+      {
+        type: "pie",
+        cursor:"pointer",    
+        colors: [
                 '#06717C',
                 '#0595A3', 
                 '#06C4D7', 
-                '#8EEBF4'                
-              ],
-              allowPointSelect: true,
-              cursor: 'pointer',
-              dataLabels: {
-                  enabled: true,
-                  format: '<b>{point.name}</b>: {point.y}'
-              }
-          }
-      },
-      series: [{
-          name: 'Total',
-          colorByPoint: true,
-          data: [
-
-            <?php foreach ($pembayaran as $key) { ?>
+                '#8EEBF4'                  
+              ],      
+        dataPoints: [
+          <?php foreach ($pembayaran as $key) { ?>
               {
-                name: '<?php echo $key->dsc; ?>',
-                y: <?php echo $key->jmlpembayaran; ?>
+                label: '<?php echo $key->dsc; ?>',
+                y: <?php echo $key->jmlpembayaran; ?>,
+                link: '<?php echo base_url('Approval/'.$key->link);?> ',
+
               },
             <?php } ?>
-              ]
-      }]
-  });
+        ]
+      }
+      ]
+    });
+
+chart.options.data[0].click = function(e){ 
+    var dataSeries = e.dataSeries;
+    var dataPoint = e.dataPoint;
+    var dataPointIndex = e.dataPointIndex;
+    
+    if(!dataPoint.exploded)
+        window.open(dataPoint.link,'_blank');  
+    
+    for(var i = 0; i < dataSeries.dataPoints.length; i++){
+            if(i === dataPointIndex){                
+                continue;
+            }
+            
+            dataSeries.dataPoints[i].exploded = false;            
+    }
+};
+
+ chart.render();
+
 </script>
 
 <script type="text/javascript"> 
