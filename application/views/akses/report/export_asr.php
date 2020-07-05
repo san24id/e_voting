@@ -76,7 +76,7 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Status</th>
+                  <!-- <th>Status</th> -->
                   <th>Tanggal</th>
                   <th>Jenis Pembayaran</th>
                   <th>Nomor Surat</th>
@@ -97,7 +97,7 @@
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
-                  <td><?php if($row->status == 0){
+                  <!-- <td><?php if($row->status == 0){
                             echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                           }else if($row->status == 1){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
@@ -125,7 +125,7 @@
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
                         ?>
-                  </td>
+                  </td> -->
                   <td><?php echo $row->tanggal; ?></td>
                   <td><?php                     
                         for($a=0; $a<$test3; $a++){
