@@ -335,7 +335,7 @@ class Dashboard_model extends CI_Model{
     function getApprovalDivHead(){
         $dvs = $this->session->userdata("division_id");
         
-        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','99') AND division_id= '$dvs'";
+        $sql ="SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','99') AND division_id= '$dvs'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;
@@ -347,7 +347,7 @@ class Dashboard_model extends CI_Model{
     function getmyTask() {
         $usr= $this->session->userdata("username");
 
-        $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status = '2' ";
+        $sql ="SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status = '2' ";
         // var_dump($sql);exit;
 
         $query = $this->db->query($sql)->result();
@@ -360,7 +360,7 @@ class Dashboard_model extends CI_Model{
 
         // $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('5','6','7')";
 
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr' AND status in ('4','5','6','7')";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr' AND status in ('4','5','6','7')";
         // var_dump($sql);exit;
 
         $query = $this->db->query($sql)->result();

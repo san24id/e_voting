@@ -46,7 +46,7 @@
 
                     if ($iya == "On"){        
                       foreach ($getApprovalDivHead as $row){
-                        $test1 = $row->dsc;                        
+                        $test1 = $row->jenis_pembayaran;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                   ?>

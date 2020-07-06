@@ -36,7 +36,7 @@
                   <?php 
                     $i = 1;
                     foreach ($mytask as $row){
-                      $test1 = $row->dsc;                        
+                      $test1 = $row->jenis_pembayaran;                        
                       $test2 = explode(";", $test1);
                       $test3 = count($test2);                        
                   ?>
@@ -135,7 +135,7 @@
                   <?php 
                     $i = 1;
                     foreach ($mytask1 as $row){
-                      $test11 = $row->dsc;                        
+                      $test11 = $row->jenis_pembayaran;                        
                       $test22 = explode(";", $test11);
                       $test33 = count($test22);                        
                       ?>  

@@ -144,7 +144,9 @@ class Home extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
-		
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
+
 		// $this->load->view('akses/user/header_user');
 		$this->load->view('akses/report/print', $data);
 
@@ -166,6 +168,8 @@ class Home extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 		
 		// $this->load->view('akses/user/header_user');
 		$this->load->view('akses/report/print_dp', $data);
@@ -331,9 +335,11 @@ class Home extends CI_Controller {
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['reject'] = $this->Home_model->notifRejected();
-		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['divhead'] = $this->Home_model->getDivHead();		
 		$data['payment'] = $this->Home_model->getPayment($sid);
-		
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
+
 		$this->load->view('akses/user/header_user', $data);	
         $this->load->view('akses/user/form_view', $data);
 	}
@@ -354,6 +360,8 @@ class Home extends CI_Controller {
 		$data['bank'] =$this->Home_model->getBank();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment('0');
 
 		$this->load->view('akses/user/header_user', $data);	
         $this->load->view('akses/user/form_pengajuan', $data);
@@ -484,7 +492,7 @@ class Home extends CI_Controller {
 		redirect('Home');
 
 	}
-	
+
 	public function updatepayment(){
 		$c_jp = count($_POST['jenis_pembayaran']);
 		$jenis_pembayaran = "";
@@ -500,7 +508,6 @@ class Home extends CI_Controller {
 		// echo $label4;
 		// var_dump(count($_POST['label$label4']));exit;
 		$id_apa = $_POST['id_payment'];
-
 		$upd = array(
 
 			'id_payment' => $_POST['id_payment'],
@@ -537,6 +544,8 @@ class Home extends CI_Controller {
 		$this->Home_model->updatepayment($upd);
 
 		redirect(site_url('Home/formfinished/'.$id_apa));
+		// echo json_encode(array("status" => TRUE));
+
 	}
 
 	public function deletepayment(){
@@ -545,6 +554,23 @@ class Home extends CI_Controller {
 
 		redirect('Home');
 
+	}
+
+	public function rejected(){
+
+		$upd = array(
+			'id_payment' => $_POST['id_payment'],
+			'status' => 3,
+			'note' => $_POST['note'],
+			'rejected_by' => $_POST['rejected_by'],
+			'rejected_date' => $_POST['rejected_date'],
+			'handled_by' => $_POST['handled_by']
+			
+		);
+
+		$this->Dashboard_model->updaterejected($upd);
+
+		redirect('Home');
 	}
 
 	public function submit(){
@@ -593,6 +619,7 @@ class Home extends CI_Controller {
 		$data['bank'] = $this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 
 		$this->load->view('akses/user/header_user', $data);	
        	$this->load->view('akses/user/form_finished', $data);
@@ -921,7 +948,7 @@ class Home extends CI_Controller {
 			'status' => 0,
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
-			'jenis_pembayaran' => $_POST['jns_pembayaran'],
+			'jenis_pembayaran' => trim($_POST['jns_pembayaran']),
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
@@ -972,7 +999,7 @@ class Home extends CI_Controller {
 			'status' => 0,
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
-			'jenis_pembayaran' => $_POST['jns_pembayaran'],
+			'jenis_pembayaran' => trim($_POST['jns_pembayaran']),
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
@@ -1056,7 +1083,7 @@ class Home extends CI_Controller {
 			'status' => 0,
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
-			'jenis_pembayaran' => $_POST['jns_pembayaran'],
+			'jenis_pembayaran' => trim($_POST['jns_pembayaran']),
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
