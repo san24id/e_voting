@@ -167,7 +167,9 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
-		
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
+
 		// $this->load->view('akses/user/header_user');
 		$this->load->view('akses/report/print', $data);
 
@@ -190,6 +192,8 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 		
 		// $this->load->view('akses/user/header_user');
 		$this->load->view('akses/report/print_dp', $data);
