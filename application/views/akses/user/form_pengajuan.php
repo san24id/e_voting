@@ -46,7 +46,7 @@
 
                     <table style="font-family: calibri;" width="100%">
                       <tr>
-                        <td><b>Jenis Pembayaran* (pilih salah satu):</b></td>
+                        <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
                         <td>
                           <input id="auto" type="checkbox" disabled> <b>Uang Muka/Advance</b><br>
                         </td>
@@ -118,14 +118,14 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="36%"><b>- Tujuan Penggunaan* </b></td>
+                        <td width="36%"><b>- Tujuan Penggunaan </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
                         <td colspan="8"><textarea type="text" id="tujuanPenggunaan" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" ></textarea></td>
                         
                       </tr>
                       <tr>
-                        <td><b>- Jumlah* </b></td>
+                        <td><b>- Jumlah </b></td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" >
                                       <option value="">--Choose--</option>
@@ -162,7 +162,7 @@
                     <table id="choose" style="font-family: calibri;display:none;" width="100%; ">
                       <tbody>
                       <tr>
-                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang* </b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
@@ -178,7 +178,7 @@
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                        <td width="33%">Nama* </td>
+                        <td width="33%">Nama</td>
                         <td align="right"><b>:</b></td>
                         <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima" >
                                             <option value="">--Choose--</option>
@@ -189,10 +189,10 @@
                         </td>
                       </tr>
                       <tr>  
-                        <td>Kode Vendor* </td>
+                        <td>Kode Vendor</td>
                         <td align="right"><b>:</b></td>
                         <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text" ></td>
-                        <td>Bank* </td>
+                        <td>Bank</td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control" >
                                 <option value="">--- Choose ---</option>
@@ -206,7 +206,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Nomor Rekening* </td> 
+                        <td>Nomor Rekening</td> 
                         <td>:</td>                           
                         <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text" ></td>                                
                       </tr>
@@ -285,7 +285,7 @@
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
                       <tr>
-                        <td><b>- Nomor ARF terkait* </b></td>
+                        <td><b>- Nomor ARF terkait</b></td>
                         <td>:</td>
                         <td>
                           <input id="arf_number" type="text" class="form-control" name="label5" placeholder="Enter Text">                          
@@ -302,18 +302,18 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya* </td>
+                        <td>Jumlah Biaya</td>
                         <td>:</td>
                         <td><center><p id="demo">  </p></td>
                         <!--<td><input type="text" name="label17a" class="form-control"></td>-->
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input><td>
                       </tr>
-                        <td>Jumlah Uang Muka* </td>
+                        <td>Jumlah Uang Muka</td>
                         <td>:</td>
                         <td><center><p id="demo2">  </p></td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input> </td>     
                       <tr>
-                        <td>Selisih Kurang/Lebih* </td> 
+                        <td>Selisih Kurang/Lebih</td> 
                         <td>:</td>
                         <td><center><p id="demo3">  </p></td>
                         <!--<td><input type="text" name="label19a" class="form-control"></td>-->
@@ -842,7 +842,6 @@ function savedraft() {
   var checkrequest = $("#checkrequest").is(':checked');
   var perkiraanSelesai=$("#perkiraanSelesai").val();
   var checksettlement = $("#checksettlement").is(':checked');
-  var lainnya = $("#lainnya").is(':checked');
   // console.log(bank=="--- Choose ---");
   
   if(checkrequest==true && perkiraanSelesai==""){
@@ -872,22 +871,17 @@ function savedraft() {
   }else if($("#rupiah").val()==""){
     alert("Jumlah Pengajuan Belum Diisi");
   }else{
-    var url = "<?php echo base_url('Home/addpayment')?>";
-    <?php foreach ($getID as $key) { ?>
-      var link = "<?php echo base_url('Home/formfinished/'.$key->id_payment);?>";
-    <?php } ?>
-    console.log(link);
-
+    var url = "<?php echo base_url('home/addpayment')?>";
+       
 		$.ajax({
           url : url,
           type : "POST",
-          data: $("#formadd").serialize(),          
-          
+          data: $("#formadd").serialize(),
           dataType: "JSON",
           success: function(data){ // Ketika proses pengiriman berhasil          
               //location.reload();  
 			    alert('Data Berhasil Di simpan');
-				  window.location = link; 
+				window.location = "<?php echo base_url('home') ?>";    
           },      
           error: function (data)
           {

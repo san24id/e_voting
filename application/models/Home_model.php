@@ -615,5 +615,17 @@ class Home_model extends CI_Model{
         // var_dump($query);exit;
         return $query;
     }
+	
+	public function saveeditpayment($where, $data)
+	{
+		$this->db->update('t_payment', $data, $where);
+		return $this->db->affected_rows();
+	}
+	
+	public function saveaddpayment($data)
+	{
+		$this->db->insert('t_payment', $data);
+		return $this->db->insert_id();
+	}
     
 }

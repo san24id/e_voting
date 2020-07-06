@@ -1312,5 +1312,24 @@ class Dashboard_model extends CI_Model{
 	function getApprovalActivated(){
         $query=$this->db->query("select activate from m_status where id_status=11");
         return $query;
-    }							 
+    }							
+
+	public function getDataVendorByPayment($id) {
+        $sql = "select a1.id_payment,a2.kode_vendor,a2.nama,a1.v_bank,a1.v_account,replace(a1.v_nominal,'.','') nominal,a3.penerima ";
+		$sql .= "from t_vendor a1, m_honorarium_konsultan a2 , t_payment a3 where a1.kode_vendor=a2.kode_vendor and a1.id_payment=a3.id_payment and a1.id_payment = '$id' order by a1.id_vendor asc ";
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function delete_vendorpayment($id)
+	{
+		$sqldel  ="delete from t_vendor where id_payment=" .$id ;
+		$this->db->query($sqldel);
+	}
+	
+	public function vendorpayment_add($data)
+	{
+		$this->db->insert('t_vendor', $data);
+		return $this->db->insert_id();
+	}
 }

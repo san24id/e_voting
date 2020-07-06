@@ -68,6 +68,7 @@ class Dashboard extends CI_Controller {
 		$data['approval'] = $this->Home_model->getApproval();
 		$data['paid'] = $this->Home_model->getPaid();
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
+		
 		// var_dump($data['upcoming_over']);exit;
 		
 		$this->load->view('akses/csf/header_csf', $data);
@@ -1536,33 +1537,34 @@ class Dashboard extends CI_Controller {
 		$data['bank'] =$this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
-
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment('0');
+		
 		$this->load->view('akses/csf/header_csf', $data);	
         $this->load->view('akses/csf/form_pengajuan', $data);
 	}
 
 	public function addpayment(){
-		$c_jp = count($_POST['jenis_pembayaran']);
+		/*$c_jp = count($_POST['jenis_pembayaran']);
 		$jenis_pembayaran = "";
 		for($i=0; $i<=$c_jp; $i++){
 			$jenis_pembayaran .= $_POST['jenis_pembayaran'][$i].";";
-		}
-
+		}*/
+		$jenis_pembayaran = $_POST['jns_pembayaran'];
 		$c_label4 = count($_POST['label4']);
 		$label4 = "";
 		for($l=0; $l<=$c_label4; $l++){
 			$label4 .= $_POST['label4'][$l].";";
 		}
-
+		
 		// echo $jenis_pembayaran;
 		// var_dump(count($_POST['jenis_pembayaran']));exit;
 		$add = array(
 			
-			'id_payment' => $_POST['id_payment'],
+			//'id_payment' => $_POST['id_payment'],
 			'status' => 0,
 			'id_user' => $_POST['id_user'],
 			'nomor_surat' => $_POST['nomor_surat'],
-			'jenis_pembayaran' => $jenis_pembayaran,
+			'jenis_pembayaran' => $_POST['jns_pembayaran'],
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
@@ -1578,7 +1580,7 @@ class Dashboard extends CI_Controller {
 			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
-			'label6' => $_POST['label6'],
+			'label6' => isset($_POST['label6']),
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
 			'label9' => $_POST['label9'],
@@ -1590,13 +1592,35 @@ class Dashboard extends CI_Controller {
 			'lainnya2' => $_POST['lainnya2']
 		);
 
-		$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
-		$this->Home_model->addpayment($add);
+		//$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
+		//$this->Home_model->addpayment($add);
+		
+		$insert = $this->Home_model->saveaddpayment($add);
+		
+		$strcounter=intval($_POST['txtcountervendor']);
+		$id = $insert;
+		//$this->Dashboard_model->delete_vendorpayment($id);
+		for($i=0; $i<$strcounter; $i++){
+			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
+			if($nominal != ""){
+				$data = array(
+						'id_payment' => $id,
+						'kode_vendor' => $_POST['kodevendor'][$i],
+						'v_bank' => $_POST['bankvendor'][$i],
+						'v_account' => $_POST['rekeningvendor'][$i],
+						'v_nominal' => number_format($nominal,0,",",".")
+					);
+					
+				$insert = $this->Dashboard_model->vendorpayment_add($data);
+			}
+		}
+		//echo json_encode(array("status" => TRUE));
+		echo json_encode($insert);
 			
 		// redirect('Dashboard');
-		echo json_encode(array("status" => TRUE));
-	}
-
+		//echo json_encode(array("status" => TRUE));
+	}	
+		
 	public function updatepayment(){
 		$c_jp = count($_POST['jenis_pembayaran']);
 		$jenis_pembayaran = "";
@@ -1717,6 +1741,7 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['pegawai'] = $this->Home_model->getPegawai();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 
 		$this->load->view('akses/csf/header_csf', $data);	
        	$this->load->view('akses/csf/form_finished', $data);
@@ -1738,7 +1763,9 @@ class Dashboard extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['payment'] = $this->Home_model->getPayment($sid);
-		
+		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
+
 		$this->load->view('akses/csf/header_csf', $data);	
         $this->load->view('akses/csf/form_view', $data);
 	}
@@ -2656,5 +2683,208 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/view_detail', $data);
 	}
 
+	public function saveeditpayment(){
+		$jenis_pembayaran = $_POST['jns_pembayaran'];
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($l=0; $l<=$c_label4; $l++){
+			$label4 .= $_POST['label4'][$l].";";
+		}
+		
+		$strcounter=intval($_POST['txtcountervendor']);
+		$id = $_POST['id_payment'];
+		$this->Dashboard_model->delete_vendorpayment($id);
+		for($i=0; $i<$strcounter; $i++){
+			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
+			//if($nominal != ""){
+				$data = array(
+						'id_payment' => $id,
+						'kode_vendor' => $_POST['kodevendor'][$i],
+						'v_bank' => $_POST['bankvendor'][$i],
+						'v_account' => $_POST['rekeningvendor'][$i],
+						'v_nominal' => number_format($nominal,0,",",".")
+					);
+					
+				$insert = $this->Dashboard_model->vendorpayment_add($data);
+			//}
+		}
+		
+		for($i=0; $i<1; $i++){
+			$kode_vendor = $_POST['kodevendor'][$i];
+			$nama_vendor = $_POST['namavendor'][$i];
+			$v_bank = $_POST['bankvendor'][$i];
+			$v_account = $_POST['rekeningvendor'][$i];
+		}
+
+		$add = array(
+			'status' => 0,
+			'id_user' => $_POST['id_user'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $_POST['jns_pembayaran'],
+			'display_name' => $_POST['display_name'],
+			'tanggal' => $_POST['tanggal'],
+			'tanggal2' => $_POST['tanggal2'],
+			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
+			'label3' => $_POST['label3'],
+			'label4' => $label4,
+			'label5' => $_POST['label5'],
+			'label6' => $_POST['label6'],
+			'label7' => $_POST['label7'],
+			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
+			'penerima' => $nama_vendor,
+			'vendor' => $kode_vendor,
+			'akun_bank' => $v_bank,
+			'no_rekening' =>$v_account,
+			'lainnya1' => $_POST['lainnya1']
+		);
+
+		
+		$this->Home_model->saveeditpayment(array('id_payment' => $id),$add);
+		
+		echo json_encode($id);
+	}
 	
+	public function saveaddpayment(){
+		$jenis_pembayaran = $_POST['jns_pembayaran'];
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($l=0; $l<=$c_label4; $l++){
+			$label4 .= $_POST['label4'][$l].";";
+		}
+		$strcounter=intval($_POST['txtcountervendor']);
+		for($i=0; $i<1; $i++){
+			$kode_vendor = $_POST['kodevendor'][$i];
+			$nama_vendor = $_POST['namavendor'][$i];
+			$v_bank = $_POST['bankvendor'][$i];
+			$v_account = $_POST['rekeningvendor'][$i];
+		}
+		$add = array(			
+			'status' => 0,
+			'id_user' => $_POST['id_user'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $_POST['jns_pembayaran'],
+			'display_name' => $_POST['display_name'],
+			'tanggal' => $_POST['tanggal'],
+			'tanggal2' => $_POST['tanggal2'],
+			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
+			'label3' => $_POST['label3'],
+			'label4' => $label4,
+			'label5' => $_POST['label5'],
+			'label6' => isset($_POST['label6']),
+			'label7' => $_POST['label7'],
+			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
+			'penerima' => $nama_vendor,
+			'vendor' => $kode_vendor,
+			'akun_bank' => $v_bank,
+			'no_rekening' =>$v_account,
+			'lainnya1' => $_POST['lainnya1']
+		);
+
+		$insert = $this->Home_model->saveaddpayment($add);
+		
+		$id = $insert;
+		for($i=0; $i<$strcounter; $i++){
+			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
+			//if($nominal != ""){
+				$data = array(
+						'id_payment' => $id,
+						'kode_vendor' => $_POST['kodevendor'][$i],
+						'v_bank' => $_POST['bankvendor'][$i],
+						'v_account' => $_POST['rekeningvendor'][$i],
+						'v_nominal' => number_format($nominal,0,",",".")
+					);
+					
+				$insert = $this->Dashboard_model->vendorpayment_add($data);
+			//}
+		}
+		echo json_encode($id);
+	}	
+	
+	public function saveeditpaymentnew(){
+		$jenis_pembayaran = $_POST['jns_pembayaran'];
+		$c_label4 = count($_POST['label4']);
+		$label4 = "";
+		for($l=0; $l<=$c_label4; $l++){
+			$label4 .= $_POST['label4'][$l].";";
+		}
+		
+		$strcounter=intval($_POST['txtcountervendor']);
+		$id = $_POST['id_payment'];
+		$this->Dashboard_model->delete_vendorpayment($id);
+		for($i=0; $i<$strcounter; $i++){
+			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
+			//if($nominal != ""){
+				$data = array(
+						'id_payment' => $id,
+						'kode_vendor' => $_POST['kodevendor'][$i],
+						'v_bank' => $_POST['bankvendor'][$i],
+						'v_account' => $_POST['rekeningvendor'][$i],
+						'v_nominal' => number_format($nominal,0,",",".")
+					);
+					
+				$insert = $this->Dashboard_model->vendorpayment_add($data);
+			//}
+		}
+		
+		for($i=0; $i<1; $i++){
+			$kode_vendor = $_POST['kodevendor'][$i];
+			$nama_vendor = $_POST['namavendor'][$i];
+			$v_bank = $_POST['bankvendor'][$i];
+			$v_account = $_POST['rekeningvendor'][$i];
+		}
+
+		$add = array(
+			'status' => 0,
+			'id_user' => $_POST['id_user'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'jenis_pembayaran' => $_POST['jns_pembayaran'],
+			'display_name' => $_POST['display_name'],
+			'tanggal' => $_POST['tanggal'],
+			'tanggal2' => $_POST['tanggal2'],
+			'currency' => $_POST['currency'],
+			'currency2' => $_POST['currency2'],
+			'currency3' => $_POST['currency3'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
+			'label3' => $_POST['label3'],
+			'label4' => $label4,
+			'label5' => $_POST['label5'],
+			'label6' => $_POST['label6'],
+			'label7' => $_POST['label7'],
+			'label8' => $_POST['label8'],
+			'label9' => $_POST['label9'],
+			'penerima' => $nama_vendor,
+			'vendor' => $kode_vendor,
+			'akun_bank' => $v_bank,
+			'no_rekening' =>$v_account,
+			'lainnya1' => $_POST['lainnya1']
+		);
+
+		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
+		$this->Home_model->saveeditpayment(array('id_payment' => $id),$add);			
+
+		redirect(site_url('Dashboard/formfinished/'.$id));
+	}
 }

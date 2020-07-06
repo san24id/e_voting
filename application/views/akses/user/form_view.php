@@ -456,10 +456,9 @@
                             if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" && $row->vendor != "" &&
                                       $row->akun_bank !="" && $row->no_rekening !="" && $testl2[0] !=""){ ?>
                               <a class="btn btn-danger" href="Home/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>      
-                            <?php }else{ ?>
+                              <?php }else{ ?>
 
-                            <?php } ?>
-                               
+                              <?php } ?> 
                             
                         <?php } ?>
                         
