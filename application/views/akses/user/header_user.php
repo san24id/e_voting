@@ -231,6 +231,7 @@
             <li class="<?php echo $dp?>"><a href="Home/dp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
             <li class="<?php echo $ar?>"><a href="Home/ar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
             <li class="<?php echo $asr?>"><a href="Home/asr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li><a href="Home/cr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
             <li class="<?php echo $lop?>"><a href="Home/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
             <li class="<?php echo $op?>"><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
             <li class="<?php echo $dr?>"><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>

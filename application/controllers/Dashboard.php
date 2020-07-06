@@ -1147,6 +1147,24 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/list_dp', $data);
 	}
 
+	public function cr()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['cashreceived'] = $this->Home_model->getVcr();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_cr', $data);
+	}
+
 	public function ar()
 	{
 		
@@ -1509,6 +1527,7 @@ class Dashboard extends CI_Controller {
 
 		//$data['daily'] = $this->Dashboard_model->getAll_DailyFlight();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['getID'] = $this->Home_model->getIdPayment();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -2383,6 +2402,24 @@ class Dashboard extends CI_Controller {
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/report/data_export', $data);
+
+	}
+
+	function export_cr(){
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['cashreceived'] = $this->Home_model->getVcr();
+		// var_dump($data['cashreceived']);exit;
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/report/export_cr', $data);
 
 	}
 

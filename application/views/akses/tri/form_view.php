@@ -181,13 +181,13 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="35%"><b>- Tujuan Penggunaan </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan* </b></td>
                         <td><b> : </b></td>
                         <td colspan="8"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
-                        <td><b>- Jumlah :</b></td>
+                        <td><b>- Jumlah* </b></td>
                         <td><b> : </b></td>
 
                         <td> <?php echo $row->currency;?> </td>
@@ -210,7 +210,7 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang* </b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
@@ -236,15 +236,15 @@
                           }
                         ?>
                       <tr>
-                        <td width="35%"> &nbsp; &nbsp; Nama</td>
+                        <td width="35%"> &nbsp; &nbsp; Nama* </td>
                         <td><b> : </b></td>
                         <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $buka;?>" readonly></td>
                       </tr>
                       <tr>  
-                        <td> &nbsp; &nbsp; Kode Vendor</td>
+                        <td> &nbsp; &nbsp; Kode Vendor* </td>
                         <td><b> : </b></td>
                         <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" readonly></td>
-                        <td>Bank</td>
+                        <td>Bank* </td>
                         <td>:</td>
                         <td><?php echo $row->akun_bank; ?> </td>
                       </tr>
@@ -252,7 +252,7 @@
                       <td></td>
                         <td></td>
                         <td></td>
-                        <td>Nomor Rekening</td> 
+                        <td>Nomor Rekening* </td> 
                         <td>:</td>                           
                         <td><input type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>" readonly></td>                                
                       </tr>
@@ -382,7 +382,7 @@
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
-                        <td width="50%"><b>- Nomor ARF terkait</b></td>
+                        <td width="50%"><b>- Nomor ARF terkait* </b></td>
                         <td>:</td>
                         <td>
                           <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
@@ -399,17 +399,17 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya</td>
+                        <td>Jumlah Biaya* </td>
                         <td>:</td>
                         <td> </td>
                         <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
                       </tr>
-                      <td>Jumlah Uang Muka</td>
+                      <td>Jumlah Uang Muka* </td>
                         <td>:</td>
                         <td> </td>
                         <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih</td> 
+                      <td>Selisih Kurang/Lebih* </td> 
                         <td>:</td>
                         <td> </td>
                         <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
@@ -447,15 +447,18 @@
                         <a class="btn btn-warning" href="Tri" role="button">Back</a>
                         <?php if ($row->status == 0 || $row->status == 3) { ?>
                           <a class="btn btn-primary" href="Tri/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
-                              
-                              <a class="btn btn-danger" href="Tri/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Set To Print</a>
+                                
+                          <?php 
+                                $testl1 = $row->label4;
+                                $testl2 = explode(";", $testl1);
+                                // var_dump($testl2);exit;
 
-                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              
-                              <a class="btn btn-danger" href="Tri/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Set To Print</a>
-                            <?php } ?>    
-                            
+                            if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" && $row->vendor != "" &&
+                                      $row->akun_bank !="" && $row->no_rekening !="" && $testl2[0] !=""){ ?>
+                              <a class="btn btn-danger" href="Tri/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>      
+                            <?php }else{ ?>
+
+                            <?php } ?>
                         <?php } ?>
                         
                         <?php 
@@ -468,10 +471,17 @@
                             $iya.= $signature->activate;
                             endforeach;
                         ?>
-                        
+                        <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
+                              
+                              <a class="btn btn-danger" href="Tri/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              
+                              <a class="btn btn-danger" href="Tri/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+                        <?php } ?>
                         <?php 
                           if($this->session->userdata("role_id") == 4){ ?>      
-                          <?php if($row->status == 1 && $iya == "On"){ ?>
+                          <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>
                           <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
                           <!----.Modal -->
                           <!----.Accept -->
@@ -522,8 +532,16 @@
                           <?php } ?>
                         <?php } ?>  
 
-                        <?php if($row->status == 11){ ?>
+                        <?php if($row->status == 11 || $row->status == 99){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
+                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
+                              
+                              <a class="btn btn-danger" href="Tri/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              
+                              <a class="btn btn-danger" href="Tri/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+                            <?php } ?>
 
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                             <!----.Modal -->
@@ -551,7 +569,16 @@
 
                         <?php if($row->status == 1 && $iya == "Off" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
+                            <a class="btn btn-primary" href="Tri/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
+                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
+                              
+                              <a class="btn btn-danger" href="Tri/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              
+                              <a class="btn btn-danger" href="Tri/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+                            <?php } ?>
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                             <!----.Modal -->
                             <!----.Accept -->

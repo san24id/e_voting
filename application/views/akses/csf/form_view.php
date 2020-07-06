@@ -119,7 +119,7 @@
                         }
                       ?>
                       <tr>
-                        <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td><b>Jenis Pembayaran* (pilih salah satu):</b></td>
                         <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
                           }else{
                                 $cek=" " ;
@@ -182,13 +182,13 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="35%"><b>- Tujuan Penggunaan </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan* </b></td>
                         <td><b> : </b></td>
                         <td colspan="8" height="50%"><textarea type="text" rows="5" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
-                        <td><b>- Jumlah :</b></td>
+                        <td><b>- Jumlah* :</b></td>
                         <td><b> : </b></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency;?>" readonly> </td>
@@ -211,7 +211,7 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang* </b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
@@ -237,15 +237,15 @@
                           }
                         ?>
                       <tr>
-                        <td width="35%"> &nbsp; &nbsp; Nama</td>
+                        <td width="35%"> &nbsp; &nbsp; Nama* </td>
                         <td><b> : </b></td>
                         <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $buka;?>" readonly></td>
                       </tr>
                       <tr>  
-                        <td> &nbsp; &nbsp; Kode Vendor</td>
+                        <td> &nbsp; &nbsp; Kode Vendor*</td>
                         <td><b> : </b></td>
                         <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" readonly></td>
-                        <td>Bank</td>
+                        <td>Bank* </td>
                         <td>:</td>
                         <td><input type="text" class="form-control" value="<?php echo $row->akun_bank; ?>" readonly> </td>
                       </tr>
@@ -253,7 +253,7 @@
                       <td></td>
                         <td></td>
                         <td></td>
-                        <td>Nomor Rekening</td> 
+                        <td>Nomor Rekening* </td> 
                         <td>:</td>                           
                         <td><input type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>" readonly></td>                                
                       </tr>
@@ -266,6 +266,7 @@
                     <table style="font-family: calibri;" width="100%">
                       <?php 
                           $testl1 = $row->label4;
+                          // var_dump($testl1);exit;
                           $testl2 = explode(";", $testl1);
                           $testl3 = count($testl2);
                                  
@@ -383,7 +384,7 @@
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
-                        <td width="50%"><b>- Nomor ARF terkait</b></td>
+                        <td width="50%"><b>- Nomor ARF terkait* </b></td>
                         <td>:</td>
                         <td>
                           <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
@@ -400,17 +401,17 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya</td>
+                        <td>Jumlah Biaya* </td>
                         <td>:</td>
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
                       </tr>
-                      <td>Jumlah Uang Muka</td>
+                      <td>Jumlah Uang Muka* </td>
                         <td>:</td>
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih</td> 
+                      <td>Selisih Kurang/Lebih* </td> 
                         <td>:</td>
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
@@ -449,7 +450,13 @@
                         <?php if ($row->status == 0 || $row->status == 3) { ?>
                           
                             <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-                            <?php if($row->akun_bank !="" || $row->no_rekening !=""){ ?>
+                            <?php 
+                                $testl1 = $row->label4;
+                                $testl2 = explode(";", $testl1);
+                                // var_dump($testl2);exit;
+
+                            if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" && $row->vendor != "" &&
+                                      $row->akun_bank !="" && $row->no_rekening !="" && $testl2[0] !=""){ ?>
                               <a class="btn btn-danger" href="Dashboard/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>      
                             <?php }else{ ?>
 

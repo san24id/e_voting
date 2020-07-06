@@ -842,6 +842,7 @@ function savedraft() {
   var checkrequest = $("#checkrequest").is(':checked');
   var perkiraanSelesai=$("#perkiraanSelesai").val();
   var checksettlement = $("#checksettlement").is(':checked');
+  var lainnya = $("#lainnya").is(':checked');
   // console.log(bank=="--- Choose ---");
   
   if(checkrequest==true && perkiraanSelesai==""){
@@ -860,6 +861,9 @@ function savedraft() {
   if(checksettlement==true && arf_ref=="" && biaya=="" && uangmuka==""){
     alert("Data Settlement Belum Lengkap");  
   }
+  if(lainnya==true){
+    alert("Keterangan Lainnya Belum Diisi");
+  }
 
   if ($("#tujuanPenggunaan").val()==""){
     alert("Tujuan Penggunaan Belum Diisi");
@@ -868,17 +872,22 @@ function savedraft() {
   }else if($("#rupiah").val()==""){
     alert("Jumlah Pengajuan Belum Diisi");
   }else{
-    var url = "<?php echo base_url('home/addpayment')?>";
-       
+    var url = "<?php echo base_url('Home/addpayment')?>";
+    <?php foreach ($getID as $key) { ?>
+      var link = "<?php echo base_url('Home/formfinished/'.$key->id_payment);?>";
+    <?php } ?>
+    console.log(link);
+
 		$.ajax({
           url : url,
           type : "POST",
-          data: $("#formadd").serialize(),
+          data: $("#formadd").serialize(),          
+          
           dataType: "JSON",
           success: function(data){ // Ketika proses pengiriman berhasil          
               //location.reload();  
 			    alert('Data Berhasil Di simpan');
-				window.location = "<?php echo base_url('home') ?>";    
+				  window.location = link; 
           },      
           error: function (data)
           {

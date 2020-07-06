@@ -33,7 +33,7 @@
 										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
 											<option value='1'> Tanggal </option>
-											<option value='2'> Jenis Pembayaran </option>
+											<!-- <option value='2'> Jenis Pembayaran </option> -->
 											<option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
 											<option value='5'> Penerima </option>
@@ -90,7 +90,7 @@
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($payment as $row){
+                    foreach ($cashreceived as $row){
                       $test1 = $row->jenis_pembayaran;                        
                       $test2 = explode(";", $test1);
                       $test3 = count($test2);                        

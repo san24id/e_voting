@@ -9,7 +9,7 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Approval/addpayment" onsubmit="tambah()">
+        <form id="formadd" action="#" >
           <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
           <section class="content">
             <div class="row">
@@ -48,7 +48,7 @@
                       <tr>
                         <td><b>Jenis Pembayaran* (pilih salah satu):</b></td>
                         <td>
-                          <input id="auto" type="checkbox" > <b>Uang Muka/Advance</b><br>
+                          <input id="auto" type="checkbox" disabled> <b>Uang Muka/Advance</b><br>
                         </td>
                         <td>
                           <input id="checked"  type="checkbox" name="jenis_pembayaran[]" value="4"> Direct Payment</input><br>
@@ -56,8 +56,8 @@
                         <td>
                           <input id="checked2"  type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
                         </td>
-                        </tr>  
-                        <tr>
+                      </tr>  
+                      <tr>
                           <td></td>
                           <td>
                             <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
@@ -65,8 +65,8 @@
                           <td>
                             <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Corporate Credit Card </input><br>
                           </td>
-                        </tr>  
-                        <tr>
+                      </tr>  
+                      <tr>
                         <td></td>
                         <td>
                           <input id="checksettlement"  type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
@@ -93,7 +93,7 @@
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="center">Tanggal : <?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?></td>
+                      <td align="right">Tanggal : <?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>">
                         <input type="hidden" name="tanggal2" value="<?php echo date('Y-m-d');?>">
                       </tr>
@@ -121,20 +121,20 @@
                         <td width="36%"><b>- Tujuan Penggunaan* </b></td>
                         <td><b> : </b></td>
                         <!--<td>-->
-                        <td colspan="8"><textarea type="text" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" required></textarea></td>
+                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" class="form-control" rows="5" name="label1" placeholder="Tujuan Penggunaan" ></textarea></td>
                         
                       </tr>
                       <tr>
                         <td><b>- Jumlah* </b></td>
                         <td><b> : </b></td>
-                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" required>
+                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" >
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" required> </td>
+                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" > </td>
 
                         <td><select name="currency2" class="form-control">
                                       <option value="">--Choose--</option>
@@ -153,20 +153,20 @@
 
                                 <?php } ?>
                               </select>
-                        </td>
+                          </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
                       </tr>
                       </tbody>
                     </table>
-
+                    
                     <table id="choose" style="font-family: calibri;display:none;" width="100%; ">
                       <tbody>
                       <tr>
-                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang* </b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang*</b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3"></input></td>     
+                        <td colspan="8" width="65%"><input type="date" id="perkiraanSelesai" class="form-control" name="label3"></input></td>     
                       </tr>
                                                   
                       </tbody>
@@ -178,9 +178,9 @@
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
-                        <td width="33%">Nama* </td>
+                        <td width="33%">Nama*</td>
                         <td align="right"><b>:</b></td>
-                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima">
+                        <td colspan="4"><select id="penerima" onchange="fung()" class="form-control" name="penerima" >
                                             <option value="">--Choose--</option>
                                             <?php foreach ($data_vendor as $nama){?> 
                                               <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
@@ -189,12 +189,12 @@
                         </td>
                       </tr>
                       <tr>  
-                        <td>Kode Vendor* </td>
+                        <td>Kode Vendor*</td>
                         <td align="right"><b>:</b></td>
-                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text"></td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" placeholder="Enter Text" ></td>
                         <td>Bank* </td>
                         <td>:</td>
-                        <td><select id="dropdown" name="akun_bank" class="form-control" required>
+                        <td><select id="dropdown" name="akun_bank" class="form-control" >
                                 <option value="">--- Choose ---</option>
                                 <?php foreach ($bank as $get) {?>
                                   <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
@@ -208,7 +208,7 @@
                         <td></td>
                         <td>Nomor Rekening* </td> 
                         <td>:</td>                           
-                        <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text" required></td>                                
+                        <td><input id="textInput" type="text" class="form-control" name="no_rekening" placeholder="Enter Text" ></td>                                
                       </tr>
                       
                       </tbody>
@@ -285,10 +285,10 @@
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
                       <tr>
-                        <td><b>- Nomor ARF terkait* </b></td>
+                        <td><b>- Nomor ARF terkait*</b></td>
                         <td>:</td>
                         <td>
-                          <input type="text" class="form-control" name="label5" placeholder="Enter Text">                          
+                          <input id="arf_number" type="text" class="form-control" name="label5" placeholder="Enter Text">                          
                         </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
                       </tr>
@@ -302,18 +302,18 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya* </td>
+                        <td>Jumlah Biaya*</td>
                         <td>:</td>
                         <td><center><p id="demo">  </p></td>
                         <!--<td><input type="text" name="label17a" class="form-control"></td>-->
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input><td>
                       </tr>
-                        <td>Jumlah Uang Muka* </td>
+                        <td>Jumlah Uang Muka*</td>
                         <td>:</td>
                         <td><center><p id="demo2">  </p></td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input> </td>     
                       <tr>
-                        <td>Selisih Kurang/Lebih* </td> 
+                        <td>Selisih Kurang/Lebih*</td> 
                         <td>:</td>
                         <td><center><p id="demo3">  </p></td>
                         <!--<td><input type="text" name="label19a" class="form-control"></td>-->
@@ -326,8 +326,8 @@
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Approval" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary third">Save</button>
+                    <a class="btn btn-warning" href="Tri" role="button">Cancel</a>  
+                    <button type="button" id="btnSave" onclick="savedraft()" class="btn btn-primary">Save</button>
                   </div>
                 </div>                                                 
             </div>
@@ -813,6 +813,97 @@ function showInput() {
 		
 	});
 
+</script>
+
+<script type="text/javascript">
+
+
+// function myFunction2() {
+//   var input = document.getElementById("tujuanPenggunaan");
+
+//   console.log(input);
+
+ // alert("Hello! I am an alert box!");
+// }
+
+var save_method; 
+function savedraft() {
+  
+  // var input = document.getElementById("tujuanPenggunaan");
+
+  // var_dump(input);exit;
+  // var $tujuan=$("#tujuanPenggunaan").val();
+  // var $currency=$("#Select option:selected").text();
+  // var $rupiah=$("#rupiah").val();
+  var penerima=$("#penerima option:selected").val();
+  var bank=$("#dropdown option:selected").text();
+  var norek=$("#textInput").val();
+  var arf_ref=$("#arf_number").val();
+  var biaya=$("#biaya").val();
+  var uangmuka=$("#uangmuka").val();
+  // var $hasil=$("#hasil").val();
+
+  var checkrequest = $("#checkrequest").is(':checked');
+  var perkiraanSelesai=$("#perkiraanSelesai").val();
+  var checksettlement = $("#checksettlement").is(':checked');
+  var lainnya = $("#lainnya").is(':checked');
+  // console.log(bank=="--- Choose ---");
+  
+  if(checkrequest==true && perkiraanSelesai==""){
+    alert("Perkiraan Tanggal Selesai Belum Diisi");  
+  }
+  if(penerima==""){
+    alert("Nama Penerima Belum diisi");
+  }
+  if(bank=="--- Choose ---"){
+    alert("Bank Belum Diisi");
+  }
+
+  if(bank!="Tunai" && norek==""){
+    alert("Nomor Rekening Belum Diisi");
+  }
+  if(checksettlement==true && arf_ref=="" && biaya=="" && uangmuka==""){
+    alert("Data Settlement Belum Lengkap");  
+  }
+  if(lainnya==true){
+    alert("Keterangan Lainnya Belum Diisi!");
+  }
+
+  if ($("#tujuanPenggunaan").val()==""){
+    alert("Tujuan Penggunaan Belum Diisi");
+  }else if($("#Select").val()==""){
+    alert("Mata Uang Belum Diisi");
+  }else if($("#rupiah").val()==""){
+    alert("Jumlah Pengajuan Belum Diisi");
+  }else{
+    var url = "<?php echo base_url('Approval/addpayment')?>";
+    <?php foreach ($getID as $key) { ?>
+      var link = "<?php echo base_url('Approval/formfinished/'.$key->id_payment);?>";
+    <?php } ?>
+    console.log(link);
+
+		$.ajax({
+          url : url,
+          type : "POST",
+          data: $("#formadd").serialize(),          
+          
+          dataType: "JSON",
+          success: function(data){ // Ketika proses pengiriman berhasil          
+              //location.reload();  
+			    alert('Data Berhasil Di simpan');
+				  window.location = link; 
+
+          },      
+          error: function (data)
+          {
+            console.log(data);
+            alert('Error adding / update data');
+          }
+        });
+  }
+
+  
+}
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

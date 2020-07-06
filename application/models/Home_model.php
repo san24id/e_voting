@@ -11,6 +11,13 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    function getIdPayment() {
+        $sql = "SELECT id_payment+1 as id_payment FROM t_payment ORDER BY id_payment DESC LIMIT 1";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getPaymentDetail($sid=0) {
         $dvs = $this->session->userdata('division_id');
 
@@ -70,6 +77,17 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getVcr(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%5%' 
+                AND division_id='$dvs' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+    
     function getDivHead(){
         $dvs = $this->session->userdata('division_id'); 
 
