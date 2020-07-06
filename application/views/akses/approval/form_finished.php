@@ -155,13 +155,13 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="35%"><b>- Tujuan Penggunaan </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan* </b></td>
                         <td><b> : </b></td>
                         <td colspan="8"><textarea type="text" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
-                        <td><b>- Jumlah :</b></td>
+                        <td><b>- Jumlah* </b></td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
@@ -204,7 +204,7 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="30%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="30%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang* </b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
@@ -230,7 +230,7 @@
                             $buka = $row->penerima;
                           }
                         ?>
-                      <td width="35%">Nama</td>
+                      <td width="35%">Nama* </td>
                         <td> : </td>
                         <td colspan="4"> <select id="penerima" onchange="fung()" class="form-control" name="penerima">
                                             <option value="<?php echo $buka;?>"><?php echo $buka;?></option>
@@ -242,10 +242,10 @@
                         </td>
                       </tr>
                       <tr>  
-                        <td>Kode Vendor</td>
+                        <td>Kode Vendor* </td>
                         <td> : </td>
                         <td><input id="kode_vendor" type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
-                        <td>Bank</td>
+                        <td>Bank* </td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
                               <option value="<?php echo $row->akun_bank; ?>"><?php echo $row->akun_bank; ?></option>
@@ -260,7 +260,7 @@
                       <td></td>
                         <td></td>
                         <td></td>
-                        <td>Nomor Rekening</td> 
+                        <td>Nomor Rekening* </td> 
                         <td>:</td>                           
                         <td><input id="textInput" type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>"></td>                                
                       </tr>
@@ -391,7 +391,7 @@
                         <td colspan="4"><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
                       <tr>
-                        <td><b>- Nomor ARF terkait</b></td>
+                        <td><b>- Nomor ARF terkait* </b></td>
                         <td>:</td>
                         <td>
                           <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>">                          
@@ -408,17 +408,17 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya</td>
+                        <td>Jumlah Biaya* </td>
                         <td>:</td>
                         <td> </td>
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input><td>
                       </tr>
-                      <td>Jumlah Uang Muka</td>
+                      <td>Jumlah Uang Muka* </td>
                         <td>:</td>
                         <td> </td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih</td> 
+                      <td>Selisih Kurang/Lebih* </td> 
                         <td>:</td>
                         <td> </td>
                         <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"></input></td>                               
