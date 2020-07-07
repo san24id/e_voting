@@ -589,7 +589,7 @@
                         <td>Menyetujui, <br><br><br><br></td>
                       </tr>
                       <tr> 
-                        <td>Nama : &nbsp; <select id="pegawai" name="display_name" >
+                        <td>Nama&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; <select id="pegawai" name="display_name" onchange="chgJabatan();">
                                           <option value="<?php echo $row->display_name?>"><?php echo $row->display_name?></option>
                                           <option value="">--Choose--</option>
                                           <?php foreach($pegawai as $pgw){ ?>
@@ -599,13 +599,13 @@
                                           </select>
                         </td>
                         <?php foreach ($divhead as $divhead) { ?>
-                        <td>Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
+                        <td>Nama&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; <?php echo $divhead->display_name; ?> </td>
+                        <?php } ?>                        
                       </tr>
                       <tr>
-                        <td>Jabatan : &nbsp; <input id="jabatan" type="text" name="jabatan" value="<?php echo $row->jabatan?>"></td>
+                        <td>Jabatan : &nbsp; <input id="jabatan" type="text" name="jabatan" value="<?php echo $row->jabatan?>" readonly></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
                                                 echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
-                        <?php } ?>                        
                       </tr>                            
                     </tbody>
                     </table>
@@ -1252,12 +1252,6 @@ function AddIndeks(){
 		alert('Nominal Jumlah Pertama belum di input');
 	}else if ($('#jns_pembayaran').val()=="2" && $('#perkiraanSelesai').val()==""){
 			alert('Perkiraan Tanggal Selesai Pekerjaan/Terima Barang belum di input');
-	}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
-			alert('Nomor ARF Terkait belum di input');
-	}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
-			alert('Jumlah Biaya belum di input');
-	}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
-			alert('Jumlah Uang Muka belum di input');
 	}else{
 		for (var i = 0; i <inps1.length; i++) {
 			if(inps1[i].value==""){
@@ -1287,6 +1281,12 @@ function AddIndeks(){
 			if (errmsg=="0"){
 					if(lbl4[schk].checked && $('#text1').val()==""){
 						alert('Dokumen Lampiran Lainnya belum di input');
+					}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
+							alert('Nomor ARF Terkait belum di input');
+					}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
+							alert('Jumlah Biaya belum di input');
+					}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
+							alert('Jumlah Uang Muka belum di input');
 					}else{
 						url = "<?php echo base_url('dashboard/saveeditpaymentnew')?>";  
 					   
@@ -1314,5 +1314,16 @@ function AddIndeks(){
 		}*/
 	}
     
+}
+
+function chgJabatan(){
+	 if($("#pegawai option:selected").val()==""){
+		document.getElementById("jabatan").value=""; 
+	 }else{
+		var strdata=$("#pegawai option:selected").text().split(" - "); 
+
+    // alert(strdata[1]);
+		document.getElementById("jabatan").value = ''+ strdata[1]+''; 
+	 }  
 }
 </script>

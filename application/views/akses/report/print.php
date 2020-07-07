@@ -195,13 +195,13 @@
                       <tbody>
                       <p><font size="1">Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr height="100px">
-                        <td width="15%"><font size="1"><b>- Tujuan Penggunaan <font color="red"> *</b></td>
+                        <td width="15%"><font size="1"><b>- Tujuan Penggunaan </b></td>
                         <td width="1%"><font size="1"><b> : </b></td>
                         <td colspan="8" class="kolom1" align="top"><font size="1"><?php echo $row->label1; ?></font></td>                                               
                       </tr>
                       
                       <tr>
-                        <td><font size="1"><b>- Jumlah <font color="red"> *</b></td>
+                        <td><font size="1"><b>- Jumlah </b></td>
                         <td><font size="1"><b> : </b></td>
 
                         <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency;?> </td>
@@ -226,7 +226,7 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="35%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang <font color="red"> *</b>
+                        <td width="35%"><font size="1"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang </b>
                         	<br>
                         </td>
                         <td align="right"><font size="1"><b> : </b></td>
@@ -285,9 +285,9 @@
 														<table id="show1" class="table table-bordered table-striped" width="100%"> 
 														  <thead>
 															<tr>
-																<th colspan="3"><font size="1">Nama Vendor <font color="red"> * </font></th>
-																<th colspan="3"><font size="1">Nama Bank <font color="red"> * </font></th>
-																<th colspan="3"><font size="1">Nomor Rekening <font color="red"> * </font></th>
+																<th colspan="3"><font size="1">Nama Vendor  </font></th>
+																<th colspan="3"><font size="1">Nama Bank  </font></th>
+																<th colspan="3"><font size="1">Nomor Rekening  </font></th>
 																<th colspan="4"><font size="1"><center>Nominal</center></th>
 															 </tr>
 														  </thead>
@@ -474,7 +474,7 @@
                         <td colspan="4"><font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b></td>
                       </tr>  
                       <tr>
-                        <td width="30%"><font size="1"><b>- Nomor ARF terkait <font color="red"> *</b></td>
+                        <td width="30%"><font size="1"><b>- Nomor ARF terkait </b></td>
                         <td>:</td>
                         <td class="kolom"><font size="1"> &nbsp; <?php echo $row->label5;?> </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled><font size="1">Lampiran copy ARF tersedia</td>
@@ -489,17 +489,17 @@
                         <td><font size="1"><center><b> Jumlah/<i>Amount</i></b></center></td>
                       </tr>
                       <tr>  
-                        <td><font size="1">Jumlah Biaya <font color="red"> * </td>
+                        <td><font size="1">Jumlah Biaya  </td>
                         <td>:</td>
                         <td align="center"><font size="1"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label7;?><td>
                       </tr>
-                        <td><font size="1">Jumlah Uang Muka <font color="red"> * </td>
+                        <td><font size="1">Jumlah Uang Muka  </td>
                         <td>:</td>
                         <td align="center"><font size="1"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
                       <tr>
-                        <td><font size="1">Selisih Kurang/Lebih <font color="red"> * </td> 
+                        <td><font size="1">Selisih Kurang/Lebih  </td> 
                         <td>:</td>
                         <td align="center"><font size="1"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
@@ -519,12 +519,12 @@
                         <td><font size="1">Nama : &nbsp; <?php echo $row->display_name?></td>
                         <?php foreach ($divhead as $divhead) { ?>
                         <td><font size="1">Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
+                        <?php } ?>                        
                       </tr>
                       <tr>
                         <td><font size="1">Jabatan : &nbsp; <?php echo $row->jabatan?></td>
                         <td><font size="1">Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
                                                 echo "SVP"; } ?> <?php echo $divhead->division_id; ?> </td>
-                        <?php } ?>                        
                       </tr>                            
                     </tbody>
                     </table>
