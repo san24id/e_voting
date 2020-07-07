@@ -89,7 +89,38 @@
                     <table style="font-family: calibri;" width="100%">
                       <?php 
                         $test1 = $row->jenis_pembayaran;
-                        $test2 = explode(";", $test1);
+                        $chk2='';
+						$chk3='';
+						$chk4='';
+						$chk5='';
+						$chk6='';
+                        $test1 = trim($row->jenis_pembayaran);
+						switch ($test1) {
+						  case "2":
+							$chk2='checked';							
+							break;
+						  case "3":
+							$chk3='checked';
+							break;
+						  case "4":
+							$chk4='checked';
+							break;
+						  case "5":
+							$chk5='checked';
+							break;
+						  case "6":
+							$chk6='checked';
+							$chk4='checked';
+							break;
+						  default:
+							$chk2='';
+							$chk3='';
+							$chk4='';
+							$chk5='';
+							$chk6='';
+							
+						}
+						/*$test2 = explode(";", $test1);
                         $test3 = count($test2);
                                 
                         for($b=0; $b<$test3; $b++){
@@ -116,10 +147,10 @@
                           if($test2[$b] == '6'){
                             $xxi6 .= "6";
                           }
-                        }
+                        }*/
                       ?>
                       <tr>
-                        <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td><b>Jenis Pembayaran <font color="red"> * </font> (pilih salah satu):</b></td>
                         <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
                           }else{
                                 $cek=" " ;
@@ -128,27 +159,27 @@
                         </td>
 
                         <td>
-                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Direct Payment<br>
+                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> disabled>Direct Payment<br>
                         </td>
                         <td>
-                          <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
+                          <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> disabled> Cash Received</input><br>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
+                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2;?> disabled>Permintaan Uang Muka/Request<br>
                         </td>
                         <td>
-                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled> Corporate Credit Card </input><br>
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6;?> disabled> Corporate Credit Card </input><br>
                         </td>
                       </tr>
                       
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
                         </td>
                       </tr>                       
                     </table>
@@ -182,13 +213,13 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="35%"><b>- Tujuan Penggunaan* </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
                         <td colspan="8" height="50%"><textarea type="text" rows="5" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
-                        <td><b>- Jumlah* :</b></td>
+                        <td><b>- Jumlah <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency;?>" readonly> </td>
@@ -211,7 +242,7 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang* </b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang <font color="red"> * </font></b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
@@ -452,10 +483,10 @@
                       <tr>
                         <td></td>
                         <td>
-                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada)</input><br>
-                          <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada <font color="red"> * </font> )</input><br>
+                          <?php if ($xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran") { $showing="style=''" ;
                           }else{ 
-                                $showing="style=''" ;
+                                $showing="style='display: none'" ;
                           } ?>
                             <textarea id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none" readonly> <?php echo $row->lainnya1;?></textarea> <br>
                             <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
@@ -475,7 +506,7 @@
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
-                        <td width="50%"><b>- Nomor ARF terkait* </b></td>
+                        <td width="50%"><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
                         <td>:</td>
                         <td>
                           <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
@@ -492,17 +523,17 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya* </td>
+                        <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
                       </tr>
-                      <td>Jumlah Uang Muka* </td>
+                      <td>Jumlah Uang Muka <font color="red"> * </font> </td>
                         <td>:</td>
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih* </td> 
+                      <td>Selisih Kurang/Lebih <font color="red"> * </font> </td> 
                         <td>:</td>
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               

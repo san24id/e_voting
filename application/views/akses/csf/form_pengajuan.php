@@ -278,7 +278,7 @@
 																</td>
 																<td><input id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
 																</td>      
-																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>																
+																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>																
 																<td>&nbsp;</td>
 																</tr>
 															<?php	
@@ -387,7 +387,7 @@
                       <tr>
                       	<td></td>
                       	<td>
-                      	  <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada <font color="red"> * </font> ) :
+                      	  <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran"> Lainnya (Jika ada <font color="red"> * </font> ) 
                           <textarea id="text1" type="text" class="form-control" name="lainnya1" placeholder="Enter Text" style="display:none" ></textarea><br>
                       	</td>
                       </tr>
@@ -687,7 +687,15 @@ function showInput() {
   rupiah.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rupiah.value = formatRupiah(this.value);
+    var strrupiah =rupiah.value;
+	if (strrupiah.substr(0,1)=="(" && strrupiah.substr(strrupiah.length-1,1)==")"){
+		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-1)) + ")";
+	}else{
+		rupiah.value = formatRupiah(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -712,7 +720,15 @@ function showInput() {
   rupiah2.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rupiah2.value = formatRupiah2(this.value);
+    var strrupiah2 =rupiah2.value;
+	if (strrupiah2.substr(0,1)=="(" && strrupiah2.substr(strrupiah2.length-1,1)==")"){
+		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-2)) + ")";
+	}else if(strrupiah2.substr(0,1)=="-") {
+		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-1)) + ")";
+	}else{
+		rupiah2.value = formatRupiah2(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -737,7 +753,15 @@ function showInput() {
   rupiah3.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rupiah3.value = formatRupiah3(this.value);
+    var strrupiah3 =rupiah3.value;
+	if (strrupiah3.substr(0,1)=="(" && strrupiah3.substr(strrupiah3.length-1,1)==")"){
+		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-1)) + ")";
+	}else{
+		rupiah3.value = formatRupiah3(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -975,83 +999,95 @@ function myFunction2() {
 
 function savedraft() {
   
-  // var input = document.getElementById("tujuanPenggunaan");
-
-  // var_dump(input);exit;
-  // var $tujuan=$("#tujuanPenggunaan").val();
-  // var $currency=$("#Select option:selected").text();
-  // var $rupiah=$("#rupiah").val();
-  var penerima=$("#penerima option:selected").val();
-  var bank=$("#dropdown option:selected").text();
-  var norek=$("#textInput").val();
-  var arf_ref=$("#arf_number").val();
-  var biaya=$("#biaya").val();
-  var uangmuka=$("#uangmuka").val();
-  // var $hasil=$("#hasil").val();
-
-  var checkrequest = $("#checkrequest").is(':checked');
-  var perkiraanSelesai=$("#perkiraanSelesai").val();
-  var checksettlement = $("#checksettlement").is(':checked');
-  // console.log(bank=="--- Choose ---");
-  
-  /*if(checkrequest==true && perkiraanSelesai==""){
-    alert("Perkiraan Tanggal Selesai Belum Diisi");  
-  }
-  if(penerima==""){
-    alert("Nama Penerima Belum diisi");
-  }
-  if(bank=="--- Choose ---"){
-    alert("Bank Belum Diisi");
-  }
-
-  if(bank!="Tunai" && norek==""){
-    alert("Nomor Rekening Belum Diisi");
-  }
-  if(checksettlement==true && arf_ref=="" && biaya=="" && uangmuka==""){
-    alert("Data Settlement Belum Lengkap");  
-  }
-
-  if ($("#tujuanPenggunaan").val()==""){
-    alert("Tujuan Penggunaan Belum Diisi");
-  }else if($("#Select").val()==""){
-    alert("Mata Uang Belum Diisi");
-  }else if($("#rupiah").val()==""){
-    alert("Jumlah Pengajuan Belum Diisi");
-  }else{*/
-  
-    <?php foreach ($getID as $key) { ?>
-      var link = "<?php echo base_url('Dashboard/formfinished/'.$key->id_payment);?>";
-    <?php } ?>
-
-	  
-	  if(save_method=="edit"){
-		url = "<?php echo base_url('dashboard/saveeditpayment')?>";  
-	  }else{
-		url = "<?php echo base_url('dashboard/saveaddpayment')?>";  
-	  }
-       
-		$.ajax({
-          url : url,
-          type : "POST",
-          data: $("#formadd").serialize(),
-          dataType: "JSON",
-          success: function(data){ // Ketika proses pengiriman berhasil          
-              //location.reload();  
-			    alert('Data Berhasil Di simpan');
-				//window.location = "<?php echo base_url('dashboard') ?>";    
-				save_method="edit";
-				$("#id_payment").val(data);
-        window.location = link;
-        },      
-          error: function (data)
-          {
-            console.log(data);
-            alert('Error adding / update data');
-          }
-        });
-  //}
-
-  
+  	var errmsg="0";
+	
+	var inps1 = document.getElementsByName('kodevendor[]');
+	var inps2 = document.getElementsByName('bankvendor[]');
+	var inps3 = document.getElementsByName('rekeningvendor[]');
+	var lbl4 = document.getElementsByName('label4[]');
+	
+	if($('#jns_pembayaran').val()==""){
+		alert('Jenis Pembayaran belum dipilih');
+	}else if($('#tujuanPenggunaan').val()==""){
+		alert('Tujuan Penggunaan belum di input');
+	}else if($('#Select').val()==""){
+		alert('Mata Uang Pertama belum dipilih');
+	}else if($('#rupiah').val()==""){
+		alert('Nominal Jumlah Pertama belum di input');
+	}else if ($('#jns_pembayaran').val()=="2" && $('#perkiraanSelesai').val()==""){
+			alert('Perkiraan Tanggal Selesai Pekerjaan/Terima Barang belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
+			alert('Nomor ARF Terkait belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
+			alert('Jumlah Biaya belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
+			alert('Jumlah Uang Muka belum di input');
+	}else{
+		for (var i = 0; i <inps1.length; i++) {
+			if(inps1[i].value==""){
+				errmsg="Nama Vendor baris ke " + (i+1) + " belum di pilih";
+				break;
+			};
+			if(inps2[i].value==""){
+				errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
+				break;
+			};
+			if(inps3[i].value==""){
+				errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
+				break;
+			};
+		}
+		var schk=lbl4.length-1;
+		// if (errmsg=="0"){
+		// 	for (var x = 0; x <lbl4.length; x++) {
+		// 		if(lbl4[x].checked){
+		// 			errmsg="0";
+		// 			break;
+		// 		}else{
+		// 			errmsg="Dokumen Lampiran belum di pilih";
+		// 		};
+		// 	}
+			
+			if (errmsg=="0"){
+					if(lbl4[schk].checked && $('#text1').val()==""){
+						alert('Dokumen Lampiran Lainnya belum di input');
+					}else{
+						<?php foreach ($getID as $key) { ?>
+						  var link = "<?php echo base_url('Dashboard/formfinished/'.$key->id_payment);?>";
+						<?php } ?>
+						  
+						if(save_method=="edit"){
+							url = "<?php echo base_url('dashboard/saveeditpayment')?>";  
+						}else{
+							url = "<?php echo base_url('dashboard/saveaddpayment')?>";  
+						}
+					   
+						$.ajax({
+						  url : url,
+						  type : "POST",
+						  data: $("#formadd").serialize(),
+						  dataType: "JSON",
+						  success: function(data){ // Ketika proses pengiriman berhasil          
+							alert('Data Berhasil Di simpan');   
+							save_method="edit";
+							$("#id_payment").val(data);
+							window.location = link;
+						},      
+						  error: function (data)
+						  {
+							console.log(data);
+							alert('Error adding / update data');
+						  }
+						});
+					}
+			}else{
+				alert(errmsg);
+			}
+		// }else{
+		// 	alert(errmsg);
+		// }
+	}
+    
 }
 
 var countervendor=1;
@@ -1092,7 +1128,7 @@ function AddIndeks(){
 		strhtml=strhtml + '</select></td>'
 		
 		strhtml=strhtml + '<td><input id="'+xrekeningvendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' + 
-						  '<td><input class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>' +
+						  '<td><input class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
 		

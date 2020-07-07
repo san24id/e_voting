@@ -527,7 +527,61 @@ $(function () {
     });
   });
 
-  CanvasJS.addColorSet("greenShades",
+Highcharts.chart('pieChart', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      title: {
+          text: 'Jumlah Data Payment Request Divisi'
+      },
+      credits: {
+          enabled: false
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.y}</b>'
+      },
+      plotOptions: {
+          pie: {
+              colors: [
+                '#06717C',
+                '#0595A3', 
+                '#06C4D7', 
+                '#8EEBF4'                  
+              ],
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.y}'
+              },
+			  point: {
+                events: {
+                    click: function() {
+                        location.href = this.options.link;
+                    }
+                }
+            }
+          }
+      },
+      series: [{
+          name: 'Total',
+          colorByPoint: true,
+          data: [
+
+            <?php foreach ($pembayaran as $key) { ?>
+              {
+                name: '<?php echo $key->dsc; ?>',
+                y: <?php echo $key->jmlpembayaran; ?>,
+				link:'<?php echo base_url('Dashboard/'.$key->link);?> '
+              },
+            <?php } ?>
+              ]
+      }]
+  });
+ /* CanvasJS.addColorSet("greenShades",
                 [//colorSet Array
 
                   '#06717C',
@@ -583,7 +637,7 @@ chart.options.data[0].click = function(e){
     }
 };
 
- chart.render();  
+ chart.render();  */
   
 </script>
 

@@ -1113,6 +1113,7 @@ class Home extends CI_Controller {
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
 		$this->Home_model->saveeditpayment(array('id_payment' => $id),$add);			
 
-		redirect(site_url('Home/formfinished/'.$id));
+		//redirect(site_url('Home/formfinished/'.$id));
+		echo json_encode($id);
 	}
 }

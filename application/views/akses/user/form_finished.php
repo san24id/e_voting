@@ -47,7 +47,8 @@
 		}
 		$strbank=substr($arrbank,0,strlen($arrbank)-1);
 		?>
-        <form id="form" method="post" action="Home/saveeditpaymentnew" onsubmit="update()">
+        <!--<form id="form" method="post" action="Home/saveeditpaymentnew" onsubmit="update()">-->
+		<form id="form" action="#">
 
           <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
@@ -79,8 +80,38 @@
 
                     <table style="font-family: calibri;" width="100%">
                       <?php 
-                        $test1 = $row->jenis_pembayaran;
-                        $test2 = explode(";", $test1);
+                        $chk2='';
+						$chk3='';
+						$chk4='';
+						$chk5='';
+						$chk6='';
+                        $test1 = trim($row->jenis_pembayaran);
+						switch ($test1) {
+						  case "2":
+							$chk2='checked';							
+							break;
+						  case "3":
+							$chk3='checked';
+							break;
+						  case "4":
+							$chk4='checked';
+							break;
+						  case "5":
+							$chk5='checked';
+							break;
+						  case "6":
+							$chk6='checked';
+							$chk4='checked';
+							break;
+						  default:
+							$chk2='';
+							$chk3='';
+							$chk4='';
+							$chk5='';
+							$chk6='';
+							
+						}
+                        /*$test2 = explode(";", $test1);
                         $test3 = count($test2);
                                 
                         for($b=0; $b<$test3; $b++){
@@ -107,7 +138,7 @@
                           if($test2[$b] == '6'){
                             $xxi6 .= "6";
                           }
-                        }
+                        }*/
                       ?>
                       <tr>
                         <td><b>Jenis Pembayaran <font color="red"> * </font> (pilih salah satu):</b></td>
@@ -119,30 +150,30 @@
                         </td>
 
                         <td>
-                          <input id="checked" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Direct Payment<br>
+                          <input id="checked" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> >Direct Payment<br>
                         </td>
                         <td>
-                          <input id="checked2" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> > Cash Received</input><br>
+                          <input id="checked2" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> > Cash Received</input><br>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
+                          <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2; ?> >Permintaan Uang Muka/Request<br>
                         </td>
                         <td>
-                            <input id="checkcreditcard" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> > Corporate Credit Card </input><br>
+                            <input id="checkcreditcard" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6; ?> > Corporate Credit Card </input><br>
                         </td>
                       </tr>
                       
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checksettlement" type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                          <input id="checksettlement" type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
                         </td>
                       </tr>         
-						<input type="hidden" id="jns_pembayaran" name="jns_pembayaran" value="<?php echo $test1[0]; ?> "> 
+						<input type="hidden" id="jns_pembayaran" name="jns_pembayaran" value="<?php echo $test1; ?> "> 
                     </table>
 
                     <br>
@@ -489,10 +520,10 @@
                       <tr>
                         <td></td>
                         <td>
-                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada)</input><br>
-                          <?php if ($row->label4->$testl2[$i]->$xxii11) { $showing="style='display: none'" ;
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada <font color="red"> * </font> )</input><br>
+                          <?php if ($xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran") { $showing="style=''" ;
                           }else{ 
-                                $showing="style=''" ;
+                                $showing="style='display: none'" ;
                           } ?>
                             <textarea id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none"> <?php echo $row->lainnya1;?></textarea> <br>
                             <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
@@ -584,7 +615,7 @@
                     <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Home" role="button">Exit</a>
-                        <button type="submit" class="btn btn-success third">Save</button>
+                        <button type="button" class="btn btn-success" onclick="saveeditdraft()">Save</button>
                         <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                     </div>
             </div>
@@ -704,14 +735,14 @@ function fung(param1,param2,param3){
 //   document.getElementById("jabatan").value = data;
 // }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Save!");
-  function tambah() {
-  location.reload(true);
-        tr.hide();
-  }
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Save!");
+//   function tambah() {
+//   location.reload(true);
+//         tr.hide();
+//   }
   
-});
+// });
 
 function myFunction(){
   var x = document.getElementById("Select").value;
@@ -829,7 +860,15 @@ function showInput() {
   rupiah.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rupiah.value = formatRupiah(this.value);
+    var strrupiah =rupiah.value;
+	if (strrupiah.substr(0,1)=="(" && strrupiah.substr(strrupiah.length-1,1)==")"){
+		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-1)) + ")";
+	}else{
+		rupiah.value = formatRupiah(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -854,7 +893,15 @@ function showInput() {
   rupiah2.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rupiah2.value = formatRupiah2(this.value);
+    var strrupiah2 =rupiah2.value;
+	if (strrupiah2.substr(0,1)=="(" && strrupiah2.substr(strrupiah2.length-1,1)==")"){
+		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-2)) + ")";
+	}else if(strrupiah2.substr(0,1)=="-") {
+		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-1)) + ")";
+	}else{
+		rupiah2.value = formatRupiah2(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -879,7 +926,15 @@ function showInput() {
   rupiah3.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    rupiah3.value = formatRupiah3(this.value);
+    var strrupiah3 =rupiah3.value;
+	if (strrupiah3.substr(0,1)=="(" && strrupiah3.substr(strrupiah3.length-1,1)==")"){
+		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-1)) + ")";
+	}else{
+		rupiah3.value = formatRupiah3(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -996,6 +1051,7 @@ function showInput() {
       $('#checked2').prop('checked', false);
       $('#show').hide();
       $('#choose').hide();
+	  $('#jns_pembayaran').val('6');
     }else{
       $('#auto').prop('checked', false);
       $('#checkrequest').prop('checked', false);
@@ -1004,6 +1060,7 @@ function showInput() {
       $('#checked2').prop('checked', false);
       $('#show').show();
       $('#choose').show();
+	  $('#jns_pembayaran').val('');
     }
   });
 
@@ -1030,7 +1087,11 @@ function showInput() {
 		$('#checkcreditcard').prop('checked', false);
 		$('#show').hide();
 		$('#choose').hide();
-
+		if($("#checked").is(':checked')){      
+			$('#jns_pembayaran').val('4');
+		}else{
+			$('#jns_pembayaran').val('');
+		}
 	});	
 
 	$("#checked2").on( "click", function() {	
@@ -1041,7 +1102,11 @@ function showInput() {
 		$('#checkcreditcard').prop('checked', false);
 		$('#show').hide();
 		$('#choose').hide();
-
+		if($("#checked2").is(':checked')){      
+			$('#jns_pembayaran').val('5');
+		}else{
+			$('#jns_pembayaran').val('');
+		}
 	});	
 	
 	$("#checkrequest").on( "click", function() {
@@ -1054,8 +1119,10 @@ function showInput() {
 		  
 		if($("#checkrequest").is(':checked')){
 		  $('#choose').show();
+		  $('#jns_pembayaran').val('2');
 		}else{
 		  $('#choose').hide();
+		  $('#jns_pembayaran').val('');
 		}
 	});	
 	
@@ -1068,15 +1135,16 @@ function showInput() {
 		if($("#checksettlement").is(':checked')){
 			$('#auto').prop('checked', true);	
 			$('#show').show();
-			
+			$('#jns_pembayaran').val('3');
 		}else{
 			$('#show').hide();
+			$('#jns_pembayaran').val('2');
 		}
 		
 		
 	});	
 	
-var countervendor=1;
+var countervendor=$('#txtcountervendor').val();
 var szcountervendor;
 function AddIndeks(){
 		szcountervendor = parseInt(countervendor)+1;
@@ -1160,4 +1228,86 @@ function AddIndeks(){
 		}
 		$('#lbltotalvendor').text(formatRupiah(itotal.toString()));		
     }
+	function saveeditdraft() {
+  
+  	var errmsg="0";
+	
+	var inps1 = document.getElementsByName('kodevendor[]');
+	var inps2 = document.getElementsByName('bankvendor[]');
+	var inps3 = document.getElementsByName('rekeningvendor[]');
+	var lbl4 = document.getElementsByName('label4[]');
+	
+	if($('#jns_pembayaran').val()==""){
+		alert('Jenis Pembayaran belum dipilih');
+	}else if($('#tujuanPenggunaan').val()==""){
+		alert('Tujuan Penggunaan belum di input');
+	}else if($('#Select').val()==""){
+		alert('Mata Uang Pertama belum dipilih');
+	}else if($('#rupiah').val()==""){
+		alert('Nominal Jumlah Pertama belum di input');
+	}else if ($('#jns_pembayaran').val()=="2" && $('#perkiraanSelesai').val()==""){
+			alert('Perkiraan Tanggal Selesai Pekerjaan/Terima Barang belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
+			alert('Nomor ARF Terkait belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
+			alert('Jumlah Biaya belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
+			alert('Jumlah Uang Muka belum di input');
+	}else{
+		for (var i = 0; i <inps1.length; i++) {
+			if(inps1[i].value==""){
+				errmsg="Nama Vendor baris ke " + (i+1) + " belum di pilih";
+				break;
+			};
+			if(inps2[i].value==""){
+				errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
+				break;
+			};
+			if(inps3[i].value==""){
+				errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
+				break;
+			};
+		}
+		var schk=lbl4.length-1;
+		// if (errmsg=="0"){
+		// 	for (var x = 0; x <lbl4.length; x++) {
+		// 		if(lbl4[x].checked){
+		// 			errmsg="0";
+		// 			break;
+		// 		}else{
+		// 			errmsg="Dokumen Lampiran belum di pilih";
+		// 		};
+		// 	}
+			
+			if (errmsg=="0"){
+					if(lbl4[schk].checked && $('#text1').val()==""){
+						alert('Dokumen Lampiran Lainnya belum di input');
+					}else{
+						url = "<?php echo base_url('home/saveeditpaymentnew')?>";  
+					   
+						$.ajax({
+						  url : url,
+						  type : "POST",
+						  data: $("#form").serialize(),
+						  dataType: "JSON",
+						  success: function(data){ // Ketika proses pengiriman berhasil          
+							alert('Data Berhasil Di simpan'); 
+								console.log(data);
+						},      
+						  error: function (data)
+						  {
+							console.log(data);
+							alert('Error adding / update data');
+						  }
+						});
+					}
+			}else{
+				alert(errmsg);
+			}
+		// }else{
+		// 	alert(errmsg);
+		// }
+	}
+    
+}
 </script>
