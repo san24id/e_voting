@@ -434,7 +434,7 @@
                         <td>:</td>
                         <td><center><p id="demo3">  </p></td>
                         <!--<td><input type="text" name="label19a" class="form-control"></td>-->
-                        <td><input type="text" id="hasil" class="form-control" name="label9" placeholder="Enter Text"></input></td>                               
+                        <td><input type="text" id="hasil" class="form-control" name="label9" placeholder="Enter Text" readonly></input></td>                               
                       </tr>                              
                       </tbody>
                     </table>
@@ -684,7 +684,7 @@ function showInput() {
 <script type="text/javascript">
   
   var rupiah = document.getElementById('rupiah');
-  rupiah.addEventListener('keyup', function(e){
+  rupiah.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah =rupiah.value;
@@ -693,9 +693,8 @@ function showInput() {
 	}else if(strrupiah.substr(0,1)=="-") {
 		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-1)) + ")";
 	}else{
-		rupiah.value = formatRupiah(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah.value = formatRupiah(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -717,7 +716,7 @@ function showInput() {
   }
 
   var rupiah2 = document.getElementById('rupiah2');
-  rupiah2.addEventListener('keyup', function(e){
+  rupiah2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah2 =rupiah2.value;
@@ -726,9 +725,8 @@ function showInput() {
 	}else if(strrupiah2.substr(0,1)=="-") {
 		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-1)) + ")";
 	}else{
-		rupiah2.value = formatRupiah2(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah2.value = formatRupiah2(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -750,7 +748,7 @@ function showInput() {
   }
 
   var rupiah3 = document.getElementById('rupiah3');
-  rupiah3.addEventListener('keyup', function(e){
+  rupiah3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah3 =rupiah3.value;
@@ -759,9 +757,8 @@ function showInput() {
 	}else if(strrupiah.substr(0,1)=="-") {
 		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-1)) + ")";
 	}else{
-		rupiah3.value = formatRupiah3(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah3.value = formatRupiah3(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -808,10 +805,17 @@ function showInput() {
   }
 
   var uangmuka = document.getElementById('uangmuka');
-  uangmuka.addEventListener('keyup', function(e){
+  uangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    uangmuka.value = formatuangmuka(this.value);
+    var struangmuka =uangmuka.value;
+	if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
+	}else{
+		uangmuka.value = formatuangmuka(this.value);
+	}
   });
 
   /* Fungsi formatRupiah */
@@ -1032,21 +1036,22 @@ function savedraft() {
 				errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
 				break;
 			};
-			if(inps3[i].value==""){
+			if(inps3[i].value=="" && inps2[i].value!="Tunai"){
 				errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
 		}
 		var schk=lbl4.length-1;
-		// if (errmsg=="0"){
-		// 	for (var x = 0; x <lbl4.length; x++) {
-		// 		if(lbl4[x].checked){
-		// 			errmsg="0";
-		// 			break;
-		// 		}else{
-		// 			errmsg="Dokumen Lampiran belum di pilih";
-		// 		};
-		// 	}
+		/*if (errmsg=="0"){
+			for (var x = 0; x <lbl4.length; x++) {
+				if(lbl4[x].checked){
+					errmsg="0";
+					break;
+				}else{
+					errmsg="Dokumen Lampiran belum di pilih";
+					
+				};
+			}*/
 			
 			if (errmsg=="0"){
 					if(lbl4[schk].checked && $('#text1').val()==""){
@@ -1083,9 +1088,9 @@ function savedraft() {
 			}else{
 				alert(errmsg);
 			}
-		// }else{
-		// 	alert(errmsg);
-		// }
+		/*}else{
+			alert(errmsg);
+		}*/
 	}
     
 }

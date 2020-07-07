@@ -575,10 +575,9 @@
                             <?php 
                                 $testl1 = $row->label4;
                                 $testl2 = explode(";", $testl1);
-                                // var_dump($testl2);exit;
+                                // var_dump($testl2[0]);exit;
 
-                            if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" && $row->vendor != "" &&
-                                      $row->akun_bank !="" && $row->no_rekening !="" && $testl2[0] !=""){ ?>
+                            if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" && $row->vendor != "" && $row->akun_bank !="" ){ ?>
                               <a class="btn btn-danger" href="Dashboard/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>      
                             <?php }else{ ?>
 
@@ -606,7 +605,7 @@
     
                                 <?php }
                               
-                          } 
+                            } 
 
                           if($this->session->userdata("role_id") == 4){ ?>      
                           <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>
@@ -666,7 +665,7 @@
                           <?php if($row->status == 11 || $row->status == 99){ ?>
                             <!-- <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>   -->
                             <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-                              <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                              <!-- <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                         
                                 <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
   
@@ -674,7 +673,7 @@
                                 
                                 <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
   
-                              <?php } ?>    
+                              <?php } ?>     -->
 
                               <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                               <!----.Modal -->

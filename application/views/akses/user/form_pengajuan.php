@@ -684,7 +684,7 @@ function showInput() {
 <script type="text/javascript">
   
   var rupiah = document.getElementById('rupiah');
-  rupiah.addEventListener('keyup', function(e){
+  rupiah.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah =rupiah.value;
@@ -717,7 +717,7 @@ function showInput() {
   }
 
   var rupiah2 = document.getElementById('rupiah2');
-  rupiah2.addEventListener('keyup', function(e){
+  rupiah2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah2 =rupiah2.value;
@@ -750,7 +750,7 @@ function showInput() {
   }
 
   var rupiah3 = document.getElementById('rupiah3');
-  rupiah3.addEventListener('keyup', function(e){
+  rupiah3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah3 =rupiah3.value;
@@ -808,10 +808,18 @@ function showInput() {
   }
 
   var uangmuka = document.getElementById('uangmuka');
-  uangmuka.addEventListener('keyup', function(e){
+  uangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    uangmuka.value = formatuangmuka(this.value);
+    var struangmuka =uangmuka.value;
+	if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
+	}else{
+		uangmuka.value = formatuangmuka(this.value);
+	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -1019,13 +1027,11 @@ function savedraft() {
 	}else if ($('#jns_pembayaran').val()=="2" && $('#perkiraanSelesai').val()==""){
 			alert('Perkiraan Tanggal Selesai Pekerjaan/Terima Barang belum di input');
 								 
-										
 	}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
 			alert('Nomor ARF Terkait belum di input');
 											 
 	}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
-			alert('Jumlah Biaya belum di input');
-									
+			alert('Jumlah Biaya belum di input');							
 										   
 	}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
 			alert('Jumlah Uang Muka belum di input');
@@ -1039,7 +1045,7 @@ function savedraft() {
 				errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
 				break;
 			};
-			if(inps3[i].value==""){
+      if(inps3[i].value=="" && inps2[i].value!="Tunai"){
 				errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};

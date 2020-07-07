@@ -184,6 +184,7 @@
                       <td>Kepada : Divisi CSF</td>
                       <td align="right">Tanggal : <?php echo $row->tanggal; ?></td>
                         <input type="hidden" name="tanggal" class="form-control" value="<?php echo $row->tanggal; ?>">
+                        <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $row->tanggal2; ?>">
                       </tr>
                       <tr>
                       <td>Dari : </td>
@@ -563,18 +564,18 @@
                       <tr>  
                         <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-                        <td> </td>
+                        <td><center><?php echo $row->currency;?> </td>
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input><td>
                       </tr>
                       <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-                        <td> </td>
+                        <td><center><?php echo $row->currency;?> </td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
                       <tr>
                       <td>Selisih Kurang/Lebih <font color="red"> * </font></td> 
                         <td>:</td>
-                        <td> </td>
-                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"></input></td>                               
+                        <td><center><?php echo $row->currency;?> </td>
+                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
                       </tr>                                
                       </tbody>
                     </table>
@@ -735,14 +736,14 @@ function fung(param1,param2,param3){
 //   document.getElementById("jabatan").value = data;
 // }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Save!");
-  function tambah() {
-  location.reload(true);
-        tr.hide();
-  }
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Save!");
+//   function tambah() {
+//   location.reload(true);
+//         tr.hide();
+//   }
   
-});
+// });
 
 function myFunction(){
   var x = document.getElementById("Select").value;
@@ -857,7 +858,7 @@ function showInput() {
 <script type="text/javascript">
   
   var rupiah = document.getElementById('rupiah');
-  rupiah.addEventListener('keyup', function(e){
+  rupiah.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah =rupiah.value;
@@ -866,9 +867,8 @@ function showInput() {
 	}else if(strrupiah.substr(0,1)=="-") {
 		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-1)) + ")";
 	}else{
-		rupiah.value = formatRupiah(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah.value = formatRupiah(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -890,7 +890,7 @@ function showInput() {
   }
 
   var rupiah2 = document.getElementById('rupiah2');
-  rupiah2.addEventListener('keyup', function(e){
+  rupiah2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah2 =rupiah2.value;
@@ -899,9 +899,8 @@ function showInput() {
 	}else if(strrupiah2.substr(0,1)=="-") {
 		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-1)) + ")";
 	}else{
-		rupiah2.value = formatRupiah2(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah2.value = formatRupiah2(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -923,7 +922,7 @@ function showInput() {
   }
 
   var rupiah3 = document.getElementById('rupiah3');
-  rupiah3.addEventListener('keyup', function(e){
+  rupiah3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah3 =rupiah3.value;
@@ -932,9 +931,8 @@ function showInput() {
 	}else if(strrupiah.substr(0,1)=="-") {
 		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-1)) + ")";
 	}else{
-		rupiah3.value = formatRupiah3(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah3.value = formatRupiah3(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -981,10 +979,17 @@ function showInput() {
   }
 
   var uangmuka = document.getElementById('uangmuka');
-  uangmuka.addEventListener('keyup', function(e){
+    uangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    uangmuka.value = formatuangmuka(this.value);
+    var struangmuka =uangmuka.value;
+	if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
+	}else{
+		uangmuka.value = formatuangmuka(this.value);
+	}
   });
 
   /* Fungsi formatRupiah */
@@ -1032,14 +1037,13 @@ function showInput() {
   }
 
   $(document).ready(function() { 
-    $('#dropdown').change(function() {
+    $('#bankvendor1').change(function() {
       if( $(this).val() == 'Tunai') {
-            $('#textInput').prop( "disabled", true );
+            $('#rekeningvendor1').prop( "disabled", true );
       } else {       
-        $('#textInput').prop( "disabled", false );
+        $('#rekeningvendor1').prop( "disabled", false );
       }
     });
-
   });
 
   $("#checkcreditcard").on( "click", function() {
@@ -1264,21 +1268,21 @@ function AddIndeks(){
 				errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
 				break;
 			};
-			if(inps3[i].value==""){
+			if(inps3[i].value=="" && inps2[i].value!="Tunai"){
 				errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
 		}
 		var schk=lbl4.length-1;
-		// if (errmsg=="0"){
-		// 	for (var x = 0; x <lbl4.length; x++) {
-		// 		if(lbl4[x].checked){
-		// 			errmsg="0";
-		// 			break;
-		// 		}else{
-		// 			errmsg="Dokumen Lampiran belum di pilih";
-		// 		};
-		// 	}
+		/*if (errmsg=="0"){
+			 (var x = 0; x <lbl4.length; x++) {
+				if(lbl4[x].checked){
+					errmsg="0";
+					break;
+				}else{
+					errmsg="Dokumen Lampiran belum di pilih";
+				};
+			}*/
 			
 			if (errmsg=="0"){
 					if(lbl4[schk].checked && $('#text1').val()==""){
@@ -1305,9 +1309,9 @@ function AddIndeks(){
 			}else{
 				alert(errmsg);
 			}
-		// }else{
-		// 	alert(errmsg);
-		// }
+		/*}else{
+			alert(errmsg);
+		}*/
 	}
     
 }

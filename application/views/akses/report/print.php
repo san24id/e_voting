@@ -282,13 +282,13 @@
 														<input type="hidden" id="strbank" name="strbank" value="<?php echo $strbank; ?>">
 							
 														<div class="table-responsive" >
-														<table id="show1" class="table table-bordered table-striped"> 
+														<table id="show1" class="table table-bordered table-striped" width="100%"> 
 														  <thead>
 															<tr>
-																<th><font size="1">Nama Vendor <font color="red"> * </font></th>
-																<th><font size="1">Nama Bank <font color="red"> * </font></th>
-																<th><font size="1">Nomor Rekening <font color="red"> * </font></th>
-																<th><font size="1">Nominal</th>
+																<th colspan="3"><font size="1">Nama Vendor <font color="red"> * </font></th>
+																<th colspan="3"><font size="1">Nama Bank <font color="red"> * </font></th>
+																<th colspan="3"><font size="1">Nomor Rekening <font color="red"> * </font></th>
+																<th colspan="4"><font size="1"><center>Nominal</center></th>
 															 </tr>
 														  </thead>
 														  <tbody>
@@ -330,26 +330,10 @@
 																$vendorrow++;
 															?>
 															<tr id="tr<?php echo $vendorrow; ?>">
-															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>')" class="form-control" name="penerimavendor[]" readonly>
-																	<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>
-																	<option value="">--Choose--</option>
-																	<?php foreach ($data_vendor as $nama){?> 
-																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
-																	<?php } ?>
-																	</select>
-																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]" value="<?php echo $gvendor->kode_vendor; ?>"  />
-																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]" value="<?php echo $gvendor->penerima; ?>"   /></td>
-															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control" readonly >
-																	<option value="<?php echo $gvendor->v_bank; ?>"> <?php echo $gvendor->v_bank;?> </option>
-																	<option value="">--- Choose ---</option>
-																	<?php foreach ($bank as $get) {?>
-																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
-																	<?php } ?>
-																	</select>
-																</td>
-																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" readonly>
-																</td>   
-															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" readonly></td>
+															<td colspan="3" width="45%" class="kolom"><font size="1"><center> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></td>
+															<td colspan="3" width="20%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_bank;?>				</td>
+                              <td colspan="3" width="20%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_account; ?>	</td>   
+															<td colspan="4" width="20%" class="kolom"><font size="1"><center> <?php echo number_format($gvendor->nominal,0,",","."); ?></td>
 															
 															
 															</tr>
@@ -358,7 +342,7 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th colspan="3" style="text-align:end;"><font size="1">Total</th>
+																<th colspan="9" style="text-align:end;"><font size="1">Total</th>
 																  <th><label class="control-label col-md-3" id="lbltotalvendor"><font size="1"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
 																  <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
 				
@@ -507,17 +491,17 @@
                       <tr>  
                         <td><font size="1">Jumlah Biaya <font color="red"> * </td>
                         <td>:</td>
-                        <td align="center"><?php echo $row->currency;?> </td>
+                        <td align="center"><font size="1"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label7;?><td>
                       </tr>
                         <td><font size="1">Jumlah Uang Muka <font color="red"> * </td>
                         <td>:</td>
-                        <td align="center"><?php echo $row->currency;?> </td>
+                        <td align="center"><font size="1"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
                       <tr>
                         <td><font size="1">Selisih Kurang/Lebih <font color="red"> * </td> 
                         <td>:</td>
-                        <td align="center"><?php echo $row->currency;?> </td>
+                        <td align="center"><font size="1"><?php echo $row->currency;?> </td>
                         <td class="kolom"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
                       </tr>                              
                       </tbody>
