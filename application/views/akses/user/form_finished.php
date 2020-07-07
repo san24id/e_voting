@@ -600,12 +600,12 @@
                         </td>
                         <?php foreach ($divhead as $divhead) { ?>
                         <td>Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
+                        <?php } ?>                        
                       </tr>
                       <tr>
-                        <td>Jabatan : &nbsp; <input id="jabatan" type="text" name="jabatan" value="<?php echo $row->jabatan?>"></td>
+                        <td>Jabatan : &nbsp; <input id="jabatan" type="text" name="jabatan" value="<?php echo $row->jabatan?>" readonly></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
                                                 echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
-                        <?php } ?>                        
                       </tr>                            
                     </tbody>
                     </table>

@@ -1692,31 +1692,31 @@ class Dashboard extends CI_Controller {
 		redirect('Dashboard');
 	}
 
-	public function draftprintdp($id_payment){
+	// public function draftprintdp($id_payment){
 
-		$upd = array(
-			'id_payment' => $id_payment,
-			'status' => 99
+	// 	$upd = array(
+	// 		'id_payment' => $id_payment,
+	// 		'status' => 99
 			
-		);
+	// 	);
 		
-		$this->Dashboard_model->updateprint($upd);
+	// 	$this->Dashboard_model->updateprint($upd);
 
-		redirect('Dashboard/report_dp/'.$id_payment);
-	}
+	// 	redirect('Dashboard/report_dp/'.$id_payment);
+	// }
 
-	public function draftprint($id_payment){
+	// public function draftprint($id_payment){
 
-		$upd = array(
-			'id_payment' => $id_payment,
-			'status' => 99
+	// 	$upd = array(
+	// 		'id_payment' => $id_payment,
+	// 		'status' => 99
 			
-		);
+	// 	);
 
-		$this->Dashboard_model->updateprint($upd);
+	// 	$this->Dashboard_model->updateprint($upd);
 
-		redirect('Dashboard/report/'.$id_payment);
-	}
+	// 	redirect('Dashboard/report/'.$id_payment);
+	// }
 
 	public function deletepayment(){
 

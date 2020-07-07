@@ -29,7 +29,26 @@
           </h1>
         </section> -->
         <!-- Main content -->
-        <form id="form" method="post" action="Tri/updatepayment" onsubmit="update()">
+		
+		<?php
+		$arrvendor="";
+		$strvendor="";
+		$counter=0;
+		foreach($data_vendor as $vndr){
+                  $arrvendor= $arrvendor . $vndr->nama ." - " .$vndr->kode_vendor.";" ;
+				  $counter=$counter+1;
+		}
+		$strvendor=substr($arrvendor,0,strlen($arrvendor)-1);
+		
+		$arrbank="";
+		$strbank="";
+		foreach($bank as $bnk){
+                  $arrbank= $arrbank . $bnk->bank .";" ;
+		}
+		$strbank=substr($arrbank,0,strlen($arrbank)-1);
+		?>
+        <!--<form id="form" method="post" action="Home/saveeditpaymentnew" onsubmit="update()">-->
+		<form id="form" action="#">
 
           <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
@@ -44,7 +63,7 @@
                       <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
-                      <center><b><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></b></center>
+                      <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
@@ -59,29 +78,59 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <?php 
-                        $test1 = $row->jenis_pembayaran;
-                        $test2 = explode(";", $test1);
+                        $chk2='';
+                        $chk3='';
+                        $chk4='';
+                        $chk5='';
+                        $chk6='';
+                          $test1 = trim($row->jenis_pembayaran);
+                        switch ($test1) {
+                          case "2":
+                          $chk2='checked';							
+                          break;
+                          case "3":
+                          $chk3='checked';
+                          break;
+                          case "4":
+                          $chk4='checked';
+                          break;
+                          case "5":
+                          $chk5='checked';
+                          break;
+                          case "6":
+                          $chk6='checked';
+                          $chk4='checked';
+                          break;
+                          default:
+                          $chk2='';
+                          $chk3='';
+                          $chk4='';
+                          $chk5='';
+                          $chk6='';
+                          
+                        }
+                        /*$test2 = explode(";", $test1);
                         $test3 = count($test2);
                                 
                         for($b=0; $b<$test3; $b++){
                           if($test2[$b] == '1'){
-                            $xxi1 .= "1";
+                          $xxi1 .= "1";
                           }
                           
                           if($test2[$b] == '2'){
-                            $xxi2 .= "2";
+                          $xxi2 .= "2";
                           }
                           
                           if($test2[$b] == '3'){
-                            $xxi3 .= "3";
+                          $xxi3 .= "3";
                           }
                           
                           if($test2[$b] == '4'){
-                            $xxi4 .= "4";
+                          $xxi4 .= "4";
                           }
-                          
+
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
@@ -89,51 +138,53 @@
                           if($test2[$b] == '6'){
                             $xxi6 .= "6";
                           }
-                        }
+                        }*/
                       ?>
                       <tr>
-                        <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
+                        <td><b>Jenis Pembayaran <font color="red"> * </font> (pilih salah satu):</b></td>
                         <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
                           }else{
                                 $cek=" " ;
                           } ?>
-                          <input id="auto" <?php echo $cek;?> type="checkbox" ><b>Uang Muka/Advance</b><br>
+                          <input id="auto" <?php echo $cek;?> type="checkbox" disabled><b>Uang Muka/Advance</b><br>
                         </td>
 
                         <td>
-                          <input id="checked" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> >Direct Payment<br>
+                          <input id="checked" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> >Direct Payment<br>
                         </td>
                         <td>
-                          <input id="checked2" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> > Cash Received</input><br>
+                          <input id="checked2" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> > Cash Received</input><br>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
-                        <td>
-                          <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> >Permintaan Uang Muka/Request<br>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2; ?> >Permintaan Uang Muka/Request<br>
                         </td>
                         <td>
-                          <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> > Corporate Credit Card </input><br>
+                            <input id="checkcreditcard" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6; ?> > Corporate Credit Card </input><br>
                         </td>
                       </tr>
                       
                       <tr>
                         <td></td>
-                        <td>
-                          <input id="checksettlement" type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input id="checksettlement" type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
                         </td>
-                      </tr>                        
+                      </tr>         
+						<input type="hidden" id="jns_pembayaran" name="jns_pembayaran" value="<?php echo $test1; ?> "> 
                     </table>
 
                     <br>
 
-                    <table style="font-family: calibri;" width="50%">
+                    <table style="font-family: calibri;" width="100%">
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
                       <td align="right">Tanggal : <?php echo $row->tanggal; ?></td>
-                        <input type="hidden" name="tanggal" class="form-control" value="<<?php echo $row->tanggal; ?>">
+                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo $row->tanggal; ?>">
+                        <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $row->tanggal2; ?>">
                       </tr>
                       <tr>
                       <td>Dari : </td>
@@ -155,13 +206,13 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="35%"><b>- Tujuan Penggunaan* </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" rows="5" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
-                        <td><b>- Jumlah* </b></td>
+                        <td><b>- Jumlah <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
@@ -196,7 +247,7 @@
                       </tbody>
                     </table>
 
-                    <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $choosed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6) { $choosed="style='display: none'" ;
                     }else{
                           $choosed="style=''" ;
                     } ?>
@@ -204,19 +255,19 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="30%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang* </b>
+                        <td width="30%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang <font color="red"> * </font></b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
+                        <td colspan="8" width="65%"><input type="date" id="perkiraanSelesai" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
                       </tr>
                                                   
                       </tbody>
                     </table>
-
+                    
                     <br>
 
-                    <table style="font-family: calibri;" width="100%">
+                    <!--<table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
                       <tr>
@@ -230,7 +281,7 @@
                             $buka = $row->penerima;
                           }
                         ?>
-                      <td width="35%">Nama* </td>
+                      <td width="35%">Nama</td>
                         <td> : </td>
                         <td colspan="4"> <select id="penerima" onchange="fung()" class="form-control" name="penerima">
                                             <option value="<?php echo $buka;?>"><?php echo $buka;?></option>
@@ -242,10 +293,10 @@
                         </td>
                       </tr>
                       <tr>  
-                        <td>Kode Vendor* </td>
+                        <td>Kode Vendor</td>
                         <td> : </td>
-                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" required></td>
-                        <td>Bank* </td>
+                        <td><input id="kode_vendor" type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" ></td>
+                        <td>Bank</td>
                         <td>:</td>
                         <td><select id="dropdown" name="akun_bank" class="form-control">
                               <option value="<?php echo $row->akun_bank; ?>"><?php echo $row->akun_bank; ?></option>
@@ -260,14 +311,117 @@
                       <td></td>
                         <td></td>
                         <td></td>
-                        <td>Nomor Rekening* </td> 
+                        <td>Nomor Rekening</td> 
                         <td>:</td>                           
                         <td><input id="textInput" type="text" class="form-control" name="no_rekening" value="<?php echo $row->no_rekening; ?>"></td>                                
                       </tr>
                       
                       </tbody>
-                    </table>
-
+                    </table>-->
+					
+					<!--<form id="frmvendor" action="#"> -->
+														<input type="hidden" id="strvendor" name="strvendor" value="<?php echo $strvendor; ?>">
+														<input type="hidden" id="strbank" name="strbank" value="<?php echo $strbank; ?>">
+							
+														<div class="table-responsive" >
+														<table id="show1" class="table table-bordered table-striped"> 
+														  <thead>
+															<tr>
+																<th>Nama Vendor <font color="red"> * </font></th>
+																<th>Nama Bank <font color="red"> * </font></th>
+																<th>Nomor Rekening <font color="red"> * </font></th>
+																<th>Nominal</th>
+																<th>&nbsp;</th>
+															 </tr>
+														  </thead>
+														  <tbody>
+														  <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
+														  <?php 
+															$ttlnomvendor=0;
+															$nomvendor='';
+															$vendorrow=0;
+															if ($getdatavendor == null){ ?>
+																<tr id="tr1">
+																<td ><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1')" class="form-control" name="penerimavendor[]" >
+																	<option value="">--Choose--</option>
+																	<?php foreach ($data_vendor as $nama){?> 
+																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
+																	  
+																	<?php } ?>
+																	</select>
+																	<input id="kodevendor1" type="hidden" name="kodevendor[]"  />
+																	<input id="namavendor1" type="hidden" name="namavendor[]"  />
+																</td>
+																
+																<td><select id="bankvendor1" name="bankvendor[]" class="form-control" >
+																	<option value="">--- Choose ---</option>
+																	<?php foreach ($bank as $get) {?>
+																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+																	<?php } ?>
+																	</select>
+																</td>
+																<td><input id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
+																</td>      
+																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>																
+																<td>&nbsp;</td>
+																</tr>
+															<?php	
+															}else{
+															foreach($getdatavendor as $gvendor){
+																$nomvendor=str_replace(".","",$gvendor->nominal);
+																$ttlnomvendor=$ttlnomvendor+(float)$nomvendor;
+																$vendorrow++;
+															?>
+															<tr id="tr<?php echo $vendorrow; ?>">
+															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>')" class="form-control" name="penerimavendor[]" >
+																	<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>
+																	<option value="">--Choose--</option>
+																	<?php foreach ($data_vendor as $nama){?> 
+																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
+																	<?php } ?>
+																	</select>
+																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]" value="<?php echo $gvendor->kode_vendor; ?>"  />
+																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]" value="<?php echo $gvendor->penerima; ?>"   /></td>
+															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control"  >
+																	<option value="<?php echo $gvendor->v_bank; ?>"> <?php echo $gvendor->v_bank;?> </option>
+																	<option value="">--- Choose ---</option>
+																	<?php foreach ($bank as $get) {?>
+																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+																	<?php } ?>
+																	</select>
+																</td>
+																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" >
+																</td>   
+															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
+															
+															<td>
+															<?php
+															if ($vendorrow > 1){
+															?>
+															<span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$vendorrow; ?>')"> 
+																  <i class="glyphicon glyphicon-minus"></i>
+																  </span>
+															<?php } ?>
+															</td>
+															</tr>
+															<?php } }?>
+															<input type="hidden" id="txtcountervendor" name="txtcountervendor" value="<?php echo $vendorrow; ?>" />
+														
+														  </tbody>
+														  <tfoot>
+															<tr>
+																<th><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
+																  <i class="glyphicon glyphicon-plus"></i>
+																  </span></th>
+																  <th colspan="2" style="text-align:end;">Total</th>
+																  <th><label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
+																  <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
+				
+															</tr>
+														</tfoot>
+														</table>
+														</div> 
+														<!--</form>-->
                     <br>
 
                     <table style="font-family: calibri;" width="100%">
@@ -367,10 +521,10 @@
                       <tr>
                         <td></td>
                         <td>
-                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
-                          <?php if ($row->label4->$testl2[$i]->$xxii11) { $showing="style='display: none'" ;
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> >Lainnya (Jika ada <font color="red"> * </font> )</input><br>
+                          <?php if ($xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran") { $showing="style=''" ;
                           }else{ 
-                                $showing="style=''" ;
+                                $showing="style='display: none'" ;
                           } ?>
                             <textarea id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none"> <?php echo $row->lainnya1;?></textarea> <br>
                             <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
@@ -379,8 +533,8 @@
                     </table>
 
                     <br>
-
-                    <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
+                    
+                    <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6) { $showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
@@ -391,10 +545,10 @@
                         <td colspan="4"><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
                       <tr>
-                        <td><b>- Nomor ARF terkait* </b></td>
+                        <td><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
                         <td>:</td>
                         <td>
-                          <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>">                          
+                          <input id="arf_number" type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>">                          
                         </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> > Lampiran copy ARF tersedia</input></td>
                       </tr>
@@ -408,20 +562,20 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya* </td>
+                        <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-                        <td> </td>
+                        <td><center><?php echo $row->currency;?> </td>
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input><td>
                       </tr>
-                      <td>Jumlah Uang Muka* </td>
+                      <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-                        <td> </td>
+                        <td> <center><?php echo $row->currency;?></td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih* </td> 
+                      <td>Selisih Kurang/Lebih <font color="red"> * </font></td> 
                         <td>:</td>
-                        <td> </td>
-                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"></input></td>                               
+                        <td><center> <?php echo $row->currency;?></td>
+                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
                       </tr>                                
                       </tbody>
                     </table>
@@ -435,15 +589,23 @@
                         <td>Menyetujui, <br><br><br><br></td>
                       </tr>
                       <tr> 
-                        <td>Nama : &nbsp; <input type="text" name="display_name" value="<?php echo $row->display_name?>"></td>
+                        <td>Nama : &nbsp; <select id="pegawai" name="display_name" >
+                                          <option value="<?php echo $row->display_name?>"><?php echo $row->display_name?></option>
+                                          <option value="">--Choose--</option>
+                                          <?php foreach($pegawai as $pgw){ ?>
+                                          <option value="<?php echo $pgw->display_name?>"><?php echo $pgw->display_name?> - <?php echo $pgw->jabatan?></option>
+                                          <?php } ?>
+
+                                          </select>
+                        </td>
                         <?php foreach ($divhead as $divhead) { ?>
                         <td>Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
+                        <?php } ?>                        
                       </tr>
                       <tr>
-                        <td>Jabatan : &nbsp; <input type="text" name="jabatan" value="<?php echo $row->jabatan?>"></td>
+                        <td>Jabatan : &nbsp; <input id="jabatan" type="text" name="jabatan" value="<?php echo $row->jabatan?>" readonly></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
                                                 echo "Division Head of"; } ?> <?php echo $divhead->division_id; ?> </td>
-                        <?php } ?>                        
                       </tr>                            
                     </tbody>
                     </table>
@@ -453,8 +615,8 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                        <a class="btn btn-warning" href="Tri" role="button">Cancel</a>
-                        <button type="submit" class="btn btn-success third">Save</button>
+                        <a class="btn btn-warning" href="Tri" role="button">Exit</a>
+                        <button type="button" class="btn btn-success" onclick="saveeditdraft()">Save</button>
                         <!-- <button type="button" data-toggle="modal" data-target="#modalNext" class="btn btn-primary">View</button>  -->
                     </div>
             </div>
@@ -504,7 +666,7 @@
 
 </div>
 <!-- ./wrapper -->
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -523,9 +685,9 @@
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
 <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    
 <script>
 
 function penjumlahan(){
@@ -559,21 +721,29 @@ function penjumlahan(){
   // }
 }
 
-function fung(){
+function fung(param1,param2,param3){
   // alert();  
-  var data = document.getElementById("penerima").value;
-  
-  document.getElementById("kode_vendor").value = data;
+  var data = document.getElementById(""+param1).value; 
+  var strdata=$("#"+param1+" option:selected").text().split(" - "); 
+  document.getElementById(""+param2).value = data;
+  document.getElementById(""+param3).value = strdata[0];
 }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Save!");
-  function tambah() {
-  location.reload(true);
-        tr.hide();
-  }
+// function pegawaii(){
+//   // alert();  
+//   var data = document.getElementById("pegawai").value;
   
-});
+//   document.getElementById("jabatan").value = data;
+// }
+
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Save!");
+//   function tambah() {
+//   location.reload(true);
+//         tr.hide();
+//   }
+  
+// });
 
 function myFunction(){
   var x = document.getElementById("Select").value;
@@ -688,10 +858,17 @@ function showInput() {
 <script type="text/javascript">
   
   var rupiah = document.getElementById('rupiah');
-  rupiah.addEventListener('keyup', function(e){
+  rupiah.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var strrupiah =rupiah.value;
+	if (strrupiah.substr(0,1)=="(" && strrupiah.substr(strrupiah.length-1,1)==")"){
+		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-1)) + ")";
+	}else{
     rupiah.value = formatRupiah(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -713,10 +890,17 @@ function showInput() {
   }
 
   var rupiah2 = document.getElementById('rupiah2');
-  rupiah2.addEventListener('keyup', function(e){
+  rupiah2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var strrupiah2 =rupiah2.value;
+	if (strrupiah2.substr(0,1)=="(" && strrupiah2.substr(strrupiah2.length-1,1)==")"){
+		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-2)) + ")";
+	}else if(strrupiah2.substr(0,1)=="-") {
+		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-1)) + ")";
+	}else{
     rupiah2.value = formatRupiah2(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -738,10 +922,17 @@ function showInput() {
   }
 
   var rupiah3 = document.getElementById('rupiah3');
-  rupiah3.addEventListener('keyup', function(e){
+  rupiah3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var strrupiah3 =rupiah3.value;
+	if (strrupiah3.substr(0,1)=="(" && strrupiah3.substr(strrupiah3.length-1,1)==")"){
+		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-1)) + ")";
+	}else{
     rupiah3.value = formatRupiah3(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -788,10 +979,17 @@ function showInput() {
   }
 
   var uangmuka = document.getElementById('uangmuka');
-  uangmuka.addEventListener('keyup', function(e){
+  uangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    uangmuka.value = formatuangmuka(this.value);
+    var struangmuka =uangmuka.value;
+	if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
+	}else if(strrupiah.substr(0,1)=="-") {
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
+	}else{
+		uangmuka.value = formatuangmuka(this.value);
+	}
   });
 
   /* Fungsi formatRupiah */
@@ -812,31 +1010,31 @@ function showInput() {
     return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
   }
 
-  var hasil = document.getElementById('hasil');
-  hasil.addEventListener('mousemove', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    hasil.value = formathasil(this.value);
-  });
+  // var hasil = document.getElementById('hasil');
+  // hasil.addEventListener('mousemove', function(e){
+  //   // tambahkan 'Rp.' pada saat form di ketik
+  //   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+  //   hasil.value = formathasil(this.value);
+  // });
 
-  /* Fungsi formatRupiah */
-  function formathasil(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    hasil     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+  // /* Fungsi formatRupiah */
+  // function formathasil(angka, prefix){
+  //   var number_string = angka.replace(/[^,\d]/g, '').toString(),
+  //   split   		= number_string.split(','),
+  //   sisa     		= split[0].length % 3,
+  //   hasil     		= split[0].substr(0, sisa),
+  //   ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
 
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      hasil += separator + ribuan.join('.');
-    }
+  //   // tambahkan titik jika yang di input sudah menjadi angka ribuan
+  //   if(ribuan){
+  //     separator = sisa ? '.' : '';
+  //     hasil += separator + ribuan.join('.');
+  //   }
 
-    hasil = split[1] != undefined ? hasil + ',' + split[1] : hasil;
-    return prefix == undefined ? '('+hasil+')' : (hasil? + hasil : '');
+  //   hasil = split[1] != undefined ? hasil + ',' + split[1] : hasil;
+  //   return prefix == undefined ? '('+hasil+')' : (hasil? + hasil : '');
 
-  }
+  // }
 
   $(document).ready(function() { 
     $('#dropdown').change(function() {
@@ -858,6 +1056,7 @@ function showInput() {
       $('#checked2').prop('checked', false);
       $('#show').hide();
       $('#choose').hide();
+	  $('#jns_pembayaran').val('6');
     }else{
       $('#auto').prop('checked', false);
       $('#checkrequest').prop('checked', false);
@@ -866,6 +1065,7 @@ function showInput() {
       $('#checked2').prop('checked', false);
       $('#show').show();
       $('#choose').show();
+	  $('#jns_pembayaran').val('');
     }
   });
 
@@ -892,7 +1092,11 @@ function showInput() {
 		$('#checkcreditcard').prop('checked', false);
 		$('#show').hide();
 		$('#choose').hide();
-
+		if($("#checked").is(':checked')){      
+			$('#jns_pembayaran').val('4');
+		}else{
+			$('#jns_pembayaran').val('');
+		}
 	});	
 
 	$("#checked2").on( "click", function() {	
@@ -903,7 +1107,11 @@ function showInput() {
 		$('#checkcreditcard').prop('checked', false);
 		$('#show').hide();
 		$('#choose').hide();
-
+		if($("#checked2").is(':checked')){      
+			$('#jns_pembayaran').val('5');
+		}else{
+			$('#jns_pembayaran').val('');
+		}
 	});	
 	
 	$("#checkrequest").on( "click", function() {
@@ -916,8 +1124,10 @@ function showInput() {
 		  
 		if($("#checkrequest").is(':checked')){
 		  $('#choose').show();
+		  $('#jns_pembayaran').val('2');
 		}else{
 		  $('#choose').hide();
+		  $('#jns_pembayaran').val('');
 		}
 	});	
 	
@@ -930,11 +1140,179 @@ function showInput() {
 		if($("#checksettlement").is(':checked')){
 			$('#auto').prop('checked', true);	
 			$('#show').show();
-			
+			$('#jns_pembayaran').val('3');
 		}else{
 			$('#show').hide();
+			$('#jns_pembayaran').val('2');
 		}
 		
 		
 	});	
+	
+var countervendor=$('#txtcountervendor').val();
+var szcountervendor;
+function AddIndeks(){
+		szcountervendor = parseInt(countervendor)+1;
+		var zstr="'tr" + szcountervendor + "'";
+		var xpenerimavendor="'penerimavendor" + szcountervendor + "'";
+		var xkodevendor="'kodevendor" + szcountervendor + "'";
+		var xnamavendor="'namavendor" + szcountervendor + "'";
+		var xbankvendor="bankvendor" + szcountervendor;
+		var xrekeningvendor="rekeningvendor" + szcountervendor ;
+		var xnominalvendor="nominalvendor" + szcountervendor ;
+		var newTextBoxDiv = $(document.createElement('tr')).attr("id", 'tr' + szcountervendor);
+		var strhtml='';	
+		var arrkdvendor;
+		strhtml=strhtml + '<td><select id="penerimavendor'+szcountervendor+'" onchange="fung('+xpenerimavendor+','+xkodevendor+','+xnamavendor+')" class="form-control" name="penerimavendor[]" > ' ;
+		strhtml=strhtml + '<option value="">--Choose--</option> ';
+		
+		strvendor =document.getElementById("strvendor").value;
+		arrvendor = strvendor.split(";");
+	
+		for (i=0;i<arrvendor.length; i++){
+			arrkdvendor=arrvendor[i].split(" - ");
+			strhtml=strhtml + '<option value="' + arrkdvendor[1] + '">' + arrvendor[i] + '</option>';
+		}
+		strhtml=strhtml + '</select><input id="kodevendor'+szcountervendor+'" type="hidden" name="kodevendor[]"  /><input id="namavendor'+szcountervendor+'" type="hidden" name="namavendor[]"  /></td>'
+		
+		strhtml=strhtml + '<td><select id="bankvendor'+szcountervendor+'" class="form-control" name="bankvendor[]" > ' ;
+		strhtml=strhtml + '<option value="">--Choose--</option> ';
+		
+		strbank =document.getElementById("strbank").value;
+		arrbank = strbank.split(";");
+	
+		for (i=0;i<arrbank.length; i++){
+			strhtml=strhtml + '<option value="' + arrbank[i] + '">' + arrbank[i] + '</option>';
+		}
+		strhtml=strhtml + '</select></td>'
+		
+		strhtml=strhtml + '<td><input id="'+xrekeningvendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' + 
+						  '<td><input class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>' +
+						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
+						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
+		
+		newTextBoxDiv.after().html(strhtml);
+				
+		$('#show1 tbody').append(newTextBoxDiv);
+		$('#txtcountervendor').val(szcountervendor);
+		
+		countervendor++;		
+		
+	}
+	
+	function RemoveIndeks(param){
+		$('#'+param ).remove();		
+		countervendor--;
+		$('#txtcountervendor').val(countervendor);		
+		
+		var itotal=0;
+		var inps = document.getElementsByName('nominalvendor[]');
+		for (var i = 0; i <inps.length; i++) {
+			var inp=inps[i];
+			var xj=inp.value;
+			var yz=xj.replace(/[^,\d]/g, '').toString();
+			itotal = itotal+parseFloat(yz);
+		}
+		//alert(itotal.toString());
+		$('#lbltotalvendor').text(formatRupiah(itotal.toString()));		
+    }
+	
+	function gettotalvendor(){
+		var itotal=0;
+		var inps = document.getElementsByName('nominalvendor[]');
+		for (var i = 0; i <inps.length; i++) {
+			var inp=inps[i];
+			var xj=inp.value;
+			var yz=xj.replace(/[^,\d]/g, '').toString();
+			if (yz==""){
+				itotal = itotal+0;
+			}else{
+			itotal = itotal+parseFloat(yz);
+			}
+			inps[i].value=formatRupiah(yz.toString());
+		}
+		$('#lbltotalvendor').text(formatRupiah(itotal.toString()));		
+    }
+	function saveeditdraft() {
+  
+  	var errmsg="0";
+	
+	var inps1 = document.getElementsByName('kodevendor[]');
+	var inps2 = document.getElementsByName('bankvendor[]');
+	var inps3 = document.getElementsByName('rekeningvendor[]');
+	var lbl4 = document.getElementsByName('label4[]');
+	
+	if($('#jns_pembayaran').val()==""){
+		alert('Jenis Pembayaran belum dipilih');
+	}else if($('#tujuanPenggunaan').val()==""){
+		alert('Tujuan Penggunaan belum di input');
+	}else if($('#Select').val()==""){
+		alert('Mata Uang Pertama belum dipilih');
+	}else if($('#rupiah').val()==""){
+		alert('Nominal Jumlah Pertama belum di input');
+	}else if ($('#jns_pembayaran').val()=="2" && $('#perkiraanSelesai').val()==""){
+			alert('Perkiraan Tanggal Selesai Pekerjaan/Terima Barang belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
+			alert('Nomor ARF Terkait belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
+			alert('Jumlah Biaya belum di input');
+	}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
+			alert('Jumlah Uang Muka belum di input');
+	}else{
+		for (var i = 0; i <inps1.length; i++) {
+			if(inps1[i].value==""){
+				errmsg="Nama Vendor baris ke " + (i+1) + " belum di pilih";
+				break;
+			};
+			if(inps2[i].value==""){
+				errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
+				break;
+			};
+			if(inps3[i].value=="" && inps2[i].value!="Tunai"){
+				errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
+				break;
+			};
+		}
+		var schk=lbl4.length-1;
+		/*if (errmsg=="0"){
+			for (var x = 0; x <lbl4.length; x++) {
+				if(lbl4[x].checked){
+					errmsg="0";
+					break;
+				}else{
+					errmsg="Dokumen Lampiran belum di pilih";
+				};
+			}*/
+			
+			if (errmsg=="0"){
+					if(lbl4[schk].checked && $('#text1').val()==""){
+						alert('Dokumen Lampiran Lainnya belum di input');
+					}else{
+						url = "<?php echo base_url('Tri/saveeditpaymentnew')?>";  
+					   
+						$.ajax({
+						  url : url,
+						  type : "POST",
+						  data: $("#form").serialize(),
+						  dataType: "JSON",
+						  success: function(data){ // Ketika proses pengiriman berhasil          
+							alert('Data Berhasil Di simpan'); 
+								console.log(data);
+						},      
+						  error: function (data)
+						  {
+							console.log(data);
+							alert('Error adding / update data');
+						  }
+						});
+					}
+			}else{
+				alert(errmsg);
+			}
+		/*}else{
+			alert(errmsg);
+		}*/
+	}
+    
+}
 </script>

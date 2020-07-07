@@ -360,7 +360,6 @@ class Home extends CI_Controller {
 		$data['bank'] =$this->Home_model->getBank();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['currency'] = $this->Home_model->getCurrency();
-		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment('0');
 
 		$this->load->view('akses/user/header_user', $data);	
@@ -457,29 +456,29 @@ class Home extends CI_Controller {
 		redirect('Home');
 	}
 
-	public function draftprintdp($id_payment){
+	// public function draftprintdp($id_payment){
 
-		$upd = array(
-			'id_payment' => $id_payment,
-			'status' => 99
-		);
+	// 	$upd = array(
+	// 		'id_payment' => $id_payment,
+	// 		'status' => 99
+	// 	);
 
-		$this->Dashboard_model->updateprint($upd);
+	// 	$this->Dashboard_model->updateprint($upd);
 
-		redirect('Home/report_dp/'.$id_payment);
-	}
+	// 	redirect('Home/report_dp/'.$id_payment);
+	// }
 
-	public function draftprint($id_payment){
+	// public function draftprint($id_payment){
 
-		$upd = array(
-			'id_payment' => $id_payment,
-			'status' => 99
-		);
+	// 	$upd = array(
+	// 		'id_payment' => $id_payment,
+	// 		'status' => 99
+	// 	);
 
-		$this->Dashboard_model->updateprint($upd);
+	// 	$this->Dashboard_model->updateprint($upd);
 
-		redirect('Home/report/'.$id_payment);
-	}
+	// 	redirect('Home/report/'.$id_payment);
+	// }
 
 	public function approve(){
 		$upd = array(

@@ -584,6 +584,18 @@
                             <?php } ?>
                         <?php } ?>
 
+                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0){ ?>
+                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                                                      
+                              <a class="btn btn-danger" href="Dashboard/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              
+                              <a class="btn btn-danger" href="Dashboard/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+
+                            <?php } ?>
+                         <?php } ?>
+
                         <?php 
                           $sql = "SELECT activate FROM m_status WHERE id_status=11";
                           $query = $this->db->query($sql)->result();
@@ -596,16 +608,6 @@
                         ?>
                         
                         <?php 
-                            /*if($row->display_name == $this->session->userdata("display_name") && $row->status == 1){ ?>
-                                <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
-                                  <a class="btn btn-danger" href="Dashboard/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
-    
-                                <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                                  <a class="btn btn-danger" href="Dashboard/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
-    
-                                <?php }
-                              
-                            }*/ 
 
                           if($this->session->userdata("role_id") == 4){ ?>      
                           <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>

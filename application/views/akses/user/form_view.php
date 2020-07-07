@@ -553,12 +553,12 @@
                         <td>Nama : &nbsp; <?php echo $row->display_name?></td>
                         <?php foreach ($divhead as $divhead) { ?>
                         <td>Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
+                        <?php } ?>                        
                       </tr>
                       <tr>
                         <td>Jabatan : &nbsp; <?php echo $row->jabatan;?></td>
                         <td>Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
                                                 echo "SVP"; } ?> <?php echo $divhead->division_id; ?> </td>
-                        <?php } ?>                        
                       </tr>                            
                     </tbody>
                     </table>
@@ -584,6 +584,18 @@
                             
                         <?php } ?>
                         
+                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0){ ?>
+                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
+                                                      
+                              <a class="btn btn-danger" href="Home/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+
+                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
+                              
+                              <a class="btn btn-danger" href="Home/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+
+                            <?php } ?>
+                        <?php } ?>
+
                         <?php 
                           $sql = "SELECT activate FROM m_status WHERE id_status=11";
                           $query = $this->db->query($sql)->result();
@@ -596,17 +608,7 @@
                         ?>
                         
                         <?php 
-                          /*if($row->display_name == $this->session->userdata("display_name") && $row->status == 1){ ?>
-                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
-                                                      
-                              <a class="btn btn-danger" href="Home/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
-
-                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              
-                              <a class="btn btn-danger" href="Home/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
-
-                            <?php }
-                          } */
+                          
                           if($this->session->userdata("role_id") == 4){ ?>      
                           <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>
                           <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
@@ -661,15 +663,6 @@
 
                         <?php if($row->status == 11 || $row->status == 99){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
-                                                        
-                              <a class="btn btn-danger" href="Home/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
-
-                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              
-                              <a class="btn btn-danger" href="Home/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
-
-                            <?php } ?>  
 
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                             <!----.Modal -->
