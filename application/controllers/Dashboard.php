@@ -90,7 +90,7 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['draft'] = $this->Home_model->getTotalDraftPeriode($data['start_date'],$data['end_date']);
 		$data['tot_pay_req'] = $this->Home_model->getTotalPeriode($data['start_date'],$data['end_date']);
-		$data['submit'] = $this->Home_model->getSubmitted($data['start_date'],$data['end_date']);
+		$data['submit'] = $this->Home_model->getSubmittedPeriode($data['start_date'],$data['end_date']);
 		$data['outstanding'] = $this->Home_model->getOutstandingPeriode($data['start_date'],$data['end_date']);
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverduePeriode($data['start_date'],$data['end_date']);
 		$data['draftprint'] = $this->Home_model->getDraftPrintPeriode($data['start_date'],$data['end_date']);
@@ -2619,7 +2619,7 @@ class Dashboard extends CI_Controller {
 		switch ($id) {
 		  case "1":
 			$data['payment'] = $this->Home_model->getPaymentDetail($sid);
-			$this->session->set_userdata('titleHeader','All Payment Request List');
+			$this->session->set_userdata('titleHeader','Payment Request List');
 			$this->session->set_userdata('filter','1');
 			break;
 		  case "2":

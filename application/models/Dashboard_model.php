@@ -637,8 +637,11 @@ class Dashboard_model extends CI_Model{
 
     function getUpcomingOverdue(){
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT label3 + INTERVAL '14' DAY as upcoming from `t_payment` WHERE division_id='$dvs' AND jenis_pembayaran LIKE '%2%' ";
+        $sql = "SELECT label3 + INTERVAL '14' DAY as upcoming from `t_payment` WHERE division_id='$dvs' AND jenis_pembayaran LIKE '%2%' 
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;

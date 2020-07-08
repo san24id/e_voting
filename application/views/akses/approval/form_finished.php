@@ -150,17 +150,17 @@
                         </td>
 
                         <td>
-                          <input id="checked" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> >Direct Payment<br>
+                          <input id="checked" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> ><b><i>Direct Payment<br>
                         </td>
                         <td>
-                          <input id="checked2" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> > Cash Received</input><br>
+                          <input id="checked2" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> ><b><i> Cash Received</input><br>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2; ?> >Permintaan Uang Muka/Request<br>
+                          <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2; ?> >Permintaan Uang Muka/<i>Advance Request<br>
                         </td>
                         <td>
                             <input id="checkcreditcard" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6; ?> > Corporate Credit Card </input><br>
@@ -170,7 +170,7 @@
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checksettlement" type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> >Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                          <input id="checksettlement" type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> >Pertanggungjawaban Uang Muka/<i>Advance Settlement<br>                            
                         </td>
                       </tr>         
 						<input type="hidden" id="jns_pembayaran" name="jns_pembayaran" value="<?php echo $test1; ?> "> 
@@ -327,12 +327,12 @@
 														<table id="show1" class="table table-bordered table-striped"> 
 														  <thead>
 															<tr>
-																<th>Nama Vendor <font color="red"> * </font></th>
-																<th>Nama Bank <font color="red"> * </font></th>
+																<th>Penerima Pembayaran <font color="red"> * </font></th>
+																<th>Tunai/Transfer <font color="red"> * </font></th>
 																<th>Nomor Rekening <font color="red"> * </font></th>
 																<th>Nominal</th>
 																<th>&nbsp;</th>
-															 </tr>
+                              </tr>
 														  </thead>
 														  <tbody>
 														  <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
@@ -578,7 +578,7 @@
                         <td> <center><?php echo $row->currency;?></td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih <font color="red"> * </font></td> 
+                        <td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
                         <td><center> <?php echo $row->currency;?></td>
                         <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
@@ -991,7 +991,7 @@ function showInput() {
     var struangmuka =uangmuka.value;
 	if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
 		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
-	}else if(strrupiah.substr(0,1)=="-") {
+	}else if(struangmuka.substr(0,1)=="-") {
 		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
 	}else{
 		uangmuka.value = formatuangmuka(this.value);

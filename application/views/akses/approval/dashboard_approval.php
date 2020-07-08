@@ -295,8 +295,8 @@
         <div class="box box-default">
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
-				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Advanced Search</button>
-        <button class="btn btn-default" data-toggle="collapse" data-target="#export"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button>
+        <button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
+        <a href="Approval/exportdashboard"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
 				
 			</div>
 			<!-- /.box-header -->
@@ -341,50 +341,6 @@
 				</div>
 			</div>
 
-      <div id="export" class="collapse">
-				<div class="box-body">
-					<div class="row">
-						<form id="formExport">		
-							<div class="col-md-12">
-								<div class="form-group">
-									<label class="col-md-1">Export Data</label>
-									<!-- <div class="col-md-2">
-                    <select class="form-control select2" id="selexport" name="selexport" style="width: 100%;">
-											<option value='0'>== Pilih ==</option>
-											<option value='1'> All </option>
-											<option value='2'> Advance Request </option>
-											<option value='3'> Advance Settlement </option>
-											<option value='4'> Direct Payment </option>
-											<option value='5'> Cash Received </option>
-										</select>
-									</div> 	 -->
-									<!-- <div class="col-md-6">
-										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
-									</div>		 -->
-										
-									<div class="col-md-3">
-								<!-- <div class="form-group">
-									<label>&nbsp;</label>      -->        
-									<span class="input-group-btn">
-                    <button type="button" id="btnExport" class="btn btn-success btn-flat" onclick="exportdataPDF()" ><i class="glyphicon glyphicon-download"></i>&nbsp;&nbsp;Export PDF</button>
-										<button type="button" id="btnExport" class="btn btn-success btn-flat" onclick="exportdataExcel()" ><i class="glyphicon glyphicon-download"></i>&nbsp;&nbsp;Export Excel</button>
-									</span>   
-
-								<!-- </div> -->
-								<!-- /.form-group -->
-							</div>
-								</div>     
-								
-							</div>
-						</form>
-						<!-- /.col -->
-					 </div>
-				  <!-- /.row -->
-				</div>
-			</div>
-			<!-- /.box-body -->        
-		</div>
-
         <div class="row">
             <div class="col-xs-12">
             <!-- /.box -->
@@ -402,7 +358,7 @@
                       <th>Nomor SP3</th>
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
-                      <th>Nama Penerima</th>
+                      <th>Penerima Pembayaran</th>
                       <th>Tanggal Submit SP3</th>
                       <th>Action</th>
                     </tr>
@@ -445,7 +401,7 @@
                           }   
                         ?></center>
                     </td>                  
-                    <td><?php echo $row->tanggal; ?></td>
+                    <td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){

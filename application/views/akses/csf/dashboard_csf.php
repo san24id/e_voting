@@ -297,7 +297,7 @@
 		<div class="box box-default">
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
-				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Advanced Search</button>
+				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
         <!-- <button class="btn btn-default" data-toggle="collapse" data-target="#export"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button> -->
         <a href="dashboard/exportdashboard"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
 				
@@ -361,7 +361,7 @@
                       <th>Nomor SP3</th>
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
-                      <th>Nama Penerima</th>
+                      <th>Penerima Pembayaran</th>
                       <th>Tanggal Submit SP3</th>
                       <th>Action</th>
                     </tr>
@@ -406,7 +406,7 @@
                             }   
                           ?></center>
                       </td>                  
-                      <td><?php echo $row->tanggal; ?></td>
+                      <td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
                       <td><?php                     
                           for($a=0; $a<$test3; $a++){
                             if($test2[$a]){
@@ -430,7 +430,7 @@
                       <td><?php echo $buka; ?></td>
                       <td><?php echo $row->submit_date;?></td>
                       <td>
-                        <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
+                        <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                       </td>      
                     </tr>
                 <?php  } ?>

@@ -69,16 +69,16 @@
                           <input id="auto" type="checkbox" disabled> <b>Uang Muka/Advance</b><br>
                         </td>
                         <td>
-                          <input id="checked"  type="checkbox" name="jenis_pembayaran[]" value="4"> Direct Payment</input><br>
+                          <input id="checked"  type="checkbox" name="jenis_pembayaran[]" value="4"><b><i> Direct Payment</input><br>
                         </td>
                         <td>
-                          <input id="checked2"  type="checkbox" name="jenis_pembayaran[]" value="5"> Cash Received</input><br>
+                          <input id="checked2"  type="checkbox" name="jenis_pembayaran[]" value="5"><b><i> Cash Received</input><br>
                         </td>
                       </tr>  
                       <tr>
                           <td></td>
                           <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/Request</input><br>
+                            <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/<i>Advance Request</input><br>
                           </td>
                           <td>
                             <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Corporate Credit Card </input><br>
@@ -87,9 +87,9 @@
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checksettlement"  type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggung Jawaban Uang Muka/Settlement</input><br>                            
+                          <input id="checksettlement"  type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggungjawaban Uang Muka/<i>Advance Settlement</input><br>                            
                         </td>
-                      </tr> 
+                      </tr>
 						<input type="hidden" id="jns_pembayaran" name="jns_pembayaran" >  
                     </table>
 
@@ -242,13 +242,13 @@
 														<div class="table-responsive" >
 														<table id="show1" class="table table-bordered table-striped"> 
 														  <thead>
-															<tr>
-																<th>Nama Vendor <font color="red"> * </font></th>
-																<th>Nama Bank <font color="red"> * </font></th>
+                              <tr>
+																<th>Penerima Pembayaran <font color="red"> * </font></th>
+																<th>Tunai/Transfer <font color="red"> * </font></th>
 																<th>Nomor Rekening <font color="red"> * </font></th>
 																<th>Nominal</th>
 																<th>&nbsp;</th>
-															 </tr>
+                              </tr>
 														  </thead>
 														  <tbody>
 														  <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
@@ -436,7 +436,7 @@
                         <td><center><p id="demo2">  </p></td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input> </td>     
                       <tr>
-                        <td>Selisih Kurang/Lebih</td> 
+                        <td>Selisih Kurang/(Lebih)</td> 
                         <td>:</td>
                         <td><center><p id="demo3">  </p></td>
                         <!--<td><input type="text" name="label19a" class="form-control"></td>-->

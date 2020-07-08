@@ -4,10 +4,15 @@ class Home_model extends CI_Model{
 
     public function getPayment($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND tanggal2
+                BETWEEN '$start_date' AND '$end_date' ";
                 
         $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+
         return $query;
     }
 
@@ -20,9 +25,11 @@ class Home_model extends CI_Model{
 
     public function getPaymentDetail($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
-                AND status in ('0','1','2','3','4','5','6','7','8','9')";
+                AND status in ('0','1','2','3','4','5','6','7','8','9','10','11') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -30,11 +37,12 @@ class Home_model extends CI_Model{
 
     public function getVPayment() {
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
         
-        $sql = "SELECT * FROM (SELECT b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a 
-                RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' GROUP by b.jenis_pembayaran ORDER by b.id_pay) 
-                otr WHERE otr.dsc != '' AND otr.division_id = '$dvs' AND otr.jmlpembayaran != 0 ";
+        $sql = "SELECT a.tanggal2, b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b 
+                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
+                AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' GROUP BY b.jenis_pembayaran";
                
             //    var_dump($sql);exit;
         $query = $this->db->query($sql)->result();
@@ -121,9 +129,10 @@ class Home_model extends CI_Model{
 
     public function getDraftPrint(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status in ('1', '3', '11', '99') AND division_id='$dvs' ";
+        $sql = "SELECT COUNT(status) as draftprint FROM t_payment WHERE status in ('1', '3', '11', '99') AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -152,9 +161,10 @@ class Home_model extends CI_Model{
     
     public function getSubmitted(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as submit FROM t_payment WHERE status='2' AND division_id='$dvs' ";
+        $sql = "SELECT COUNT(status) as submit FROM t_payment WHERE status='2' AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -175,9 +185,11 @@ class Home_model extends CI_Model{
 
     public function getOutstanding(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','9') AND division_id='$dvs'";
+        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','9') AND division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -196,9 +208,10 @@ class Home_model extends CI_Model{
 
     public function getProcessing(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status in ('4','5','6','7') AND division_id='$dvs' ";
+        $sql = "SELECT COUNT(status) as process FROM t_payment WHERE status in ('4','5','6','7') AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ";
         
         $query = $this->db->query($sql)->result();
         return $query;
@@ -219,9 +232,10 @@ class Home_model extends CI_Model{
 
     function getVerifikasi(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND division_id='$dvs' ";
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -239,9 +253,10 @@ class Home_model extends CI_Model{
 
     function getApproval(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9' AND division_id='$dvs' ";
+        $sql = "SELECT COUNT(status) as approval FROM t_payment WHERE status='9' AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -259,9 +274,10 @@ class Home_model extends CI_Model{
 
     function getPaid(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10' AND division_id='$dvs' ";
+        $sql = "SELECT COUNT(status) as paid FROM t_payment WHERE status='10' AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -289,9 +305,11 @@ class Home_model extends CI_Model{
 
     public function getTotal(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','2','3','4','5','6','7','8','9')";
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','2','3','4','5','6','7','8','9')
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -324,9 +342,11 @@ class Home_model extends CI_Model{
 
     public function getTotalDraft(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 		
-        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','3','99')";
+        $sql = "SELECT COUNT(status) as totaldraft FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','3','99')
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         //  var_dump($query);exit;        
@@ -351,9 +371,10 @@ class Home_model extends CI_Model{
 
     public function getDraft(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as totdraft FROM t_payment WHERE division_id='$dvs' AND status='0'";
+        $sql = "SELECT COUNT(status) as totdraft FROM t_payment WHERE division_id='$dvs' AND status='0' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         // var_dump($sql);exit;        
         $query = $this->db->query($sql)->result();
@@ -407,6 +428,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');  
 
         $this->db->select('LEFT(t_payment.nomor_surat,4) as kode', FALSE);
+        $this->db->where('division_id', $dvs);
         $this->db->order_by('nomor_surat','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment');      //cek dulu apakah ada sudah ada kode di tabel.    
@@ -502,8 +524,11 @@ class Home_model extends CI_Model{
 
 	public function getDetailOutstanding($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('4','5','6','7','8','9') and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('4','5','6','7','8','9') and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -511,8 +536,11 @@ class Home_model extends CI_Model{
 	
 	public function getDetailDraft($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('0','1') and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('0','1') and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -520,8 +548,11 @@ class Home_model extends CI_Model{
 	
 	function getDetailUpcomingOverdue(){
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql ="SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() ";
+        $sql = "SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() 
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -529,8 +560,11 @@ class Home_model extends CI_Model{
 	
 	function getDetailOverdue(){
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql ="SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+        $sql = "SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() 
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -545,8 +579,11 @@ class Home_model extends CI_Model{
 
     public function getDetailDraftStatus($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '0' and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '0' and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -554,8 +591,11 @@ class Home_model extends CI_Model{
 
     public function getDetailDraftPrint($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','11','3') and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','11','3') and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -563,8 +603,11 @@ class Home_model extends CI_Model{
 
     public function getDetailSubmitted($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '2' and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '2' and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -572,8 +615,11 @@ class Home_model extends CI_Model{
 
     public function getDetailProcessing($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('4','5','6','7') and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('4','5','6','7') and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -581,8 +627,11 @@ class Home_model extends CI_Model{
 
     public function getDetailVerified($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '8' and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '8' and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -590,8 +639,11 @@ class Home_model extends CI_Model{
 
     public function getDetailApproved($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '9' and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '9' and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -599,8 +651,11 @@ class Home_model extends CI_Model{
 
     public function getDetailPaid($sid=0) {
         $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '10' and division_id='$dvs'";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '10' and division_id='$dvs'
+                AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;

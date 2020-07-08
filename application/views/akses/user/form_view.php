@@ -155,21 +155,21 @@
                           }else{
                                 $cek=" " ;
                           } ?>
-                          <input id="auto" <?php echo $cek;?> type="checkbox" disabled>Uang Muka/Advance<br>
+                         <input id="auto" <?php echo $cek;?> type="checkbox" disabled><b>Uang Muka/Advance<br>
                         </td>
 
                         <td>
-                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> disabled>Direct Payment<br>
+                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> disabled><b><i>Direct Payment<br>
                         </td>
                         <td>
-                          <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> disabled> Cash Received</input><br>
+                          <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> disabled><b><i> Cash Received</input><br>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2;?> disabled>Permintaan Uang Muka/Request<br>
+                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2;?> disabled>Permintaan Uang Muka/<i>Advance Request<br>
                         </td>
                         <td>
                             <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6;?> disabled> Corporate Credit Card </input><br>
@@ -179,9 +179,9 @@
                       <tr>
                         <td></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> disabled>Pertanggungjawaban Uang Muka/<i>Advance Settlement<br>                            
                         </td>
-                      </tr>                       
+                      </tr>                        
                     </table>
 
                     <br>
@@ -301,11 +301,12 @@
 														<table id="show1" class="table table-bordered table-striped"> 
 														  <thead>
 															<tr>
-																<th>Nama Vendor <font color="red"> * </font></th>
-																<th>Nama Bank <font color="red"> * </font></th>
+																<th>Penerima Pembayaran <font color="red"> * </font></th>
+																<th>Tunai/Transfer <font color="red"> * </font></th>
 																<th>Nomor Rekening <font color="red"> * </font></th>
 																<th>Nominal</th>
-															 </tr>
+																<th>&nbsp;</th>
+                              </tr>
 														  </thead>
 														  <tbody>
 														  <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
@@ -533,7 +534,7 @@
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih <font color="red"> * </font> </td> 
+                      <td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
                         <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
@@ -569,7 +570,8 @@
                     <div class="box">
                       <div class="box-header with-border">
                         <a class="btn btn-warning" href="Home" role="button">Exit</a>
-                        <?php if ($row->status == 0 || $row->status == 3) { ?>
+                        <?php if ($row->display_name == $this->session->userdata("display_name") && $row->status == 0 || $row->status == 3) { ?>
+
                           <a class="btn btn-primary" href="Home/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
                             <?php 
                                 $testl1 = $row->label4;

@@ -295,7 +295,7 @@
         <div class="box box-default">
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
-				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Advanced Search</button>
+				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
         <a href="Home/exportdashboard"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
 				
 			</div>
@@ -357,8 +357,8 @@
                       <th>Jenis Pembayaran</th>
                       <th>Nomor Surat</th>
                       <th>Deskripsi</th>
-                      <th>Pemohon</th>
-                      <th>Nama Penerima</th>
+                      <th>Nama Pemohon</th>
+                      <th>Penerima Pembayaran</th>
                       <th>Tanggal Submit SP3</th>
                       <th>Action</th>
                     </tr>
@@ -403,7 +403,7 @@
                           }   
                         ?></center>
                     </td>                  
-                    <td><?php echo $row->tanggal; ?></td>
+                    <td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
