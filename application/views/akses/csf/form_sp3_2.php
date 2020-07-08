@@ -472,7 +472,42 @@
 
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
 
+<script>
+var chkPARTNDE = document.getElementById('nilai');
+// alert(chkPARTNDE);
+  chkPARTNDE.addEventListener('focusout', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var strchkPARTNDE =chkPARTNDE.value;
+	if (strchkPARTNDE.substr(0,1)=="(" && strchkPARTNDE.substr(strchkPARTNDE.length-1,1)==")"){
+		chkPARTNDE.value = "(" + formatchkPARTNDE(strchkPARTNDE.substr(1,strchkPARTNDE.length-2)) + ")";
+	}else if(strchkPARTNDE.substr(0,1)=="-") {
+		chkPARTNDE.value = "(" + formatchkPARTNDE(strchkPARTNDE.substr(1,strchkPARTNDE.length-1)) + ")";
+	}else{
+		chkPARTNDE.value = formatchkPARTNDE(this.value);
+	}
+	//ulang.value = formatulang(this.value);
+  });
 
+  /* Fungsi formatRupiah */
+  function formatchkPARTNDE(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    chkPARTNDE     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      chkPARTNDE += separator + ribuan.join('.');
+    }
+
+    chkPARTNDE = split[1] != undefined ? chkPARTNDE + ',' + split[1] : chkPARTNDE;
+    return prefix == undefined ? chkPARTNDE : (chkPARTNDE? + chkPARTNDE : '');
+  }
+
+  </script>
 <script>
 
 var save_method; 

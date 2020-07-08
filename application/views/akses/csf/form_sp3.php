@@ -14,24 +14,19 @@
       .modal-footer * {
         visibility: hidden;
       }
-      .modal-admin {
-      /* new custom width */
-      width: 75%;
-      }
     }
-    
 </style>   
   
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+        <!-- <section class="content-header">
+          <h1>
+            EDIT DATA PAYMENT
+            <small></small>
+          </h1>
+        </section> -->
         <!-- Main content -->
-        <!-- <form id="form" method="post" action="Home/updatepayment" onsubmit="update()"> -->
-
-        <!-- <?php $message = $this->session->flashdata('msg');
-        if($message){
-          echo 'Berhasil disimpan!';
-        }?> -->
 
           <?php foreach ($ppayment as $row){ ?>          
             <section class="content">
@@ -74,27 +69,58 @@
                       ?>
                     </p>
                     <h5>
-                      <br>                        
+                      <br>
                       <left><img src="assets/dashboard/images/logo.png" alt="Logo Images"></left>
                       <br>
                       <center><b><u><font size="+2" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
-                       
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
+                        <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
+                        
                         </tr>
                       </tbody>
                     </table>
-                   
+
                     <br>
 
                     <table style="font-family: calibri;" width="100%">
                       <?php 
                         $test1 = $row->jenis_pembayaran;
-                        $test2 = explode(";", $test1);
+                        $chk2='';
+						$chk3='';
+						$chk4='';
+						$chk5='';
+						$chk6='';
+                        $test1 = trim($row->jenis_pembayaran);
+						switch ($test1) {
+						  case "2":
+							$chk2='checked';							
+							break;
+						  case "3":
+							$chk3='checked';
+							break;
+						  case "4":
+							$chk4='checked';
+							break;
+						  case "5":
+							$chk5='checked';
+							break;
+						  case "6":
+							$chk6='checked';
+							$chk4='checked';
+							break;
+						  default:
+							$chk2='';
+							$chk3='';
+							$chk4='';
+							$chk5='';
+							$chk6='';
+							
+						}
+						/*$test2 = explode(";", $test1);
                         $test3 = count($test2);
                                 
                         for($b=0; $b<$test3; $b++){
@@ -117,42 +143,45 @@
                           if($test2[$b] == '5'){
                             $xxi5 .= "5";
                           }
-                          
-						              if($test2[$b] == '6'){
+
+                          if($test2[$b] == '6'){
                             $xxi6 .= "6";
-                          }  
-                        }
-                                                  
+                          }
+                        }*/
                       ?>
                       <tr>
-                      <td><b>Jenis Pembayaran (pilih salah satu):</b></td>
-                      <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
+                        <td><b>Jenis Pembayaran <font color="red"> * </font> (pilih salah satu):</b></td>
+                        <td> <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { $cek="checked" ;
                           }else{
                                 $cek=" " ;
                           } ?>
-                        <input id="auto" <?php echo $cek;?> type="checkbox" disabled>Uang Muka/Advance<br>
-                      </td>
-                      <td>
-                        <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Direct Payment<br>
-                      </td>
-                      <td>
-                        <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $xxi5=="5"? 'checked':''?> disabled> Cash Received</input><br>
-                      </td>
-                      </tr> 
+                          <input id="auto" <?php echo $cek;?> type="checkbox" disabled>Uang Muka/Advance<br>
+                        </td>
+
+                        <td>
+                          <input id="check" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $chk4; ?> disabled>Direct Payment<br>
+                        </td>
+                        <td>
+                          <input id="checked2" onclick="hide()" type="checkbox" name="jenis_pembayaran[]" value="5" <?php echo $chk5; ?> disabled> Cash Received</input><br>
+                        </td>
+                      </tr>
+
                       <tr>
                         <td></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2;?> disabled>Permintaan Uang Muka/Request<br>
+                        </td>
                         <td>
-                        <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request<br>
-                      </td><td>
-                        <input id="checkcCC" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $xxi6=="6"? 'checked':''?> disabled>Corporate Credit Card<br>
-                      </td>
-                      </tr>   
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6;?> disabled> Corporate Credit Card </input><br>
+                        </td>
+                      </tr>
+                      
                       <tr>
-                      <td></td>
-                      <td>
-                        <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
-                      </td>
-                      </tr>                         
+                        <td></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> disabled>Pertanggung Jawaban Uang Muka/Settlement<br>                            
+                        </td>
+                      </tr>                       
                     </table>
 
                     <br>
@@ -184,28 +213,28 @@
                       <tbody>
                       <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
                       <tr>
-                        <td width="36%"><b>- Tujuan Penggunaan </b></td>
+                        <td width="35%"><b>- Tujuan Penggunaan <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
-                        <td colspan="6"><textarea type="text" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8" height="50%"><textarea type="text" rows="5" class="form-control" name="label1" readonly><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
-                        <td><b>- Jumlah :</b></td>
+                        <td><b>- Jumlah <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
 
-                        <td> <?php echo $row->currency;?> </td>
+                        <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency;?>" readonly> </td>
                         <td><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
 
-                        <td> <?php echo $row->currency2;?> </td>
+                        <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency2;?>" readonly> </td>
                         <td><input type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" readonly></td>
 
-                        <td> <?php echo $row->currency3;?> </td>
+                        <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency3;?>" readonly></td>
                         <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
-                      </tr>                                                
+                      </tr>                                                 
                       </tbody>
                     </table>
 
-                    <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $choosed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6) { $choosed="style='display: none'" ;
                     }else{
                           $choosed="style=''" ;
                     } ?>
@@ -213,7 +242,7 @@
                     <table id="choose" <?php echo $choosed;?> style="font-family: calibri;" width="100%">
                       <tbody>
                       <tr>
-                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang</b>
+                        <td width="36%"><b>- Perkiraan Tanggal Selesai Pekerjaan/Terima Barang <font color="red"> * </font></b>
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
@@ -225,10 +254,10 @@
 
                     <br>
 
-                    <table style="font-family: calibri;" width="100%">
+                    <!--<table style="font-family: calibri;" width="100%">
                       <tbody>
                       <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
-                        <?php 
+                      <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                           $query = $this->db->query($sql)->result();
                           // return $query;
@@ -239,17 +268,17 @@
                           }
                         ?>
                       <tr>
-                        <td width="36%">Nama</td>
-                        <td> : </td>
+                        <td width="35%"> &nbsp; &nbsp; Nama</td>
+                        <td><b> : </b></td>
                         <td colspan="4"> <input type="text" class="form-control" name="penerima" value="<?php echo $buka;?>" readonly></td>
                       </tr>
                       <tr>  
-                        <td>Kode Vendor</td>
-                        <td> : </td>
+                        <td> &nbsp; &nbsp; Kode Vendor</td>
+                        <td><b> : </b></td>
                         <td><input type="text" class="form-control" name="vendor" value="<?php echo $row->vendor;?>" readonly></td>
                         <td>Bank</td>
                         <td>:</td>
-                        <td>&nbsp; <?php echo $row->akun_bank; ?> </td>
+                        <td><input type="text" class="form-control" value="<?php echo $row->akun_bank; ?>" readonly> </td>
                       </tr>
                       <tr>
                       <td></td>
@@ -261,7 +290,99 @@
                       </tr>
                       
                       </tbody>
-                    </table>
+                    </table>-->
+					
+					<form id="frmvendor" action="#"> 
+														<input type="hidden" id="txtcountervendor" name="txtcountervendor" value="1" />
+														<input type="hidden" id="strvendor" name="strvendor" value="<?php echo $strvendor; ?>">
+														<input type="hidden" id="strbank" name="strbank" value="<?php echo $strbank; ?>">
+							
+														<div class="table-responsive" >
+														<table id="show1" class="table table-bordered table-striped"> 
+														  <thead>
+															<tr>
+																<th>Nama Vendor <font color="red"> * </font></th>
+																<th>Nama Bank <font color="red"> * </font></th>
+																<th>Nomor Rekening <font color="red"> * </font></th>
+																<th>Nominal</th>
+															 </tr>
+														  </thead>
+														  <tbody>
+														  <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
+														  <?php 
+															$ttlnomvendor=0;
+															$nomvendor='';
+															$vendorrow=0;
+															if ($getdatavendor == null){ ?>
+																<tr id="tr1">
+																<td ><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1')" class="form-control" name="penerimavendor[]" readonly>
+																	<option value="">--Choose--</option>
+																	<?php foreach ($data_vendor as $nama){?> 
+																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
+																	  
+																	<?php } ?>
+																	</select>
+																	<input id="kodevendor1" type="hidden" name="kodevendor[]"  />
+																	<input id="namavendor1" type="hidden" name="namavendor[]"  />
+																</td>
+																
+																<td><select id="bankvendor1" name="bankvendor[]" class="form-control" readonly>
+																	<option value="">--- Choose ---</option>
+																	<?php foreach ($bank as $get) {?>
+																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+																	<?php } ?>
+																	</select>
+																</td>
+																<td><input id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" readonly>
+																</td>      
+																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" readonly></td>																
+																<td>&nbsp;</td>
+																</tr>
+															<?php	
+															}else{
+															foreach($getdatavendor as $gvendor){
+																$nomvendor=str_replace(".","",$gvendor->nominal);
+																$ttlnomvendor=$ttlnomvendor+(float)$nomvendor;
+																$vendorrow++;
+															?>
+															<tr id="tr<?php echo $vendorrow; ?>">
+															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>')" class="form-control" name="penerimavendor[]" readonly>
+																	<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>
+																	<option value="">--Choose--</option>
+																	<?php foreach ($data_vendor as $nama){?> 
+																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
+																	<?php } ?>
+																	</select>
+																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]" value="<?php echo $gvendor->kode_vendor; ?>"  />
+																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]" value="<?php echo $gvendor->penerima; ?>"   /></td>
+															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control" readonly >
+																	<option value="<?php echo $gvendor->v_bank; ?>"> <?php echo $gvendor->v_bank;?> </option>
+																	<option value="">--- Choose ---</option>
+																	<?php foreach ($bank as $get) {?>
+																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+																	<?php } ?>
+																	</select>
+																</td>
+																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" readonly>
+																</td>   
+															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" readonly></td>
+															
+															
+															</tr>
+															<?php } }?>
+															
+														  </tbody>
+														  <tfoot>
+															<tr>
+																<th colspan="3" style="text-align:end;">Total</th>
+																  <th><label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
+																  <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
+				
+															</tr>
+														</tfoot>
+														</table>
+														</div> 
+														</form>
 
                     <br>
 
@@ -327,7 +448,6 @@
                           <input type="checkbox" name="label4[]" value="Copy PO/SPK" <?php echo $xxii6=="Copy PO/SPK"? 'checked':''?> disabled>Copy PO/SPK</input><br>
                         </td>
                       </tr>
-
                       <tr>
                         <td>
                           <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAP)" <?php echo $xxii2=="Berita Acara Pemeriksaan (BAP)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAP)</input><br>
@@ -336,16 +456,14 @@
                           <input type="checkbox" name="label4[]" value="Copy Kontrak/Perjanjian" <?php echo $xxii7=="Copy Kontrak/Perjanjian"? 'checked':''?> disabled>Copy Kontrak/Perjanjian</input><br>
                         </td>
                       </tr>
-
                       <tr>
                         <td>
-                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAST)</input><br>    
+                          <input type="checkbox" name="label4[]" value="Berita Acara Pemeriksaan (BAST)" <?php echo $xxii3=="Berita Acara Pemeriksaan (BAST)"? 'checked':''?> disabled>Berita Acara Pemeriksaan (BAST)</input><br> 
                         </td>
                         <td>
                           <input type="checkbox" name="label4[]" value="Faktur Pajak Rangkap 2" <?php echo $xxii8=="Faktur Pajak Rangkap 2"? 'checked':''?> disabled>Faktur Pajak Rangkap 2</input><br>
                         </td>
                       </tr>
-
                       <tr>
                         <td>
                           <input type="checkbox" name="label4[]" value="Bukti Penerimaan Jasa/Barang (Delivery Order)" <?php echo $xxii4=="Bukti Penerimaan Jasa/Barang (Delivery Order)"? 'checked':''?> disabled>Bukti Penerimaan Jasa/Barang (Delivery Order)</input><br>
@@ -354,7 +472,6 @@
                           <input type="checkbox" name="label4[]" value="Form DGT-1 & COD (Jika kode vendor tidak tersedia)" <?php echo $xxii9=="Form DGT-1 & COD (Jika kode vendor tidak tersedia)"? 'checked':''?> disabled>Form DGT-1 & COD (Jika kode vendor tidak tersedia)</input><br>
                         </td>
                       </tr>
-
                       <tr>
                         <td>
                           <input type="checkbox" name="label4[]" value="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)" <?php echo $xxii5=="Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)"? 'checked':''?> disabled>Copy Dokumen Permintaan Barang/Jasa terkait (PR/Memo)</input><br>
@@ -363,34 +480,33 @@
                           <input type="checkbox" name="label4[]" value="NPWP" <?php echo $xxii10=="NPWP"? 'checked':''?> disabled>NPWP (Jika kode vendor tidak tersedia)</input><br>
                         </td>
                       </tr>
-
                       <tr>
                         <td></td>
                         <td>
-                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada) : Rincian Pengeluaran</input><br>
-                          <?php if ($row->label4->$xxii11) { $showing="style='display: none'" ;
+                          <input id="lainnya" onclick="showInput()" type="checkbox" name="label4[]" value="Lainnya (Jika ada) : Rincian Pengeluaran" <?php echo $xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran"? 'checked':''?> disabled>Lainnya (Jika ada <font color="red"> * </font> )</input><br>
+                          <?php if ($xxii11=="Lainnya (Jika ada) : Rincian Pengeluaran") { $showing="style=''" ;
                           }else{ 
-                                $showing="style=''" ;
+                                $showing="style='display: none'" ;
                           } ?>
                             <textarea id="text1" <?php echo $showing;?> type="text" class="form-control" name="lainnya1" style="display:none" readonly> <?php echo $row->lainnya1;?></textarea> <br>
+                            <!-- <input id="text2" <?php echo $showing;?> type="text" class="form-control" name="lainnya2" style="display:none" value="<?php echo $row->lainnya2;?>" readonly> <br> -->
                         </td>
                       </tr>
                     </table>
 
                     <br>
 
-                    <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { $showed="style='display: none'" ;
+                    <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6) { $showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table id="show" <?php echo $showed;?> width="50%">
+                    <table width="70%" id="show" <?php echo $showed;?> >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
-                      <tr>
-                        <td><b>- Nomor ARF terkait</b></td>
+                        <td width="50%"><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
                         <td>:</td>
                         <td>
                           <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
@@ -407,23 +523,23 @@
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
-                        <td>Jumlah Biaya</td>
+                        <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
                       </tr>
-                      <td>Jumlah Uang Muka</td>
+                      <td>Jumlah Uang Muka <font color="red"> * </font> </td>
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
                       <tr>
-                      <td>Selisih Kurang/Lebih</td> 
+                      <td>Selisih Kurang/Lebih <font color="red"> * </font> </td> 
                         <td>:</td>
-                        <td> </td>
+                        <td align="center"><?php echo $row->currency;?> </td>
                         <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
                       </tr>                              
                       </tbody>
-                    </table>    
+                    </table>
 
                     <!--<?php if ($row->status == 5 ){ ?>
                       <hr style=" border: 0.5px solid #000;">

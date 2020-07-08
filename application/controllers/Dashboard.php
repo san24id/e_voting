@@ -144,6 +144,7 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 		
 		// $this->load->view('akses/user/header_user');
 		$this->load->view('akses/report/print2', $data);
@@ -440,6 +441,7 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Home_model->getDivHead();
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 		$data['process_tax'] = $this->Dashboard_model->getProcessTax2($id_payment);
 		// var_dump($data['process_tax']);exit;
 
@@ -1022,6 +1024,7 @@ class Dashboard extends CI_Controller {
 		$data['getdatanontax'] = $this->Dashboard_model->getDataNonTax($id_payment);
 		$data['getnouruttax'] = $this->Dashboard_model->getUrutTax($id_payment);
 		$data['getdatataxFlag'] = $this->Dashboard_model->getDataTaxFlag($id_payment);
+		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_sp3_2', $data);

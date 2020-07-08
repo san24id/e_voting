@@ -42,6 +42,7 @@ class SuperAdm extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
+		$data['getDivisi'] = $this->Dashboard_model->getDivision();
 		$data['profil'] = $this->SuperAdm_model->getProfilId();
 		
 		$this->load->view('akses/superadmin/header_admin', $data);
@@ -107,6 +108,7 @@ class SuperAdm extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['division'] = $this->SuperAdm_model->getDivisi();
+		$data['getDivisi'] = $this->Dashboard_model->getDivision();
 		// var_dump($data['division']);exit;
 
 		$this->load->view('akses/superadmin/header_admin', $data);

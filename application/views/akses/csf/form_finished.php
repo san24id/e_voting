@@ -340,6 +340,7 @@
 															$ttlnomvendor=0;
 															$nomvendor='';
 															$vendorrow=0;
+															$fvendor='';
 															if ($getdatavendor == null){ ?>
 																<tr id="tr1">
 																<td ><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1')" class="form-control" name="penerimavendor[]" >
@@ -353,7 +354,7 @@
 																	<input id="namavendor1" type="hidden" name="namavendor[]"  />
 																</td>
 																
-																<td><select id="bankvendor1" name="bankvendor[]" class="form-control" >
+																<td><select id="bankvendor1" name="bankvendor[]" class="form-control" onchange="drpbank('bankvendor1','rekeningvendor1')">
 																	<option value="">--- Choose ---</option>
 																	<?php foreach ($bank as $get) {?>
 																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
@@ -371,6 +372,12 @@
 																$nomvendor=str_replace(".","",$gvendor->nominal);
 																$ttlnomvendor=$ttlnomvendor+(float)$nomvendor;
 																$vendorrow++;
+																
+																if($gvendor->v_bank=="Tunai"){
+																	$fvendor='readonly';
+																}else{
+																	$fvendor='';
+																}
 															?>
 															<tr id="tr<?php echo $vendorrow; ?>">
 															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>')" class="form-control" name="penerimavendor[]" >
@@ -382,7 +389,7 @@
 																	</select>
 																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]" value="<?php echo $gvendor->kode_vendor; ?>"  />
 																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]" value="<?php echo $gvendor->penerima; ?>"   /></td>
-															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control"  >
+															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control"  onchange="drpbank('<?php echo 'bankvendor'.$vendorrow; ?>','<?php echo 'rekeningvendor'.$vendorrow; ?>')">
 																	<option value="<?php echo $gvendor->v_bank; ?>"> <?php echo $gvendor->v_bank;?> </option>
 																	<option value="">--- Choose ---</option>
 																	<?php foreach ($bank as $get) {?>
@@ -390,7 +397,7 @@
 																	<?php } ?>
 																	</select>
 																</td>
-																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" >
+																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $fvendor; ?> >
 																</td>   
 															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
 															
@@ -1156,8 +1163,8 @@ function AddIndeks(){
 		var xpenerimavendor="'penerimavendor" + szcountervendor + "'";
 		var xkodevendor="'kodevendor" + szcountervendor + "'";
 		var xnamavendor="'namavendor" + szcountervendor + "'";
-		var xbankvendor="bankvendor" + szcountervendor;
-		var xrekeningvendor="rekeningvendor" + szcountervendor ;
+		var xbankvendor="'bankvendor" + szcountervendor+ "'";
+		var xrekeningvendor="'rekeningvendor" + szcountervendor + "'";
 		var xnominalvendor="nominalvendor" + szcountervendor ;
 		var newTextBoxDiv = $(document.createElement('tr')).attr("id", 'tr' + szcountervendor);
 		var strhtml='';	
@@ -1174,7 +1181,7 @@ function AddIndeks(){
 		}
 		strhtml=strhtml + '</select><input id="kodevendor'+szcountervendor+'" type="hidden" name="kodevendor[]"  /><input id="namavendor'+szcountervendor+'" type="hidden" name="namavendor[]"  /></td>'
 		
-		strhtml=strhtml + '<td><select id="bankvendor'+szcountervendor+'" class="form-control" name="bankvendor[]" > ' ;
+		strhtml=strhtml + '<td><select id="bankvendor'+szcountervendor+'" class="form-control" name="bankvendor[]" onchange="drpbank('+xbankvendor+','+xrekeningvendor+')" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		
 		strbank =document.getElementById("strbank").value;
@@ -1185,7 +1192,7 @@ function AddIndeks(){
 		}
 		strhtml=strhtml + '</select></td>'
 		
-		strhtml=strhtml + '<td><input id="'+xrekeningvendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' + 
+		strhtml=strhtml + '<td><input id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' + 
 						  '<td><input class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
@@ -1321,9 +1328,18 @@ function chgJabatan(){
 		document.getElementById("jabatan").value=""; 
 	 }else{
 		var strdata=$("#pegawai option:selected").text().split(" - "); 
-
-    // alert(strdata[1]);
-		document.getElementById("jabatan").value = ''+ strdata[1]+''; 
+		document.getElementById("jabatan").value = '' + strdata[1] +''; 
 	 }  
 }
+
+function drpbank(param1,param2){
+		
+	  var data = document.getElementById(""+param1).value; 
+	  if(data=="Tunai"){
+		  $("#"+param2).prop( "readonly", true );
+	  }else{
+		  $("#"+param2).prop( "readonly", false );
+	  }	  
+	  
+	}
 </script>

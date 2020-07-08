@@ -127,12 +127,18 @@
               <tr>
                 <th>Division ID</th>
                 <td>:</td>
-                <td><input type="text" name="division_id" class="form-control"></td>
+                <td><select id="divisi" name="division_id" class="form-control" onchange="chgadd();">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($getDivisi as $dvs) { ?>
+                            <option value="<?php echo $dvs->division_id; ?>"><?php echo $dvs->division_name; ?> - <?php echo $dvs->division_id; ?></option>
+                            <?php } ?>                                 
+                    </select>
+                </td>
               </tr>
               <tr>
                 <th>Division Name</th>
                 <td>:</td>
-                <td><input type="text" name="division_name" class="form-control"></td>
+                <td><input id="dvs" type="text" name="division_name" class="form-control"></td>
               </tr>
               <tr>
                 <th>Short Divisi</th>
@@ -182,12 +188,19 @@
              <tr>
                 <th>Division ID</th>
                 <td>:</td>
-                <td><input type="text" name="div_id" class="form-control" value="<?php echo $row->division_id; ?>"></td>
-                </tr>
+                <td><select id="divisi2" name="division_id" class="form-control" onchange="chgupdate();">
+                        <option value="<?php echo $row->division_id; ?>"><?php echo $row->division_id; ?></option>
+                          <option value="">--Choose--</option>
+                            <?php foreach ($getDivisi as $dvs) { ?>
+                            <option value="<?php echo $dvs->division_id; ?>"><?php echo $dvs->division_name; ?> - <?php echo $dvs->division_id; ?></option>
+                            <?php } ?>                                 
+                        </select>
+                </td>
+            </tr>
             <tr>
                 <th>Division Name</th>
                 <td>:</td>
-                <td><input type="text" name="division_name" class="form-control" value="<?php echo $row->division_name; ?>"></td>
+                <td><input type="text" id="dvs2" name="division_name" class="form-control" value="<?php echo $row->division_name; ?>"></td>
             </tr>
             <tr>
                 <th>Short Divisi</th>
@@ -298,5 +311,26 @@
           }      
       });
   });  
+</script>
+
+<script>
+function chgadd(){
+	 if($("#divisi option:selected").val()==""){
+		document.getElementById("dvs").value=""; 
+	 }else{
+		var strdata=$("#divisi option:selected").text().split(" - "); 
+		document.getElementById("dvs").value = '' + strdata[1] +''; 
+	 }  
+}
+
+function chgupdate(){
+	 if($("#divisi2 option:selected").val()==""){
+		document.getElementById("dvs2").value=""; 
+	 }else{
+		var strdata=$("#divisi2 option:selected").text().split(" - "); 
+		document.getElementById("dvs2").value = '' + strdata[1] +''; 
+	 }  
+}
+
 </script>
 </body>

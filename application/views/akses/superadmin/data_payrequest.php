@@ -179,7 +179,13 @@
                 <tr>
                   <th>Divisi</th>
                   <td>:</td>
-                  <td><input type="text" name="division_id" class="form-control"></td>
+                  <td><select id="divisi" name="division_id" class="form-control">
+                            <option value="">--Choose--</option>
+                            <?php foreach ($getDivisi as $dvs) { ?>
+                            <option value="<?php echo $dvs->division_id; ?>"><?php echo $dvs->division_name; ?> - <?php echo $dvs->division_id; ?></option>
+                            <?php } ?>                                 
+                      </select>
+                  </td>
                 </tr>
                 <tr>
                   <th>Role</th>
@@ -331,7 +337,14 @@
                 <tr>
                   <th>Divisi</th>
                   <td>:</td>
-                  <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id; ?>"></td>
+                  <td><select id="divisi" name="division_id" class="form-control" onchange="chgadd();">
+                            <option value="<?php echo $row->division_id; ?>"><?php echo $row->division_id; ?></option>
+                            <option value="">--Choose--</option>
+                            <?php foreach ($getDivisi as $dvs) { ?>
+                            <option value="<?php echo $dvs->division_id; ?>"><?php echo $dvs->division_name; ?> - <?php echo $dvs->division_id; ?></option>
+                            <?php } ?>                                 
+                      </select>
+                  </td>
                 </tr>
                 <?php if($row->role_id != 1){ ?>
                 <tr>

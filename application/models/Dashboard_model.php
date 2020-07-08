@@ -10,7 +10,7 @@ class Dashboard_model extends CI_Model{
     }
 
     public function monitoring() {
-        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('2','4','5','6','7','8','9','10')";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('2','4','5','6','7','8','9','10')";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -36,7 +36,7 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT * FROM t_payment WHERE status='5' AND rejected_by in ('h.harlina','i.akmal') ";
+        $sql ="SELECT * FROM t_payment WHERE status in ('4','5') AND rejected_by in ('h.harlina','i.akmal') ";
 
         $query = $this->db->query($sql)->result();
         return $query;
