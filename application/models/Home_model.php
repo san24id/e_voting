@@ -23,10 +23,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getPaymentDetail($sid=0) {
+    public function getPaymentDetail($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
                 AND status in ('0','1','2','3','4','5','6','7','8','9','10','11') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -52,6 +58,15 @@ class Home_model extends CI_Model{
     public function getVPaymentPeriode($start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
+
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
         
         $sql = "SELECT a.tanggal2, b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b 
                 ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
@@ -63,34 +78,55 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getVdp(){
+    public function getVdp($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%4%' 
-                AND division_id='$dvs' ";
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
-    public function getVar(){
+    public function getVar($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
-                AND division_id='$dvs' ";
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ";
 
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
-    public function getVcr(){
+    public function getVcr($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%5%' 
-                AND division_id='$dvs' ";
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -106,12 +142,19 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getVasr(){
+    public function getVasr($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
-                AND division_id='$dvs' ";
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -522,10 +565,16 @@ class Home_model extends CI_Model{
     }
 	
 
-	public function getDetailOutstanding($sid=0) {
+	public function getDetailOutstanding($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('4','5','6','7','8','9') and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -534,10 +583,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 	
-	public function getDetailDraft($sid=0) {
+	public function getDetailDraft($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('0','1') and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -546,10 +601,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 	
-	function getDetailUpcomingOverdue(){
+	function getDetailUpcomingOverdue($sid=0,$start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() 
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -558,10 +619,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 	
-	function getDetailOverdue(){
+	function getDetailOverdue($sid=0,$start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() 
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -577,10 +644,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getDetailDraftStatus($sid=0) {
+    public function getDetailDraftStatus($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }        
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '0' and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -589,10 +662,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getDetailDraftPrint($sid=0) {
+    public function getDetailDraftPrint($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','11','3') and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -601,10 +680,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getDetailSubmitted($sid=0) {
+    public function getDetailSubmitted($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '2' and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -613,10 +698,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getDetailProcessing($sid=0) {
+    public function getDetailProcessing($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('4','5','6','7') and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -625,10 +716,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getDetailVerified($sid=0) {
+    public function getDetailVerified($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '8' and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -637,10 +734,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getDetailApproved($sid=0) {
+    public function getDetailApproved($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '9' and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
@@ -649,10 +752,16 @@ class Home_model extends CI_Model{
         return $query;
     }
 
-    public function getDetailPaid($sid=0) {
+    public function getDetailPaid($sid=0,$start_date,$end_date) {
         $dvs = $this->session->userdata('division_id');
-        $start_date = date('Y-01-01');
-        $end_date = date('Y-m-d');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status = '10' and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";

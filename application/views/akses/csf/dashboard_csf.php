@@ -61,9 +61,16 @@
           <div class="info-box bg-gray">
             <span class="info-box-icon box4"><img align="center" src="assets/dashboard/images/legend/Total_payment_request.png"></i></span>
             <div class="info-box-content bg-gray">
+            <?php if ($start_date && $end_date){
+                      $start_date = $start_date;
+                      $end_date = $end_date;
+                  }else{
+                      $start_date = 1;
+                      $end_date = 1;
+                  } ?>
               <br>
               <?php foreach ($tot_pay_req as $tot_req) { ?>
-              <a href="<?php echo base_url('dashboard/all_detail_payment/1')?>"><span class="info-box-number"><font size='5' color="green"><center> <?php echo $tot_req->totalreq; ?></center></font></span></a>
+              <a href="<?php echo base_url('dashboard/all_detail_payment/1/'.$start_date.'/'.$end_date)?>"><span class="info-box-number"><font size='5' color="green"><center> <?php echo $tot_req->totalreq; ?></center></font></span></a>
               <?php } ?>    
               <span class="info-box-text"><font color="green"><center>Total Payment Request(*)</center></font></span>  
             </div>            
@@ -79,9 +86,10 @@
           <div class="info-box bg-gray">
               <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_outstanding.png"></i></span>
               <div class="info-box-content bg-gray">
+              
                 <br>
                 <?php foreach ($outstanding as $tot_outstanding) { ?>  
-                <a href="<?php echo base_url('dashboard/all_detail_payment/2')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span></a>
+                <a href="<?php echo base_url('dashboard/all_detail_payment/2/'.$start_date.'/'.$end_date)?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_outstanding->outstanding; ?></center></font></span></a>
                 <?php } ?>            
                 <span class="info-box-text "><font color="green"><center>&nbsp; Total Outstanding Payment Request (**)</center></font></span>
               </div>
@@ -100,9 +108,10 @@
           <div class="info-box bg-gray">
               <span class="info-box-icon box4"><img src="assets/dashboard/images/legend/Total_draft.png"></i></span>
               <div class="info-box-content bg-gray">
+              
                 <br>  
                 <?php foreach ($draft as $tot_draft) { ?>
-                <a href="<?php echo base_url('dashboard/all_detail_payment/3')?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
+                <a href="<?php echo base_url('dashboard/all_detail_payment/3/'.$start_date.'/'.$end_date)?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
                 <?php } ?>            
                 <span class="info-box-text "><font color="green"><center>Total Draft (***) </center></font></span>
             </div>
@@ -166,26 +175,27 @@
                       <td colspan="45"><font size='6'><center>STATUS</center></font></td>
                     </tr>
                     <tr>
+                    
                       <?php foreach ($draft1 as $tot_draft) { ?>
-                      <td width="12%"><div class="dua"><center><a href="<?php echo base_url('dashboard/all_detail_payment/7')?>"><font size='5' color="black"> <?php echo $tot_draft->totdraft; ?> </font> </center></div></a> </td><td> &nbsp; 
+                      <td width="12%"><div class="dua"><center><a href="<?php echo base_url('dashboard/all_detail_payment/7/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $tot_draft->totdraft; ?> </font> </center></div></a> </td><td> &nbsp; 
                       <?php } ?>   
                       <?php foreach ($draftprint as $draftprint) { ?>                    
-                      <td width="12%"><div class="tiga"><center><a href="<?php echo base_url('dashboard/all_detail_payment/8')?>"><font size='5' color="black"> <?php echo $draftprint->draftprint; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="tiga"><center><a href="<?php echo base_url('dashboard/all_detail_payment/8/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $draftprint->draftprint; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>               
                       <?php foreach ($submit as $submit) { ?>
-                      <td width="12%"><div class="empat"><center><a href="<?php echo base_url('dashboard/all_detail_payment/9')?>"><font size='5' color="black"> <?php echo $submit->submit; ?> </font> </div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="empat"><center><a href="<?php echo base_url('dashboard/all_detail_payment/9/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $submit->submit; ?> </font> </div></a> </td> <td> &nbsp;
                       <?php } ?>                  
                       <?php foreach ($process as $process) { ?>
-                      <td width="12%"><div class="lima"><center><a href="<?php echo base_url('dashboard/all_detail_payment/10')?>"><font size='5' color="black"> <?php echo $process->process; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="lima"><center><a href="<?php echo base_url('dashboard/all_detail_payment/10/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $process->process; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>
                       <?php foreach ($verifikasi as $verifikasi) { ?>
-                      <td width="12%"><div class="enam"><center><a href="<?php echo base_url('dashboard/all_detail_payment/11')?>"><font size='5' color="black"> <?php echo $verifikasi->verifikasi; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="enam"><center><a href="<?php echo base_url('dashboard/all_detail_payment/11/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $verifikasi->verifikasi; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>
                       <?php foreach ($approval as $approval) { ?>
-                      <td width="12%"><div class="tujuh"><center><a href="<?php echo base_url('dashboard/all_detail_payment/12')?>"><font size='5' color="white"> <?php echo $approval->approval; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="tujuh"><center><a href="<?php echo base_url('dashboard/all_detail_payment/12/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"> <?php echo $approval->approval; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>
                       <?php foreach ($paid as $paid) { ?>
-                      <td width="12%"><div class="satu"><center><a href="<?php echo base_url('dashboard/all_detail_payment/13')?>"><font size='5' color="white"> <?php echo $paid->paid; ?> </font></div></a> </td><td> &nbsp;  
+                      <td width="12%"><div class="satu"><center><a href="<?php echo base_url('dashboard/all_detail_payment/13/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"> <?php echo $paid->paid; ?> </font></div></a> </td><td> &nbsp;  
                       <?php } ?>
                     </tr>
                     <tr>   
@@ -557,15 +567,15 @@ Highcharts.chart('pieChart', {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
               },
-			  point: {
+			        point: {
                 events: {
                     click: function() {
                         location.href = this.options.link;
                     }
                 }
-            }
+              }
           }
-      },
+      },    
       series: [{
           name: 'Total',
           colorByPoint: true,
@@ -575,7 +585,7 @@ Highcharts.chart('pieChart', {
               {
                 name: '<?php echo $key->dsc; ?>',
                 y: <?php echo $key->jmlpembayaran; ?>,
-				link:'<?php echo base_url('Dashboard/'.$key->link);?> '
+				        link:'<?php echo base_url('Dashboard/'.$key->link.'/'.$start_date.'/'.$end_date);?> '
               },
             <?php } ?>
               ]

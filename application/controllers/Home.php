@@ -93,7 +93,7 @@ class Home extends CI_Controller {
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['draft'] = $this->Home_model->getTotalDraftPeriode($data['start_date'],$data['end_date']);
 		$data['tot_pay_req'] = $this->Home_model->getTotalPeriode($data['start_date'],$data['end_date']);
-		$data['submit'] = $this->Home_model->getSubmitted($data['start_date'],$data['end_date']);
+		$data['submit'] = $this->Home_model->getSubmittedPeriode($data['start_date'],$data['end_date']);
 		$data['outstanding'] = $this->Home_model->getOutstandingPeriode($data['start_date'],$data['end_date']);
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverduePeriode($data['start_date'],$data['end_date']);
 		$data['draftprint'] = $this->Home_model->getDraftPrintPeriode($data['start_date'],$data['end_date']);
@@ -179,7 +179,7 @@ class Home extends CI_Controller {
 		// $this->pdfgenerator->generate($html,'Form_SP3');
 	}
 
-	public function dp()
+	public function dp($start_date,$end_date)
 	{
 		$sid = $this->session->userdata("id_user");
 
@@ -187,7 +187,7 @@ class Home extends CI_Controller {
 		$data['dp'] = 'active';
 		$data['active3'] = '';
 
-		$data['directpayment'] 	= $this->Home_model->getVdp();	
+		$data['directpayment'] 	= $this->Home_model->getVdp($start_date,$end_date);	
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -197,7 +197,7 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/list_dp', $data);
 	}
 
-	public function cr()
+	public function cr($start_date,$end_date)
 	{
 		
 		$data['active1'] = '';
@@ -206,7 +206,7 @@ class Home extends CI_Controller {
 
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['cashreceived'] = $this->Home_model->getVcr();
+		$data['cashreceived'] = $this->Home_model->getVcr($start_date,$end_date);
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -215,7 +215,7 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/list_cr', $data);
 	}
 
-	public function ar()
+	public function ar($start_date,$end_date)
 	{
 		$sid = $this->session->userdata("id_user");
 
@@ -223,7 +223,7 @@ class Home extends CI_Controller {
 		$data['ar'] = 'active';
 		$data['active3'] = '';
 
-		$data['advancerequest'] = $this->Home_model->getVar();
+		$data['advancerequest'] = $this->Home_model->getVar($start_date,$end_date);
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -233,7 +233,7 @@ class Home extends CI_Controller {
 		$this->load->view('akses/user/list_ar', $data);
 	}
 
-	public function asr()
+	public function asr($start_date,$end_date)
 	{
 		$sid = $this->session->userdata("id_user");
 
@@ -242,7 +242,7 @@ class Home extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['settlement'] = $this->Home_model->getVasr();
+		$data['settlement'] = $this->Home_model->getVasr($start_date,$end_date);
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -822,7 +822,7 @@ class Home extends CI_Controller {
 
 	}
 
-	public function all_detail_payment($id)
+	public function all_detail_payment($id,$start_date,$end_date)
 	{
 		$sid = $this->session->userdata("id_user");
 		$data['dashboard'] = 'active';
@@ -838,27 +838,27 @@ class Home extends CI_Controller {
 		
 		switch ($id) {
 		  case "1":
-			$data['payment'] = $this->Home_model->getPaymentDetail($sid);
+			$data['payment'] = $this->Home_model->getPaymentDetail($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','All Payment Request List');
 			$this->session->set_userdata('filter','1');
 			break;
 		  case "2":
-			$data['payment'] = $this->Home_model->getDetailOutstanding($sid);
+			$data['payment'] = $this->Home_model->getDetailOutstanding($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Outstanding Payment Request List');
 			$this->session->set_userdata('filter','2');
 			break;
 		  case "3":
-			$data['payment'] = $this->Home_model->getDetailDraft($sid);
+			$data['payment'] = $this->Home_model->getDetailDraft($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Draft Payment Request List');
 			$this->session->set_userdata('filter','3');
 			break;
 		  case "4":
-			$data['payment'] = $this->Home_model->getDetailUpcomingOverdue($sid);
+			$data['payment'] = $this->Home_model->getDetailUpcomingOverdue($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Advance Upcoming Overdue List');
 			$this->session->set_userdata('filter','4');
 			break;
 		  case "5":
-			$data['payment'] = $this->Home_model->getDetailOverdue($sid);
+			$data['payment'] = $this->Home_model->getDetailOverdue($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Advance Overdue List');
 			$this->session->set_userdata('filter','5');
 			break;
@@ -868,37 +868,37 @@ class Home extends CI_Controller {
 			$this->session->set_userdata('filter','6');
 			break;
 			case "7":
-			$data['payment'] = $this->Home_model->getDetailDraftStatus($sid);
+			$data['payment'] = $this->Home_model->getDetailDraftStatus($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Draft List');
 			$this->session->set_userdata('filter','7');
 			break;
 		  case "8":
-			$data['payment'] = $this->Home_model->getDetailDraftPrint($sid);
+			$data['payment'] = $this->Home_model->getDetailDraftPrint($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Draft(Print) List');
 			$this->session->set_userdata('filter','8');
 			break;
 		  case "9":
-			$data['payment'] = $this->Home_model->getDetailSubmitted($sid);
+			$data['payment'] = $this->Home_model->getDetailSubmitted($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Submitted List');
 			$this->session->set_userdata('filter','9');
 			break;
 		  case "10":
-			$data['payment'] = $this->Home_model->getDetailProcessing($sid);
+			$data['payment'] = $this->Home_model->getDetailProcessing($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Processing List');
 			$this->session->set_userdata('filter','10');
 			break;
 		  case "11":
-			$data['payment'] = $this->Home_model->getDetailVerified($sid);
+			$data['payment'] = $this->Home_model->getDetailVerified($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Verified List');
 			$this->session->set_userdata('filter','11');
 			break;
 		  case "12":
-			$data['payment'] = $this->Home_model->getDetailApproved($sid);
+			$data['payment'] = $this->Home_model->getDetailApproved($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Approved List');
 			$this->session->set_userdata('filter','12');
 			break;
 		  case "13":
-			$data['payment'] = $this->Home_model->getDetailPaid($sid);
+			$data['payment'] = $this->Home_model->getDetailPaid($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Paid List');
 			$this->session->set_userdata('filter','13');
 			break;
