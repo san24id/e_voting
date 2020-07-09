@@ -689,16 +689,8 @@
 
                         <?php if($row->status == 1 && $iya == "Off" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-                            <a class="btn btn-primary" href="Tri/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
+                            <!-- <a class="btn btn-primary" href="Tri/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a> -->
 
-                            <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5) { ?>
-                              
-                              <a class="btn btn-danger" href="Tri/draftprintdp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
-
-                            <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
-                              
-                              <a class="btn btn-danger" href="Tri/draftprint/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
-                            <?php } ?>
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                             <!----.Modal -->
                             <!----.Accept -->

@@ -399,7 +399,7 @@
 																</td>
 																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $fvendor; ?> >
 																</td>   
-															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
+															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
 															
 															<td>
 															<?php
@@ -1295,7 +1295,7 @@ function AddIndeks(){
 					}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
 							alert('Jumlah Uang Muka belum di input');
 					}else{
-						url = "<?php echo base_url('dashboard/saveeditpaymentnew')?>";  
+						url = "<?php echo base_url('Dashboard/saveeditpaymentnew')?>";  
 					   
 						$.ajax({
 						  url : url,
