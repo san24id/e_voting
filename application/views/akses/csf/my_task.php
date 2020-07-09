@@ -135,7 +135,7 @@
                   <?php 
                     $i = 1;
                     foreach ($mytask1 as $row){
-                      $test11 = $row->jenis_pembayaran;                        
+                      $test11 = $row->dsc;                        
                       $test22 = explode(";", $test11);
                       $test33 = count($test22);                        
                       ?>  
@@ -174,10 +174,12 @@
                   <td><?php echo $row->label1; ?></td>
                   <td><?php echo $row->display_name; ?></td>
                   <td>
-                    <?php if ($row->status <= 5) { ?>
-                    <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+
+                    <?php 
+                      if ($row->status <= 5) { ?>
+                        <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     <?php } ?>
-                    <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
+                     <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
                         <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                       <?php } ?>

@@ -360,7 +360,7 @@ class Dashboard_model extends CI_Model{
 
         // $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('5','6','7')";
 
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr' AND status in ('4','5','6','7')";
+        $sql = "SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr' AND status in ('4','5','6','7')";
         // var_dump($sql);exit;
 
         $query = $this->db->query($sql)->result();
