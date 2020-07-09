@@ -132,10 +132,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Tri/dp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li><a href="Tri/ar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li><a href="Tri/asr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
-            <li><a href="Tri/cr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
+            <li><a href="Tri/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li><a href="Tri/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li><a href="Tri/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li><a href="Tri/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
             <li><a href="Tri/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
             <li><a href="Tri/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
             <li><a href="Tri/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>

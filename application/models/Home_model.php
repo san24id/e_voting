@@ -78,6 +78,19 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getVldp(){
+        $dvs = $this->session->userdata('division_id');
+       
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+        
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%4%' 
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getVdp($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
         if ($start_date !=1 && $end_date !=1) {
@@ -91,6 +104,20 @@ class Home_model extends CI_Model{
 
         $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%4%' 
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVlar(){
+        $dvs = $this->session->userdata('division_id');
+        
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+        
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -114,6 +141,19 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    public function getVlcr(){
+        $dvs = $this->session->userdata('division_id');
+        
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%5%' 
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getVcr($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
         if ($start_date !=1 && $end_date !=1) {
@@ -131,17 +171,19 @@ class Home_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
-    
-    function getDivHead(){
-        $dvs = $this->session->userdata('division_id'); 
 
-        $sql = "SELECT a.display_name, b.role_id, a.division_id FROM m_user as a JOIN m_role as b ON b.role_id='4' 
-                WHERE a.division_id='$dvs' AND a.role_id='4'";
+    public function getVlasr(){
+        $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
+                AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;
     }
-
+    
     public function getVasr($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
         if ($start_date !=1 && $end_date !=1) {
@@ -159,6 +201,16 @@ class Home_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
+
+    function getDivHead(){
+        $dvs = $this->session->userdata('division_id'); 
+
+        $sql = "SELECT a.display_name, b.role_id, a.division_id FROM m_user as a JOIN m_role as b ON b.role_id='4' 
+                WHERE a.division_id='$dvs' AND a.role_id='4'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }  
 
     public function getOp(){
         $dvs = $this->session->userdata('division_id');

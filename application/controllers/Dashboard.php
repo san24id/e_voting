@@ -1136,6 +1136,23 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/getTax', $data);
 	}
 
+	function ldp()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['directpayment'] 	= $this->Home_model->getVldp();	
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_dp', $data);
+	} 
 
 	public function dp($start_date,$end_date)
 	{
@@ -1155,6 +1172,24 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/list_dp', $data);
 	}
 
+	public function lcr()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['cashreceived'] = $this->Home_model->getVlcr();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_cr', $data);
+	} 
+
 	public function cr($start_date,$end_date)
 	{
 		
@@ -1173,6 +1208,24 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/list_cr', $data);
 	}
 
+	public function lar()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['advancerequest'] = $this->Home_model->getVlar();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_ar', $data);
+	}
+
 	public function ar($start_date,$end_date)
 	{
 		
@@ -1189,6 +1242,24 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/list_ar', $data);
+	}
+
+	public function lasr()
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['settlement'] = $this->Home_model->getVlasr();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_asr', $data);
 	}
 
 	public function asr($start_date,$end_date)
@@ -2446,7 +2517,7 @@ class Dashboard extends CI_Controller {
 
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['cashreceived'] = $this->Home_model->getVcr();
+		$data['cashreceived'] = $this->Home_model->getVlcr();
 		// var_dump($data['cashreceived']);exit;
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -2464,7 +2535,7 @@ class Dashboard extends CI_Controller {
 
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
-		$data['advancerequest'] = $this->Home_model->getVar();
+		$data['advancerequest'] = $this->Home_model->getVlar();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -2476,7 +2547,7 @@ class Dashboard extends CI_Controller {
 
 	function export_asr(){
 		
-		$data['settlement'] = $this->Home_model->getVasr();
+		$data['settlement'] = $this->Home_model->getVlasr();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
@@ -2493,7 +2564,7 @@ class Dashboard extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
-		$data['directpayment'] 	= $this->Home_model->getVdp();	
+		$data['directpayment'] 	= $this->Home_model->getVldp();	
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
