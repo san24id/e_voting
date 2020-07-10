@@ -252,19 +252,19 @@
                           <td align="center" width="25%"><div class="info-box box1">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                            <a href="<?php echo base_url('dashboard/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
+                            <a href="<?php echo base_url('dashboard/all_detail_payment/4/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
                           </td>                          
                           <td align="center" width="25%"><div class="info-box box2">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                            <a href="<?php echo base_url('dashboard/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
+                            <a href="<?php echo base_url('dashboard/all_detail_payment/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
                           </td>
 
                           <td align="center" width="25%"><div class="info-box box3">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/creditcard.png"></i></span>
                             <center><font size='3' color="white"> Credit Card <br> Submission in 30 days <br> </font>
                             <?php foreach ($creditcard as $cc) { ?>
-                            <a href="<?php echo base_url('dashboard/all_detail_payment/6')?>"><font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </a></center></div>
+                            <a href="<?php echo base_url('dashboard/all_detail_payment/6/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </a></center></div>
                             <?php } ?>
                           </td>  
                         </tr>  
