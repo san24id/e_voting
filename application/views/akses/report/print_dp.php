@@ -475,26 +475,56 @@
                         <td><font size="1"><b>- Perhitungan Penggunaan Uang Muka : <b></td>
                       </tr>
                       <tr>
-                        <td>
-                        <td>
+                        <td></td>
+                        <td></td>
                         <td><font size="1"><center><b> Curr</b></center></td>
-                        <td><font size="1"><center><b> Jumlah/<i>Amount</i></b></center></td>
+                        <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
+                        <td><font size="1"><center><b> Curr</b></center></td>
+                        <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
+                        <td><font size="1"><center><b> Curr</b></center></td>
+                        <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
+
+                      <!--Biaya-->
                       <tr>  
                         <td><font size="1">Jumlah Biaya </td>
-                        <td>:</td>
-                        <td align="center"><font size="1"><?php echo $row->currency;?> </td>
-                        <td class="kolom"><font size="1">&nbsp; <?php echo $row->label7;?><td>
+                        <td><font size="1">:</td>
+                        <td class="kolom"><font size="1"><?php echo $row->currency4;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label7;?></td>
+                        
+                        <td class="kolom"><font size="1"><?php echo $row->currency5;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label8;?></td>
+                        
+                        <td class="kolom"><font size="1"><?php echo $row->currency6;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label9;?></td>
                       </tr>
-                        <td><font size="1">Jumlah Uang Muka </td>
-                        <td>:</td>
-                        <td align="center"><font size="1"><?php echo $row->currency;?> </td>
-                        <td class="kolom"><font size="1">&nbsp; <?php echo $row->label8; ?> </td>     
+
+                      <!--UangMuka-->
                       <tr>
-                        <td><font size="1">Selisih Kurang/Lebih </td> 
-                        <td>:</td>
-                        <td align="center"><font size="1"><?php echo $row->currency;?> </td>
-                        <td class="kolom"><font size="1">&nbsp; <?php echo $row->label9; ?></td>                               
+                        <td><font size="1">Jumlah Uang Muka </td>
+                        <td><font size="1">:</td>
+                        <td class="kolom"><font size="1"><?php echo $row->currency7;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label10; ?></td>  
+                        
+                        <td class="kolom"><font size="1"><?php echo $row->currency8;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label11; ?></td> 
+                        
+                        <td class="kolom"><font size="1"><?php echo $row->currency9;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label12; ?></td> 
+                      <tr>
+
+                      <!--Selisih-->
+                      <tr>
+                        <td><font size="1">Selisih Kurang/(Lebih)</td>  
+                        <td><font size="1">:</td>
+                        <td class="kolom"><font size="1"><?php echo $row->currency10;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label13; ?></td>
+                        
+                        <td class="kolom"><font size="1"><?php echo $row->currency11;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label14; ?></td>
+                        
+                        <td class="kolom"><font size="1"><?php echo $row->currency12;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label15; ?></td>                               
                       </tr>                              
                       </tbody>
                     </table>          

@@ -28,7 +28,9 @@
         </section> -->
         <!-- Main content -->
 
-        <?php foreach ($ppayment as $row){ ?>          
+        <?php 
+          $dvs = $this->session->userdata('division_id');
+          foreach ($ppayment as $row){ ?>          
             <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -76,10 +78,14 @@
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
-                        <tr>
-                        <td> </td>
-                        <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
+                      <tr>
+                          <td> </td>
+                          <?php if ($row->nomor_surat !="") { ?>
+                          <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
+                          <?php }else{ ?>
+                          <td align="center"><b><font size="4" style="font-family: calibri;">No   : XXXX/<?php echo $dvs?>/SPPP/<?php echo date("my");?></b></td>
                         
+                          <?php } ?>
                         </tr>
                       </tbody>
                     </table>
@@ -502,7 +508,7 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table width="70%" id="show" <?php echo $showed;?> >
+                                                <table width="100%" id="show" <?php echo $showed;?> >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
@@ -522,22 +528,113 @@
                         <td></td>
                         <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
+                        <td><center><b> Curr</b></center></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
+                        <td><center><b> Curr</b></center></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
+
+                      <!--Biaya-->
                       <tr>  
                         <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-                        <td align="center"><?php echo $row->currency;?> </td>
-                        <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"readonly></input><td>
+                        <td><select id="demo" name="currency4" class="form-control" readonly>
+                                <option value="<?php echo $row->currency4;?>"><?php echo $row->currency4;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>" readonly></td>
+                        
+                        <td><select id="demo" name="currency5" class="form-control" readonly>
+                                      <option value="<?php echo $row->currency5;?>"><?php echo $row->currency5;?></option>
+                                      <option value="">--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select>
+                        </td>
+                        <td><input id="biaya2" onchange="penjumlahan2()" type="text" class="form-control" name="label8" value="<?php echo $row->label8;?>" readonly></td>
+                        
+                        <td><select id="demo" name="currency6" class="form-control" readonly>
+                                      <option value="<?php echo $row->currency6;?>"><?php echo $row->currency6;?></option>
+                                      <option value="">--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select> </td>
+                        <td><input id="biaya3" onchange="penjumlahan3()" type="text" class="form-control" name="label9" value="<?php echo $row->label9;?>" readonly></td>
                       </tr>
-                      <td>Jumlah Uang Muka <font color="red"> * </font> </td>
-                        <td>:</td>
-                        <td align="center"><?php echo $row->currency;?> </td>
-                        <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td>     
+
+                      <!--UangMuka-->
                       <tr>
-                        <td>Selisih Kurang/(Lebih)</td> 
+                        <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-                        <td align="center"><?php echo $row->currency;?> </td>
-                        <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>                               
+                        <td><select id="demo2" name="currency7" class="form-control" readonly>
+                                <option value="<?php echo $row->currency7;?>"><?php echo $row->currency7;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select> 
+                        </td>
+                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label10" value="<?php echo $row->label10; ?>" readonly> </td>  
+                        
+                        <td><select id="demo2" name="currency8" class="form-control" >
+                                <option value="<?php echo $row->currency8;?>"><?php echo $row->currency8;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select> 
+                        </td>
+                        <td><input id="uangmuka2" onchange="penjumlahan2()" type="text" class="form-control" name="label11" value="<?php echo $row->label11; ?>" readonly> </td> 
+                        
+                        <td><select id="demo2" name="currency9" class="form-control" readonly>
+                                <option value="<?php echo $row->currency9;?>"><?php echo $row->currency9;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                        <td><input id="uangmuka3" onchange="penjumlahan3()" type="text" class="form-control" name="label12" value="<?php echo $row->label12; ?>" readonly> </td> 
+                      <tr>
+
+                      <!--Selisih-->
+                      <tr>
+                        <td>Selisih Kurang/(Lebih)</td>  
+                        <td>:</td>
+                        <td><select id="demo3" name="currency10" class="form-control" readonly>
+                                <option value="<?php echo $row->currency10;?>"><?php echo $row->currency10;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select> 
+                        </td>
+                        <td><input id="hasil" type="text" class="form-control" name="label13" value="<?php echo $row->label13; ?>" readonly></td>
+                        
+                        <td><select id="demo3" name="currency11" class="form-control" readonly>
+                                <option value="<?php echo $row->currency11;?>"><?php echo $row->currency11;?> </option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select>
+                        </td>
+                        <td><input id="hasil2" type="text" class="form-control" name="label14" value="<?php echo $row->label14; ?>" readonly></td>
+                        
+                        <td><select id="demo3" name="currency12" class="form-control" readonly>
+                                <option value="<?php echo $row->currency12;?>"><?php echo $row->currency12;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select> </td>
+                        <td><input id="hasil3" type="text" class="form-control" name="label15" value="<?php echo $row->label15; ?>" readonly></td>                               
                       </tr>                              
                       </tbody>
                     </table>
@@ -579,7 +676,30 @@
                                 // var_dump($testl2[0]);exit;
 
                             if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" && $row->vendor != "" && $row->akun_bank !=""){ ?>
-                              <a class="btn btn-danger" href="Approval/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>      
+                              <!-- <a class="btn btn-danger" href="Approval/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>       -->
+                              <button type="button" data-toggle="modal" data-target="#setprint<?php echo $row->id_payment; ?>" class="btn btn-success">Set To Print</button>
+                              <div class="modal fade" id="setprint<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title">Message Box</h3>
+                                  </div>                                        
+                                  <div class="modal-body">
+                                  <form id="approve" method="post" action="Approval/draftsent/<?php echo $row->id_payment; ?>">
+                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                    <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">   
+
+                                    <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
+                                  </div>
+                                  <div class="modal-footer">                        
+                                  <button type="submit" class="btn btn-success bye">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </form>
+                                  </div>
+                                </div>
+                                </div>
+                              </div> 
                               <?php }else{ ?>
 
                               <?php } ?>
@@ -589,11 +709,11 @@
                         <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                       
-                              <a class="btn btn-danger" href="Approval/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+                              <a class="btn btn-danger" href="Approval/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
                               
-                              <a class="btn btn-danger" href="Approval/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+                              <a class="btn btn-danger" href="Approval/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>
 
                             <?php } ?>
                         <?php } ?>
@@ -688,7 +808,7 @@
                           <?php } ?>   
                         <?php } ?>  
 
-                        <?php if($row->status == 1 && $iya == "Off" ){ ?>
+                        <?php if($row->status == 1 || $row->status == 11 && $iya == "Off" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
 
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>

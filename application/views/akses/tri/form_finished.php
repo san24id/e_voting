@@ -31,6 +31,7 @@
         <!-- Main content -->
 		
 		<?php
+    $dvs = $this->session->userdata('division_id');
 		$arrvendor="";
 		$strvendor="";
 		$counter=0;
@@ -69,9 +70,9 @@
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
-                            <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>">                            
-              
+                        <td align="center"><b><font size="4" style="font-family: calibri;">No   : XXXX/<?php echo $dvs?>/SPPP/<?php echo date("my");?></b></td>
+                            <!-- <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>"> -->              
+                        </tr>
                         </tr>
                       </tbody>
                     </table>
@@ -545,7 +546,7 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table id="show" <?php echo $showed;?> width="50%">
+                                                <table id="show" <?php echo $showed;?> width="100%">
                       <tbody>
                       <tr>
                         <td colspan="4"><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
@@ -566,23 +567,114 @@
                         <td></td>
                         <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
+                        <td><center><b> Curr</b></center></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
+                        <td><center><b> Curr</b></center></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
+
+                      <!--Biaya-->
                       <tr>  
                         <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-                        <td><center><?php echo $row->currency;?> </td>
-                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input><td>
+                        <td><select id="demo" name="currency4" class="form-control" >
+                                <option value="<?php echo $row->currency4;?>"><?php echo $row->currency4;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
+                        
+                        <td><select id="demo" name="currency5" class="form-control" >
+                                      <option value="<?php echo $row->currency5;?>"><?php echo $row->currency5;?></option>
+                                      <option value="">--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select>
+                        </td>
+                        <td><input id="biaya2" onchange="penjumlahan2()" type="text" class="form-control" name="label8" value="<?php echo $row->label8;?>"></input></td>
+                        
+                        <td><select id="demo" name="currency6" class="form-control" >
+                                      <option value="<?php echo $row->currency6;?>"><?php echo $row->currency6;?></option>
+                                      <option value="">--Choose--</option>
+                                      <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select> </td>
+                        <td><input id="biaya3" onchange="penjumlahan3()" type="text" class="form-control" name="label9" value="<?php echo $row->label9;?>"></input></td>
                       </tr>
-                      <td>Jumlah Uang Muka <font color="red"> * </font></td>
+
+                      <!--UangMuka-->
+                      <tr>
+                        <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-                        <td> <center><?php echo $row->currency;?></td>
-                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
+                        <td><select id="demo2" name="currency7" class="form-control" >
+                                <option value="<?php echo $row->currency7;?>"><?php echo $row->currency7;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select> 
+                        </td>
+                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label10" value="<?php echo $row->label10; ?>"></input> </td>  
+                        
+                        <td><select id="demo2" name="currency8" class="form-control" >
+                                <option value="<?php echo $row->currency8;?>"><?php echo $row->currency8;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select> 
+                        </td>
+                        <td><input id="uangmuka2" onchange="penjumlahan2()" type="text" class="form-control" name="label11" value="<?php echo $row->label11; ?>"></input> </td> 
+                        
+                        <td><select id="demo2" name="currency9" class="form-control" >
+                                <option value="<?php echo $row->currency9;?>"><?php echo $row->currency9;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                        <td><input id="uangmuka3" onchange="penjumlahan3()" type="text" class="form-control" name="label12" value="<?php echo $row->label12; ?>"></input> </td> 
+                      <tr>
+
+                      <!--Selisih-->
                       <tr>
                         <td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
-                        <td><center> <?php echo $row->currency;?></td>
-                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
-                      </tr>                                
+                        <td><select id="demo3" name="currency10" class="form-control" >
+                                <option value="<?php echo $row->currency10;?>"><?php echo $row->currency10;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                            </select> 
+                        </td>
+                        <td><input id="hasil" type="text" class="form-control" name="label13" value="<?php echo $row->label13; ?>" readonly></input></td>
+                        
+                        <td><select id="demo3" name="currency11" class="form-control" >
+                                <option value="<?php echo $row->currency11;?>"><?php echo $row->currency11;?> </option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select>
+                        </td>
+                        <td><input id="hasil2" type="text" class="form-control" name="label14" value="<?php echo $row->label14; ?>" readonly></input></td>
+                        
+                        <td><select id="demo3" name="currency12" class="form-control" >
+                                <option value="<?php echo $row->currency12;?>"><?php echo $row->currency12;?></option>
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                <?php } ?>
+                              </select> </td>
+                        <td><input id="hasil3" type="text" class="form-control" name="label15" value="<?php echo $row->label15; ?>" readonly></input></td>                               
+                      </tr>                                 
                       </tbody>
                     </table>
 
@@ -722,6 +814,68 @@ function penjumlahan(){
 		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
 	}else{
 		strhasil.value = formatuangmuka(strulang1);
+	} 
+	  
+  // }
+}
+
+function penjumlahan2(){
+  var a = document.getElementById("biaya2").value;
+  var b = document.getElementById("uangmuka2").value;
+  // var c = document.getElementById("hasil").value;
+  var reva = a.replace(/\./g,'');
+  var revb = b.replace(/\./g,'');
+  // var revc = c.replace(".","");
+  // alert(reva);
+  var hasil2 = parseInt(reva)-parseInt(revb);
+  // var aa = parseInt(rev).value;
+  // var b = parseInt(document.getElementById("uangmuka").value);
+
+  // if(reva && revb){
+	  if(hasil2<0){
+		  document.getElementById("hasil2").value = '('+Math.abs(hasil2)+')'; 
+	  }else{
+	  	document.getElementById("hasil2").value = ''+hasil2+''; 
+    
+	  }
+	  
+	  var strhasil2=document.getElementById("hasil2");
+	  var strulang2 =strhasil2.value;
+	if (strulang2.substr(0,1)=="(" && strulang2.substr(strulang2.length-1,1)==")"){
+		strhasil2.value = "(" + formatuangmuka2(strulang2.substr(1,strulang2.length-2)) + ")";
+	}else{
+		strhasil2.value = formatuangmuka2(strulang2);
+	} 
+	  
+  // }
+}
+
+function penjumlahan3(){
+  var a = document.getElementById("biaya3").value;
+  var b = document.getElementById("uangmuka3").value;
+  // var c = document.getElementById("hasil").value;
+  var reva = a.replace(/\./g,'');
+  var revb = b.replace(/\./g,'');
+  // var revc = c.replace(".","");
+  // alert(reva);
+  var hasil3 = parseInt(reva)-parseInt(revb);
+  // var aa = parseInt(rev).value;
+  // var b = parseInt(document.getElementById("uangmuka").value);
+
+  // if(reva && revb){
+	  if(hasil3<0){
+		  document.getElementById("hasil3").value = '('+Math.abs(hasil3)+')'; 
+	  }else{
+	  	document.getElementById("hasil3").value = ''+hasil3+''; 
+    
+	  }
+	  
+	  var strhasil3=document.getElementById("hasil3");
+	  var strulang3 =strhasil3.value;
+	if (strulang3.substr(0,1)=="(" && strulang3.substr(strulang3.length-1,1)==")"){
+		strhasil3.value = "(" + formatuangmuka3(strulang3.substr(1,strulang3.length-2)) + ")";
+	}else{
+		strhasil3.value = formatuangmuka3(strulang3);
 	} 
 	  
   // }
@@ -984,6 +1138,56 @@ function showInput() {
     return prefix == undefined ? biaya : (biaya? + biaya : '');
   }
 
+  var biaya2 = document.getElementById('biaya2');
+  biaya2.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    biaya2.value = formatbiaya2(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatbiaya2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    biaya2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      biaya2 += separator + ribuan.join('.');
+    }
+
+    biaya2 = split[1] != undefined ? biaya2 + ',' + split[1] : biaya2;
+    return prefix == undefined ? biaya2 : (biaya2? + biaya2 : '');
+  }
+
+  var biaya3 = document.getElementById('biaya3');
+  biaya3.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    biaya3.value = formatbiaya3(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatbiaya3(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    biaya3     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      biaya3 += separator + ribuan.join('.');
+    }
+
+    biaya3 = split[1] != undefined ? biaya3 + ',' + split[1] : biaya3;
+    return prefix == undefined ? biaya3 : (biaya3? + biaya3 : '');
+  }
+
   var uangmuka = document.getElementById('uangmuka');
   uangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
@@ -1014,6 +1218,70 @@ function showInput() {
 
     uangmuka = split[1] != undefined ? uangmuka + ',' + split[1] : uangmuka;
     return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
+  }
+  
+  var uangmuka2 = document.getElementById('uangmuka2');
+  uangmuka2.addEventListener('focusout', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var struangmuka2 =uangmuka2.value;
+	if (struangmuka2.substr(0,1)=="(" && struangmuka2.substr(struangmuka2.length-1,1)==")"){
+		uangmuka2.value = "(" + formatuangmuka2(struangmuka2.substr(1,struangmuka2.length-2)) + ")";
+	}else if(struangmuka2.substr(0,1)=="-") {
+		uangmuka2.value = "(" + formatuangmuka2(struangmuka2.substr(1,struangmuka2.length-1)) + ")";
+	}else{
+		uangmuka2.value = formatuangmuka2(this.value);
+	}
+  });
+
+  /* Fungsi formatRupiah */
+  function formatuangmuka2(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    uangmuka2     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      uangmuka2 += separator + ribuan.join('.');
+    }
+
+    uangmuka2 = split[1] != undefined ? uangmuka2 + ',' + split[1] : uangmuka2;
+    return prefix == undefined ? uangmuka2 : (uangmuka2? + uangmuka2 : '');
+  }
+
+  var uangmuka3 = document.getElementById('uangmuka3');
+  uangmuka3.addEventListener('focusout', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var struangmuka3 =uangmuka3.value;
+	if (struangmuka3.substr(0,1)=="(" && struangmuka3.substr(struangmuka3.length-1,1)==")"){
+		uangmuka3.value = "(" + formatuangmuka3(struangmuka3.substr(1,struangmuka3.length-2)) + ")";
+	}else if(struangmuka3.substr(0,1)=="-") {
+		uangmuka3.value = "(" + formatuangmuka3(struangmuka3.substr(1,struangmuka3.length-1)) + ")";
+	}else{
+		uangmuka3.value = formatuangmuka3(this.value);
+	}
+  });
+
+  /* Fungsi formatRupiah */
+  function formatuangmuka3(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    uangmuka3     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      uangmuka3 += separator + ribuan.join('.');
+    }
+
+    uangmuka3 = split[1] != undefined ? uangmuka3 + ',' + split[1] : uangmuka3;
+    return prefix == undefined ? uangmuka3 : (uangmuka3? + uangmuka3 : '');
   }
 
   // var hasil = document.getElementById('hasil');

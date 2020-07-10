@@ -543,15 +543,18 @@ class Home_model extends CI_Model{
     }
     
     function addpayment($add){
-        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, tanggal2, currency, currency2, currency3, 
-                division_id, jabatan, label1, label2, jumlah2, jumlah3, label3, label4, label5, label6, label7, label8, label9, penerima, vendor, 
-                akun_bank, no_rekening, status, lainnya1, lainnya2) 
+        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, tanggal2, currency, currency2, currency3,
+                currency4, currency5, currency7, currency8, currency9, currency10, currency11, currency12, division_id, jabatan, label1, label2, jumlah2, jumlah3, 
+                label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14, label15, penerima, vendor, akun_bank, no_rekening, 
+                status, lainnya1, lainnya2) 
                 VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['display_name']."',
-                '".$add['tanggal']."','".$add['tanggal2']."','".$add['currency']."','".$add['currency2']."','".$add['currency3']."','".$add['division_id']."','".$add['jabatan']."',
-                '".$add['label1']."','".$add['label2']."','".$add['jumlah2']."','".$add['jumlah3']."','".$add['label3']."','".$add['label4']."','".$add['label5']."',
-                '".$add['label6']."','".$add['label7']."','".$add['label8']."','".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."',
-                '".$add['no_rekening']."','".$add['status']."','".$add['lainnya1']."','".$add['lainnya2']."')";
-        var_dump($sql);exit;
+                '".$add['tanggal']."','".$add['tanggal2']."','".$add['currency']."','".$add['currency2']."','".$add['currency3']."','".$add['currency4']."','".$add['currency5']."',
+                '".$add['currency6']."','".$add['currency7']."','".$add['currency8']."','".$add['currency9']."','".$add['currency10']."','".$add['currency11']."','".$add['currency12']."',
+                '".$add['division_id']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."','".$add['jumlah2']."','".$add['jumlah3']."','".$add['label3']."','".$add['label4']."',
+                '".$add['label5']."','".$add['label6']."','".$add['label7']."','".$add['label8']."','".$add['label9']."','".$add['label10']."','".$add['label10']."','".$add['label11']."',
+                '".$add['label12']."','".$add['label13']."','".$add['label14']."','".$add['label15']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."',
+                '".$add['status']."','".$add['lainnya1']."','".$add['lainnya2']."')";
+        // var_dump($sql);exit;
         $query = $this->db->query($sql);
 
         return $query;
@@ -559,9 +562,12 @@ class Home_model extends CI_Model{
 
     function updatepayment($upd){
         $sql = "UPDATE `t_payment` SET `display_name`='".$upd['display_name']."',`jabatan`='".$upd['jabatan']."',`jenis_pembayaran`='".$upd['jenis_pembayaran']."',`currency`='".$upd['currency']."',
-                `currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',
-                `label3`='".$upd['label3']."',`label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',`label8`='".$upd['label8']."',`label9`='".$upd['label9']."',
-                `penerima`='".$upd['penerima']."',`vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',`lainnya1`='".$upd['lainnya1']."',`lainnya2`='".$upd['lainnya2']."'
+                `currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`currency4`='".$upd['currency4']."',`currency5`='".$upd['currency5']."',`currency6`='".$upd['currency6']."',
+                `currency7`='".$upd['currency7']."',`currency8`='".$upd['currency8']."',`currency9`='".$upd['currency9']."',`currency10`='".$upd['currency10']."',`currency11`='".$upd['currency11']."',
+                `currency12`='".$upd['currency12']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',`label3`='".$upd['label3']."',
+                `label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',`label8`='".$upd['label8']."',`label9`='".$upd['label9']."',`label10`='".$upd['label10']."',
+                `label11`='".$upd['label11']."',`label12`='".$upd['label12']."',`label13`='".$upd['label13']."',`label14`='".$upd['label14']."',`label15`='".$upd['label15']."',`penerima`='".$upd['penerima']."',
+                `vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',`lainnya1`='".$upd['lainnya1']."',`lainnya2`='".$upd['lainnya2']."'
                 
                 WHERE `id_payment`='".$upd['id_payment']."'"; 
         
