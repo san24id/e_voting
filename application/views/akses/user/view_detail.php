@@ -82,15 +82,94 @@
 									<div class="col-md-2">
 										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Tanggal </option>
+											<?php
+												$criteria=$this->session->userdata('filter');
+												
+												switch ($criteria) {
+												  case "1":
+													echo "<option value='1'> Status </option>";									
+													break;
+												  case "2":
+													echo "<option value='1'> Processing Tax </option>";										
+													break;
+												  case "3":
+													echo "<option value='1'> Status </option>";
+													break;
+												  default:
+													echo "";										
+													
+												}
+											?>
+											<option value='2'> Jenis Pembayaran  </option>
+											<!--<option value='1'> Status </option>
 											<option value='2'> Jenis Pembayaran </option>
 											<option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
-											<option value='5'> Penerima </option>
+											<option value='5'> Penerima </option> -->
 										</select>
 									</div> 	
 									<div class="col-md-6">
-										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+										<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<?php 
+												$filter=$this->session->userdata('filter');
+												
+												switch ($filter) {
+												  case "1":
+													echo "<option value='0'> Draft </option>";
+													echo "<option value='1'> Draft Print </option>";
+													echo "<option value='2'> Submitted </option>";
+													echo "<option value='3'> Rejected </option>";											
+													echo "<option value='4'> Processing Tax </option>";
+													echo "<option value='5'> Processing Finance </option>";
+													echo "<option value='6'> Waiting for Review </option>";
+													echo "<option value='7'> Waiting for Verivication </option>";
+													echo "<option value='8'> Waiting for Approved </option>";
+													echo "<option value='9'> Waiting for Payment </option>";											
+													echo "<option value='10'> Paid </option>";											
+													break;
+												  case "2":
+													echo "<option value='4'> Processing Tax </option>";
+													echo "<option value='5'> Processing Finance </option>";
+													echo "<option value='6'> Waiting for Review </option>";
+													echo "<option value='7'> Waiting for Verivication </option>";
+													echo "<option value='8'> Waiting for Approved </option>";
+													echo "<option value='9'> Waiting for Payment </option>";											
+													break;
+												  case "3":
+													echo "<option value='0'> Draft </option>";
+													echo "<option value='1'> Draft Print  </option>";
+													break;
+												  default:
+													echo "";											
+													
+												}
+											?>
+											<!-- <option value='0'> Draft </option>
+											<option value='1'> Draft Print </option>
+											<option value='2'> Submitted </option>
+											<option value='3'> Rejected </option>
+											<option value='4'> Processing Tax </option>
+											<option value='5'> Processing Finance </option>
+											<option value='6'> Waiting for Review </option>
+											<option value='7'> Waiting for Verivication </option>
+											<option value='8'> Waiting for Approved </option>
+											<option value='9'> Waiting for Payment </option>
+											<option value='10'> Paid </option>-->
+										</select>
+										
+										<select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='4'> Direct Payment </option> 
+											<option value='2'> Advance Request </option>
+											<option value='3'> Advance Settlement </option>
+											<option value='5'> Cash Received </option>
+										</select>
+										
+										<select class="form-control" id="selblank" name="selblank"  >
+											<option value=''>== Pilih ==</option>
+										</select>
 									</div>		
 										
 									<div class="col-md-3">
@@ -114,7 +193,14 @@
 			</div>
 			<!-- /.box-body -->        
 		</div>
-		
+		<?php 
+					  $trdisplay='';
+					  if($this->session->userdata("statuspayment")=="3" || $this->session->userdata("statuspayment")=="7" || $this->session->userdata("statuspayment")=="8"){
+						  $trdisplay="style='display:none'";
+					  }else{
+						  $trdisplay='';
+					  }
+					  ?>
         <div class="row">
             <div class="col-xs-12">
             <!-- /.box -->
@@ -132,8 +218,8 @@
                       <th>Nomor SP3</th>
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
-                      <th>Penerima Pembayaran</th>
-                      <th>Tanggal Submit SP3</th>
+                      <th>Penerima Pembayaran</th>					  
+                      <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
 												 
                       <th>Action</th>
                     </tr>
@@ -176,7 +262,7 @@
                           }   
                         ?>
                     </td>                  
-                    <td><?php echo $row->tanggal; ?></td>
+                    <td><?php echo $row->tanggal_new; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -198,9 +284,9 @@
                           }
                         ?>
                     <td><?php echo $buka; ?></td>
-                    <td><?php echo $row->submit_date;?></td>
+                    <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
                     <td>
-                      <a href="home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
+                      <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                     </td>      
                     </tr>
                 <?php  } ?>
@@ -263,7 +349,32 @@
                 
     </section>
     <!-- /.content -->
-
+    <?php if($row->status == 0){
+                            echo "<img src=''>";  
+                          }else if($row->status == 1){
+                            echo "'>";  
+                          }else if($row->status == 11){
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          }else if($row->status == 2){
+                            echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                          }else if($row->status == 3){
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
+                          }else if($row->status == 4){
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          }else if($row->status == 5){
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          }else if($row->status == 6){
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          }else if($row->status == 7){
+                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          }else if($row->status == 8){
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                          }else if($row->status == 9){
+                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                          }else if($row->status == 10){
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                          }   
+                        ?>
     <section class="content">
       <div class="row">
         <div class="col-xs-12 col-md-4">
@@ -444,7 +555,7 @@ $(function () {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('dashboard/caridatadashboard') ?>";
+	  url = "<?php echo base_url('Home/caridatadashboard') ?>";
       $.ajax({
             url : url,
             type: "POST",
@@ -531,6 +642,26 @@ $(function () {
 function printThis() {
   window.print();
 }
+
+
+$(document).ready(function() { 
+		$('#selsearch').change(function() {
+		  if( $(this).val() == '1') {
+				$('#selblank').css("display", "none");
+				$('#selstatus').css("display", "block");
+				$('#seljnspembayaran').css("display", "none");
+		  } else if( $(this).val() == '2'){   
+			$('#selblank').css("display", "none");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "block");
+		  }else{
+			$('#selblank').css("display", "block");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "none");
+		  }
+		})
+		
+		});
 </script>
 </body>
 </html>

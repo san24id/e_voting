@@ -1686,24 +1686,25 @@ class Dashboard extends CI_Controller {
 		//$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
 		//$this->Home_model->addpayment($add);
 		
-		$insert = $this->Home_model->saveaddpayment($add);
+		//$insert = $this->Home_model->saveaddpayment($add);
 		
 		$strcounter=intval($_POST['txtcountervendor']);
-		$id = $insert;
+		$id =$insert;
 		//$this->Dashboard_model->delete_vendorpayment($id);
 		for($i=0; $i<$strcounter; $i++){
 			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
-			if($nominal != ""){
+			//if($nominal != ""){
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
+						'v_currency' => $_POST['currencyvendor'][$i],
 						'v_nominal' => number_format($nominal,0,",",".")
 					);
-					
+							
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
-			}
+			//}
 		}
 		//echo json_encode(array("status" => TRUE));
 		echo json_encode($insert);
@@ -2500,8 +2501,16 @@ class Dashboard extends CI_Controller {
 	
 	public function caridatadashboard()
 	{
+		$txtsearch="";
 			$profileid=$this->input->post('selsearch');
-			$txtsearch=$this->input->post('txtpencarian');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
 			$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
 			echo json_encode($data);
 	}
@@ -2704,6 +2713,7 @@ class Dashboard extends CI_Controller {
 	
 	public function all_detail_payment($id,$start_date,$end_date)
 	{
+		$this->session->set_userdata('statuspayment',$id);
 		$sid = $this->session->userdata("id_user");
 		$data['dashboard'] = 'active';
 		$data['active2'] = '';
@@ -2949,7 +2959,8 @@ class Dashboard extends CI_Controller {
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => number_format($nominal,0,",",".")
+						'v_nominal' => number_format($nominal,0,",","."),
+						'v_currency' => $_POST['currencyvendor'][$i]						
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -2977,7 +2988,9 @@ class Dashboard extends CI_Controller {
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => number_format($nominal,0,",",".")
+						'v_nominal' => number_format($nominal,0,",","."),
+						'v_currency' => $_POST['currencyvendor'][$i]
+						
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);

@@ -120,7 +120,7 @@
                           }   
                         ?>                    
                   </td>
-                  <td><?php echo $row->tanggal; ?></td>
+                  <td><?php echo $row->tanggal_new; ?></td>
                   <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){

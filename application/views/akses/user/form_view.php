@@ -177,7 +177,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <input id="checkrequest" onclick="checkUangMuka()" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2;?> disabled>Permintaan Uang Muka/<i>Advance Request<br>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6;?> disabled> Corporate Credit Card </input><br>
                         </td>
                       </tr>
@@ -187,7 +187,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> disabled>Pertanggungjawaban Uang Muka/<i>Advance Settlement<br>                            
                         </td>
-                      </tr>                        
+                      </tr>                       
                     </table>
 
                     <br>
@@ -310,7 +310,8 @@
 																<th>Penerima Pembayaran <font color="red"> * </font></th>
 																<th>Tunai/Transfer <font color="red"> * </font></th>
 																<th>Nomor Rekening <font color="red"> * </font></th>
-																<th>Nominal</th>
+																<th>Mata Uang <font color="red"> * </font></th>
+																<th>Nominal <font color="red"> * </font></th>
 																<th>&nbsp;</th>
                               </tr>
 														  </thead>
@@ -341,7 +342,14 @@
 																	</select>
 																</td>
 																<td><input id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" readonly>
-																</td>      
+																</td> 
+																<td><select id="currencyvendor1" name="currencyvendor[]" class="form-control" readonly>
+																	<option value="">--- Choose ---</option>
+																	<?php foreach ($currency as $cur) {?>
+																	  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
+																	<?php } ?>
+																	</select>
+																</td>
 																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" readonly></td>																
 																<td>&nbsp;</td>
 																</tr>
@@ -371,7 +379,17 @@
 																	</select>
 																</td>
 																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" readonly>
-																</td>   
+																</td>
+			
+																<td><select id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" readonly >
+																	<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
+																	<option value="">--- Choose ---</option>
+																	<?php foreach ($currency  as $cur) {?>
+																	  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
+																	<?php } ?>
+																	</select>
+																</td>
+																
 															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" readonly></td>
 															
 															
@@ -381,7 +399,7 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th colspan="3" style="text-align:end;">Total</th>
+																<th colspan="4" style="text-align:end;">Total</th>
 																  <th><label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
 																  <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
 				
@@ -508,16 +526,14 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                                                <table width="100%" id="show" <?php echo $showed;?> >
+                    <table width="100%" id="show" <?php echo $showed;?> >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
                         <td width="50%"><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
                         <td>:</td>
-                        <td>
-                          <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
-                        </td>
+                        <td><input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly> </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled> Lampiran copy ARF tersedia</input></td>
                       </tr>
                       <tr>
@@ -538,7 +554,7 @@
                       <tr>  
                         <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-                        <td><select id="demo" name="currency4" class="form-control" >
+                        <td><select id="demo" name="currency4" class="form-control" readonly>
                                 <option value="<?php echo $row->currency4;?>"><?php echo $row->currency4;?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
@@ -546,9 +562,9 @@
                                 <?php } ?>
                             </select>
                         </td>
-                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
+                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>" readonly></td>
                         
-                        <td><select id="demo" name="currency5" class="form-control" >
+                        <td><select id="demo" name="currency5" class="form-control" readonly>
                                       <option value="<?php echo $row->currency5;?>"><?php echo $row->currency5;?></option>
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
@@ -556,23 +572,23 @@
                                 <?php } ?>
                               </select>
                         </td>
-                        <td><input id="biaya2" onchange="penjumlahan2()" type="text" class="form-control" name="label8" value="<?php echo $row->label8;?>"></input></td>
+                        <td><input id="biaya2" onchange="penjumlahan2()" type="text" class="form-control" name="label8" value="<?php echo $row->label8;?>" readonly></td>
                         
-                        <td><select id="demo" name="currency6" class="form-control" >
+                        <td><select id="demo" name="currency6" class="form-control" readonly>
                                       <option value="<?php echo $row->currency6;?>"><?php echo $row->currency6;?></option>
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select> </td>
-                        <td><input id="biaya3" onchange="penjumlahan3()" type="text" class="form-control" name="label9" value="<?php echo $row->label9;?>"></input></td>
+                        <td><input id="biaya3" onchange="penjumlahan3()" type="text" class="form-control" name="label9" value="<?php echo $row->label9;?>" readonly></td>
                       </tr>
 
                       <!--UangMuka-->
                       <tr>
                         <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-                        <td><select id="demo2" name="currency7" class="form-control" >
+                        <td><select id="demo2" name="currency7" class="form-control" readonly>
                                 <option value="<?php echo $row->currency7;?>"><?php echo $row->currency7;?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
@@ -580,7 +596,7 @@
                                 <?php } ?>
                             </select> 
                         </td>
-                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label10" value="<?php echo $row->label10; ?>"></input> </td>  
+                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label10" value="<?php echo $row->label10; ?>" readonly> </td>  
                         
                         <td><select id="demo2" name="currency8" class="form-control" >
                                 <option value="<?php echo $row->currency8;?>"><?php echo $row->currency8;?></option>
@@ -590,9 +606,9 @@
                                 <?php } ?>
                             </select> 
                         </td>
-                        <td><input id="uangmuka2" onchange="penjumlahan2()" type="text" class="form-control" name="label11" value="<?php echo $row->label11; ?>"></input> </td> 
+                        <td><input id="uangmuka2" onchange="penjumlahan2()" type="text" class="form-control" name="label11" value="<?php echo $row->label11; ?>" readonly> </td> 
                         
-                        <td><select id="demo2" name="currency9" class="form-control" >
+                        <td><select id="demo2" name="currency9" class="form-control" readonly>
                                 <option value="<?php echo $row->currency9;?>"><?php echo $row->currency9;?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
@@ -600,14 +616,14 @@
                                 <?php } ?>
                             </select>
                         </td>
-                        <td><input id="uangmuka3" onchange="penjumlahan3()" type="text" class="form-control" name="label12" value="<?php echo $row->label12; ?>"></input> </td> 
+                        <td><input id="uangmuka3" onchange="penjumlahan3()" type="text" class="form-control" name="label12" value="<?php echo $row->label12; ?>" readonly> </td> 
                       <tr>
 
                       <!--Selisih-->
                       <tr>
                         <td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
-                        <td><select id="demo3" name="currency10" class="form-control" >
+                        <td><select id="demo3" name="currency10" class="form-control" readonly>
                                 <option value="<?php echo $row->currency10;?>"><?php echo $row->currency10;?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
@@ -615,9 +631,9 @@
                                 <?php } ?>
                             </select> 
                         </td>
-                        <td><input id="hasil" type="text" class="form-control" name="label13" value="<?php echo $row->label13; ?>" readonly></input></td>
+                        <td><input id="hasil" type="text" class="form-control" name="label13" value="<?php echo $row->label13; ?>" readonly></td>
                         
-                        <td><select id="demo3" name="currency11" class="form-control" >
+                        <td><select id="demo3" name="currency11" class="form-control" readonly>
                                 <option value="<?php echo $row->currency11;?>"><?php echo $row->currency11;?> </option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
@@ -625,17 +641,17 @@
                                 <?php } ?>
                               </select>
                         </td>
-                        <td><input id="hasil2" type="text" class="form-control" name="label14" value="<?php echo $row->label14; ?>" readonly></input></td>
+                        <td><input id="hasil2" type="text" class="form-control" name="label14" value="<?php echo $row->label14; ?>" readonly></td>
                         
-                        <td><select id="demo3" name="currency12" class="form-control" >
+                        <td><select id="demo3" name="currency12" class="form-control" readonly>
                                 <option value="<?php echo $row->currency12;?>"><?php echo $row->currency12;?></option>
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select> </td>
-                        <td><input id="hasil3" type="text" class="form-control" name="label15" value="<?php echo $row->label15; ?>" readonly></input></td>                               
-                      </tr>                               
+                        <td><input id="hasil3" type="text" class="form-control" name="label15" value="<?php echo $row->label15; ?>" readonly></td>                               
+                      </tr>                              
                       </tbody>
                     </table>
 

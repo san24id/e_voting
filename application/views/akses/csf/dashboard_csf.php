@@ -323,15 +323,41 @@
 									<div class="col-md-2">
 										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Tanggal </option>
+											<option value='1'> Status </option>
 											<option value='2'> Jenis Pembayaran </option>
-											<option value='3'> Nomor Surat </option>
+											<!-- <option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
-											<option value='5'> Penerima </option>
+											<option value='5'> Penerima </option> -->
 										</select>
 									</div> 	
-									<div class="col-md-6">
-										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+									<div class="col-md-3">
+										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+										<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='0'> Draft </option>
+											<option value='1'> Draft Print </option>
+											<option value='2'> Submitted </option>
+											<option value='3'> Rejected </option>
+											<option value='4'> Processing Tax </option>
+											<option value='5'> Processing Finance </option>
+											<option value='6'> Waiting for Review </option>
+											<option value='7'> Waiting for Verivication </option>
+											<option value='8'> Waiting for Approved </option>
+											<option value='9'> Waiting for Payment </option>
+											<option value='10'> Paid </option>
+										</select>
+										
+										<select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='2'> Advance Request </option>
+											<option value='3'> Advance Settlement </option>
+											<option value='4'> Direct Payment </option> 
+											<option value='5'> Cash Received </option>
+										</select>
+										
+										<select class="form-control" id="selblank" name="selblank"  >
+											<option value=''>== Pilih ==</option>
+										</select>
 									</div>		
 										
 									<div class="col-md-3">
@@ -750,6 +776,26 @@ chart.options.data[0].click = function(e){
 function printThis() {
   window.print();
 }
+
+
+$(document).ready(function() { 
+		$('#selsearch').change(function() {
+		  if( $(this).val() == '1') {
+				$('#selblank').css("display", "none");
+				$('#selstatus').css("display", "block");
+				$('#seljnspembayaran').css("display", "none");
+		  } else if( $(this).val() == '2'){   
+			$('#selblank').css("display", "none");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "block");
+		  }else{
+			$('#selblank').css("display", "block");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "none");
+		  }
+		})
+		
+		});
 </script>
 </body>
 </html>

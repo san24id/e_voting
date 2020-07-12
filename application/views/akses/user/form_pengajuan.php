@@ -1,4 +1,6 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+  
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -10,6 +12,7 @@
         </section> -->
 		<?php
     $dvs = $this->session->userdata('division_id');
+    // var_dump($dvs);exit;
 		$arrvendor="";
 		$strvendor="";
 		$counter=0;
@@ -25,10 +28,16 @@
                   $arrbank= $arrbank . $bnk->bank .";" ;
 		}
 		$strbank=substr($arrbank,0,strlen($arrbank)-1);
+		$arrcurrency="";
+		$strcurrency="";
+		foreach($currency as $cur){
+                  $arrcurrency= $arrcurrency . $cur->currency .";" ;
+		}
+		$strcurrency=substr($arrcurrency,0,strlen($arrcurrency)-1);
+															 
 		?>
         <!-- Main content -->
         <form id="formadd" action="#" >
-          <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -44,8 +53,9 @@
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>                       
-                        <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : XXXX/<?php echo $dvs?>/SPPP/<?php echo date("my")?></b></td>
+                          <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : XXXX/<?php echo $dvs?>/SPPP/<?php echo date("my")?></b></td>
                           <!-- <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">   -->
+                          <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
                           <input type="hidden" id="id_payment" name="id_payment" >  
                         <!-- <td width="50%"><center><b>No ARF/ASF   :</b></center></td> -->
                         </tr>
@@ -81,8 +91,8 @@
                           <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2"> Permintaan Uang Muka/<i>Advance Request</input><br>
                           </td>
-                          <td>
-                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6"> Corporate Credit Card </input><br>
+                          <td style="display:none">
+                            <input id="checkcreditcard"  type="checkbox" name="jenis_pembayaran[]" value="6" > Corporate Credit Card </input><br>
                           </td>
                       </tr>  
                       <tr>
@@ -90,7 +100,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <input id="checksettlement"  type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggungjawaban Uang Muka/<i>Advance Settlement</input><br>                            
                         </td>
-                      </tr>
+                      </tr> 
 						<input type="hidden" id="jns_pembayaran" name="jns_pembayaran" >  
                     </table>
 
@@ -163,7 +173,7 @@
 
                                 <?php } ?>
                               </select>
-                          </td>
+                        </td>
                         <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" placeholder="Jumlah" > </td>
 
                         <td><select name="currency3" class="form-control">
@@ -173,7 +183,7 @@
 
                                 <?php } ?>
                               </select>
-                          </td>
+                        </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
                       </tr>
                       </tbody>
@@ -186,7 +196,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" id="perkiraanSelesai" class="form-control" name="label3"></input></td>     
+                        <td colspan="8" width="65%"><input type="text" id="perkiraanSelesai" name="label3" class="form-control" "></input></td>     
                       </tr>
                                                   
                       </tbody>
@@ -239,15 +249,17 @@
 														<input type="hidden" id="txtcountervendor" name="txtcountervendor" value="1" />
 														<input type="hidden" id="strvendor" name="strvendor" value="<?php echo $strvendor; ?>">
 														<input type="hidden" id="strbank" name="strbank" value="<?php echo $strbank; ?>">
+														<input type="hidden" id="strcurrency" name="strcurrency" value="<?php echo $strcurrency; ?>">
 							
 														<div class="table-responsive" >
 														<table id="show1" class="table table-bordered table-striped"> 
 														  <thead>
-                              <tr>
+															<tr>
 																<th>Penerima Pembayaran <font color="red"> * </font></th>
 																<th>Tunai/Transfer <font color="red"> * </font></th>
 																<th>Nomor Rekening <font color="red"> * </font></th>
-																<th>Nominal</th>
+																<th>Mata Uang <font color="red"> * </font></th>
+																<th>Nominal <font color="red"> * </font></th>
 																<th>&nbsp;</th>
                               </tr>
 														  </thead>
@@ -260,7 +272,7 @@
 															$fvendor='';
 															if ($getdatavendor == null){ ?>
 																<tr id="tr1">
-																<td ><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1')" class="form-control" name="penerimavendor[]" >
+																<td ><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1','1')" class="form-control select2" name="penerimavendor[]" >
 																	<option value="">--Choose--</option>
 																	<?php foreach ($data_vendor as $nama){?> 
 																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
@@ -271,7 +283,7 @@
 																	<input id="namavendor1" type="hidden" name="namavendor[]"  />
 																</td>
 																
-																<td><select id="bankvendor1" name="bankvendor[]" class="form-control" onchange="drpbank('bankvendor1','rekeningvendor1')" >
+																<td><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onclick="drpbank('bankvendor1','rekeningvendor1','1')">
 																	<option value="">--- Choose ---</option>
 																	<?php foreach ($bank as $get) {?>
 																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
@@ -280,6 +292,14 @@
 																</td>
 																<td><input id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
 																</td>      
+																<td><select id="currencyvendor1" name="currencyvendor[]" class="form-control">
+																		  <option value="">--Choose--</option>
+																		  <?php foreach ($currency as $cur) {?>
+																		  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
+
+																	<?php } ?>
+																  </select>
+															    </td>							  
 																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>																
 																<td>&nbsp;</td>
 																</tr>
@@ -296,7 +316,7 @@
 																}
 															?>
 															<tr id="tr<?php echo $vendorrow; ?>">
-															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>')" class="form-control" name="penerimavendor[]" value='<?php echo $gvendor->kode_vendor; ?>'>
+															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" class="form-control" name="penerimavendor[]" value='<?php echo $gvendor->kode_vendor; ?>'>
 																	<option value="">--Choose--</option>
 																	<?php foreach ($data_vendor as $nama){?> 
 																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
@@ -304,15 +324,23 @@
 																	</select>
 																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]"   />
 																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]"   /></td>
-															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" onchange="drpbank('<?php echo 'bankvendor'.$vendorrow; ?>','<?php echo 'rekeningvendor'.$vendorrow; ?>')" name="bankvendor[]" class="form-control" value="<?php echo $gvendor->v_bank; ?>" >
+															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" onchange="drpbank('<?php echo 'bankvendor'.$vendorrow; ?>','<?php echo 'rekeningvendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" name="bankvendor[]" class="form-control" value="<?php echo $gvendor->v_bank; ?>" >
 																	<option value="">--- Choose ---</option>
 																	<?php foreach ($bank as $get) {?>
 																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
 																	<?php } ?>
 																	</select>
 																</td>
-																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>"  <?php echo $fvendor; ?> >
+																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $fvendor; ?> >
 																</td>   
+																<td><select id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control">
+																		  <option value="">--Choose--</option>
+																		  <?php foreach ($currency as $cur) {?>
+																		  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
+
+																	<?php } ?>
+																  </select>
+															    </td>								  
 															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
 															
 															<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$vendorrow; ?>')"> 
@@ -328,7 +356,7 @@
 																<th><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
 																  <i class="glyphicon glyphicon-plus"></i>
 																  </span></th>
-																  <th colspan="2" style="text-align:end;">Total</th>
+																  <th colspan="3" style="text-align:end;">Total</th>
 																  <th><label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
 																  <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
 				
@@ -585,13 +613,17 @@
 </div>
 <!-- ./wrapper -->
 
-    <!-- jQuery 2.2.3 -->
-<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- jQuery 2.2.3
+<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Bootstrap 3.3.6 -->
 <script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
     <!-- DataTables -->
 <script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+
     <!-- SlimScroll -->
 <script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
@@ -601,6 +633,9 @@
     <!-- AdminLTE for demo purposes -->
 <script src="assets/dashboard/dist/js/demo.js"></script>
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
+
+<script src="assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>  
@@ -640,74 +675,41 @@ function penjumlahan(){
   // }
 }
 
-function penjumlahan2(){
-  var a = document.getElementById("biaya2").value;
-  var b = document.getElementById("uangmuka2").value;
-  // var c = document.getElementById("hasil").value;
-  var reva = a.replace(/\./g,'');
-  var revb = b.replace(/\./g,'');
-  // var revc = c.replace(".","");
-  // alert(reva);
-  var hasil2 = parseInt(reva)-parseInt(revb);
-  // var aa = parseInt(rev).value;
-  // var b = parseInt(document.getElementById("uangmuka").value);
-
-  // if(reva && revb){
-	  if(hasil2<0){
-		  document.getElementById("hasil2").value = '('+Math.abs(hasil2)+')'; 
-	  }else{
-	  	document.getElementById("hasil2").value = ''+hasil2+''; 
-    
-	  }
-	  
-	  var strhasil2=document.getElementById("hasil2");
-	  var strulang2 =strhasil2.value;
-	if (strulang2.substr(0,1)=="(" && strulang2.substr(strulang2.length-1,1)==")"){
-		strhasil2.value = "(" + formatuangmuka2(strulang2.substr(1,strulang2.length-2)) + ")";
-	}else{
-		strhasil2.value = formatuangmuka2(strulang2);
-	} 
-	  
-  // }
-}
-
-function penjumlahan3(){
-  var a = document.getElementById("biaya3").value;
-  var b = document.getElementById("uangmuka3").value;
-  // var c = document.getElementById("hasil").value;
-  var reva = a.replace(/\./g,'');
-  var revb = b.replace(/\./g,'');
-  // var revc = c.replace(".","");
-  // alert(reva);
-  var hasil3 = parseInt(reva)-parseInt(revb);
-  // var aa = parseInt(rev).value;
-  // var b = parseInt(document.getElementById("uangmuka").value);
-
-  // if(reva && revb){
-	  if(hasil3<0){
-		  document.getElementById("hasil3").value = '('+Math.abs(hasil3)+')'; 
-	  }else{
-	  	document.getElementById("hasil3").value = ''+hasil3+''; 
-    
-	  }
-	  
-	  var strhasil3=document.getElementById("hasil3");
-	  var strulang3 =strhasil3.value;
-	if (strulang3.substr(0,1)=="(" && strulang3.substr(strulang3.length-1,1)==")"){
-		strhasil3.value = "(" + formatuangmuka3(strulang3.substr(1,strulang3.length-2)) + ")";
-	}else{
-		strhasil3.value = formatuangmuka3(strulang3);
-	} 
-	  
-  // }
-}
-
-function fung(param1,param2,param3){
+function fung(param1,param2,param3,param4){
   // alert();  
   var data = document.getElementById(""+param1).value; 
   var strdata=$("#"+param1+" option:selected").text().split(" - "); 
   document.getElementById(""+param2).value = data;
   document.getElementById(""+param3).value = strdata[0];
+  //alert(data.substr(0,1));
+  if(data.substr(0,1)=="1"){
+	  $("#bankvendor"+param4).val("").change();
+	  $("#rekeningvendor"+param4).val("").change();
+	  $("#nominalvendor"+param4).val("0").change();
+	  $("#currencyvendor"+param4).val("").change();
+	  $("#bankvendor"+param4).prop( "disabled", true );
+	  $("#rekeningvendor"+param4).prop( "readonly", true );
+	  $("#currencyvendor"+param4).prop( "disabled", true );
+	  $("#nominalvendor"+param4).prop( "readonly", true );
+  }else if(data.substr(0,1)=="2"){
+	  $("#bankvendor"+param4).val("").change();
+	  $("#rekeningvendor"+param4).val( "").change();
+	  $("#bankvendor"+param4).prop( "disabled", true );
+	  $("#rekeningvendor"+param4).prop( "readonly", true );
+	  $("#nominalvendor"+param4).prop( "readonly", false );
+  }else if(data.substr(0,1)=="3"){
+	  $("#rekeningvendor"+param4).val( "").change(); 
+	  $("#bankvendor"+param4).prop( "disabled", false );
+	  $("#rekeningvendor"+param4).prop( "readonly", true );
+	  $("#nominalvendor"+param4).prop( "readonly", false );
+  }else {
+	  $("#bankvendor"+param4).prop( "disabled", false );
+	  $("#rekeningvendor"+param4).prop( "readonly", false );
+	  $("#nominalvendor"+param4).prop( "readonly", false );
+	  $("#currencyvendor"+param4).prop( "disabled", false );
+	  
+  }
+  
 }
 
 // document.querySelector(".third").addEventListener('click', function(){
@@ -846,9 +848,8 @@ function showInput() {
 	}else if(strrupiah.substr(0,1)=="-") {
 		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-1)) + ")";
 	}else{
-		rupiah.value = formatRupiah(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah.value = formatRupiah(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -879,9 +880,8 @@ function showInput() {
 	}else if(strrupiah2.substr(0,1)=="-") {
 		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-1)) + ")";
 	}else{
-		rupiah2.value = formatRupiah2(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah2.value = formatRupiah2(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -912,9 +912,8 @@ function showInput() {
 	}else if(strrupiah.substr(0,1)=="-") {
 		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-1)) + ")";
 	}else{
-		rupiah3.value = formatRupiah3(this.value);
-	}
-	//ulang.value = formatulang(this.value);
+    rupiah3.value = formatRupiah3(this.value);
+  }
   });
 
   /* Fungsi formatRupiah */
@@ -1022,7 +1021,6 @@ function showInput() {
 	}else{
 		uangmuka.value = formatuangmuka(this.value);
 	}
-	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatRupiah */
@@ -1139,7 +1137,9 @@ function showInput() {
       } else {       
         $('#rekeningvendor1').prop( "disabled", false );
       }
-    });
+    });	
+	
+  
   });*/
 
 	$("#checkcreditcard").on( "click", function() {
@@ -1245,16 +1245,26 @@ function showInput() {
 		
 	});	
 	
+	$( "#perkiraanSelesai" ).datepicker({
+		dateFormat: "dd/mm/yy",
+		minDate : 0
+	});
 	
-
-  // $(document).ready(function() { 
-  //   $('#penerima').change(function() {
-  //         $('#kode_vendor').val() = $(this).val());
-  //     alert(kode_vendor);
-  //   });
-
+	
+	
+	$('#perkiraanSelesai').keydown(function (event) {
+		event.preventDefault();
+	});
+	
+	/*var selcounter=$('#txtcountervendor').val();
+	for (var i = 1; i <= selcounter; i++) { 
+		$("#penerimavendor"+i).select2();
+	}*/
+	
+	//$(".select2").select2();
   // });
 </script>
+
 
 <script type="text/javascript">
 
@@ -1274,11 +1284,13 @@ function myFunction2() {
 
 function savedraft() {
   
-  var errmsg="0";
+  	var errmsg="0";
 	
 	var inps1 = document.getElementsByName('kodevendor[]');
 	var inps2 = document.getElementsByName('bankvendor[]');
 	var inps3 = document.getElementsByName('rekeningvendor[]');
+	var inps4 = document.getElementsByName('nominalvendor[]');
+	var inps5 = document.getElementsByName('currencyvendor[]');
 	var lbl4 = document.getElementsByName('label4[]');
 	
 	if($('#jns_pembayaran').val()==""){
@@ -1287,88 +1299,102 @@ function savedraft() {
 		alert('Tujuan Penggunaan belum di input');
 	}else if($('#Select').val()==""){
 		alert('Mata Uang Pertama belum dipilih');
-									   
 	}else if($('#rupiah').val()==""){
 		alert('Nominal Jumlah Pertama belum di input');
-							  
 	}else if ($('#jns_pembayaran').val()=="2" && $('#perkiraanSelesai').val()==""){
 			alert('Perkiraan Tanggal Selesai Pekerjaan/Terima Barang belum di input');
-								 
 	}else{
+		var skdvendor='';
 		for (var i = 0; i <inps1.length; i++) {
+			skdvendor = inps1[i].value;
 			if(inps1[i].value==""){
 				errmsg="Nama Vendor baris ke " + (i+1) + " belum di pilih";
 				break;
 			};
+			
 			if(inps2[i].value==""){
-				errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
+				if (skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2"){
+					errmsg="0";
+				}else{
+					errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
+					break;
+				}
+			};
+			if(inps3[i].value=="" && inps2[i].value!="Tunai"){
+				if(skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2" || skdvendor.substring(0, 1)=="3"){
+					errmsg="0";
+				}else{
+					errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
+					break;
+				}
+			};
+			if(inps5[i].value=="" && skdvendor.substring(0, 1)!="1"){
+				errmsg="Mata Uang Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
-      if(inps3[i].value=="" && inps2[i].value!="Tunai"){
-				errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
+			if(inps4[i].value=="" && skdvendor.substring(0, 1)!="1"){
+				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
 		}
 		var schk=lbl4.length-1;
-		// if (errmsg=="0"){
-		// 	for (var x = 0; x <lbl4.length; x++) {
-		// 		if(lbl4[x].checked){
-		// 			errmsg="0";
-		// 			break;
-		// 		}else{
-		// 			errmsg="Dokumen Lampiran belum di pilih";
-		// 		};
-		// 	}
+		/*if (errmsg=="0"){
+			for (var x = 0; x <lbl4.length; x++) {
+				if(lbl4[x].checked){
+					errmsg="0";
+					break;
+				}else{
+					errmsg="Dokumen Lampiran belum di pilih";
+					
+				};
+			}*/
 			
 			if (errmsg=="0"){
 					if(lbl4[schk].checked && $('#text1').val()==""){
 						alert('Dokumen Lampiran Lainnya belum di input');
 					}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
 							alert('Nomor ARF Terkait belum di input');
-															 
 					}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
-							alert('Jumlah Biaya belum di input');							
-														   
+							alert('Jumlah Biaya belum di input');
 					}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
 							alert('Jumlah Uang Muka belum di input');
 					}else{
-  
 						<?php foreach ($getID as $key) { ?>
 						  var link = "<?php echo base_url('Home/formfinished/'.$key->id_payment);?>";
 						<?php } ?>
-
 						  
 						if(save_method=="edit"){
 							url = "<?php echo base_url('Home/saveeditpayment')?>";  
 						}else{
 							url = "<?php echo base_url('Home/saveaddpayment')?>";  
 						}
-						   
-							$.ajax({
-							  url : url,
-							  type : "POST",
-							  data: $("#formadd").serialize(),
-							  dataType: "JSON",
-							  success: function(data){  
-								alert('Data Berhasil Di simpan');
-								save_method="edit";
-								$("#id_payment").val(data);
-								window.location = link;
-							},      
-							  error: function (data)
-							  {
-								console.log(data);
-								alert('Error adding / update data');
-							  }
-							});
-					  }
+					   
+						$.ajax({
+						  url : url,
+						  type : "POST",
+						  data: $("#formadd").serialize(),
+						  dataType: "JSON",
+						  success: function(data){ // Ketika proses pengiriman berhasil          
+							alert('Data Berhasil Di simpan');   
+							save_method="edit";
+							$("#id_payment").val(data);
+							window.location = link;
+						},      
+						  error: function (data)
+						  {
+							console.log(data);
+							alert('Error adding / update data');
+						  }
+						});
+					}
 			}else{
 				alert(errmsg);
 			}
-		// }else{
-		// 	alert(errmsg);
-		// }
+		/*}else{
+			alert(errmsg);
+		}*/
 	}
+    
 }
 
 var countervendor=1;
@@ -1385,7 +1411,7 @@ function AddIndeks(){
 		var newTextBoxDiv = $(document.createElement('tr')).attr("id", 'tr' + szcountervendor);
 		var strhtml='';	
 		var arrkdvendor;
-		strhtml=strhtml + '<td><select id="penerimavendor'+szcountervendor+'" onchange="fung('+xpenerimavendor+','+xkodevendor+','+xnamavendor+')" class="form-control" name="penerimavendor[]" > ' ;
+		strhtml=strhtml + '<td><select id="penerimavendor'+szcountervendor+'" onchange="fung('+xpenerimavendor+','+xkodevendor+','+xnamavendor+','+szcountervendor+')" class="form-control select2" name="penerimavendor[]" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		
 		strvendor =document.getElementById("strvendor").value;
@@ -1397,7 +1423,7 @@ function AddIndeks(){
 		}
 		strhtml=strhtml + '</select><input id="kodevendor'+szcountervendor+'" type="hidden" name="kodevendor[]"  /><input id="namavendor'+szcountervendor+'" type="hidden" name="namavendor[]"  /></td>'
 		
-		strhtml=strhtml + '<td><select id="bankvendor'+szcountervendor+'" class="form-control" name="bankvendor[]" onchange="drpbank('+xbankvendor+','+xrekeningvendor+')"> ' ;
+		strhtml=strhtml + '<td><select id="bankvendor'+szcountervendor+'" class="form-control select2" name="bankvendor[]" onchange="drpbank('+xbankvendor+','+xrekeningvendor+','+szcountervendor+')" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		
 		strbank =document.getElementById("strbank").value;
@@ -1406,10 +1432,22 @@ function AddIndeks(){
 		for (i=0;i<arrbank.length; i++){
 			strhtml=strhtml + '<option value="' + arrbank[i] + '">' + arrbank[i] + '</option>';
 		}
-		strhtml=strhtml + '</select></td>'
+		strhtml=strhtml + '</select></td>';
 		
-		strhtml=strhtml + '<td><input id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' + 
-						  '<td><input class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>' +
+		strhtml=strhtml + '<td><input id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' ;
+		
+		strhtml=strhtml + '<td><select id="currencyvendor'+szcountervendor+'" class="form-control" name="currencyvendor[]" > ' ;
+		strhtml=strhtml + '<option value="">--Choose--</option> ';
+		strcurrency =document.getElementById("strcurrency").value;
+		arrcurrency = strcurrency.split(";");
+	
+		for (i=0;i<arrcurrency.length; i++){
+			strhtml=strhtml + '<option value="' + arrcurrency[i] + '">' + arrcurrency[i] + '</option>';
+		}
+		strhtml=strhtml + '</select></td>';
+		
+		
+		strhtml=strhtml + '<td><input class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
 		
@@ -1456,17 +1494,23 @@ function AddIndeks(){
 		$('#lbltotalvendor').text(formatRupiah(itotal.toString()));		
     }
 	
-	function drpbank(param1,param2){
+	function drpbank(param1,param2,param3){
 		
 	  var data = document.getElementById(""+param1).value; 
-	  if(data=="Tunai"){
+	  var vendor = document.getElementById("kodevendor"+param3).value; 
+	  if(vendor.substr(0,1)=="1" || vendor.substr(0,1)=="3"){
 		  $("#"+param2).prop( "readonly", true );
 	  }else{
-		  $("#"+param2).prop( "readonly", false );
+		  if(data=="Tunai"){
+			  $("#"+param2).prop( "readonly", true );
+		  }else{
+			  $("#"+param2).prop( "readonly", false );
+		  }	 
 	  }	  
+		
 	  
-	}
-	
+	}		
+
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
