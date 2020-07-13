@@ -651,6 +651,7 @@ class Tri extends CI_Controller {
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['bank'] =$this->Home_model->getBank();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
@@ -774,6 +775,7 @@ class Tri extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 

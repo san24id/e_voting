@@ -439,7 +439,13 @@
                       <tr>
                         <td><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
                         <td>:</td>
-                        <td><input id="arf_number" type="text" class="form-control" name="label5" placeholder="Enter Text"></td>
+                        <td><select id="arf_number" name="label5" class="form-control" >
+                                  <option value="">--Choose--</option>
+                                    <?php foreach ($getArf as $arf_doc) {?>
+                                  <option value="<?php echo $arf_doc->apf_doc; ?>"><?php echo $arf_doc->apf_doc; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
                         <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
                         <td></td>
                         <td></td>
@@ -473,7 +479,7 @@
                         </td>
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input></td>
                         
-                        <td><select id="demo" name="currency5" class="form-control" >0
+                        <td><select id="demo" name="currency5" class="form-control" >
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>

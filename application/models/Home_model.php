@@ -428,6 +428,15 @@ class Home_model extends CI_Model{
         return $query;
     }
 
+    function getARFPaid(){
+        $name = $this->session->userdata('display_name');
+
+        $sql = "SELECT apf_doc FROM t_payment_l WHERE display_name ='$name' AND status='10' AND apf_doc LIKE '%ARF%'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     function getCurrency(){
         $sql = "SELECT * FROM m_currency";
         
@@ -520,17 +529,19 @@ class Home_model extends CI_Model{
 
     var $table ="t_payment";
     public function buat_kode()  {   
-        $dvs = $this->session->userdata('division_id');  
+        $dvs = $this->session->userdata('division_id');        
+        $tahunnow = '2020';
+        $tahunbaru = date('Y');
 
         $this->db->select('LEFT(t_payment.nomor_surat,4) as kode', FALSE);
         $this->db->where('division_id', $dvs);
         $this->db->order_by('nomor_surat','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment');      //cek dulu apakah ada sudah ada kode di tabel.    
-        if($query->num_rows() <> 0){      
-         //jika kode ternyata sudah ada.      
-         $data = $query->row();      
-         $kode = intval($data->kode) + 1;    
+        if($query->num_rows() <> 0 && $tahunnow == $tahunbaru){      
+         //jika kode ternyata sudah ada.              
+            $data = $query->row();      
+            $kode = intval($data->kode) + 1;    
         }
         else {      
          //jika kode belum ada      
@@ -538,7 +549,7 @@ class Home_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-        $kodejadi = $kodemax."/$dvs/SPPP/".date('my');    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        $kodejadi = $kodemax."/$dvs/SPPP/".date('my');   // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
     

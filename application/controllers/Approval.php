@@ -815,6 +815,7 @@ class Approval extends CI_Controller {
 		$data['getID'] = $this->Home_model->getIdPayment();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['bank'] =$this->Home_model->getBank();
@@ -863,6 +864,7 @@ class Approval extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 

@@ -435,6 +435,7 @@ class Home extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['bank'] =$this->Home_model->getBank();
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment('0');
@@ -741,6 +742,7 @@ class Home extends CI_Controller {
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
 		$data['pegawai'] = $this->Home_model->getPegawai();
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);

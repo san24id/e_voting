@@ -1611,6 +1611,7 @@ class Dashboard extends CI_Controller {
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['bank'] =$this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment('0');
 		
@@ -1862,6 +1863,7 @@ class Dashboard extends CI_Controller {
 		$data['bank'] = $this->Home_model->getBank();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
+		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['pegawai'] = $this->Home_model->getPegawai();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
 
