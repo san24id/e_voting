@@ -155,7 +155,7 @@
                         
                       </tr>
                       <tr>
-                        <td><b>- Jumlah <font color="red"> * </font> </b> <br> <i>Nilai (+) = Pembayaran, Nilai (-) = Pengembalian</i></td>
+                        <td><b>- Jumlah <font color="red"> * </font> </b> </td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" >
                                       <option value="">--Choose--</option>
