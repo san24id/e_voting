@@ -535,28 +535,8 @@
                         <td class="kolom"><font size="1"><?php echo $row->label15; ?></td>                               
                       </tr>                               
                       </tbody>
-                    </table>          
-                  
-                    <table width="100%">
-                    <tbody>
-                      <tr>
-                        <td><font size="1">Pemohon, <br><br><br><br><br></td>
-                        <td><font size="1">Menyetujui, <br><br><br><br><br></td>
-                      </tr>
-                      <tr>
-                        <td><font size="1">Nama : &nbsp; <?php echo $row->display_name?></td>
-                        <?php foreach ($divhead as $divhead) { ?>
-                        <td><font size="1">Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
-                      </tr>
-                      <tr>
-                        <td><font size="1">Jabatan : &nbsp; <?php echo $row->jabatan?></td>
-                        <td><font size="1">Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
-                                                echo "SVP"; } ?> <?php echo $divhead->division_id; ?> </td>
-                        <?php } ?>                        
-                      </tr>                            
-                    </tbody>
-                    </table> 
-
+                    </table>                          
+                    
                     <br><br><br><br><br>         
                   
                     <table width="100%">

@@ -111,7 +111,7 @@ class Dashboard_model extends CI_Model{
     }
 
     public function updateprint($upd){
-        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`nomor_surat`='".$upd['nomor_surat']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
         
         $query = $this->db->query($sql);
 
