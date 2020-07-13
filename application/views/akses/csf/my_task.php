@@ -344,45 +344,55 @@
 
     <section class="content">
       <div class="row">
-        <div class="col-xs-12 col-md-4">
+        <div class="col-md-3">
           <!-- /.box -->
-          <!-- <div class="box"> -->
+          <div class="box">
             <!-- /.box-header -->
             <div class="box-body">            
-              <!-- <table id="" class="table table-bordered table-striped">
+              <table id="" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 10%">NO.</th>
-                    <th style="width: 10%">Status</th>
+                    <th style="width: 10%" >NO.</th>
+                    <th style="width: 20%" >Status</th>
                     <th>Keterangan</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td><img src="assets/dashboard/images/legend/finance1.png"></td>
-                    <td>Proceed On Finance</td>
+                    <td><img src="assets/dashboard/images/legend/draft.png"></td>
+                    <td>Draft</td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><img src="assets/dashboard/images/legend/tax1.png"></td>
-                    <td>Proceed On Tax</td>
+                    <td><img src="assets/dashboard/images/legend/draftprint.png"></td>
+                    <td>Draft(Print)</td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td><img src="assets/dashboard/images/legend/review1.png"></td>
-                    <td>Proceed On Review</td>
+                    <td><img src="assets/dashboard/images/legend/processing.png"></td>
+                    <td>Proceesing</td>
                   </tr>
                   <tr>
                     <td>4</td>
-                    <td><img src="assets/dashboard/images/legend/blue.png"></td>
-                    <td>Proceed On Verification</td>
+                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
+                    <td>Verified</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><img src="assets/dashboard/images/legend/approved.png"></td>
+                    <td>Approved</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><img src="assets/dashboard/images/legend/paid1.png"></td>
+                    <td>Paid</td>
                   </tr>
                 </tbody>
-              </table> -->
+              </table>
             </div>
             <!-- /.box-body -->
-          <!-- </div> -->
+          </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->

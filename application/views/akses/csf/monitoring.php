@@ -443,10 +443,67 @@
         <!-- /.col -->
         </div>
         
-        <!--  -->
-        
     </section>
     <!-- /.content -->
+
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- /.box -->
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">            
+              <table id="" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 10%" >NO.</th>
+                    <th style="width: 20%" >Status</th>
+                    <th>Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><img src="assets/dashboard/images/legend/draft.png"></td>
+                    <td>Draft</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><img src="assets/dashboard/images/legend/draftprint.png"></td>
+                    <td>Draft(Print)</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><img src="assets/dashboard/images/legend/processing.png"></td>
+                    <td>Proceesing</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
+                    <td>Verified</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><img src="assets/dashboard/images/legend/approved.png"></td>
+                    <td>Approved</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><img src="assets/dashboard/images/legend/paid1.png"></td>
+                    <td>Paid</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+      <!-- /.row -->
+    </section>
 </div>
 <!-- /.content-wrapper -->    
 

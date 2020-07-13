@@ -221,7 +221,7 @@
                         <td>
                       </tr>
                       <tr>
-                        <td><b>- Jumlah <font color="red"> * </font> </b></td>
+                        <td><b>- Jumlah <font color="red"> * </font> </b> <br> <i>Nilai (+) = Pembayaran, Nilai (-) = Pengembalian</i></td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="myFunction()" name="currency" class="form-control">
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
@@ -603,7 +603,7 @@
 
                       <!--Biaya-->
                       <tr>  
-                        <td>Jumlah Biaya <font color="red"> * </font></td>
+                        <td><b>Jumlah Biaya</b> <font color="red"> * </font></td>
                         <td>:</td>
                         <td><select id="demo" name="currency4" class="form-control" >
                                 <option value="<?php echo $row->currency4;?>"><?php echo $row->currency4;?></option>
@@ -637,7 +637,7 @@
 
                       <!--UangMuka-->
                       <tr>
-                        <td>Jumlah Uang Muka <font color="red"> * </font></td>
+                        <td><b>Jumlah Uang Muka <font color="red"> * </font></b> <br><i>(wajib diisi dengan tanda kurung/nilai negatif)</i></td>
                         <td>:</td>
                         <td><select id="demo2" name="currency7" class="form-control" >
                                 <option value="<?php echo $row->currency7;?>"><?php echo $row->currency7;?></option>
@@ -672,7 +672,7 @@
 
                       <!--Selisih-->
                       <tr>
-                        <td>Selisih Kurang/(Lebih)</td>                        
+                        <td><b>Selisih Kurang/(Lebih)</b> <br><i>(Nilai harus sama dengan nilai pada kolom Jumlah diatas)</i></td>                       
                         <td>:</td>
                         <td><select id="demo3" name="currency10" class="form-control" >
                                 <option value="<?php echo $row->currency10;?>"><?php echo $row->currency10;?></option>
