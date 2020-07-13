@@ -186,6 +186,11 @@
                         </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
                       </tr>
+                      <tr>
+                        <td></td>
+                        <td colspan="2"><i>&nbsp;&nbsp;&nbsp;&nbsp;Nilai (+) = Pembayaran, Nilai (-) = Pengembalian</i></td>
+                        <td></td>
+                      </tr>
                       </tbody>
                     </table>
                     
