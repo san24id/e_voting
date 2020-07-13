@@ -90,7 +90,7 @@
 													echo "<option value='1'> Status </option>";									
 													break;
 												  case "2":
-													echo "<option value='1'> Processing Tax </option>";										
+													echo "<option value='1'> Status </option>";										
 													break;
 												  case "3":
 													echo "<option value='1'> Status </option>";

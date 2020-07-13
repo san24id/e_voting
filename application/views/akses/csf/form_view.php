@@ -161,7 +161,7 @@
                           }else{
                                 $cek=" " ;
                           } ?>
-                         <input id="auto" <?php echo $cek;?> type="checkbox" disabled><b>Uang Muka/Advance<br>
+                         <input id="auto" <?php echo $cek;?> type="checkbox" disabled><b>Uang Muka/<i>Advance</i><br>
                         </td>
 
                         <td>
@@ -252,7 +252,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>" readonly></td>     
+                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo date("d/m/Y", strtotime($row->label3)); ?>" readonly></td>     
                       </tr>
                                                   
                       </tbody>

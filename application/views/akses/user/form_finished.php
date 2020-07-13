@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 
 <style type="text/css">
@@ -155,7 +156,7 @@
                           }else{
                                 $cek=" " ;
                           } ?>
-                          <input id="auto" <?php echo $cek;?> type="checkbox" disabled><b>Uang Muka/Advance</b><br>
+                          <input id="auto" <?php echo $cek;?> type="checkbox" disabled><b>Uang Muka/<i>Advance</i></b><br>
                         </td>
 
                         <td>
@@ -268,7 +269,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="text" id="perkiraanSelesai" class="form-control" name="label3" value="<?php echo $row->label3; ?>"></td>     
+                        <td colspan="8" width="65%"><input type="text" id="perkiraanSelesai" class="form-control" name="label3" value="<?php echo date("d/m/Y", strtotime($row->label3)); ?>"></td>     
                       </tr>
                                                   
                       </tbody>
@@ -1367,17 +1368,6 @@ function showInput() {
 
   // }
 
-  $( "#perkiraanSelesai" ).datepicker({
-		dateFormat: "dd/mm/yy",
-		minDate : 0
-	});
-	
-	
-	
-	$('#perkiraanSelesai').keydown(function (event) {
-		event.preventDefault();
-	});
-
   $(document).ready(function() { 
     $('#bankvendor1').change(function() {
       if( $(this).val() == 'Tunai') {
@@ -1489,6 +1479,15 @@ function showInput() {
 		
 		
 	});	
+
+  $( "#perkiraanSelesai" ).datepicker({
+		dateFormat: "dd/mm/yy",
+		minDate : 0
+	});
+			
+	$('#perkiraanSelesai').keydown(function (event) {
+		event.preventDefault();
+	});
 	
 var countervendor=$('#txtcountervendor').val();
 var szcountervendor;

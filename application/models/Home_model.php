@@ -249,7 +249,7 @@ class Home_model extends CI_Model{
     public function getPegawai(){
         $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT * FROM `m_user` WHERE division_id='$dvs'";
+        $sql = "SELECT * FROM `m_user` WHERE division_id='$dvs' AND role_id <= 4";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -671,9 +671,10 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() 
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
-
+        // var_dump($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -689,7 +690,8 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() 
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();

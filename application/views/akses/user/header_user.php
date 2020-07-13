@@ -263,8 +263,10 @@
         <br>
         <br>
         <br>
-        <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE SP3</button></a></center></li>
-      </ul>
+        <?php if($this->session->userdata("role_id") == 2 || $this->session->userdata("role_id") == 3){ ?>
+          <li><center><a href="Home/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE SP3</button></a></center></li>
+        <?php } ?>
+        </ul>
     </section>
     <!-- /.sidebar -->
   </aside>

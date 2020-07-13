@@ -1631,6 +1631,8 @@ class Dashboard extends CI_Controller {
 			$label4 .= $_POST['label4'][$l].";";
 		}
 		
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
 		// echo $jenis_pembayaran;
 		// var_dump(count($_POST['jenis_pembayaran']));exit;
 		$add = array(
@@ -1646,6 +1648,13 @@ class Dashboard extends CI_Controller {
 			'currency' => $_POST['currency'],
 			'currency2' => $_POST['currency2'],
 			'currency3' => $_POST['currency3'],
+			'division_id' => $_POST['division_id'],
+			'jabatan' => $_POST['jabatan'],
+			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
+			'jumlah2' => $_POST['jumlah2'],
+			'jumlah3' => $_POST['jumlah3'],
+			'label3' => $ganti,
 			'currency4' => $_POST['currency4'],
 			'currency5' => $_POST['currency5'],
 			'currency6' => $_POST['currency6'],
@@ -1727,6 +1736,10 @@ class Dashboard extends CI_Controller {
 		}
 		// echo $label4;
 		// var_dump(count($_POST['label$label4']));exit;
+		
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$id_apa = $_POST['id_payment'];
 		$upd = array(
 
@@ -1754,7 +1767,7 @@ class Dashboard extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
@@ -2809,6 +2822,9 @@ class Dashboard extends CI_Controller {
 			$label4 .= $_POST['label4'][$l].";";
 		}
 		
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$strcounter=intval($_POST['txtcountervendor']);
 		$id = $_POST['id_payment'];
 		$this->Dashboard_model->delete_vendorpayment($id);
@@ -2860,7 +2876,7 @@ class Dashboard extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
@@ -2894,6 +2910,10 @@ class Dashboard extends CI_Controller {
 		for($l=0; $l<=$c_label4; $l++){
 			$label4 .= $_POST['label4'][$l].";";
 		}
+
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$strcounter=intval($_POST['txtcountervendor']);
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
@@ -2927,7 +2947,7 @@ class Dashboard extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => isset($_POST['label6']),
@@ -2977,6 +2997,9 @@ class Dashboard extends CI_Controller {
 			$label4 .= $_POST['label4'][$l].";";
 		}
 		
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$strcounter=intval($_POST['txtcountervendor']);
 		$id = $_POST['id_payment'];
 		$this->Dashboard_model->delete_vendorpayment($id);
@@ -3030,7 +3053,7 @@ class Dashboard extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],

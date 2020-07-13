@@ -75,7 +75,7 @@
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
-          <p>*) seluruh sp3 yang telah dibuat dan belum dibayar</p>
+          <p>*) Seluruh SP3 yang telah dibuat dan belum dibayar</p>
 
           </div>
           <!-- /.col -->
@@ -93,7 +93,7 @@
               <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
-          <p>**) seluruh sp3 yang sudah di submit ke CSF dan belum dibayar</p>
+          <p>**) Seluruh SP3 yang sudah di submit ke CSF dan belum dibayar</p>
 
           </div>            
           <!-- /.col -->
@@ -115,7 +115,7 @@
             
           </div>
           <!-- /.info-box -->
-          <p>***)seluruh draft sp3 yang belum disubmit ke CSF</p>
+          <p>***)Seluruh Draft SP3 yang belum disubmit ke CSF</p>
 
           </div>
 
@@ -229,11 +229,13 @@
                     </div>
                     <div class="box-body">
                       <table width="100%">
-                      <?php foreach ($upcoming_over as $sebentar) { $tanggal_sekarang = date('Ymd');   ?>
+                      <?php 
+                      foreach ($upcoming_over as $sebentar) { 
+                            $tanggal_sekarang = date('Ymd');   ?>
                         <?php 
                               $string = $sebentar->upcoming;
                               $stringBuka = str_replace("-", "", $string);
-                              // echo $stringBuka;              
+                              // echo $stri-ngBuka;              
                         ?>
 
                         <?php if ($tanggal_sekarang >= $stringBuka) {

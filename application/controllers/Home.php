@@ -66,6 +66,7 @@ class Home extends CI_Controller {
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 		$data['credit_card'] = $this->Home_model->CreditCard();
+// var_dump($data['upcoming_over']);exit;
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
@@ -263,7 +264,7 @@ class Home extends CI_Controller {
 		$data['ar'] = 'active';
 		$data['active3'] = '';
 
-		$data['advancerequest'] = $this->Home_model->getVar();
+		$data['advancerequest'] = $this->Home_model->getVlar();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -300,7 +301,7 @@ class Home extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['settlement'] = $this->Home_model->getVasr();
+		$data['settlement'] = $this->Home_model->getVlasr();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -455,6 +456,8 @@ class Home extends CI_Controller {
 			$label4 .= $_POST['label4'][$l].";";
 		}
 		
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
 		// echo $jenis_pembayaran;
 		// var_dump(count($_POST['jenis_pembayaran']));exit;
 		$add = array(
@@ -476,7 +479,7 @@ class Home extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'currency4' => $_POST['currency4'],
 			'currency5' => $_POST['currency5'],
 			'currency6' => $_POST['currency6'],
@@ -607,6 +610,10 @@ class Home extends CI_Controller {
 		}
 		// echo $label4;
 		// var_dump(count($_POST['label$label4']));exit;
+
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$id_apa = $_POST['id_payment'];
 		$upd = array(
 
@@ -634,7 +641,7 @@ class Home extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
@@ -733,6 +740,7 @@ class Home extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
+		$data['pegawai'] = $this->Home_model->getPegawai();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
@@ -1036,6 +1044,9 @@ class Home extends CI_Controller {
 			$label4 .= $_POST['label4'][$l].";";
 		}
 		
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$strcounter=intval($_POST['txtcountervendor']);
 		$id = $_POST['id_payment'];
 		$this->Dashboard_model->delete_vendorpayment($id);
@@ -1087,7 +1098,7 @@ class Home extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
@@ -1121,6 +1132,10 @@ class Home extends CI_Controller {
 		for($l=0; $l<=$c_label4; $l++){
 			$label4 .= $_POST['label4'][$l].";";
 		}
+
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$strcounter=intval($_POST['txtcountervendor']);
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
@@ -1154,7 +1169,7 @@ class Home extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => isset($_POST['label6']),
@@ -1204,6 +1219,9 @@ class Home extends CI_Controller {
 			$label4 .= $_POST['label4'][$l].";";
 		}
 		
+		$stringBuka = explode("/", $_POST['label3']);
+		$ganti = $stringBuka[2].'-'.$stringBuka[1].'-'.$stringBuka[0];
+
 		$strcounter=intval($_POST['txtcountervendor']);
 		$id = $_POST['id_payment'];
 		$this->Dashboard_model->delete_vendorpayment($id);
@@ -1258,7 +1276,7 @@ class Home extends CI_Controller {
 			'label2' => $_POST['label2'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
+			'label3' => $ganti,
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => $_POST['label6'],
