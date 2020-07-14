@@ -172,7 +172,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <input id="checkrequest" type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $chk2; ?> >Permintaan Uang Muka/<i>Advance Request<br>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <input id="checkcreditcard" type="checkbox" name="jenis_pembayaran[]" value="6" <?php echo $chk6; ?> > Corporate Credit Card </input><br>
                         </td>
                       </tr>

@@ -313,8 +313,7 @@ class Dashboard extends CI_Controller {
 			'npwp' => $_POST['npwp'],
 			'nama' => $_POST['nama'],
 			'alamat' => $_POST['alamat'],
-						
-						
+												
 		);
 
 		$this->Dashboard_model->addvendor($add);

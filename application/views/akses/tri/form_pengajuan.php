@@ -188,7 +188,7 @@
                       </tr>
                       <tr>
                         <td></td>
-                        <td colspan="2"><i>&nbsp;&nbsp;&nbsp;&nbsp;Nilai (+) = Pembayaran, Nilai (-) = Pengembalian</i></td>
+                        <td colspan="4"><i>&nbsp;&nbsp;&nbsp;&nbsp;Nilai (+) = Pembayaran, Nilai (-) = Pengembalian</i></td>
                         <td></td>
                       </tr>
                       </tbody>

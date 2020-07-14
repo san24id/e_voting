@@ -879,7 +879,7 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function addvendor(){
+    function addvendor($add){
         $sql = "INSERT INTO `m_honorarium_konsultan` (id_honor, kode_vendor, nama, npwp, alamat ) 
 
                 VALUES ('".$add['id_honor']."','".$add['kode_vendor']."','".$add['nama']."','".$add['npwp']."','".$add['alamat']."')";
