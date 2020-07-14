@@ -251,7 +251,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="date" class="form-control" name="label3" value="<?php echo $row->label3; ?>" readonly></td>     
+                        <td colspan="8" width="65%"><input type="text" class="form-control" name="label3" value="<?php echo $row->label3; ?>" readonly></td>     
                       </tr>
                                                   
                       </tbody>

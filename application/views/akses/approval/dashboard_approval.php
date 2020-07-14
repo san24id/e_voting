@@ -433,8 +433,30 @@
                     <td><?php echo $row->submit_date; ?></td>
                     <td>
 
-                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                        
+                      <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
+
+                      <button type="button" data-toggle="modal" data-target="#delete<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Delete</button>
+                      <div class="modal fade" id="delete<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title">Message Box</h3>
+                          </div>                                        
+                          <div class="modal-body">
+                          <form id="approve" method="post" action="Approval/deletepayment">
+                            <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+
+                            <p align="justify">Apa anda yakin akan menghapus Form SP3 ini?  </p>
+                          </div>
+                          <div class="modal-footer">                        
+                          <button type="submit" class="btn btn-success bye">Yes</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </form>
+                          </div>
+                        </div>
+                        </div>
+                      </div>  
                     </td>      
                     </tr>
                 <?php  } ?>
