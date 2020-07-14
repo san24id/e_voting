@@ -438,7 +438,7 @@
                     <td>
 
                      <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-
+                    <?php if ($row->status <= 1) { ?>
                      <button type="button" data-toggle="modal" data-target="#delete<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Delete</button>
                       <div class="modal fade" id="delete<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
@@ -461,6 +461,7 @@
                           </div>
                         </div>
                       </div>
+                    <?php } ?>
                     </td>      
                     </tr>
                 <?php  } ?>
