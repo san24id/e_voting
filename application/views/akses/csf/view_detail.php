@@ -120,22 +120,14 @@
 													echo "<option value='0'> Draft </option>";
 													echo "<option value='1'> Draft Print </option>";
 													echo "<option value='2'> Submitted </option>";
-													echo "<option value='3'> Rejected </option>";											
-													echo "<option value='4'> Processing Tax </option>";
-													echo "<option value='5'> Processing Finance </option>";
-													echo "<option value='6'> Waiting for Review </option>";
-													echo "<option value='7'> Waiting for Verivication </option>";
-													echo "<option value='8'> Waiting for Approved </option>";
-													echo "<option value='9'> Waiting for Payment </option>";											
-													echo "<option value='10'> Paid </option>";											
+													echo "<option value='4'> Processing</option>";
+													echo "<option value='8'> Verified </option>";
+													echo "<option value='9'> Approved </option>";										
 													break;
 												  case "2":
-													echo "<option value='4'> Processing Tax </option>";
-													echo "<option value='5'> Processing Finance </option>";
-													echo "<option value='6'> Waiting for Review </option>";
-													echo "<option value='7'> Waiting for Verivication </option>";
-													echo "<option value='8'> Waiting for Approved </option>";
-													echo "<option value='9'> Waiting for Payment </option>";											
+													echo "<option value='4'> Processing</option>";
+													echo "<option value='8'> Verified </option>";
+													echo "<option value='9'> Approved </option>";											
 													break;
 												  case "3":
 													echo "<option value='0'> Draft </option>";
@@ -218,8 +210,8 @@
                       <th>Nomor SP3</th>
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
-                      <th>Penerima Pembayaran</th>					  
-                      <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
+                      <th>Penerima Pembayaran</th>
+					  <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
 												 
                       <th>Action</th>
                     </tr>
@@ -286,13 +278,50 @@
                     <td><?php echo $buka; ?></td>
                     <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
                     <td>
-                      <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                    </td>      
+                      <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> &nbsp;
+					  <?php if($row->status=="0" || $row->status=="1"){ ?>
+					  <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+					  <?php } ?>
+					</td>      
                     </tr>
                 <?php  } ?>
                 </tbody>
                 </table>
                 </div>
+				<div class="box-footer">  
+					<div class="form-group">
+						<?php 
+							$filter=$this->session->userdata('filter');
+						
+						
+							switch ($filter) {
+							  case "1":
+								echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>";
+								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>";
+								break;
+							  case "2":
+								echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>";
+								break;
+							  case "3":
+								echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>";
+								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
+								break;
+							  default:
+								echo "";																				
+							}
+						?>					  
+					</div>  
+				</div>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -375,12 +404,10 @@
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
                         ?>
-    <section class="content">
+<!-- <section class="content">
       <div class="row">
         <div class="col-xs-12 col-md-4">
-          <!-- /.box -->
           <div class="box">
-            <!-- /.box-header -->
             <div class="box-body">            
               <table id="" class="table table-bordered table-striped">
                 <thead>
@@ -424,15 +451,10 @@
                 </tbody>
               </table>
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-
-      <!-- /.row -->
-    </section>
+			</div>
+			</div>
+			</div>
+			</section> -->
   </div>
   <!-- /.content-wrapper -->
 
@@ -636,6 +658,22 @@ $(function () {
         });
     }
 	
+	function deletedraftpayment(id)
+    {
+			$.ajax({
+				url : "<?php echo base_url('dashboard/draftpaymentdelete')?>/"+id,
+				type: "POST",
+				dataType: "JSON",
+				success: function(data)
+				{               
+					location.reload();
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
+			});
+    }
 </script>
 
 <script>

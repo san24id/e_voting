@@ -154,10 +154,10 @@
                           <td class="period"><font color="white" size="3">Period: </font></td>
                           <td></td>
                           <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo date("01-01-Y"); ?>"></td>
+                          <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo $start_date; ?>"></td>
                           <td><font size="3">s/d</font></td>
                           <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo date("d-m-Y"); ?>"></td>
+                          <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo $end_date; ?>"></td>
                           <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
                         </tr>
                       <?php echo form_close();?>  
@@ -229,13 +229,11 @@
                     </div>
                     <div class="box-body">
                       <table width="100%">
-                      <?php 
-                      foreach ($upcoming_over as $sebentar) { 
-                            $tanggal_sekarang = date('Ymd');   ?>
+                      <?php foreach ($upcoming_over as $sebentar) { $tanggal_sekarang = date('Ymd');   ?>
                         <?php 
                               $string = $sebentar->upcoming;
                               $stringBuka = str_replace("-", "", $string);
-                              // echo $stri-ngBuka;              
+                              // echo $stringBuka;              
                         ?>
 
                         <?php if ($tanggal_sekarang >= $stringBuka) {
@@ -249,12 +247,12 @@
                           <td align="center" width="25%"><div class="info-box box1">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                            <a href="<?php echo base_url('Home/all_detail_payment/4/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
+                            <a href="<?php echo base_url('Home/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
                           </td>                          
                           <td align="center" width="25%"><div class="info-box box2">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                            <a href="<?php echo base_url('Home/all_detail_payment/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
+                            <a href="<?php echo base_url('Home/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
                           </td>
 
                           <td align="center" width="25%"><div class="info-box box3">
@@ -319,15 +317,37 @@
 									<div class="col-md-2">
 										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Tanggal </option>
+											<option value='1'> Status </option>
 											<option value='2'> Jenis Pembayaran </option>
-											<option value='3'> Nomor Surat </option>
+											<!-- <option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
-											<option value='5'> Penerima </option>
+											<option value='5'> Penerima </option> -->
 										</select>
 									</div> 	
-									<div class="col-md-6">
-										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+									<div class="col-md-3">
+										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+										<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='0'> Draft </option>
+											<option value='1'> Draft Print </option>
+											<option value='2'> Submitted </option>
+											<option value='4'> Processing</option>
+											<option value='8'> Verified </option>
+											<option value='9'> Approved </option>
+											<option value='10'> Paid </option>
+										</select>
+										
+										<select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='4'> Direct Payment </option> 
+											<option value='2'> Advance Request </option>
+											<option value='3'> Advance Settlement </option>
+											<option value='5'> Cash Received </option>
+										</select>
+										
+										<select class="form-control" id="selblank" name="selblank"  >
+											<option value=''>== Pilih ==</option>
+										</select>
 									</div>		
 										
 									<div class="col-md-3">
@@ -438,30 +458,31 @@
                     <td>
 
                      <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                    <?php if ($row->status <= 1) { ?>
-                     <button type="button" data-toggle="modal" data-target="#delete<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Delete</button>
-                      <div class="modal fade" id="delete<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-xl" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <h3 class="modal-title">Message Box</h3>
-                            </div>                                        
-                            <div class="modal-body">
-                            <form id="approve" method="post" action="Home/deletepayment">
-                              <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                      <?php if ($row->status <= 1) { ?>
 
-                              <p align="justify">Apa anda yakin akan menghapus Form SP3 ini?  </p>
-                            </div>
-                            <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </form>
+                        <button type="button" data-toggle="modal" data-target="#delete<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Delete</button>
+                        <div class="modal fade" id="delete<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title">Message Box</h3>
+                              </div>                                        
+                              <div class="modal-body">
+                              <form id="approve" method="post" action="Dashboard/deletepayment">
+                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+
+                                <p align="justify">Apa anda yakin akan menghapus Form SP3 ini?  </p>
+                              </div>
+                              <div class="modal-footer">                        
+                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    <?php } ?>
+                      <?php  } ?>
                     </td>      
                     </tr>
                 <?php  } ?>
@@ -478,7 +499,6 @@
                 
     </section>
     <!-- /.content -->
-
     <section class="content">
       <div class="row">
         <div class="col-md-3">
@@ -507,21 +527,26 @@
                   </tr>
                   <tr>
                     <td>3</td>
+                    <td><img src="assets/dashboard/images/legend/submitted.png"></td>
+                    <td>Submitted</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
                     <td><img src="assets/dashboard/images/legend/processing.png"></td>
                     <td>Proceesing</td>
                   </tr>
                   <tr>
-                    <td>4</td>
+                    <td>5</td>
                     <td><img src="assets/dashboard/images/legend/verified.png"></td>
                     <td>Verified</td>
                   </tr>
                   <tr>
-                    <td>5</td>
+                    <td>6</td>
                     <td><img src="assets/dashboard/images/legend/approved.png"></td>
                     <td>Approved</td>
                   </tr>
                   <tr>
-                    <td>6</td>
+                    <td>7</td>
                     <td><img src="assets/dashboard/images/legend/paid1.png"></td>
                     <td>Paid</td>
                   </tr>
@@ -826,6 +851,24 @@ chart.options.data[0].click = function(e){
 function printThis() {
   window.print();
 }
+$(document).ready(function() { 
+		$('#selsearch').change(function() {
+		  if( $(this).val() == '1') {
+				$('#selblank').css("display", "none");
+				$('#selstatus').css("display", "block");
+				$('#seljnspembayaran').css("display", "none");
+		  } else if( $(this).val() == '2'){   
+			$('#selblank').css("display", "none");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "block");
+		  }else{
+			$('#selblank').css("display", "block");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "none");
+		  }
+		})
+		
+		});
 </script>
 </body>
 </html>

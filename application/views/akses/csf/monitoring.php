@@ -474,21 +474,26 @@
                   </tr>
                   <tr>
                     <td>3</td>
+                    <td><img src="assets/dashboard/images/legend/submitted.png"></td>
+                    <td>Submitted</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
                     <td><img src="assets/dashboard/images/legend/processing.png"></td>
                     <td>Proceesing</td>
                   </tr>
                   <tr>
-                    <td>4</td>
+                    <td>5</td>
                     <td><img src="assets/dashboard/images/legend/verified.png"></td>
                     <td>Verified</td>
                   </tr>
                   <tr>
-                    <td>5</td>
+                    <td>6</td>
                     <td><img src="assets/dashboard/images/legend/approved.png"></td>
                     <td>Approved</td>
                   </tr>
                   <tr>
-                    <td>6</td>
+                    <td>7</td>
                     <td><img src="assets/dashboard/images/legend/paid1.png"></td>
                     <td>Paid</td>
                   </tr>
@@ -501,7 +506,6 @@
         </div>
         <!-- /.col -->
       </div>
-
       <!-- /.row -->
     </section>
 </div>

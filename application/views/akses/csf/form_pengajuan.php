@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
-  
-      <!-- Content Wrapper. Contains page content -->
+
+<!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <!-- <section class="content-header">
@@ -11,8 +11,6 @@
           </h1>
         </section> -->
 		<?php
-    $dvs = $this->session->userdata('division_id');
-    // var_dump($dvs);exit;
 		$arrvendor="";
 		$strvendor="";
 		$counter=0;
@@ -34,10 +32,10 @@
                   $arrcurrency= $arrcurrency . $cur->currency .";" ;
 		}
 		$strcurrency=substr($arrcurrency,0,strlen($arrcurrency)-1);
-															 
 		?>
         <!-- Main content -->
         <form id="formadd" action="#" >
+          <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -53,10 +51,9 @@
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>                       
-                          <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : XXXX/<?php echo $dvs?>/SPPP/<?php echo date("my")?></b></td>
-                          <!-- <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">   -->
-                          <input type="hidden" name="id_user" class="form-control" value="<?php echo $this->session->userdata('id_user') ?>">           
-                          <input type="hidden" id="id_payment" name="id_payment" >  
+                        <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td> 
+						<input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
+							<input type="hidden" id="id_payment" name="id_payment" >  
                         <!-- <td width="50%"><center><b>No ARF/ASF   :</b></center></td> -->
                         </tr>
                       </tbody>
@@ -100,7 +97,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <input id="checksettlement"  type="checkbox" name="jenis_pembayaran[]" value="3"> Pertanggungjawaban Uang Muka/<i>Advance Settlement</input><br>                            
                         </td>
-                      </tr> 
+                      </tr>
 						<input type="hidden" id="jns_pembayaran" name="jns_pembayaran" >  
                     </table>
 
@@ -155,45 +152,43 @@
                         
                       </tr>
                       <tr>
-                        <td><b>- Jumlah <font color="red"> * </font> </b> </td>
+                        <td><b>- Jumlah <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
-                        <td><select id="Select" onchange="myFunction()" name="currency" class="form-control" >
+                        <td><select id="Select" onchange="mycurrency1()" name="currency" class="form-control" >
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
-                        </td>
+                          </td>
                         <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" > </td>
 
-                        <td><select name="currency2" class="form-control">
+                        <td><select id="currency2" onchange="mycurrency2()" name="currency2" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
                                 <?php } ?>
                               </select>
-                        </td>
+                          </td>
                         <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" placeholder="Jumlah" > </td>
 
-                        <td><select name="currency3" class="form-control">
+                        <td><select id="currency3" onchange="mycurrency3()" name="currency3"  class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
                                 <?php } ?>
                               </select>
-                        </td>
+                          </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
                       </tr>
-                      <tr>
-                        <td></td>
-                        <td colspan="4"><i>&nbsp;&nbsp;&nbsp;&nbsp;Nilai (+) = Pembayaran, Nilai (-) = Pengembalian</i></td>
-                        <td></td>
-                      </tr>
+					  <tr><td colspan="2">&nbsp;</td>
+					  <td colspan="8" style="text-align:end"><b><i>Nilai(+) = Pembayaran, Nilai(-) = Pengembalian</i></b></td>
+					  </tr>
                       </tbody>
                     </table>
-                    
+                    </br>
                     <table id="choose" style="font-family: calibri;display:none;" width="100%; ">
                       <tbody>
                       <tr>
@@ -201,7 +196,7 @@
                         	<br>
                         </td>
                         <td align="right"><b> : </b></td>
-                        <td colspan="8" width="65%"><input type="text" id="perkiraanSelesai" name="label3" class="form-control" "></input></td>     
+                        <td colspan="8" width="65%"><input type="text" id="perkiraanSelesai" name="label3" class="form-control" min=0></input></td>     
                       </tr>
                                                   
                       </tbody>
@@ -266,12 +261,14 @@
 																<th>Mata Uang <font color="red"> * </font></th>
 																<th>Nominal <font color="red"> * </font></th>
 																<th>&nbsp;</th>
-                              </tr>
+															</tr>
 														  </thead>
 														  <tbody>
 														  <b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
 														  <?php 
 															$ttlnomvendor=0;
+															$ttlnomvendor2=0;
+															$ttlnomvendor3=0;
 															$nomvendor='';
 															$vendorrow=0;
 															$fvendor='';
@@ -288,7 +285,7 @@
 																	<input id="namavendor1" type="hidden" name="namavendor[]"  />
 																</td>
 																
-																<td><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onclick="drpbank('bankvendor1','rekeningvendor1','1')">
+																<td><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onchange="drpbank('bankvendor1','rekeningvendor1','1')">
 																	<option value="">--- Choose ---</option>
 																	<?php foreach ($bank as $get) {?>
 																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
@@ -297,7 +294,7 @@
 																</td>
 																<td><input id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
 																</td>      
-																<td><select id="currencyvendor1" name="currencyvendor[]" class="form-control">
+																<td><select id="currencyvendor1" name="currencyvendor[]" class="form-control" >
 																		  <option value="">--Choose--</option>
 																		  <?php foreach ($currency as $cur) {?>
 																		  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
@@ -345,7 +342,7 @@
 
 																	<?php } ?>
 																  </select>
-															    </td>								  
+															    </td>
 															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
 															
 															<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$vendorrow; ?>')"> 
@@ -358,14 +355,24 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
-																  <i class="glyphicon glyphicon-plus"></i>
-																  </span></th>
-                                <th colspan="3" style="text-align:end;">Total</th>
-                                <th><label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
-                                <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
-				
+																<th>
+																<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
+																  <i class="glyphicon glyphicon-plus"></i></span>
+																</div>
+																<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
+																  </th>
+																<th colspan="5">
+																<label class="control-label col-md-1" id="lblcur1" >Currency</label>
+																<label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label>
+																<label class="control-label col-md-1" id="lblcur2" >Currency</label>
+																<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo number_format($ttlnomvendor2,0,",","."); ?></label>
+																<label class="control-label col-md-1" id="lblcur3" >Currency</label>
+																<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo number_format($ttlnomvendor3,0,",","."); ?></label>
+																</th>
 															</tr>
+															<input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
+															<input type="text" style="display:none;" name="txttotalvendor2" id="txttotalvendor2"  value="<?php echo number_format($ttlnomvendor2,0,",","."); ?>" />
+															<input type="text" style="display:none;" name="txttotalvendor3" id="txttotalvendor3"  value="<?php echo number_format($ttlnomvendor3,0,",","."); ?>" />
 														</tfoot>
 														</table>
 														</div> 
@@ -435,139 +442,101 @@
                     </table>
 
                     <br>
-
-                    <table id="show" style="font-family: calibri;display:none" width="100%"; >
+					<div id="show" style="display:none">
+                    <!--<table  style="font-family: calibri;display:none" width="70%"; > -->
+					<table  style="font-family: calibri;" width="70%"; >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
                       <tr>
                         <td><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
-                        <td>:</td>
-                        <td><select id="arf_number" name="label5" class="form-control" >
-                                  <option value="">--Choose--</option>
-                                    <?php foreach ($getArf as $arf_doc) {?>
-                                  <option value="<?php echo $arf_doc->apf_doc; ?>"><?php echo $arf_doc->apf_doc; ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                        <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td><b>- Perhitungan Penggunaan Uang Muka : <b></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td><center><b> Curr</b></center></td>
-                        <td><b> Jumlah/<i>Amount</i></b></td>
-                        <td><center><b> Curr</b></center></td>
-                        <td><b> Jumlah/<i>Amount</i></b></td>
-                        <td><center><b> Curr</b></center></td>
-                        <td><b> Jumlah/<i>Amount</i></b></td>
-                      </tr>
+                        <td>:&nbsp;</td>
+                        <td><select id="arf_number" name="label5"  class="form-control">
+                                      <option value="">--Choose--</option>
+                                      <?php foreach ($getlistarf as $arf) {?>
+                                      <option value="<?php echo $arf->nomor_surat; ?>"><?php echo $arf->nomor_surat; ?></option>
 
-                      <!--Biaya-->
+                                <?php } ?>
+                              </select>
+                          <!--<input id="arf_number" type="text" class="form-control" name="label5" placeholder="Enter Text">-->                        
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
+                      </tr>
+					  </tbody>
+					  </table>
+					  <table  style="font-family: calibri;" width="90%"; >
+                      <tbody>
+                      <tr>
+                        <td colspan="10" >&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td><b>- Perhitungan Penggunaan Uang Muka<b></td>
+                        <td colspan="3">&nbsp;</td>
+                        <td><center><b> Curr</b></center></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
+						<td><center><b> Curr</b></center></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
+						<td><center><b> Curr</b></center></td>
+                        <td><b> Jumlah/<i>Amount</i></b></td>
+                      </tr>
                       <tr>  
-                        <td><b>Jumlah Biaya</b> <font color="red"> * </font></td>
+                        <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-                        <td><select id="demo" name="currency4" class="form-control" >
+						<td colspan="2">&nbsp;</td>
+                        <td><select id="curr1"  name="curr1" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+                                      <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
+
                                 <?php } ?>
                               </select>
-                        </td>
+						<center><p id="demo" style="display:none;"></p></td>
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input></td>
-                        
-                        <td><select id="demo" name="currency5" class="form-control" >0
+						<td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input id="biaya2" onchange="penjumlahan2()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input></td>
-                        
-                        <td><select id="demo" name="currency6" class="form-control" >
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input id="biaya3" onchange="penjumlahan3()" type="text" class="form-control" name="label9" placeholder="Enter Text"></input></td>
-                      </tr>
+                                      <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
-                      <!--Uang Muka-->
-                      <tr>
-                        <td><b>Jumlah Uang Muka <font color="red"> * </font></b> <br><i>(wajib diisi dengan tanda kurung/nilai negatif)</i></td>
-                        <td>:</td>
-                        <td><select id="demo2" name="currency7" class="form-control" >
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
-                        </td>
-                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label10" placeholder="Enter Text"></input> </td>
-                        
-                        <td><select id="demo2" name="currency8" class="form-control" >
+						<center><p id="demoa" style="display:none;"></p></td>
+                        <td><input id="biayaa" onchange="penjumlahana()" type="text" class="form-control" name="label7a" placeholder="Enter Text"></input></td>
+						<td><select id="curr3" name="curr3" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input id="uangmuka2" onchange="penjumlahan2()" type="text" class="form-control" name="label11" placeholder="Enter Text"></input> </td>
-                        
-                        <td><select id="demo2" name="currency9" class="form-control" >
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input id="uangmuka3" onchange="penjumlahan3()" type="text" class="form-control" name="label12" placeholder="Enter Text"></input> </td>     
-                      </tr>
+                                      <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
-                      <!--SELISIH-->
-                      <tr>
-                        <td><b>Selisih Kurang/(Lebih)</b> <br><i>(Nilai harus sama dengan nilai pada kolom Jumlah diatas)</i></td> 
+                                <?php } ?>
+                              </select>
+						<center><p id="demob" style="display:none;">  </p></td>
+                        <td><input id="biayab" onchange="penjumlahanb()" type="text" class="form-control" name="label7b" placeholder="Enter Text"></input><td>
+                      </tr>
+					  <tr>
+                        <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-                        <td><select id="demo3" name="currency10" class="form-control" >
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input type="text" id="hasil" class="form-control" name="label13" placeholder="Enter Text" readonly></input></td>
-                        
-                        <td><select id="demo3" name="currency11" class="form-control" >
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input type="text" id="hasil2" class="form-control" name="label14" placeholder="Enter Text" readonly></input></td>
-                        
-                        <td><select id="demo3" name="currency12" class="form-control" >
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input type="text" id="hasil3" class="form-control" name="label15" placeholder="Enter Text" readonly></input></td>                               
+						<td colspan="2">&nbsp;</td>
+                        <td><center><p id="demo2" style="display:none;">  </p></td>
+                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input></td>     
+						<td><center><p id="demo2a" style="display:none;">  </p></td>
+                        <td><input id="uangmukaa" onchange="penjumlahana()" type="text" class="form-control" name="label8a" placeholder="Enter Text"></input></td>     
+						<td><center><p id="demo2b" style="display:none;">  </p></td>
+                        <td><input id="uangmukab" onchange="penjumlahanb()" type="text" class="form-control" name="label8b" placeholder="Enter Text"></input></td>     
+                      </tr>
+					  <tr>
+                        <td>Selisih Kurang/(Lebih)</td> 
+                        <td>:</td>
+                        <td colspan="2">&nbsp;</td>
+                        <td><center><p id="demo3" style="display:none;">  </p></td>
+                        <td><input type="text" id="hasil" class="form-control" name="label9" placeholder="Enter Text" readonly></input></td>                               
+						<td><center><p id="demo3a" style="display:none;">  </p></td>
+                        <td><input type="text" id="hasila" class="form-control" name="label9a" placeholder="Enter Text" readonly></input></td>                               
+						<td><center><p id="demo3b" style="display:none;">  </p></td>
+                        <td><input type="text" id="hasilb" class="form-control" name="label9b" placeholder="Enter Text" readonly></input></td>                               
                       </tr>                              
                       </tbody>
                     </table>
+					</div>
                   </div>  
                 </div>    
 
@@ -659,10 +628,10 @@ function penjumlahan(){
   var a = document.getElementById("biaya").value;
   var b = document.getElementById("uangmuka").value;
   // var c = document.getElementById("hasil").value;
-  var reva = a.replace(/\./g,'');
-  var revb = b.replace(/\./g,'');
+  var reva = a.replace(/[^,\d]/g, '').toString(); //a.replace(/\./g,''); 
+  var revb = b.replace(/[^,\d]/g, '').toString(); //b.replace(/\./g,'');
   // var revc = c.replace(".","");
-  // alert(reva);
+  // alert(revb);
   var hasil = parseInt(reva)-parseInt(revb);
   // var aa = parseInt(rev).value;
   // var b = parseInt(document.getElementById("uangmuka").value);
@@ -681,8 +650,72 @@ function penjumlahan(){
 		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
 	}else{
 		strhasil.value = formatuangmuka(strulang1);
+	} 	
+	$('#rupiah').val(strhasil.value);	  
+  // }
+}
+
+function penjumlahana(){
+  var a = document.getElementById("biayaa").value;
+  var b = document.getElementById("uangmukaa").value;
+  // var c = document.getElementById("hasil").value;
+  var reva = a.replace(/[^,\d]/g, '').toString(); //a.replace(/\./g,''); 
+  var revb = b.replace(/[^,\d]/g, '').toString(); //b.replace(/\./g,'');
+  // var revc = c.replace(".","");
+  // alert(revb);
+  var hasil = parseInt(reva)-parseInt(revb);
+  // var aa = parseInt(rev).value;
+  // var b = parseInt(document.getElementById("uangmuka").value);
+
+  // if(reva && revb){
+	  if(hasil<0){
+		  document.getElementById("hasila").value = '('+Math.abs(hasil)+')'; 
+	  }else{
+	  	document.getElementById("hasila").value = ''+hasil+''; 
+    
+	  }
+	  
+	  var strhasil=document.getElementById("hasila");
+	  var strulang1 =strhasil.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		strhasil.value = formatuangmuka(strulang1);
 	} 
 	  
+	$('#rupiah2').val(strhasil.value);
+  // }
+}
+
+function penjumlahanb(){
+  var a = document.getElementById("biayab").value;
+  var b = document.getElementById("uangmukab").value;
+  // var c = document.getElementById("hasil").value;
+  var reva = a.replace(/[^,\d]/g, '').toString(); //a.replace(/\./g,''); 
+  var revb = b.replace(/[^,\d]/g, '').toString(); //b.replace(/\./g,'');
+  // var revc = c.replace(".","");
+  // alert(revb);
+  var hasil = parseInt(reva)-parseInt(revb);
+  // var aa = parseInt(rev).value;
+  // var b = parseInt(document.getElementById("uangmuka").value);
+
+  // if(reva && revb){
+	  if(hasil<0){
+		  document.getElementById("hasilb").value = '('+Math.abs(hasil)+')'; 
+	  }else{
+	  	document.getElementById("hasilb").value = ''+hasil+''; 
+    
+	  }
+	  
+	  var strhasil=document.getElementById("hasilb");
+	  var strulang1 =strhasil.value;
+	if (strulang1.substr(0,1)=="(" && strulang1.substr(strulang1.length-1,1)==")"){
+		strhasil.value = "(" + formatuangmuka(strulang1.substr(1,strulang1.length-2)) + ")";
+	}else{
+		strhasil.value = formatuangmuka(strulang1);
+	} 
+	 
+	$('#rupiah3').val(strhasil.value);
   // }
 }
 
@@ -742,6 +775,54 @@ function myFunction(){
   document.getElementById("demo").innerHTML = x;
   document.getElementById("demo2").innerHTML = x;
   document.getElementById("demo3").innerHTML = x;
+}
+
+function mycurrency1(){
+  var x = document.getElementById("Select").value;
+
+  document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo2").innerHTML = x;
+  document.getElementById("demo3").innerHTML = x;
+  document.getElementById("lblcur1").innerHTML = x+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;";
+  $('#curr1').val(x).change();
+}
+
+function mycurrency2(){
+  var x = document.getElementById("currency2").value;
+  document.getElementById("demoa").innerHTML = x;
+  document.getElementById("demo2a").innerHTML = x;
+  document.getElementById("demo3a").innerHTML = x;
+  document.getElementById("lblcur2").innerHTML = x+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;";
+  $('#curr2').val(x).change();
+}
+
+function mycurrency3(){
+  var x = document.getElementById("currency3").value;
+  document.getElementById("demob").innerHTML = x;
+  document.getElementById("demo2b").innerHTML = x;
+  document.getElementById("demo3b").innerHTML = x;
+  document.getElementById("lblcur3").innerHTML = x+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;";
+  $('#curr3').val(x).change();
+}
+
+function mycurrency1a(){
+  var x = document.getElementById("curr1").value;
+  //document.getElementById("lblcur1").innerHTML = x+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;";
+  $('#Select').val(x).change();
+  return;
+}
+
+function mycurrency2a(){
+  var x = document.getElementById("curr2").value;
+  //document.getElementById("lblcur2").innerHTML = x+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;";
+  $('#currency2').val(x).change();
+  return;
+}
+
+function mycurrency3a(){
+  var x = document.getElementById("curr3").value;
+  //document.getElementById("lblcur3").innerHTML = x+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;";
+  $('#currency3').val(x).change();
 }
 
 /*function hide() {
@@ -951,6 +1032,20 @@ function showInput() {
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     biaya.value = formatbiaya(this.value);
   });
+  
+  var biayaa = document.getElementById('biayaa');
+  biayaa.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    biayaa.value = formatbiaya(this.value);
+  });
+  
+  var biayab = document.getElementById('biayab');
+  biayab.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    biayab.value = formatbiaya(this.value);
+  });
 
   /* Fungsi formatRupiah */
   function formatbiaya(angka, prefix){
@@ -970,56 +1065,6 @@ function showInput() {
     return prefix == undefined ? biaya : (biaya? + biaya : '');
   }
 
-  var biaya2 = document.getElementById('biaya2');
-  biaya2.addEventListener('keyup', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    biaya2.value = formatbiaya2(this.value);
-  });
-
-  /* Fungsi formatRupiah */
-  function formatbiaya2(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    biaya2     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      biaya2 += separator + ribuan.join('.');
-    }
-
-    biaya2 = split[1] != undefined ? biaya2 + ',' + split[1] : biaya2;
-    return prefix == undefined ? biaya2 : (biaya2? + biaya2 : '');
-  }
-
-  var biaya3 = document.getElementById('biaya3');
-  biaya3.addEventListener('keyup', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    biaya3.value = formatbiaya3(this.value);
-  });
-
-  /* Fungsi formatRupiah */
-  function formatbiaya3(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    biaya3     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      biaya3 += separator + ribuan.join('.');
-    }
-
-    biaya3 = split[1] != undefined ? biaya3 + ',' + split[1] : biaya3;
-    return prefix == undefined ? biaya3 : (biaya3? + biaya3 : '');
-  }
-
   var uangmuka = document.getElementById('uangmuka');
   uangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
@@ -1028,11 +1073,52 @@ function showInput() {
 	if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
 		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
 	}else if(struangmuka.substr(0,1)=="-") {
-		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
+		uangmuka.value = "-" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + "";
 	}else{
-		uangmuka.value = formatuangmuka(this.value);
+		if(struangmuka=="0"){
+			uangmuka.value = formatuangmuka(this.value);
+		}else{
+			uangmuka.value = "-" + formatuangmuka(this.value);
+		}
 	}
   });
+  
+  var uangmukaa = document.getElementById('uangmukaa');
+  uangmukaa.addEventListener('focusout', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var struangmukaa =uangmukaa.value;
+	if (struangmukaa.substr(0,1)=="(" && struangmukaa.substr(struangmukaa.length-1,1)==")"){
+		uangmukaa.value = "(" + formatuangmuka(struangmukaa.substr(1,struangmukaa.length-2)) + ")";
+	}else if(struangmukaa.substr(0,1)=="-") {
+		uangmukaa.value = "-" + formatuangmuka(struangmukaa.substr(1,struangmukaa.length-1)) + "";
+	}else{
+		if(struangmukaa=="0"){
+			uangmukaa.value = formatuangmuka(this.value);
+		}else{
+			uangmukaa.value = "-" + formatuangmuka(this.value);
+		}
+	}
+  });
+  
+  var uangmukab = document.getElementById('uangmukab');
+  uangmukab.addEventListener('focusout', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    var struangmukab =uangmukab.value;
+	if (struangmukab.substr(0,1)=="(" && struangmukab.substr(struangmukab.length-1,1)==")"){
+		uangmukab.value = "(" + formatuangmuka(struangmukab.substr(1,struangmukab.length-2)) + ")";
+	}else if(struangmukab.substr(0,1)=="-") {
+		uangmukab.value = "-" + formatuangmuka(struangmukab.substr(1,struangmukab.length-1)) + "";
+	}else{
+		if(struangmukab=="0"){
+			uangmukab.value = formatuangmuka(this.value);
+		}else{
+			uangmukab.value = "-" + formatuangmuka(this.value);
+		}
+	}
+  });
+
 
   /* Fungsi formatRupiah */
   function formatuangmuka(angka, prefix){
@@ -1050,70 +1136,6 @@ function showInput() {
 
     uangmuka = split[1] != undefined ? uangmuka + ',' + split[1] : uangmuka;
     return prefix == undefined ? uangmuka : (uangmuka? + uangmuka : '');
-  }
-
-  var uangmuka2 = document.getElementById('uangmuka2');
-  uangmuka2.addEventListener('focusout', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    var struangmuka2 =uangmuka2.value;
-	if (struangmuka2.substr(0,1)=="(" && struangmuka2.substr(struangmuka2.length-1,1)==")"){
-		uangmuka2.value = "(" + formatuangmuka2(struangmuka2.substr(1,struangmuka2.length-2)) + ")";
-	}else if(struangmuka2.substr(0,1)=="-") {
-		uangmuka2.value = "(" + formatuangmuka2(struangmuka2.substr(1,struangmuka2.length-1)) + ")";
-	}else{
-		uangmuka2.value = formatuangmuka2(this.value);
-	}
-  });
-
-  /* Fungsi formatRupiah */
-  function formatuangmuka2(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    uangmuka2     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      uangmuka2 += separator + ribuan.join('.');
-    }
-
-    uangmuka2 = split[1] != undefined ? uangmuka2 + ',' + split[1] : uangmuka2;
-    return prefix == undefined ? uangmuka2 : (uangmuka2? + uangmuka2 : '');
-  }
-
-  var uangmuka3 = document.getElementById('uangmuka3');
-  uangmuka3.addEventListener('focusout', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    var struangmuka3 =uangmuka3.value;
-	if (struangmuka3.substr(0,1)=="(" && struangmuka3.substr(struangmuka3.length-1,1)==")"){
-		uangmuka3.value = "(" + formatuangmuka3(struangmuka3.substr(1,struangmuka3.length-2)) + ")";
-	}else if(struangmuka3.substr(0,1)=="-") {
-		uangmuka3.value = "(" + formatuangmuka3(struangmuka3.substr(1,struangmuka3.length-1)) + ")";
-	}else{
-		uangmuka3.value = formatuangmuka3(this.value);
-	}
-  });
-
-  /* Fungsi formatRupiah */
-  function formatuangmuka3(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    uangmuka3     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      uangmuka3 += separator + ribuan.join('.');
-    }
-
-    uangmuka3 = split[1] != undefined ? uangmuka3 + ',' + split[1] : uangmuka3;
-    return prefix == undefined ? uangmuka3 : (uangmuka3? + uangmuka3 : '');
   }
 
   // var hasil = document.getElementById('hasil');
@@ -1258,22 +1280,15 @@ function showInput() {
 	
 	$( "#perkiraanSelesai" ).datepicker({
 		dateFormat: "dd/mm/yy",
-		minDate : 0
+		minDate : 0,
+		setDate : new Date()
 	});
 	
-	
+	$( "#perkiraanSelesai" ).datepicker('setDate', new Date());
 	
 	$('#perkiraanSelesai').keydown(function (event) {
 		event.preventDefault();
 	});
-	
-	/*var selcounter=$('#txtcountervendor').val();
-	for (var i = 1; i <= selcounter; i++) { 
-		$("#penerimavendor"+i).select2();
-	}*/
-	
-	//$(".select2").select2();
-  // });
 </script>
 
 
@@ -1303,6 +1318,34 @@ function savedraft() {
 	var inps4 = document.getElementsByName('nominalvendor[]');
 	var inps5 = document.getElementsByName('currencyvendor[]');
 	var lbl4 = document.getElementsByName('label4[]');
+	
+	var strrupiah=$('#rupiah').val();
+	var strrupiah2=$('#rupiah2').val();
+	var strrupiah3=$('#rupiah3').val();
+	var strhasil=$('#hasil').val();
+	var strhasila=$('#hasila').val();
+	var strhasilb=$('#hasilb').val();
+	
+	
+	if(strrupiah==""){
+		strrupiah="0";
+	}	
+	if(strrupiah2==""){
+		strrupiah2="0";
+	}	
+	if(strrupiah3==""){
+		strrupiah3="0";
+	}
+	
+	if(strhasil==""){
+		strhasil="0";
+	}	
+	if(strhasila==""){
+		strhasila="0";
+	}	
+	if(strhasilb==""){
+		strhasilb="0";
+	}
 	
 	if($('#jns_pembayaran').val()==""){
 		alert('Jenis Pembayaran belum dipilih');
@@ -1347,6 +1390,75 @@ function savedraft() {
 				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
+			
+			var val1 = document.getElementById('rupiah').value;
+			var val2 = document.getElementById('rupiah2').value;
+			var val3 = document.getElementById('rupiah3').value;
+			
+			var $scur1=$.trim($('#curr1').val());
+			var $scur2=$.trim($('#curr2').val());
+			var $scur3=$.trim($('#curr3').val());
+			var lblcur1 = $.trim($('#Select').val());
+			var lblcur2 = $.trim($('#currency2').val());
+			var lblcur3 = $.trim($('#currency3').val());
+			
+			var nomvendor1 = $('#lbltotalvendor').text();
+			var nomvendor2 = $('#lbltotalvendor2').text();
+			var nomvendor3 = $('#lbltotalvendor3').text();
+			
+			if(val1==""){val1="0";};			
+			if(val2==""){val2="0";};			
+			if(val3==""){val3="0";};
+			
+			if (val1.substr(0,1)=="(" && val1.substr(val1.length-1,1)==")"){
+				val1 = val1.replace(/\D+/g, '');
+				val1= -Math.abs(val1);	
+			}else if (val1.substr(0,1)=="-"){
+				val1 = val1.replace(/\D+/g, '');
+				val1= -Math.abs(val1);	
+			}else{
+				val1 = val1.replace(/\D+/g, '');
+				val1= Math.abs(val1);	
+			}
+			
+			if (val2.substr(0,1)=="(" && val2.substr(val2.length-1,1)==")"){
+				val2 = val2.replace(/\D+/g, '');
+				val2= -Math.abs(val2);	
+			}else if (val2.substr(0,1)=="-"){
+				val2 = val2.replace(/\D+/g, '');
+				val2= -Math.abs(val2);	
+			}else{
+				val2 = val2.replace(/\D+/g, '');
+				val2= Math.abs(val2);	
+			}
+			
+			if (val3.substr(0,1)=="(" && val3.substr(val3.length-1,1)==")"){
+				val3 = val3.replace(/\D+/g, '');
+				val3= -Math.abs(val3);	
+			}else if (val3.substr(0,1)=="-"){
+				val3 = val3.replace(/\D+/g, '');
+				val3= -Math.abs(val3);	
+			}else{
+				val3 = val3.replace(/\D+/g, '');
+				val3= Math.abs(val3);	
+			}
+			
+			nomvendor1 = nomvendor1.replace(/\D+/g, '');
+			nomvendor2 = nomvendor2.replace(/\D+/g, '');
+			nomvendor3 = nomvendor3.replace(/\D+/g, '');
+			
+			if(val1>0 && val1<nomvendor1){
+				errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
+				break;
+			};
+			if(val2>0 && val2<nomvendor2){
+				errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
+				break;
+			};
+			if(val3>0 && val3<nomvendor3){
+				errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
+				break;
+			};
 		}
 		var schk=lbl4.length-1;
 		/*if (errmsg=="0"){
@@ -1365,10 +1477,22 @@ function savedraft() {
 						alert('Dokumen Lampiran Lainnya belum di input');
 					}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
 							alert('Nomor ARF Terkait belum di input');
+					}else if($('#jns_pembayaran').val()=="3" && lblcur1!=$scur1){
+						alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
 					}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
 							alert('Jumlah Biaya belum di input');
 					}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
 							alert('Jumlah Uang Muka belum di input');
+					}else if($('#jns_pembayaran').val()=="3" && strrupiah!=strhasil){
+						alert('Selisih Kurang/(Lebih) Mata Uang Pertama tidak sama dengan Nilai pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur2){
+						alert('Jenis Mata Uang Penggunaan Uang Muka Kedua tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && strrupiah2!=strhasila){
+						alert('Selisih Kurang/(Lebih) Mata Uang Kedua tidak sama dengan Nilai pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur3){
+						alert('Jenis Mata Uang Penggunaan Uang Muka Ketiga tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && strrupiah3!=strhasilb){
+						alert('Selisih Kurang/(Lebih) Mata Uang Ketiga tidak sama dengan Nilai pada kolom Jumlah diatas');
 					}else{
 						<?php foreach ($getID as $key) { ?>
 						  var link = "<?php echo base_url('Dashboard/formfinished/'.$key->id_payment);?>";
@@ -1389,7 +1513,8 @@ function savedraft() {
 							alert('Data Berhasil Di simpan');   
 							save_method="edit";
 							$("#id_payment").val(data);
-							window.location = link;
+							//window.location = link;
+							window.location ="<?php echo base_url('Dashboard/formfinished');?>/"+data;
 						},      
 						  error: function (data)
 						  {
@@ -1475,8 +1600,8 @@ function AddIndeks(){
 		$('#'+param ).remove();		
 		countervendor--;
 		$('#txtcountervendor').val(countervendor);		
-		
-		var itotal=0;
+		gettotalvendor();
+		/*var itotal=0;
 		var inps = document.getElementsByName('nominalvendor[]');
 		for (var i = 0; i <inps.length; i++) {
 			var inp=inps[i];
@@ -1485,24 +1610,66 @@ function AddIndeks(){
 			itotal = itotal+parseFloat(yz);
 		}
 		//alert(itotal.toString());
-		$('#lbltotalvendor').text(formatRupiah(itotal.toString()));		
+		$('#lbltotalvendor').text(formatRupiah(itotal.toString()));		*/
     }
 	
 	function gettotalvendor(){
-		var itotal=0;
+		var itotal1=0;
+		var itotal2=0;
+		var itotal3=0;
 		var inps = document.getElementsByName('nominalvendor[]');
+		var inpscur = document.getElementsByName('currencyvendor[]');
+		var curr1 = document.getElementById('Select').value;
+		var curr2 = document.getElementById('currency2').value;
+		var curr3 = document.getElementById('currency3').value;
+		var errmsg = '0';
 		for (var i = 0; i <inps.length; i++) {
 			var inp=inps[i];
-			var xj=inp.value;
-			var yz=xj.replace(/[^,\d]/g, '').toString();
-			if (yz==""){
-				itotal = itotal+0;
+			var inpcur=inpscur[i];
+			var inpcurX=inpcur.value;
+      
+			if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
+				errmsg="0";
+			}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
+				errmsg="0";
+			}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
+				errmsg="0";
 			}else{
-			itotal = itotal+parseFloat(yz);
+				errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 			}
-			inps[i].value=formatRupiah(yz.toString());
+			
+			if(errmsg=="0"){
+				var xj=inp.value;
+				var yz=xj.replace(/[^,\d]/g, '').toString();
+				if(inpcurX.trim()==curr1.trim() && inpcurX.trim()!=""){
+					if (yz==""){
+						itotal1 = itotal1+0;
+					}else{
+						itotal1 = itotal1+parseFloat(yz);
+					}
+				}else if(inpcurX.trim()==curr2.trim() && inpcurX.trim()!=""){
+					if (yz==""){
+						itotal2 = itotal2+0;
+					}else{
+						itotal2 = itotal2+parseFloat(yz);
+					}
+				}else if(inpcurX.trim()==curr3.trim() && inpcurX.trim()!=""){
+					if (yz==""){
+						itotal3 = itotal3+0;
+					}else{
+						itotal3 = itotal3+parseFloat(yz);
+					}
+				}
+				inps[i].value=formatRupiah(yz.toString());
+			}else{
+				alert(errmsg);
+				break;
+			}				
 		}
-		$('#lbltotalvendor').text(formatRupiah(itotal.toString()));		
+		$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
+		$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
+		$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
+				
     }
 	
 	function drpbank(param1,param2,param3){
@@ -1518,10 +1685,24 @@ function AddIndeks(){
 			  $("#"+param2).prop( "readonly", false );
 		  }	 
 	  }	  
-		
 	  
-	}		
-
+	}
+	
+	function drpcurrencyvendor(param){
+		
+		var curr1 = document.getElementById('Select').value;
+		var curr2 = document.getElementById('currency2').value;
+		var curr3 = document.getElementById('currency3').value;
+		var curvendor =$('#currencyvendor'+param).val();
+		if(curvendor!=curr1){
+			alert('Mata Uang yang dipilih tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+		}else if(curvendor!=curr2){
+			alert('Mata Uang yang dipilih tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+		}else if(curvendor!=curr3){
+			alert('Mata Uang yang dipilih tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+		}
+	  
+	}
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

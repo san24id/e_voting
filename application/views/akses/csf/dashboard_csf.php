@@ -337,21 +337,22 @@
 											<option value='0'> Draft </option>
 											<option value='1'> Draft Print </option>
 											<option value='2'> Submitted </option>
-											<option value='3'> Rejected </option>
+											<!--<option value='3'> Rejected </option>
 											<option value='4'> Processing Tax </option>
 											<option value='5'> Processing Finance </option>
 											<option value='6'> Waiting for Review </option>
-											<option value='7'> Waiting for Verivication </option>
-											<option value='8'> Waiting for Approved </option>
-											<option value='9'> Waiting for Payment </option>
+											<option value='7'> Waiting for Verivication </option>-->
+											<option value='4'> Processing</option>
+											<option value='8'> Verified </option>
+											<option value='9'> Approved </option>
 											<option value='10'> Paid </option>
 										</select>
 										
 										<select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
 											<option value=''>== Pilih ==</option>
+											<option value='4'> Direct Payment </option> 
 											<option value='2'> Advance Request </option>
 											<option value='3'> Advance Settlement </option>
-											<option value='4'> Direct Payment </option> 
 											<option value='5'> Cash Received </option>
 										</select>
 										
@@ -498,6 +499,18 @@
                 </tbody>
                 </table>
                 </div>
+				<!--<div class="box-footer">  
+					<div class="form-group">
+						<label class="control-label col-md-1"><i>Legend</i></label>
+						<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>
+						<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>
+						<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>
+						<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>
+						<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>
+						<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>
+						<div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp; Paid</div>											  
+					</div>  
+				</div> -->
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -537,21 +550,26 @@
                   </tr>
                   <tr>
                     <td>3</td>
+                    <td><img src="assets/dashboard/images/legend/submitted.png"></td>
+                    <td>Submitted</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
                     <td><img src="assets/dashboard/images/legend/processing.png"></td>
                     <td>Proceesing</td>
                   </tr>
                   <tr>
-                    <td>4</td>
+                    <td>5</td>
                     <td><img src="assets/dashboard/images/legend/verified.png"></td>
                     <td>Verified</td>
                   </tr>
                   <tr>
-                    <td>5</td>
+                    <td>6</td>
                     <td><img src="assets/dashboard/images/legend/approved.png"></td>
                     <td>Approved</td>
                   </tr>
                   <tr>
-                    <td>6</td>
+                    <td>7</td>
                     <td><img src="assets/dashboard/images/legend/paid1.png"></td>
                     <td>Paid</td>
                   </tr>
@@ -564,9 +582,9 @@
         </div>
         <!-- /.col -->
       </div>
-
       <!-- /.row -->
     </section>
+
   </div>
   <!-- /.content-wrapper -->
 

@@ -224,7 +224,7 @@
                         	<br>
                         </td>
                         <td align="right"><font size="1"><b> : </b></td>
-                        <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo $row->label3; ?></td>          
+                        <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo date("d/m/Y", strtotime($row->label3)); ?></td>              
                       </tr>                                                                      
                       </tbody>
                     </table>
@@ -276,9 +276,10 @@
 														<table id="show1" class="table table-bordered table-striped" width="100%"> 
 														  <thead>
 															<tr>
-																<th colspan="3"><font size="1">Nama Vendor</th>
-																<th colspan="3"><font size="1">Nama Bank</th>
-																<th colspan="3"><font size="1">Nomor Rekening</th>
+																<th colspan="3"><font size="1">Nama Vendor  </font></th>
+																<th colspan="3"><font size="1">Nama Bank  </font></th>
+																<th colspan="3"><font size="1">Nomor Rekening  </font></th>
+																<th colspan="3"><font size="1">Mata Uang  </font></th>
 																<th colspan="4"><font size="1"><center>Nominal</center></th>
 															 </tr>
 														  </thead>
@@ -286,7 +287,9 @@
 														  <b><p>- <font size="1">Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
 														  <?php 
 															$ttlnomvendor=0;
-															$nomvendor='';
+                              $ttlnomvendor2=0;
+															$ttlnomvendor3=0;
+                              $nomvendor='';
 															$vendorrow=0;
 															if ($getdatavendor == null){ ?>
 																<tr id="tr1">
@@ -321,9 +324,10 @@
 																$vendorrow++;
 															?>
 															<tr id="tr<?php echo $vendorrow; ?>">
-															<td colspan="3" width="45%" class="kolom"><font size="1"><center> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></td>
+															<td colspan="3" width="35%" class="kolom"><font size="1"><center> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></td>
 															<td colspan="3" width="20%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_bank;?>				</td>
-                              <td colspan="3" width="20%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_account; ?>	</td>   
+                              <td colspan="3" width="15%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_account; ?>	</td>   
+                              <td colspan="3" width="10%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_currency; ?>	</td>   
 															<td colspan="4" width="20%" class="kolom"><font size="1"><center> <?php echo number_format($gvendor->nominal,0,",","."); ?></td>
 															
 															
@@ -333,12 +337,22 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th colspan="9" style="text-align:end;"><font size="1">Total</th>
-																  <th><label class="control-label col-md-3" id="lbltotalvendor"><font size="1"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
-																  <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
-				
+																<th>
+																<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
+																  <i class="glyphicon glyphicon-plus"></i></span>
+																</div>
+																<div class="col-md-10"><span class="col-md-11" style="text-align:end"><font size="1">Total</span></div>
+																  </th>
+																<th colspan="5">
+																<label class="control-label col-md-1" id="lblcur1" ><font size="1"><?php echo $row->currency; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor"><font size="1"><?php echo $row->label2; ?></label>
+																<label class="control-label col-md-1" id="lblcur2" ><font size="1"><?php echo $row->currency2; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor2"><font size="1"><?php echo $row->jumlah2; ?></label>
+																<label class="control-label col-md-1" id="lblcur3" ><font size="1"><?php echo $row->currency3; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor3"><font size="1"><?php echo $row->jumlah3; ?></label>
+																</th>
 															</tr>
-														</tfoot>
+														  </tfoot>
 														</table>
 														</div> 
 														</form>
@@ -460,74 +474,79 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table id="show" <?php echo $showed;?> width="50%">
+                  <div id="show" <?php echo $showed;?>>
+                    
+                   <table style="font-family: calibri;"  width="100%">
+                      <tbody>
+                        <tr>
+                          <td><font size="1"><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
+                        </tr>
+                        <tr>
+                          <td width="40%"><font size="1"><b>- Nomor ARF terkait </font></b></td>
+                          <td>:&nbsp;</td>
+                          <td class="kolom"><font size="1"><?php echo $row->label5;?> </td>
+                          <td><font size="1">&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled> Lampiran copy ARF tersedia</input></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table style="font-family: calibri;" width="90%"; >
                       <tbody>
                       <tr>
-                        <td><font size="1"><b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b></td>
-                      </tr>  
+                        <td colspan="10" >&nbsp;</td>
+                      </tr>                      
                       <tr>
-                      <td width="30%"><font size="1"><b>- Nomor ARF terkait</b></td>
-                        <td>:</td>
-                        <td class="kolom"><font size="1"> &nbsp; <?php echo $row->label5;?> </td>
-                        <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled><font size="1">Lampiran copy ARF tersedia</td>
-                      </tr>
-                      <tr>
-                        <td><font size="1"><b>- Perhitungan Penggunaan Uang Muka : <b></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td><font size="1"><center><b> Curr</b></center></td>
+                        <td><font size="1"><b>- Perhitungan Penggunaan Uang Muka<b></td>
+                        <td colspan="3">&nbsp;</td>
+                        <td><font size="1"><center><b> &nbsp;&nbsp;Curr&nbsp;&nbsp;</b></center></td>
                         <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
-                        <td><font size="1"><center><b> Curr</b></center></td>
+                        <td><font size="1"><center><b>&nbsp;&nbsp;Curr&nbsp;&nbsp;</b></center></td>
                         <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
-                        <td><font size="1"><center><b> Curr</b></center></td>
+                        <td><font size="1"><center><b>&nbsp;&nbsp;Curr&nbsp;&nbsp;</b></center></td>
                         <td><font size="1"><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
-
-                      <!--Biaya-->
                       <tr>  
-                        <td><font size="1">Jumlah Biaya </td>
+                        <td><font size="1">Jumlah Biaya <font color="red"> * </font></td>
                         <td><font size="1">:</td>
-                        <td class="kolom"><font size="1"><?php echo $row->currency4;?></td>
+                        <td colspan="2">&nbsp;</td>
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement1;?></td>
                         <td class="kolom"><font size="1"><?php echo $row->label7;?></td>
                         
-                        <td class="kolom"><font size="1"><?php echo $row->currency5;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label8;?></td>
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement2;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label7a;?></td>
                         
-                        <td class="kolom"><font size="1"><?php echo $row->currency6;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label9;?></td>
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement3;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label7b;?></td>
                       </tr>
 
-                      <!--UangMuka-->
                       <tr>
-                        <td><font size="1">Jumlah Uang Muka </td>
+                        <td><font size="1">Jumlah Uang Muka <font color="red"> * </font> </td>
                         <td><font size="1">:</td>
-                        <td class="kolom"><font size="1"><?php echo $row->currency7;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label10; ?></td>  
+                        <td colspan="2">&nbsp;</td>
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement1;?></td>   
+                        <td class="kolom"><font size="1"><?php echo $row->label8; ?></td> 
                         
-                        <td class="kolom"><font size="1"><?php echo $row->currency8;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label11; ?></td> 
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement2;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label8a; ?></td>  
                         
-                        <td class="kolom"><font size="1"><?php echo $row->currency9;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label12; ?></td> 
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement3;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label8b; ?></td>  
+                      </tr>
                       <tr>
-
-                      <!--Selisih-->
-                      <tr>
-                        <td><font size="1">Selisih Kurang/(Lebih)</td>  
+                        <td><font size="1">Selisih Kurang/(Lebih)</td>
                         <td><font size="1">:</td>
-                        <td class="kolom"><font size="1"><?php echo $row->currency10;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label13; ?></td>
+                        <td colspan="2">&nbsp;</td>
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement1;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label9; ?></td>  
                         
-                        <td class="kolom"><font size="1"><?php echo $row->currency11;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label14; ?></td>
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement2;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label9a; ?></td>  
                         
-                        <td class="kolom"><font size="1"><?php echo $row->currency12;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label15; ?></td>                               
+                        <td align="center"><font size="1"><?php echo $row->curr_settlement3;?></td>
+                        <td class="kolom"><font size="1"><?php echo $row->label9b; ?></td>  
                       </tr>                              
                       </tbody>
-                    </table>          
+                    </table>
+                  </div>          
                   
                     <table width="100%">
                     <tbody>

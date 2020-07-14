@@ -35,7 +35,7 @@ class Home_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
-                AND status in ('0','1','2','3','4','5','6','7','8','9','10','11') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                AND status in ('0','1','2','3','4','5','6','7','8','9','11') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -529,19 +529,18 @@ class Home_model extends CI_Model{
 
     var $table ="t_payment";
     public function buat_kode()  {   
-        $dvs = $this->session->userdata('division_id');        
-        $tahunnow = '2020';
-        $tahunbaru = date('Y');
-
+        $dvs = $this->session->userdata('division_id');  
+		$where = "division_id='".$dvs."' and substring(nomor_surat,length(nomor_surat)-3,4)='".date('my')."'";
         $this->db->select('LEFT(t_payment.nomor_surat,4) as kode', FALSE);
-        $this->db->where('division_id', $dvs);
-        $this->db->order_by('nomor_surat','DESC');    
+        $this->db->where($where);
+		//$this->db->where('division_id', $dvs);
+		$this->db->order_by('nomor_surat','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment');      //cek dulu apakah ada sudah ada kode di tabel.    
-        if($query->num_rows() <> 0 && $tahunnow == $tahunbaru){      
-         //jika kode ternyata sudah ada.              
-            $data = $query->row();      
-            $kode = intval($data->kode) + 1;    
+        if($query->num_rows() <> 0){      
+         //jika kode ternyata sudah ada.      
+         $data = $query->row();      
+         $kode = intval($data->kode) + 1;    
         }
         else {      
          //jika kode belum ada      
@@ -549,23 +548,20 @@ class Home_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-        $kodejadi = $kodemax."/$dvs/SPPP/".date('my');   // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        $kodejadi = $kodemax."/$dvs/SPPP/".date('my');    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
     
     function addpayment($add){
-        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, tanggal2, currency, currency2, currency3,
-                currency4, currency5, currency7, currency8, currency9, currency10, currency11, currency12, division_id, jabatan, label1, label2, jumlah2, jumlah3, 
-                label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14, label15, penerima, vendor, akun_bank, no_rekening, 
-                status, lainnya1, lainnya2) 
+        $sql = "INSERT INTO `t_payment` (id_payment, id_user, nomor_surat, jenis_pembayaran, display_name, tanggal, tanggal2, currency, currency2, currency3, 
+                division_id, jabatan, label1, label2, jumlah2, jumlah3, label3, label4, label5, label6, label7, label8, label9, penerima, vendor, 
+                akun_bank, no_rekening, status, lainnya1, lainnya2) 
                 VALUES ('".$add['id_payment']."','".$add['id_user']."','".$add['nomor_surat']."','".$add['jenis_pembayaran']."','".$add['display_name']."',
-                '".$add['tanggal']."','".$add['tanggal2']."','".$add['currency']."','".$add['currency2']."','".$add['currency3']."','".$add['currency4']."','".$add['currency5']."',
-                '".$add['currency6']."','".$add['currency7']."','".$add['currency8']."','".$add['currency9']."','".$add['currency10']."','".$add['currency11']."','".$add['currency12']."',
-                '".$add['division_id']."','".$add['jabatan']."','".$add['label1']."','".$add['label2']."','".$add['jumlah2']."','".$add['jumlah3']."','".$add['label3']."','".$add['label4']."',
-                '".$add['label5']."','".$add['label6']."','".$add['label7']."','".$add['label8']."','".$add['label9']."','".$add['label10']."','".$add['label10']."','".$add['label11']."',
-                '".$add['label12']."','".$add['label13']."','".$add['label14']."','".$add['label15']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."','".$add['no_rekening']."',
-                '".$add['status']."','".$add['lainnya1']."','".$add['lainnya2']."')";
-        // var_dump($sql);exit;
+                '".$add['tanggal']."','".$add['tanggal2']."','".$add['currency']."','".$add['currency2']."','".$add['currency3']."','".$add['division_id']."','".$add['jabatan']."',
+                '".$add['label1']."','".$add['label2']."','".$add['jumlah2']."','".$add['jumlah3']."','".$add['label3']."','".$add['label4']."','".$add['label5']."',
+                '".$add['label6']."','".$add['label7']."','".$add['label8']."','".$add['label9']."','".$add['penerima']."','".$add['vendor']."','".$add['akun_bank']."',
+                '".$add['no_rekening']."','".$add['status']."','".$add['lainnya1']."','".$add['lainnya2']."')";
+        var_dump($sql);exit;
         $query = $this->db->query($sql);
 
         return $query;
@@ -573,12 +569,9 @@ class Home_model extends CI_Model{
 
     function updatepayment($upd){
         $sql = "UPDATE `t_payment` SET `display_name`='".$upd['display_name']."',`jabatan`='".$upd['jabatan']."',`jenis_pembayaran`='".$upd['jenis_pembayaran']."',`currency`='".$upd['currency']."',
-                `currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`currency4`='".$upd['currency4']."',`currency5`='".$upd['currency5']."',`currency6`='".$upd['currency6']."',
-                `currency7`='".$upd['currency7']."',`currency8`='".$upd['currency8']."',`currency9`='".$upd['currency9']."',`currency10`='".$upd['currency10']."',`currency11`='".$upd['currency11']."',
-                `currency12`='".$upd['currency12']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',`label3`='".$upd['label3']."',
-                `label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',`label8`='".$upd['label8']."',`label9`='".$upd['label9']."',`label10`='".$upd['label10']."',
-                `label11`='".$upd['label11']."',`label12`='".$upd['label12']."',`label13`='".$upd['label13']."',`label14`='".$upd['label14']."',`label15`='".$upd['label15']."',`penerima`='".$upd['penerima']."',
-                `vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',`lainnya1`='".$upd['lainnya1']."',`lainnya2`='".$upd['lainnya2']."'
+                `currency2`='".$upd['currency2']."',`currency3`='".$upd['currency3']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`jumlah2`='".$upd['jumlah2']."',`jumlah3`='".$upd['jumlah3']."',
+                `label3`='".$upd['label3']."',`label4`='".$upd['label4']."',`label5`='".$upd['label5']."',`label6`='".$upd['label6']."',`label7`='".$upd['label7']."',`label8`='".$upd['label8']."',`label9`='".$upd['label9']."',
+                `penerima`='".$upd['penerima']."',`vendor`='".$upd['vendor']."',`akun_bank`='".$upd['akun_bank']."',`no_rekening`='".$upd['no_rekening']."',`lainnya1`='".$upd['lainnya1']."',`lainnya2`='".$upd['lainnya2']."'
                 
                 WHERE `id_payment`='".$upd['id_payment']."'"; 
         
@@ -663,7 +656,8 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('0','1') and division_id='$dvs'
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran 
+                FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('0','1') and division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
            
 		   
@@ -682,10 +676,11 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran 
+                from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) >= curdate() 
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
-        // var_dump($sql);exit;
+
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -701,8 +696,9 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran  from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE division_id='$dvs' AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran 
+                from `t_payment` as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() 
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -866,4 +862,16 @@ class Home_model extends CI_Model{
 		return $this->db->insert_id();
 	}
     
+	public function delete_vendorpayment($id)
+	{
+		$sqldel  ="delete from t_vendor where id_payment=" .$id ;
+		
+		$this->db->query($sqldel);
+	}
+	
+	public function draftpaymentdelete($id)
+	{
+		$this->db->where('id_payment', $id);
+		$this->db->delete('t_payment');
+	}
 }

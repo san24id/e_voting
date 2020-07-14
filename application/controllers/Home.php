@@ -36,12 +36,20 @@ class Home extends CI_Controller {
         	$this->session->sess_destroy();
 			redirect('login', 'refresh');
 		}
-
+		
 	}
 
 	public function index()
 	{
-		$sid = $this->session->userdata("id_user");
+		
+		
+		$s = '01-01-'.Date('Y');
+		$date = strtotime($s);
+		$data['start_date']= date('d-m-Y', $date);
+		$data['end_date'] = date('d-m-Y');
+		
+		$sid = $this->session->userdata("id_user");	
+				
 		$tanggalHariIni = new DateTime();
 		$data['active1'] = 'active';
 		$data['active2'] = '';
@@ -66,7 +74,6 @@ class Home extends CI_Controller {
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
 		$data['credit_card'] = $this->Home_model->CreditCard();
-// var_dump($data['upcoming_over']);exit;
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/dashboard_user', $data);
@@ -74,18 +81,18 @@ class Home extends CI_Controller {
 
 	public function caridatadashboard()
 	{
-		$txtsearch="";
-		$profileid=$this->input->post('selsearch');
-		$status=$this->input->post('selstatus');
-		$jnspembayaran=$this->input->post('seljnspembayaran');
-		//$txtsearch=$this->input->post('txtpencarian');
-		if($profileid=="1"){
-			$txtsearch=$status;
-		}elseif($profileid=="2"){
-			$txtsearch=$jnspembayaran;
-		}
-		$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
-		echo json_encode($data);
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabysearch($profileid,$txtsearch);
+			echo json_encode($data);
 	}
 
 	function periode(){
@@ -95,8 +102,8 @@ class Home extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
-		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
+		$data['start_date'] = date('d-m-Y', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('d-m-Y', strtotime($this->input->post("end_date")));
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['draft'] = $this->Home_model->getTotalDraftPeriode($data['start_date'],$data['end_date']);
@@ -423,6 +430,7 @@ class Home extends CI_Controller {
 
 	public function form_add()
 	{
+		$dvs = $this->session->userdata('division_id'); 
 		$data['active1'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
@@ -432,14 +440,14 @@ class Home extends CI_Controller {
 		$data['getID'] = $this->Home_model->getIdPayment();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
-		$data['surat'] = $this->Home_model->buat_kode();
+		$data['surat'] = "----/".$dvs."/SPPP/".date('my'); //$this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
 		$data['bank'] =$this->Home_model->getBank();
-		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment('0');
-
+		$data['getlistarf'] = $this->Dashboard_model->getlistarfpaid();
+		
 		$this->load->view('akses/user/header_user', $data);	
         $this->load->view('akses/user/form_pengajuan', $data);
 	}
@@ -481,35 +489,12 @@ class Home extends CI_Controller {
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $ganti,
-			'currency4' => $_POST['currency4'],
-			'currency5' => $_POST['currency5'],
-			'currency6' => $_POST['currency6'],
-			'currency7' => $_POST['currency7'],
-			'currency8' => $_POST['currency8'],
-			'currency9' => $_POST['currency9'],
-			'currency10' => $_POST['currency10'],
-			'currency11' => $_POST['currency11'],
-			'currency12' => $_POST['currency12'],
-			'division_id' => $_POST['division_id'],
-			'jabatan' => $_POST['jabatan'],
-			'label1' => $_POST['label1'],
-			'label2' => $_POST['label2'],
-			'jumlah2' => $_POST['jumlah2'],
-			'jumlah3' => $_POST['jumlah3'],
-			'label3' => $_POST['label3'],
 			'label4' => $label4,
 			'label5' => $_POST['label5'],
 			'label6' => isset($_POST['label6']),
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
 			'label9' => $_POST['label9'],
-			'label10' => $_POST['label10'],
-			'label11' => $_POST['label11'],
-			'label12' => $_POST['label12'],
-			'label12' => $_POST['label12'],
-			'label13' => $_POST['label13'],
-			'label14' => $_POST['label14'],
-			'label15' => $_POST['label15'],
 			'penerima' => $_POST['penerima'],
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
@@ -521,25 +506,24 @@ class Home extends CI_Controller {
 		//$this->session->set_flashdata('msg', 'Berhasil ditambahkan!');	
 		//$this->Home_model->addpayment($add);
 		
-		//$insert = $this->Home_model->saveaddpayment($add);
+		$insert = $this->Home_model->saveaddpayment($add);
 		
 		$strcounter=intval($_POST['txtcountervendor']);
-		$id =$insert;
+		$id = $insert;
 		//$this->Dashboard_model->delete_vendorpayment($id);
 		for($i=0; $i<$strcounter; $i++){
 			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
-			//if($nominal != ""){
+			if($nominal != ""){
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_currency' => $_POST['currencyvendor'][$i],
 						'v_nominal' => number_format($nominal,0,",",".")
 					);
-							
+					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
-			//}
+			}
 		}
 		//echo json_encode(array("status" => TRUE));
 		echo json_encode($insert);
@@ -549,16 +533,19 @@ class Home extends CI_Controller {
 	}
 
 	public function draftsent($id_payment){
+		$id_apa = $_POST['id_payment'];
 
+		$nosurat = $this->Home_model->buat_kode();
 		$upd = array(
 			'id_payment' => $id_payment,
-			'status' => 1,
-			'nomor_surat' => $_POST['nomor_surat']
+			'nomor_surat' => $nosurat,
+			'status' => 1
 		);
 		
 		$this->Dashboard_model->updateprint($upd);
 
-		redirect('Home');
+		redirect(site_url('Home/form_view/'.$id_apa));
+
 	}
 
 	// public function draftprintdp($id_payment){
@@ -627,15 +614,6 @@ class Home extends CI_Controller {
 			'currency' => $_POST['currency'],
 			'currency2' => $_POST['currency2'],
 			'currency3' => $_POST['currency3'],
-			'currency4' => $_POST['currency4'],
-			'currency5' => $_POST['currency5'],
-			'currency6' => $_POST['currency6'],
-			'currency7' => $_POST['currency7'],
-			'currency8' => $_POST['currency8'],
-			'currency9' => $_POST['currency9'],
-			'currency10' => $_POST['currency10'],
-			'currency11' => $_POST['currency11'],
-			'currency12' => $_POST['currency12'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
@@ -649,13 +627,6 @@ class Home extends CI_Controller {
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
 			'label9' => $_POST['label9'],
-			'label10' => $_POST['label10'],
-			'label11' => $_POST['label11'],
-			'label12' => $_POST['label12'],
-			'label12' => $_POST['label12'],
-			'label13' => $_POST['label13'],
-			'label14' => $_POST['label14'],
-			'label15' => $_POST['label15'],
 			'penerima' => $_POST['penerima'],
 			'vendor' => $_POST['vendor'],
 			'akun_bank' => $_POST['akun_bank'],
@@ -741,11 +712,10 @@ class Home extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['bank'] = $this->Home_model->getBank();
-		$data['pegawai'] = $this->Home_model->getPegawai();
-		$data['getArf'] = $this->Home_model->getARFPaid();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
+		$data['getlistarf'] = $this->Dashboard_model->getlistarfpaid();
 
 		$this->load->view('akses/user/header_user', $data);	
        	$this->load->view('akses/user/form_finished', $data);
@@ -967,7 +937,7 @@ class Home extends CI_Controller {
 		switch ($id) {
 		  case "1":
 			$data['payment'] = $this->Home_model->getPaymentDetail($sid,$start_date,$end_date);
-			$this->session->set_userdata('titleHeader','All Payment Request List');
+			$this->session->set_userdata('titleHeader','Payment Request List');
 			$this->session->set_userdata('filter','1');
 			break;
 		  case "2":
@@ -1085,15 +1055,6 @@ class Home extends CI_Controller {
 			'currency' => $_POST['currency'],
 			'currency2' => $_POST['currency2'],
 			'currency3' => $_POST['currency3'],
-			'currency4' => $_POST['currency4'],
-			'currency5' => $_POST['currency5'],
-			'currency6' => $_POST['currency6'],
-			'currency7' => $_POST['currency7'],
-			'currency8' => $_POST['currency8'],
-			'currency9' => $_POST['currency9'],
-			'currency10' => $_POST['currency10'],
-			'currency11' => $_POST['currency11'],
-			'currency12' => $_POST['currency12'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
@@ -1107,13 +1068,6 @@ class Home extends CI_Controller {
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
 			'label9' => $_POST['label9'],
-			'label10' => $_POST['label10'],
-			'label11' => $_POST['label11'],
-			'label12' => $_POST['label12'],
-			'label12' => $_POST['label12'],
-			'label13' => $_POST['label13'],
-			'label14' => $_POST['label14'],
-			'label15' => $_POST['label15'],
 			'penerima' => $nama_vendor,
 			'vendor' => $kode_vendor,
 			'akun_bank' => $v_bank,
@@ -1156,15 +1110,6 @@ class Home extends CI_Controller {
 			'currency' => $_POST['currency'],
 			'currency2' => $_POST['currency2'],
 			'currency3' => $_POST['currency3'],
-			'currency4' => $_POST['currency4'],
-			'currency5' => $_POST['currency5'],
-			'currency6' => $_POST['currency6'],
-			'currency7' => $_POST['currency7'],
-			'currency8' => $_POST['currency8'],
-			'currency9' => $_POST['currency9'],
-			'currency10' => $_POST['currency10'],
-			'currency11' => $_POST['currency11'],
-			'currency12' => $_POST['currency12'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
@@ -1178,18 +1123,20 @@ class Home extends CI_Controller {
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
 			'label9' => $_POST['label9'],
-			'label10' => $_POST['label10'],
-			'label11' => $_POST['label11'],
-			'label12' => $_POST['label12'],
-			'label12' => $_POST['label12'],
-			'label13' => $_POST['label13'],
-			'label14' => $_POST['label14'],
-			'label15' => $_POST['label15'],
 			'penerima' => $nama_vendor,
 			'vendor' => $kode_vendor,
 			'akun_bank' => $v_bank,
 			'no_rekening' =>$v_account,
-			'lainnya1' => $_POST['lainnya1']
+			'lainnya1' => $_POST['lainnya1'],
+			'curr_settlement1' => $_POST['curr1'],
+			'curr_settlement2' => $_POST['curr2'],
+			'curr_settlement3' => $_POST['curr3'],
+			'label7a' => $_POST['label7a'],
+			'label8a' => $_POST['label8a'],
+			'label9a' => $_POST['label9a'],
+			'label7b' => $_POST['label7b'],
+			'label8b' => $_POST['label8b'],
+			'label9b' => $_POST['label9b']
 		);
 
 		$insert = $this->Home_model->saveaddpayment($add);
@@ -1199,12 +1146,13 @@ class Home extends CI_Controller {
 			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
 			//if($nominal != ""){
 				$data = array(
-					'id_payment' => $id,
-					'kode_vendor' => $_POST['kodevendor'][$i],
-					'v_bank' => $_POST['bankvendor'][$i],
-					'v_account' => $_POST['rekeningvendor'][$i],
-					'v_nominal' => number_format($nominal,0,",","."),
-					'v_currency' => $_POST['currencyvendor'][$i]
+						'id_payment' => $id,
+						'kode_vendor' => $_POST['kodevendor'][$i],
+						'v_bank' => $_POST['bankvendor'][$i],
+						'v_account' => $_POST['rekeningvendor'][$i],
+						'v_nominal' => number_format($nominal,0,",","."),
+						'v_currency' => $_POST['currencyvendor'][$i]						
+					
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -1231,12 +1179,11 @@ class Home extends CI_Controller {
 			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
 			//if($nominal != ""){
 				$data = array(
-					'id_payment' => $id,
-					'kode_vendor' => $_POST['kodevendor'][$i],
-					'v_bank' => $_POST['bankvendor'][$i],
-					'v_account' => $_POST['rekeningvendor'][$i],
-					'v_nominal' => number_format($nominal,0,",","."),
-					'v_currency' => $_POST['currencyvendor'][$i]
+						'id_payment' => $id,
+						'kode_vendor' => $_POST['kodevendor'][$i],
+						'v_bank' => $_POST['bankvendor'][$i],
+						'v_account' => $_POST['rekeningvendor'][$i],
+						'v_nominal' => number_format($nominal,0,",",".")
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -1261,17 +1208,6 @@ class Home extends CI_Controller {
 			'currency' => $_POST['currency'],
 			'currency2' => $_POST['currency2'],
 			'currency3' => $_POST['currency3'],
-			'currency2' => $_POST['currency2'],
-			'currency3' => $_POST['currency3'],
-			'currency4' => $_POST['currency4'],
-			'currency5' => $_POST['currency5'],
-			'currency6' => $_POST['currency6'],
-			'currency7' => $_POST['currency7'],
-			'currency8' => $_POST['currency8'],
-			'currency9' => $_POST['currency9'],
-			'currency10' => $_POST['currency10'],
-			'currency11' => $_POST['currency11'],
-			'currency12' => $_POST['currency12'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
@@ -1285,13 +1221,6 @@ class Home extends CI_Controller {
 			'label7' => $_POST['label7'],
 			'label8' => $_POST['label8'],
 			'label9' => $_POST['label9'],
-			'label10' => $_POST['label10'],
-			'label11' => $_POST['label11'],
-			'label12' => $_POST['label12'],
-			'label12' => $_POST['label12'],
-			'label13' => $_POST['label13'],
-			'label14' => $_POST['label14'],
-			'label15' => $_POST['label15'],
 			'penerima' => $nama_vendor,
 			'vendor' => $kode_vendor,
 			'akun_bank' => $v_bank,
@@ -1304,5 +1233,12 @@ class Home extends CI_Controller {
 
 		//redirect(site_url('Home/formfinished/'.$id));
 		echo json_encode($id);
+	}
+	
+	public function draftpaymentdelete($id)
+	{
+		$this->Home_model->delete_vendorpayment($id);	
+		$this->Home_model->draftpaymentdelete($id);		
+		echo json_encode(array("status" => TRUE));
 	}
 }

@@ -69,7 +69,7 @@ class Dashboard_model extends CI_Model{
 
     public function getTotal(){
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE status in ('2','3','4','5','6','7','8','9','10')";
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE status in ('2','4','5','6','7','8','9','10')";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1175,7 +1175,12 @@ class Dashboard_model extends CI_Model{
 			
 		switch ($profileid) {
 			  case "1":
-				$sql .=" and a.status like '" . $txtsearch . "'";
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7')";
+				}else{
+					$sql .=" and a.status = '" . $txtsearch . "'";
+				}
+				
 				break;
 			  case "2":
 				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
@@ -1355,5 +1360,20 @@ class Dashboard_model extends CI_Model{
 	{
 		$this->db->insert('t_vendor', $data);
 		return $this->db->insert_id();
+	}
+	
+	public function getlistarfpaid() {
+		$dvs = $this->session->userdata('division_id');
+        
+        $sql = "select nomor_surat ";
+		$sql .= "from t_payment where jenis_pembayaran='2' and status='10' and division_id = '".$dvs."' order by nomor_surat asc ";
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function draftpaymentdelete($id)
+	{
+		$this->db->where('id_payment', $id);
+		$this->db->delete('t_payment');
 	}
 }
