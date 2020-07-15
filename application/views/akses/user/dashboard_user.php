@@ -458,37 +458,27 @@
                     <td>
 
                      <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                      <?php if ($row->status <= 1) { ?>
-
-                        <button type="button" data-toggle="modal" data-target="#delete<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Delete</button>
-                        <div class="modal fade" id="delete<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                          <div class="modal-dialog modal-xl" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h3 class="modal-title">Message Box</h3>
-                              </div>                                        
-                              <div class="modal-body">
-                              <form id="approve" method="post" action="Dashboard/deletepayment">
-                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-
-                                <p align="justify">Apa anda yakin akan menghapus Form SP3 ini?  </p>
-                              </div>
-                              <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      <?php  } ?>
+                      <?php if($row->status=="0" || $row->status=="1"){ ?>
+                        <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+                      <?php } ?>
                     </td>      
                     </tr>
                 <?php  } ?>
                 </tbody>
                 </table>
                 </div>
+                
+                <div class="box-footer">  
+                  <div class="form-group">
+                    <label class="control-label col-md-1"><i>Legend</i></label>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp; Paid</div>											  
+                  </div>  
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -499,69 +489,7 @@
                 
     </section>
     <!-- /.content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-md-3">
-          <!-- /.box -->
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">            
-              <table id="" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th style="width: 10%" >NO.</th>
-                    <th style="width: 20%" >Status</th>
-                    <th>Keterangan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><img src="assets/dashboard/images/legend/draft.png"></td>
-                    <td>Draft</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><img src="assets/dashboard/images/legend/draftprint.png"></td>
-                    <td>Draft(Print)</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><img src="assets/dashboard/images/legend/submitted.png"></td>
-                    <td>Submitted</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><img src="assets/dashboard/images/legend/processing.png"></td>
-                    <td>Proceesing</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
-                    <td>Verified</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td><img src="assets/dashboard/images/legend/approved.png"></td>
-                    <td>Approved</td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td><img src="assets/dashboard/images/legend/paid1.png"></td>
-                    <td>Paid</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-
-      <!-- /.row -->
-    </section>
+    
   </div>
   <!-- /.content-wrapper -->
 
@@ -628,6 +556,23 @@
 <script src="assets/admin/bower_components/chart.js/canvasjs.min.js"></script>
 
 <script>
+function deletedraftpayment(id)
+    {
+			$.ajax({
+				url : "<?php echo base_url('home/draftpaymentdelete')?>/"+id,
+				type: "POST",
+				dataType: "JSON",
+				success: function(data)
+				{               
+					location.reload();
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
+			});
+    }
+
 $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({

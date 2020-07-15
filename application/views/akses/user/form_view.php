@@ -671,13 +671,17 @@
                         <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                       
-                              <a class="btn btn-danger" href="Home/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Ready To Print</a>
+                              <a class="btn btn-primary" href="Home/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
                               
-                              <a class="btn btn-danger" href="Home/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Ready To Print</a>
+                              <a class="btn btn-primary" href="Home/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>
 
                             <?php } ?>
+                        <?php } ?>
+
+                        <?php if($row->status=="0" || $row->status=="1"){ ?>
+                          <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
                         <?php } ?>
 
                         <?php 
@@ -857,6 +861,23 @@
 </div>
     
 <script>
+function deletedraftpayment(id)
+    {
+			$.ajax({
+				url : "<?php echo base_url('home/draftpaymentdelete')?>/"+id,
+				type: "POST",
+				dataType: "JSON",
+				success: function(data)
+				{               
+					location.reload();
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
+			});
+    }
+
 function printThis() {
   window.print();
 }

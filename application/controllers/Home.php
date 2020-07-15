@@ -102,8 +102,8 @@ class Home extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		$data['start_date'] = date('d-m-Y', strtotime($this->input->post("start_date")));
-		$data['end_date'] = date('d-m-Y', strtotime($this->input->post("end_date")));
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
 		$data['payment'] = $this->Dashboard_model->periode2($data['start_date'],$data['end_date']);
 		$data['draft'] = $this->Home_model->getTotalDraftPeriode($data['start_date'],$data['end_date']);

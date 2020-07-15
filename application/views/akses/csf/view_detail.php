@@ -298,7 +298,7 @@
 							  case "1":
 								echo "<label class='control-label col-md-1'><i>Legend</i></label>";
 								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>";
-								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
 								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>";
 								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>";
 								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>";
@@ -314,7 +314,7 @@
 							  case "3":
 								echo "<label class='control-label col-md-1'><i>Legend</i></label>";
 								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>";
-								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
 								break;
 							  default:
 								echo "";																				
@@ -378,32 +378,7 @@
                 
     </section>
     <!-- /.content -->
-    <?php if($row->status == 0){
-                            echo "<img src=''>";  
-                          }else if($row->status == 1){
-                            echo "'>";  
-                          }else if($row->status == 11){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                          }else if($row->status == 2){
-                            echo "<img src='assets/dashboard/images/legend/submitted.png'>";
-                          }else if($row->status == 3){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
-                          }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
-                          }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
-                          }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                          }   
-                        ?>
+    
 <!-- <section class="content">
       <div class="row">
         <div class="col-xs-12 col-md-4">

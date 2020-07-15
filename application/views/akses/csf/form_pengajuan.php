@@ -442,9 +442,9 @@
                     </table>
 
                     <br>
-					<div id="show" style="display:none">
+					        <div id="show" style="display:none">
                     <!--<table  style="font-family: calibri;display:none" width="70%"; > -->
-					<table  style="font-family: calibri;" width="70%"; >
+					          <table  style="font-family: calibri;" width="70%"; >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
@@ -463,9 +463,9 @@
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
                       </tr>
-					  </tbody>
-					  </table>
-					  <table  style="font-family: calibri;" width="90%"; >
+					            </tbody>
+                    </table>
+					          <table  style="font-family: calibri;" width="90%"; >
                       <tbody>
                       <tr>
                         <td colspan="10" >&nbsp;</td>
@@ -475,15 +475,15 @@
                         <td colspan="3">&nbsp;</td>
                         <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						<td><center><b> Curr</b></center></td>
+						            <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						<td><center><b> Curr</b></center></td>
+						            <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
                         <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-						<td colspan="2">&nbsp;</td>
+						            <td colspan="2">&nbsp;</td>
                         <td><select id="curr1"  name="curr1" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
@@ -491,52 +491,52 @@
 
                                 <?php } ?>
                               </select>
-						<center><p id="demo" style="display:none;"></p></td>
+						            <center><p id="demo" style="display:none;"></p></td>
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input></td>
-						<td><select id="curr2"  name="curr2" class="form-control">
+						              <td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
                                 <?php } ?>
                               </select>
-						<center><p id="demoa" style="display:none;"></p></td>
+						            <center><p id="demoa" style="display:none;"></p></td>
                         <td><input id="biayaa" onchange="penjumlahana()" type="text" class="form-control" name="label7a" placeholder="Enter Text"></input></td>
-						<td><select id="curr3" name="curr3" class="form-control">
+						            <td><select id="curr3" name="curr3" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
                                 <?php } ?>
                               </select>
-						<center><p id="demob" style="display:none;">  </p></td>
+						            <center><p id="demob" style="display:none;">  </p></td>
                         <td><input id="biayab" onchange="penjumlahanb()" type="text" class="form-control" name="label7b" placeholder="Enter Text"></input><td>
                       </tr>
-					  <tr>
+					            <tr>
                         <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-						<td colspan="2">&nbsp;</td>
+						            <td colspan="2">&nbsp;</td>
                         <td><center><p id="demo2" style="display:none;">  </p></td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input></td>     
-						<td><center><p id="demo2a" style="display:none;">  </p></td>
+						            <td><center><p id="demo2a" style="display:none;">  </p></td>
                         <td><input id="uangmukaa" onchange="penjumlahana()" type="text" class="form-control" name="label8a" placeholder="Enter Text"></input></td>     
-						<td><center><p id="demo2b" style="display:none;">  </p></td>
+						            <td><center><p id="demo2b" style="display:none;">  </p></td>
                         <td><input id="uangmukab" onchange="penjumlahanb()" type="text" class="form-control" name="label8b" placeholder="Enter Text"></input></td>     
                       </tr>
-					  <tr>
+					            <tr>
                         <td>Selisih Kurang/(Lebih)</td> 
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td><center><p id="demo3" style="display:none;">  </p></td>
                         <td><input type="text" id="hasil" class="form-control" name="label9" placeholder="Enter Text" readonly></input></td>                               
-						<td><center><p id="demo3a" style="display:none;">  </p></td>
+						            <td><center><p id="demo3a" style="display:none;">  </p></td>
                         <td><input type="text" id="hasila" class="form-control" name="label9a" placeholder="Enter Text" readonly></input></td>                               
-						<td><center><p id="demo3b" style="display:none;">  </p></td>
+						            <td><center><p id="demo3b" style="display:none;">  </p></td>
                         <td><input type="text" id="hasilb" class="form-control" name="label9b" placeholder="Enter Text" readonly></input></td>                               
                       </tr>                              
                       </tbody>
                     </table>
-					</div>
+					        </div>
                   </div>  
                 </div>    
 
