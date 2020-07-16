@@ -44,7 +44,7 @@
                             $iya.= $signature->activate;
                             endforeach;
 
-                    if ($iya == "On"){        
+                    if ($iya == "ON"){        
                       foreach ($getApprovalDivHead as $row){
                         $test1 = $row->jenis_pembayaran;                        
                         $test2 = explode(";", $test1);
