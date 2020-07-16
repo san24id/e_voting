@@ -270,7 +270,7 @@ class Dashboard extends CI_Controller {
 
 		$target_submission = date('d/m/Y', strtotime($this->input->post("target_submission")));
 		$tempo = date('d/m/Y', strtotime($this->input->post("tempo")));
-		
+
 		$sql = "SELECT id_user FROM m_user WHERE display_name = '$apa2' AND division_id = '$apa' ";
 		// var_dump($sql);exit;
 		$query = $this->db->query($sql)->result();
@@ -1602,6 +1602,7 @@ class Dashboard extends CI_Controller {
 		$data['rejected'] = $this->Home_model->getRejected();
 		$data['returnedverif'] = $this->Dashboard_model->getReturnedVerif();
 		$data['returnedapprov'] = $this->Dashboard_model->getReturnedApprov();
+		$data['deletedsp3'] = $this->Home_model->deletedsp3();
 		$data['returnedusr'] = $this->Dashboard_model->getReturnedUser();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();

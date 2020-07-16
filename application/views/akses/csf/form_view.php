@@ -53,7 +53,7 @@
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
                         $nosurat='';
                         }else if($row->status == 99){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>"; 
+                          echo "Deleted File SP3"; 
 						            $nosurat='';
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
@@ -718,7 +718,7 @@
                         <?php 
 
                           if($this->session->userdata("role_id") == 4){ ?>      
-                          <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>
+                          <?php if($row->status == 1 && $iya == "On"){ ?>
                             <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
                             <!----.Modal -->
                             <!----.Approve -->
