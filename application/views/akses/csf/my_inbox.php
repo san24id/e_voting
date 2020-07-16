@@ -20,7 +20,7 @@
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
 						  <li class="active"><a href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED (AS USERS)</b></a></li>
-						  <li class=""><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li>
+						  <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li>
 						  <li><a href="#tab_2" data-toggle="tab"><b>LIST OF RETURNED (AS VERIFICATOR)</b></a></li>
 						  <li><a href="#tab_3" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b></a></li>
 						  <li><a href="#tab_4" data-toggle="tab"><b>LIST OF REJECT (AS VERIFICATOR TO USERS)</b></a></li>
@@ -75,7 +75,7 @@
 								<div class="modal-body form">
 									<div class="box-body">
 									<div class="table-responsive">
-										<table id="example2" class="table table-bordered table-striped">
+										<table id="example5" class="table table-bordered table-striped">
 										<thead>
 										<tr>
 											<th>NO.</th>
@@ -345,7 +345,8 @@ $(function () {
     $("#example2").DataTable();
     $("#example3").DataTable();
     $("#example4").DataTable();
-    $('#example5').DataTable({
+    $("#example5").DataTable();
+    $('#example6').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
