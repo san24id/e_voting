@@ -686,7 +686,7 @@
 
                         <?php if($row->status=="0" || $row->status=="1"){ 
                           if($this->session->userdata("id_user")==$row->id_user){ ?>
-                          <button class="btn btn-danger btn-sm" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Delete</button>
+                          <button class="btn btn-danger" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Delete</button>
                         <?php }} ?>
 
                         <?php 
@@ -789,7 +789,7 @@
                           <?php } ?>  
                         <?php } ?>  
 
-                        <?php if($row->status == 1 || $row->status == 11 && $iya == "Off" ){ ?>
+                        <?php if($row->status == 1 && $iya == "Off" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
                             <!-- <a class="btn btn-primary" href="Home/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a> -->
 

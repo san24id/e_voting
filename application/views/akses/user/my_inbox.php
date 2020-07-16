@@ -3,146 +3,141 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        LIST OF REJECTED
+        My Inbox
       </h1>
     </section>
 
     <section class="content">
-      <!-- Info boxes -->
       <div class="row">
         <div class="col-xs-12">
-          <!-- /.box -->
-
           <div class="box">
-            <!-- /.box-header -->
             <div class="box-body">
-              <div class="table-responsive">
-                <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Tanggal Reject</th>
-                  <th>Dari</th>
-                  <th>Kepada</th>
-                  <th>Deskripsi</th>
-                  <th>Nama Pemohon</th>
-                  <th>Note</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($rejected as $row){
-                  ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo $row->rejected_date; ?></td>
-                  <td><?php echo $row->rejected_by; ?>  </td>
-                  <td><?php echo $row->division_id; ?> </td>
-                  <td><?php echo $row->label1;?> </td>
-                  <td><?php echo $row->display_name;?> </td>
-                  <td><?php echo $row->note;?> </td>
-                  <td>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                  </td>      
-                  </tr>
-                    <?php } ?>      
-              </tbody>
-              </table>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>  
+				<div class="box-header">
+				<div class="col-md-12">
+				<!-- Custom Tabs -->
+					<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs">
+						  <li class="active"><a href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED </b></a></li>
+						  <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab_1">						  
+								<div class="modal-body form">	
+									<div class="box-body">
+									<div class="table-responsive">
+										<table id="example1" class="table table-bordered table-striped">
+										<thead>
+										<tr>
+										  <th>NO.</th>
+										  <th>Rejected Date</th>
+										  <th>From</th>
+										  <th>To</th>
+										  <th>Nomor SP3</th>
+										  <th>Deskripsi</th>
+										  <th>Nama Pemohon</th>
+										  <th>Reason</th>
+										  <th>Action</th>
+										</tr>
+										</thead>
+										<tbody>
+										  <?php 
+											$i = 1;
+											foreach ($rejected as $row){
+										  ?>
+										<tr>
+										  <td><?php echo $i++; ?></td>                  
+										  <td><?php echo $row->rejected_date; ?></td>
+										  <td><?php echo $row->rejected_by; ?>  </td>
+										  <td><?php echo $row->division_id; ?> </td>
+										  <td><?php echo $row->nomor_surat; ?> </td>
+										  <td><?php echo $row->label1;?> </td>
+										  <td><?php echo $row->display_name;?> </td>
+										  <td><?php echo $row->note;?> </td>
+										  <td>
+											<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
+											<a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+										  </td>      
+										  </tr>
+											<?php } ?>      
+									  </tbody>
+									  </table>
+									</div>
+									</div>
+								</div>
+							</div>
 
+							<div class="tab-pane" id="tab_5">                
+								<div class="modal-body form">
+									<div class="box-body">
+									<div class="table-responsive">
+										<table id="example2" class="table table-bordered table-striped">
+										<thead>
+										<tr>
+											<th>NO.</th>
+											<th>Tanggal</th>
+											<th>Jenis Pembayaran</th>
+											<th>Nomor Surat</th>
+											<th>Deskripsi</th>
+											<th>Nama Pemohon</th>
+											<th>Penerima Pembayaran</th>
+											<th>Action</th>
+											</tr>
+											</thead>
+											<tbody>
+											<?php 
+												$i = 1;
+												foreach ($deletedsp3 as $row){
+												$test1 = $row->jenis_pembayaran;                        
+												$test2 = explode(";", $test1);
+												$test3 = count($test2);                        
+											?>
+											<tr>
+											<td><?php echo $i++; ?></td>                  
+											<td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
+												<td><?php                     
+													for($a=0; $a<$test3; $a++){
+													if($test2[$a]){
+														echo $test2[$a]."<br>";
+													}
+													}  ?>
+												</td>
+												<td><?php echo $row->nomor_surat; ?></td>
+												<td><?php echo $row->label1; ?></td>
+												<td><?php echo $row->display_name; ?></td>
+												<?php 
+													$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+													$query = $this->db->query($sql)->result();
+													// return $query;
+													// var_dump($query[0]->nama);exit; 
+													if ($query[0]->nama) { $buka = $query[0]->nama;
+													}else{
+														$buka = $row->penerima;
+													}
+													?>
+												<td><?php echo $buka; ?></td>
+											<td>
+												<a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+											</td>      
+										  </tr>
+											<?php } ?>      
+									  </tbody>
+									  </table>
+									</div>
+									</div>
+								</div>
+							</div>
+              </div>
+					</div>
+				</div>
+				</div>
+			</div>	
+		</div>	
+		</div>
       <!-- /.row -->
     </section>
     <!-- /.content -->
 
-    <section class="content-header">
-      <h1>
-        DELETED FILE SP3
-      </h1>
-    </section>
-
-    <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
-        <div class="col-xs-12">
-          <!-- /.box -->
-
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table id="example2" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Tanggal</th>
-                  <th>Jenis Pembayaran</th>
-                  <th>Nomor Surat</th>
-                  <th>Deskripsi</th>
-                  <th>Nama Pemohon</th>
-                  <th>Penerima Pembayaran</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($deletedsp3 as $row){
-                      $test1 = $row->jenis_pembayaran;                        
-                      $test2 = explode(";", $test1);
-                      $test3 = count($test2);                        
-                  ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>                  
-                  <td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
-                    <td><?php                     
-                        for($a=0; $a<$test3; $a++){
-                          if($test2[$a]){
-                            echo $test2[$a]."<br>";
-                          }
-                        }  ?>
-                    </td>
-                    <td><?php echo $row->nomor_surat; ?></td>
-                    <td><?php echo $row->label1; ?></td>
-                    <td><?php echo $row->display_name; ?></td>
-                    <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                          $query = $this->db->query($sql)->result();
-                          // return $query;
-                          // var_dump($query[0]->nama);exit; 
-                          if ($query[0]->nama) { $buka = $query[0]->nama;
-                          }else{
-                            $buka = $row->penerima;
-                          }
-                        ?>
-                    <td><?php echo $buka; ?></td>
-                  <td>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                  </td>      
-                  </tr>
-                    <?php } ?>      
-              </tbody>
-              </table>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>  
-
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
+    
   </div>
   <!-- /.content-wrapper -->
 

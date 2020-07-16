@@ -167,11 +167,6 @@
                   <div class="col-xs-4 text-center">
                     <a href="#"></a>
                   </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#"></a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#"></a>
                   </div>
                 </div>
                 <!-- /.row -->
