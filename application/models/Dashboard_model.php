@@ -335,7 +335,7 @@ class Dashboard_model extends CI_Model{
     function getApprovalDivHead(){
         $dvs = $this->session->userdata("division_id");
         
-        $sql ="SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('1','99') AND division_id= '$dvs'";
+        $sql ="SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status = 1 AND division_id= '$dvs'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;
@@ -706,7 +706,8 @@ class Dashboard_model extends CI_Model{
     function periode2($start_date,$end_date){
         $dvs = $this->session->userdata('division_id');
         
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE 
+                status in ('0','1','11','2','4','5','6','7','8','9','10') AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
@@ -1006,7 +1007,7 @@ class Dashboard_model extends CI_Model{
     function notifApproval(){
         $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT COUNT(status) as taskapproval FROM t_payment WHERE status in('1','99') AND division_id='$dvs'";
+        $sql = "SELECT COUNT(status) as taskapproval FROM t_payment WHERE status = 1 AND division_id='$dvs'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;

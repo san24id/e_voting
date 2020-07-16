@@ -243,7 +243,7 @@
               $iya.= $signature->activate;
             endforeach;
 
-              if ($iya == "On"){
+              if ($iya == "ON"){
                 foreach ($notif_approval as $notifapproval) {?>
                   <li class="<?php echo $waiting_approval?>"><a href="Home/wait_for_approval"><i class="glyphicon glyphicon-print"></i><span>Waiting For Approval</span><small class="label pull-right bg-red"><?php echo $notifapproval->taskapproval; ?> </small></a></li>
                 <?php } ?> 

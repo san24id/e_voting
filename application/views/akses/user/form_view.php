@@ -703,7 +703,7 @@
                         <?php 
                           
                           if($this->session->userdata("role_id") == 4){ ?>      
-                          <?php if($row->status == 1 && $iya == "On"){ ?>
+                          <?php if($row->status == 1 && $iya == "ON"){ ?>
                           <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
                           <!----.Modal -->
                           <!----.Accept -->
@@ -789,7 +789,7 @@
                           <?php } ?>  
                         <?php } ?>  
 
-                        <?php if($row->status == 1 && $iya == "Off" ){ ?>
+                        <?php if($row->status == 1 && $iya == "OFF" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
                             <!-- <a class="btn btn-primary" href="Home/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a> -->
 
