@@ -167,7 +167,6 @@
                   <div class="col-xs-4 text-center">
                     <a href="#"></a>
                   </div>
-                  </div>
                 </div>
                 <!-- /.row -->
               </li>
