@@ -1376,4 +1376,10 @@ class Dashboard_model extends CI_Model{
 		$this->db->where('id_payment', $id);
 		$this->db->delete('t_payment');
 	}
+	
+	public function draftpaymentdeleteFlag($where, $data)
+	{
+		$this->db->update('t_payment', $data, $where);
+		return $this->db->affected_rows();
+	}
 }

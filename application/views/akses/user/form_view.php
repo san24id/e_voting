@@ -648,16 +648,15 @@
                                       <h3 class="modal-title">Message Box</h3>
                                     </div>                                        
                                     <div class="modal-body">
-                                    <form id="approve" method="post" action="Home/draftsent/<?php echo $row->id_payment; ?>">
-                                      <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                      <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">   
-
-                                      <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
-                                    </div>
-                                    <div class="modal-footer">                        
-                                    <button type="submit" class="btn btn-success bye">Yes</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </form>
+                                      <form id="approve" method="post" action="Home/draftsent/<?php echo $row->id_payment; ?>">
+                                        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                        <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
+                                        <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
+                                        <div class="modal-footer">                        
+                                          <button type="submit" class="btn btn-success bye">Yes</button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </form>
                                     </div>
                                   </div>
                                   </div>
@@ -680,9 +679,10 @@
                             <?php } ?>
                         <?php } ?>
 
-                        <?php if($row->status=="0" || $row->status=="1"){ ?>
+                        <?php if($row->status=="0" || $row->status=="1"){ 
+                          if($this->session->userdata("id_user")==$row->id_user){ ?>
                           <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
-                        <?php } ?>
+                        <?php }} ?>
 
                         <?php 
                           $sql = "SELECT activate FROM m_status WHERE id_status=11";
@@ -710,14 +710,14 @@
                                   <h3 class="modal-title">Message Box</h3>
                                 </div> 									  
                               <div class="modal-body">
-                              <form id="approve" method="post" action="Home/approve">
-                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
-								              </div>
-                              <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              </form>
+                                <form id="approve" method="post" action="Home/approve">
+                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                    <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <div class="modal-footer">                        
+                                    <button type="submit" class="btn btn-success bye">Yes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								                  </div>
+                                </form>
                               </div>
                             </div>
                             </div>
@@ -784,7 +784,7 @@
                           <?php } ?>  
                         <?php } ?>  
 
-                        <?php if($row->status == 1 && $iya == "Off" ){ ?>
+                        <?php if($row->status == 1 || $row->status == 11 && $iya == "Off" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
                             <!-- <a class="btn btn-primary" href="Home/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a> -->
 

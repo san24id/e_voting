@@ -52,8 +52,8 @@
                       <tbody>
                         <tr>                       
                         <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td> 
-						<input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
-							<input type="hidden" id="id_payment" name="id_payment" >  
+                          <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
+                            <input type="hidden" id="id_payment" name="id_payment" >  
                         <!-- <td width="50%"><center><b>No ARF/ASF   :</b></center></td> -->
                         </tr>
                       </tbody>
@@ -183,9 +183,10 @@
                           </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
                       </tr>
-					  <tr><td colspan="2">&nbsp;</td>
-					  <td colspan="8" style="text-align:end"><b><i>Nilai(+) = Pembayaran, Nilai(-) = Pengembalian</i></b></td>
-					  </tr>
+                      <tr>
+                        <td colspan="2">&nbsp;</td>
+                        <td colspan="8" style="text-align:end"><b><i>Nilai(+) = Pembayaran, Nilai(-) = Pengembalian</i></b></td>
+                      </tr>
                       </tbody>
                     </table>
                     </br>
@@ -272,7 +273,7 @@
 															$nomvendor='';
 															$vendorrow=0;
 															$fvendor='';
-															if ($getdatavendor == null){ ?>
+															if ($getdatavendor == null){ ?>																
 																<tr id="tr1">
 																<td ><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1','1')" class="form-control select2" name="penerimavendor[]" >
 																	<option value="">--Choose--</option>
@@ -463,9 +464,9 @@
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"> Lampiran copy ARF tersedia</input></td>
                       </tr>
-					            </tbody>
+                      </tbody>
                     </table>
-					          <table  style="font-family: calibri;" width="90%"; >
+                    <table  style="font-family: calibri;" width="90%"; >
                       <tbody>
                       <tr>
                         <td colspan="10" >&nbsp;</td>
@@ -734,17 +735,19 @@ function fung(param1,param2,param3,param4){
 	  $("#bankvendor"+param4).prop( "disabled", true );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
 	  $("#currencyvendor"+param4).prop( "disabled", true );
-	  $("#nominalvendor"+param4).prop( "readonly", true );
+	  $("#nominalvendor"+param4).prop( "readonly", true );	  
   }else if(data.substr(0,1)=="2"){
 	  $("#bankvendor"+param4).val("").change();
 	  $("#rekeningvendor"+param4).val( "").change();
 	  $("#bankvendor"+param4).prop( "disabled", true );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
+	  $("#currencyvendor"+param4).prop( "disabled", false );
 	  $("#nominalvendor"+param4).prop( "readonly", false );
   }else if(data.substr(0,1)=="3"){
 	  $("#rekeningvendor"+param4).val( "").change(); 
 	  $("#bankvendor"+param4).prop( "disabled", false );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
+	  $("#currencyvendor"+param4).prop( "disabled", false );
 	  $("#nominalvendor"+param4).prop( "readonly", false );
   }else {
 	  $("#bankvendor"+param4).prop( "disabled", false );
@@ -935,7 +938,9 @@ function showInput() {
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah =rupiah.value;
-	if (strrupiah.substr(0,1)=="(" && strrupiah.substr(strrupiah.length-1,1)==")"){
+	if (strrupiah.substr(0,1)=="0"){
+		rupiah.value = formatRupiah(strrupiah.substr(1,strrupiah.length)) ;
+	}else if (strrupiah.substr(0,1)=="(" && strrupiah.substr(strrupiah.length-1,1)==")"){
 		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-2)) + ")";
 	}else if(strrupiah.substr(0,1)=="-") {
 		rupiah.value = "(" + formatRupiah(strrupiah.substr(1,strrupiah.length-1)) + ")";
@@ -967,7 +972,9 @@ function showInput() {
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah2 =rupiah2.value;
-	if (strrupiah2.substr(0,1)=="(" && strrupiah2.substr(strrupiah2.length-1,1)==")"){
+	if (strrupiah2.substr(0,1)=="0"){
+		rupiah2.value = formatRupiah2(strrupiah2.substr(1,strrupiah2.length)) ;
+	}else if (strrupiah2.substr(0,1)=="(" && strrupiah2.substr(strrupiah2.length-1,1)==")"){
 		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-2)) + ")";
 	}else if(strrupiah2.substr(0,1)=="-") {
 		rupiah2.value = "(" + formatRupiah2(strrupiah2.substr(1,strrupiah2.length-1)) + ")";
@@ -999,9 +1006,11 @@ function showInput() {
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var strrupiah3 =rupiah3.value;
-	if (strrupiah3.substr(0,1)=="(" && strrupiah3.substr(strrupiah3.length-1,1)==")"){
+	if (strrupiah3.substr(0,1)=="0"){
+		rupiah3.value = formatRupiah3(strrupiah3.substr(1,strrupiah3.length)) ;
+	}else if (strrupiah3.substr(0,1)=="(" && strrupiah3.substr(strrupiah3.length-1,1)==")"){
 		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-2)) + ")";
-	}else if(strrupiah.substr(0,1)=="-") {
+	}else if(strrupiah3.substr(0,1)=="-") {
 		rupiah3.value = "(" + formatRupiah3(strrupiah3.substr(1,strrupiah3.length-1)) + ")";
 	}else{
     rupiah3.value = formatRupiah3(this.value);
@@ -1030,21 +1039,33 @@ function showInput() {
   biaya.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    biaya.value = formatbiaya(this.value);
+	if (biaya.value.substr(0,1)=="0"){
+		biaya.value = formatbiaya(biaya.value.substr(1,biaya.value.length)) ;
+	}else{
+		biaya.value = formatbiaya(this.value);
+	}
   });
   
   var biayaa = document.getElementById('biayaa');
   biayaa.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    biayaa.value = formatbiaya(this.value);
+	if (biayaa.value.substr(0,1)=="0"){
+		biayaa.value = formatbiaya(biayaa.value.substr(1,biayaa.value.length)) ;
+	}else{
+		biayaa.value = formatbiaya(this.value);
+	}
   });
   
   var biayab = document.getElementById('biayab');
   biayab.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    biayab.value = formatbiaya(this.value);
+	if (biayab.value.substr(0,1)=="0"){
+		biayab.value = formatbiaya(biayab.value.substr(1,biayab.value.length)) ;
+	}else{
+		biayab.value = formatbiaya(this.value);
+	}
   });
 
   /* Fungsi formatRupiah */
@@ -1070,15 +1091,17 @@ function showInput() {
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var struangmuka =uangmuka.value;
-	if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
+	if (struangmuka.substr(0,1)=="0"){
+		uangmuka.value = formatuangmuka(struangmuka.substr(1,struangmuka.length)) ;
+	}else if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
 		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
 	}else if(struangmuka.substr(0,1)=="-") {
-		uangmuka.value = "-" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + "";
+		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
 	}else{
 		if(struangmuka=="0"){
 			uangmuka.value = formatuangmuka(this.value);
 		}else{
-			uangmuka.value = "-" + formatuangmuka(this.value);
+			uangmuka.value = "(" + formatuangmuka(this.value) + ")";
 		}
 	}
   });
@@ -1088,15 +1111,17 @@ function showInput() {
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var struangmukaa =uangmukaa.value;
-	if (struangmukaa.substr(0,1)=="(" && struangmukaa.substr(struangmukaa.length-1,1)==")"){
+	if (struangmukaa.substr(0,1)=="0"){
+		uangmukaa.value = formatuangmuka(struangmukaa.substr(1,struangmukaa.length)) ;
+	}else if (struangmukaa.substr(0,1)=="(" && struangmukaa.substr(struangmukaa.length-1,1)==")"){
 		uangmukaa.value = "(" + formatuangmuka(struangmukaa.substr(1,struangmukaa.length-2)) + ")";
 	}else if(struangmukaa.substr(0,1)=="-") {
-		uangmukaa.value = "-" + formatuangmuka(struangmukaa.substr(1,struangmukaa.length-1)) + "";
+		uangmukaa.value = "(" + formatuangmuka(struangmukaa.substr(1,struangmukaa.length-1)) + ")";
 	}else{
 		if(struangmukaa=="0"){
 			uangmukaa.value = formatuangmuka(this.value);
 		}else{
-			uangmukaa.value = "-" + formatuangmuka(this.value);
+			uangmukaa.value = "(" + formatuangmuka(this.value) + ")" ;
 		}
 	}
   });
@@ -1106,15 +1131,17 @@ function showInput() {
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     var struangmukab =uangmukab.value;
-	if (struangmukab.substr(0,1)=="(" && struangmukab.substr(struangmukab.length-1,1)==")"){
+	if (struangmukab.substr(0,1)=="0"){
+		uangmukab.value = formatuangmuka(struangmukab.substr(1,struangmukab.length)) ;
+	}else if (struangmukab.substr(0,1)=="(" && struangmukab.substr(struangmukab.length-1,1)==")"){
 		uangmukab.value = "(" + formatuangmuka(struangmukab.substr(1,struangmukab.length-2)) + ")";
 	}else if(struangmukab.substr(0,1)=="-") {
-		uangmukab.value = "-" + formatuangmuka(struangmukab.substr(1,struangmukab.length-1)) + "";
+		uangmukab.value = "(" + formatuangmuka(struangmukab.substr(1,struangmukab.length-1)) + ")";
 	}else{
 		if(struangmukab=="0"){
 			uangmukab.value = formatuangmuka(this.value);
 		}else{
-			uangmukab.value = "-" + formatuangmuka(this.value);
+			uangmukab.value = "(" + formatuangmuka(this.value) + ")";
 		}
 	}
   });
@@ -1170,7 +1197,7 @@ function showInput() {
       } else {       
         $('#rekeningvendor1').prop( "disabled", false );
       }
-    });	
+    });
 	
   
   });*/
@@ -1375,7 +1402,7 @@ function savedraft() {
 				}
 			};
 			if(inps3[i].value=="" && inps2[i].value!="Tunai"){
-				if(skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2" || skdvendor.substring(0, 1)=="3"){
+				if(skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2"){// || skdvendor.substring(0, 1)=="3"
 					errmsg="0";
 				}else{
 					errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
@@ -1387,6 +1414,11 @@ function savedraft() {
 				break;
 			};
 			if(inps4[i].value=="" && skdvendor.substring(0, 1)!="1"){
+				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
+				break;
+			};
+			
+			if(inps4[i].value=="0" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
@@ -1447,18 +1479,20 @@ function savedraft() {
 			nomvendor2 = nomvendor2.replace(/\D+/g, '');
 			nomvendor3 = nomvendor3.replace(/\D+/g, '');
 			
-			if(val1>0 && val1<nomvendor1){
-				errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
-				break;
-			};
-			if(val2>0 && val2<nomvendor2){
-				errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
-				break;
-			};
-			if(val3>0 && val3<nomvendor3){
-				errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
-				break;
-			};
+			if (skdvendor.substring(0, 1)!="1"){
+				if(val1>0 && val1!=nomvendor1){
+					errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
+					break;
+				};
+				if(val2>0 && val2!=nomvendor2){
+					errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
+					break;
+				};
+				if(val3>0 && val3!=nomvendor3){
+					errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
+					break;
+				};
+			}
 		}
 		var schk=lbl4.length-1;
 		/*if (errmsg=="0"){
@@ -1489,7 +1523,7 @@ function savedraft() {
 						alert('Jenis Mata Uang Penggunaan Uang Muka Kedua tidak sama dengan Mata Uang pada kolom Jumlah diatas');
 					}else if($('#jns_pembayaran').val()=="3" && strrupiah2!=strhasila){
 						alert('Selisih Kurang/(Lebih) Mata Uang Kedua tidak sama dengan Nilai pada kolom Jumlah diatas');
-					}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur3){
+					}else if($('#jns_pembayaran').val()=="3" && lblcur3!=$scur3){
 						alert('Jenis Mata Uang Penggunaan Uang Muka Ketiga tidak sama dengan Mata Uang pada kolom Jumlah diatas');
 					}else if($('#jns_pembayaran').val()=="3" && strrupiah3!=strhasilb){
 						alert('Selisih Kurang/(Lebih) Mata Uang Ketiga tidak sama dengan Nilai pada kolom Jumlah diatas');
@@ -1535,6 +1569,7 @@ function savedraft() {
 
 var countervendor=1;
 var szcountervendor;
+
 function AddIndeks(){
 		szcountervendor = parseInt(countervendor)+1;
 		var zstr="'tr" + szcountervendor + "'";
@@ -1592,10 +1627,11 @@ function AddIndeks(){
 		$('#show1 tbody').append(newTextBoxDiv);
 		$('#txtcountervendor').val(szcountervendor);
 		
-		countervendor++;		
-		
+		countervendor++;
 	}
-	
+			
+     
+	   
 	function RemoveIndeks(param){
 		$('#'+param ).remove();		
 		countervendor--;
@@ -1622,24 +1658,32 @@ function AddIndeks(){
 		var curr1 = document.getElementById('Select').value;
 		var curr2 = document.getElementById('currency2').value;
 		var curr3 = document.getElementById('currency3').value;
+		var kdv = document.getElementsByName('kodevendor[]');
+		
 		var errmsg = '0';
 		for (var i = 0; i <inps.length; i++) {
 			var inp=inps[i];
 			var inpcur=inpscur[i];
 			var inpcurX=inpcur.value;
-      
-			if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
-				errmsg="0";
-			}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
-				errmsg="0";
-			}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
-				errmsg="0";
-			}else{
-				errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
+			var xj=inp.value;
+			var kdvX=kdv[i].value;
+				
+			if(xj.substr(0,1)=="0"){
+				xj=xj.substr(1,xj.length);
+				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
-			
+			if(kdvX.substr(0,1)!="1"){
+				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
+					errmsg="0";
+				}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
+					errmsg="0";
+				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
+					errmsg="0";
+				}else{
+					errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
+				}
+			}
 			if(errmsg=="0"){
-				var xj=inp.value;
 				var yz=xj.replace(/[^,\d]/g, '').toString();
 				if(inpcurX.trim()==curr1.trim() && inpcurX.trim()!=""){
 					if (yz==""){
@@ -1676,7 +1720,7 @@ function AddIndeks(){
 		
 	  var data = document.getElementById(""+param1).value; 
 	  var vendor = document.getElementById("kodevendor"+param3).value; 
-	  if(vendor.substr(0,1)=="1" || vendor.substr(0,1)=="3"){
+	  if(vendor.substr(0,1)=="1"){  // || vendor.substr(0,1)=="3"
 		  $("#"+param2).prop( "readonly", true );
 	  }else{
 		  if(data=="Tunai"){
@@ -1688,6 +1732,7 @@ function AddIndeks(){
 	  
 	}
 	
+		
 	function drpcurrencyvendor(param){
 		
 		var curr1 = document.getElementById('Select').value;
@@ -1703,6 +1748,8 @@ function AddIndeks(){
 		}
 	  
 	}
+	
+	
 </script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">

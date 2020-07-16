@@ -239,7 +239,11 @@
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency3;?>" readonly></td>
                         <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
-                      </tr>                                                 
+                      </tr>  
+                      <tr>
+                        <td colspan="2">&nbsp;</td>
+                        <td colspan="8" style="text-align:end"><b><i>Nilai(+) = Pembayaran, Nilai(-) = Pengembalian</i></b></td>
+                      </tr>
                       </tbody>
                     </table>
 
@@ -690,9 +694,10 @@
                             <?php } ?>
                          <?php } ?>
 
-                        <?php if($row->status=="0" || $row->status=="1"){ ?>
-                          <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
-                        <?php } ?> 
+                        <?php if($row->status=="0" || $row->status=="1"){ 
+                          if($this->session->userdata("id_user")==$row->id_user){ ?>
+                          <button class="btn btn-danger" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')">Delete</button>
+                        <?php }} ?> 
 
                         <?php 
                           $sql = "SELECT activate FROM m_status WHERE id_status=11";

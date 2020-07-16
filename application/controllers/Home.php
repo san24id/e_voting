@@ -1237,8 +1237,13 @@ class Home extends CI_Controller {
 	
 	public function draftpaymentdelete($id)
 	{
-		$this->Home_model->delete_vendorpayment($id);	
-		$this->Home_model->draftpaymentdelete($id);		
+		//$this->Home_model->delete_vendorpayment($id);	
+		//$this->Home_model->draftpaymentdelete($id);	
+		$dataH = array(
+				'status' => 'XXX'
+			);
+	
+		$this->Dashboard_model->draftpaymentdeleteFlag(array('id_payment' => $id), $dataH);
 		echo json_encode(array("status" => TRUE));
 	}
 }

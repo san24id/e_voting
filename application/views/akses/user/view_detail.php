@@ -125,6 +125,7 @@
 													echo "<option value='9'> Approved </option>";										
 													break;
 												  case "2":
+													echo "<option value='2'> Submitted </option>";
 													echo "<option value='4'> Processing</option>";
 													echo "<option value='8'> Verified </option>";
 													echo "<option value='9'> Approved </option>";											
@@ -279,10 +280,11 @@
                     <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
                     <td>
                       <a href="home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-						<?php if($row->status=="0" || $row->status=="1"){ ?>
-					  <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
-					  <?php } ?>
-					</td>      
+                      <?php if($row->status=="0" || $row->status=="1"){ 
+                      if($this->session->userdata("id_user")==$row->id_user){ ?>
+                        <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+                      <?php } } ?>
+                    </td>      
                     </tr>
                 <?php  } ?>
                 </tbody>
@@ -296,24 +298,24 @@
 							switch ($filter) {
 							  case "1":
 								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>";
-								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp;Draft</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp;Draft(Print)</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
 								break;
 							  case "2":
 								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
 								break;
 							  case "3":
 								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>";
-								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>";
+								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp;Draft</div>";
+								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp;Draft(Print)</div>";
 								break;
 							  default:
 								echo "";																				

@@ -158,10 +158,10 @@
                           <td class="period"><font color="white" size="3">Period: </font></td>
                           <td></td>
                           <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo date("01-01-Y"); ?>"></td>
+                          <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo $start_date; ?>"></td>
                           <td><font size="3">s/d</font></td>
                           <td class="period"><font color="white" size="3"> Date </font></td>
-                          <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo date("d-m-Y"); ?>"></td>
+                          <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo $end_date; ?>"></td>
                           <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
                         </tr>
                       <?php echo form_close();?>  
@@ -468,9 +468,10 @@
                       <td><?php echo $row->submit_date;?></td>
                       <td>
                         <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                        <?php if($row->status=="0" || $row->status=="1"){ ?>
-                          <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
-                        <?php } ?>
+                        <?php if($row->status=="0" || $row->status=="1"){ 
+                          if($this->session->userdata("id_user")==$row->id_user){ ?>
+                            <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+                        <?php } }?>
                       </td>      
                     </tr>
                 <?php  } ?>
@@ -480,13 +481,13 @@
                   <div class="box-footer">  
                     <div class="form-group">
                       <label class="control-label col-md-1"><i>Legend</i></label> <br>
-                      <div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>
-                      <div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>
-                      <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>
-                      <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>
-                      <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>
-                      <div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>
-                      <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp; Paid</div>											  
+                      <div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp;Draft</div>
+                      <div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp;Draft(Print)</div>
+                      <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>
+                      <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>
+                      <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>
+                      <div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>
+                      <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp;Paid</div>	
                     </div>  
                   </div>  
                 </div>

@@ -41,8 +41,14 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		$s = '01-01-'.Date('Y');
+		$date = strtotime($s);
+		$data['start_date']= date('d-m-Y', $date);
+		$data['end_date'] = date('d-m-Y');
+
 		$sid = $this->session->userdata("id_user");
 		
+		$tanggalHariIni = new DateTime();
 		$data['dashboard'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
@@ -3026,8 +3032,14 @@ class Dashboard extends CI_Controller {
 	
 	public function draftpaymentdelete($id)
 	{
-		$this->Dashboard_model->delete_vendorpayment($id);	
-		$this->Dashboard_model->draftpaymentdelete($id);		
+		//$this->Dashboard_model->delete_vendorpayment($id);	
+		//$this->Dashboard_model->draftpaymentdelete($id);	
+		$dataH = array(
+				'status' => 'XXX'
+			);
+	
+		$this->Dashboard_model->draftpaymentdeleteFlag(array('id_payment' => $id), $dataH);
+		
 		echo json_encode(array("status" => TRUE));
 	}
 

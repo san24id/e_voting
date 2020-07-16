@@ -46,8 +46,20 @@
                   <td><?php echo $row->no_billing;?></td>
                   <td><?php echo $row->division_id; ?></td>
                   <td><?php echo $row->nama_pic;?></td>
-                  <td><?php echo $row->target_submission;?></td>
-                  <td><?php echo $row->tempo; ?></td>
+                  <?php if($row->target_submission == "") {
+                        $target_submission =  $row->target_submission;
+                  }else{ 
+                    $target_submission = date("d-M-Y", strtotime($row->target_submission));
+                  } ?>
+                  <td><?php echo $target_submission;?></td>
+
+                  <?php if($row->tempo == "") {
+                        $tempo =  $row->tempo;
+                  }else{ 
+                    $tempo = date("d-M-Y", strtotime($row->tempo));
+                  } ?>
+
+                  <td><?php echo $tempo; ?></td>
                   <td><?php echo $row->jatah; ?></td>
                   <td>
                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_div; ?>">Ubah</button>
@@ -243,12 +255,12 @@
                 <tr>
                   <th>Target Submission Credit Card</th>
                   <td>:</td>
-                  <td><input type="number" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
+                  <td><input type="date" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
                 </tr>
                 <tr>
                   <th>Jatuh Tempo</th>
                   <td>:</td>
-                  <td><input type="number" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
+                  <td><input type="date" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
                 </tr>
                 <tr>
                   <th>Credit Card Submission</th>
