@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,7 +33,8 @@
                   <th>Target Submission Credit Card</th>
                   <th>Jatuh Tempo</th>
                   <th>Credit Card Submission</th>
-                  <th>Action</th>
+                  <th>Status</th>
+				          <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,21 +48,12 @@
                   <td><?php echo $row->no_billing;?></td>
                   <td><?php echo $row->division_id; ?></td>
                   <td><?php echo $row->nama_pic;?></td>
-                  <?php if($row->target_submission == "") {
-                        $target_submission =  $row->target_submission;
-                  }else{ 
-                    $target_submission = date("d-M-Y", strtotime($row->target_submission));
-                  } ?>
-                  <td><?php echo $target_submission;?></td>
+                  
+                  <td><?php echo $row->target_submission;?></td>
 
-                  <?php if($row->tempo == "") {
-                        $tempo =  $row->tempo;
-                  }else{ 
-                    $tempo = date("d-M-Y", strtotime($row->tempo));
-                  } ?>
-
-                  <td><?php echo $tempo; ?></td>
+                  <td><?php echo $row->tempo; ?></td>
                   <td><?php echo $row->jatah; ?></td>
+				          <td><?php echo $row->status; ?></td>                  
                   <td>
                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_div; ?>">Ubah</button>
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_div; ?>">Hapus</button>
@@ -174,17 +167,25 @@
                 <tr>
                   <th>Target Submission Credit Card</th>
                     <td>:</td>
-                    <td><input id="target" type="date" name="target_submission" class="form-control" required></td>
+                    <td><input id="target" type="text" name="target_submission" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Jatuh Tempo</th>
                     <td>:</td>
-                    <td><input id="tempo" type="date" name="tempo" class="form-control" required></td>
+                    <td><input id="tempo" type="text" name="tempo" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Credit Card Submission</th>
                     <td>:</td>
-                    <td><input id="cc" type="text" name="jatah" class="form-control" required></td>
+                    <td><input id="cc" type="number" name="jatah" class="form-control" required min=0></td>
+                </tr>
+				        <tr>
+                  <th>Status (Aktif/Non-Aktif)</th>
+                  <td>:</td>
+                  <td><select id="statusadd" name="statusadd" class="form-control" required>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Non-Aktif">Non-Aktif</option>                               
+                        </select></td>
                 </tr>
              </table>
           </h5>
@@ -255,17 +256,36 @@
                 <tr>
                   <th>Target Submission Credit Card</th>
                   <td>:</td>
-                  <td><input type="date" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
+                  <td><input type="date" id="utarget" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
                 </tr>
                 <tr>
                   <th>Jatuh Tempo</th>
                   <td>:</td>
-                  <td><input type="date" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
+                  <td><input type="date" id="utempo" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
                 </tr>
                 <tr>
                   <th>Credit Card Submission</th>
                   <td>:</td>
-                  <td><input type="number" name="jatah" class="form-control" value="<?php echo $row->jatah; ?>"></td>
+                  <td><input type="number" name="jatah" class="form-control" value="<?php echo $row->jatah; ?>" required min=0></td>
+                </tr>
+				        <tr>
+                  <th>Status (Aktif/Non-Aktif)</th>
+                  <td>:</td>
+				          <td><select id="statusupd" name="statusupd" class="form-control" required>
+                            <?php 
+                                $selected1='';
+                                $selected2='';
+                                if($row->status=='Aktif'){
+                                  $selected1='selected';
+                                  $selected2='';		
+                                }else{
+                                  $selected1='';
+                                  $selected2='selected';
+                                }
+                              ?>
+                              <option value="Aktif" <?php echo $selected1; ?>>Aktif</option>
+                              <option value="Non-Aktif" <?php echo $selected2; ?>>Non-Aktif</option>                               
+                      </select></td>
                 </tr>
              </table>
           </h5>
@@ -300,8 +320,10 @@
 </div>
 <?php } ?>
 
-<!-- jQuery 2.2.3 -->
-<script src="<?php echo base_url(); ?>assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- jQuery 2.2.3 
+<script src="<?php echo base_url(); ?>assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo base_url(); ?>assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -368,5 +390,37 @@
           }      
       });
   });  
+  
+  $( "#target" ).datepicker({
+		dateFormat: "dd/mm/yy"
+	});	
+	
+	$('#target').keydown(function (event) {
+		event.preventDefault();
+	});
+	
+	 $( "#tempo" ).datepicker({
+		dateFormat: "dd/mm/yy"
+	});	
+	
+	$('#tempo').keydown(function (event) {
+		event.preventDefault();
+	});
+	
+	$( "#utarget" ).datepicker({
+		dateFormat: "dd/mm/yy"
+	});	
+	
+	$('#utarget').keydown(function (event) {
+		event.preventDefault();
+	});
+	
+	 $( "#utempo" ).datepicker({
+		dateFormat: "dd/mm/yy"
+	});	
+	
+	$('#utempo').keydown(function (event) {
+		event.preventDefault();
+	});
 </script>
 </body>

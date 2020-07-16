@@ -354,7 +354,7 @@
 															$fvendor='';
 															if ($getdatavendor == null){ ?>
                               <tr id="tr1">
-																<td ><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1','1')" class="form-control" name="penerimavendor[]" >
+																<td class="col-md-4"><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1','1')" class="form-control select2" name="penerimavendor[]" >
 																	<option value="">--Choose--</option>
 																	<?php foreach ($data_vendor as $nama){?> 
 																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
@@ -365,16 +365,16 @@
 																	<input id="namavendor1" type="hidden" name="namavendor[]"  />
 																</td>
 																
-																<td><select id="bankvendor1" name="bankvendor[]" class="form-control" onchange="drpbank('bankvendor1','rekeningvendor1','1')">
+																<td class="col-md-2"><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onchange="drpbank('bankvendor1','rekeningvendor1','1')">
 																	<option value="">--- Choose ---</option>
 																	<?php foreach ($bank as $get) {?>
 																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
 																	<?php } ?>
 																	</select>
 																</td>
-																<td><input id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
+																<td><input style="height:28px" id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
 																</td> 
-																<td><select id="currencyvendor1" name="currencyvendor[]" class="form-control">
+																<td><select style="height:28px" id="currencyvendor1" name="currencyvendor[]" class="form-control">
 																		  <option value="">--Choose--</option>
 																		  <?php foreach ($currency as $cur) {?>
 																		  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
@@ -382,7 +382,7 @@
 																	<?php } ?>
 																  </select>
 															    </td>	
-																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>																
+																<td><input style="height:28px" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>																
 																<td>&nbsp;</td>
                               </tr>
 															<?php	
@@ -427,7 +427,7 @@
 																}
 															?>
 															<tr id="tr<?php echo $vendorrow; ?>">
-															  <td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" class="form-control" name="penerimavendor[]" >
+															  <td class="col-md-4"><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" class="form-control select2" name="penerimavendor[]" >
 																	<!--<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>-->
 																	<option value="">--Choose--</option>
 																	<?php foreach ($data_vendor as $nama){
@@ -444,7 +444,7 @@
 																	</select>
 																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]" value="<?php echo $gvendor->kode_vendor; ?>"  />
 																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]" value="<?php echo $gvendor->penerima; ?>"   /></td>
-															  <td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control"  onchange="drpbank('<?php echo 'bankvendor'.$vendorrow; ?>','<?php echo 'rekeningvendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" <?php echo $bankvendor; ?>>
+															  <td class="col-md-2"><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control select2"  onchange="drpbank('<?php echo 'bankvendor'.$vendorrow; ?>','<?php echo 'rekeningvendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" <?php echo $bankvendor; ?>>
 																	<option value="<?php echo $gvendor->v_bank; ?>"> <?php echo $gvendor->v_bank;?> </option>
 																	<option value="">--- Choose ---</option>
 																	<?php foreach ($bank as $get) {?>
@@ -452,8 +452,8 @@
 																	<?php } ?>
 																	</select>
 																</td>
-																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>>	</td> 
-																<td><select id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" <?php echo $currencyvendor; ?>>
+																<td><input style="height:28px" id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>>	</td> 
+																<td><select style="height:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" <?php echo $currencyvendor; ?>>
 																		  <option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
 																			<option value="">--Choose--</option>
 																		  <?php foreach ($currency as $cur) {?>
@@ -462,7 +462,7 @@
 																	<?php } ?>
 																  </select>
                                 </td>		
-															  <td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" <?php echo $nominalvendor; ?>></td>
+															  <td ><input style="height:28px" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" <?php echo $nominalvendor; ?>></td>
 															
                                 <td>
                                   <?php
@@ -1232,19 +1232,21 @@ function showInput() {
   biaya.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-	if (biaya.value.substr(0,1)=="0"){
-		biaya.value = formatbiaya(biaya.value.substr(1,biaya.value.length)) ;
+	var strbiaya=biaya.value.trim();
+	if (strbiaya.substr(0,1)=="0" && strbiaya.length>1 ){
+		biaya.value = formatbiaya(strbiaya.substr(1,strbiaya)) ;
 	}else{
 		biaya.value = formatbiaya(this.value);
 	}
   });
-
-var biayaa = document.getElementById('biayaa');
+  
+  var biayaa = document.getElementById('biayaa');
   biayaa.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-	if (biayaa.value.substr(0,1)=="0"){
-		biayaa.value = formatbiaya(biayaa.value.substr(1,biayaa.value.length)) ;
+	var strbiayaa=biayaa.value.trim();
+	if (strbiayaa.substr(0,1)=="0" && strbiayaa.length>1 ){
+		biayaa.value = formatbiaya(strbiayaa.substr(1,strbiayaa)) ;
 	}else{
 		biayaa.value = formatbiaya(this.value);
 	}
@@ -1254,8 +1256,9 @@ var biayaa = document.getElementById('biayaa');
   biayab.addEventListener('keyup', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-	if (biayab.value.substr(0,1)=="0"){
-		biayab.value = formatbiaya(biayab.value.substr(1,biayab.value.length)) ;
+	var strbiayab=biayab.value.trim();
+	if (strbiayab.substr(0,1)=="0" && strbiayab.length>1 ){
+		biayab.value = formatbiaya(strbiayab.substr(1,strbiayab)) ;
 	}else{
 		biayab.value = formatbiaya(this.value);
 	}
@@ -1280,13 +1283,13 @@ var biayaa = document.getElementById('biayaa');
   }
 
   var uangmuka = document.getElementById('uangmuka');
-    uangmuka.addEventListener('focusout', function(e){
+  uangmuka.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    var struangmuka =uangmuka.value;
-	if (struangmuka.substr(0,1)=="0"){
+    var struangmuka =uangmuka.value.trim();
+	if (struangmuka.substr(0,1)=="0" && struangmuka.length>1){
 		uangmuka.value = formatuangmuka(struangmuka.substr(1,struangmuka.length)) ;
-	}else if(struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
+	}else if (struangmuka.substr(0,1)=="(" && struangmuka.substr(struangmuka.length-1,1)==")"){
 		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-2)) + ")";
 	}else if(struangmuka.substr(0,1)=="-") {
 		uangmuka.value = "(" + formatuangmuka(struangmuka.substr(1,struangmuka.length-1)) + ")";
@@ -1298,13 +1301,13 @@ var biayaa = document.getElementById('biayaa');
 		}
 	}
   });
-
+  
   var uangmukaa = document.getElementById('uangmukaa');
   uangmukaa.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    var struangmukaa =uangmukaa.value;
-	if (struangmukaa.substr(0,1)=="0"){
+    var struangmukaa =uangmukaa.value.trim();
+	if (struangmukaa.substr(0,1)=="0" && struangmukaa.length>1){
 		uangmukaa.value = formatuangmuka(struangmukaa.substr(1,struangmukaa.length)) ;
 	}else if (struangmukaa.substr(0,1)=="(" && struangmukaa.substr(struangmukaa.length-1,1)==")"){
 		uangmukaa.value = "(" + formatuangmuka(struangmukaa.substr(1,struangmukaa.length-2)) + ")";
@@ -1314,7 +1317,7 @@ var biayaa = document.getElementById('biayaa');
 		if(struangmukaa=="0"){
 			uangmukaa.value = formatuangmuka(this.value);
 		}else{
-			uangmukaa.value = "(" + formatuangmuka(this.value) + ")";
+			uangmukaa.value = "(" + formatuangmuka(this.value) + ")" ;
 		}
 	}
   });
@@ -1323,8 +1326,8 @@ var biayaa = document.getElementById('biayaa');
   uangmukab.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-    var struangmukab =uangmukab.value;
-	if (struangmukab.substr(0,1)=="0"){
+    var struangmukab =uangmukab.value.trim();
+	if (struangmukab.substr(0,1)=="0"  && struangmukab.length>1){
 		uangmukab.value = formatuangmuka(struangmukab.substr(1,struangmukab.length)) ;
 	}else if (struangmukab.substr(0,1)=="(" && struangmukab.substr(struangmukab.length-1,1)==")"){
 		uangmukab.value = "(" + formatuangmuka(struangmukab.substr(1,struangmukab.length-2)) + ")";
@@ -1338,7 +1341,8 @@ var biayaa = document.getElementById('biayaa');
 		}
 	}
   });
-  /* Fungsi formatRupiah */
+
+/* Fungsi formatRupiah */
   function formatuangmuka(angka, prefix){
     var number_string = angka.replace(/[^,\d]/g, '').toString(),
     split   		= number_string.split(','),
@@ -1508,7 +1512,7 @@ function AddIndeks(){
 		var newTextBoxDiv = $(document.createElement('tr')).attr("id", 'tr' + szcountervendor);
 		var strhtml='';	
 		var arrkdvendor;
-		strhtml=strhtml + '<td><select id="penerimavendor'+szcountervendor+'" onchange="fung('+xpenerimavendor+','+xkodevendor+','+xnamavendor+','+szcountervendor+')" class="form-control select2" name="penerimavendor[]" > ' ;
+		strhtml=strhtml + '<td class="col-md-4"><select id="penerimavendor'+szcountervendor+'" onchange="fung('+xpenerimavendor+','+xkodevendor+','+xnamavendor+','+szcountervendor+')" class="form-control select2" name="penerimavendor[]" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		
 		strvendor =document.getElementById("strvendor").value;
@@ -1520,7 +1524,7 @@ function AddIndeks(){
 		}
 		strhtml=strhtml + '</select><input id="kodevendor'+szcountervendor+'" type="hidden" name="kodevendor[]"  /><input id="namavendor'+szcountervendor+'" type="hidden" name="namavendor[]"  /></td>'
 		
-		strhtml=strhtml + '<td><select id="bankvendor'+szcountervendor+'" class="form-control select2" name="bankvendor[]" onchange="drpbank('+xbankvendor+','+xrekeningvendor+','+szcountervendor+')" > ' ;
+		strhtml=strhtml + '<td class="col-md-2"><select id="bankvendor'+szcountervendor+'" class="form-control select2" name="bankvendor[]" onchange="drpbank('+xbankvendor+','+xrekeningvendor+','+szcountervendor+')" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		
 		strbank =document.getElementById("strbank").value;
@@ -1531,9 +1535,9 @@ function AddIndeks(){
 		}
 		strhtml=strhtml + '</select></td>';
 		
-		strhtml=strhtml + '<td><input id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' ;
+		strhtml=strhtml + '<td><input style="hieght:28px" id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' ;
 		
-		strhtml=strhtml + '<td><select id="currencyvendor'+szcountervendor+'" class="form-control" name="currencyvendor[]" > ' ;
+		strhtml=strhtml + '<td><select style="hieght:28px" id="currencyvendor'+szcountervendor+'" class="form-control" name="currencyvendor[]" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		strcurrency =document.getElementById("strcurrency").value;
 		arrcurrency = strcurrency.split(";");
@@ -1544,7 +1548,7 @@ function AddIndeks(){
 		strhtml=strhtml + '</select></td>';
 		
 		
-		strhtml=strhtml + '<td><input class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
+		strhtml=strhtml + '<td><input style="hieght:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
 		
@@ -1554,8 +1558,13 @@ function AddIndeks(){
 		$('#txtcountervendor').val(szcountervendor);
 		
 		countervendor++;		
+		$('#penerimavendor'+szcountervendor).select2();
+		$('#bankvendor'+szcountervendor).select2();
 		
 	}
+	
+	$('#penerimavendor1').select2(); 
+	$('#bankvendor1').select2(); 
 	
 	function RemoveIndeks(param){
 		$('#'+param ).remove();		
@@ -1579,9 +1588,9 @@ function AddIndeks(){
 			var inp=inps[i];
 			var inpcur=inpscur[i];
 			var inpcurX=inpcur.value;
-			var xj=inp.value;
+			var xj=inp.value.trim();
 			var kdvX=kdv[i].value;
-			if(xj.substr(0,1)=="0"){
+			if(xj.substr(0,1)=="0" && xj.length >1){
 				xj=xj.substr(1,xj.length);
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}

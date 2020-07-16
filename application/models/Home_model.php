@@ -7,7 +7,7 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' AND tanggal2
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' and a.status<>'XXX' AND tanggal2
                 BETWEEN '$start_date' AND '$end_date' ";
                 
         $query = $this->db->query($sql)->result();
@@ -503,7 +503,20 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT * FROM t_payment WHERE status='3' AND division_id='$dvs'";
+        $sql ="SELECT * FROM t_payment WHERE status = '3' AND division_id='$dvs'";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function deletedsp3(){
+        $dvs = $this->session->userdata('division_id');
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b 
+                ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' and a.status = '99' AND tanggal2
+                BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         return $query;

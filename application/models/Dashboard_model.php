@@ -61,7 +61,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function getCreditCard(){
-        $sql ="SELECT SUM(jatah) as creditcard_pay FROM t_creditcard";
+        $sql ="SELECT SUM(jatah) as creditcard_pay FROM t_creditcard where status='Aktif'";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -935,7 +935,7 @@ class Dashboard_model extends CI_Model{
         $sql = "INSERT INTO `t_creditcard` (id_div, pemegang_kartu ,no_billing, division_id, id_user, nama_pic, target_submission, tempo, jatah)
 
                 VALUES ('".$add['id_div']."','".$add['pemegang_kartu']."','".$add['no_billing']."','".$add['division_id']."','".$add['id_user']."','".$add['nama_pic']."',
-                '".$add['target_submission']."','".$add['tempo']."','".$add['jatah']."')"; 
+                '".$add['target_submission']."','".$add['tempo']."','".$add['jatah']."','".$add['status']."')"; 
         
         $query = $this->db->query($sql);
         // var_dump($sql);exit;
@@ -944,7 +944,7 @@ class Dashboard_model extends CI_Model{
 
     function updatecc($upd){
         $sql = "UPDATE `t_creditcard` SET `pemegang_kartu`='".$upd['pemegang_kartu']."',`no_billing`='".$upd['no_billing']."',`division_id`='".$upd['division_id']."',`id_user`='".$upd['id_user']."',
-                `nama_pic`='".$upd['nama_pic']."',`target_submission`='".$upd['target_submission']."',`tempo`='".$upd['tempo']."',`jatah`='".$upd['jatah']."' 
+                `nama_pic`='".$upd['nama_pic']."',`target_submission`='".$upd['target_submission']."',`tempo`='".$upd['tempo']."',`jatah`='".$upd['jatah']."' ,`status`='".$upd['status']."'
         
                 WHERE `id_div`='".$upd['id_div']."'"; 
         

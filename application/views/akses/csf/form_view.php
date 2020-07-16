@@ -641,6 +641,10 @@
 
                     <div class="box">
                       <div class="box-header with-border">
+                      <?php if ($row->status == 99) { ?>
+                        <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
+
+                      <?php }else{ ?>
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
                         <?php if ($row->display_name == $this->session->userdata("display_name") && $row->status == 0 || $row->status == 3) { ?>
                           
@@ -680,9 +684,9 @@
                               <?php }else{ ?>
 
                             <?php } ?>
-                        <?php } ?>
+                        <?php } } ?>
 
-                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3){ ?>
+                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3 && $row->status != 99){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                       
                               <a class="btn btn-primary" href="Dashboard/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
@@ -695,8 +699,9 @@
                          <?php } ?>
 
                         <?php if($row->status=="0" || $row->status=="1"){ 
+
                           if($this->session->userdata("id_user")==$row->id_user){ ?>
-                          <button class="btn btn-danger" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')">Delete</button>
+                          <button class="btn btn-danger" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Delete</button>
                         <?php }} ?> 
 
                         <?php 
@@ -766,7 +771,7 @@
                           <?php } ?>                          
                         <?php } ?>  
 
-                          <?php if($row->status == 11 || $row->status == 99){ ?>
+                          <?php if($row->status == 11){ ?>
                             <!-- <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>   -->
                             <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
 
@@ -830,95 +835,6 @@
                           <?php } ?>
                         <?php } ?>
 
-                        <?php if($row->display_name == "Harlina Hunaida") { ?>
-                          <?php if($this->session->userdata("role_id") == 5){ ?>      
-                          <?php if($row->status == 1 && $iya == "On"){ ?>
-                            <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
-                            <!----.Modal -->
-                            <!----.Approve -->
-                            <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-xl" role="document">
-                              <div class="modal-content"> 
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                  <h3 class="modal-title">Message Box</h3>
-                                </div>                                       
-                                <div class="modal-body">
-                                <form id="approve" method="post" action="dashboard/approve">
-                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                  <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
-                                </div>
-                                <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </form>
-                                </div>
-                              </div>
-                              </div>
-                            </div>
-
-                            <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
-                            <div class="modal fade" id="reject<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h3 class="modal-title">Message Box</h3>
-                                  </div>
-                                  <div class="modal-body">
-                                  <form id="rejected" method="post" action="dashboard/rejected">
-                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
-                                    <label>Notes :</label>                
-                                    <textarea type="text" class="form-control" name="note" required></textarea>
-                                    <input type="hidden" name="rejected_date" value="<?php echo date("l, d-M-Y"); ?>">
-                                    <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                                  </div>
-                                  <div class="modal-footer">                        
-                                    <button type="submit" class="btn btn-success bye">Yes</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </form>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>                                                      
-                          <?php } ?>                          
-                          <?php } ?>
-
-                          <?php if($row->status == 11){ ?> 
-                            <!-- <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a> -->
-
-                            <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-
-                              <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
-                              <!----.Modal -->
-                              <!----.Submit -->
-                              <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h3 class="modal-title">Message Box</h3>
-                                  </div>                                        
-                                  <div class="modal-body">
-                                  <form id="accepted" method="post" action="dashboard/accept">
-                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
-                                    <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                    <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
-                                  </div>
-                                  <div class="modal-footer">                        
-                                  <button type="submit" class="btn btn-success bye">Yes</button>
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </form>
-                                  </div>
-                                </div>
-                                </div>
-                              </div>  
-                            <?php } ?>
-                          <?php } ?>
-                        <?php } ?>
-
                       </div>
                     </div>  
             </div>
@@ -967,15 +883,18 @@
 </div>
 
 <script>
-function deletedraftpayment(id)
+function deletedraftpayment(id,$vscreen)
     {
+
 			$.ajax({
 				url : "<?php echo base_url('dashboard/draftpaymentdelete')?>/"+id,
 				type: "POST",
 				dataType: "JSON",
 				success: function(data)
 				{               
-					location.reload();
+				
+					location.href=$vscreen;
+					//location.reload();
 				},
 				error: function (jqXHR, textStatus, errorThrown)
 				{

@@ -50,7 +50,7 @@
                         }else if($row->status == 11){
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
                         }else if($row->status == 99){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>"; 
+                          echo "Deleted File SP3"; 
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
                         }else if($row->status == 3){
@@ -629,6 +629,10 @@
 
                     <div class="box">
                       <div class="box-header with-border">
+                      <?php if ($row->status == 99) { ?>
+                        <a class="btn btn-warning" href="Home" role="button">Exit</a>
+
+                      <?php }else{ ?>
                         <a class="btn btn-warning" href="Home" role="button">Exit</a>
                         <?php if ($row->display_name == $this->session->userdata("display_name") && $row->status == 0 || $row->status == 3) { ?>
 
@@ -666,8 +670,9 @@
 
                           <?php } ?>
                         <?php } ?>   
+                      <?php } ?>   
                         
-                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3){ ?>
+                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3 && $row->status != 99 ){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                       
                               <a class="btn btn-primary" href="Home/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
@@ -681,7 +686,7 @@
 
                         <?php if($row->status=="0" || $row->status=="1"){ 
                           if($this->session->userdata("id_user")==$row->id_user){ ?>
-                          <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+                          <button class="btn btn-danger btn-sm" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Delete</button>
                         <?php }} ?>
 
                         <?php 
@@ -698,7 +703,7 @@
                         <?php 
                           
                           if($this->session->userdata("role_id") == 4){ ?>      
-                          <?php if($row->status == 1 || $row->status == 99 && $iya == "On"){ ?>
+                          <?php if($row->status == 1 && $iya == "On"){ ?>
                           <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
                           <!----.Modal -->
                           <!----.Accept -->
@@ -753,7 +758,7 @@
                           <?php } ?>
                         <?php } ?>  
 
-                        <?php if($row->status == 11 || $row->status == 99){ ?>  
+                        <?php if($row->status == 11 ){ ?>  
 						
                         <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
                           <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
@@ -861,7 +866,7 @@
 </div>
     
 <script>
-function deletedraftpayment(id)
+function deletedraftpayment(id,$vscreen)
     {
 			$.ajax({
 				url : "<?php echo base_url('home/draftpaymentdelete')?>/"+id,
@@ -869,7 +874,8 @@ function deletedraftpayment(id)
 				dataType: "JSON",
 				success: function(data)
 				{               
-					location.reload();
+					location.href=$vscreen;
+					//location.reload();
 				},
 				error: function (jqXHR, textStatus, errorThrown)
 				{

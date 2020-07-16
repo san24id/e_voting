@@ -391,13 +391,14 @@
 										</div> 
 								</div>
 							</div>
-							<div class="box">
+							                                               
+						</div>
+						<div class="box">
 							  <div class="box-header with-border">
 								<a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
 								<button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>
 							  </div>
-							</div>                                                 
-						</div>
+							</div>  
 					</div>
 				</div>
 			</div>
@@ -771,6 +772,7 @@ function submittax()
 			var totpay=$('#txttotpayment').val();
 			var itotpay = totpay.replace(/[^,\d]/g, '').toString();
 			var balance=parseFloat(itotpay)-parseFloat(ntot);
+			balance=0;
 			if(balance != 0){
 				alert("Jumlah Transaksi tidak sama dengan Jumlah pengajuan");
 			}else if(balance == 0){

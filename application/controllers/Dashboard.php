@@ -48,6 +48,9 @@ class Dashboard extends CI_Controller {
 
 		$sid = $this->session->userdata("id_user");
 		
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
 		$tanggalHariIni = new DateTime();
 		$data['dashboard'] = 'active';
 		$data['active2'] = '';
@@ -84,6 +87,8 @@ class Dashboard extends CI_Controller {
 	function periode_dashboard(){
 
 		$sid = $this->session->userdata("id_user");
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
 		
 		$data['dashboard'] = 'active';
 		$data['active2'] = '';
@@ -247,7 +252,8 @@ class Dashboard extends CI_Controller {
 			'nama_pic' => $_POST['nama_pic'],
 			'target_submission' => $_POST['target_submission'],
 			'tempo' => $_POST['tempo'],
-			'jatah' => $_POST['jatah']					
+			'jatah' => $_POST['jatah'],
+			'status' => $_POST['statusadd']	
 						
 		);
 		// var_dump($add);exit;
@@ -262,6 +268,9 @@ class Dashboard extends CI_Controller {
 		$apa = $_POST['division_id']; 
 		$apa2 = $_POST['nama_pic'];
 
+		$target_submission = date('d/m/Y', strtotime($this->input->post("target_submission")));
+		$tempo = date('d/m/Y', strtotime($this->input->post("tempo")));
+		
 		$sql = "SELECT id_user FROM m_user WHERE display_name = '$apa2' AND division_id = '$apa' ";
 		// var_dump($sql);exit;
 		$query = $this->db->query($sql)->result();
@@ -276,9 +285,10 @@ class Dashboard extends CI_Controller {
 			'division_id' => $_POST['division_id'],
 			'id_user' => $ubah,
 			'nama_pic' => $_POST['nama_pic'],
-			'target_submission' => $_POST['target_submission'],
-			'tempo' => $_POST['tempo'],
-			'jatah' => $_POST['jatah']					
+			'target_submission' => $target_submission,
+			'tempo' => $tempo,
+			'jatah' => $_POST['jatah']	,
+			'status' => $_POST['statusupd']
 						
 		);
 
@@ -2699,6 +2709,9 @@ class Dashboard extends CI_Controller {
 	
 	public function all_detail_payment($id,$start_date,$end_date)
 	{
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
 		$this->session->set_userdata('statuspayment',$id);
 		$sid = $this->session->userdata("id_user");
 		$data['dashboard'] = 'active';
@@ -2712,6 +2725,7 @@ class Dashboard extends CI_Controller {
 		switch($id){
 			
 		}
+		
 		
 		switch ($id) {
 		  case "1":
@@ -3035,7 +3049,7 @@ class Dashboard extends CI_Controller {
 		//$this->Dashboard_model->delete_vendorpayment($id);	
 		//$this->Dashboard_model->draftpaymentdelete($id);	
 		$dataH = array(
-				'status' => 'XXX'
+				'status' => '99'
 			);
 	
 		$this->Dashboard_model->draftpaymentdeleteFlag(array('id_payment' => $id), $dataH);

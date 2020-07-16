@@ -41,7 +41,8 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
 		
 		$s = '01-01-'.Date('Y');
 		$date = strtotime($s);
@@ -97,6 +98,8 @@ class Home extends CI_Controller {
 
 	function periode(){
 		$sid = $this->session->userdata("id_user");
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
 
 		$data['active1'] = 'active';
 		$data['active2'] = '';
@@ -402,6 +405,7 @@ class Home extends CI_Controller {
 		$data['rejected'] = $this->Home_model->getRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
+		$data['deletedsp3'] = $this->Home_model->deletedsp3();
 
 		$this->load->view('akses/user/header_user', $data);
 		$this->load->view('akses/user/my_inbox', $data);
@@ -1240,7 +1244,7 @@ class Home extends CI_Controller {
 		//$this->Home_model->delete_vendorpayment($id);	
 		//$this->Home_model->draftpaymentdelete($id);	
 		$dataH = array(
-				'status' => 'XXX'
+				'status' => '99'
 			);
 	
 		$this->Dashboard_model->draftpaymentdeleteFlag(array('id_payment' => $id), $dataH);
