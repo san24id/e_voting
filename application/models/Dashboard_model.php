@@ -1366,7 +1366,7 @@ class Dashboard_model extends CI_Model{
 	public function getlistarfpaid() {
 		$dvs = $this->session->userdata('division_id');
         
-        $sql = "select nomor_surat ";
+        $sql = "select nomor_surat, label1 ";
 		$sql .= "from t_payment where jenis_pembayaran='2' and status='10' and division_id = '".$dvs."' order by nomor_surat asc ";
 		$query = $this->db->query($sql)->result();
         return $query;
