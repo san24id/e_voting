@@ -1571,7 +1571,7 @@ function AddIndeks(){
 	
 	 $('#penerimavendor1').select2(); 
 	$('#bankvendor1').select2();  
-	
+	$('.select2').select2();
 	function RemoveIndeks(param){
 		$('#'+param ).remove();		
 		countervendor--;
