@@ -7,7 +7,7 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' and a.status<>'99' AND tanggal2
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' and a.status not in ('99','XXX') AND tanggal2
                 BETWEEN '$start_date' AND '$end_date' ";
                 
         $query = $this->db->query($sql)->result();
@@ -69,7 +69,7 @@ class Home_model extends CI_Model{
         }
         
         $sql = "SELECT a.tanggal2, b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b 
-                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11') AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
+                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
                 AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' GROUP BY b.jenis_pembayaran";
                 
         $query = $this->db->query($sql)->result();
@@ -84,7 +84,8 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
         
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%4%' 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%4%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -102,7 +103,8 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%4%' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%4%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -116,7 +118,8 @@ class Home_model extends CI_Model{
         $end_date = date('Y-m-d');
         
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%2%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ";
 
         $query = $this->db->query($sql)->result();
@@ -134,7 +137,8 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%2%' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%2%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ";
 
         $query = $this->db->query($sql)->result();
@@ -147,7 +151,8 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%5%' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%5%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -165,7 +170,8 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%5%' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%5%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -177,7 +183,8 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%3%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -195,7 +202,8 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.jenis_pembayaran like '%3%' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%3%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -503,19 +511,19 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT * FROM t_payment WHERE status = '3' AND division_id='$dvs'";
+        $sql ="SELECT * FROM t_payment WHERE status='3' AND division_id='$dvs'";
 
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
-    function deletedsp3(){
+	function deletedsp3(){
         $dvs = $this->session->userdata('division_id');
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b 
-                ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' and a.status = '99' AND tanggal2
+                ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' and a.status in ('99','XXX') AND tanggal2
                 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();

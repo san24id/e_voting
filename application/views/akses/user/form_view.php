@@ -51,6 +51,8 @@
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
                         }else if($row->status == 99){
                           echo "Deleted File SP3"; 
+                        }else if($row->status == 'XXX'){
+                          echo "Deleted File SP3"; 
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
                         }else if($row->status == 3){
@@ -629,7 +631,7 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                      <?php if ($row->status == 99) { ?>
+						          <?php if ($row->status == 99 || $row->status == 'XXX') { ?>
                         <a class="btn btn-warning" href="Home" role="button">Exit</a>
 
                       <?php }else{ ?>
@@ -672,7 +674,7 @@
                         <?php } ?>   
                       <?php } ?>   
                         
-                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3 && $row->status != 99 ){ ?>
+                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3  && $row->status != 99  && $row->status != 'XXX'){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                       
                               <a class="btn btn-primary" href="Home/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
@@ -758,7 +760,7 @@
                           <?php } ?>
                         <?php } ?>  
 
-                        <?php if($row->status == 11 ){ ?>  
+                        <?php if($row->status == 11){ ?>  
 						
                         <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
                           <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>

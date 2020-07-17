@@ -353,38 +353,38 @@
 															$vendorrow=0;
 															$fvendor='';
 															if ($getdatavendor == null){ ?>
-                              <tr id="tr1">
-																<td class="col-md-4"><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1','1')" class="form-control select2" name="penerimavendor[]" >
-																	<option value="">--Choose--</option>
-																	<?php foreach ($data_vendor as $nama){?> 
-																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
-																	  
-																	<?php } ?>
-																	</select>
-																	<input id="kodevendor1" type="hidden" name="kodevendor[]"  />
-																	<input id="namavendor1" type="hidden" name="namavendor[]"  />
-																</td>
-																
-																<td class="col-md-2"><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onchange="drpbank('bankvendor1','rekeningvendor1','1')">
-																	<option value="">--- Choose ---</option>
-																	<?php foreach ($bank as $get) {?>
-																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
-																	<?php } ?>
-																	</select>
-																</td>
-																<td><input style="height:28px" id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
-																</td> 
-																<td><select style="height:28px" id="currencyvendor1" name="currencyvendor[]" class="form-control">
-																		  <option value="">--Choose--</option>
-																		  <?php foreach ($currency as $cur) {?>
-																		  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
+																<tr id="tr1">
+                                  <td class="col-md-4"><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1','1')" class="form-control select2" name="penerimavendor[]" >
+                                    <option value="">--Choose--</option>
+                                    <?php foreach ($data_vendor as $nama){?> 
+                                      <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
+                                      
+                                    <?php } ?>
+                                    </select>
+                                    <input id="kodevendor1" type="hidden" name="kodevendor[]"  />
+                                    <input id="namavendor1" type="hidden" name="namavendor[]"  />
+                                  </td>
+                                  
+                                  <td class="col-md-2"><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onchange="drpbank('bankvendor1','rekeningvendor1','1')">
+                                    <option value="">--- Choose ---</option>
+                                    <?php foreach ($bank as $get) {?>
+                                      <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
+                                    <?php } ?>
+                                    </select>
+                                  </td>
+                                  <td><input style="hieght:28px" id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
+                                  </td> 
+                                  <td><select style="height:28px" id="currencyvendor1" name="currencyvendor[]" onchange="drpcurrency('1')" class="form-control">
+                                        <option value="">--Choose--</option>
+                                        <?php foreach ($currency as $cur) {?>
+                                        <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
 
-																	<?php } ?>
-																  </select>
-															    </td>	
-																<td><input style="height:28px" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>																
-																<td>&nbsp;</td>
-                              </tr>
+                                    <?php } ?>
+                                    </select>
+                                    </td>	
+                                  <td><input style="hieght:28px" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>																
+                                  <td>&nbsp;</td>
+																</tr>
 															<?php	
 															}else{
 																$selected='';
@@ -396,13 +396,12 @@
 																$nomvendor=str_replace(".","",$gvendor->nominal);
 																$ttlnomvendor=$ttlnomvendor+(float)$nomvendor;
 																$vendorrow++;
-																
 																if($gvendor->v_bank=="Tunai"){
 																	$fvendor='readonly';
 																}else{
 																	$fvendor='';
 																}
-																	
+																
 																if(substr($gvendor->kode_vendor,0,1)=="1"){
 																	$bankvendor='disabled';
 																	$rekeningvendor='readonly';
@@ -411,12 +410,12 @@
 																}else if(substr($gvendor->kode_vendor,0,1)=="2"){
 																	$bankvendor='disabled';
 																	$rekeningvendor='readonly';
-																	$currencyvendor='disabled';
+																	$currencyvendor='';
 																	$nominalvendor='';
 																}else if(substr($gvendor->kode_vendor,0,1)=="3"){
 																	$bankvendor='';
 																	$rekeningvendor='readonly';
-																	$currencyvendor='disabled';
+																	$currencyvendor='';
 																	$nominalvendor='';
 																}else{
 																	$selected='';
@@ -427,7 +426,7 @@
 																}
 															?>
 															<tr id="tr<?php echo $vendorrow; ?>">
-															  <td class="col-md-4"><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" class="form-control select2" name="penerimavendor[]" >
+															  <td class="col-md-4" ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" class="form-control select2" name="penerimavendor[]" >
 																	<!--<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>-->
 																	<option value="">--Choose--</option>
 																	<?php foreach ($data_vendor as $nama){
@@ -451,9 +450,12 @@
 																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
 																	<?php } ?>
 																	</select>
+																	<input id="<?php echo 'sbankvendor'.$vendorrow; ?>" type="hidden" name="sbankvendor[]" value="<?php echo $gvendor->v_bank; ?>"  />
+																	
 																</td>
-																<td><input style="height:28px" id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>>	</td> 
-																<td><select style="height:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" <?php echo $currencyvendor; ?>>
+																<td><input style="hieght:28px" id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>>
+																</td> 
+																<td><select style="hieght:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" onchange="drpcurrency('<?php echo $vendorrow; ?>')" class="form-control" <?php echo $currencyvendor; ?>>
 																		  <option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
 																			<option value="">--Choose--</option>
 																		  <?php foreach ($currency as $cur) {?>
@@ -461,17 +463,19 @@
 
 																	<?php } ?>
 																  </select>
+																 <input id="<?php echo 'scurrencyvendor'.$vendorrow; ?>" type="hidden" name="scurrencyvendor[]" value="<?php echo $gvendor->v_currency; ?>"  />
+																	
                                 </td>		
-															  <td ><input style="height:28px" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" <?php echo $nominalvendor; ?>></td>
+															  <td ><input style="hieght:28px" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" <?php echo $nominalvendor; ?>></td>
 															
                                 <td>
-                                  <?php
-                                  if ($vendorrow > 1){
-                                  ?>
-                                  <span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$vendorrow; ?>')"> 
-                                      <i class="glyphicon glyphicon-minus"></i>
-                                      </span>
-                                  <?php } ?>
+                                <?php
+                                if ($vendorrow > 1){
+                                ?>
+                                <span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$vendorrow; ?>')"> 
+                                    <i class="glyphicon glyphicon-minus"></i>
+                                    </span>
+                                <?php } ?>
                                 </td>
 															</tr>
 															<?php } }?>
@@ -617,7 +621,7 @@
                           $showed="style=''" ;
                     } ?>
 					
-					<div id="show" <?php echo $showed; ?> >
+					        <div id="show" <?php echo $showed; ?> >
                     <table style="font-family: calibri;" width="70%";>
                       <tbody>
                       <tr>
@@ -639,9 +643,9 @@
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> > Lampiran copy ARF tersedia</input></td>
                       </tr>
-					  </tbody>
-					</table>
-					<table  style="font-family: calibri;" width="90%"; >
+					            </tbody>
+                    </table>
+                    <table  style="font-family: calibri;" width="90%"; >
                       <tbody>
                       <tr>
                         <td colspan="10" >&nbsp;</td>
@@ -651,9 +655,9 @@
                         <td colspan="3">&nbsp;</td>
                         <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						<td><center><b> Curr</b></center></td>
+						            <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						<td><center><b> Curr</b></center></td>
+						            <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
@@ -661,16 +665,15 @@
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td><select id="curr1"  name="curr1" class="form-control">
-									  <option value="<?php echo $row->curr_settlement1;?>"><?php echo $row->curr_settlement1;?></option>                                      
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                      <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
+									              <option value="<?php echo $row->curr_settlement1;?>"><?php echo $row->curr_settlement1;?></option>                                      
+                                <option value="">--Choose--</option>
+                                <?php foreach ($currency as $get) {?>
+                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
-						</td>
+						            </td>
                         <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
-						<td><select id="curr2"  name="curr2" class="form-control">
+                        <td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="<?php echo $row->curr_settlement2;?>"><?php echo $row->curr_settlement2;?></option>                                      
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
@@ -678,9 +681,9 @@
 
                                 <?php } ?>
                               </select>
-						</td>
+						            </td>
                         <td><input id="biayaa" onchange="penjumlahana()" type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"></input></td>
-						<td><select id="curr3" name="curr3" class="form-control">
+                        <td><select id="curr3" name="curr3" class="form-control">
                                       <option value="<?php echo $row->curr_settlement3;?>"><?php echo $row->curr_settlement3;?></option>                                      
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
@@ -688,34 +691,34 @@
 
                                 <?php } ?>
                               </select>
-						</td>
+            						</td>
                         <td><input id="biayab" onchange="penjumlahanb()" type="text" class="form-control" name="label7b" value="<?php echo $row->label7b;?>"></input></td>
                       </tr>
-					  
-                      <td>Jumlah Uang Muka <font color="red"> * </font></td>
+                      <tr>
+                        <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td>&nbsp;</td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
-						<td>&nbsp;</td>
+						            <td>&nbsp;</td>
                         <td><input id="uangmukaa" onchange="penjumlahana()" type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"></input></td>     
-						<td>&nbsp;</td>
+					            	<td>&nbsp;</td>
                         <td><input id="uangmukab" onchange="penjumlahanb()" type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"></input></td>     
+                      </tr>
                       <tr>
-					  
-					  <td>Selisih Kurang/(Lebih)</td>  
+					              <td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
-						<td>&nbsp;</td>
+						            <td>&nbsp;</td>
                         <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
-						<td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td><input type="text" id="hasila" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>" readonly></input></td>                               
-						<td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td><input type="text" id="hasilb" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>" readonly></input></td>                               
                       </tr>                                
                       </tbody>
                     </table>
-					</div>
+					        </div>
                     <br>
                     <br>
                     <table style="font-family: calibri;" width="100%">
@@ -930,23 +933,26 @@ function fung(param1,param2,param3,param4){
   document.getElementById(""+param3).value = strdata[0];
   //alert(data.substr(0,1));
   if(data.substr(0,1)=="1"){
-	  $("#bankvendor"+param4).val("").change();
+	  $("#bankvendor"+param4).val("-").change();
+	  $("#sbankvendor"+param4).val("").change();
 	  $("#rekeningvendor"+param4).val("").change();
 	  $("#nominalvendor"+param4).val("0").change();
-	  $("#currencyvendor"+param4).val("").change();
+	  $("#currencyvendor"+param4).val("-").change();
+	  $("#scurrencyvendor"+param4).val("").change();
 	  $("#bankvendor"+param4).prop( "disabled", true );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
 	  $("#currencyvendor"+param4).prop( "disabled", true );
 	  $("#nominalvendor"+param4).prop( "readonly", true );
   }else if(data.substr(0,1)=="2"){
-	  $("#bankvendor"+param4).val("").change();
+	  $("#bankvendor"+param4).val("-").change();
+	  $("#sbankvendor"+param4).val("").change();
 	  $("#rekeningvendor"+param4).val( "").change();
 	  $("#bankvendor"+param4).prop( "disabled", true );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
 	  $("#currencyvendor"+param4).prop( "disabled", false );
 	  $("#nominalvendor"+param4).prop( "readonly", false );
   }else if(data.substr(0,1)=="3"){
-	  $("#rekeningvendor"+param4).val( "").change(); 
+	  $("#rekeningvendor"+param4).val("").change(); 
 	  $("#bankvendor"+param4).prop( "disabled", false );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
 	  $("#currencyvendor"+param4).prop( "disabled", false );
@@ -1342,7 +1348,7 @@ function showInput() {
 	}
   });
 
-/* Fungsi formatRupiah */
+  /* Fungsi formatRupiah */
   function formatuangmuka(angka, prefix){
     var number_string = angka.replace(/[^,\d]/g, '').toString(),
     split   		= number_string.split(','),
@@ -1533,11 +1539,11 @@ function AddIndeks(){
 		for (i=0;i<arrbank.length; i++){
 			strhtml=strhtml + '<option value="' + arrbank[i] + '">' + arrbank[i] + '</option>';
 		}
-		strhtml=strhtml + '</select></td>';
+		strhtml=strhtml + '</select><input id="sbankvendor'+szcountervendor+'" type="hidden" name="sbankvendor[]"  /></td>';
 		
 		strhtml=strhtml + '<td><input style="hieght:28px" id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' ;
 		
-		strhtml=strhtml + '<td><select style="hieght:28px" id="currencyvendor'+szcountervendor+'" class="form-control" name="currencyvendor[]" > ' ;
+		strhtml=strhtml + '<td><select style="hieght:28px" id="currencyvendor'+szcountervendor+'" class="form-control" onchange="drpcurrency('+szcountervendor+')" name="currencyvendor[]" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		strcurrency =document.getElementById("strcurrency").value;
 		arrcurrency = strcurrency.split(";");
@@ -1545,7 +1551,7 @@ function AddIndeks(){
 		for (i=0;i<arrcurrency.length; i++){
 			strhtml=strhtml + '<option value="' + arrcurrency[i] + '">' + arrcurrency[i] + '</option>';
 		}
-		strhtml=strhtml + '</select></td>';
+		strhtml=strhtml + '</select><input id="scurrencyvendor'+szcountervendor+'" type="hidden" name="scurrencyvendor[]"  /></td>';
 		
 		
 		strhtml=strhtml + '<td><input style="hieght:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
@@ -1563,8 +1569,8 @@ function AddIndeks(){
 		
 	}
 	
-	$('#penerimavendor1').select2(); 
-	$('#bankvendor1').select2(); 
+	 $('#penerimavendor1').select2(); 
+	$('#bankvendor1').select2();  
 	
 	function RemoveIndeks(param){
 		$('#'+param ).remove();		
@@ -1605,6 +1611,7 @@ function AddIndeks(){
 					errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 				}
 			}
+			
 			if(errmsg=="0"){
 				
 				var yz=xj.replace(/[^,\d]/g, '').toString();
@@ -1732,6 +1739,7 @@ function AddIndeks(){
 				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
+			
 			var val1 = document.getElementById('rupiah').value;
 			var val2 = document.getElementById('rupiah2').value;
 			var val3 = document.getElementById('rupiah3').value;
@@ -1781,6 +1789,7 @@ function AddIndeks(){
 			nomvendor1 = nomvendor1.replace(/\D+/g, '');
 			nomvendor2 = nomvendor2.replace(/\D+/g, '');
 			nomvendor3 = nomvendor3.replace(/\D+/g, '');
+			
 			if (skdvendor.substring(0, 1)!="1"){
 				if(val1>0 && val1!=nomvendor1){
 					errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
@@ -1829,7 +1838,7 @@ function AddIndeks(){
 					}else if($.trim($('#jns_pembayaran').val())=="3" && strrupiah3!=strhasilb){
 						alert('Selisih Kurang/(Lebih) Mata Uang Ketiga tidak sama dengan Nilai pada kolom Jumlah diatas');
 					}else{
-						url = "<?php echo base_url('home/saveeditpaymentnew')?>";  
+						url = "<?php echo base_url('Home/saveeditpaymentnew')?>";  
 					   
 						$.ajax({
 						  url : url,
@@ -1862,7 +1871,7 @@ function chgJabatan(){
 		document.getElementById("jabatan").value=""; 
 	}else{
 		var strdata=$("#pegawai option:selected").text().split(" - "); 
-		document.getElementById("jabatan").value = '' +strdata[1]+''; 
+		document.getElementById("jabatan").value = '' +strdata[1] +''; 
 	}  
 }
 
@@ -1874,12 +1883,21 @@ function drpbank(param1,param2,param3){
 		  $("#"+param2).prop( "readonly", true );
 	  }else{
 		  if(data=="Tunai"){
+			  $("#"+param2).val("");
 			  $("#"+param2).prop( "readonly", true );
 		  }else{
 			  $("#"+param2).prop( "readonly", false );
 		  }	 
-	  }	  
+	  }	
+
+		$("#sbankvendor"+param3).val(data);
 	  
+	}
+	
+	
+	function drpcurrency(param1){
+		
+	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	  
 	}
 	
 	$( "#perkiraanSelesai" ).datepicker({

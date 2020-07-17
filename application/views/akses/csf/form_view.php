@@ -55,6 +55,9 @@
                         }else if($row->status == 99){
                           echo "Deleted File SP3"; 
 						            $nosurat='';
+                        }else if($row->status == 'XXX'){
+                          echo "Deleted File SP3"; 
+						            $nosurat='';
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
                         }else if($row->status == 3){
@@ -641,7 +644,7 @@
 
                     <div class="box">
                       <div class="box-header with-border">
-                      <?php if ($row->status == 99) { ?>
+						          <?php if ($row->status == 99 || $row->status == 'XXX') { ?>
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
 
                       <?php }else{ ?>
@@ -699,7 +702,6 @@
                          <?php } ?>
 
                         <?php if($row->status=="0" || $row->status=="1"){ 
-
                           if($this->session->userdata("id_user")==$row->id_user){ ?>
                           <button class="btn btn-danger" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Delete</button>
                         <?php }} ?> 

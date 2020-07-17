@@ -2896,7 +2896,7 @@ class Dashboard extends CI_Controller {
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
 			$nama_vendor = $_POST['namavendor'][$i];
-			$v_bank = $_POST['bankvendor'][$i];
+			$v_bank = $_POST['sbankvendor'][$i];//$_POST['bankvendor'][$i]
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
 		$add = array(			
@@ -2948,10 +2948,10 @@ class Dashboard extends CI_Controller {
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
-						'v_bank' => $_POST['bankvendor'][$i],
+						'v_bank' => $_POST['sbankvendor'][$i],//$_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
 						'v_nominal' => number_format($nominal,0,",","."),
-						'v_currency' => $_POST['currencyvendor'][$i]						
+						'v_currency' => $_POST['scurrencyvendor'][$i] //$_POST['currencyvendor'][$i]						
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -2980,10 +2980,10 @@ class Dashboard extends CI_Controller {
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
-						'v_bank' => $_POST['bankvendor'][$i],
+						'v_bank' => $_POST['sbankvendor'][$i],//$_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
 						'v_nominal' => number_format($nominal,0,",","."),
-						'v_currency' => $_POST['currencyvendor'][$i]
+						'v_currency' => $_POST['scurrencyvendor'][$i] //$_POST['currencyvendor'][$i]
 						
 					);
 					
@@ -2994,7 +2994,7 @@ class Dashboard extends CI_Controller {
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
 			$nama_vendor = $_POST['namavendor'][$i];
-			$v_bank = $_POST['bankvendor'][$i];
+			$v_bank = $_POST['sbankvendor'][$i];//$_POST['bankvendor'][$i];
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
 
@@ -3050,7 +3050,7 @@ class Dashboard extends CI_Controller {
 		//$this->Dashboard_model->delete_vendorpayment($id);	
 		//$this->Dashboard_model->draftpaymentdelete($id);	
 		$dataH = array(
-				'status' => '99'
+				'status' => 'XXX'
 			);
 	
 		$this->Dashboard_model->draftpaymentdeleteFlag(array('id_payment' => $id), $dataH);

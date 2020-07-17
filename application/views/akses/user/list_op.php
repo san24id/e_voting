@@ -73,10 +73,10 @@
                   <th>Tanggal</th>
                   <th>Jenis Pembayaran</th>
                   <th>Nomor Surat</th>
-                  <th>Description</th>
+                  <th>Deskripsi</th>
                   <th>Pemohon</th>
                   <th>Bank Account</th>
-                  <th>Nama Penerima</th>
+                  <th>Penerima Pembayaran</th>
                   <th>Action</th>
                 </tr>
                 </thead>

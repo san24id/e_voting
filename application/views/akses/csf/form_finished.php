@@ -374,7 +374,7 @@
                                   </td>
                                   <td><input style="hieght:28px" id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
                                   </td> 
-                                  <td><select style="height:28px" id="currencyvendor1" name="currencyvendor[]" class="form-control">
+                                  <td><select style="height:28px" id="currencyvendor1" name="currencyvendor[]" onchange="drpcurrency('1')" class="form-control">
                                         <option value="">--Choose--</option>
                                         <?php foreach ($currency as $cur) {?>
                                         <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
@@ -410,12 +410,12 @@
 																}else if(substr($gvendor->kode_vendor,0,1)=="2"){
 																	$bankvendor='disabled';
 																	$rekeningvendor='readonly';
-																	$currencyvendor='disabled';
+																	$currencyvendor='';
 																	$nominalvendor='';
 																}else if(substr($gvendor->kode_vendor,0,1)=="3"){
 																	$bankvendor='';
 																	$rekeningvendor='readonly';
-																	$currencyvendor='disabled';
+																	$currencyvendor='';
 																	$nominalvendor='';
 																}else{
 																	$selected='';
@@ -450,10 +450,12 @@
 																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
 																	<?php } ?>
 																	</select>
+																	<input id="<?php echo 'sbankvendor'.$vendorrow; ?>" type="hidden" name="sbankvendor[]" value="<?php echo $gvendor->v_bank; ?>"  />
+																	
 																</td>
 																<td><input style="hieght:28px" id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>>
 																</td> 
-																<td><select style="hieght:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" <?php echo $currencyvendor; ?>>
+																<td><select style="hieght:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" onchange="drpcurrency('<?php echo $vendorrow; ?>')" class="form-control" <?php echo $currencyvendor; ?>>
 																		  <option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
 																			<option value="">--Choose--</option>
 																		  <?php foreach ($currency as $cur) {?>
@@ -461,6 +463,8 @@
 
 																	<?php } ?>
 																  </select>
+																 <input id="<?php echo 'scurrencyvendor'.$vendorrow; ?>" type="hidden" name="scurrencyvendor[]" value="<?php echo $gvendor->v_currency; ?>"  />
+																	
                                 </td>		
 															  <td ><input style="hieght:28px" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" <?php echo $nominalvendor; ?>></td>
 															
@@ -929,23 +933,26 @@ function fung(param1,param2,param3,param4){
   document.getElementById(""+param3).value = strdata[0];
   //alert(data.substr(0,1));
   if(data.substr(0,1)=="1"){
-	  $("#bankvendor"+param4).val("").change();
+	  $("#bankvendor"+param4).val("-").change();
+	  $("#sbankvendor"+param4).val("").change();
 	  $("#rekeningvendor"+param4).val("").change();
 	  $("#nominalvendor"+param4).val("0").change();
-	  $("#currencyvendor"+param4).val("").change();
+	  $("#currencyvendor"+param4).val("-").change();
+	  $("#scurrencyvendor"+param4).val("").change();
 	  $("#bankvendor"+param4).prop( "disabled", true );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
 	  $("#currencyvendor"+param4).prop( "disabled", true );
 	  $("#nominalvendor"+param4).prop( "readonly", true );
   }else if(data.substr(0,1)=="2"){
-	  $("#bankvendor"+param4).val("").change();
+	  $("#bankvendor"+param4).val("-").change();
+	  $("#sbankvendor"+param4).val("").change();
 	  $("#rekeningvendor"+param4).val( "").change();
 	  $("#bankvendor"+param4).prop( "disabled", true );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
 	  $("#currencyvendor"+param4).prop( "disabled", false );
 	  $("#nominalvendor"+param4).prop( "readonly", false );
   }else if(data.substr(0,1)=="3"){
-	  $("#rekeningvendor"+param4).val( "").change(); 
+	  $("#rekeningvendor"+param4).val("").change(); 
 	  $("#bankvendor"+param4).prop( "disabled", false );
 	  $("#rekeningvendor"+param4).prop( "readonly", true );
 	  $("#currencyvendor"+param4).prop( "disabled", false );
@@ -1532,11 +1539,11 @@ function AddIndeks(){
 		for (i=0;i<arrbank.length; i++){
 			strhtml=strhtml + '<option value="' + arrbank[i] + '">' + arrbank[i] + '</option>';
 		}
-		strhtml=strhtml + '</select></td>';
+		strhtml=strhtml + '</select><input id="sbankvendor'+szcountervendor+'" type="hidden" name="sbankvendor[]"  /></td>';
 		
 		strhtml=strhtml + '<td><input style="hieght:28px" id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' ;
 		
-		strhtml=strhtml + '<td><select style="hieght:28px" id="currencyvendor'+szcountervendor+'" class="form-control" name="currencyvendor[]" > ' ;
+		strhtml=strhtml + '<td><select style="hieght:28px" id="currencyvendor'+szcountervendor+'" class="form-control" onchange="drpcurrency('+szcountervendor+')" name="currencyvendor[]" > ' ;
 		strhtml=strhtml + '<option value="">--Choose--</option> ';
 		strcurrency =document.getElementById("strcurrency").value;
 		arrcurrency = strcurrency.split(";");
@@ -1544,7 +1551,7 @@ function AddIndeks(){
 		for (i=0;i<arrcurrency.length; i++){
 			strhtml=strhtml + '<option value="' + arrcurrency[i] + '">' + arrcurrency[i] + '</option>';
 		}
-		strhtml=strhtml + '</select></td>';
+		strhtml=strhtml + '</select><input id="scurrencyvendor'+szcountervendor+'" type="hidden" name="scurrencyvendor[]"  /></td>';
 		
 		
 		strhtml=strhtml + '<td><input style="hieght:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
@@ -1876,12 +1883,21 @@ function drpbank(param1,param2,param3){
 		  $("#"+param2).prop( "readonly", true );
 	  }else{
 		  if(data=="Tunai"){
+			  $("#"+param2).val("");
 			  $("#"+param2).prop( "readonly", true );
 		  }else{
 			  $("#"+param2).prop( "readonly", false );
 		  }	 
-	  }	  
+	  }	
+
+		$("#sbankvendor"+param3).val(data);
 	  
+	}
+	
+	
+	function drpcurrency(param1){
+		
+	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	  
 	}
 	
 	$( "#perkiraanSelesai" ).datepicker({
