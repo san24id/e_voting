@@ -618,7 +618,7 @@
 <script src="assets/dashboard/dist/js/demo.js"></script>
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
 
-<script src="assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!--<script src="assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>

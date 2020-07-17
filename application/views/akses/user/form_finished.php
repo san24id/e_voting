@@ -1891,13 +1891,14 @@ function drpbank(param1,param2,param3){
 	  }	
 
 		$("#sbankvendor"+param3).val(data);
-	  
+		
 	}
 	
 	
 	function drpcurrency(param1){
 		
-	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	  
+	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	
+		gettotalvendor();
 	}
 	
 	$( "#perkiraanSelesai" ).datepicker({

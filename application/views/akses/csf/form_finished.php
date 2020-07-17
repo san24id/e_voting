@@ -1897,7 +1897,8 @@ function drpbank(param1,param2,param3){
 	
 	function drpcurrency(param1){
 		
-	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	  
+	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	 
+		gettotalvendor();
 	}
 	
 	$( "#perkiraanSelesai" ).datepicker({

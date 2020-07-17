@@ -1032,9 +1032,10 @@ class Home extends CI_Controller {
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
-						'v_bank' => $_POST['bankvendor'][$i],
+						'v_bank' => $_POST['sbankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => number_format($nominal,0,",",".")
+						'v_nominal' => number_format($nominal,0,",","."),
+						'v_currency' => $_POST['scurrencyvendor'][$i] //
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -1044,7 +1045,7 @@ class Home extends CI_Controller {
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
 			$nama_vendor = $_POST['namavendor'][$i];
-			$v_bank = $_POST['bankvendor'][$i];
+			$v_bank = $_POST['sbankvendor'][$i];
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
 
@@ -1187,7 +1188,8 @@ class Home extends CI_Controller {
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['sbankvendor'][$i], //$_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => number_format($nominal,0,",",".")
+						'v_nominal' => number_format($nominal,0,",","."),
+						'v_currency' => $_POST['scurrencyvendor'][$i]
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
