@@ -635,7 +635,7 @@
                                       <option value="<?php echo $row->label5;?>"><?php echo $row->label5;?></option>
                                       <option value="">--Choose--</option>
                                       <?php foreach ($getlistarf as $arf) {?>
-                                        <option value="<?php echo $arf->nomor_surat; ?>"><?php echo $arf->nomor_surat; ?> - <?php echo $arf->label1; ?></option>
+                                        <option value="<?php echo $arf->apf_doc; ?>"><?php echo $arf->apf_doc; ?> - <?php echo $arf->description; ?></option>
 
                                 <?php } ?>
                               </select>

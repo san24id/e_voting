@@ -96,7 +96,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
                           <td>&nbsp; </td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $arf_doc; ?>"></td>
+                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $row->label5; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>

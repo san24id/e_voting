@@ -437,9 +437,9 @@ class Home_model extends CI_Model{
     }
 
     function getARFPaid(){
-        $name = $this->session->userdata('display_name');
+        $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT apf_doc FROM t_payment_l WHERE display_name ='$name' AND status='10' AND apf_doc LIKE '%ARF%'";
+        $sql = "SELECT apf_doc,description FROM t_payment_l WHERE division_id ='$dvs' AND status='10' AND apf_doc LIKE '%ARF%'";
 
         $query = $this->db->query($sql)->result();
         return $query;

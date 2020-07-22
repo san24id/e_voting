@@ -459,7 +459,7 @@
                         <td><select id="arf_number" name="label5"  class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($getlistarf as $arf) {?>
-										<option value="<?php echo $arf->nomor_surat; ?>"><?php echo $arf->nomor_surat; ?> - <?php echo $arf->label1; ?></option>
+										<option value="<?php echo $arf->apf_doc; ?>"><?php echo $arf->apf_doc; ?> - <?php echo $arf->description; ?></option>
 
                                 <?php } ?>
                               </select>

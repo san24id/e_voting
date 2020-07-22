@@ -1639,7 +1639,8 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment('0');
-		$data['getlistarf'] = $this->Dashboard_model->getlistarfpaid();
+		$data['getlistarf'] = $this->Home_model->getARFPaid();
+		// $data['getlistarf'] = $this->Dashboard_model->getlistarfpaid();
 		
 		$this->load->view('akses/csf/header_csf', $data);	
         $this->load->view('akses/csf/form_pengajuan', $data);
@@ -1854,7 +1855,8 @@ class Dashboard extends CI_Controller {
 		$data['data_vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['pegawai'] = $this->Home_model->getPegawai();
 		$data['getdatavendor'] = $this->Dashboard_model->getDataVendorByPayment($id_payment);
-		$data['getlistarf'] = $this->Dashboard_model->getlistarfpaid();
+		$data['getlistarf'] = $this->Home_model->getARFPaid();
+		// $data['getlistarf'] = $this->Dashboard_model->getlistarfpaid();
 		
 		$this->load->view('akses/csf/header_csf', $data);	
        	$this->load->view('akses/csf/form_finished', $data);
