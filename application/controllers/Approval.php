@@ -443,7 +443,7 @@ class Approval extends CI_Controller {
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['approved'] = $this->Approval_model->getList();
-		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['pembayaran'] = $this->Approval_model->getVPayment();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['tot_approved'] = $this->Approval_model->TotalApproved();
 		$data['wApproval'] = $this->Approval_model->getWaitApproval();
@@ -461,13 +461,13 @@ class Approval extends CI_Controller {
 		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
 		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 		
-		$data['approved'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
+		$data['approved'] = $this->Approval_model->periode($data['start_date'],$data['end_date']);
 		$data['processing'] = $this->Dashboard_model->processingPeriode($data['start_date'],$data['end_date']);
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotalPeriode($data['start_date'],$data['end_date']);
 		$data['tot_approved'] = $this->Approval_model->TotalApprovedPeriode($data['start_date'],$data['end_date']);
 		$data['wApproval'] = $this->Approval_model->getWaitApprovalPeriode($data['start_date'],$data['end_date']);
 
-		$data['pembayaran'] = $this->Dashboard_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+		$data['pembayaran'] = $this->Approval_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();

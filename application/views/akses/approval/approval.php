@@ -287,31 +287,16 @@
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td><img src="assets/dashboard/images/legend/draft.png"></td>
-                    <td>Draft</td>
+                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
+                    <td>Waiting For Approval</td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><img src="assets/dashboard/images/legend/draftprint.png"></td>
-                    <td>Draft(Print)</td>
+                    <td><img src="assets/dashboard/images/legend/approved.png"></td>
+                    <td>Total Approved</td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td><img src="assets/dashboard/images/legend/processing.png"></td>
-                    <td>Proceesing</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
-                    <td>Verified</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td><img src="assets/dashboard/images/legend/approved.png"></td>
-                    <td>Approved</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
                     <td><img src="assets/dashboard/images/legend/paid1.png"></td>
                     <td>Paid</td>
                   </tr>
@@ -452,7 +437,7 @@ $(function () {
 
             <?php foreach ($pembayaran as $key) { ?>
               {
-                name: '<?php echo $key->dsc; ?>',
+                name: '<?php echo $key->jenis_pembayaran; ?>',
                 y: <?php echo $key->jmlpembayaran; ?>
               },
             <?php } ?>

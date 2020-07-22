@@ -562,7 +562,7 @@ class Tri extends CI_Controller {
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['ppayment'] = $this->Dashboard_model->payment();
-		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
+		$data['pembayaran'] = $this->Tri_model->getVPayment();
 		$data['payment'] = $this->Tri_model->getList();
 		$data['wPaid'] = $this->Tri_model->getWaitPaid();
 		$data['L_Paid'] = $this->Tri_model->getPaid();
@@ -587,7 +587,7 @@ class Tri extends CI_Controller {
 		$data['wPaid'] = $this->Tri_model->getWaitPaidPeriode($data['start_date'],$data['end_date']);
 		$data['L_Paid'] = $this->Tri_model->getPaidPeriode($data['start_date'],$data['end_date']);
 
-		$data['pembayaran'] = $this->Dashboard_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+		$data['pembayaran'] = $this->Tri_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
 
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['ppayment'] = $this->Dashboard_model->payment();
