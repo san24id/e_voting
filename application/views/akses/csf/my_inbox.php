@@ -18,12 +18,12 @@
 				<div class="col-md-12">
 				<!-- Custom Tabs -->
 					<div class="nav-tabs-custom">
-						<ul class="nav nav-tabs">
+						<ul class="nav nav-pills">
 						  <li class="active"><a class="nav-link active" href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED (AS USERS)</b></a></li>
-						  <!-- <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li> -->
 						  <li><a href="#tab_2" data-toggle="tab"><b>LIST OF RETURNED (AS VERIFICATOR)</b></a></li>
 						  <li><a href="#tab_3" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b></a></li>
 						  <li><a href="#tab_4" data-toggle="tab"><b>LIST OF REJECT (AS VERIFICATOR TO USERS)</b></a></li>
+						  <!-- <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li> -->
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab_1">						  
@@ -34,7 +34,7 @@
 										<thead>
 										<tr>
 										  <th>NO.</th>
-										  <th>Rejected Date</th>
+										  <th>Tanggal Reject</th>
 										  <th>Dari</th>
 										  <th>Kepada</th>
 										  <th>Nomor SP3</th>
@@ -79,7 +79,7 @@
 										<thead>
 										<tr>
 										  <th>NO.</th>
-										  <th>Rejected Date</th>
+										  <th>Tanggal Reject</th>
 										  <th>Dari</th>
 										  <th>Kepada</th>
 										  <th>Nomor SP3</th>
@@ -152,7 +152,7 @@
 										<thead>
 										<tr>
 										  <th>NO.</th>
-										  <th>Rejected Date</th>
+										  <th>Tanggal Reject</th>
 										  <th>Dari</th>
 										  <th>Kepada</th>
 										  <th>Nomor SP3</th>
@@ -207,7 +207,7 @@
 										<thead>
 										<tr>
 										  <th>NO.</th>
-										  <th>Rejected Date</th>
+										  <th>Tanggal Reject</th>
 										  <th>Dari</th>
 										  <th>Kepada</th>
 										  <th>Nomor SP3</th>
