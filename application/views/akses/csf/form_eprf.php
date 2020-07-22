@@ -22,6 +22,7 @@ td[rowspan="6"] {
             <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
           
+          <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>"> 
           <section class="content">
             <div class="row">
@@ -469,6 +470,12 @@ td[rowspan="6"] {
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
 
 <script>
+function myPopup(myURL, myWidth, myHeight) {
+            var left = (screen.width - myWidth) / 2;
+            var top = (screen.height - myHeight) / 4;
+            var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+}
+
 document.querySelector(".third").addEventListener('click', function(){
   swal("Data Successfully to update!");
   function update() {

@@ -4,7 +4,23 @@ class Tri_model extends CI_Model{
 
     public function getList() {
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('9','10')";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('9','10') ";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function periode($start_date,$end_date) {
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -17,6 +33,14 @@ class Tri_model extends CI_Model{
     }
 
     function getWaitPaidPeriode($start_date,$end_date){
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
         $sql = "SELECT COUNT(status) as wpaid FROM t_payment_l WHERE status='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
@@ -29,6 +53,14 @@ class Tri_model extends CI_Model{
     }
 
     function getPaidPeriode($start_date,$end_date){
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
         $sql = "SELECT COUNT(status) as paid FROM t_payment_l WHERE status='10' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;

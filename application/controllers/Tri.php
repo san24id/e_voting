@@ -581,7 +581,7 @@ class Tri extends CI_Controller {
 		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
 		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
-		$data['payment'] = $this->Dashboard_model->periode($data['start_date'],$data['end_date']);
+		$data['payment'] = $this->Tri_model->periode($data['start_date'],$data['end_date']);
 		$data['processing'] = $this->Dashboard_model->processingPeriode($data['start_date'],$data['end_date']);
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotalPeriode($data['start_date'],$data['end_date']);
 		$data['wPaid'] = $this->Tri_model->getWaitPaidPeriode($data['start_date'],$data['end_date']);

@@ -234,6 +234,15 @@
               </tbody>
               </table>
             </div>
+            <div class="box-footer">  
+              <div class="form-group">
+                <label class="control-label col-md-1"><i>Legend</i></label> <br>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/tax12.png'> &nbsp;Processing Tax</div>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/finance12.png'> &nbsp;Processing Finance</div>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/review12.png'> &nbsp;Waiting For Review</div>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/verified12.png'> &nbsp;Waiting For Verified</div>
+              </div>  
+            </div>
             </div>
             <!-- /.box-body -->
           </div>

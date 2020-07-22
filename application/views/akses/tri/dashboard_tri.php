@@ -31,7 +31,7 @@
         border-radius: 8px;
 				display: inline-block;
 				/* margin-left: 10px; */
-   } 
+   }  
    .box4{width:100px;
 				height:90px;
         background: linear-gradient(#339966, #0066CC);
@@ -39,7 +39,7 @@
         border-radius: 8px;
 				display: inline-block;
 				/* margin-left: 10px; */
-   } 
+   }
    .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
    	
 </style>
@@ -107,7 +107,7 @@
               <div class="info-box-content bg-gray">
                 <br>  
                 <?php foreach ($draft as $tot_draft) { ?>
-                <a href="<?php echo base_url('dashboard/all_detail_payment/3/'.$start_date.'/'.$end_date)?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
+                <a href="<?php echo base_url('Tri/all_detail_payment/3/'.$start_date.'/'.$end_date)?>"><span class="info-box-number"><font size='5' color="green"><center><?php echo $tot_draft->totaldraft; ?></center></font></span></a>
                 <?php } ?>            
                 <span class="info-box-text "><font color="green"><center>Total Draft (***) </center></font></span>
             </div>
@@ -172,25 +172,25 @@
                     </tr>
                     <tr>
                       <?php foreach ($draft1 as $tot_draft) { ?>
-                      <td width="12%"><div class="dua"><center><a href="<?php echo base_url('tri/all_detail_payment/7/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $tot_draft->totdraft; ?> </font> </center></div></a> </td><td> &nbsp; 
+                      <td width="12%"><div class="dua"><center><a href="<?php echo base_url('Tri/all_detail_payment/7/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $tot_draft->totdraft; ?> </font> </center></div></a> </td><td> &nbsp; 
                       <?php } ?>   
                       <?php foreach ($draftprint as $draftprint) { ?>                    
-                      <td width="12%"><div class="tiga"><center><a href="<?php echo base_url('tri/all_detail_payment/8/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $draftprint->draftprint; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="tiga"><center><a href="<?php echo base_url('Tri/all_detail_payment/8/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $draftprint->draftprint; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>               
                       <?php foreach ($submit as $submit) { ?>
-                      <td width="12%"><div class="empat"><center><a href="<?php echo base_url('tri/all_detail_payment/9/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $submit->submit; ?> </font> </div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="empat"><center><a href="<?php echo base_url('Tri/all_detail_payment/9/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $submit->submit; ?> </font> </div></a> </td> <td> &nbsp;
                       <?php } ?>                  
                       <?php foreach ($process as $process) { ?>
-                      <td width="12%"><div class="lima"><center><a href="<?php echo base_url('tri/all_detail_payment/10/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $process->process; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="lima"><center><a href="<?php echo base_url('Tri/all_detail_payment/10/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $process->process; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>
                       <?php foreach ($verifikasi as $verifikasi) { ?>
-                      <td width="12%"><div class="enam"><center><a href="<?php echo base_url('tri/all_detail_payment/11/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $verifikasi->verifikasi; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="enam"><center><a href="<?php echo base_url('Tri/all_detail_payment/11/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"> <?php echo $verifikasi->verifikasi; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>
                       <?php foreach ($approval as $approval) { ?>
-                      <td width="12%"><div class="tujuh"><center><a href="<?php echo base_url('tri/all_detail_payment/12/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"> <?php echo $approval->approval; ?> </font></center></div></a> </td> <td> &nbsp;
+                      <td width="12%"><div class="tujuh"><center><a href="<?php echo base_url('Tri/all_detail_payment/12/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"> <?php echo $approval->approval; ?> </font></center></div></a> </td> <td> &nbsp;
                       <?php } ?>
                       <?php foreach ($paid as $paid) { ?>
-                      <td width="12%"><div class="satu"><center><a href="<?php echo base_url('tri/all_detail_payment/13/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"> <?php echo $paid->paid; ?> </font></div></a> </td><td> &nbsp;  
+                      <td width="12%"><div class="satu"><center><a href="<?php echo base_url('Tri/all_detail_payment/13/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"> <?php echo $paid->paid; ?> </font></div></a> </td><td> &nbsp;  
                       <?php } ?>
                     </tr>
                     <tr>   
@@ -247,12 +247,12 @@
                           <td align="center" width="25%"><div class="info-box box1">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                            <a href="<?php echo base_url('Tri/all_detail_payment/4/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
+                            <a href="<?php echo base_url('Tri/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
                           </td>                          
                           <td align="center" width="25%"><div class="info-box box2">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                            <a href="<?php echo base_url('Tri/all_detail_payment/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
+                            <a href="<?php echo base_url('Tri/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
                           </td>
 
                           <td align="center" width="25%"><div class="info-box box3">
@@ -261,7 +261,7 @@
                             <?php foreach ($credit_card as $cc) { ?>
                             <font size='5' color="white"><?php echo $cc->creditcard_pay;?> </font> </center></div>
                             <?php } ?>
-                          </td>   
+                          </td>  
                         </tr>  
                       </table>
                     </div>  
@@ -302,7 +302,7 @@
         <div class="box box-default">
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
-        <button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
+				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
         <a href="Tri/exportdashboard"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
 				
 			</div>
@@ -317,15 +317,37 @@
 									<div class="col-md-2">
 										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Tanggal </option>
+											<option value='1'> Status </option>
 											<option value='2'> Jenis Pembayaran </option>
-											<option value='3'> Nomor Surat </option>
+											<!-- <option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
-											<option value='5'> Penerima </option>
+											<option value='5'> Penerima </option> -->
 										</select>
 									</div> 	
-									<div class="col-md-6">
-										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+									<div class="col-md-3">
+										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+										<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='0'> Draft </option>
+											<option value='1'> Draft Print </option>
+											<option value='2'> Submitted </option>
+											<option value='4'> Processing</option>
+											<option value='8'> Verified </option>
+											<option value='9'> Approved </option>
+											<option value='10'> Paid </option>
+										</select>
+										
+										<select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='4'> Direct Payment </option> 
+											<option value='2'> Advance Request </option>
+											<option value='3'> Advance Settlement </option>
+											<option value='5'> Cash Received </option>
+										</select>
+										
+										<select class="form-control" id="selblank" name="selblank"  >
+											<option value=''>== Pilih ==</option>
+										</select>
 									</div>		
 										
 									<div class="col-md-3">
@@ -347,7 +369,7 @@
 				  <!-- /.row -->
 				</div>
 			</div>
-      
+
         <div class="row">
             <div class="col-xs-12">
             <!-- /.box -->
@@ -360,9 +382,9 @@
                     <tr>
                       <th>NO.</th>
                       <th>Status</th>
-                      <th>Tanggal SP3</th>
+                      <th>Tanggal</th>
                       <th>Jenis Pembayaran</th>
-                      <th>Nomor SP3</th>
+                      <th>Nomor Surat</th>
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
                       <th>Penerima Pembayaran</th>
@@ -387,6 +409,8 @@
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                           }else if($row->status == 11){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          }else if($row->status == 99){
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>"; 
                           }else if($row->status == 2){
                             echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 3){
@@ -434,36 +458,28 @@
                     <td>
 
                       <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                      <?php if($row->status <= 1) {?> 
-                        <button type="button" data-toggle="modal" data-target="#delete<?php echo $row->id_payment; ?>" class="btn btn-danger btn-sm">Delete</button>
-                        <div class="modal fade" id="delete<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                          <div class="modal-dialog modal-xl" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h3 class="modal-title">Message Box</h3>
-                              </div>                                        
-                              <div class="modal-body">
-                              <form id="approve" method="post" action="Tri/deletepayment">
-                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-
-                                <p align="justify">Apa anda yakin akan menghapus Form SP3 ini?  </p>
-                              </div>
-                              <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      <?php  } ?>
+                      <?php if($row->status=="0" || $row->status=="1"){ 
+						          if($this->session->userdata("id_user")==$row->id_user){ ?>
+                        <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+                      <?php } }?>
                     </td>      
                     </tr>
                 <?php  } ?>
                 </tbody>
                 </table>
                 </div>
+                
+                <div class="box-footer">  
+                  <div class="form-group">
+                    <label class="control-label col-md-1"><i>Legend</i></label>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submit</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>
+                    <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp; Paid</div>											  
+                  </div>  
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -474,65 +490,7 @@
                 
     </section>
     <!-- /.content -->
-
-    <section class="content">
-      <div class="row">
-        <div class="col-md-3">
-          <!-- /.box -->
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">            
-              <table id="" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th style="width: 10%" >NO.</th>
-                    <th style="width: 20%" >Status</th>
-                    <th>Keterangan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><img src="assets/dashboard/images/legend/draft.png"></td>
-                    <td>Draft</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><img src="assets/dashboard/images/legend/draftprint.png"></td>
-                    <td>Draft(Print)</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><img src="assets/dashboard/images/legend/processing.png"></td>
-                    <td>Proceesing</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><img src="assets/dashboard/images/legend/verified.png"></td>
-                    <td>Verified</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td><img src="assets/dashboard/images/legend/approved.png"></td>
-                    <td>Approved</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td><img src="assets/dashboard/images/legend/paid1.png"></td>
-                    <td>Paid</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-
-      <!-- /.row -->
-    </section>
+    
   </div>
   <!-- /.content-wrapper -->
 
@@ -576,8 +534,6 @@
 
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 2.2.3 -->
 <!-- <script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -601,6 +557,24 @@
 <script src="assets/admin/bower_components/chart.js/canvasjs.min.js"></script>
 
 <script>
+function deletedraftpayment(id)
+    {
+			$.ajax({
+				url : "<?php echo base_url('Tri/draftpaymentdelete')?>/"+id,
+				type: "POST",
+				dataType: "JSON",
+				success: function(data)
+				{               
+          alert('Data Succesfully Deleted');
+					location.reload();
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
+			});
+    }
+
 $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
@@ -613,7 +587,8 @@ $(function () {
     });
   });
 
-  Highcharts.chart('pieChart', {
+
+Highcharts.chart('pieChart', {
       chart: {
           plotBackgroundColor: null,
           plotBorderWidth: null,
@@ -643,15 +618,15 @@ $(function () {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
               },
-			        point: {
-                events: {
-                    click: function() {
-                        location.href = this.options.link;
-                    }
+              point: {
+                  events: {
+                      click: function() {
+                          location.href = this.options.link;
+                      }
+                  }
                 }
-              }
           }
-      },    
+      },
       series: [{
           name: 'Total',
           colorByPoint: true,
@@ -667,12 +642,69 @@ $(function () {
               ]
       }]
   });
+ /* CanvasJS.addColorSet("greenShades",
+                [//colorSet Array
+
+                  '#06717C',
+                  '#0595A3', 
+                  '#06C4D7', 
+                  '#8EEBF4'                
+                ]);
+  var chart = new CanvasJS.Chart('pieChart', {
+
+  colorSet: "greenShades",
+
+  title:{
+      text: "Jumlah Data Payment Request Divisi"
+  },
+  data: [
+      {
+        type: "pie",
+        cursor:"pointer",    
+        colors: [
+                '#06717C',
+                '#0595A3', 
+                '#06C4D7', 
+                '#8EEBF4'                  
+              ],      
+        dataPoints: [
+          <?php foreach ($pembayaran as $key) { ?>
+              {
+                label: '<?php echo $key->dsc; ?>',
+                y: <?php echo $key->jmlpembayaran; ?>,
+                link: '<?php echo base_url('Tri/'.$key->link);?> ',
+
+              },
+            <?php } ?>
+        ]
+      }
+      ]
+    });
+
+chart.options.data[0].click = function(e){ 
+    var dataSeries = e.dataSeries;
+    var dataPoint = e.dataPoint;
+    var dataPointIndex = e.dataPointIndex;
+    
+    if(!dataPoint.exploded)
+        window.open(dataPoint.link,'_blank');  
+    
+    for(var i = 0; i < dataSeries.dataPoints.length; i++){
+            if(i === dataPointIndex){                
+                continue;
+            }
+            
+            dataSeries.dataPoints[i].exploded = false;            
+    }
+};
+
+ chart.render();*/
 </script>
 
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('tri/caridatadashboard') ?>";
+	  url = "<?php echo base_url('Tri/caridatadashboard') ?>";
       $.ajax({
             url : url,
             type: "POST",
@@ -703,7 +735,7 @@ $(function () {
 							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
 							break;
                           case "3":
-							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
 							break;
                           case "4":
 							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
@@ -740,7 +772,7 @@ $(function () {
 						  item.display_name,
 						  item.penerima,
 						  item.submit_date,
-						  '<a href="tri/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+						  '<a href="Tri/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  
@@ -766,6 +798,24 @@ $(function () {
 function printThis() {
   window.print();
 }
+$(document).ready(function() { 
+		$('#selsearch').change(function() {
+		  if( $(this).val() == '1') {
+				$('#selblank').css("display", "none");
+				$('#selstatus').css("display", "block");
+				$('#seljnspembayaran').css("display", "none");
+		  } else if( $(this).val() == '2'){   
+			$('#selblank').css("display", "none");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "block");
+		  }else{
+			$('#selblank').css("display", "block");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "none");
+		  }
+		})
+		
+		});
 </script>
 </body>
 </html>

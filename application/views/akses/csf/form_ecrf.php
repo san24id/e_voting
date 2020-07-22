@@ -8,12 +8,14 @@ td[rowspan="3"] {
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <!-- <section class="content-header">
+        <section class="content-header">
           <h1>
-          FORMULIR PERMINTAAN PEMBAYARAN <br> <i> PAYMENT REQUEST FORM (PRF)</i>
-            <small></small>
+           <?php foreach ($payment as $row){ ?>          
+            <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+            <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
+           <?php } ?>
           </h1>
-        </section> -->
+        </section>
         <!-- Main content -->
         <form id="form" method="post" action="Dashboard/edit_pay" onsubmit="update()">
           <?php foreach ($ppayment as $get) { ?>  
@@ -21,6 +23,7 @@ td[rowspan="3"] {
             <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
           
+          <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>">
           <section class="content">
             <div class="row">
@@ -453,6 +456,12 @@ td[rowspan="3"] {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script>
+function myPopup(myURL, myWidth, myHeight) {
+            var left = (screen.width - myWidth) / 2;
+            var top = (screen.height - myHeight) / 4;
+            var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+}
+
 document.querySelector(".third").addEventListener('click', function(){
   swal("Data Successfully to Update!");
   function update() {

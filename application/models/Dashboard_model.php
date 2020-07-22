@@ -716,7 +716,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function addpay($add){
-        $sql = "INSERT INTO `t_payment_l` (id_payment, display_name, type, status, tanggal, pr_doc, apf_doc, apf1_doc, nomor_surat, kode_proyek, division_id, tanggal_selesai, 
+        $sql = "INSERT INTO `t_payment_l` (id_payment, display_name, type, status, tanggal, tanggal2, pr_doc, apf_doc, apf1_doc, nomor_surat, kode_proyek, division_id, tanggal_selesai, 
                 label1, label2, description, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11,
                 description12, currency, currency1, currency2, currency3, currency4, currency5, currency6, currency7, currency8, currency9, currency10, currency11, jumlah, jumlah1, 
                 jumlah2, jumlah3, jumlah4, jumlah5, jumlah6, jumlah7, jumlah8, jumlah9, jumlah10, jumlah11, jumlah12, terbilang, terbilang2, terbilang3, dibayar_kepada, verified_date, penanggung_jawab,
@@ -740,7 +740,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function edit_pay($upd){
-        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`display_name`='".$upd['display_name']."',`tanggal`='".$upd['tanggal']."',`pr_doc`='".$upd['pr_doc']."',`apf_doc`='".$upd['apf_doc']."',`apf1_doc`='".$upd['apf1_doc']."',
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`display_name`='".$upd['display_name']."',`tanggal`='".$upd['tanggal']."',,`tanggal2`='".$upd['tanggal2']."',`pr_doc`='".$upd['pr_doc']."',`apf_doc`='".$upd['apf_doc']."',`apf1_doc`='".$upd['apf1_doc']."',
                 `nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`tanggal_selesai`='".$upd['tanggal_selesai']."',`division_id`='".$upd['division_id']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`cash_advance`='".$upd['cash_advance']."',
                 `piutang`='".$upd['piutang']."',`total_expenses`='".$upd['total_expenses']."',`total_expenses2`='".$upd['total_expenses2']."',`total_expenses3`='".$upd['total_expenses3']."',`description`='".$upd['description']."',`description2`='".$upd['description2']."',
                 `description3`='".$upd['description3']."',`description4`='".$upd['description4']."',`description5`='".$upd['description5']."',`description6`='".$upd['description6']."',`description7`='".$upd['description7']."',`description8`='".$upd['description8']."',
