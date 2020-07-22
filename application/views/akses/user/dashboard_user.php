@@ -459,7 +459,7 @@
 
                       <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                       <?php if($row->status=="0" || $row->status=="1"){ 
-						          if($this->session->userdata("id_user")==$row->id_user){ ?>
+						          if($this->session->userdata("display_name")==$row->display_name){ ?>
                         <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
                       <?php } }?>
                     </td>      
