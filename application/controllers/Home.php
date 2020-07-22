@@ -579,7 +579,9 @@ class Home extends CI_Controller {
 	public function approve(){
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
-			'status' => 11
+			'status' => 2,
+			'handled_by' => $_POST['handled_by'],
+			'submit_date' => $_POST['submit_date']
 		);
 
 		$this->Dashboard_model->approve($upd);

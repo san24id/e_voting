@@ -1762,7 +1762,7 @@ function AddIndeks(){
 		var curr3 = document.getElementById('currency3').value;
 		var curvendor =$('#currencyvendor'+param).val();
 		if(curvendor!=curr1){
-			alert('Mata Uang yang dipilih tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+			alert('Mata Uang agar dapat dipilih terlebih dahulu');
 		}else if(curvendor!=curr2){
 			alert('Mata Uang yang dipilih tidak sama dengan Mata Uang pada kolom Jumlah diatas');
 		}else if(curvendor!=curr3){

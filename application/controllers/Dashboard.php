@@ -896,7 +896,9 @@ class Dashboard extends CI_Controller {
 	public function approve(){
 		$upd = array(
 			'id_payment' => $_POST['id_payment'],
-			'status' => 11
+			'status' => 2,
+			'handled_by' => $_POST['handled_by'],
+			'submit_date' => $_POST['submit_date']
 		);
 
 		$this->Dashboard_model->approve($upd);
@@ -1346,6 +1348,11 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function monitoring(){
+		$s = '01-01-'.Date('Y');
+		$date = strtotime($s);
+		$data['start_date']= date('d-m-Y', $date);
+		$data['end_date'] = date('d-m-Y');
+
 		$data['active1'] = '';
 		$data['monitoring'] = 'active';
 		$data['active3'] = '';
@@ -2706,6 +2713,66 @@ class Dashboard extends CI_Controller {
 	{
 		$data= $this->Dashboard_model->getUrutTax($id_payment);
 		echo json_encode($data);
+	}
+
+	public function all_detail_monitoring($id,$start_date,$end_date)
+	{
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
+		$this->session->set_userdata('statuspayment',$id);
+		$sid = $this->session->userdata("id_user");
+		$data['monitoring'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+		
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+
+		switch($id){
+			
+		}
+		
+		
+		switch ($id) {
+		  case "1":
+			$data['payment'] = $this->Dashboard_model->getMonitoringWaitingProcessing($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting for Processing');
+			$this->session->set_userdata('filter','1');
+			break;
+		  case "2":
+			$data['payment'] = $this->Dashboard_model->getMonitoringTotalRequest($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Total Request');
+			$this->session->set_userdata('filter','2');
+			break;
+		  case "3":
+			$data['payment'] = $this->Dashboard_model->getMonitoringProcessing($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Processing');
+			$this->session->set_userdata('filter','3');
+		    break;
+		  case "4":
+			$data['payment'] = $this->Dashboard_model->getMonitoringVerified($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Verified');
+			$this->session->set_userdata('filter','4');
+			break;
+		  case "5":
+			$data['payment'] = $this->Dashboard_model->getMonitoringApproved($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Approved');
+			$this->session->set_userdata('filter','5');
+			break;
+		  case "6":
+			$data['payment'] = $this->Dashboard_model->getMonitoringPaid($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Paid');
+			$this->session->set_userdata('filter','6');
+			break;
+
+		  default:
+			$data['payment'] = $this->Dashboard_model->monitoring();
+		}
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/view_detail_monitoring', $data);
 	}
 	
 	public function all_detail_payment($id,$start_date,$end_date)

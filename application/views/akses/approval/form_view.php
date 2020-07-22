@@ -28,9 +28,11 @@
         </section> -->
         <!-- Main content -->
 
-        <?php 
-          $dvs = $this->session->userdata('division_id');
-          foreach ($ppayment as $row){ ?>          
+          <?php 
+			$nosurat='';
+			foreach ($ppayment as $row){ 
+			$nosurat = $row->nomor_surat;
+			?>          
             <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -42,17 +44,19 @@
                     <p align="right">
                       <b> STATUS : </b>
                       <?php if($row->status == 0){
-                          echo "<img src='assets/dashboard/images/legend/draft.png'>&nbsp;Draft";  
+                          echo "<img src='assets/dashboard/images/legend/draft.png'>&nbsp;Draft";
                         }else if($row->status == 1){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";
                         }else if($row->status == 11){
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";  
                         }else if($row->status == 99){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          echo "Deleted File SP3"; 
+                        }else if($row->status == 'XXX'){
+                          echo "Deleted File SP3"; 
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
                         }else if($row->status == 3){
-                          echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft (Print)";
+                          echo "<img src='assets/dashboard/images/legend/draft.png'> Draft";
                         }else if($row->status == 4){
                           echo "<img src='assets/dashboard/images/legend/processing.png'> Processing On Tax";
                         }else if($row->status == 5){
@@ -78,15 +82,11 @@
                     </h5>
                     <table style="font-family: calibri;" width="100%">
                       <tbody>
-                      <tr>
-                          <td> </td>
-                          <?php if ($row->nomor_surat !="") { ?>
-                          <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>
-                          <?php }else{ ?>
-                          <td align="center"><b><font size="4" style="font-family: calibri;">No   : XXXX/<?php echo $dvs?>/SPPP/<?php echo date("my");?></b></td>
-                        
-                          <?php } ?>
-                        </tr>
+                        <tr>
+                          <td> </td>						
+                          <td align="center"><b><font size="4" style="font-family: calibri;">&nbsp;</b></td>						
+                          <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>                        
+                        </tr>   
                       </tbody>
                     </table>
 
@@ -187,7 +187,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> disabled>Pertanggungjawaban Uang Muka/<i>Advance Settlement<br>                            
                         </td>
-                      </tr>                       
+                      </tr>                        
                     </table>
 
                     <br>
@@ -310,7 +310,7 @@
 																<th>Penerima Pembayaran <font color="red"> * </font></th>
 																<th>Tunai/Transfer <font color="red"> * </font></th>
 																<th>Nomor Rekening <font color="red"> * </font></th>
-																<th>Mata Uang <font color="red"> * </font></th>
+                                <th>Mata Uang <font color="red"> * </font></th>
 																<th>Nominal <font color="red"> * </font></th>
 																<th>&nbsp;</th>
                               </tr>
@@ -380,7 +380,6 @@
 																</td>
 																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" readonly>
 																</td>
-			
 																<td><select id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" readonly >
 																	<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
 																	<option value="">--- Choose ---</option>
@@ -388,8 +387,7 @@
 																	  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
 																	<?php } ?>
 																	</select>
-																</td>
-																
+																</td>																   
 															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" readonly></td>
 															
 															
@@ -399,10 +397,20 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th colspan="4" style="text-align:end;">Total</th>
-																  <th><label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label></th>
-																  <input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
-				
+																<th>
+																<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
+																  <i class="glyphicon glyphicon-plus"></i></span>
+																</div>
+																<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
+																  </th>
+																<th colspan="5">
+																<label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $row->label2; ?></label>
+																<label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $row->jumlah2; ?></label>
+																<label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $row->jumlah3; ?></label>
+																</th>
 															</tr>
 														</tfoot>
 														</table>
@@ -526,137 +534,78 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <table width="100%" id="show" <?php echo $showed;?> >
-                      <tbody>
-                      <tr>
-                        <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
-                      </tr>
-                        <td width="50%"><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
-                        <td>:</td>
-                        <td><input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly> </td>
-                        <td><input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled> Lampiran copy ARF tersedia</input></td>
-                      </tr>
-                      <tr>
-                        <td><b>- Perhitungan Penggunaan Uang Muka : <b></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td><center><b> Curr</b></center></td>
-                        <td><b> Jumlah/<i>Amount</i></b></td>
-                        <td><center><b> Curr</b></center></td>
-                        <td><b> Jumlah/<i>Amount</i></b></td>
-                        <td><center><b> Curr</b></center></td>
-                        <td><b> Jumlah/<i>Amount</i></b></td>
-                      </tr>
-
-                      <!--Biaya-->
-                      <tr>  
-                        <td>Jumlah Biaya <font color="red"> * </font></td>
-                        <td>:</td>
-                        <td><select id="demo" name="currency4" class="form-control" readonly>
-                                <option value="<?php echo $row->currency4;?>"><?php echo $row->currency4;?></option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                        <td><input id="biaya" onchange="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>" readonly></td>
-                        
-                        <td><select id="demo" name="currency5" class="form-control" readonly>
-                                      <option value="<?php echo $row->currency5;?>"><?php echo $row->currency5;?></option>
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input id="biaya2" onchange="penjumlahan2()" type="text" class="form-control" name="label8" value="<?php echo $row->label8;?>" readonly></td>
-                        
-                        <td><select id="demo" name="currency6" class="form-control" readonly>
-                                      <option value="<?php echo $row->currency6;?>"><?php echo $row->currency6;?></option>
-                                      <option value="">--Choose--</option>
-                                      <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select> </td>
-                        <td><input id="biaya3" onchange="penjumlahan3()" type="text" class="form-control" name="label9" value="<?php echo $row->label9;?>" readonly></td>
-                      </tr>
-
-                      <!--UangMuka-->
-                      <tr>
-                        <td>Jumlah Uang Muka <font color="red"> * </font></td>
-                        <td>:</td>
-                        <td><select id="demo2" name="currency7" class="form-control" readonly>
-                                <option value="<?php echo $row->currency7;?>"><?php echo $row->currency7;?></option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                            </select> 
-                        </td>
-                        <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label10" value="<?php echo $row->label10; ?>" readonly> </td>  
-                        
-                        <td><select id="demo2" name="currency8" class="form-control" >
-                                <option value="<?php echo $row->currency8;?>"><?php echo $row->currency8;?></option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                            </select> 
-                        </td>
-                        <td><input id="uangmuka2" onchange="penjumlahan2()" type="text" class="form-control" name="label11" value="<?php echo $row->label11; ?>" readonly> </td> 
-                        
-                        <td><select id="demo2" name="currency9" class="form-control" readonly>
-                                <option value="<?php echo $row->currency9;?>"><?php echo $row->currency9;?></option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                        <td><input id="uangmuka3" onchange="penjumlahan3()" type="text" class="form-control" name="label12" value="<?php echo $row->label12; ?>" readonly> </td> 
-                      <tr>
-
-                      <!--Selisih-->
-                      <tr>
-                        <td>Selisih Kurang/(Lebih)</td>  
-                        <td>:</td>
-                        <td><select id="demo3" name="currency10" class="form-control" readonly>
-                                <option value="<?php echo $row->currency10;?>"><?php echo $row->currency10;?></option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                            </select> 
-                        </td>
-                        <td><input id="hasil" type="text" class="form-control" name="label13" value="<?php echo $row->label13; ?>" readonly></td>
-                        
-                        <td><select id="demo3" name="currency11" class="form-control" readonly>
-                                <option value="<?php echo $row->currency11;?>"><?php echo $row->currency11;?> </option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select>
-                        </td>
-                        <td><input id="hasil2" type="text" class="form-control" name="label14" value="<?php echo $row->label14; ?>" readonly></td>
-                        
-                        <td><select id="demo3" name="currency12" class="form-control" readonly>
-                                <option value="<?php echo $row->currency12;?>"><?php echo $row->currency12;?></option>
-                                <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                  <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
-                              </select> </td>
-                        <td><input id="hasil3" type="text" class="form-control" name="label15" value="<?php echo $row->label15; ?>" readonly></td>                               
-                      </tr>                              
-                      </tbody>
-                    </table>
-
-                    <br>
+                    <div id="show" <?php echo $showed;?>>
                     
+                      <table style="font-family: calibri;"  width="70%">
+                        <tbody>
+                        <tr>
+                          <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
+                          <td>:&nbsp;</td>
+                          <td>
+                            <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
+                          </td>
+                          <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled> Lampiran copy ARF tersedia</input></td>
+                        </tr>
+                      </tbody>
+                      </table>
+                      <table style="font-family: calibri;" width="90%"; >
+                        <tbody>
+                        <tr>
+                          <td colspan="10" >&nbsp;</td>
+                        </tr>                      
+                        <tr>
+                          <td><b>- Perhitungan Penggunaan Uang Muka<b></td>
+                          <td colspan="3">&nbsp;</td>
+                          <td><center><b> &nbsp;&nbsp;Curr&nbsp;&nbsp;</b></center></td>
+                          <td><b> Jumlah/<i>Amount</i></b></td>
+                          <td><center><b>&nbsp;&nbsp;Curr&nbsp;&nbsp;</b></center></td>
+                          <td><b> Jumlah/<i>Amount</i></b></td>
+                          <td><center><b>&nbsp;&nbsp;Curr&nbsp;&nbsp;</b></center></td>
+                          <td><b> Jumlah/<i>Amount</i></b></td>
+                        </tr>
+                        <tr>  
+                          <td>Jumlah Biaya <font color="red"> * </font></td>
+                          <td>:</td>
+                          <td colspan="2">&nbsp;</td>
+                          <td align="center"><?php echo $row->curr_settlement1;?></td>
+                          <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>" readonly></input></td>
+                          <td align="center"><?php echo $row->curr_settlement2;?></td>
+                          <td><input type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"readonly></input></td>
+                          <td align="center"><?php echo $row->curr_settlement3;?></td>
+                          <td><input type="text" class="form-control" name="label7b" value="<?php echo $row->label7b;?>"readonly></input></td>
+                        </tr>
+
+                        <tr>
+                        <td>Jumlah Uang Muka <font color="red"> * </font> </td>
+                          <td>:</td>
+                          <td colspan="2">&nbsp;</td>
+                          <td align="center"><?php echo $row->curr_settlement1;?></td>   
+                          <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td> 
+                          <td align="center"><?php echo $row->curr_settlement2;?></td>
+                          <td><input type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"readonly></input> </td>  
+                          <td align="center"><?php echo $row->curr_settlement3;?></td>
+                          <td><input type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"readonly></input> </td>  
+                        </tr>
+                        <tr>
+                          <td>Selisih Kurang/(Lebih)</td>
+                          <td>:</td>
+                          <td colspan="2">&nbsp;</td>
+                          <td align="center"><?php echo $row->curr_settlement1;?></td>
+                          <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>  
+                          <td align="center"><?php echo $row->curr_settlement2;?></td>
+                          <td><input type="text" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>"readonly></input></td>  
+                          <td align="center"><?php echo $row->curr_settlement3;?></td>
+                          <td><input type="text" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>"readonly></input></td>  
+                        </tr>                              
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <br>
+                    <br>
                     <table style="font-family: calibri;" width="100%">
                     <tbody>
                       <tr>
@@ -678,22 +627,25 @@
                     </table>
 
                   </div>  
-                </div>                
+                </div>              
 
-                <div class="box">
+                    <div class="box">
                       <div class="box-header with-border">
+						          <?php if ($row->status == 99 || $row->status == 'XXX') { ?>
+                        <a class="btn btn-warning" href="Approval" role="button">Exit</a>
+
+                      <?php }else{ ?>
                         <a class="btn btn-warning" href="Approval" role="button">Exit</a>
                         <?php if ($row->display_name == $this->session->userdata("display_name") && $row->status == 0 || $row->status == 3) { ?>
 
                           <a class="btn btn-primary" href="Approval/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
-                            <?php 
+                          <?php 
                                 $testl1 = $row->label4;
                                 $testl2 = explode(";", $testl1);
                                 // var_dump($testl2[0]);exit;
 
                               if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" ){ ?>
-                                <!-- <a class="btn btn-danger" href="Approval/draftsent/<?php echo $row->id_payment; ?>" role="button" >Set To Print</a>       -->
-                                <button type="button" data-toggle="modal" data-target="#setprint<?php echo $row->id_payment; ?>" class="btn btn-success">Set To Print</button>
+                              <button type="button" data-toggle="modal" data-target="#setprint<?php echo $row->id_payment; ?>" class="btn btn-success">Set To Print</button>
                                 <div class="modal fade" id="setprint<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                   <div class="modal-dialog modal-xl" role="document">
                                   <div class="modal-content">
@@ -702,37 +654,42 @@
                                       <h3 class="modal-title">Message Box</h3>
                                     </div>                                        
                                     <div class="modal-body">
-                                    <form id="approve" method="post" action="Approval/draftsent/<?php echo $row->id_payment; ?>">
-                                      <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                      <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">   
+                                      <form id="approve" method="post" action="Approval/draftsent/<?php echo $row->id_payment; ?>">
+                                        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                        <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
+                                        <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
+                                        <div class="modal-footer">                        
+                                          <button type="submit" class="btn btn-success bye">Yes</button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  </div>
+                                </div>  
 
-                                      <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
-                                    </div>
-                                    <div class="modal-footer">                        
-                                    <button type="submit" class="btn btn-success bye">Yes</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </form>
-                                    </div>
-                                  </div>
-                                  </div>
-                                </div> 
                               <?php }else{ ?>
 
-                            <?php } ?>
-
-                        <?php } ?>
+                          <?php } ?>
+                        <?php } ?>   
+                      <?php } ?>   
                         
-                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0){ ?>
+                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3  && $row->status != 99  && $row->status != 'XXX'){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                       
-                              <a class="btn btn-danger" href="Approval/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
+                              <a class="btn btn-primary" href="Approval/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
 
                             <?php }else if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 3 ) { ?>
                               
-                              <a class="btn btn-danger" href="Approval/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>
+                              <a class="btn btn-primary" href="Approval/report/<?php echo $row->id_payment; ?>" target="_blank" role="button">Print</a>
 
                             <?php } ?>
                         <?php } ?>
+
+                        <?php if($row->status=="0" || $row->status=="1"){ 
+                          if($this->session->userdata("id_user")==$row->id_user){ ?>
+                          <button class="btn btn-danger" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Delete</button>
+                        <?php }} ?>
 
                         <?php 
                           $sql = "SELECT activate FROM m_status WHERE id_status=11";
@@ -746,23 +703,30 @@
                         ?>
                         
                         <?php 
+                          
                           if($this->session->userdata("role_id") == 4){ ?>      
-                          <?php if($row->status == 1 && $iya == "On"){ ?>
+                          <?php if($row->status == 1 && $iya == "ON"){ ?>
                           <button type="button" data-toggle="modal" data-target="#approve<?php echo $row->id_payment; ?>" class="btn btn-success">Approved</button>
                           <!----.Modal -->
                           <!----.Accept -->
                           <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-sm" role="document">
                             <div class="modal-content">                                        
+								                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h3 class="modal-title">Message Box</h3>
+                                </div> 									  
                               <div class="modal-body">
-                              <form id="approve" method="post" action="Approval/setuju">
-                                <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
-                              </div>
-                              <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              </form>
+                                <form id="approve" method="post" action="Approval/setuju">
+                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">  
+                                    <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
+                                    <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                                    <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <div class="modal-footer">                        
+                                    <button type="submit" class="btn btn-success bye">Yes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								                  </div>
+                                </form>
                               </div>
                             </div>
                             </div>
@@ -778,7 +742,7 @@
                                   </div>
 
                                   <div class="modal-body">
-                                  <form id="rejected" method="post" action="dashboard/rejected">
+                                  <form id="rejected" method="post" action="Approval/rejected">
                                     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                     <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
                                     <label>Notes :</label>                
@@ -796,11 +760,11 @@
                             </div>
                                                       
                           <?php } ?>
-                        <?php } ?>  
+                        <?php } ?>                            
 
-                        <?php if($row->status == 11){ ?>
+                        <?php if($row->status == 1 && $iya == "OFF" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-                        
+                          
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                             <!----.Modal -->
                             <!----.Accept -->
@@ -810,34 +774,9 @@
                                 <div class="modal-body">
                                 <form id="accepted" method="post" action="Approval/submit">
                                   <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                    <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                   <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
-                                </div>
-                                <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </form>
-                                </div>
-                              </div>
-                              </div>
-                            </div> 
-                          <?php } ?>   
-                        <?php } ?>  
-
-                        <?php if($row->status == 1 || $row->status == 11 && $iya == "Off" ){ ?>
-                          <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-
-                            <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
-                            <!----.Modal -->
-                            <!----.Accept -->
-                            <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-sm" role="document">
-                              <div class="modal-content">                                        
-                                <div class="modal-body">
-                                <form id="accepted" method="post" action="Approval/submit">
-                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
                                 <button type="submit" class="btn btn-success bye">Yes</button>
@@ -847,10 +786,10 @@
                               </div>
                               </div>
                             </div>  
-                          <?php } ?>
+                          <?php } ?>  
                         <?php } ?>  
                       </div>
-                    </div>
+                    </div>  
             </div>
           </section>  
           <?php } ?>
@@ -897,244 +836,27 @@
  
 
 </div>
-<!-- ./wrapper -->
-<div class="modal fade" id="modalNext" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="col-xs-12">
-            <!-- /.box -->
-            <div class="box">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-              <!-- /.box-header -->
-              <div class="box-body">
-                  <input type="hidden" name="id_payment" value="<?php echo $get->id_payment; ?>" />
-                  <input type="hidden" name="id_user" value="<?php echo $get->id_user; ?>" />
-                  <div class="box-body">
-                      <div id="printThis">
-                      <h5>
-                        <br>
-                        <left><img src="assets/dashboard/images/logo.png" width="140px" alt="Logo Images"></left>
-                        <br>
-                        <center><b><u><font size="+1" style="font-family: calibri;">SURAT PERMINTAAN PROSES PEMBAYARAN</font></u></b></center>
-                      </h5>
-                      <table width="100%">
-                      <tbody>
-                        <tr>
-                          <td>
-                          <td align="center"><b><font size="3" style="font-family: calibri;">No   : <?php echo $get->nomor_surat;?></b></td>
-                          <td><b>No ARF/ASF   :</b></td>
-                        </tr> 
-                        <!-- <tr>
-                          <td>
-                          <td align="center"><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh Pemohon)</b></td>
-                          <td><b><i><font size="2" style="font-family: calibri;">(dilengkapi oleh CSF, coret salah satu)</b></td>
-                        </tr>-->
-                      </tbody>
-                      </table>
-
-                      <table width="100%">
-                        <tr>
-                            <td><b>Jenis Pembayaran (pilih salah satu)</b></td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="1" <?php echo $xxi1=="1"? 'checked':''?> disabled>Uang Muka/Advance</label>
-                            </td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="2" <?php echo $xxi2=="2"? 'checked':''?> disabled>Permintaan Uang Muka/Request</label>                     
-                            </td>
-                        </tr>    
-                        <tr>
-                            <td></td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $xxi3=="3"? 'checked':''?> disabled>Pertanggung Jawaban Uang Muka/Settlement</label>
-                            </td>
-                            <td>
-                              <input type="checkbox" name="jenis_pembayaran[]" value="4" <?php echo $xxi4=="4"? 'checked':''?> disabled>Non-Uang Muka/Non-Advance</label>
-                            </td>
-                        </tr>                       
-                      </table>
-
-                      <table width="100%">
-                      <tbody>                            
-                        <tr>
-                          <td>Kepada : Divisi CSF</td>
-                          <td align="right">Tanggal : <?php echo date("d-M-Y", strtotime($get->tanggal)); ?></td>
-                        </tr>
-                        <tr>
-                          <td>Dari : </td>
-                        </tr>             
-                        <tr>
-                          <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $get->display_name;?></td>
-                        </tr> 
-                        <tr>
-                          <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $get->division_id;?></td>
-                        </tr>                                                   
-                      </tbody>
-                      </table>
-                                                
-                      <hr style=" border: 1px solid #000;">
-                                                  
-                      <table style="font-family: calibri;" width="100%">
-                        <tbody>
-                        <p>Mohon dapat dilakukan proses pembayaran / pengembalian uang dengan perincian sebagai berikut : </p>
-                          <?php foreach ($ppayment as $ket) { ?>
-                          <tr>
-                            <td><b>Tujuan Penggunaan :</b></td>
-                            <td>&nbsp; <?php echo $ket->label1; ?></td>
-                          </tr>
-                          <tr>
-                            <td><b>Jumlah :</b></td>
-                            <td>IDR &nbsp; <?php echo $ket->label2; ?></td>
-                          </tr>
-                          <tr>
-                            <td><b>Perkiraan Tanggal :</b></td>
-                            <td>&nbsp; <?php echo $ket->label3; ?></td>     
-                          </tr>
-                          <!-- <tr>
-                            <td colspan="2"><b>Selesai Pekerjaan/Terima Barang</b> (Hanya diisi untuk jenis pembayaran <i><b>Permintaan Uang Muka/Request)</b></i></td>
-                          </tr>                               -->
-                          <?php } ?>
-                        </tbody>
-                      </table>
-
-                      <table style="font-family: calibri;" width="100%">
-                        <tbody>
-                          <b><p>Penyedia Barang / Jasa Penerima Pembayaran</p></b>
-                          <?php foreach ($ppayment as $print) { ?>
-                          <tr>
-                            <td>Nama : &nbsp; <?php echo $print->penerima;?></td>
-                            <td>Bank : &nbsp; <?php echo $print->akun_bank;?></td>
-                          </tr>
-                          <tr>
-                            <td>Kode Vendor : &nbsp; <?php echo $print->vendor;?></td>
-                            <td>Nomor Rekening : &nbsp; <?php echo $print->no_rekening; ?></td>                                
-                          </tr>
-                          <tr>
-                            <td colspan="2"><i>(diisi dengan mengacu pada vendor master data-Procurement)</i></td>
-                          </tr>
-                          <?php }  ?>
-                        </tbody>
-                      </table>
-
-                      <table>
-                        <tr>
-                            <td><b>Lampiran Dokumen Pendukung :</b></td>
-                            <td>&nbsp;
-                              <?php if($get->label4){
-                                echo $get->label4;
-                              }?>
-                            </td>
-                        <tr>      
-                      </table>
-
-                      <table style="font-family: calibri;" width="125%">
-                        <tbody>
-                          <b><p>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</p></b>
-                          <?php foreach ($ppayment as $print) { ?>
-                          <tr>
-                            <td>Nomor ARF terkait : &nbsp; <?php echo $print->label5;?></td>
-                            <input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $get->label6=="Lampiran copy ARF tersedia"? 'checked':''?> >Lampiran copy ARF tersedia</input>
-                            <td>
-                          </tr>
-                          <tr>
-                            <td>Perhitungan Penggunaan Uang Muka :</td>
-                          </tr>
-                          <tr?>  
-                            <td>Jumlah Biaya : &nbsp; <?php echo $print->label7;?></td>
-                          </tr>
-                            <td>Jumlah Uang Muka : &nbsp; <?php echo $print->label8; ?></td>     
-                          <tr>
-                            <td>Selisih Kurang/Lebih : &nbsp; <?php echo $print->label9; ?></td>                                
-                          </tr>                              
-                          <?php }  ?>
-                        </tbody>
-                      </table>
-                      <br>
-                      <table width="100%">
-                      <tbody>
-                          <tr>
-                            <td>Pemohon, <br><br><br><br></td>
-                            <td>Menyetujui, <br><br><br><br></td>
-                          </tr>
-                          <tr>
-                            <td>Nama : &nbsp; <?php echo $get->display_name?></td>
-                            <td>Nama Approval : </td>
-                          </tr>
-                          <tr>
-                            <td>Jabatan : &nbsp; <?php echo $get->jabatan?></td>
-                            <td>Jabatan : &nbsp; </td>
-                          </tr>                            
-                      </tbody>
-                      </table>
-                      </h5>
-                      <hr style=" border: 0.5px solid #000;">
-                      <h6>
-                      <table style="font-family: calibri;" width="100%">
-                      <tbody>
-                          <tr>
-                            <td colspan="5"><center><b>Perhitungan Pajak (*diisi oleh CSF)</b></center></td>
-                          </tr>
-                          <tr>
-                            <td><center><b>Jenis Pajak </b></center></td>
-                            <td><center><b>Tarif </b></center></td>
-                            <td width="100"><center><b>DPP </b></center></td>
-                            <td width="100"><center><b>Gross Up </b></center>  </td>
-                            <td><center><b>Pajak Terhitung </b></center>  </td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 21/26</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 22</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 23/26</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPh Pasal 4(2)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>PPN WAPU/PPN Offshore</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>                                                          
-                      </tbody>
-                      </table>
-                    </h6>
-                </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="printThis()">Print</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
     
 <script>
+function deletedraftpayment(id,$vscreen)
+    {
+			$.ajax({
+				url : "<?php echo base_url('Approval/draftpaymentdelete')?>/"+id,
+				type: "POST",
+				dataType: "JSON",
+				success: function(data)
+				{       
+          alert('Data Successfully Deleted');        
+					location.href=$vscreen;
+					//location.reload();
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
+			});
+    }
+
 function printThis() {
   window.print();
 }
@@ -1143,6 +865,93 @@ function printThis() {
 <script>
 function update() {
   alert("Data Successfully to Update");
+}
+
+function hide() {
+  var checkBox = document.getElementById("checked");
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  var text1 = document.getElementById("show");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+  document.getElementById("checkcreditcard").checked = false;
+}
+
+function hide2() {
+  var checkBox = document.getElementById("checked").disabled = true;
+  var checkBox1 = document.getElementById("auto").disabled = true;
+  var checkBox2 = document.getElementById("checked2");
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var checkBox4 = document.getElementById("checkrequest").disabled = true;
+  var text1 = document.getElementById("show");
+  var text2 = document.getElementById("choose");
+
+  if (checkBox.checked == false && checkBox2.checked == false ){
+    text1.style.display = "block";
+    text2.style.display = "block";
+  } else {
+     text1.style.display = "none";
+     text2.style.display = "none";
+  }
+
+}
+
+function checkUangMuka() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checksettlement").disabled = true;
+  var text = document.getElementById("show");
+
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checkrequest").checked == false){
+    document.getElementById("auto").checked=false
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  } 
+  // alert(checkrequest);
+}
+
+function checkCreditCard() {
+
+  if($("#checkcreditcard").is(':checked')){
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', true);
+    $('#checked2').prop('checked', false);
+  }else{
+    $('#auto').prop('checked', false);
+    $('#checkrequest').prop('checked', false);
+    $('#checksettlement').prop('checked', false);
+    $('#checked').prop('checked', false);
+    $('#checked2').prop('checked', false);
+  }
+}
+
+function checkUangMuka2() {
+  // alert();
+  var checkBox1 = document.getElementById("checked").disabled = true;
+  var checkBox2 = document.getElementById("checked2").disabled = true;
+  var checkBox3 = document.getElementById("checkrequest").disabled = true;
+  var text2 = document.getElementById("choose");
+  document.getElementById("auto").checked = true;
+  if (document.getElementById("checksettlement").checked == false){
+    document.getElementById("auto").checked=false
+    text2.style.display = "block";
+  } else {
+    text2.style.display = "none";
+  }
 }
 </script>
     <!-- jQuery 2.2.3 -->

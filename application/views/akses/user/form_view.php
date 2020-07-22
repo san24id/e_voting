@@ -718,8 +718,10 @@
                                 </div> 									  
                               <div class="modal-body">
                                 <form id="approve" method="post" action="Home/approve">
-                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <p align="justify">Apa kamu yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">  
+                                    <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
+                                    <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                                    <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
                                   <div class="modal-footer">                        
                                     <button type="submit" class="btn btn-success bye">Yes</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -758,38 +760,7 @@
                             </div>
                                                       
                           <?php } ?>
-                        <?php } ?>  
-
-                        <?php if($row->status == 11){ ?>  
-						
-                        <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-                          <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
-                            <!----.Modal -->
-                            <!----.Accept -->
-                            <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                              <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h3 class="modal-title">Message Box</h3>
-                                  </div>                                        
-                                  <div class="modal-body">
-                                <form id="accepted" method="post" action="Home/submit">
-                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
-                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
-                                </div>
-                                <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </form>
-                                </div>
-                              </div>
-                              </div>
-                            </div>  
-                          <?php } ?>  
-                        <?php } ?>  
+                        <?php } ?>                            
 
                         <?php if($row->status == 1 && $iya == "OFF" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
@@ -806,7 +777,7 @@
                                   <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                     <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                   <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa kamu yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
                                 <button type="submit" class="btn btn-success bye">Yes</button>
@@ -875,7 +846,8 @@ function deletedraftpayment(id,$vscreen)
 				type: "POST",
 				dataType: "JSON",
 				success: function(data)
-				{               
+				{       
+          alert('Data Successfully Deleted');        
 					location.href=$vscreen;
 					//location.reload();
 				},

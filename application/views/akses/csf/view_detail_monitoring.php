@@ -50,15 +50,15 @@
         <?php echo $this->session->userdata("titleHeader"); 
 		
 		$divpayment='';
-		$divcreditcard='';
-		if($this->session->userdata('filter')=='6'){
-			$divcreditcard=' ';
-			$divpayment='style="display:none;"';
-		}else{
-			$divpayment=' ';
-			$divcreditcard='style="display:none;"';
-		}
-		?>     
+		// $divcreditcard='';
+		// if($this->session->userdata('filter')=='6'){
+		// 	$divcreditcard=' ';
+		// 	$divpayment='style="display:none;"';
+		// }else{
+		// 	$divpayment=' ';
+		// 	$divcreditcard='style="display:none;"';
+		// }
+		// ?>     
       </h1> 
     </section>
 
@@ -212,7 +212,7 @@
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
                       <th>Penerima Pembayaran</th>
-                      <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
+					  <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
 												 
                       <th>Action</th>
                     </tr>
@@ -279,12 +279,12 @@
                     <td><?php echo $buka; ?></td>
                     <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
                     <td>
-                      <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
-                      <?php if($row->status=="0" || $row->status=="1"){ 
-                      if($this->session->userdata("id_user")==$row->id_user){ ?>
-                        <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
-                      <?php } } ?>
-                    </td>      
+                      <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> &nbsp;
+					  <?php if($row->status=="0" || $row->status=="1"){ 
+					  if($this->session->userdata("id_user")==$row->id_user){  ?>
+					  <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+					  <?php }} ?>
+					</td>      
                     </tr>
                 <?php  } ?>
                 </tbody>
@@ -292,31 +292,43 @@
                 </div>
 				<div class="box-footer">  
 					<div class="form-group">
-						<!--- <label class="control-label col-md-1"><i>Legend</i></label> -->
 						<?php 
 							$filter=$this->session->userdata('filter');
+						
+						
 							switch ($filter) {
 							  case "1":
-								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp;Draft</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp;Draft(Print)</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+								  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+								  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
 								break;
 							  case "2":
-								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+							  	echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+						  		echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
+					  			echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
+				  				echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
+			  					echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+		  						echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp;Paid</div>";
 								break;
 							  case "3":
-								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp;Draft</div>";
-								echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp;Draft(Print)</div>";
-								break;
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
+
+                break;
+                case "4":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
+
+                break;
+                case "5":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+
+                break;
+                case "6":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp;Paid</div>";
+
+                break;
 							  default:
 								echo "";																				
 							}
@@ -332,60 +344,11 @@
         </div>  
 		</div>
 		
-		<div class="row" id="divCreditCard" <?php echo $divcreditcard;?>>
-            <div class="col-xs-12">
-            <!-- /.box -->
-            <div class="box">
-                <!-- /.box-header -->
-                <div class="box-body">
-                <div class="table-responsive">
-                    <table id="example2" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Divisi</th>
-                      <th>Pemegang Kartu</th>
-                      <th>Nama PIC</th>
-                      <th>Target Submission</th>
-                      <th>Jatuh Tempo</th>
-                      <th>Jumlah</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php 
-                        $i = 1;
-                        foreach ($creditcard as $row){ 
-                        ?>
-                    <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td><?php echo $row->division_id; ?></td>                  
-                    <td><?php echo $row->pemegang_kartu; ?></td>
-                    <td><?php echo $row->nama_pic; ?></td>
-                    <td><?php echo $row->target_submission; ?></td>
-                    <td><?php echo $row->tempo; ?></td>
-                    <td><?php echo $row->jatah; ?></td> 
-                    </tr>
-                <?php  } ?>
-                </tbody>
-                </table>
-                </div>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-            </div>
-            <!-- /.col -->
-        </div>  
-                
-    </section>
-    <!-- /.content -->
-
+		
 <!-- <section class="content">
       <div class="row">
         <div class="col-xs-12 col-md-4">
-						
           <div class="box">
-								 
             <div class="box-body">            
               <table id="" class="table table-bordered table-striped">
                 <thead>
@@ -555,7 +518,7 @@ $(function () {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('Approval/caridatadashboard') ?>";
+	  url = "<?php echo base_url('dashboard/caridatadashboard') ?>";
       $.ajax({
             url : url,
             type: "POST",
@@ -638,9 +601,8 @@ $(function () {
 	
 	function deletedraftpayment(id)
     {
-		
 			$.ajax({
-				url : "<?php echo base_url('Approval/draftpaymentdelete')?>/"+id,
+				url : "<?php echo base_url('dashboard/draftpaymentdelete')?>/"+id,
 				type: "POST",
 				dataType: "JSON",
 				success: function(data)
@@ -649,7 +611,6 @@ $(function () {
 				},
 				error: function (jqXHR, textStatus, errorThrown)
 				{
-					
 					alert('Error deleting data');
 				}
 			});

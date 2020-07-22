@@ -18,7 +18,7 @@
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
 						  <li class="active"><a href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED </b></a></li>
-						  <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li>
+						  <!-- <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li> -->
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab_1">						  
@@ -30,8 +30,8 @@
 										<tr>
 										  <th>NO.</th>
 										  <th>Rejected Date</th>
-										  <th>From</th>
-										  <th>To</th>
+										  <th>Dari</th>
+										  <th>Kepada</th>
 										  <th>Nomor SP3</th>
 										  <th>Deskripsi</th>
 										  <th>Nama Pemohon</th>

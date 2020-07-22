@@ -85,7 +85,13 @@
         Data Pengajuan Payment        
       </h1> -->
     </section>
-
+    <?php if ($start_date && $end_date){
+        $start_date = $start_date;
+        $end_date = $end_date;
+    }else{
+        $start_date = 1;
+        $end_date = 1;
+    } ?>
     <section class="content">
           <div class="col-md-7">
             <div class="box-body">
@@ -107,10 +113,10 @@
                         <td class="period"><font color="white" size="3">Period: </font></td>
                         <td></td>
                         <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo date("01-01-Y"); ?>"></td>
+                        <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo $start_date; ?>"></td>
                         <td><font size="3">s/d</font></td>
                         <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo date("d-m-Y"); ?>"></td>
+                        <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo $end_date; ?>"></td>
                         <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
                       </tr>
                     <?php echo form_close();?>  
@@ -126,7 +132,7 @@
                       <div class="lingkaran1 panel panel-primary">
                         <br><br><br>
                         <?php foreach ($processing as $process) { ?>
-                        <center><font size="10"> <?php echo $process->process; ?> </font></center>
+                        <a href="<?php echo base_url('dashboard/all_detail_monitoring/1/'.$start_date.'/'.$end_date)?>"><center><font size="10" color="black"> <?php echo $process->process; ?> </font></center></a>
                         <?php } ?>
                       </div>
                       <div class="sembilan"><center><font size='5' color="white"> Waiting for Processing </font></center></div>
@@ -142,7 +148,7 @@
                           <tr>
                             <td><font size="5">&nbsp; &nbsp; <b>TOTAL REQUEST</b> </font></td>
                             <?php foreach ($tot_pay_req as $tot_req) { ?>
-                            <td width="15%"><font size='6'><center><b><?php echo $tot_req->totalreq; ?><b></center></font> </td>                              
+                            <td width="15%"><a href="<?php echo base_url('dashboard/all_detail_monitoring/2/'.$start_date.'/'.$end_date)?>"><center><b><font size='6' color="grey"><?php echo $tot_req->totalreq; ?><b></center></a></font> </td>                              
                             <?php } ?>
                           </tr>
                           <tr> 
@@ -152,35 +158,35 @@
                           <tr>
                             <td><font size="3">&nbsp; &nbsp; Waiting for processing / Submitted by users </font></td>
                             <?php foreach ($processing as $process) { ?>
-                            <td width="15%"><div class="satu"><font size='5' color="white"><center><?php echo $process->process; ?></center></div> </td>
+                            <td width="15%"><div class="satu"><a href="<?php echo base_url('dashboard/all_detail_monitoring/1/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $process->process; ?></center></a></div> </td>
                             
                             <?php } ?>
                           </tr>
                           <tr>
                             <td><font size="3">&nbsp; &nbsp; Processing</font></td>
                             <?php foreach ($gprocess as $tot_process) { ?>
-                            <td><div class="dua"><font size='5'><center><?php echo $tot_process->totalstatus; ?></center></div> </td>
+                            <td><div class="dua"><a href="<?php echo base_url('dashboard/all_detail_monitoring/3/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"><center><?php echo $tot_process->totalstatus; ?></center></a></div> </td>
                               
                             <?php } ?>
                           </tr>
                           <tr>
                             <td><font size="3">&nbsp; &nbsp; Verified</font></td>
                             <?php foreach ($verifikasi as $verifikasi) { ?>
-                            <td><div class="tiga"><font size='5'><center><?php echo $verifikasi->verifikasi; ?></center></div> </td>
+                            <td><div class="tiga"><a href="<?php echo base_url('dashboard/all_detail_monitoring/4/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"><center><?php echo $verifikasi->verifikasi; ?></center></a></div> </td>
                             
                             <?php } ?>
                           </tr>
                           <tr>
                             <td><font size="3">&nbsp; &nbsp; Approved</font></td>
                             <?php foreach ($approval as $approval) { ?>
-                            <td><div class="empat"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></div> </td>
+                            <td><div class="empat"><a href="<?php echo base_url('dashboard/all_detail_monitoring/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></a></div> </td>
                                 
                             <?php } ?>
                           </tr>
                           <tr>
                             <td><font size="3">&nbsp; &nbsp; Paid</font></td>
                             <?php foreach ($Paid as $Paid) { ?>
-                            <td><div class="lima"><font size='5' color="white"><center><?php echo $Paid->paid;?></center></div> </td>
+                            <td><div class="lima"><a href="<?php echo base_url('dashboard/all_detail_monitoring/6/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $Paid->paid;?></center></a></div> </td>
                             <?php } ?>
                           </tr>
 

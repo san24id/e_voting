@@ -344,7 +344,7 @@
                     <tr>
                       <th>No.</th>
                       <th>Divisi</th>
-                      <th>Pemegang Karut</th>
+                      <th>Pemegang Kartu</th>
                       <th>Nama PIC</th>
                       <th>Target Submission</th>
                       <th>Jatuh Tempo</th>

@@ -35,7 +35,13 @@
         Data Pengajuan Payment        
       </h1> -->
     </section>
-
+    <?php if ($start_date && $end_date){
+              $start_date = $start_date;
+              $end_date = $end_date;
+          }else{
+              $start_date = 1;
+              $end_date = 1;
+          } ?>
     <section class="content">    
       <div class="col-md-6">
         <div class="box-body">
@@ -58,10 +64,10 @@
                   <td class="period"><font color="white" size="3">Period: </font></td>
                   <td></td>
                   <td class="period"><font color="white" size="3"> Date </font></td>
-                  <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo date("01-01-Y"); ?>"></td>
+                  <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo $start_date; ?>"></td>
                   <td><font size="3">s/d</font></td>
                   <td class="period"><font color="white" size="3"> Date </font></td>
-                  <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo date("d-m-Y"); ?>"></td>
+                  <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo $end_date; ?>"></td>
                   <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
                 </tr>
               <?php echo form_close();?>  

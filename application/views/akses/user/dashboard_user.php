@@ -93,7 +93,7 @@
               <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
-          <p>**) Seluruh SP3 yang sudah di submit ke CSF dan belum dibayar</p>
+          <p>**) Jumlah SP3 yang sedang diproses oleh CSF dan belum dibayar</p>
 
           </div>            
           <!-- /.col -->
@@ -565,6 +565,7 @@ function deletedraftpayment(id)
 				dataType: "JSON",
 				success: function(data)
 				{               
+          alert('Data Succesfully Deleted');
 					location.reload();
 				},
 				error: function (jqXHR, textStatus, errorThrown)

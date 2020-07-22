@@ -733,7 +733,9 @@
                                 </div>                                        
                                 <div class="modal-body">
                                 <form id="approve" method="post" action="dashboard/approve">
-                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>"> 
+                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
+                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                                   <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
@@ -771,39 +773,7 @@
                               </div>
                             </div>                                                      
                           <?php } ?>                          
-                        <?php } ?>  
-
-                          <?php if($row->status == 11){ ?>
-                            <!-- <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>   -->
-                            <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-
-                              <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
-                              <!----.Modal -->
-                              <!----.Submit -->
-                              <div class="modal fade" id="submit<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h3 class="modal-title">Message Box</h3>
-                                  </div>                                        
-                                  <div class="modal-body">
-                                  <form id="accepted" method="post" action="dashboard/accept">
-                                    <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                    <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
-                                    <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
-                                  </div>
-                                  <div class="modal-footer">                        
-                                  <button type="submit" class="btn btn-success bye">Yes</button>
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </form>
-                                  </div>
-                                </div>
-                                </div>
-                              </div>  
-                            <?php } ?>  
-                          <?php } ?>  
+                        <?php } ?>                             
 
                         <?php if($row->status == 1 && $iya == "OFF" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
@@ -894,7 +864,7 @@ function deletedraftpayment(id,$vscreen)
 				dataType: "JSON",
 				success: function(data)
 				{               
-				
+          alert('Data Succesfully Deleted');
 					location.href=$vscreen;
 					//location.reload();
 				},
