@@ -161,7 +161,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" placeholder="Jumlah" > </td>
+                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" onkeyup="gettotalvendor()" placeholder="Jumlah" > </td>
 
                         <td><select id="currency2" onchange="mycurrency2()" name="currency2" class="form-control">
                                       <option value="">--Choose--</option>
@@ -171,7 +171,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" placeholder="Jumlah" > </td>
+                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" onkeyup="gettotalvendor()" placeholder="Jumlah" > </td>
 
                         <td><select id="currency3" onchange="mycurrency3()" name="currency3"  class="form-control">
                                       <option value="">--Choose--</option>
@@ -181,7 +181,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" placeholder="Jumlah" > </td>
+                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" onkeyup="gettotalvendor()" placeholder="Jumlah" > </td>
                       </tr>
                       <tr>
                         <td colspan="2">&nbsp;</td>
@@ -446,9 +446,9 @@
                     </table>
 
                     <br>
-					        <div id="show" style="display:none">
+					<div id="show" style="display:none">
                     <!--<table  style="font-family: calibri;display:none" width="70%"; > -->
-					          <table  style="font-family: calibri;" width="70%"; >
+					<table  style="font-family: calibri;" width="70%"; >
                       <tbody>
                       <tr>
                         <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
@@ -456,10 +456,10 @@
                       <tr>
                         <td><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
                         <td>:&nbsp;</td>
-                        <td><select id="arf_number" name="label5"  class="form-control">
+                        <td class="col-md-2"><select id="arf_number" name="label5"  class="form-control select2">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($getlistarf as $arf) {?>
-										<option value="<?php echo $arf->apf_doc; ?>"><?php echo $arf->apf_doc; ?> - <?php echo $arf->description; ?></option>
+                                      <option value="<?php echo $arf->apf_doc; ?>"><?php echo $arf->apf_doc; ?> - <?php echo $arf->description; ?></option>
 
                                 <?php } ?>
                               </select>
@@ -479,15 +479,15 @@
                         <td colspan="3">&nbsp;</td>
                         <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						            <td><center><b> Curr</b></center></td>
+						<td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						            <td><center><b> Curr</b></center></td>
+						<td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
                         <td>Jumlah Biaya <font color="red"> * </font></td>
                         <td>:</td>
-						            <td colspan="2">&nbsp;</td>
+						<td colspan="2">&nbsp;</td>
                         <td><select id="curr1"  name="curr1" class="form-control">
                                       <option value="">--Choose--</option>
                                       <?php foreach ($currency as $get) {?>
@@ -516,31 +516,31 @@
 						            <center><p id="demob" style="display:none;">  </p></td>
                         <td><input id="biayab" onchange="penjumlahanb()" type="text" class="form-control" name="label7b" placeholder="Enter Text"></input><td>
                       </tr>
-					            <tr>
+					  <tr>
                         <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
-						            <td colspan="2">&nbsp;</td>
+						<td colspan="2">&nbsp;</td>
                         <td><center><p id="demo2" style="display:none;">  </p></td>
                         <td><input id="uangmuka" onchange="penjumlahan()" type="text" class="form-control" name="label8" placeholder="Enter Text"></input></td>     
-						            <td><center><p id="demo2a" style="display:none;">  </p></td>
+						<td><center><p id="demo2a" style="display:none;">  </p></td>
                         <td><input id="uangmukaa" onchange="penjumlahana()" type="text" class="form-control" name="label8a" placeholder="Enter Text"></input></td>     
-						            <td><center><p id="demo2b" style="display:none;">  </p></td>
+						<td><center><p id="demo2b" style="display:none;">  </p></td>
                         <td><input id="uangmukab" onchange="penjumlahanb()" type="text" class="form-control" name="label8b" placeholder="Enter Text"></input></td>     
                       </tr>
-					            <tr>
+					  <tr>
                         <td>Selisih Kurang/(Lebih)</td> 
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td><center><p id="demo3" style="display:none;">  </p></td>
                         <td><input type="text" id="hasil" class="form-control" name="label9" placeholder="Enter Text" readonly></input></td>                               
-						            <td><center><p id="demo3a" style="display:none;">  </p></td>
+						<td><center><p id="demo3a" style="display:none;">  </p></td>
                         <td><input type="text" id="hasila" class="form-control" name="label9a" placeholder="Enter Text" readonly></input></td>                               
-						            <td><center><p id="demo3b" style="display:none;">  </p></td>
+						<td><center><p id="demo3b" style="display:none;">  </p></td>
                         <td><input type="text" id="hasilb" class="form-control" name="label9b" placeholder="Enter Text" readonly></input></td>                               
                       </tr>                              
                       </tbody>
                     </table>
-					        </div>
+					</div>
                   </div>  
                 </div>    
 
@@ -1645,6 +1645,7 @@ function AddIndeks(){
 			
     $('#penerimavendor1').select2(); 
 	$('#bankvendor1').select2();  
+	$('#arf_number').select2();  
 	
 	   
 	function RemoveIndeks(param){
@@ -1674,6 +1675,9 @@ function AddIndeks(){
 		var curr2 = document.getElementById('currency2').value;
 		var curr3 = document.getElementById('currency3').value;
 		var kdv = document.getElementsByName('kodevendor[]');
+		var jml1 = document.getElementsByName('label2');
+		var jml2 = document.getElementsByName('jumlah2');
+		var jml3 = document.getElementsByName('jumlah3');
 		
 		var errmsg = '0';
 		for (var i = 0; i <inps.length; i++) {
@@ -1682,10 +1686,27 @@ function AddIndeks(){
 			var inpcurX=inpcur.value;
 			var xj=inp.value.trim();
 			var kdvX=kdv[i].value;
-				
+			var inp1=jml1[i];
+			var inp2=jml2[i];
+			var inp3=jml3[i];
+			var xj1=inp1.value.trim();
+			var xj2=inp2.value.trim();
+			var xj3=inp3.value.trim();		
+
 			if(xj.substr(0,1)=="0" && xj.length >1){
 				xj=xj.substr(1,xj.length);
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
+			}
+			if(xj1.substr(0,1)=="0" && xj1.length >1){
+				xj1=xj1.substr(1,xj1.length);
+				jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
+			}
+			if(xj2.substr(0,1)=="0" && xj2.length >1){
+				xj2=xj2.substr(1,xj2.length);
+				jml2[i].value=formatRupiah(xj2.replace(/[^,\d]/g, '').toString());
+			}if(xj3.substr(0,1)=="0" && xj3.length >1){
+				xj3=xj3.substr(1,xj3.length);
+				jml3[i].value=formatRupiah(xj3.replace(/[^,\d]/g, '').toString());
 			}
 			if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
@@ -1695,7 +1716,8 @@ function AddIndeks(){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
+					errmsg="Mata Uang yang dipilih Harus Sama!";
+					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 				}
 			}
 			if(errmsg=="0"){
