@@ -723,7 +723,7 @@ class Dashboard_model extends CI_Model{
                 jabatan, persetujuan_pembayaran1, persetujuan_pembayaran2, persetujuan_pembayaran3, jabatan1, jabatan2, jabatan3, catatan, total_expenses, total_expenses2, total_expenses3, cash_advance, 
                 cash_advance2, cash_advance3, piutang, piutang2, piutang3, metode_pembayaran, bank, no_rek, handled_by, rejected_by, rejected_date, note ) 
 
-        VALUES ('".$add['id_payment']."','".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['pr_doc']."','".$add['apf_doc']."','".$add['apf1_doc']."',
+        VALUES ('".$add['id_payment']."','".$add['display_name']."','".$add['type']."','".$add['status']."','".$add['tanggal']."','".$add['tanggal2']."','".$add['pr_doc']."','".$add['apf_doc']."','".$add['apf1_doc']."',
                 '".$add['nomor_surat']."','".$add['kode_proyek']."','".$add['division_id']."','".$add['tanggal_selesai']."','".$add['label1']."','".$add['label2']."','".$add['description']."','".$add['description2']."',
                 '".$add['description3']."','".$add['description4']."','".$add['description5']."','".$add['description6']."','".$add['description7']."','".$add['description8']."','".$add['description9']."',
                 '".$add['description10']."','".$add['description11']."','".$add['description12']."','".$add['currency']."','".$add['currency1']."','".$add['currency2']."','".$add['currency3']."','".$add['currency4']."',
