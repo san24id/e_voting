@@ -120,8 +120,8 @@
                       <tbody>                            
                       <tr>
                       <td>Kepada : Divisi CSF</td>
-                      <td align="right">Tanggal : <?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?></td>
-                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d-M-Y'); ?>">
+                      <td align="right">Tanggal : <?php echo date('d-M-Y'); ?></td>
+                        <input type="hidden" name="tanggal" class="form-control" value="<?php echo date('d-M-Y'); ?>">
                         <input type="hidden" name="tanggal2" value="<?php echo date('Y-m-d');?>">
                       </tr>
                       <tr>
