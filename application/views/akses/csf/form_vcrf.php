@@ -251,17 +251,17 @@ td[rowspan="3"] {
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Dian Puspitasari </td>
                           <td colspan="2" width="10%">No. Bilyet: </td>
                           <td colspan="2"> </td>
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; VP Treasury </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Cashier </td>
                           <td colspan="2" width="10%"><i>Check No.:</i> </td>
                           <td colspan="2"> </td>
                         </tr>

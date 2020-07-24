@@ -279,15 +279,15 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Fitri Dwi Arianawati </td>
                           <td colspan="2" width="10%">Nama/ <i>Name</i> </td>
-                          <td colspan="2"> </td>        
+                          <td colspan="2">&nbsp; Dian Puspitasari </td>        
                         </tr>
                         <tr>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; VP Treasury </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
-                          <td colspan="2"> </td>
+                          <td colspan="2">&nbsp; Cashier </td>
                         </tr>                      
                       </tbody> 
                     </table>
@@ -357,6 +357,7 @@ td[rowspan="6"] {
                           <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <textarea type="text" name="note" class="form-control" required></textarea>
+                          <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                           <input type="hidden" name="rejected_date" value="<?php echo date("d-M-Y");?>">
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
