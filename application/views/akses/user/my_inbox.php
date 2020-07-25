@@ -22,8 +22,7 @@
                 <tr>
                   <th>NO.</th>
                   <th>Tanggal Reject</th>
-                  <th>Dari</th>
-                  <th>Kepada</th>
+                  <th>Reject Dari</th>
                   <th>Deskripsi</th>
                   <th>Nama Pemohon</th>
                   <th>Note</th>
@@ -39,7 +38,6 @@
                   <td><?php echo $i++; ?></td>                  
                   <td><?php echo $row->rejected_date; ?></td>
                   <td><?php echo $row->rejected_by; ?>  </td>
-                  <td><?php echo $row->division_id; ?> </td>
                   <td><?php echo $row->label1;?> </td>
                   <td><?php echo $row->display_name;?> </td>
                   <td><?php echo $row->note;?> </td>

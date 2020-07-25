@@ -35,7 +35,7 @@ class Home_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
-                AND status in ('0','1','2','4','5','6','7','8','9','11') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                AND status in ('0','1','2','3','4','5','6','7','8','9','11') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
         return $query;

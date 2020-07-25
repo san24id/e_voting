@@ -229,7 +229,7 @@
                               <?php } ?>
                             </select>
                         </td>
-                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" onkeyup="gettotalvendor()" value="<?php echo $row->label2; ?>"></td>
+                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" onkeyup="getnominal1()" value="<?php echo $row->label2; ?>"></td>
                         
                         <td><select id="currency2" name="currency2" onchange="mycurrency2()" class="form-control">
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
@@ -239,7 +239,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" onkeyup="gettotalvendor()" value="<?php echo $row->jumlah2; ?>" > </td>
+                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" onkeyup="get2nominal2()" value="<?php echo $row->jumlah2; ?>" > </td>
 
                         <td><select id="currency3" name="currency3" onchange="mycurrency3()" class="form-control">
                                 <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>
@@ -249,7 +249,7 @@
                                 <?php } ?>
                               </select>
                         </td>
-                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" onkeyup="gettotalvendor()" value="<?php echo $row->jumlah3; ?>" > </td>          
+                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" onkeyup="getnominal3()" value="<?php echo $row->jumlah3; ?>" > </td>          
                       </tr>                                                 
                       </tbody>
                     </table>
@@ -1581,6 +1581,54 @@ function AddIndeks(){
 		gettotalvendor();
 	}
 	
+  function getnominal1(){
+		var jml1 = document.getElementsByName('label2');
+		
+		var errmsg = '0';
+		for (var i = 0; i <jml1.length; i ++){
+			var inp1=jml1[i];
+			var xj1=inp1.value.trim();
+
+			if(xj1.substr(0,1)=="0" && xj1.length >1){
+				xj1=xj1.substr(1,xj1.length);
+				jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
+			}
+		}
+		
+	}
+
+	function get2nominal2(){
+		var jml2 = document.getElementsByName('jumlah2');
+		
+		var errmsg = '0';
+		for (var a = 0; a <jml2.length; a ++){
+			var inp2=jml2[a];
+			var xj2=inp2.value.trim();
+
+			if(xj2.substr(0,1)=="0" && xj2.length >1){
+				xj2=xj2.substr(1,xj2.length);
+				jml2[a].value=formatRupiah(xj2.replace(/[^,\d]/g, '').toString());
+			}
+		}
+		
+	}
+
+	function getnominal3(){
+		var jml3 = document.getElementsByName('jumlah3');
+		
+		var errmsg = '0';
+		for (var d = 0; d <jml3.length; d ++){
+			var inp3=jml3[d];
+			var xj3=inp3.value.trim();
+
+			if(xj3.substr(0,1)=="0" && xj3.length >1){
+				xj3=xj3.substr(1,xj3.length);
+				jml3[d].value=formatRupiah(xj3.replace(/[^,\d]/g, '').toString());
+			}
+		}
+		
+	}
+
 	function gettotalvendor(){
 		var itotal1=0;
 		var itotal2=0;
@@ -1591,10 +1639,7 @@ function AddIndeks(){
 		var curr2 = document.getElementById('currency2').value;
 		var curr3 = document.getElementById('currency3').value;
 		var kdv = document.getElementsByName('kodevendor[]');
-    var jml1 = document.getElementsByName('label2');
-		var jml2 = document.getElementsByName('jumlah2');
-		var jml3 = document.getElementsByName('jumlah3');
-
+    
 		var errmsg = '0';
 		for (var i = 0; i <inps.length; i++) {
 			var inp=inps[i];
@@ -1602,28 +1647,12 @@ function AddIndeks(){
 			var inpcurX=inpcur.value;
 			var xj=inp.value.trim();
 			var kdvX=kdv[i].value;
-      var inp1=jml1[i];
-			var inp2=jml2[i];
-			var inp3=jml3[i];
-			var xj1=inp1.value.trim();
-			var xj2=inp2.value.trim();
-			var xj3=inp3.value.trim();		
 
 			if(xj.substr(0,1)=="0" && xj.length >1){
 				xj=xj.substr(1,xj.length);
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
-      if(xj1.substr(0,1)=="0" && xj1.length >1){
-				xj1=xj1.substr(1,xj1.length);
-				jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
-			}
-			if(xj2.substr(0,1)=="0" && xj2.length >1){
-				xj2=xj2.substr(1,xj2.length);
-				jml2[i].value=formatRupiah(xj2.replace(/[^,\d]/g, '').toString());
-			}if(xj3.substr(0,1)=="0" && xj3.length >1){
-				xj3=xj3.substr(1,xj3.length);
-				jml3[i].value=formatRupiah(xj3.replace(/[^,\d]/g, '').toString());
-			}
+      
 			if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";

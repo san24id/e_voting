@@ -35,8 +35,7 @@
 										<tr>
 										  <th>NO.</th>
 										  <th>Tanggal Reject</th>
-										  <th>Dari</th>
-										  <th>Kepada</th>
+										  <th>Reject Dari</th>
 										  <th>Nomor SP3</th>
 										  <th>Deskripsi</th>
 										  <th>Nama Pemohon</th>
@@ -53,7 +52,6 @@
 										  <td><?php echo $i++; ?></td>                  
 										  <td><?php echo $row->rejected_date; ?></td>
 										  <td><?php echo $row->rejected_by; ?>  </td>
-										  <td><?php echo $row->division_id; ?> </td>
 										  <td><?php echo $row->nomor_surat; ?> </td>
 										  <td><?php echo $row->label1;?> </td>
 										  <td><?php echo $row->display_name;?> </td>
@@ -80,8 +78,7 @@
 										<tr>
 										  <th>NO.</th>
 										  <th>Tanggal Reject</th>
-										  <th>Dari</th>
-										  <th>Kepada</th>
+										  <th>Reject Dari</th>
 										  <th>Nomor SP3</th>
 										  <th>Deskripsi</th>
 										  <th>Reason</th>
@@ -107,7 +104,6 @@
 												}
 											?>
 										  <td><?php echo $buka; ?>  </td>
-										  <td><?php echo $row->division_id; ?> </td>
 										  <td><?php echo $row->nomor_surat; ?> </td>
 										  <td><?php echo $row->label1;?> </td>
 										  <td><?php echo $row->note;?> </td>
@@ -153,8 +149,7 @@
 										<tr>
 										  <th>NO.</th>
 										  <th>Tanggal Reject</th>
-										  <th>Dari</th>
-										  <th>Kepada</th>
+										  <th>Reject Dari</th>
 										  <th>Nomor SP3</th>
 										  <th>Nomor APF</th>
 										  <th>Deskripsi</th>
@@ -181,7 +176,6 @@
 												}
 											?>
 										  <td><?php echo $buka; ?>  </td>
-										  <td><?php echo $row->division_id; ?> </td>
 										  <td><?php echo $row->nomor_surat; ?> </td>
 										  <td> <?php echo $row->apf_doc;?> </td>
 										  <td><?php echo $row->description;?> </td>
@@ -208,8 +202,7 @@
 										<tr>
 										  <th>NO.</th>
 										  <th>Tanggal Reject</th>
-										  <th>Dari</th>
-										  <th>Kepada</th>
+										  <th>Reject Dari</th>
 										  <th>Nomor SP3</th>
 										  <th>Deskripsi</th>
 										  <th>Reason</th>
@@ -224,7 +217,6 @@
 										  <td><?php echo $i++; ?></td>                  
 										  <td><?php echo $row->rejected_date; ?></td>
 										  <td><?php echo $row->rejected_by; ?>  </td>
-										  <td><?php echo $row->division_id; ?> </td>
 										  <td><?php echo $row->nomor_surat; ?> </td>
 										  <td><?php echo $row->label1;?> </td>
 										  <td><?php echo $row->note;?> </td>

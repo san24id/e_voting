@@ -61,7 +61,7 @@
                         }else if($row->status == 2){
                           echo "<img src='assets/dashboard/images/legend/submitted.png'>&nbsp;Submitted";
                         }else if($row->status == 3){
-                          echo "<img src='assets/dashboard/images/legend/draft.png'> Draft (Print)";
+                          echo "<img src='assets/dashboard/images/legend/draftprint.png'> Draft(Print)";
 						            $nosurat='';
                         }else if($row->status == 4){
                           echo "<img src='assets/dashboard/images/legend/processing.png'> Processing On Tax";
