@@ -297,9 +297,43 @@ td[rowspan="3"] {
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
                     <!-- <a href="Dashboard/report_crf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>                  -->
 
+                    <?php 
+                        if($get->status == 5 && $get->rejected_by != NULL){ ?>
+                        <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+                        <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Send Back To Reviewer</button>
+                        <!---Modal Accept--->
+                        <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content"> 
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title">Message Box</h3>
+                              </div>                                       
+                              <div class="modal-body">
+                              <form id="processed" method="post" action="dashboard/send_back">
+                                <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
+                                <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                                <input type="hidden" name="status" value="6">
+                                <p align="justify">Apa anda yakin akan mengirim kembali Form APF ini : <?=$get->apf_doc?> ?</p>
+                                <label>Kepada CSF Reviewer:</label>    
+                                <input type="hidden" name="handled_by" value="i.akmal">                    
+                                <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
+                                <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                                <input type="hidden" name="status" value="6">
+                              </div>
+                              <div class="modal-footer">                        
+                                  <button type="submit" class="btn btn-success bye">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    <?php } ?>
+
                     <?php if($get->status == 6){ ?>  
                       <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
-                      <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Proceed To Verification</button>
+                      <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-danger">Proceed To Verification</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
@@ -332,7 +366,7 @@ td[rowspan="3"] {
                         </div>
                       </div>
                       
-                      <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
+                      <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-danger">Rejected to Requestor</button>
                       <!---Modal RejectRequestor-->
                       <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
@@ -361,7 +395,7 @@ td[rowspan="3"] {
                         </div>
                       </div> 
 
-                      <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
+                      <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-danger">Returned to Finance</button>
                       <!---Modal RejectedFinance--> 
                       <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
@@ -424,7 +458,7 @@ td[rowspan="3"] {
                       </div>
                     </div>
 
-                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-success">Rejected to Requestor</button>
+                    <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-danger">Rejected to Requestor</button>
                     <!---Modal RejectRequestor-->
                     <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-xl" role="document">
@@ -453,7 +487,7 @@ td[rowspan="3"] {
                       </div>
                     </div> 
 
-                    <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
+                    <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-danger">Returned to Finance</button>
                     <!---Modal RejectedFinance--> 
                     <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-xl" role="document">

@@ -1911,7 +1911,7 @@ class Dashboard extends CI_Controller {
 			'type' => $type,
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
-			'pr_doc' => $_POST['pr_doc'],
+			'pr_doc' => $_POST['pr_doc'].$_POST['nomor_pr'].$_POST['pii'].$_POST['bulan'].$_POST['slash'].$_POST['tahun'],
 			'apf_doc' => $_POST['apf_doc'],
 			'apf1_doc' => $_POST['apf1_doc'],
 			'nomor_surat' => $_POST['nomor_surat'],
@@ -1992,7 +1992,9 @@ class Dashboard extends CI_Controller {
 
 		$this->Dashboard_model->addpay($add);
 		$this->Dashboard_model->updatepay($add[status],$add[nomor_surat],$add[handled_by],$add[rejected_by],$add[rejected_date],$add[note]);
-		redirect('Dashboard/monitoring');
+		// redirect('Dashboard/monitoring');
+		echo json_encode(array("status" => TRUE));
+
 	}
 
 	function edit_pay(){
@@ -2004,9 +2006,9 @@ class Dashboard extends CI_Controller {
 		}		
 		// var_dump($_POST['rejected_by']);exit;
 		if ($_POST['status'] == 5 && $_POST['rejected_by'] != NULL){
-			$status = 6;
-			$handled_by = "i.akmal";
-			$rejected_by = "";
+			$status = 5;
+			$handled_by = "n.prasetyaningrum";
+			// $rejected_by = "";
 			// $nomor_surat = 
 		}else if($_POST['status'] == 6){
 			$status = 6;
@@ -2019,7 +2021,6 @@ class Dashboard extends CI_Controller {
 		// echo $type;
 		// var_dump(count($_POST['type']));exit;
 		$upd = array(
-					
 			
 			'id' => $_POST['id'],
 			'display_name' => $_POST['display_name'],
@@ -2032,6 +2033,7 @@ class Dashboard extends CI_Controller {
 			'tanggal_selesai' => $_POST['tanggal_selesai'],
 			'division_id' => $_POST['division_id'],
 			'label1' => $_POST['label1'],
+			'label2' => $_POST['label2'],
 			'cash_advance' => $_POST['cash_advance'],
 			'piutang' => $_POST['piutang'],
 			'total_expenses' => $_POST['total_expenses'],
@@ -2071,15 +2073,33 @@ class Dashboard extends CI_Controller {
 			'status' => $status,
 			'nomor_surat' => $_POST['nomor_surat'],
 			'handled_by' => $handled_by,
-			'rejected_by' => $rejected_by
+			'rejected_by' => $_POST['rejected_by']
 
 		);
 		// var_dump($_POST['nomor_surat']);exit;
 
 		$this->Dashboard_model->edit_pay($upd);
+		$this->Dashboard_model->change_stat($upd,$upd[status],$upd[handled_by]);
+
+		echo json_encode(array("status" => TRUE));
+		// redirect('Dashboard/my_task');
+	}
+
+	function send_back(){
+		$upd = array(
+			
+			'id' => $_POST['id'],
+			'status' => $_POST['status'],
+			'nomor_surat' => $_POST['nomor_surat'],
+			'handled_by' => $_POST['handled_by'],
+
+		);
+		$this->Dashboard_model->updpay($upd);
 		$this->Dashboard_model->send_back($upd,$upd[status],$upd[handled_by],$upd[rejected_by]);
 		redirect('Dashboard/my_task');
+
 	}
+
 	
 	function updpay(){
 		$c_jp = count($_POST['type']);

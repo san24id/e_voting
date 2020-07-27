@@ -17,10 +17,11 @@ td[rowspan="3"] {
           </h1>
         </section>
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/edit_pay" onsubmit="update()">
+        <form id="form_edit" action="#">
           <?php foreach ($ppayment as $get) { ?>  
-            <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
-            <input type="hidden" name="status" value="<?php echo $get->status?>">
+          <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
+          <input type="hidden" name="handled_by" class="form-control" value="<?php echo $get->handled_by; ?>">
+          <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
           
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
@@ -90,7 +91,7 @@ td[rowspan="3"] {
                                 <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>"></td>
+                          <td><input id="nilai" onkeyup="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>"></td>
                         </tr>
                         <tr>
                           <td><center> 2 </center></td>
@@ -103,7 +104,7 @@ td[rowspan="3"] {
                                 <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>"></td> 
+                          <td><input id="nilai1" onkeyup="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>"></td> 
                         </tr>
                         <tr>
                           <td><center> 3 </center></td>
@@ -116,7 +117,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>"></td> 
+                          <td><input id="nilai2" onkeyup="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>4</center></td>
@@ -129,7 +130,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>"> </td>
+                          <td><input id="nilai3" onkeyup="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>"> </td>
                         </tr>
                         <tr>
                           <td><center>5</center></td>
@@ -142,7 +143,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>"> </td> 
+                          <td><input id="nilai4" onkeyup="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>"> </td> 
                         </tr>
                         <tr>
                           <td><center>6</center></td>
@@ -155,7 +156,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>"></td> 
+                          <td><input id="nilai5" onkeyup="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>"></td> 
                         </tr>
                         
                         <tr>
@@ -169,7 +170,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>">  </td> 
+                          <td><input id="nilai6" onkeyup="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>">  </td> 
                         </tr>
                         <tr>
                           <td><center>8</center></td>
@@ -182,7 +183,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>" ></td> 
+                          <td><input id="nilai7" onkeyup="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>" ></td> 
                         </tr>
                         <tr>
                           <td><center>9</center></td>
@@ -195,7 +196,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>"></td> 
+                          <td><input id="nilai8" onkeyup="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>10</center></td>
@@ -208,7 +209,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>"></td> 
+                          <td><input id="nilai9" onkeyup="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>11</center></td>
@@ -221,7 +222,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai10" onchange="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>"></td> 
+                          <td><input id="nilai10" onkeyup="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>12</center></td>
@@ -234,7 +235,7 @@ td[rowspan="3"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai11" onchange="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>"></td> 
+                          <td><input id="nilai11" onkeyup="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>"></td> 
                         </tr>
 
                         <tr>
@@ -384,7 +385,7 @@ td[rowspan="3"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    <button type="submit" class="btn btn-primary third">Save</button>
+                    <button type="button" id="buttonSave" onclick="saveapf()" class="btn btn-primary">Save</button>
                   </div>
                 </div>                                                 
             </div>
@@ -462,14 +463,14 @@ function myPopup(myURL, myWidth, myHeight) {
             var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
 }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Update!");
-  function update() {
-  location.reload(true);
-        tr.hide();
-  }
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Update!");
+//   function update() {
+//   location.reload(true);
+//         tr.hide();
+//   }
   
-});
+// });
 
 function myFunction(){
   var x = document.getElementById("Select").value;
@@ -502,85 +503,100 @@ function nominal(){
   // alert(k);
   var l = document.getElementById("nilai11").value;
   // alert(l);
-
+    
   var get_x = x.replace(/\D+/g, '');
-  if (x.substr(0,1)=="(" && x.substr(x.length-1,1)==")"){		
+  if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
 		get_x= -Math.abs(get_x);		
   }else{
 	  get_x= Math.abs(get_x);		
   }
   var get_b = b.replace(/\D+/g, '');
-  if (b.substr(0,1)=="(" && b.substr(b.length-1,1)==")"){		
+  if ((b.substr(0,1)=="(" && b.substr(b.length-1,1)==")")|| b.substr(0,1)=="-"){		
 		get_b= -Math.abs(get_b);		
   }else{
 	  get_b= Math.abs(get_b);		
   }
   var get_c = c.replace(/\D+/g, '');
-  if (c.substr(0,1)=="(" && c.substr(c.length-1,1)==")"){		
+  if ((c.substr(0,1)=="(" && c.substr(c.length-1,1)==")")|| c.substr(0,1)=="-"){		
 		get_c= -Math.abs(get_c);		
   }else{
 	  get_c= Math.abs(get_c);		
   }
   var get_d = d.replace(/\D+/g, ''); 
-  if (d.substr(0,1)=="(" && d.substr(d.length-1,1)==")"){		
+  if ((d.substr(0,1)=="(" && d.substr(d.length-1,1)==")")|| d.substr(0,1)=="-"){		
 		get_d= -Math.abs(get_d);		
   }else{
 	  get_d= Math.abs(get_d);		
   }  
   var get_e = e.replace(/\D+/g, '');
-  if (e.substr(0,1)=="(" && e.substr(e.length-1,1)==")"){		
+  if ((e.substr(0,1)=="(" && e.substr(e.length-1,1)==")")|| e.substr(0,1)=="-"){		
 		get_e= -Math.abs(get_e);		
   }else{
 	  get_e= Math.abs(get_e);		
   }
   var get_f = f.replace(/\D+/g, '');
-  if (f.substr(0,1)=="" && f.substr(f.length-1,1)==")"){		
+  if ((f.substr(0,1)=="" && f.substr(f.length-1,1)==")")|| f.substr(0,1)=="-"){		
 		get_f= -Math.abs(get_f);		
   }else{
 	  get_f= Math.abs(get_f);		
   }
   
   var get_g = g.replace(/\D+/g, '');
-  if (g.substr(0,1)=="(" && g.substr(g.length-1,1)==")"){		
+  if ((g.substr(0,1)=="(" && g.substr(g.length-1,1)==")")|| g.substr(0,1)=="-"){		
 		get_g= -Math.abs(get_g);		
   }else{
 	  get_g= Math.abs(get_g);		
   }
   
   var get_h = h.replace(/\D+/g, '');
-  if (h.substr(0,1)=="(" && h.substr(h.length-1,1)==")"){		
+  if ((h.substr(0,1)=="(" && h.substr(h.length-1,1)==")")|| h.substr(0,1)=="-"){		
 		get_h= -Math.abs(get_h);		
   }else{
 	  get_h= Math.abs(get_h);		
   }
   
   var get_i = i.replace(/\D+/g, '');
-  if (i.substr(0,1)=="(" && i.substr(i.length-1,1)==")"){		
+  if ((i.substr(0,1)=="(" && i.substr(i.length-1,1)==")")|| i.substr(0,1)=="-"){		
 		get_i= -Math.abs(get_i);		
   }else{
 	  get_i= Math.abs(get_i);		
   }
   
   var get_j = j.replace(/\D+/g, '');
-  if (j.substr(0,1)=="(" && j.substr(j.length-1,1)==")"){		
+  if ((j.substr(0,1)=="(" && j.substr(j.length-1,1)==")")|| j.substr(0,1)=="-"){		
 		get_j= -Math.abs(get_j);		
   }else{
 	  get_j= Math.abs(get_j);		
   }
   
   var get_k = k.replace(/\D+/g, '');
-  if (k.substr(0,1)=="(" && k.substr(k.length-1,1)==")"){		
+  if ((k.substr(0,1)=="(" && k.substr(k.length-1,1)==")")|| k.substr(0,1)=="-"){		
 		get_k= -Math.abs(get_k);		
   }else{
 	  get_k= Math.abs(get_k);		
   }
 
   var get_l = l.replace(/\D+/g, '');  
-  if (l.substr(0,1)=="(" && l.substr(l.length-1,1)==")"){		
+  if ((l.substr(0,1)=="(" && l.substr(l.length-1,1)==")")|| l.substr(0,1)=="-"){		
 		get_l= -Math.abs(get_l);		
   }else{
 	  get_l= Math.abs(get_l);		
   }
+  
+  
+  /*var get_x = x.replace(/\./g,'');
+  // alert(get_x);
+  var get_b = b.replace(/\./g,'');
+  var get_c = c.replace(/\./g,'');
+  var get_d = d.replace(/\./g,''); 
+  var get_e = e.replace(/\./g,'');
+  var get_f = f.replace(/\./g,'');
+  var get_g = g.replace(/\./g,'');
+  var get_h = h.replace(/\./g,'');
+  var get_i = i.replace(/\./g,'');
+  var get_j = j.replace(/\./g,'');
+  var get_k = k.replace(/\./g,'');
+  var get_l = l.replace(/\./g,'');*/
 
   var sum_x = Number(get_x) + 0 ;
   var sum_b = Number(get_b) + 0 ;
@@ -597,12 +613,15 @@ function nominal(){
   var sum_l = Number(get_l) + 0 ;
 
   var hasil = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
-  // alert(b)
+  
+  // alert(hasil)
   // if(x && b && c){
-    // document.getElementById("ulang").value = hasil ;
+    //document.getElementById("ulang").value = hasil ;
+    // document.getElementById("ulang1").value = hasil ;
   // }  
-    
-  var bilangan= ''+hasil+'';
+  var bilangan= ''+Math.abs(hasil)+'';
+  // alert(bilangan)
+  
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -679,7 +698,7 @@ function nominal(){
     }
     
     var matauang = document.getElementById("Select").value;
-    // var namamatauang =String(matauang);
+    var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
@@ -713,26 +732,36 @@ function nominal(){
       default:
       muncul = "";
     }
-    
+	
+     if(hasil<0){
+		  kalimat="(" + kalimat + ") ";
+	  }
+	  if(hasil==0){
+		  kalimat="Nol ";
+	  }
+	  
     document.getElementById("terbilang").value=kalimat+muncul;
-    // alert(kalimat);
+    // alert(kalimat);  
 
-  var a = hasil ;
+    var a = hasil ;
+
+// alert(a)
+
   if (a <= 100000000){
     <?php foreach ($d_wewenang as $pejabat) { ?>
       <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
-      document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
-      document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
+      document.getElementById("approval1").value = "<?= $pejabat->nama_user?> ";
+      document.getElementById("jabatan1").value = " <?= $pejabat->jabatan?>";
 
       <?php } else {  ?>
-        document.getElementById("approval1").value = "Salusra Satria";;
+        document.getElementById("approval1").value = "Salusra Satria";
         document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
       <?php } ?>
 
   }else if (a > 100000000 && a <= 500000000) {
     <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "2"){ ?>
-    document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
-    document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
+    document.getElementById("approval1").value = "<?= $pejabat->nama_user?>";
+    document.getElementById("jabatan1").value = "<?= $pejabat->jabatan?>";
 
     <?php } else {  ?>
       document.getElementById("approval1").value = "M. Wahid Sutopo";
@@ -750,8 +779,9 @@ function nominal(){
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
   <?php }?>
 
-  }
+  } 
 
+    // alert(a)
   if (hasil<0){
 	  hasil=Math.abs(hasil);
 	  document.getElementById("ulang").value = "(" + hasil + ")" ;
@@ -762,9 +792,13 @@ function nominal(){
   var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else if (strulang.substr(0,1)=="-" ){
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
-		ulang.value = formatulang(this.value);
-	}  
+		ulang.value = formatulang(strulang);
+	}
+
+  
 }
 
   // Format Separator Id Nilai 
@@ -775,9 +809,12 @@ function nominal(){
     var strnilai =nilai.value;
 	if (strnilai.substr(0,1)=="(" && strnilai.substr(strnilai.length-1,1)==")"){
 		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-2)) + ")";
+	}else if(strnilai.substr(0,1)=="-") {
+		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-1)) + ")";
 	}else{
 		nilai.value = formatnilai(this.value);
 	}
+    //nilai.value = formatnilai(this.value);
   });
 
   /* Fungsi formatnilai */
@@ -803,12 +840,15 @@ function nominal(){
   nilai1.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai1() untuk mengubah angka yang di ketik menjadi format angka
-	var strnilai1 =nilai1.value;
-	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")"){
+	 var strnilai1 =nilai1.value;
+	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")") {
 		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-2)) + ")";
+	}else if(strnilai1.substr(0,1)=="-") {
+		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-1)) + ")";
 	}else{
 		nilai1.value = formatnilai1(this.value);
 	}
+    //nilai1.value = formatnilai1(this.value);
   });
 
   /* Fungsi formatnilai1 */
@@ -829,7 +869,8 @@ function nominal(){
     return prefix == undefined ? nilai1 : (nilai1 ? + nilai1 : '');
   }
 
-  // Format Separator Id Nilai 2
+
+  // // Format Separator Id Nilai 2
   var nilai2 = document.getElementById('nilai2');
   nilai2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
@@ -837,9 +878,12 @@ function nominal(){
     var strnilai2 =nilai2.value;
 	if (strnilai2.substr(0,1)=="(" && strnilai2.substr(strnilai2.length-1,1)==")"){
 		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-2)) + ")";
+	}else if(strnilai2.substr(0,1)=="-") {
+		nilai2.value = "(" + formatnilai2(strnilai2.substr(1,strnilai2.length-1)) + ")";
 	}else{
 		nilai2.value = formatnilai2(this.value);
 	}
+    //nilai2.value = formatnilai2(this.value);
   });
 
   /* Fungsi formatnilai2 */
@@ -860,21 +904,25 @@ function nominal(){
     return prefix == undefined ? nilai2 : (nilai2 ? + nilai2 : '');
   }
 
-  var nilai3 = document.getElementById('nilai3');
+  var nilai3 = document.getElementById('nilai3');  
   nilai3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai3() untuk mengubah angka yang di ketik menjadi format angka	
 	var strnilai3 =nilai3.value;
 	if (strnilai3.substr(0,1)=="(" && strnilai3.substr(strnilai3.length-1,1)==")"){
 		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-2)) + ")";
+	}else if(strnilai3.substr(0,1)=="-") {
+		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-1)) + ")";
 	}else{
 		nilai3.value = formatnilai3(this.value);
 	}
+    //nilai3.value = formatnilai3(this.value);
+    
   });
 
   /* Fungsi formatnilai3 */
-  function formatnilai3(angka, prefix){
-    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
+  function formatnilai3(angka, prefix){	  
+	var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai3     		= split[0].substr(0, sisa),
@@ -897,9 +945,12 @@ function nominal(){
     var strnilai4 =nilai4.value;
 	if (strnilai4.substr(0,1)=="(" && strnilai4.substr(strnilai4.length-1,1)==")"){
 		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-2)) + ")";
+	}else if(strnilai4.substr(0,1)=="-") {
+		nilai4.value = "(" + formatnilai4(strnilai4.substr(1,strnilai4.length-1)) + ")";
 	}else{
 		nilai4.value = formatnilai4(this.value);
 	}
+    //nilai4.value = formatnilai4(this.value);
   });
 
   /* Fungsi formatnilai4 */
@@ -927,9 +978,12 @@ function nominal(){
     var strnilai5 =nilai5.value;
 	if (strnilai5.substr(0,1)=="(" && strnilai5.substr(strnilai5.length-1,1)==")"){
 		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-2)) + ")";
+	}else if(strnilai5.substr(0,1)=="-") {
+		nilai5.value = "(" + formatnilai5(strnilai5.substr(1,strnilai5.length-1)) + ")";
 	}else{
 		nilai5.value = formatnilai5(this.value);
 	}
+    //nilai5.value = formatnilai5(this.value);
   });
 
   /* Fungsi formatnilai5 */
@@ -957,9 +1011,12 @@ function nominal(){
     var strnilai6 =nilai6.value;
 	if (strnilai6.substr(0,1)=="(" && strnilai6.substr(strnilai6.length-1,1)==")"){
 		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-2)) + ")";
+	}else if(strnilai6.substr(0,1)=="-") {
+		nilai6.value = "(" + formatnilai6(strnilai6.substr(1,strnilai6.length-1)) + ")";
 	}else{
 		nilai6.value = formatnilai6(this.value);
 	}
+    //nilai6.value = formatnilai6(this.value);
   });
 
   /* Fungsi formatnilai6 */
@@ -987,9 +1044,12 @@ function nominal(){
     var strnilai7 =nilai7.value;
 	if (strnilai7.substr(0,1)=="(" && strnilai7.substr(strnilai7.length-1,1)==")"){
 		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-2)) + ")";
+	}else if(strnilai7.substr(0,1)=="-") {
+		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-1)) + ")";
 	}else{
 		nilai7.value = formatnilai7(this.value);
 	}
+    //nilai7.value = formatnilai7(this.value);
   });
 
   /* Fungsi formatnilai7 */
@@ -1017,9 +1077,12 @@ function nominal(){
     var strnilai8 =nilai8.value;
 	if (strnilai8.substr(0,1)=="(" && strnilai8.substr(strnilai8.length-1,1)==")"){
 		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-2)) + ")";
+	}else if(strnilai8.substr(0,1)=="-") {
+		nilai8.value = "(" + formatnilai8(strnilai8.substr(1,strnilai8.length-1)) + ")";
 	}else{
 		nilai8.value = formatnilai8(this.value);
 	}
+    //nilai8.value = formatnilai8(this.value);
   });
 
   /* Fungsi formatnilai8 */
@@ -1047,9 +1110,12 @@ function nominal(){
     var strnilai9 =nilai9.value;
 	if (strnilai9.substr(0,1)=="(" && strnilai9.substr(strnilai9.length-1,1)==")"){
 		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-2)) + ")";
+	}else if(strnilai9.substr(0,1)=="-") {
+		nilai9.value = "(" + formatnilai9(strnilai9.substr(1,strnilai9.length-1)) + ")";
 	}else{
 		nilai9.value = formatnilai9(this.value);
 	}
+    //nilai9.value = formatnilai9(this.value);
   });
 
   /* Fungsi formatnilai9 */
@@ -1077,11 +1143,15 @@ function nominal(){
     var strnilai10 =nilai10.value;
 	if (strnilai10.substr(0,1)=="(" && strnilai10.substr(strnilai10.length-1,1)==")"){
 		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-2)) + ")";
+	}else if(strnilai10.substr(0,1)=="-") {
+		nilai10.value = "(" + formatnilai10(strnilai10.substr(1,strnilai10.length-1)) + ")";
 	}else{
 		nilai10.value = formatnilai10(this.value);
 	}
+    //nilai10.value = formatnilai8(this.value);
+  });
 
-  /* Fungsi formatnilai8 */
+  /* Fungsi formatnilai10 */
   function formatnilai10(angka, prefix){
     var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
@@ -1106,9 +1176,12 @@ function nominal(){
     var strnilai11 =nilai11.value;
 	if (strnilai11.substr(0,1)=="(" && strnilai11.substr(strnilai11.length-1,1)==")"){
 		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-2)) + ")";
+	}else if(strnilai11.substr(0,1)=="-") {
+		nilai11.value = "(" + formatnilai11(strnilai11.substr(1,strnilai11.length-1)) + ")";
 	}else{
 		nilai11.value = formatnilai11(this.value);
 	}
+	//nilai11.value = formatnilai11(this.value);
   });
 
   /* Fungsi formatnilai11 */
@@ -1128,7 +1201,7 @@ function nominal(){
     nilai11 = split[1] != undefined ? nilai11 + ',' + split[1] : nilai11;
     return prefix == undefined ? nilai11 : (nilai11 ? + nilai11 : '');
   }
-
+  
   // Format Separator Id Ulang (Jumlah Pembayaran)
   var ulang = document.getElementById('ulang');
   ulang.addEventListener('mousemove', function(e){
@@ -1137,9 +1210,12 @@ function nominal(){
     var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-2)) + ")";
+	}else if(strulang.substr(0,1)=="-") {
+		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
 		ulang.value = formatulang(this.value);
 	}
+	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatulang */
@@ -1158,9 +1234,38 @@ function nominal(){
 
     ulang = split[1] != undefined ? ulang + ',' + split[1] : ulang;
     return prefix == undefined ? ulang : (ulang ? + ulang : '');
-  }
+  } 
 </script>
 
+<script type="text/javascript">
+
+var save_method; 
+var url;
+function saveapf() {
+
+url="<?php echo base_url('Dashboard/edit_pay')?>"
+
+  $.ajax({
+    url : url,
+    type : "POST",
+    data: $("#form_edit").serialize(),
+    dataType: "JSON",
+    success: function(data){ // Ketika proses pengiriman berhasil          
+    alert('Data Berhasil Di Simpan!');   
+    // save_method="edit";
+    // $("#id_payment").val(data);
+    //window.location = link;
+    window.location ="<?php echo base_url('Dashboard/my_task');?>";
+  },      
+    error: function (data)
+    {
+    console.log(data);
+    alert('Error adding / update data');
+    }
+  });
+}
+
+</script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">

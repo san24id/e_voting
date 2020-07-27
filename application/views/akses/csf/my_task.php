@@ -205,27 +205,19 @@
                     <?php } ?>
 
                     <?php 
-                        if($row->status == 5 && $row->rejected_by != NULL){ ?>
+                        if($row->status == 5 && $row->rejected_by != NULL){ ?>                     
                       
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
-                        <a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
+                        <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
                       <?php } ?>
-
                       <?php if ($row->jenis_pembayaran == 3) { ?> 
-                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
-                          <a href="Dashboard/form_easf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
-                        <?php } ?>
-                        <?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
-                          <a href="Dashboard/form_easf2/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a> 
-                        <?php } ?>                      
+                        <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
                       <?php } ?>
-
-                      <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6 ) { ?>   
-                        <a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>
+                      <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+                        <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
                       <?php } ?>
-
                       <?php if ($row->jenis_pembayaran == 5) { ?> 
-                        <a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Edit</button></a>                    
+                        <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
                       <?php } ?>  
                     <?php } ?>  
                   </td>      

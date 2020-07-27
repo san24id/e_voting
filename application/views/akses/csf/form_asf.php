@@ -16,7 +16,7 @@ td[rowspan="6"] {
           </h1>
         </section>
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
+        <form id="formadd" action="#">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name; ?>">
           <input type="hidden" name="type" class="form-control" value="3"> 
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo date("Y-m-d")?>">
@@ -100,7 +100,13 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
-                          <td><input type="text" name="pr_doc" class="form-control" value="PR - ---/PII/--/--"></td>
+                          <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
+                              <input type="text" name="nomor_pr" size="1%" value="---">
+                              <input type="text" name="pii" size="3%" value="/PII/" readonly>
+                              <input type="text" name="bulan" size="2%" value="--">
+                              <input type="text" name="slash" size="1%"value="/" readonly>
+                              <input type="text" name="tahun" size="2%"value="--">
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -128,7 +134,7 @@ td[rowspan="6"] {
                                 <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></td>
+                          <td><input id="nilai" onkeyup="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></td>
                         </tr>
                         <tr>
                           <td><center>2</center></td>
@@ -141,7 +147,7 @@ td[rowspan="6"] {
                                 <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
+                          <td><input id="nilai1" onkeyup="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
                         </tr>
                         <tr>
                           <td><center>3</center></td>
@@ -154,7 +160,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td><input id="nilai2" onkeyup="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3;?>" ></td> 
                         </tr>
                         <tr>
                           <td><center>4</center></td>
@@ -167,7 +173,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah4" > </td>
+                          <td><input id="nilai3" onkeyup="nominal()" type="text" class="form-control" name="jumlah4" > </td>
                         </tr>
                         <tr>
                           <td><center>5</center></td>
@@ -180,7 +186,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah5" > </td> 
+                          <td><input id="nilai4" onkeyup="nominal()" type="text" class="form-control" name="jumlah5" > </td> 
                         </tr>
                         <tr>
                           <td><center>6</center></td>
@@ -193,7 +199,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah6"></td> 
+                          <td><input id="nilai5" onkeyup="nominal()" type="text" class="form-control" name="jumlah6"></td> 
                         </tr>
                         
                         <tr>
@@ -207,7 +213,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah7">  </td> 
+                          <td><input id="nilai6" onkeyup="nominal()" type="text" class="form-control" name="jumlah7">  </td> 
                         </tr>
                         <tr>
                           <td><center>8</center></td>
@@ -220,7 +226,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah8" ></td> 
+                          <td><input id="nilai7" onkeyup="nominal()" type="text" class="form-control" name="jumlah8" ></td> 
                         </tr>
                         <tr>
                           <td><center>9</center></td>
@@ -233,7 +239,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9"></td> 
+                          <td><input id="nilai8" onkeyup="nominal()" type="text" class="form-control" name="jumlah9"></td> 
                         </tr>
                         <tr>
                           <td><center>10</center></td>
@@ -246,7 +252,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10"></td> 
+                          <td><input id="nilai9" onkeyup="nominal()" type="text" class="form-control" name="jumlah10"></td> 
                         </tr>
                         <tr>
                           <td><center>11</center></td>
@@ -259,7 +265,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai10" onchange="nominal()" type="text" class="form-control" name="jumlah11"></td> 
+                          <td><input id="nilai10" onkeyup="nominal()" type="text" class="form-control" name="jumlah11"></td> 
                         </tr>
                         <tr>
                           <td><center>12</center></td>
@@ -272,7 +278,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai11" onchange="nominal()" type="text" class="form-control" name="jumlah12"></td> 
+                          <td><input id="nilai11" onkeyup="nominal()" type="text" class="form-control" name="jumlah12"></td> 
                         </tr>
                         
                         <tr>
@@ -283,7 +289,7 @@ td[rowspan="6"] {
                         <tr>
                             <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
                             <td><center><p id="demo3"> </p> <p id="demo4"> </p> <p id="demo5"> </p> </center></td>
-                            <td><input id="jumlahuangmuka" onchange="nominal()" type="text" name="cash_advance" class="form-control" value="<?php echo $row->label8;?>"> </td>
+                            <td><input id="jumlahuangmuka" onkeyup="nominal()" type="text" name="cash_advance" class="form-control" value="<?php echo $row->label8;?>"> </td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
@@ -462,7 +468,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary third">Proceed For Review</button>
+                    <button type="button" id="buttonSave" onclick="sendapf()" class="btn btn-primary">Proceed For Review</button>
                   </div>
                 </div>                                                 
             </div>
@@ -542,14 +548,14 @@ function myPopup(myURL, myWidth, myHeight) {
             var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
 }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Proceed For Review!");
-  function tambah() {
-  location.reload(true);
-        tr.hide();
-  }
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Proceed For Review!");
+//   function tambah() {
+//   location.reload(true);
+//         tr.hide();
+//   }
   
-});
+// });
 
 function myFunction(){
   var x = document.getElementById("Select").value;
@@ -1387,6 +1393,35 @@ var nilai = document.getElementById('nilai');
 
 </script>
 
+<script type="text/javascript">
+
+var save_method; 
+var url;
+function sendapf() {
+
+url="<?php echo base_url('Dashboard/addpay')?>"
+
+  $.ajax({
+    url : url,
+    type : "POST",
+    data: $("#formadd").serialize(),
+    dataType: "JSON",
+    success: function(data){ // Ketika proses pengiriman berhasil          
+    alert('Data Berhasil Di Kirimkan!');   
+    // save_method="edit";
+    // $("#id_payment").val(data);
+    //window.location = link;
+    window.location ="<?php echo base_url('Dashboard/my_task');?>";
+  },      
+    error: function (data)
+    {
+    console.log(data);
+    alert('Error adding / update data');
+    }
+  });
+}
+
+</script>
 
 <div class="modal fade" id="anomor1" tabindex="-1" role="dialog" aria-labelledby="anomor1" aria-hidden="true">
   <div class="modal-dialog" role="document">

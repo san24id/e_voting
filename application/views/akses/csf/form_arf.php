@@ -17,7 +17,7 @@ td[rowspan="6"] {
         </section>
         <!-- Main content -->
         
-        <form id="form" method="post" action="Dashboard/addpay" onsubmit="tambah()">
+        <form id="formadd" action="#">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name;?>">
           <input type="hidden" name="type" class="form-control" value="2"> 
           <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>">
@@ -95,7 +95,13 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
-                          <td><input type="text" name="pr_doc" class="form-control" value="PR - ---/PII/--/--"></td>
+                          <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
+                              <input type="text" name="nomor_pr" size="1%" value="---">
+                              <input type="text" name="pii" size="3%" value="/PII/" readonly>
+                              <input type="text" name="bulan" size="2%" value="--">
+                              <input type="text" name="slash" size="1%"value="/" readonly>
+                              <input type="text" name="tahun" size="2%"value="--">
+                          </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
@@ -461,7 +467,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary third">Proceed For Review</button>
+                    <button type="button" id="buttonSave" onclick="sendapf()" class="btn btn-primary">Proceed For Review</button>
                   </div>
                 </div>                                                 
             </div>
@@ -541,14 +547,14 @@ function myPopup(myURL, myWidth, myHeight) {
             var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
 }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Proceed For Review!");
-  function tambah() {
-  location.reload(true);
-        tr.hide();
-  }
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Proceed For Review!");
+//   function tambah() {
+//   location.reload(true);
+//         tr.hide();
+//   }
   
-});
+// });
 
 function myFunction(){
   var x = document.getElementById("Select").value;
@@ -1333,6 +1339,36 @@ function nominal(){
 //     document.getElementById("msg2").value= a*(10/100);
 //   }  
 // }
+</script>
+
+<script type="text/javascript">
+
+var save_method; 
+var url;
+function sendapf() {
+
+url="<?php echo base_url('Dashboard/addpay')?>"
+
+  $.ajax({
+    url : url,
+    type : "POST",
+    data: $("#formadd").serialize(),
+    dataType: "JSON",
+    success: function(data){ // Ketika proses pengiriman berhasil          
+    alert('Data Berhasil Di Kirimkan!');   
+    // save_method="edit";
+    // $("#id_payment").val(data);
+    //window.location = link;
+    window.location ="<?php echo base_url('Dashboard/my_task');?>";
+  },      
+    error: function (data)
+    {
+    console.log(data);
+    alert('Error adding / update data');
+    }
+  });
+}
+
 </script>
 
 <!-- <script charset="utf-8" type="text/javascript">

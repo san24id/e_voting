@@ -16,9 +16,10 @@ td[rowspan="6"] {
           </h1>
         </section>
         <!-- Main content -->
-        <form id="form" method="post" action="Dashboard/edit_pay" onsubmit="update()">
-            <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
-            <input type="hidden" name="status" value="<?php echo $get->status?>">
+        <form id="form_edit" action="#">
+          <input type="hidden" name="id" class="form-control" value="<?php echo $get->id?>">  
+          <input type="hidden" name="handled_by" class="form-control" value="<?php echo $get->handled_by; ?>">
+          <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
           
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
@@ -67,8 +68,8 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td>Status <i>Outstanding Advance</i> Pemohon<br>
-                            <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> disabled> <i>Akumulasi > Rp. 20 Juta</i></input><br>
-                            <input type="checkbox" name="label1" value="Outstanding Advance > 3 Transaksi" <?php echo $get->label1=="Outstanding Advance > 3 Transaksi"? 'checked':''?> disabled> <i>Outstanding Advance > 3 Transaksi</i></input><br> 
+                            <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> > <i>Akumulasi > Rp. 20 Juta</i></input><br>
+                            <input type="checkbox" name="label1" value="Outstanding Advance > 3 Transaksi" <?php echo $get->label1=="Outstanding Advance > 3 Transaksi"? 'checked':''?> > <i>Outstanding Advance > 3 Transaksi</i></input><br> 
                           </td>
                           <td> </td>
                           <td> &nbsp;</td>
@@ -101,7 +102,7 @@ td[rowspan="6"] {
                                 <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>"></td>
+                          <td><input id="nilai" onkeyup="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>"></td>
                         </tr>
                         <tr>
                           <td><center> 2 </center></td>
@@ -114,7 +115,7 @@ td[rowspan="6"] {
                                 <?php } ?>
                               </select>
                           </td>
-                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>"></td> 
+                          <td><input id="nilai1" onkeyup="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>"></td> 
                         </tr>
                         <tr>
                           <td><center> 3 </center></td>
@@ -127,7 +128,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>"></td> 
+                          <td><input id="nilai2" onkeyup="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>4</center></td>
@@ -140,7 +141,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>"> </td>
+                          <td><input id="nilai3" onkeyup="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>"> </td>
                         </tr>
                         <tr>
                           <td><center>5</center></td>
@@ -153,7 +154,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>"> </td> 
+                          <td><input id="nilai4" onkeyup="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>"> </td> 
                         </tr>
                         <tr>
                           <td><center>6</center></td>
@@ -166,7 +167,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>"></td> 
+                          <td><input id="nilai5" onkeyup="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>"></td> 
                         </tr>
                         
                         <tr>
@@ -180,7 +181,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>">  </td> 
+                          <td><input id="nilai6" onkeyup="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>">  </td> 
                         </tr>
                         <tr>
                           <td><center>8</center></td>
@@ -193,7 +194,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>" ></td> 
+                          <td><input id="nilai7" onkeyup="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>" ></td> 
                         </tr>
                         <tr>
                           <td><center>9</center></td>
@@ -206,7 +207,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>"></td> 
+                          <td><input id="nilai8" onkeyup="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>10</center></td>
@@ -219,7 +220,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>"></td> 
+                          <td><input id="nilai9" onkeyup="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>11</center></td>
@@ -232,7 +233,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai10" onchange="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>"></td> 
+                          <td><input id="nilai10" onkeyup="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>"></td> 
                         </tr>
                         <tr>
                           <td><center>12</center></td>
@@ -245,7 +246,7 @@ td[rowspan="6"] {
                             <?php } ?>
                             </select>
                           </td>
-                          <td><input id="nilai11" onchange="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>"></td> 
+                          <td><input id="nilai11" onkeyup="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>"></td> 
                         </tr>
 
                         <tr>
@@ -334,10 +335,10 @@ td[rowspan="6"] {
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> > Tunai</input></font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> > Transfer Ke :</input> </center></td>
 
                           <td><font size="+1"> Bank : &nbsp;<input type="text" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
                           <td><font size="+1"> No. Rek : &nbsp;<input type="text" name="no_rek" value="<?php echo $get->no_rek; ?>" readonly> </input></font></td>                        
@@ -405,7 +406,7 @@ td[rowspan="6"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    <button type="submit" class="btn btn-primary third">Save</button>
+                    <button type="button" id="buttonSave" onclick="saveapf()" class="btn btn-primary">Save</button>
                   </div>
                 </div>                                                 
             </div>
@@ -483,14 +484,14 @@ function myPopup(myURL, myWidth, myHeight) {
             var myWindow = window.open(myURL, '_blank','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
 }
 
-document.querySelector(".third").addEventListener('click', function(){
-  swal("Data Successfully to Update!");
-  function update() {
-  location.reload(true);
-        tr.hide();
-  }
+// document.querySelector(".third").addEventListener('click', function(){
+//   swal("Data Successfully to Update!");
+//   function update() {
+//   location.reload(true);
+//         tr.hide();
+//   }
   
-});
+// });
 
 function myFunction(){
   var x = document.getElementById("Select").value;
@@ -1255,6 +1256,36 @@ function nominal(){
     ulang = split[1] != undefined ? ulang + ',' + split[1] : ulang;
     return prefix == undefined ? ulang : (ulang ? + ulang : '');
   } 
+</script>
+
+<script type="text/javascript">
+
+var save_method; 
+var url;
+function saveapf() {
+
+url="<?php echo base_url('Dashboard/edit_pay')?>"
+
+  $.ajax({
+    url : url,
+    type : "POST",
+    data: $("#form_edit").serialize(),
+    dataType: "JSON",
+    success: function(data){ // Ketika proses pengiriman berhasil          
+    alert('Data Berhasil Di Simpan!');   
+    // save_method="edit";
+    // $("#id_payment").val(data);
+    //window.location = link;
+    window.location ="<?php echo base_url('Dashboard/my_task');?>";
+  },      
+    error: function (data)
+    {
+    console.log(data);
+    alert('Error adding / update data');
+    }
+  });
+}
+
 </script>
 
 <div class="modal fade" id="tax<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">

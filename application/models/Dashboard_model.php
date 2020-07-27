@@ -243,7 +243,7 @@ class Dashboard_model extends CI_Model{
     var $table ="t_payment_l";
     public function buat_kode_arf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
@@ -264,7 +264,7 @@ class Dashboard_model extends CI_Model{
 
     public function buat_kode_asf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
@@ -285,7 +285,7 @@ class Dashboard_model extends CI_Model{
 
     public function buat_kode_prf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
@@ -306,7 +306,7 @@ class Dashboard_model extends CI_Model{
 
     public function buat_kode_crf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.apf_doc,4) as kode', FALSE);
+        $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
@@ -756,15 +756,15 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function send_back($upd,$status,$handled_by,$rejected_by){
+    function change_stat($upd,$status,$handled_by){
         
-        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."',`rejected_by`='".$rejected_by."'
+        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."'
                 WHERE `nomor_surat`='".$upd['nomor_surat']."'";
         
         $query = $this->db->query($sql);
         // var_dump($sql);exit;
         return $query;
-    } 
+    }     
 	
 	function getPajak(){
         $sql = "SELECT * FROM m_jenis_pajak";
@@ -1055,6 +1055,16 @@ class Dashboard_model extends CI_Model{
 
         return $query;
     }    
+
+    function send_back($upd,$status,$handled_by,$rejected_by){
+        
+        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."',`rejected_by`='".$rejected_by."'
+                WHERE `nomor_surat`='".$upd['nomor_surat']."'";
+        
+        $query = $this->db->query($sql);
+        // var_dump($sql);exit;
+        return $query;
+    }
 
     function updpay($upd){
         $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`nomor_surat`='".$upd['nomor_surat']."',
