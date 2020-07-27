@@ -726,24 +726,25 @@
                             <!----.Approve -->
                             <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                  <h3 class="modal-title">Message Box</h3>
-                                </div>                                        
-                                <div class="modal-body">
-                                <form id="approve" method="post" action="dashboard/approve">
-                                  <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>"> 
-                                  <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
-                                  <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                      <h3 class="modal-title">Message Box</h3>
+                                    </div>                                        
+                                    <div class="modal-body">
+                                    <form id="approve" method="post" action="dashboard/approve">
+                                      <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>"> 
+                                      <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
+                                      <input type="hidden" name="handled_by" value="n.prasetyaningrum">
+                                      <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                    </div>
+                                    <div class="modal-footer">                        
+                                      <button type="submit" class="btn btn-success bye">Yes</button>
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </form>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </form>
-                                </div>
-                              
+                              </div>
                             </div>
 							
                             <button type="button" data-toggle="modal" data-target="#reject<?php echo $row->id_payment; ?>" class="btn btn-danger">Reject</button>
