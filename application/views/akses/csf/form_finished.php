@@ -230,6 +230,7 @@
                             </select>
                         </td>
                         <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" onkeyup="getnominal1()" value="<?php echo $row->label2; ?>"></td>
+						            <input type="hidden" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?>">
                         
                         <td><select id="currency2" name="currency2" onchange="mycurrency2()" class="form-control">
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
@@ -1594,6 +1595,128 @@ function AddIndeks(){
 				jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
 			}
 		}
+    
+		var bilangan= document.getElementById('rupiah').value;
+  
+	// alert(bilangan);
+		var kalimat="";
+		var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+		var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+		var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
+		var panjang_bilangan = bilangan.length;
+		// alert(panjang_bilangan);
+		
+		/* pengujian panjang bilangan */
+		if(panjang_bilangan > 15){
+			kalimat = "Diluar Batas";
+		}else{
+			/* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+			for(i = 1; i <= panjang_bilangan; i++) {
+				angka[i] = bilangan.substr(-(i),1);
+			}
+			
+			var i = 1;
+			var j = 0;
+			
+			/* mulai proses iterasi terhadap array angka */
+			while(i <= panjang_bilangan){
+				subkalimat = "";
+				kata1 = "";
+				kata2 = "";
+				kata3 = "";
+				
+				/* untuk Ratusan */
+				if(angka[i+2] != "0"){
+					if(angka[i+2] == "1"){
+						kata1 = "Seratus";
+					}else{
+						kata1 = kata[angka[i+2]] + " Ratus";
+					}
+				}
+				
+				/* untuk Puluhan atau Belasan */
+				if(angka[i+1] != "0"){
+					if(angka[i+1] == "1"){
+						if(angka[i] == "0"){
+							kata2 = "Sepuluh";
+						}else if(angka[i] == "1"){
+							kata2 = "Sebelas";
+						}else{
+							kata2 = kata[angka[i]] + " Belas";
+						}
+					}else{
+						kata2 = kata[angka[i+1]] + " Puluh";
+					}
+				}
+				
+				/* untuk Satuan */
+				if (angka[i] != "0"){
+					if (angka[i+1] != "1"){
+						kata3 = kata[angka[i]];
+					}
+				}
+				
+				/* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+				if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
+					subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+				}
+				
+				/* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+				kalimat = subkalimat + kalimat;
+				i = i + 3;
+				j = j + 1;
+			}
+			
+			/* mengganti Satu Ribu jadi Seribu jika diperlukan */
+			if ((angka[5] == "0") && (angka[6] == "0")){
+				kalimat = kalimat.replace("Satu Ribu","Seribu");
+			}
+		}
+		
+		var matauang = document.getElementById("Select").value;
+		// var namamatauang =String(matauang);
+
+		// var splitCur []  		= namamatauang.split("-");
+		
+		// alert(matauang);
+		switch(matauang){
+		case "EUR":
+		muncul = "EURO";
+		break;
+		case "IDR":
+		muncul = "Rupiah";
+		break;
+		case "USD":
+		muncul = "Dollar Amerika";
+		break;
+		case "SGD":
+		muncul = "Dollar Singapura";
+		break;
+		case "GBP":
+		muncul = "Pound";
+		break;
+		case "JPY":
+		muncul = "Yen";
+		break;
+		case "HKD":
+		muncul = "Dollar Hongkong";
+		break;
+		case "KRW":
+		muncul = "Won";
+		break;
+
+		default:
+		muncul = "";
+		}
+		
+		if(hasil<0){
+			kalimat="(" + kalimat + ") ";
+		}
+		if(hasil==0){
+			kalimat="Nol ";
+		}
+		
+		document.getElementById("terbilang").value=kalimat+muncul;
 		
 	}
 

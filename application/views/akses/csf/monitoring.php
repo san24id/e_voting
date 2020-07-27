@@ -452,12 +452,10 @@
     </section>
     <!-- /.content -->
 
-    <section class="content">
+    <!-- <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <!-- /.box -->
           <div class="box">
-            <!-- /.box-header -->
             <div class="box-body">            
               <table id="" class="table table-bordered table-striped">
                 <thead>
@@ -506,14 +504,10 @@
                 </tbody>
               </table>
             </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
-    </section>
+    </section> -->
 </div>
 <!-- /.content-wrapper -->    
 
