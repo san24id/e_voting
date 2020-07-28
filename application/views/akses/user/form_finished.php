@@ -2075,7 +2075,7 @@ function AddIndeks(){
 							alert('Nomor ARF Terkait belum di input');
 					}else if($.trim($('#jns_pembayaran').val())=="3" && $("#chkarf").prop('checked')==false){						
 							alert('Lampiran copy ARF belum di beri tanda ceklist');
-					}}else if($.trim($('#jns_pembayaran').val())=="3" && lblcur1!=$scur1){
+					}else if($.trim($('#jns_pembayaran').val())=="3" && lblcur1!=$scur1){
 						alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
 					}else if ($.trim($('#jns_pembayaran').val())=="3" && $('#biaya').val()==""){
 							alert('Jumlah Biaya belum di input');
