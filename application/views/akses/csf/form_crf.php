@@ -282,11 +282,11 @@ td[rowspan="3"] {
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses"></td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?> "></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang"></td>
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?> "></td>
                         </tr>
                         <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";

@@ -284,7 +284,7 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" readonly> </td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly> </td>
                         </tr>
                         <tr>
                             <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
@@ -298,7 +298,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang"></td>
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?> "></td>
                         </tr>
                         <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE npwp='$row->penerima'";
