@@ -737,7 +737,7 @@
                       <tr> 
                         <td>Nama&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; <select id="pegawai" name="display_name" onchange="chgJabatan();">
                                           <option value="<?php echo $row->display_name?>"><?php echo $row->display_name?></option>
-                                          <option value="">--Choose--</option>
+                                          <!-- <option value="">--Choose--</option> -->
                                           <?php foreach($pegawai as $pgw){ ?>
                                           <option value="<?php echo $pgw->display_name?>"><?php echo $pgw->display_name?> - <?php echo $pgw->jabatan?></option>
                                           <?php } ?>

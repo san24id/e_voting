@@ -82,8 +82,8 @@ td[rowspan="6"] {
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="40%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="7%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="33%"><center>Jumlah / <br><i>Amount</i></center></th>                       
+                          <th width="10%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr> 
                         </thead>
                         <tbody>                      
@@ -284,7 +284,13 @@ td[rowspan="6"] {
                       <tr align="right">
                         <td width="5%"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" ></td>     
+
+                        <?php if($this->session->userdata("username") == "i.akmal"){ ?>
+                          <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" readonly></td>   
+                        <?php }else if ($this->session->userdata("username") == "h.harlina") { ?>
+                          <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" ></td>   
+                        <?php } ?>
+                             
                       </tr>
                       <tr align="right">
                         <td width="5%"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>

@@ -77,7 +77,7 @@ td[rowspan="6"] {
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="50%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="10%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
                           <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                         </thead>
@@ -269,7 +269,13 @@ td[rowspan="6"] {
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" value="<?php echo date("d-m-Y", strtotime($get->verified_date));?>" readonly></td>     
+
+                        <?php if($this->session->userdata("username") == "i.akmal"){ ?>
+                          <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" readonly></td>   
+                        <?php }else if ($this->session->userdata("username") == "h.harlina") { ?>
+                          <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" ></td>   
+                        <?php } ?>  
+                        
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>

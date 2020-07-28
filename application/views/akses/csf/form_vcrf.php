@@ -174,12 +174,12 @@ td[rowspan="3"] {
                       <tr>
                       </tr>
                       <tr align="right">
-                        <td width="5%"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
+                        <td width="5%" align="center"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-M-Y", strtotime($get->verified_date));?>" readonly></td>     
+                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" readonly></td>     
                       </tr>
                       <tr align="right">
-                        <td width="5%"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>
+                        <td width="5%" align="center"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>
                         <td width="20%"><i>Date </i> &nbsp;</td>
                       </tr>
                       </tbody>
@@ -431,7 +431,9 @@ td[rowspan="3"] {
 
                     <?php if($get->status == 7){ ?>  
                     <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
-
+                    <?php if($get->verified_date == NULL){ ?>
+                    
+                    <?php }else{ ?>  
                     <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Proceed To Approval</button>
                     <!--Modal SendApproval-->
                     <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -457,7 +459,8 @@ td[rowspan="3"] {
                         </div>
                       </div>
                     </div>
-
+                    <?php } ?>    
+                    
                     <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-danger">Rejected to Requestor</button>
                     <!---Modal RejectRequestor-->
                     <div class="modal fade" id="rejectreq<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">

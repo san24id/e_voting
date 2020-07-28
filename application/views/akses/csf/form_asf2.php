@@ -76,11 +76,11 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d'); ?>-<?php echo $monthList[$bulan_ing]; ?>-<?php echo date('Y'); ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $asf_doc; ?>"></td>                          
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $asf_doc; ?>" readonly></td>                          
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>"></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">SPPP Doc. No : </font></td>
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>" readonly>
@@ -97,7 +97,7 @@ td[rowspan="6"] {
                           <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
                           <td>&nbsp; </td>
                           <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $row->label5; ?>"></td>
+                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $row->label5; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
@@ -380,7 +380,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control"> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control" value="Donny Hamdani"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
                           <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
@@ -388,7 +388,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control"> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control" value="Deputi Direktur Keuangan"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
                           <td><input id="jabatan2" type="text" name="jabatan2" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>

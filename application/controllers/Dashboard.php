@@ -1917,6 +1917,8 @@ class Dashboard extends CI_Controller {
 			$status = 6;
 		}
 
+		$verified = date('d-m-Y', strtotime($this->input->post("verified_date")));
+
 		$add = array(
 			
 			'id_payment' => $_POST['id_payment'],
@@ -2033,6 +2035,7 @@ class Dashboard extends CI_Controller {
 		}
 
 		// echo $type;
+		$verified = date('d-m-Y', strtotime($this->input->post("verified_date")));
 		// var_dump(count($_POST['type']));exit;
 		$upd = array(
 			
@@ -2082,7 +2085,7 @@ class Dashboard extends CI_Controller {
 			'terbilang2' => $_POST['terbilang2'],
 			'terbilang3' => $_POST['terbilang3'],
 			'dibayar_kepada' => $_POST['dibayar_kepada'],
-			'verified_date' => $_POST['verified_date'],
+			'verified_date' => $verified,
 			'catatan' => $_POST['catatan'],
 			'status' => $status,
 			'nomor_surat' => $_POST['nomor_surat'],

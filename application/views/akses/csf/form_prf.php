@@ -140,7 +140,7 @@ td[rowspan="6"] {
                           <td><center> 2 </center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description2" ></td>
                           <td><select id="Select1" class="form-control" onchange="myFunction1()" name="currency1">
-                                <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
+                                <!-- <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option> -->
                                 <option value="">--Choose--</option>
                                 <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
@@ -154,7 +154,7 @@ td[rowspan="6"] {
 
                           <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
                           <td><select id="Select2" class="form-control" onchange="myFunction2()" name="currency2">
-                            <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
+                            <!-- <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                               -->
                             <option value="">--Choose--</option>
                             <?php foreach ($currency as $get) {?>
                               <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
@@ -356,7 +356,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control"> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control" value="Donny Hamdani"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
                           <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
@@ -364,7 +364,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control"> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control" value="Deputi Direktur Keuangan"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
                           <td><input id="jabatan2" type="text" name="jabatan2" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
