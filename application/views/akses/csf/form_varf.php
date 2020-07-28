@@ -345,7 +345,7 @@ td[rowspan="6"] {
                                 <input type="hidden" name="status" value="6">
                               </div>
                               <div class="modal-footer">                        
-                                  <button type="submit" class="btn btn-success bye">Yes</button>
+                                  <button type="submit" class="btn btn-success bye">OK</button>
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                               </form>
                               </div>
@@ -376,7 +376,7 @@ td[rowspan="6"] {
                               
                             </div>
                             <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="submit" class="btn btn-success bye">OK</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </form>
                             </div>
@@ -405,7 +405,7 @@ td[rowspan="6"] {
                               <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                             </div>
                             <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="submit" class="btn btn-success bye">OK</button>
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </form>
                             </div>
@@ -438,7 +438,7 @@ td[rowspan="6"] {
                               <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("username"); ?>">
                             </div>
                             <div class="modal-footer">                        
-                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="submit" class="btn btn-success bye">OK</button>
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </form>
                             </div>
@@ -452,7 +452,7 @@ td[rowspan="6"] {
                     <?php if($get->verified_date == NULL) { ?>
 
                     <?php }else{ ?>
-                      <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-danger">Proceed For Approval</button>
+                      <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Proceed For Approval</button>
                       <!--Modal SendApproval-->
                       <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
@@ -470,7 +470,7 @@ td[rowspan="6"] {
                               <label>Kepada Approval? </label>                        
                             </div>
                             <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="submit" class="btn btn-success bye">OK</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </form>
                             </div>
@@ -500,7 +500,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
-                          <button type="submit" class="btn btn-success bye">Yes</button>
+                          <button type="submit" class="btn btn-success bye">OK</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </form>
                         </div>
@@ -508,7 +508,7 @@ td[rowspan="6"] {
                     </div>
                     </div> 
 
-                    <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-success">Returned to Finance</button>
+                    <button type="submit" data-toggle="modal" data-target="#reject<?php echo $get->id; ?>" class="btn btn-danger">Returned to Finance</button>
                     <!---Modal RejectedFinance--> 
                     <div class="modal fade" id="reject<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">
@@ -532,7 +532,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("username"); ?>">
                         </div>
                         <div class="modal-footer">                        
-                          <button type="submit" class="btn btn-success bye">Yes</button>
+                          <button type="submit" class="btn btn-success bye">OK</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </form>
                         </div>

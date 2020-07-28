@@ -660,7 +660,7 @@
                                             <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
                                             <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
                                             <div class="modal-footer">                        
-                                              <button type="submit" class="btn btn-success bye">Yes</button>
+                                              <button type="submit" class="btn btn-success bye">OK</button>
                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </div>
                                           </form>
@@ -690,7 +690,7 @@
                                       <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                       <p align="justify">Apa anda yakin akan mengirimkan kembali Form SP3 ini dengan data yang benar?  </p>
                                       <div class="modal-footer">                        
-                                        <button type="submit" class="btn btn-success bye">Yes</button>
+                                        <button type="submit" class="btn btn-success bye">OK</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                       </div>
                                     </form>
@@ -750,7 +750,7 @@
                                       <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
                                     </div>
                                     <div class="modal-footer">                        
-                                      <button type="submit" class="btn btn-success bye">Yes</button>
+                                      <button type="submit" class="btn btn-success bye">OK</button>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                   </form>
@@ -777,7 +777,7 @@
                                     <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                                   </div>
                                   <div class="modal-footer">                        
-                                    <button type="submit" class="btn btn-success bye">Yes</button>
+                                    <button type="submit" class="btn btn-success bye">OK</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                   </form>
                                   </div>
@@ -809,7 +809,7 @@
                                   <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="submit" class="btn btn-success bye">OK</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </form>
                                 </div>

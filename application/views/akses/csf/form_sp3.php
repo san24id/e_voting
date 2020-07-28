@@ -721,7 +721,7 @@
       <p align="justify">Apa anda yakin telah menerima Form SP3 ini :  <?=$row->nomor_surat?></p>
     </div>
     <div class="modal-footer">                        
-     <button type="submit" class="btn btn-success bye">Yes</button>
+     <button type="submit" class="btn btn-success bye">OK</button>
      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     </form>
     </div>
@@ -747,7 +747,7 @@
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
       </div>
       <div class="modal-footer">                        
-        <button type="submit" class="btn btn-success bye">Yes</button>
+        <button type="submit" class="btn btn-success bye">OK</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
       </div>
@@ -773,7 +773,7 @@
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
       </div>
       <div class="modal-footer">                        
-        <button type="submit" class="btn btn-success bye">Yes</button>
+        <button type="submit" class="btn btn-success bye">OK</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
       </div>
@@ -803,7 +803,7 @@
         </select> -->
       </div>
       <div class="modal-footer">                        
-          <button type="submit" class="btn btn-success bye">Yes</button>
+          <button type="submit" class="btn btn-success bye">OK</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
       </div>

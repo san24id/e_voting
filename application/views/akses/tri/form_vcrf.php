@@ -313,7 +313,7 @@ td[rowspan="3"] {
                                                
                         </div>
                         <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
+                            <button type="submit" class="btn btn-success bye">OK</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </form>
                         </div>

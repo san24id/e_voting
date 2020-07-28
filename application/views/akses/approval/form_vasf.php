@@ -205,12 +205,12 @@ td[rowspan="6"] {
                       <tr>
                       </tr>
                       <tr align="right">
-                        <td width="5%"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
+                        <td width="5%" align="center"> <input type="checkbox" name="status" value="7" <?php echo $get->status==7? 'checked':''?> disabled></td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo date("d-M-Y", strtotime($get->verified_date));?>" readonly></td>     
+                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" value="<?php echo $get->verified_date;?>" readonly></td>     
                       </tr>
                       <tr align="right">
-                        <td width="5%"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>
+                        <td width="5%" align="center"> <input type="checkbox" name="status" value="8" <?php echo $get->status==8? 'checked':''?> disabled></td>
                         <td width="20%"><i>Date </i> &nbsp;</td>
                       </tr>
                       </tbody>
@@ -354,7 +354,7 @@ td[rowspan="6"] {
                           <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
                         </div>
                         <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">Yes</button>
+                            <button type="submit" class="btn btn-success bye">OK</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </form>
                         </div>
@@ -381,7 +381,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
-                          <button type="submit" class="btn btn-success bye">Yes</button>
+                          <button type="submit" class="btn btn-success bye">OK</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </form>
                         </div>
