@@ -322,7 +322,6 @@
 																<th>Nomor Rekening <font color="red"> * </font></th>
 																<th>Mata Uang <font color="red"> * </font></th>
 																<th>Nominal <font color="red"> * </font></th>
-																<th>&nbsp;</th>
                               </tr>
 														  </thead>
 														  <tbody>
@@ -375,19 +374,12 @@
 															<tr id="tr<?php echo $vendorrow; ?>">
 															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>')" class="form-control" name="penerimavendor[]" readonly>
 																	<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>
-																	<option value="">--Choose--</option>
-																	<?php foreach ($data_vendor as $nama){?> 
-																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
-																	<?php } ?>
 																	</select>
 																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]" value="<?php echo $gvendor->kode_vendor; ?>"  />
 																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]" value="<?php echo $gvendor->penerima; ?>"   /></td>
 															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control" readonly >
 																	<option value="<?php echo $gvendor->v_bank; ?>"> <?php echo $gvendor->v_bank;?> </option>
-																	<option value="">--- Choose ---</option>
-																	<?php foreach ($bank as $get) {?>
-																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
-																	<?php } ?>
+																	
 																	</select>
 																</td>
 																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" readonly>
@@ -395,10 +387,7 @@
 			
 																<td><select id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" readonly >
 																	<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
-																	<option value="">--- Choose ---</option>
-																	<?php foreach ($currency  as $cur) {?>
-																	  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
-																	<?php } ?>
+																	
 																	</select>
 																</td>
 																
@@ -412,18 +401,15 @@
 														  <tfoot>
 															<tr>
 																<th>
-																<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
-																  <i class="glyphicon glyphicon-plus"></i></span>
-																</div>
-																<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
-																  </th>
+																  <div class="col-md-12"><span class="col-md-12" style="text-align:end">Total</span></div>
+                                </th>
 																<th colspan="5">
-																<label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $row->label2; ?></label>
-																<label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $row->jumlah2; ?></label>
-																<label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $row->jumlah3; ?></label>
+                                  <label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
+                                  <label class="control-label col-md-3" id="lbltotalvendor"><?php echo $row->label2; ?></label>
+                                  <label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
+                                  <label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $row->jumlah2; ?></label>
+                                  <label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
+                                  <label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $row->jumlah3; ?></label>
 																</th>
 															</tr>
 														</tfoot>
@@ -547,17 +533,17 @@
                     }else{
                           $showed="style=''" ;
                     } ?>
-                  <div id="show" <?php echo $showed;?>>
+                    <div id="show" <?php echo $showed;?> class="table-responsive" >
                                                
-                    <table style="font-family: calibri;"  width="70%">
+                    <table style="font-family: calibri;"  width="90%">
                       <tbody>
                       <tr>
-                        <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
+                        <td  colspan="6"><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
                       </tr>
 				          	  <tr>
-                        <td><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
+                        <td style="width:350px"><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
                         <td>:&nbsp;</td>
-                        <td>
+                        <td style="width:500px">
                           <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled> Lampiran copy ARF tersedia</input></td>
@@ -727,12 +713,12 @@
                             <div class="modal fade" id="approve<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                      <h3 class="modal-title">Message Box</h3>
-                                    </div>                                        
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title">Message Box</h3>
+                                  </div>                                        
+                                  <form id="approve" method="post" action="dashboard/approve">
                                     <div class="modal-body">
-                                    <form id="approve" method="post" action="dashboard/approve">
                                       <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>"> 
                                       <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                       <input type="hidden" name="handled_by" value="n.prasetyaningrum">
@@ -741,8 +727,8 @@
                                     <div class="modal-footer">                        
                                       <button type="submit" class="btn btn-success bye">Yes</button>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </form>
                                     </div>
+                                  </form>
                                 </div>
                               </div>
                             </div>
@@ -858,7 +844,8 @@
 <script>
 function deletedraftpayment(id,$vscreen)
     {
-
+		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
+		if (r == true) {
 			$.ajax({
 				url : "<?php echo base_url('dashboard/draftpaymentdelete')?>/"+id,
 				type: "POST",
@@ -874,6 +861,7 @@ function deletedraftpayment(id,$vscreen)
 					alert('Error deleting data');
 				}
 			});
+		}
     }
 
 function printThis() {

@@ -637,6 +637,8 @@ $(function () {
 	
 	function deletedraftpayment(id)
     {
+		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
+		if (r == true) {
 			$.ajax({
 				url : "<?php echo base_url('dashboard/draftpaymentdelete')?>/"+id,
 				type: "POST",
@@ -650,6 +652,7 @@ $(function () {
 					alert('Error deleting data');
 				}
 			});
+		}
     }
 </script>
 

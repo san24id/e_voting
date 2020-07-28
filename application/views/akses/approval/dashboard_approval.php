@@ -559,7 +559,9 @@
 <script>
 function deletedraftpayment(id)
     {
-			$.ajax({
+		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
+		if (r == true) {
+				$.ajax({
 				url : "<?php echo base_url('Approval/draftpaymentdelete')?>/"+id,
 				type: "POST",
 				dataType: "JSON",
@@ -573,6 +575,7 @@ function deletedraftpayment(id)
 					alert('Error deleting data');
 				}
 			});
+		}
     }
 
 $(function () {
@@ -672,7 +675,7 @@ Highcharts.chart('pieChart', {
               {
                 label: '<?php echo $key->dsc; ?>',
                 y: <?php echo $key->jmlpembayaran; ?>,
-                link: '<?php echo base_url('Home/'.$key->link);?> ',
+                link: '<?php echo base_url('Approval/'.$key->link);?> ',
 
               },
             <?php } ?>

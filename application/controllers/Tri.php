@@ -1201,6 +1201,23 @@ class Tri extends CI_Controller {
 			$v_bank = $_POST['sbankvendor'][$i];//$_POST['bankvendor'][$i];
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
+		
+		if($jenis_pembayaran=='3'){
+			$cr1=$_POST['cr1'];
+			$cr2=$_POST['cr2'];
+			$cr3=$_POST['cr3'];
+			$cr4=$_POST['cr4'];
+			$cr5=$_POST['cr5'];
+			$cr6=$_POST['cr6'];
+		}else{
+			$cr1=$_POST['currency'];
+			$cr2=$_POST['currency2'];
+			$cr3=$_POST['currency3'];
+			$cr4=$_POST['curr1'];
+			$cr5=$_POST['curr2'];
+			$cr6=$_POST['curr3'];
+		}
+		
 		$add = array(			
 			'status' => 0,
 			'id_user' => $_POST['id_user'],
@@ -1209,9 +1226,9 @@ class Tri extends CI_Controller {
 			'display_name' => $_POST['display_name'],
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
-			'currency' => $_POST['currency'],
-			'currency2' => $_POST['currency2'],
-			'currency3' => $_POST['currency3'],
+			'currency' => $cr1, //$_POST['currency'],
+			'currency2' => $cr2, //$_POST['currency2'],
+			'currency3' => $cr3, //$_POST['currency3'],
 			'division_id' => $_POST['division_id'],
 			'jabatan' => $_POST['jabatan'],
 			'label1' => $_POST['label1'],
@@ -1231,9 +1248,9 @@ class Tri extends CI_Controller {
 			'akun_bank' => $v_bank,
 			'no_rekening' =>$v_account,
 			'lainnya1' => $_POST['lainnya1'],
-			'curr_settlement1' => $_POST['curr1'],
-			'curr_settlement2' => $_POST['curr2'],
-			'curr_settlement3' => $_POST['curr3'],
+			'curr_settlement1' => $cr1, //$_POST['curr1'],
+			'curr_settlement2' => $cr2, //$_POST['curr2'],
+			'curr_settlement3' => $cr3, //$_POST['curr3'],
 			'label7a' => $_POST['label7a'],
 			'label8a' => $_POST['label8a'],
 			'label9a' => $_POST['label9a'],
@@ -1350,5 +1367,11 @@ class Tri extends CI_Controller {
 	
 		$this->Dashboard_model->draftpaymentdeleteFlag(array('id_payment' => $id), $dataH);
 		echo json_encode(array("status" => TRUE));
+	}
+	
+	public function getdetilarf($id)
+	{
+		$data = $this->Home_model->getdetilarf(urldecode($id));
+		echo json_encode($data);
 	}
 }    

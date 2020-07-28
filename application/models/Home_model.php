@@ -439,9 +439,10 @@ class Home_model extends CI_Model{
     function getARFPaid(){
         $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT apf_doc,description FROM t_payment_l WHERE division_id ='$dvs' AND status='10' AND apf_doc LIKE '%ARF%'";
-
-        $query = $this->db->query($sql)->result();
+        $sql = "select a1.apf_doc,a1.description, a2.label1 FROM t_payment_l a1, t_payment a2 WHERE a1.id_payment=a2.id_payment and a1.division_id ='$dvs' AND a1.status='10' AND a1.apf_doc LIKE '%ARF%' ";
+		$sql .="and a2.jenis_pembayaran=2 and a1.apf_doc not in (select a1.apf_doc FROM t_payment_l a1, t_payment a2 WHERE a1.id_payment=a2.id_payment and a1.division_id ='CSF' AND a1.status='10' AND a1.apf_doc LIKE '%ARF%' and a2.jenis_pembayaran=3) "; 
+        
+		$query = $this->db->query($sql)->result();
         return $query;
     }
 
@@ -900,4 +901,14 @@ class Home_model extends CI_Model{
 		$this->db->update('t_payment', $data, $where);
 		return $this->db->affected_rows();
 	}
+	
+	function getdetilarf($id){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "select a2.label1,a2.currency,a2.currency2,a2.currency3,a2.label2,a2.jumlah2,a2.jumlah3 FROM t_payment_l a1, t_payment a2 WHERE a1.id_payment=a2.id_payment and a1.apf_doc='".$id."' and a1.division_id ='$dvs' AND a1.status='10' AND a1.apf_doc LIKE '%ARF%'";
+		//var_dump($sql);
+		//exit();
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
 }

@@ -42,7 +42,8 @@
 				/* margin-left: 10px; */
    }  
    .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
-   	
+   
+   
 </style>
 
   <!-- Content Wrapper. Contains page content -->
@@ -381,6 +382,7 @@
 				</div>
 			</div>
 
+		
         <div class="row">
             <div class="col-xs-12">
             <!-- /.box -->
@@ -497,9 +499,14 @@
             </div>
             <!-- /.col -->
         </div>  
-                
+		
+		
+		 
     </section>
     <!-- /.content -->
+
+	
+
 
   </div>
   <!-- /.content-wrapper -->
@@ -541,6 +548,8 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
  
+	
+
 
 </div>
 <!-- ./wrapper -->
@@ -566,18 +575,21 @@
 <script src="assets/admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- ChartJS -->
 <script src="assets/admin/bower_components/chart.js/Chart.js"></script>
-<script src="assets/admin/bower_components/chart.js/canvasjs.min.js"></script>
+<script src="assets/admin/bower_components/chart.js/canvasjs.min.js"></script> 
+
 
 <script>
 function deletedraftpayment(id)
     {
+		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
+		if (r == true) {
 			$.ajax({
 				url : "<?php echo base_url('dashboard/draftpaymentdelete')?>/"+id,
 				type: "POST",
 				dataType: "JSON",
 				success: function(data)
 				{               
-          alert('Data Succesfully Deleted');
+					alert('Data Succesfully Deleted');
 					location.reload();
 				},
 				error: function (jqXHR, textStatus, errorThrown)
@@ -585,7 +597,8 @@ function deletedraftpayment(id)
 					alert('Error deleting data');
 				}
 			});
-    }
+		}
+	}
 
 $(function () {
     $("#example1").DataTable();

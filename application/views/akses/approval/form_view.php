@@ -236,7 +236,11 @@
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency3;?>" readonly></td>
                         <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
-                      </tr>                                                 
+                      </tr>  
+                      <tr>
+                        <td colspan="2">&nbsp;</td>
+                        <td colspan="8" style="text-align:end"><b><i>Nilai(+) = Pembayaran, Nilai(-) = Pengembalian</i></b></td>
+                      </tr>
                       </tbody>
                     </table>
 
@@ -310,7 +314,7 @@
 																<th>Penerima Pembayaran <font color="red"> * </font></th>
 																<th>Tunai/Transfer <font color="red"> * </font></th>
 																<th>Nomor Rekening <font color="red"> * </font></th>
-                                <th>Mata Uang <font color="red"> * </font></th>
+																<th>Mata Uang <font color="red"> * </font></th>
 																<th>Nominal <font color="red"> * </font></th>
 																<th>&nbsp;</th>
                               </tr>
@@ -363,31 +367,21 @@
 															<tr id="tr<?php echo $vendorrow; ?>">
 															<td ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>')" class="form-control" name="penerimavendor[]" readonly>
 																	<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>
-																	<option value="">--Choose--</option>
-																	<?php foreach ($data_vendor as $nama){?> 
-																	  <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
-																	<?php } ?>
 																	</select>
 																	<input id="<?php echo 'kodevendor'.$vendorrow; ?>" type="hidden" name="kodevendor[]" value="<?php echo $gvendor->kode_vendor; ?>"  />
 																	<input id="<?php echo 'namavendor'.$vendorrow; ?>" type="hidden" name="namavendor[]" value="<?php echo $gvendor->penerima; ?>"   /></td>
 															<td><select id="<?php echo 'bankvendor'.$vendorrow; ?>" name="bankvendor[]" class="form-control" readonly >
 																	<option value="<?php echo $gvendor->v_bank; ?>"> <?php echo $gvendor->v_bank;?> </option>
-																	<option value="">--- Choose ---</option>
-																	<?php foreach ($bank as $get) {?>
-																	  <option value="<?php echo $get->bank; ?>"><?php echo $get->bank; ?></option>
-																	<?php } ?>
+																	
 																	</select>
 																</td>
 																<td><input id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" readonly>
 																</td>
 																<td><select id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" readonly >
 																	<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
-																	<option value="">--- Choose ---</option>
-																	<?php foreach ($currency  as $cur) {?>
-																	  <option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
-																	<?php } ?>
+						
 																	</select>
-																</td>																   
+																</td>
 															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" readonly></td>
 															
 															
@@ -398,12 +392,12 @@
 														  <tfoot>
 															<tr>
 																<th>
-																<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
-																  <i class="glyphicon glyphicon-plus"></i></span>
-																</div>
-																<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
+																																	  
+																 
+					  
+																<div class="col-md-12"><span class="col-md-12" style="text-align:end">Total</span></div>
 																  </th>
-																<th colspan="5">
+																<th colspan="4">
 																<label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
 																<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $row->label2; ?></label>
 																<label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
@@ -534,23 +528,23 @@
                           $showed="style=''" ;
                     } ?>
                                                 
-                    <div id="show" <?php echo $showed;?>>
-                    
-                      <table style="font-family: calibri;"  width="70%">
-                        <tbody>
-                        <tr>
-                          <td><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
-                        </tr>
-                        <tr>
-                          <td><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
-                          <td>:&nbsp;</td>
-                          <td>
-                            <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
-                          </td>
-                          <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled> Lampiran copy ARF tersedia</input></td>
-                        </tr>
-                      </tbody>
-                      </table>
+                    <div id="show" <?php echo $showed;?> class="table-responsive" >
+                                               
+                    <table style="font-family: calibri;"  width="90%">
+                      <tbody>
+                      <tr>
+                        <td  colspan="6"><b>Khusus diisi untuk Jenis Pembayaran Pertanggungjawaban Uang Muka/Settlement:</b></td>
+                      </tr>
+				          	  <tr>
+                        <td style="width:350px"><b>- Nomor ARF terkait <font color="red"> * </font></b></td>
+                        <td>:&nbsp;</td>
+                        <td style="width:500px">
+                          <input type="text" class="form-control" name="label5" value="<?php echo $row->label5;?>"readonly>                          
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" name="label6" value="Lampiran copy ARF tersedia"<?php echo $row->label6=="Lampiran copy ARF tersedia"? 'checked':''?> disabled> Lampiran copy ARF tersedia</input></td>
+                      </tr>
+                     </tbody>
+                    </table>
                       <table style="font-family: calibri;" width="90%"; >
                         <tbody>
                         <tr>
@@ -764,7 +758,8 @@
 
                         <?php if($row->status == 1 && $iya == "OFF" ){ ?>
                           <?php if($row->display_name == $this->session->userdata("display_name") ) { ?>
-                          
+                            <!-- <a class="btn btn-primary" href="Approval/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a> -->
+
                             <button type="button" data-toggle="modal" data-target="#submit<?php echo $row->id_payment; ?>" class="btn btn-success">Submit</button>
                             <!----.Modal -->
                             <!----.Accept -->
@@ -840,6 +835,8 @@
 <script>
 function deletedraftpayment(id,$vscreen)
     {
+		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
+		if (r == true) {
 			$.ajax({
 				url : "<?php echo base_url('Approval/draftpaymentdelete')?>/"+id,
 				type: "POST",
@@ -855,6 +852,7 @@ function deletedraftpayment(id,$vscreen)
 					alert('Error deleting data');
 				}
 			});
+		}
     }
 
 function printThis() {
