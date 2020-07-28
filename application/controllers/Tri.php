@@ -905,17 +905,32 @@ class Tri extends CI_Controller {
 	}
 
 	public function draftsent($id_payment){
-
+		$id_apa = $_POST['id_payment'];
+		
+		$nosurat = $this->Home_model->buat_kode();
 		$upd = array(
 			'id_payment' => $id_payment,
-			'status' => 1,
-			'nomor_surat' => $_POST['nomor_surat']
-
+			'nomor_surat' => $nosurat,
+			'status' => 1
 		);
 		
 		$this->Dashboard_model->updateprint($upd);
 
-		redirect('Tri');
+		redirect(site_url('Tri/form_view/'.$id_apa));
+	}
+
+	public function draftsent_back($id_payment){
+		$id_apa = $_POST['id_payment'];
+		$rejected = "";
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1,
+			'rejected_by' => $rejected
+		);
+
+		$this->Dashboard_model->updateprintsendback($upd);
+
+		redirect(site_url('Tri/form_view/'.$id_apa));
 	}
 
 	// public function draftprintdp($id_payment){

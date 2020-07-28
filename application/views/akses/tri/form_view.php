@@ -637,36 +637,62 @@
                                 $testl1 = $row->label4;
                                 $testl2 = explode(";", $testl1);
                                 // var_dump($testl2[0]);exit;
+                                if ($row->status == 0 && $row->rejected_by == NULL){ 
 
-                              if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" ){ ?>
-                              <button type="button" data-toggle="modal" data-target="#setprint<?php echo $row->id_payment; ?>" class="btn btn-success">Set To Print</button>
-                                <div class="modal fade" id="setprint<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                  <div class="modal-dialog modal-xl" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                      <h3 class="modal-title">Message Box</h3>
-                                    </div>                                        
-                                    <div class="modal-body">
-                                      <form id="approve" method="post" action="Tri/draftsent/<?php echo $row->id_payment; ?>">
-                                        <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                        <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
-                                        <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
-                                        <div class="modal-footer">                        
-                                          <button type="submit" class="btn btn-success bye">Yes</button>
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  if($row->label1 !="" && $row->label2 != "" && $row->penerima != "" ){ ?>
+                                  <button type="button" data-toggle="modal" data-target="#setprint<?php echo $row->id_payment; ?>" class="btn btn-success">Set To Print</button>
+                                    <div class="modal fade" id="setprint<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                      <div class="modal-dialog modal-xl" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                          <h3 class="modal-title">Message Box</h3>
+                                        </div>                                        
+                                        <div class="modal-body">
+                                          <form id="approve" method="post" action="Tri/draftsent/<?php echo $row->id_payment; ?>">
+                                            <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                            <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
+                                            <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
+                                            <div class="modal-footer">                        
+                                              <button type="submit" class="btn btn-success bye">Yes</button>
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </form>
                                         </div>
-                                      </form>
-                                    </div>
+                                      </div>
+                                      </div>
+                                    </div>  
+    
+                                  <?php }else{ ?>
+    
+                                <?php } ?>
+                              <?php } ?>
+                            <?php } } ?>
+    
+                            <!--Jika Statusnya telah direject -->
+                            <?php if ($row->status == 0 && $row->rejected_by != NULL){ ?>
+                              <button type="button" data-toggle="modal" data-target="#setsendback<?php echo $row->id_payment; ?>" class="btn btn-success">Set To Print</button>
+                              <div class="modal fade" id="setsendback<?php echo $row->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title">Message Box</h3>
+                                  </div>                                        
+                                  <div class="modal-body">
+                                    <form id="approve" method="post" action="Tri/draftsent_back/<?php echo $row->id_payment; ?>">
+                                      <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
+                                      <p align="justify">Apa anda yakin akan mengirimkan kembali Form SP3 ini dengan data yang benar?  </p>
+                                      <div class="modal-footer">                        
+                                        <button type="submit" class="btn btn-success bye">Yes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </form>
                                   </div>
-                                  </div>
-                                </div>  
-
-                              <?php }else{ ?>
-
-                          <?php } ?>
-                        <?php } ?>   
-                      <?php } ?>   
+                                </div>
+                                </div>
+                              </div>
+                            <?php } ?>   
                         
                         <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3  && $row->status != 99  && $row->status != 'XXX'){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
@@ -837,7 +863,7 @@ function deletedraftpayment(id,$vscreen)
 		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
 		if (r == true) {
 			$.ajax({
-				url : "<?php echo base_url('home/draftpaymentdelete')?>/"+id,
+				url : "<?php echo base_url('Tri/draftpaymentdelete')?>/"+id,
 				type: "POST",
 				dataType: "JSON",
 				success: function(data)

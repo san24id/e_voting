@@ -1801,6 +1801,20 @@ class Dashboard extends CI_Controller {
 		redirect(site_url('Dashboard/form_view/'.$id_apa));
 	}
 
+	public function draftsent_back($id_payment){
+		$id_apa = $_POST['id_payment'];
+		$rejected = "";
+		$upd = array(
+			'id_payment' => $id_payment,
+			'status' => 1,
+			'rejected_by' => $rejected
+		);
+
+		$this->Dashboard_model->updateprintsendback($upd);
+
+		redirect(site_url('Dashboard/form_view/'.$id_apa));
+	}
+
 	// public function draftprintdp($id_payment){
 
 	// 	$upd = array(

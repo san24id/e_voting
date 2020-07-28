@@ -119,6 +119,14 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    public function updateprintsendback($upd){
+        $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`rejected_by`='".$upd['rejected_by']."' WHERE `id_payment`='".$upd['id_payment']."'"; 
+        
+        $query = $this->db->query($sql);
+
+        return $query;
+    }
+
     public function updaterejected($upd){
         $sql = "UPDATE `t_payment` SET `status`='".$upd['status']."',`note`='".$upd['note']."',`rejected_by`='".$upd['rejected_by']."',
                 `rejected_date`='".$upd['rejected_date']."',`handled_by`='".$upd['handled_by']."'
