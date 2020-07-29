@@ -377,7 +377,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                 <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                       <th>NO.</th>
@@ -459,14 +459,35 @@
 
                       <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                       <?php if($row->status=="0" || $row->status=="1"){ 
-						          if($this->session->userdata("display_name")==$row->display_name){ ?>
-                        <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+						            if($this->session->userdata("display_name")==$row->display_name){ ?>
+                        <!--<button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>-->
+                        <button type="button" data-toggle="modal" data-target="#mdldelete" class="btn btn-danger btn-sm" title="Delete" ><i class="glyphicon glyphicon-trash"></i></button>
+                          <div class="modal fade" id="mdldelete" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h3 class="modal-title">Confirmation Box</h3>
+                              </div>
+
+                              <div class="modal-body">
+                              <form>
+                              <p align="justify">Apa anda yakin akan menghapus Form SP3 ini : <?=$row->nomor_surat?></p>
+                              </div>
+                              <div class="modal-footer">                        
+                              <button type="button" class="btn btn-success bye" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                            </div>
+                          </div> 
                       <?php } }?>
                     </td>      
                     </tr>
-                <?php  } ?>
-                </tbody>
-                </table>
+                    <?php  } ?>
+                    </tbody>
+                  </table>
                 </div>
                 
                 <div class="box-footer">  
@@ -559,23 +580,19 @@
 <script>
 function deletedraftpayment(id)
     {
-		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
-		if (r == true) {
-				$.ajax({
+		$.ajax({
 				url : "<?php echo base_url('Approval/draftpaymentdelete')?>/"+id,
 				type: "POST",
 				dataType: "JSON",
 				success: function(data)
 				{               
-          alert('Data Succesfully Deleted');
-					location.reload();
+        			location.reload();
 				},
 				error: function (jqXHR, textStatus, errorThrown)
 				{
 					alert('Error deleting data');
 				}
 			});
-		}
     }
 
 $(function () {

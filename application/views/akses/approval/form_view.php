@@ -654,7 +654,7 @@
                                             <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
                                             <p align="justify">Apa anda yakin telah mengisi Form SP3 ini dengan benar?  </p>
                                             <div class="modal-footer">                        
-                                              <button type="submit" class="btn btn-success bye">OK</button>
+                                              <button type="submit" class="btn btn-success bye">Yes</button>
                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </div>
                                           </form>
@@ -684,7 +684,7 @@
                                       <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                       <p align="justify">Apa anda yakin akan mengirimkan kembali Form SP3 ini dengan data yang benar?  </p>
                                       <div class="modal-footer">                        
-                                        <button type="submit" class="btn btn-success bye">OK</button>
+                                        <button type="submit" class="btn btn-success bye">Yes</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                       </div>
                                     </form>
@@ -708,7 +708,27 @@
 
                         <?php if($row->status=="0" || $row->status=="1"){ 
                           if($this->session->userdata("display_name")==$row->display_name){ ?>
-                          <button class="btn btn-danger" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Delete</button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#mdldelete" >Delete</button>
+                              <div class="modal fade" id="mdldelete" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h3 class="modal-title">Confirmation Box</h3>
+                                  </div>
+
+                                  <div class="modal-body">
+                                  <form>
+                                  <p align="justify">Apa anda yakin akan menghapus Form SP3 ini : <?=$row->nomor_surat?></p>
+                                  </div>
+                                  <div class="modal-footer">                        
+                                  <button type="button" class="btn btn-success bye" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </form>
+                                  </div>
+                                </div>
+                                </div>
+                              </div> 
                         <?php }} ?>
 
                         <?php 
@@ -743,7 +763,7 @@
                                     <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                                     <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
                                   <div class="modal-footer">                        
-                                    <button type="submit" class="btn btn-success bye">OK</button>
+                                    <button type="submit" class="btn btn-success bye">Yes</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								                  </div>
                                 </form>
@@ -771,7 +791,7 @@
                                     <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                                   </div>
                                   <div class="modal-footer">                        
-                                    <button type="submit" class="btn btn-success bye">OK</button>
+                                    <button type="submit" class="btn btn-success bye">Yes</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                   </form>
                                   </div>
@@ -800,7 +820,7 @@
                                   <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
                                 </div>
                                 <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">OK</button>
+                                <button type="submit" class="btn btn-success bye">Yes</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </form>
                                 </div>
@@ -861,15 +881,12 @@
 <script>
 function deletedraftpayment(id,$vscreen)
     {
-		var r = confirm("Apakah Anda yakin akan menghapus Form SP3 ini?");
-		if (r == true) {
-			$.ajax({
+		$.ajax({
 				url : "<?php echo base_url('Approval/draftpaymentdelete')?>/"+id,
 				type: "POST",
 				dataType: "JSON",
 				success: function(data)
-				{       
-          alert('Data Successfully Deleted');        
+				{
 					location.href=$vscreen;
 					//location.reload();
 				},
@@ -878,7 +895,6 @@ function deletedraftpayment(id,$vscreen)
 					alert('Error deleting data');
 				}
 			});
-		}
     }
 
 function printThis() {

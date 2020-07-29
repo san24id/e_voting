@@ -314,7 +314,7 @@ td[rowspan="3"] {
                           <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
                         </div>
                         <div class="modal-footer">                        
-                            <button type="submit" class="btn btn-success bye">OK</button>
+                            <button type="submit" class="btn btn-success bye">Yes</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </form>
                         </div>
@@ -341,7 +341,7 @@ td[rowspan="3"] {
                           <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                         </div>
                         <div class="modal-footer">                        
-                          <button type="submit" class="btn btn-success bye">OK</button>
+                          <button type="submit" class="btn btn-success bye">Yes</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </form>
                         </div>
