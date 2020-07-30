@@ -261,9 +261,9 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" >
-                              <?php echo $get->currency4;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" > 
-                              <?php echo $get->currency8;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" >
+                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly>
+                              <?php echo $get->currency4;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly> 
+                              <?php echo $get->currency8;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
                           </td>
                         </tr>
                         <tr>
@@ -284,14 +284,14 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" class="form-control" name="terbilang" value="<?php echo $get->terbilang;?>" >
-                                          <input type="text" id="terbilang2" class="form-control" name="terbilang2" value="<?php echo $get->terbilang2;?>" >
-                                          <input type="text" id="terbilang3" class="form-control" name="terbilang3" value="<?php echo $get->terbilang3;?>" >
+                          <td colspan="4"><input type="text" id="terbilang" class="form-control" name="terbilang" value="<?php echo $get->terbilang;?>" readonly>
+                                          <input type="text" id="terbilang2" class="form-control" name="terbilang2" value="<?php echo $get->terbilang2;?>" readonly>
+                                          <input type="text" id="terbilang3" class="form-control" name="terbilang3" value="<?php echo $get->terbilang3;?>" readonly>
                           </td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada;?>" ></td>
+                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada;?>" readonly></td>
                         </tr>
                         </tbody>
                     </table>
@@ -372,13 +372,13 @@ td[rowspan="6"] {
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> > Tunai</input></font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> readonly> Tunai</input></font></td>
                         </tr>
                         <tr>
                           <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> > Transfer Ke :</input> </center></td>
 
-                          <td><font size="+1"> Bank : &nbsp;<input type="text" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
-                          <td><font size="+1"> No. Rek : &nbsp;<input type="text" name="no_rek" value="<?php echo $get->no_rek; ?>" readonly> </input></font></td>                        
+                          <td><font size="+1"> Bank : &nbsp;<input type="text" class="form-control" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
+                          <td><font size="+1"> No. Rek : &nbsp;<input type="text" class="form-control" name="no_rek" value="<?php echo $get->no_rek; ?>" readonly> </input></font></td>                        
                         </tr>
                       </tbody>
                     </table>

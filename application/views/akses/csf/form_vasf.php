@@ -134,14 +134,12 @@ td[rowspan="6"] {
                           <td><center>9</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description9" value="<?php echo $get->description9;?>" readonly></td>
                           <td><center>  <?php echo $get->currency8;?></center></td>
-
                           <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>" readonly></td> 
                         </tr>
                         <tr>
                           <td><center>10</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description10" value="<?php echo $get->description10;?>" readonly></td>
                           <td><center>  <?php echo $get->currency9;?></center></td>
-
                           <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>" readonly></td> 
                         </tr>
                         <tr>

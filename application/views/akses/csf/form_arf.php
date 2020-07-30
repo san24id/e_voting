@@ -293,11 +293,11 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>"></td>
+                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?> "></td>
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?> " readonly></td>
                         </tr>
                         <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
@@ -311,7 +311,7 @@ td[rowspan="6"] {
                         ?>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima; ?>"></td>
+                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima; ?>" readonly></td>
                         </tr>
                       </tbody>
                     </table>
@@ -322,14 +322,14 @@ td[rowspan="6"] {
                       <tbody>
                       <tr> 
                         <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks"></textarea></td>
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks" readonly></textarea></td>
                       </tr>
                       <tr>
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control"></td>     
+                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" readonly></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -342,11 +342,11 @@ td[rowspan="6"] {
                         <tr>
                             <?php foreach ($divhead as $divhead) { ?>
                           <td>Nama /<i>Name : </i></td>
-                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $divhead->display_name; ?>" required></td> 
+                          <td><input type="text" class="form-control" name="penanggung_jawab" value="<?php echo $divhead->display_name; ?>" readonly ></td> 
                         </tr>
                         <tr>
                           <td>Jabatan /<i>Title : </i></td>
-                          <td><input type="text" class="form-control" name="jabatan" value="SVP Corporate Strategy & Finance" required></td> 
+                          <td><input type="text" class="form-control" name="jabatan" value="SVP Corporate Strategy & Finance" readonly></td> 
                         </tr>
                             <?php }?>
                       </tbody>  
@@ -390,15 +390,15 @@ td[rowspan="6"] {
                         }else{
                               $ceklis=" ";
                         } ?>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" <?php echo $ceklis;?> name="metode_pembayaran" value="Tunai" > Tunai </font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" <?php echo $ceklis;?> name="metode_pembayaran" value="Tunai" readonly> Tunai </font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" > Transfer Ke : </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" readonly> Transfer Ke : </center></td>
                           <td><font size="+1"> Bank : 
-                              &nbsp;<input type="text" name="bank" value="<?php echo $row->akun_bank;?>" > </font>
+                              &nbsp;<input type="text" name="bank" class="form-control" value="<?php echo $row->akun_bank;?>" readonly> </font>
                           </td> 
                           <td><font size="+1"> No. Rek : 
-                              &nbsp;<input type="text" name="no_rek" value="<?php echo $row->no_rekening;?>" > </font>
+                              &nbsp;<input type="text" name="no_rek" class="form-control" value="<?php echo $row->no_rekening;?>" readonly> </font>
                           </td>                        
                         </tr>
                       </tbody>
