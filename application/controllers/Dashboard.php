@@ -2541,6 +2541,15 @@ class Dashboard extends CI_Controller {
 					);
 		$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
 		$this->Dashboard_model->updatestatustax(array('id_payment' => $this->input->post('id_payment')), $data);
+		$data1 = array(
+						'id_payment' => $this->input->post('id_payment'),
+						'de' => $this->input->post('vdeductible'),
+						'opsional' => $this->input->post('voptional'),
+						'nilai' => $this->input->post('nilai'),
+						'objek_pajak' => $this->input->post('vobjekpajak')
+					);					
+		$insert = $this->Dashboard_model->addtaxheader($data1);
+		
 		echo json_encode(array("status" => TRUE));
 	}
 	

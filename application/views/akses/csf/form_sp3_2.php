@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -396,7 +397,28 @@
 						<div class="box">
 							  <div class="box-header with-border">
 								<a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
-								<button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>
+								<!--<button type="button" onclick="submittax()" class="btn btn-primary">Proceed For Finance</button>-->
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdlconfirm" >Proceed For Finance</button>
+								<div class="modal fade" id="mdlconfirm" tabindex="-1" role="dialog" aria-hidden="true">
+								  <div class="modal-dialog modal-xl" role="document">
+									<div class="modal-content">
+									  <div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h3 class="modal-title">Message Box</h3>
+									  </div>
+
+									  <div class="modal-body">
+									  <form>
+										<p align="justify">Anda Akan mengirimkan Form Tax SP3 : <?=$row1->nomor_surat?></p>
+									  </div>
+									  <div class="modal-footer">                        
+										<button type="button" class="btn btn-success bye" onclick="submittax()" >Yes</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									  </form>
+									  </div>
+									</div>
+								  </div>
+								</div> 
 							  </div>
 							</div>  
 					</div>
@@ -449,8 +471,10 @@
 </div>
 <!-- ./wrapper -->
 
-    <!-- jQuery 2.2.3 -->
-<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- jQuery 2.2.3 
+<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Bootstrap 3.3.6 -->
 <script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
     <!-- DataTables -->
@@ -761,7 +785,16 @@ function view_tax()
 function submittax()
     {
 		var nmr_srt = $('#nomor_surat').val();
-		if ($('#vobjekpajak').val()==""){
+		$('#mdlconfirm').modal('hide');
+		if ($('#vdeductible').val()==""){
+			alert("Deductible Expense belum di pilih");
+		}else if ($('#vdeductible').val()=="0" && $('#voptional').val()==""){			
+			alert("Pilihan Non Deductible Expense belum di pilih");
+		}else if ($('#voptional').val()=="3" && $('#nilai').val()==""){			
+			alert("Nilai PARTNDE belum di isi");
+		}else if ($('#voptional').val()=="3" && $('#nilai').val()=="0"){			
+			alert("Nilai PARTNDE belum di isi");
+		}else if ($('#vobjekpajak').val()==""){
 			alert("Objek Pajak belum di pilih");
 		}else{
 			var ntax=$('#txttotnontax').val();//$('#lbltotalnontax').text();
@@ -775,28 +808,24 @@ function submittax()
 			balance=0;
 			if(balance != 0){
 				alert("Jumlah Transaksi tidak sama dengan Jumlah pengajuan");
-			}else if(balance == 0){
-				var r = confirm("Anda Akan mengirimkan Form Tax : " + nmr_srt + " ?");
-			  if (r == true) {
-			
-			var url = "<?php echo base_url('dashboard/submittax')?>";
-			$.ajax({
-                url : url,
-                type: "POST",
-                data: $("#form1,#form").serialize(),
-                dataType: "JSON",
-                success: function(data)
-                { 
-                  console.log(data);
-				   window.location = "<?php echo base_url('dashboard/my_task') ?>";    
-                },
-                error: function (data)
-                {
-					console.log(data);
-                  alert('Error adding / update data');
-                }
-              });
-			 }
+			}else if(balance == 0){			
+				var url = "<?php echo base_url('dashboard/submittax')?>";
+				$.ajax({
+					url : url,
+					type: "POST",
+					data: $("#form1,#form").serialize(),
+					dataType: "JSON",
+					success: function(data)
+					{ 
+					  console.log(data);
+					   window.location = "<?php echo base_url('dashboard/my_task') ?>";    
+					},
+					error: function (data)
+					{
+						console.log(data);
+					  alert('Error adding / update data');
+					}
+				  });				 
 			}			 
 		}
 		
@@ -1278,7 +1307,10 @@ function showed() {
 
   $(document).ready(function() { 
   
-	
+	$('#selKdPjk').select2();
+$('#selKdMap').select2();
+$('#selJnsPjk').select2();
+
 		$('#jenis_pajak').change(function() {
       if( $(this).val() == 'PPh Pasal 21') {
             $('#kode_pajak').prop( "disabled", true );
@@ -1685,7 +1717,10 @@ function PajakTerhutang(){
 			$('#txtalamat').prop('readonly', true);
 	}
 }
+
+
   //===========
+  
 </script>
 
 <!-- View Tax -->
@@ -1717,9 +1752,9 @@ function PajakTerhutang(){
 					<input type="hidden" name="nomor_surat" id="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >
 					<?php } ?>
 					<input type="hidden" name="txtrealtrf" id="txtrealtrf" value='0' />
-					<input type="hidden" name="vdeductible" id="vdeductible"  value='1' />
+					<input type="hidden" name="vdeductible" id="vdeductible"  />
 					<input type="hidden" name="voptional" id="voptional"   />
-					<input type="hidden" name="vobjekpajak" id="vobjekpajak" value='1' />
+					<input type="hidden" name="vobjekpajak" id="vobjekpajak"  />
 					<input type="hidden" name="vjnspjk" id="vjnspjk" />
 					<input type="hidden" name="vkdpjk" id="vkdpjk" />
 					<input type="hidden" name="vkdmap" id="vkdmap" />
@@ -1739,7 +1774,7 @@ function PajakTerhutang(){
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">Jenis Pajak</label>
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<select class="form-control select2"  id="selJnsPjk" name="selJnsPjk" style="width: 100%;">
 										<option value=''>== Pilih ==</option>
 										<?php 										

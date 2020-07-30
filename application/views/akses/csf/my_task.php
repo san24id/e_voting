@@ -180,7 +180,7 @@
                           }
                         }  ?> 
                   </td>
-                  <td><?php echo $row->tanggal;?></td>
+                  <td><?php echo $row->submit_date;?></td>
                   <td><?php echo $row->label1; ?></td>
                   <td><?php echo $row->display_name; ?></td>
                   <td>

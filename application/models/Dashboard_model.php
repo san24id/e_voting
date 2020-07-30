@@ -433,8 +433,8 @@ class Dashboard_model extends CI_Model{
     }
 	
 	function getProcessTaxHeader($id_payment){
-        $sql = "SELECT DISTINCT de,opsional,objek_pajak,nilai FROM `t_tax` WHERE id_payment = '$id_payment'";
-
+        //$sql = "SELECT DISTINCT de,opsional,objek_pajak,nilai FROM `t_tax` WHERE id_payment = '$id_payment'";
+		$sql = "select de,opsional,objek_pajak,nilai FROM `t_tax_header` where id_payment = '$id_payment'";
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
         return $query;
@@ -1510,4 +1510,10 @@ class Dashboard_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
+	
+	public function addtaxheader($data)
+	{
+		$this->db->insert('t_tax_header', $data);
+		return $this->db->insert_id();
+	}
 }
