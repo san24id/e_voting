@@ -163,13 +163,19 @@ td[rowspan="6"] {
                           <td><font size="1"><center>  <?php echo $get->currency11;?></center></td>
                           <td><font size="1"><?php echo $get->jumlah12;?></td> 
                         </tr>
+
+                        <tr>
+                          <td colspan="3" align="right"><font size="1"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
+                          <td colspan="4"><font size="1"><?php echo $get->total_expenses;?> </td>
+                        </tr>
                         <tr> 
                           <td><font size="1">Terbilang/ <i>Say :</i> </td>
-                          <td colspan="3"><font size="1"><?php echo $get->terbilang;?></td>
+                          <td colspan="4"><font size="1"><?php echo $get->terbilang;?></td>
                         </tr>
                         <tr> 
                           <td><font size="1">Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><font size="1"><?php echo $get->dibayar_kepada;?></td>
+                          <td colspan="4"><font size="1"><?php echo $get->dibayar_kepada;?></td>
                         </tr>
                       </tbody>
                     </table>
@@ -185,7 +191,7 @@ td[rowspan="6"] {
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%"><font size="1"> Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><font size="1"> <?php echo date("d-m-Y", strtotime($get->verified_date));?></td>     
+                        <td colspan="2" rowspan="2"><font size="1"> <?php echo $get->verified_date;?></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -242,10 +248,10 @@ td[rowspan="6"] {
                           <td colspan="4"><font size="1"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
+                          <td colspan="4"><font size="1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><font size="1"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
+                          <td width="26%" colspan="2"><font size="1"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
                           <!-- <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> disabled> <i>Akumulasi > Rp. 20 Juta</i></input><br> -->
 
                           <td><font size="1"> Bank : &nbsp;<?php echo $get->bank; ?> </font></td> 
@@ -295,7 +301,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="1">Nama/ <i>Name</i> </td>
-                        <td> </td>		
+                          <td> </td>		
                         </tr>
                         <tr>
                           <td width="10%"><font size="1">Tanggal/ <i>Date</i> </td>

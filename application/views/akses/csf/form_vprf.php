@@ -69,15 +69,15 @@ td[rowspan="6"] {
                     <br>
 
                     <table border="1" style="font-family: calibri;" width="100%">
-                        <thead>
+                      <thead>
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
                           <th height="50%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
                           <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
                           <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
-                        </thead>
-                        <tbody>
+                      </thead>
+                      <tbody>
                         <tr>
                           <td><center> 1 </center></td>
                           <td colspan="2"><textarea type="text" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
@@ -165,7 +165,7 @@ td[rowspan="6"] {
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
                           <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $get->dibayar_kepada; ?>" readonly></td>
                         </tr>
-                        </tbody>
+                      </tbody>
                     </table>
                     
                     <br>

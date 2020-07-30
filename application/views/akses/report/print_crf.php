@@ -182,7 +182,7 @@ td[rowspan="6"] {
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%"><font size="1"> Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><font size="1"> <?php echo date("d-m-Y", strtotime($get->verified_date));?></td>     
+                        <td colspan="2" rowspan="2"><font size="1"> <?php echo $get->verified_date;?></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -281,7 +281,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="1"> Nama/ <i>Name</i> </td>
-                        <td> </td>		
+                          <td> </td>		
                         </tr>
                         <tr>
                           <td width="10%"><font size="1"> Tanggal/ <i>Date</i> </td>

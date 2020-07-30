@@ -84,9 +84,9 @@ td[rowspan="6"] {
                       <thead>
                         <tr>
                           <th width="5%"><font size="1"><center>NO. <br> <i>No.</i></center></th>
-                          <th height="40%" colspan="2"><font size="1"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="7%"><font size="1"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="33%"><font size="1"><center>Jumlah / <br><i>Amount</i></center></th>                       
+                          <th height="50%" colspan="2"><font size="1"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
+                          <th width="5%"><font size="1"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="25%"><font size="1"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                       </thead>
                       <tbody>                      
@@ -213,7 +213,7 @@ td[rowspan="6"] {
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%"><font size="1">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><font size="1"><?php echo date("d-M-Y", strtotime($get->verified_date));?></td>     
+                        <td colspan="2" rowspan="2"><font size="1"><?php echo $get->verified_date;?></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -323,7 +323,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="1">Nama/ <i>Name</i> </td>
-                        <td> </td>		
+                          <td> </td>		
                         </tr>
                         <tr>
                           <td width="10%"><font size="1">Tanggal/ <i>Date</i> </td>

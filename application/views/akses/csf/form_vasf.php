@@ -75,9 +75,9 @@ td[rowspan="6"] {
                       <thead>
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
-                          <th height="40%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
-                          <th width="7%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="33%"><center>Jumlah / <br><i>Amount</i></center></th>                       
+                          <th height="50%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
+                          <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
+                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                       </thead>
                       <tbody>                      

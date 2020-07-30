@@ -141,7 +141,9 @@
             <li><a href="Tri/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        <li class="<?php echo $l_payment?>"><a href="Tri/listPayment"><i class="glyphicon glyphicon-list-alt"></i><span>Payment</a></span></li>
+        <?php foreach ($w_paid as $notifPaid) { ?>
+        <li class="<?php echo $l_payment?>"><a href="Tri/listPayment"><i class="glyphicon glyphicon-list-alt"></i><span>Payment</span><small class="label pull-right bg-red"><?php echo $notifPaid->w_payment; ?> </small></a></li>
+        <?php } ?>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-list"></i>

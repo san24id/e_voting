@@ -140,7 +140,9 @@
             <li><a href="Approval/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        <li class="<?php echo $l_approval ?>"><a href="Approval/listApproval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</a></span></li>
+        <?php foreach ($w_approval as $notifApproval) { ?>
+        <li class="<?php echo $l_approval ?>"><a href="Approval/listApproval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</span><small class="label pull-right bg-red"><?php echo $notifApproval->w_approval; ?> </small></a></li>
+        <?php } ?>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-list"></i>

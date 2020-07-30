@@ -188,7 +188,7 @@ td[rowspan="6"] {
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%"><font size="1"> Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><font size="1"> <?php echo date("d-m-Y", strtotime($get->verified_date));?></td>     
+                        <td colspan="2" rowspan="2"><font size="1"> <?php echo $get->verified_date;?></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -245,10 +245,10 @@ td[rowspan="6"] {
                           <td colspan="4"><font size="1"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
+                          <td colspan="4"><font size="1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><font size="1"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
+                          <td width="26%" colspan="2"><font size="1"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
                           <!-- <input type="checkbox" name="label1" value="Akumulasi > Rp. 20 Juta" <?php echo $get->label1=="Akumulasi > Rp. 20 Juta"? 'checked':''?> disabled> <i>Akumulasi > Rp. 20 Juta</i></input><br> -->
 
                           <td><font size="1"> Bank : &nbsp;<?php echo $get->bank; ?> </font></td> 
@@ -298,7 +298,7 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td><font size="1">Nama/ <i>Name</i> </td>
-                        <td> </td>		
+                          <td> </td>		
                         </tr>
                         <tr>
                           <td width="10%"><font size="1">Tanggal/ <i>Date</i> </td>

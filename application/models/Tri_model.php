@@ -140,5 +140,14 @@ class Tri_model extends CI_Model{
         return $query;
     }
 
+    function notifPayment(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
 
+        $sql = "SELECT COUNT(status) as w_payment FROM t_payment WHERE status='9'";
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+
+    }
 }
