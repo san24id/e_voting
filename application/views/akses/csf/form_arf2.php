@@ -305,8 +305,8 @@ td[rowspan="6"] {
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
                           <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?>" readonly>
-                                          <input type="text" id="terbilang2" name="terbilang2" class="form-control" placeholder="Terbilang" readonly>
-                                          <input type="text" id="terbilang3" name="terbilang3" class="form-control" placeholder="Terbilang" readonly>      
+                                          <input type="text" id="terbilang2" name="terbilang2" class="form-control" value="<?php echo $row->terbilang2;?>" readonly>
+                                          <input type="text" id="terbilang3" name="terbilang3" class="form-control" value="<?php echo $row->terbilang3;?>" readonly>      
                           </td>
                         </tr>
                         <?php 

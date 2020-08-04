@@ -290,9 +290,9 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" readonly>
-                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" readonly>
-                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" readonly> 
+                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
+                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
+                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" value="<?php echo $row->jumlah3;?>" readonly> 
                           </td>
                         </tr>
                         <tr>
@@ -311,9 +311,9 @@ td[rowspan="6"] {
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang" readonly>
-                                          <input type="text" id="terbilang2" name="terbilang2" class="form-control" placeholder="Terbilang" readonly>
-                                          <input type="text" id="terbilang3" name="terbilang3" class="form-control" placeholder="Terbilang" readonly>      
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?>" readonly>
+                                          <input type="text" id="terbilang2" name="terbilang2" class="form-control" value="<?php echo $row->terbilang2;?>" readonly>
+                                          <input type="text" id="terbilang3" name="terbilang3" class="form-control" value="<?php echo $row->terbilang3;?>" readonly>      
                           </td>
                         </tr>
                         <?php 
