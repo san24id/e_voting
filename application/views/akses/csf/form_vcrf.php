@@ -148,13 +148,19 @@ td[rowspan="3"] {
                         </tr>
 
                         <tr>
-                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> </td>
+                          <td colspan="3" > Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td><center>    </center></td>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="ulang2" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="ulang3" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
+                          </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang" value="<?php echo $get->terbilang;?>" readonly></td>
+                          <td colspan="4"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>" readonly>
+                                          <input type="text" name="terbilang2" class="form-control" value="<?php echo $get->terbilang2;?>" readonly>
+                                          <input type="text" name="terbilang3" class="form-control" value="<?php echo $get->terbilang3;?>" readonly>
+                          </td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
@@ -299,7 +305,11 @@ td[rowspan="3"] {
 
                     <?php 
                         if($get->status == 5 && $get->rejected_by != NULL){ ?>
-                        <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
+                          <a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <?php } else if ($row->currency2 != "" || $row->currency3 != ""){ ?>
+                          <a href="Dashboard/form_ecrf2/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a> 
+                        <?php } ?>
                         <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Send Back To Reviewer</button>
                         <!---Modal Accept--->
                         <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -332,7 +342,11 @@ td[rowspan="3"] {
                     <?php } ?>
 
                     <?php if($get->status == 6){ ?>  
-                      <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
+                          <a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <?php } else if ($row->currency2 != "" || $row->currency3 != ""){ ?>
+                          <a href="Dashboard/form_ecrf2/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a> 
+                        <?php } ?>
                       <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-danger">Proceed To Verification</button>
                       <!---Modal Accept--->
                       <div class="modal fade" id="accept<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -430,7 +444,11 @@ td[rowspan="3"] {
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
-                    <a href="Dashboard/form_ecrf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
+                          <a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <?php } else if ($row->currency2 != "" || $row->currency3 != ""){ ?>
+                          <a href="Dashboard/form_ecrf2/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a> 
+                        <?php } ?>
                     <?php if($get->verified_date == NULL){ ?>
                     
                     <?php }else{ ?>  

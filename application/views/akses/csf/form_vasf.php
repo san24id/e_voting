@@ -472,7 +472,11 @@ td[rowspan="6"] {
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
-                    <a href="Dashboard/form_easf/<?php echo $get->id_payment; ?>" role="button" class="btn btn-primary">Edit</a>
+                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
+                          <a href="Dashboard/form_easf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <?php } else if ($row->currency2 != "" || $row->currency3 != ""){ ?>
+                          <a href="Dashboard/form_easf2/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a> 
+                        <?php } ?>
                     <?php if($get->verified_date == NULL) {?>
 
                     <?php }else{ ?>

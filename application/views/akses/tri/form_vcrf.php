@@ -148,13 +148,19 @@ td[rowspan="3"] {
                         </tr>
 
                         <tr>
-                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> </td>
+                          <td colspan="3" > Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td><center>    </center></td>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="ulang2" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="ulang3" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
+                          </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" name="terbilang" class="form-control" placeholder="Terbilang" value="<?php echo $get->terbilang;?>" readonly></td>
+                          <td colspan="4"><input type="text" name="terbilang" class="form-control" value="<?php echo $get->terbilang;?>" readonly>
+                                          <input type="text" name="terbilang2" class="form-control" value="<?php echo $get->terbilang2;?>" readonly>
+                                          <input type="text" name="terbilang3" class="form-control" value="<?php echo $get->terbilang3;?>" readonly>
+                          </td>
                         </tr>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>

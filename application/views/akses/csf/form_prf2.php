@@ -5,8 +5,9 @@ td[rowspan="6"] {
   text-align: left;
 }
 </style>
+
       <!-- Content Wrapper. Contains page content -->
-      <?php foreach ($payment as $row){ ?>
+      <?php foreach ($payment as $row){ ?>          
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -15,13 +16,13 @@ td[rowspan="6"] {
             <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
           </h1>
         </section>
-                  
         <!-- Main content -->
+        
         <form id="formadd" action="#">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name;?>">
-          <input type="hidden" name="type" class="form-control" value="3"> 
+          <input type="hidden" name="type" class="form-control" value="2"> 
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo date("Y-m-d")?>">
-          <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>"> 
+          <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>">
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -33,7 +34,7 @@ td[rowspan="6"] {
                       <tbody>
                         <tr>
                         <td> </td>
-                        <td <b><font size="+2" style="font-family: calibri;">FORMULIR PERTANGGUNGJAWABAN <br> <i> ADVANCE SETTLEMENT FORM (ASF)</i></font></b>                                  
+                        <td <b><font size="+2" style="font-family: calibri;">FORMULIR PERMINTAAN PEMBAYARAN <br> <i> PAYMENT REQUEST FORM (PRF)</i></font></b>                                  
                         <td><img src="assets/dashboard/images/logo.png" alt="Logo Images"></td>
                         </tr>
                       </tbody>
@@ -68,6 +69,7 @@ td[rowspan="6"] {
                                   'Oct' => 'Okt',
                                   'Nov' => 'Nov',
                                   'Dec' => 'Des'                                    
+                                                                                                                                                                     
                                 );
                                   $bulan_ing = date('M');
                             ?>     
@@ -76,12 +78,12 @@ td[rowspan="6"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo date('d'); ?>-<?php echo $monthList[$bulan_ing]; ?>-<?php echo date('Y'); ?>" readonly> </td>
                           <!-- <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d'); ?>-<?php echo $monthList[$bulan_ing]; ?>-<?php echo date('Y'); ?>" readonly> </td> -->
                           <td> &nbsp;</td>
-                          <td><font size="+1">ASF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $asf_doc; ?>" readonly></td>                          
+                          <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $prf_doc; ?>"></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" readonly></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" required></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">SPPP Doc. No : </font></td>
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>" readonly>
@@ -91,14 +93,7 @@ td[rowspan="6"] {
                                 <option value="<?php echo $got->number1; ?>"><?php echo $got->number1; ?></option>
                               <?php } ?>
                               </select> -->
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
-                          <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
-                          <td>&nbsp; </td>
-                          <td><font size="+1">ARF Doc. No : </font></td>
-                          <td><input type="text" name="apf1_doc" class="form-control" value="<?php echo $row->label5; ?>" readonly></td>
+                          </td>    
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
@@ -109,6 +104,10 @@ td[rowspan="6"] {
                               <input type="text" name="slash" size="1%"value="/" readonly>
                               <input type="text" name="tahun" size="2%"value="--">
                           </td>
+                          
+                          <td> &nbsp;</td>
+                          <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
+                          <td><input type="text" name="kode_proyek" class="form-control" placeholder="Kode Proyek" ></td>
                         </tr>
                       </tbody>
                     </table>
@@ -290,28 +289,14 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" readonly>
-                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" readonly>
-                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" readonly> 
+                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
+                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
+                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" name="total_expenses3" value="<?php echo $row->jumlah3;?>" readonly> 
                           </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                            <td><center><p id="demo3"> </p> <p id="demo4"> </p> <p id="demo5"> </p> </center></td>
-                            <td><?php echo $row->currency;?>&nbsp;<input id="jumlahuangmuka" onkeyup="nominal()" type="text" name="cash_advance" value="<?php echo $row->label8;?>"> 
-                                <?php echo $row->currency2;?>&nbsp;<input id="jumlahuangmuka2" onkeyup="nominal()" type="text" name="cash_advance2">
-                                <?php echo $row->currency3;?>&nbsp;<input id="jumlahuangmuka3" onkeyup="nominal()" type="text" name="cash_advance3"></td>
-                        </tr>
-                        <tr>
-                          <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td><center><p id="demo6"> </p> <p id="demo7"> </p> <p id="demo8"> </p></center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" >
-                              <?php echo $row->currency2;?>&nbsp;<input id="negatif2" type="text" name="piutang2" > 
-                              <?php echo $row->currency3;?>&nbsp;<input id="negatif3" type="text" name="piutang3" ></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang" readonly>
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?>" readonly>
                                           <input type="text" id="terbilang2" name="terbilang2" class="form-control" placeholder="Terbilang" readonly>
                                           <input type="text" id="terbilang3" name="terbilang3" class="form-control" placeholder="Terbilang" readonly>      
                           </td>
@@ -328,7 +313,7 @@ td[rowspan="6"] {
                         ?>
                         <tr> 
                           <td>Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $buka; ?>" readonly></td>
+                          <td colspan="4"><input type="text" name="dibayar_kepada" class="form-control" value="<?php echo $row->penerima; ?>" readonly></td>
                         </tr>
                       </tbody>
                     </table>
@@ -339,14 +324,14 @@ td[rowspan="6"] {
                       <tbody>
                       <tr> 
                         <td colspan="4" rowspan="2" width="50%">&nbsp; Verifikasi Oleh / <br>&nbsp;<i>Verified By : </i> </td>                           
-                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" placeholder="Remarks" ></textarea></td>
+                        <td rowspan="4">&nbsp; Catatan / :<br>&nbsp;<i>Remarks  </i><textarea type="text" class="form-control" name="catatan" readonly></textarea></td>
                       </tr>
                       <tr>
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
                         <td width="20%">Tanggal &nbsp;</td>
-                        <td colspan="2" rowspan="2"><input type="text" name="verified_date" class="form-control" readonly></td>     
+                        <td colspan="2" rowspan="2"><input type="date" name="verified_date" class="form-control"></td>     
                       </tr>
                       <tr align="right">
                         <td width="5%"> </td>
@@ -367,12 +352,12 @@ td[rowspan="6"] {
                         </tr>
                             <?php }?>
                       </tbody>  
-                    </table>       
+                    </table>    
 
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
-                          <td colspan="6"><center><b>Disetujui oleh <br> <i>Approved by :</i> </b></center></td>
+                          <td colspan="6"><center><b>Persetujuan Pembayaran </b></center></td>
                         </tr>
                         <tr>
                           <td colspan="2"> <br> <br> <br> <br> <br> <br></td>
@@ -394,7 +379,7 @@ td[rowspan="6"] {
                           <td><input id="jabatan2" type="text" name="jabatan2" class="form-control"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
                           <td><input id="jabatan3" type="text" name="jabatan3" class="form-control"> </td>
-                        </tr>
+                        </tr>  
                       </tbody>
                     </table>
 
@@ -410,12 +395,12 @@ td[rowspan="6"] {
                           <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" <?php echo $ceklis;?> name="metode_pembayaran" value="Tunai" readonly> Tunai </font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" > Transfer Ke : </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" readonly> Transfer Ke : </center></td>
                           <td><font size="+1"> Bank : 
-                              &nbsp;<input type="text" name="bank" value="<?php echo $row->akun_bank; ?>" > </font>
+                              &nbsp;<input type="text" name="bank" class="form-control" value="<?php echo $row->akun_bank;?>" readonly> </font>
                           </td> 
                           <td><font size="+1"> No. Rek : 
-                              &nbsp;<input type="text" name="no_rek" value="<?php echo $row->no_rekening; ?>" > </font>
+                              &nbsp;<input type="text" name="no_rek" class="form-control" value="<?php echo $row->no_rekening;?>" readonly> </font>
                           </td>                        
                         </tr>
                       </tbody>
@@ -426,7 +411,7 @@ td[rowspan="6"] {
                         <tr>
                           <td colspan="4" width="30%">Verifikasi Perintah Bayar oleh/<br><i>Payment Instruction Verified by : </i></td>
                           <td colspan="4" width="30%">Pelaksanaan Pembayaran oleh/<br><i>Payment Execution by : </i></td>
-                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" name="label2" placeholder="Remarks"></textarea></td>                          
+                          <td colspan="4" rowspan="6">Catatan : <br><i>Remarks :</i> <textarea type="text" class="form-control" rows="3" placeholder="Remarks"></textarea></td>                          
                         </tr>
                         <tr>
                           <td colspan="4"><br><br><br><br> </td>
@@ -451,7 +436,7 @@ td[rowspan="6"] {
                           <td colspan="2">&nbsp; VP Treasury </td>
                           <td colspan="2" width="10%">Jabatan/ <i>Title</i> </td>
                           <td colspan="2">&nbsp; Cashier </td>
-                        </tr>                      
+                        </tr>                 
                       </tbody> 
                     </table>
 
@@ -463,7 +448,7 @@ td[rowspan="6"] {
                           <td colspan="2">Diterima Oleh/ : <br> <i>Received by :</i></td>
                         </tr>
                         <tr>
-                          <td ">Nama/ <i>Name</i> </td>
+                          <td>Nama/ <i>Name</i> </td>
                         <td> </td>		
                         </tr>
                         <tr>
@@ -472,11 +457,11 @@ td[rowspan="6"] {
                         </tr>
                       </tbody>
                     </table>
-
-                    <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">
+                                
+                    <img align="right" src="assets/dashboard/images/footer_form.png" alt="Logo Images">                   
                     
-                    <input type="hidden" name="handled_by" value="i.akmal">                       
-              
+                    <input type="hidden" name="handled_by" value="i.akmal">                    
+                    
                   </div>  
                 </div>
                      
@@ -488,7 +473,7 @@ td[rowspan="6"] {
                   </div>
                 </div>                                                 
             </div>
-          </section>    
+          </section>     
 
         </form>
         <?php } ?>
@@ -553,8 +538,8 @@ td[rowspan="6"] {
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>   
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script>
 
@@ -575,50 +560,20 @@ function myPopup(myURL, myWidth, myHeight) {
 
 function myFunction(){
   var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
 
   document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
 }
 
 function myFunction1(){
-  var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
+  var x = document.getElementById("Select1").value;
 
-  document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
+  document.getElementById("demo1").innerHTML = x;
 }
 
 function myFunction2(){
-  var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
+  var x = document.getElementById("Select2").value;
 
-  document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
+  document.getElementById("demo2").innerHTML = x;
 }
 
 function nominal(){
@@ -1781,200 +1736,6 @@ var nilai = document.getElementById('nilai');
     ulang2 = split[1] != undefined ? ulang2 + ',' + split[1] : ulang2;
     return prefix == undefined ? ulang2 : (ulang2 ? + ulang2 : '');
   }
-
-  // Format Separator Id Jumlah (Jumlah UangMuka)
-  var jumlahuangmuka = document.getElementById('jumlahuangmuka');
-  jumlahuangmuka.addEventListener('focusout', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatjumlahuangmuka() untuk mengubah angka yang di ketik menjadi format angka
-    var strjumlahuangmuka =jumlahuangmuka.value;
-	if (strjumlahuangmuka.substr(0,1)=="(" && strjumlahuangmuka.substr(strjumlahuangmuka.length-1,1)==")"){
-		jumlahuangmuka.value = "(" + formatjumlahuangmuka(strjumlahuangmuka.substr(1,strjumlahuangmuka.length-2)) + ")";
-	}else if(strjumlahuangmuka.substr(0,1)=="-") {
-		jumlahuangmuka.value = "(" + formatjumlahuangmuka(strjumlahuangmuka.substr(1,strjumlahuangmuka.length-1)) + ")";
-	}else{
-		jumlahuangmuka.value = formatjumlahuangmuka(this.value);
-	}
-  });
-
-  /* Fungsi formatjumlahuangmuka */
-  function formatjumlahuangmuka(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    jumlahuangmuka     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      jumlahuangmuka += separator + ribuan.join('.');
-    }
-
-    jumlahuangmuka = split[1] != undefined ? jumlahuangmuka + ',' + split[1] : jumlahuangmuka;
-    return prefix == undefined ? jumlahuangmuka : (jumlahuangmuka ? + jumlahuangmuka : '');
-  }
-
-  var jumlahuangmuka2 = document.getElementById('jumlahuangmuka2');
-  jumlahuangmuka2.addEventListener('focusout', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatjumlahuangmuka2() untuk mengubah angka yang di ketik menjadi format angka
-    var strjumlahuangmuka2 =jumlahuangmuka2.value;
-	if (strjumlahuangmuka2.substr(0,1)=="(" && strjumlahuangmuka2.substr(strjumlahuangmuka2.length-1,1)==")"){
-		jumlahuangmuka2.value = "(" + formatjumlahuangmuka2(strjumlahuangmuka2.substr(1,strjumlahuangmuka2.length-2)) + ")";
-	}else if(strjumlahuangmuka2.substr(0,1)=="-") {
-		jumlahuangmuka2.value = "(" + formatjumlahuangmuka2(strjumlahuangmuka2.substr(1,strjumlahuangmuka2.length-1)) + ")";
-	}else{
-		jumlahuangmuka2.value = formatjumlahuangmuka2(this.value);
-	}
-  });
-
-  /* Fungsi formatjumlahuangmuka2 */
-  function formatjumlahuangmuka2(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    jumlahuangmuka2     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      jumlahuangmuka2 += separator + ribuan.join('.');
-    }
-
-    jumlahuangmuka2 = split[1] != undefined ? jumlahuangmuka2 + ',' + split[1] : jumlahuangmuka2;
-    return prefix == undefined ? jumlahuangmuka2 : (jumlahuangmuka2 ? + jumlahuangmuka2 : '');
-  }
-
-  var jumlahuangmuka3 = document.getElementById('jumlahuangmuka3');
-  jumlahuangmuka3.addEventListener('keyup', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatjumlahuangmuka3() untuk mengubah angka yang di ketik menjadi format angka
-    var strjumlahuangmuka3 =jumlahuangmuka3.value;
-	if (strjumlahuangmuka3.substr(0,1)=="(" && strjumlahuangmuka3.substr(strjumlahuangmuka3.length-1,1)==")"){
-		jumlahuangmuka3.value = "(" + formatjumlahuangmuka3(strjumlahuangmuka3.substr(1,strjumlahuangmuka3.length-2)) + ")";
-	}else if(strjumlahuangmuka3.substr(0,1)=="-") {
-		jumlahuangmuka3.value = "(" + formatjumlahuangmuka3(strjumlahuangmuka3.substr(1,strjumlahuangmuka3.length-1)) + ")";
-	}else{
-		jumlahuangmuka3.value = formatjumlahuangmuka3(this.value);
-	}
-  });
-
-  /* Fungsi formatjumlahuangmuka3 */
-  function formatjumlahuangmuka3(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    jumlahuangmuka3     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      jumlahuangmuka3 += separator + ribuan.join('.');
-    }
-
-    jumlahuangmuka3 = split[1] != undefined ? jumlahuangmuka3 + ',' + split[1] : jumlahuangmuka3;
-    return prefix == undefined ? jumlahuangmuka3 : (jumlahuangmuka3 ? + jumlahuangmuka3 : '');
-  }
-  // Format Separator Id Negarif (Piutang)
-  var negatif = document.getElementById('negatif');
-  negatif.addEventListener('mousemove', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatnegatif() untuk mengubah angka yang di ketik menjadi format angka
-	var strnegatif =negatif.value;
-	if (strnegatif.substr(0,1)=="(" && strnegatif.substr(strnegatif.length-1,1)==")"){
-		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-2)) + ")";
-	}else if(strnegatif.substr(0,1)=="-") {
-		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-1)) + ")";
-	}else{
-		negatif.value = formatnegatif(this.value);
-	}
-  });
-
-  /* Fungsi formatnegatif */
-  function formatnegatif(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    negatif     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      negatif += separator + ribuan.join('.');
-    }
-
-    negatif = split[1] != undefined ? negatif + ',' + split[1] : negatif;
-    return prefix == undefined ? negatif : (negatif ? + negatif : '');
-  }
-
-  var negatif2 = document.getElementById('negatif2');
-  negatif2.addEventListener('mousemove', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatnegatif2() untuk mengubah angka yang di ketik menjadi format angka
-	var strnegatif2 =negatif2.value;
-	if (strnegatif2.substr(0,1)=="(" && strnegatif2.substr(strnegatif2.length-1,1)==")"){
-		negatif2.value = "(" + formatnegatif2(strnegatif2.substr(1,strnegatif2.length-2)) + ")";
-	}else if(strnegatif2.substr(0,1)=="-") {
-		negatif2.value = "(" + formatnegatif2(strnegatif2.substr(1,strnegatif2.length-1)) + ")";
-	}else{
-		negatif2.value = formatnegatif2(this.value);
-	}						 
-  });
-
-  /* Fungsi formatnegatif2 */
-  function formatnegatif2(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    negatif2     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      negatif2 += separator + ribuan.join('.');
-    }
-
-    negatif2 = split[1] != undefined ? negatif2 + ',' + split[1] : negatif2;
-    return prefix == undefined ? negatif2 : (negatif2 ? + negatif2 : '');
-  }
-
-  var negatif3 = document.getElementById('negatif3');
-  negatif3.addEventListener('mousemove', function(e){
-    // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatnegatif3() untuk mengubah angka yang di ketik menjadi format angka
-	var strnegatif3 =negatif3.value;
-	if (strnegatif3.substr(0,1)=="(" && strnegatif3.substr(strnegatif3.length-1,1)==")"){
-		negatif3.value = "(" + formatnegatif3(strnegatif3.substr(1,strnegatif3.length-2)) + ")";
-	}else if(strnegatif3.substr(0,1)=="-") {
-		negatif3.value = "(" + formatnegatif3(strnegatif3.substr(1,strnegatif3.length-1)) + ")";
-	}else{
-		negatif3.value = formatnegatif3(this.value);
-	}
-  });
-
-  /* Fungsi formatnegatif3 */
-  function formatnegatif3(angka, prefix){
-    var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    split   		= number_string.split(','),
-    sisa     		= split[0].length % 3,
-    negatif3     		= split[0].substr(0, sisa),
-    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-    // tambahkan titik jika yang di input sudah menjadi angka ribuan
-    if(ribuan){
-      separator = sisa ? '.' : '';
-      negatif3 += separator + ribuan.join('.');
-    }
-
-    negatif3 = split[1] != undefined ? negatif3 + ',' + split[1] : negatif3;
-    return prefix == undefined ? negatif3 : (negatif3 ? + negatif3 : '');
-  }
-
 </script>
 
 <script type="text/javascript">

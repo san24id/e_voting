@@ -483,6 +483,28 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_arf', $data);
 	}
 
+	public function form_arf2($id_payment){
+
+		$data['task'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['payment'] = $this->Home_model->getform($id_payment);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		// var_dump($data['d_wewenang']);exit;
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_arf2', $data);
+	}
+
 	public function form_varf($id)
 	{
 		$data['task'] = 'active';
@@ -505,8 +527,7 @@ class Dashboard extends CI_Controller {
 
 	}
 
-	public function form_earf($id)
-	{
+	public function form_earf($id) {
 		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
@@ -524,6 +545,27 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_earf', $data);
+
+	}
+
+	public function form_earf2($id) {
+		$data['task'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_earf2', $data);
 
 	}
 
@@ -703,6 +745,27 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_prf', $data);
 	}
 
+	public function form_prf2($id_payment){
+
+		$data['task'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['payment'] = $this->Home_model->getform($id_payment);
+		$data['prf_doc'] = $this->Dashboard_model->buat_kode_prf();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_prf2', $data);
+	}
+
 	public function form_vprf($id)
 	{
 		$data['task'] = 'active';
@@ -725,8 +788,7 @@ class Dashboard extends CI_Controller {
 
 	}
 
-	public function form_eprf($id)
-	{
+	public function form_eprf($id)	{
 		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
@@ -745,6 +807,28 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_eprf', $data);
+
+	}
+
+	public function form_eprf2($id)	{
+		$data['task'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_eprf2', $data);
 
 	}
 
@@ -788,8 +872,28 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/form_crf', $data);
 	}
 
-	public function form_vcrf($id)
-	{
+	public function form_crf2($id_payment){
+
+		$data['task'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['payment'] = $this->Home_model->getform($id_payment);
+		$data['surat'] = $this->Dashboard_model->nomorsurat();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['crf_doc'] = $this->Dashboard_model->buat_kode_crf();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_crf2', $data);
+	}
+
+	public function form_vcrf($id)	{
 		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
@@ -810,8 +914,7 @@ class Dashboard extends CI_Controller {
 
 	}
 
-	public function form_ecrf($id)
-	{
+	public function form_ecrf($id)	{
 		$data['task'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
@@ -830,6 +933,28 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_ecrf', $data);
+
+	}
+
+	public function form_ecrf2($id)	{
+		$data['task'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+
+		// $sid = $this->session->userdata("id_user");
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['currency'] = $this->Home_model->getCurrency();
+		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['ppayment'] = $this->Dashboard_model->getform($id);
+		$data['surat1'] = $this->Dashboard_model->nomorsurat();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/form_ecrf2', $data);
 
 	}
 
@@ -2971,6 +3096,8 @@ class Dashboard extends CI_Controller {
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
 			'terbilang' => $_POST['terbilang'],
+			'terbilang2' => $_POST['terbilang2'],
+			'terbilang3' => $_POST['terbilang3'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $ganti,
@@ -3050,6 +3177,8 @@ class Dashboard extends CI_Controller {
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
 			'terbilang' => $_POST['terbilang'],
+			'terbilang2' => $_POST['terbilang2'],
+			'terbilang3' => $_POST['terbilang3'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $ganti,
@@ -3150,6 +3279,8 @@ class Dashboard extends CI_Controller {
 			'label1' => $_POST['label1'],
 			'label2' => $_POST['label2'],
 			'terbilang' => $_POST['terbilang'],
+			'terbilang2' => $_POST['terbilang2'],
+			'terbilang3' => $_POST['terbilang3'],
 			'jumlah2' => $_POST['jumlah2'],
 			'jumlah3' => $_POST['jumlah3'],
 			'label3' => $ganti,
