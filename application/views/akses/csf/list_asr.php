@@ -91,14 +91,14 @@
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
-                  <td><?php if($row->status == 0){
+                  <td><center><?php if($row->status == 0){
                             echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                           }else if($row->status == 1){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                           }else if($row->status == 11){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                           }else if($row->status == 99){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>"; 
                           }else if($row->status == 2){
                             echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 3){
@@ -118,7 +118,7 @@
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
-                        ?>                    
+                        ?></center>                    
                   </td>
                   <td><?php echo $row->tanggal_new; ?></td>
                   <td><?php                     
