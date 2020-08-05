@@ -162,7 +162,7 @@
                         <td><b>- Jumlah <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="mycurrency1()" name="currency" class="form-control" >
-                                      <option value="">--Choose--</option>
+                                      <option value="">--Pilih Mata Uang--</option>
                                       <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
@@ -172,7 +172,7 @@
 						<input type="hidden" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang">
 
                         <td><select id="currency2" onchange="mycurrency2()" name="currency2" class="form-control">
-                                      <option value="">--Choose--</option>
+                                      <option value="">--Pilih Mata Uang--</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
@@ -183,7 +183,7 @@
 						<input type="hidden" id="terbilang2" name="terbilang2" class="form-control" placeholder="Terbilang">
 
                         <td><select id="currency3" onchange="mycurrency3()" name="currency3"  class="form-control">
-                                      <option value="">--Choose--</option>
+                                      <option value="">--Pilih Mata Uang--</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
@@ -2230,7 +2230,7 @@ function AddIndeks(){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang yang dipilih Harus Sama!";
+					errmsg="Mata Uang Harus Dipilih!";
 					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 				}
 			}
@@ -2340,7 +2340,7 @@ function AddIndeks(){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang yang dipilih Harus Sama!";
+					errmsg="Mata Uang Harus Dipilih!";
 				}
 			}
 			if(errmsg=="0"){

@@ -10,7 +10,8 @@ class Dashboard_model extends CI_Model{
     }
 
     public function monitoring() {
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('2','4','5','6','7','8','9','10')";
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE status in ('2','4','5','6','7','8','9','10') ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -36,7 +37,8 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status in ('4','5') AND a.rejected_by in ('h.harlina','i.akmal') ";
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status in ('4','5') AND a.rejected_by in ('h.harlina','i.akmal') 
+                ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -54,7 +56,8 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql ="SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status='3' AND a.division_id='$dvs' AND a.rejected_by='h.harlina' ";
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status='3' AND a.division_id='$dvs' AND a.rejected_by='h.harlina' 
+                ORDER BY tanggal2 DESC ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -518,7 +521,8 @@ class Dashboard_model extends CI_Model{
     }						 
 
     function getVTax() {
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='4' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a 
+                JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='4' ORDER BY tanggal2 DESC ";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -536,7 +540,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function getVFinance() {
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='5' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a 
+                JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='5' ORDER BY tanggal2 DESC";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -554,7 +559,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function getVReview() {
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='6' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a 
+                JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='6' ORDER BY tanggal2 DESC";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -574,7 +580,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function getVWaitVerifikasi(){
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='7' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a 
+                JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='7' ORDER BY tanggal2 DESC";
         // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
@@ -607,7 +614,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function getVWaitApproval(){
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='8' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a 
+                JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='8' ORDER BY tanggal2 DESC";
         // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
@@ -638,7 +646,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function getVWaitPaid(){
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='9' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a 
+                JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='9' ORDER BY tanggal2 DESC";
         // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
@@ -679,7 +688,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function getVPaid(){
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='10' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a 
+                JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status ='10' ORDER BY tanggal2 DESC";
         // var_dump ($sql);exit;
         $query = $this->db->query($sql)->result();
         return $query;
@@ -705,7 +715,8 @@ class Dashboard_model extends CI_Model{
 
     function periode($start_date,$end_date){
        
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
@@ -716,7 +727,7 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE 
-                status in ('0','1','11','2','4','5','6','7','8','9','10') AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                status in ('0','1','11','2','4','5','6','7','8','9','10') AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
@@ -1416,7 +1427,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
-                status = 2 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                status = 2 AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1434,7 +1445,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
-                status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1452,7 +1463,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
-                status in ('4','5','6','7') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                status in ('4','5','6','7') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1470,7 +1481,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
-                status = 8 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                status = 8 AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1488,7 +1499,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
-                status = 9 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                status = 9 AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1506,7 +1517,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
-                status = 10 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+                status = 10 AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;

@@ -7,7 +7,8 @@ class Approval_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+                ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -24,7 +25,8 @@ class Approval_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+                ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -34,7 +36,8 @@ class Approval_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status ='8' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status ='8' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+                ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -44,7 +47,8 @@ class Approval_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status ='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status ='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+                ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
