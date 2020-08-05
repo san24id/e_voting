@@ -252,7 +252,7 @@ td[rowspan="3"] {
                         </tr>
 
                         <tr>
-                          <td colspan="3"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center> </center></td>
                           <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly>
                               <?php echo $get->currency4;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly> 
@@ -499,8 +499,50 @@ function myPopup(myURL, myWidth, myHeight) {
 
 function myFunction(){
   var x = document.getElementById("Select").value;
+  var x1 = document.getElementById("Select1").value;
+  var x2 = document.getElementById("Select2").value;
 
   document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo1").innerHTML = x1;
+  document.getElementById("demo2").innerHTML = x2;
+  document.getElementById("demo3").innerHTML = x;
+  document.getElementById("demo4").innerHTML = x1;
+  document.getElementById("demo5").innerHTML = x2;
+  document.getElementById("demo6").innerHTML = x;
+  document.getElementById("demo7").innerHTML = x1;
+  document.getElementById("demo8").innerHTML = x2;
+}
+
+function myFunction1(){
+  var x = document.getElementById("Select").value;
+  var x1 = document.getElementById("Select1").value;
+  var x2 = document.getElementById("Select2").value;
+
+  document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo1").innerHTML = x1;
+  document.getElementById("demo2").innerHTML = x2;
+  document.getElementById("demo3").innerHTML = x;
+  document.getElementById("demo4").innerHTML = x1;
+  document.getElementById("demo5").innerHTML = x2;
+  document.getElementById("demo6").innerHTML = x;
+  document.getElementById("demo7").innerHTML = x1;
+  document.getElementById("demo8").innerHTML = x2;
+}
+
+function myFunction2(){
+  var x = document.getElementById("Select").value;
+  var x1 = document.getElementById("Select1").value;
+  var x2 = document.getElementById("Select2").value;
+
+  document.getElementById("demo").innerHTML = x;
+  document.getElementById("demo1").innerHTML = x1;
+  document.getElementById("demo2").innerHTML = x2;
+  document.getElementById("demo3").innerHTML = x;
+  document.getElementById("demo4").innerHTML = x1;
+  document.getElementById("demo5").innerHTML = x2;
+  document.getElementById("demo6").innerHTML = x;
+  document.getElementById("demo7").innerHTML = x1;
+  document.getElementById("demo8").innerHTML = x2;
 }
 
 function nominal(){
@@ -528,9 +570,9 @@ function nominal(){
   // alert(k);
   var l = document.getElementById("nilai11").value;
 
-  var m = document.getElementById("jumlahuangmuka").value;
-  var n = document.getElementById("jumlahuangmuka2").value;
-  var o = document.getElementById("jumlahuangmuka3").value;
+  // var m = document.getElementById("jumlahuangmuka").value;
+  // var n = document.getElementById("jumlahuangmuka2").value;
+  // var o = document.getElementById("jumlahuangmuka3").value;
     
   var get_x = x.replace(/\D+/g, '');
   if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
@@ -611,26 +653,26 @@ function nominal(){
 	  get_l= Math.abs(get_l);		
   }
 
-  var get_m = m.replace(/\D+/g, '');  
-  if ((m.substr(0,1)=="(" && m.substr(m.length-1,1)==")") || m.substr(0,1)=="-"){		
-		get_m= -Math.abs(get_m);		
-  }else{
-	  get_m= Math.abs(get_m);		
-  }
+  // var get_m = m.replace(/\D+/g, '');  
+  // if ((m.substr(0,1)=="(" && m.substr(m.length-1,1)==")") || m.substr(0,1)=="-"){		
+	// 	get_m= -Math.abs(get_m);		
+  // }else{
+	//   get_m= Math.abs(get_m);		
+  // }
 
-  var get_n = n.replace(/\D+/g, '');
-  if ((n.substr(0,1)=="(" && n.substr(n.length-1,1)==")") || n.substr(0,1)=="-"){		
-		get_n= -Math.abs(get_n);		
-  }else{
-	get_n= Math.abs(get_n);		
-  }
+  // var get_n = n.replace(/\D+/g, '');
+  // if ((n.substr(0,1)=="(" && n.substr(n.length-1,1)==")") || n.substr(0,1)=="-"){		
+	// 	get_n= -Math.abs(get_n);		
+  // }else{
+	// get_n= Math.abs(get_n);		
+  // }
 
-  var get_o = o.replace(/\D+/g,'');
-  if ((o.substr(0,1)=="(" && o.substr(o.length-1,1)==")") || o.substr(0,1)=="-"){		
-		get_o= -Math.abs(get_o);		
-  }else{
-	  get_o= Math.abs(get_o);		
-  }
+  // var get_o = o.replace(/\D+/g,'');
+  // if ((o.substr(0,1)=="(" && o.substr(o.length-1,1)==")") || o.substr(0,1)=="-"){		
+	// 	get_o= -Math.abs(get_o);		
+  // }else{
+	//   get_o= Math.abs(get_o);		
+  // }
 
   //Currency1
   var jumlah1 = Number(get_x) + 0;
@@ -648,9 +690,9 @@ function nominal(){
   var jumlah11 = Number(get_k);
   var jumlah12 = Number(get_l);
   
-  var negatif = Number(get_m) + 0 ;
-  var negatif2 = Number(get_n) + 0 ;
-  var negatif3 = Number(get_o) + 0 ;
+  // var negatif = Number(get_m) + 0 ;
+  // var negatif2 = Number(get_n) + 0 ;
+  // var negatif3 = Number(get_o) + 0 ;
 
 //Jumlah -> Jumlah Pembayaran
   var hasil_jumlah1 = jumlah1+jumlah2+jumlah3+jumlah4;
@@ -658,9 +700,9 @@ function nominal(){
   var hasil_jumlah3 = jumlah9+jumlah10+jumlah11+jumlah12;
 
 // Jumlah Pembayaran - Jumlah Uang Muka
-  var hasil = hasil_jumlah1-negatif;
-  var hasil2 = hasil_jumlah2-negatif2;
-  var hasil3 = hasil_jumlah3-negatif3;
+  // var hasil = hasil_jumlah1-negatif;
+  // var hasil2 = hasil_jumlah2-negatif2;
+  // var hasil3 = hasil_jumlah3-negatif3;
 
   // Total Expense   
   if (hasil_jumlah1<0){
@@ -684,26 +726,26 @@ function nominal(){
 	  document.getElementById("ulang2").value = hasil_jumlah3 ;
   }
 // Negatif(piutang)
-  if (hasil<0){
-	  var strhasil =Math.abs(hasil);
-	  document.getElementById("negatif").value = "(" + strhasil  + ")" ;
-  }else{
-	  document.getElementById("negatif").value = hasil  ;
-  }
+  // if (hasil<0){
+	//   var strhasil =Math.abs(hasil);
+	//   document.getElementById("negatif").value = "(" + strhasil  + ")" ;
+  // }else{
+	//   document.getElementById("negatif").value = hasil  ;
+  // }
 
-  if (hasil2<0){
-	  var strhasil2 =Math.abs(hasil2);
-	  document.getElementById("negatif2").value = "(" + strhasil2  + ")" ;
-  }else{
-	  document.getElementById("negatif2").value = hasil2  ;
-  }
+  // if (hasil2<0){
+	//   var strhasil2 =Math.abs(hasil2);
+	//   document.getElementById("negatif2").value = "(" + strhasil2  + ")" ;
+  // }else{
+	//   document.getElementById("negatif2").value = hasil2  ;
+  // }
 
-  if (hasil3<0){
-	  var strhasil3 =Math.abs(hasil3);
-	  document.getElementById("negatif3").value = "(" + strhasil3  + ")" ;
-  }else{
-	  document.getElementById("negatif3").value = hasil3  ;
-  }
+  // if (hasil3<0){
+	//   var strhasil3 =Math.abs(hasil3);
+	//   document.getElementById("negatif3").value = "(" + strhasil3  + ")" ;
+  // }else{
+	//   document.getElementById("negatif3").value = hasil3  ;
+  // }
 
   // var pembayaran = currency+ ';' +currency2+ ';' +currency3;
   // var str = pembayaran.replace(/\./g,'');
@@ -714,7 +756,7 @@ function nominal(){
     // document.getElementById("ulang2").value = hasil_jumlah3 ;
     // alert(ulang);    
 
-    var bilangan= ''+Math.abs(hasil)+'';
+    var bilangan= ''+Math.abs(hasil_jumlah1)+'';
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -826,11 +868,11 @@ function nominal(){
       muncul = "";
     }
 
-    if (hasil<0){
+    if (hasil_jumlah1<0){
 		  kalimat="( " + kalimat + ") ";
 	  }
 	 
-	 if (hasil==0){
+	 if (hasil_jumlah1==0){
 		  kalimat="Nol ";
 	  }
     
@@ -838,7 +880,7 @@ function nominal(){
     
     // alert(kalimat);
 
-    var bilangan2= ''+Math.abs(hasil2)+'';
+    var bilangan2= ''+Math.abs(hasil_jumlah2)+'';
   // alert(bilangan2);
     var kalimat2="";
     var angka2   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -950,18 +992,18 @@ function nominal(){
       muncul2 = "";
     }
 
-  if (hasil2<0){
+  if (hasil_jumlah2<0){
 		kalimat2="( " + kalimat2 + ") ";
 	}
 	
-	if (hasil2==0){
+	if (hasil_jumlah2==0){
 		  kalimat2="Nol ";
 	  }
 
     document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;
     // alert(kalimat2);
 
-    var bilangan3= ''+ Math.abs(hasil3)+'';
+    var bilangan3= ''+ Math.abs(hasil_jumlah3)+'';
   // alert(bilangan3);
     var kalimat3="";
     var angka3   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -1073,11 +1115,11 @@ function nominal(){
       muncul3 = "";
     }
 
-    if (hasil3<0){
+    if (hasil_jumlah3<0){
 		kalimat3="( " + kalimat3 + ") ";
 	}
 
-	if (hasil3==0){
+	if (hasil_jumlah3==0){
 		  kalimat3="Nol ";
 	  }
     document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;
@@ -1086,7 +1128,7 @@ function nominal(){
     // document.getElementById("negatif").value = hasil ;
     // document.getElementById("negatif2").value = hasil2 ; 
     // document.getElementById("negatif3").value = hasil3 ;
-  var a = hasil ;
+  var a = hasil_jumlah1 ;
   if (a <= 100000000){
     <?php foreach ($d_wewenang as $pejabat) { ?>
       <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>

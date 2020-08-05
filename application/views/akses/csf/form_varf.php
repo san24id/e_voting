@@ -80,9 +80,9 @@ td[rowspan="6"] {
                         <thead>
                         <tr>
                           <th width="5%"><center>NO. <br> <i>No.</i></center></th>
-                          <th height="50%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
+                          <th height="40%" colspan="2"><center>Uraian atas tujuan penggunaan / <br><i>Description on the purpose</i></center></th>
                           <th width="5%"><center>Mata Uang / <br> <i>Original Currency</i></center></th>
-                          <th width="25%"><center>Jumlah / <br><i>Amount</i></center></th>                       
+                          <th width="35%"><center>Jumlah / <br><i>Amount</i></center></th>                       
                         </tr>
                         </thead>
                         <tbody>                      
@@ -161,7 +161,7 @@ td[rowspan="6"] {
                         </tr>
 
                         <tr>
-                          <td colspan="3" > Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center>    </center></td>
                           <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> 
                               <?php echo $get->currency4;?>&nbsp;<input id="ulang2" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
@@ -328,10 +328,10 @@ td[rowspan="6"] {
 
                     <?php 
                         if($get->status == 5 && $get->rejected_by != NULL){ ?>
-                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
-                          <a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                        <?php } else if ($row->currency2 != "" || $row->currency3 != ""){ ?>
-                          <a href="Dashboard/form_earf2/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a> 
+                        <?php if ($get->currency4 == "" && $get->currency8 == "") { ?>                                  
+                          <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a>
+                        <?php } else if ($get->currency4 != "" || $get->currency8 != ""){ ?>
+                          <a href="Dashboard/form_earf2/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a> 
                         <?php } ?>
                         <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Send Back To Reviewer</button>
                         <!---Modal Accept--->
@@ -365,10 +365,10 @@ td[rowspan="6"] {
                     <?php } ?>
                     
                     <?php if($get->status == 6){ ?>
-                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
-                          <a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                        <?php } else if ($row->currency2 != "" || $row->currency3 != ""){ ?>
-                          <a href="Dashboard/form_earf2/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a> 
+                        <?php if ($get->currency4 == "" && $get->currency8 == "") { ?>                                  
+                          <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a>
+                        <?php } else if ($get->currency4 != "" || $get->currency8 != ""){ ?>
+                          <a href="Dashboard/form_earf2/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a> 
                         <?php } ?>
                       <button type="submit" data-toggle="modal" data-target="#accept<?php echo $get->id; ?>" class="btn btn-success">Proceed For Verification</button>
                       <!---Modal Accept--->
@@ -462,10 +462,10 @@ td[rowspan="6"] {
                     <?php } ?>
 
                     <?php if($get->status == 7){ ?>  
-                        <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
-                          <a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-                        <?php } else if ($row->currency2 != "" || $row->currency3 != ""){ ?>
-                          <a href="Dashboard/form_earf2/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a> 
+                        <?php if ($get->currency4 == "" && $get->currency8 == "") { ?>                                  
+                          <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a>
+                        <?php } else if ($get->currency4 != "" || $get->currency8 != ""){ ?>
+                          <a href="Dashboard/form_earf2/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a> 
                         <?php } ?>
                     <?php if($get->verified_date == NULL) { ?>
 
