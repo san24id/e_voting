@@ -219,7 +219,7 @@
                       <tr>
                         <td width="35%"><b>- Tujuan Penggunaan <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" rows="5" class="form-control" name="label1" <?php echo $readonly; ?>><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" rows="5" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
@@ -227,7 +227,7 @@
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="mycurrency1()" name="currency" class="form-control" <?php echo $readonly; ?>>
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->currency; ?>"<?php echo $get->currency==bank? 'selected':''?>><?php echo $get->currency; ?></option>
                               <?php } ?>
@@ -238,7 +238,7 @@
                         
                         <td><select id="currency2" name="currency2" onchange="mycurrency2()" class="form-control" <?php echo $readonly; ?>>
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
@@ -249,7 +249,7 @@
 
                         <td><select id="currency3" name="currency3" onchange="mycurrency3()" class="form-control" <?php echo $readonly; ?>>
                                 <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
@@ -382,7 +382,7 @@
 								<td><input style="height:28px" id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
 								</td> 
 								<td><select style="height:28px" id="currencyvendor1" name="currencyvendor[]" onchange="drpcurrency('1')" class="form-control">
-									<option value="">--Choose--</option>
+									<option value="">Pilih Mata Uang</option>
 									<?php foreach ($currency as $cur) {?>
 									<option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
 
@@ -464,7 +464,7 @@
 								</td> 
 								<td><select style="height:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" onchange="drpcurrency('<?php echo $vendorrow; ?>')" class="form-control" <?php echo $currencyvendor; ?>>
 											<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
-											<option value="">--Choose--</option>
+											<option value="">Pilih Mata Uang</option>
 											<?php foreach ($currency as $cur) {?>
 											<option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
 
@@ -675,7 +675,7 @@
                         <td colspan="2">&nbsp;</td>
                         <td><select id="curr1"  name="curr1" class="form-control">
 									              <option value="<?php echo $row->curr_settlement1;?>"><?php echo $row->curr_settlement1;?></option>                                      
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
@@ -684,7 +684,7 @@
                         <td><input id="biaya" onkeyup="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
                         <td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="<?php echo $row->curr_settlement2;?>"><?php echo $row->curr_settlement2;?></option>                                      
-                                      <option value="">--Choose--</option>
+                                      <option value="">Pilih Mata Uang</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
@@ -694,7 +694,7 @@
                         <td><input id="biayaa" onkeyup="penjumlahana()" type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"></input></td>
                         <td><select id="curr3" name="curr3" class="form-control">
                                       <option value="<?php echo $row->curr_settlement3;?>"><?php echo $row->curr_settlement3;?></option>                                      
-                                      <option value="">--Choose--</option>
+                                      <option value="">Pilih Mata Uang</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
@@ -1622,7 +1622,7 @@ function AddIndeks(){
 		strhtml=strhtml + '<td><input style="height:28px" id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' ;
 		
 		strhtml=strhtml + '<td><select style="height:28px" id="currencyvendor'+szcountervendor+'" class="form-control" onchange="drpcurrency('+szcountervendor+')" name="currencyvendor[]" > ' ;
-		strhtml=strhtml + '<option value="">--Choose--</option> ';
+		strhtml=strhtml + '<option value="">Pilih Mata Uang</option> ';
 		strcurrency =document.getElementById("strcurrency").value;
 		arrcurrency = strcurrency.split(";");
 	
@@ -1663,416 +1663,430 @@ function AddIndeks(){
 		var jml1 = document.getElementsByName('label2');
 		
 		var errmsg = '0';
-		for (var i = 0; i <jml1.length; i ++){
-			var inp1=jml1[i];
-			var xj1=inp1.value.trim();
-
-			if(xj1.substr(0,1)=="0" && xj1.length >1){
-				xj1=xj1.substr(1,xj1.length);
-				jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
-			}
-		}
-    
-		var bilangan= document.getElementById('rupiah').value;
-  
-		// alert(bilangan);
-		var kalimat="";
-		var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
-		var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
-		var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
-		var panjang_bilangan = bilangan.length;
-		// alert(panjang_bilangan);
-		
-		/* pengujian panjang bilangan */
-		if(panjang_bilangan > 15){
-			kalimat = "Diluar Batas";
+		var curr= document.getElementById('Select').value;		
+		if (curr.trim()==''){
+			alert("Mata Uang Harus Dipilih!");
 		}else{
-			/* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
-			for(i = 1; i <= panjang_bilangan; i++) {
-				angka[i] = bilangan.substr(-(i),1);
+			for (var i = 0; i <jml1.length; i ++){
+				var inp1=jml1[i];
+				var xj1=inp1.value.trim();
+
+				if(xj1.substr(0,1)=="0" && xj1.length >1){
+					xj1=xj1.substr(1,xj1.length);
+					jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
+				}
 			}
+		
+			var bilangan= document.getElementById('rupiah').value;
+	  
+			// alert(bilangan);
+			var kalimat="";
+			var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+			var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+			var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
+			var panjang_bilangan = bilangan.length;
+			// alert(panjang_bilangan);
 			
-			var i = 1;
-			var j = 0;
-			
-			/* mulai proses iterasi terhadap array angka */
-			while(i <= panjang_bilangan){
-				subkalimat = "";
-				kata1 = "";
-				kata2 = "";
-				kata3 = "";
-				
-				/* untuk Ratusan */
-				if(angka[i+2] != "0"){
-					if(angka[i+2] == "1"){
-						kata1 = "Seratus";
-					}else{
-						kata1 = kata[angka[i+2]] + " Ratus";
-					}
+			/* pengujian panjang bilangan */
+			if(panjang_bilangan > 15){
+				kalimat = "Diluar Batas";
+			}else{
+				/* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+				for(i = 1; i <= panjang_bilangan; i++) {
+					angka[i] = bilangan.substr(-(i),1);
 				}
 				
-				/* untuk Puluhan atau Belasan */
-				if(angka[i+1] != "0"){
-					if(angka[i+1] == "1"){
-						if(angka[i] == "0"){
-							kata2 = "Sepuluh";
-						}else if(angka[i] == "1"){
-							kata2 = "Sebelas";
+				var i = 1;
+				var j = 0;
+				
+				/* mulai proses iterasi terhadap array angka */
+				while(i <= panjang_bilangan){
+					subkalimat = "";
+					kata1 = "";
+					kata2 = "";
+					kata3 = "";
+					
+					/* untuk Ratusan */
+					if(angka[i+2] != "0"){
+						if(angka[i+2] == "1"){
+							kata1 = "Seratus";
 						}else{
-							kata2 = kata[angka[i]] + " Belas";
+							kata1 = kata[angka[i+2]] + " Ratus";
 						}
-					}else{
-						kata2 = kata[angka[i+1]] + " Puluh";
 					}
-				}
-				
-				/* untuk Satuan */
-				if (angka[i] != "0"){
-					if (angka[i+1] != "1"){
-						kata3 = kata[angka[i]];
+					
+					/* untuk Puluhan atau Belasan */
+					if(angka[i+1] != "0"){
+						if(angka[i+1] == "1"){
+							if(angka[i] == "0"){
+								kata2 = "Sepuluh";
+							}else if(angka[i] == "1"){
+								kata2 = "Sebelas";
+							}else{
+								kata2 = kata[angka[i]] + " Belas";
+							}
+						}else{
+							kata2 = kata[angka[i+1]] + " Puluh";
+						}
 					}
+					
+					/* untuk Satuan */
+					if (angka[i] != "0"){
+						if (angka[i+1] != "1"){
+							kata3 = kata[angka[i]];
+						}
+					}
+					
+					/* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+					if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
+						subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+					}
+					
+					/* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+					kalimat = subkalimat + kalimat;
+					i = i + 3;
+					j = j + 1;
 				}
 				
-				/* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
-				if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
-					subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+				/* mengganti Satu Ribu jadi Seribu jika diperlukan */
+				if ((angka[5] == "0") && (angka[6] == "0")){
+					kalimat = kalimat.replace("Satu Ribu","Seribu");
 				}
-				
-				/* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
-				kalimat = subkalimat + kalimat;
-				i = i + 3;
-				j = j + 1;
 			}
 			
-			/* mengganti Satu Ribu jadi Seribu jika diperlukan */
-			if ((angka[5] == "0") && (angka[6] == "0")){
-				kalimat = kalimat.replace("Satu Ribu","Seribu");
+			var matauang = document.getElementById("Select").value;
+			// var namamatauang =String(matauang);
+
+			// var splitCur []  		= namamatauang.split("-");
+			
+			// alert(matauang);
+			switch(matauang){
+			case "EUR":
+			muncul = "EURO";
+			break;
+			case "IDR":
+			muncul = "Rupiah";
+			break;
+			case "USD":
+			muncul = "Dollar Amerika";
+			break;
+			case "SGD":
+			muncul = "Dollar Singapura";
+			break;
+			case "GBP":
+			muncul = "Pound";
+			break;
+			case "JPY":
+			muncul = "Yen";
+			break;
+			case "HKD":
+			muncul = "Dollar Hongkong";
+			break;
+			case "KRW":
+			muncul = "Won";
+			break;
+
+			default:
+			muncul = "";
 			}
+			
+			if(hasil<0){
+				kalimat="(" + kalimat + ") ";
+			}
+			if(hasil==0){
+				kalimat="Nol ";
+			}
+			
+			document.getElementById("terbilang").value=kalimat+muncul;
+			
 		}
-		
-		var matauang = document.getElementById("Select").value;
-		// var namamatauang =String(matauang);
-
-		// var splitCur []  		= namamatauang.split("-");
-		
-		// alert(matauang);
-		switch(matauang){
-		case "EUR":
-		muncul = "EURO";
-		break;
-		case "IDR":
-		muncul = "Rupiah";
-		break;
-		case "USD":
-		muncul = "Dollar Amerika";
-		break;
-		case "SGD":
-		muncul = "Dollar Singapura";
-		break;
-		case "GBP":
-		muncul = "Pound";
-		break;
-		case "JPY":
-		muncul = "Yen";
-		break;
-		case "HKD":
-		muncul = "Dollar Hongkong";
-		break;
-		case "KRW":
-		muncul = "Won";
-		break;
-
-		default:
-		muncul = "";
-		}
-		
-		if(hasil<0){
-			kalimat="(" + kalimat + ") ";
-		}
-		if(hasil==0){
-			kalimat="Nol ";
-		}
-		
-		document.getElementById("terbilang").value=kalimat+muncul;
-		
 	}
-
+	
 	function get2nominal2(){
 		var jml2 = document.getElementsByName('jumlah2');
 		
 		var errmsg = '0';
-		for (var a = 0; a <jml2.length; a ++){
-			var inp2=jml2[a];
-			var xj2=inp2.value.trim();
-
-			if(xj2.substr(0,1)=="0" && xj2.length >1){
-				xj2=xj2.substr(1,xj2.length);
-				jml2[a].value=formatRupiah(xj2.replace(/[^,\d]/g, '').toString());
-			}
-		}
-
-		var bilangan= document.getElementById('rupiah2').value;
-  
-		// alert(bilangan);
-		var kalimat="";
-		var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
-		var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
-		var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
-		var panjang_bilangan = bilangan.length;
-		// alert(panjang_bilangan);
-		
-		/* pengujian panjang bilangan */
-		if(panjang_bilangan > 15){
-			kalimat = "Diluar Batas";
+		var curr= document.getElementById('currency2').value;		
+		if (curr.trim()==''){
+			alert("Mata Uang Harus Dipilih!");
 		}else{
-			/* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
-			for(i = 1; i <= panjang_bilangan; i++) {
-				angka[i] = bilangan.substr(-(i),1);
+			for (var a = 0; a <jml2.length; a ++){
+				var inp2=jml2[a];
+				var xj2=inp2.value.trim();
+
+				if(xj2.substr(0,1)=="0" && xj2.length >1){
+					xj2=xj2.substr(1,xj2.length);
+					jml2[a].value=formatRupiah(xj2.replace(/[^,\d]/g, '').toString());
+				}
 			}
+
+			var bilangan= document.getElementById('rupiah2').value;
+	  
+			// alert(bilangan);
+			var kalimat="";
+			var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+			var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+			var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
+			var panjang_bilangan = bilangan.length;
+			// alert(panjang_bilangan);
 			
-			var i = 1;
-			var j = 0;
-			
-			/* mulai proses iterasi terhadap array angka */
-			while(i <= panjang_bilangan){
-				subkalimat = "";
-				kata1 = "";
-				kata2 = "";
-				kata3 = "";
-				
-				/* untuk Ratusan */
-				if(angka[i+2] != "0"){
-					if(angka[i+2] == "1"){
-						kata1 = "Seratus";
-					}else{
-						kata1 = kata[angka[i+2]] + " Ratus";
-					}
+			/* pengujian panjang bilangan */
+			if(panjang_bilangan > 15){
+				kalimat = "Diluar Batas";
+			}else{
+				/* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+				for(i = 1; i <= panjang_bilangan; i++) {
+					angka[i] = bilangan.substr(-(i),1);
 				}
 				
-				/* untuk Puluhan atau Belasan */
-				if(angka[i+1] != "0"){
-					if(angka[i+1] == "1"){
-						if(angka[i] == "0"){
-							kata2 = "Sepuluh";
-						}else if(angka[i] == "1"){
-							kata2 = "Sebelas";
+				var i = 1;
+				var j = 0;
+				
+				/* mulai proses iterasi terhadap array angka */
+				while(i <= panjang_bilangan){
+					subkalimat = "";
+					kata1 = "";
+					kata2 = "";
+					kata3 = "";
+					
+					/* untuk Ratusan */
+					if(angka[i+2] != "0"){
+						if(angka[i+2] == "1"){
+							kata1 = "Seratus";
 						}else{
-							kata2 = kata[angka[i]] + " Belas";
+							kata1 = kata[angka[i+2]] + " Ratus";
 						}
-					}else{
-						kata2 = kata[angka[i+1]] + " Puluh";
 					}
-				}
-				
-				/* untuk Satuan */
-				if (angka[i] != "0"){
-					if (angka[i+1] != "1"){
-						kata3 = kata[angka[i]];
+					
+					/* untuk Puluhan atau Belasan */
+					if(angka[i+1] != "0"){
+						if(angka[i+1] == "1"){
+							if(angka[i] == "0"){
+								kata2 = "Sepuluh";
+							}else if(angka[i] == "1"){
+								kata2 = "Sebelas";
+							}else{
+								kata2 = kata[angka[i]] + " Belas";
+							}
+						}else{
+							kata2 = kata[angka[i+1]] + " Puluh";
+						}
 					}
+					
+					/* untuk Satuan */
+					if (angka[i] != "0"){
+						if (angka[i+1] != "1"){
+							kata3 = kata[angka[i]];
+						}
+					}
+					
+					/* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+					if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
+						subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+					}
+					
+					/* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+					kalimat = subkalimat + kalimat;
+					i = i + 3;
+					j = j + 1;
 				}
 				
-				/* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
-				if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
-					subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+				/* mengganti Satu Ribu jadi Seribu jika diperlukan */
+				if ((angka[5] == "0") && (angka[6] == "0")){
+					kalimat = kalimat.replace("Satu Ribu","Seribu");
 				}
-				
-				/* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
-				kalimat = subkalimat + kalimat;
-				i = i + 3;
-				j = j + 1;
 			}
 			
-			/* mengganti Satu Ribu jadi Seribu jika diperlukan */
-			if ((angka[5] == "0") && (angka[6] == "0")){
-				kalimat = kalimat.replace("Satu Ribu","Seribu");
+			var matauang = document.getElementById("currency2").value;
+			// var namamatauang =String(matauang);
+
+			// var splitCur []  		= namamatauang.split("-");
+			
+			// alert(matauang);
+			switch(matauang){
+			case "EUR":
+			muncul = "EURO";
+			break;
+			case "IDR":
+			muncul = "Rupiah";
+			break;
+			case "USD":
+			muncul = "Dollar Amerika";
+			break;
+			case "SGD":
+			muncul = "Dollar Singapura";
+			break;
+			case "GBP":
+			muncul = "Pound";
+			break;
+			case "JPY":
+			muncul = "Yen";
+			break;
+			case "HKD":
+			muncul = "Dollar Hongkong";
+			break;
+			case "KRW":
+			muncul = "Won";
+			break;
+
+			default:
+			muncul = "";
 			}
+			
+			if(hasil<0){
+				kalimat="(" + kalimat + ") ";
+			}
+			if(hasil==0){
+				kalimat="Nol ";
+			}
+			
+			document.getElementById("terbilang2").value=kalimat+muncul;
+			
 		}
-		
-		var matauang = document.getElementById("currency2").value;
-		// var namamatauang =String(matauang);
-
-		// var splitCur []  		= namamatauang.split("-");
-		
-		// alert(matauang);
-		switch(matauang){
-		case "EUR":
-		muncul = "EURO";
-		break;
-		case "IDR":
-		muncul = "Rupiah";
-		break;
-		case "USD":
-		muncul = "Dollar Amerika";
-		break;
-		case "SGD":
-		muncul = "Dollar Singapura";
-		break;
-		case "GBP":
-		muncul = "Pound";
-		break;
-		case "JPY":
-		muncul = "Yen";
-		break;
-		case "HKD":
-		muncul = "Dollar Hongkong";
-		break;
-		case "KRW":
-		muncul = "Won";
-		break;
-
-		default:
-		muncul = "";
-		}
-		
-		if(hasil<0){
-			kalimat="(" + kalimat + ") ";
-		}
-		if(hasil==0){
-			kalimat="Nol ";
-		}
-		
-		document.getElementById("terbilang2").value=kalimat+muncul;
-		
 	}
-
 	function getnominal3(){
 		var jml3 = document.getElementsByName('jumlah3');
 		
 		var errmsg = '0';
-		for (var d = 0; d <jml3.length; d ++){
-			var inp3=jml3[d];
-			var xj3=inp3.value.trim();
-
-			if(xj3.substr(0,1)=="0" && xj3.length >1){
-				xj3=xj3.substr(1,xj3.length);
-				jml3[d].value=formatRupiah(xj3.replace(/[^,\d]/g, '').toString());
-			}
-		}
-
-		var bilangan= document.getElementById('rupiah3').value;
-  
-		// alert(bilangan);
-		var kalimat="";
-		var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
-		var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
-		var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
-		var panjang_bilangan = bilangan.length;
-		// alert(panjang_bilangan);
-		
-		/* pengujian panjang bilangan */
-		if(panjang_bilangan > 15){
-			kalimat = "Diluar Batas";
+		var curr= document.getElementById('currency3').value;		
+		if (curr.trim()==''){
+			alert("Mata Uang Harus Dipilih!");
 		}else{
-			/* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
-			for(i = 1; i <= panjang_bilangan; i++) {
-				angka[i] = bilangan.substr(-(i),1);
+			for (var d = 0; d <jml3.length; d ++){
+				var inp3=jml3[d];
+				var xj3=inp3.value.trim();
+
+				if(xj3.substr(0,1)=="0" && xj3.length >1){
+					xj3=xj3.substr(1,xj3.length);
+					jml3[d].value=formatRupiah(xj3.replace(/[^,\d]/g, '').toString());
+				}
 			}
+
+			var bilangan= document.getElementById('rupiah3').value;
+	  
+			// alert(bilangan);
+			var kalimat="";
+			var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+			var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+			var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
+			var panjang_bilangan = bilangan.length;
+			// alert(panjang_bilangan);
 			
-			var i = 1;
-			var j = 0;
-			
-			/* mulai proses iterasi terhadap array angka */
-			while(i <= panjang_bilangan){
-				subkalimat = "";
-				kata1 = "";
-				kata2 = "";
-				kata3 = "";
-				
-				/* untuk Ratusan */
-				if(angka[i+2] != "0"){
-					if(angka[i+2] == "1"){
-						kata1 = "Seratus";
-					}else{
-						kata1 = kata[angka[i+2]] + " Ratus";
-					}
+			/* pengujian panjang bilangan */
+			if(panjang_bilangan > 15){
+				kalimat = "Diluar Batas";
+			}else{
+				/* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+				for(i = 1; i <= panjang_bilangan; i++) {
+					angka[i] = bilangan.substr(-(i),1);
 				}
 				
-				/* untuk Puluhan atau Belasan */
-				if(angka[i+1] != "0"){
-					if(angka[i+1] == "1"){
-						if(angka[i] == "0"){
-							kata2 = "Sepuluh";
-						}else if(angka[i] == "1"){
-							kata2 = "Sebelas";
+				var i = 1;
+				var j = 0;
+				
+				/* mulai proses iterasi terhadap array angka */
+				while(i <= panjang_bilangan){
+					subkalimat = "";
+					kata1 = "";
+					kata2 = "";
+					kata3 = "";
+					
+					/* untuk Ratusan */
+					if(angka[i+2] != "0"){
+						if(angka[i+2] == "1"){
+							kata1 = "Seratus";
 						}else{
-							kata2 = kata[angka[i]] + " Belas";
+							kata1 = kata[angka[i+2]] + " Ratus";
 						}
-					}else{
-						kata2 = kata[angka[i+1]] + " Puluh";
 					}
-				}
-				
-				/* untuk Satuan */
-				if (angka[i] != "0"){
-					if (angka[i+1] != "1"){
-						kata3 = kata[angka[i]];
+					
+					/* untuk Puluhan atau Belasan */
+					if(angka[i+1] != "0"){
+						if(angka[i+1] == "1"){
+							if(angka[i] == "0"){
+								kata2 = "Sepuluh";
+							}else if(angka[i] == "1"){
+								kata2 = "Sebelas";
+							}else{
+								kata2 = kata[angka[i]] + " Belas";
+							}
+						}else{
+							kata2 = kata[angka[i+1]] + " Puluh";
+						}
 					}
+					
+					/* untuk Satuan */
+					if (angka[i] != "0"){
+						if (angka[i+1] != "1"){
+							kata3 = kata[angka[i]];
+						}
+					}
+					
+					/* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+					if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
+						subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+					}
+					
+					/* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
+					kalimat = subkalimat + kalimat;
+					i = i + 3;
+					j = j + 1;
 				}
 				
-				/* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
-				if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")){
-					subkalimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+				/* mengganti Satu Ribu jadi Seribu jika diperlukan */
+				if ((angka[5] == "0") && (angka[6] == "0")){
+					kalimat = kalimat.replace("Satu Ribu","Seribu");
 				}
-				
-				/* gabungkan variabe sub kalimat (untuk Satu blok 3 angka) ke variabel kalimat */
-				kalimat = subkalimat + kalimat;
-				i = i + 3;
-				j = j + 1;
 			}
 			
-			/* mengganti Satu Ribu jadi Seribu jika diperlukan */
-			if ((angka[5] == "0") && (angka[6] == "0")){
-				kalimat = kalimat.replace("Satu Ribu","Seribu");
+			var matauang = document.getElementById("currency3").value;
+			// var namamatauang =String(matauang);
+
+			// var splitCur []  		= namamatauang.split("-");
+			
+			// alert(matauang);
+			switch(matauang){
+			case "EUR":
+			muncul = "EURO";
+			break;
+			case "IDR":
+			muncul = "Rupiah";
+			break;
+			case "USD":
+			muncul = "Dollar Amerika";
+			break;
+			case "SGD":
+			muncul = "Dollar Singapura";
+			break;
+			case "GBP":
+			muncul = "Pound";
+			break;
+			case "JPY":
+			muncul = "Yen";
+			break;
+			case "HKD":
+			muncul = "Dollar Hongkong";
+			break;
+			case "KRW":
+			muncul = "Won";
+			break;
+
+			default:
+			muncul = "";
 			}
+			
+			if(hasil<0){
+				kalimat="(" + kalimat + ") ";
+			}
+			if(hasil==0){
+				kalimat="Nol ";
+			}
+			
+			document.getElementById("terbilang3").value=kalimat+muncul;
+			
 		}
-		
-		var matauang = document.getElementById("currency3").value;
-		// var namamatauang =String(matauang);
-
-		// var splitCur []  		= namamatauang.split("-");
-		
-		// alert(matauang);
-		switch(matauang){
-		case "EUR":
-		muncul = "EURO";
-		break;
-		case "IDR":
-		muncul = "Rupiah";
-		break;
-		case "USD":
-		muncul = "Dollar Amerika";
-		break;
-		case "SGD":
-		muncul = "Dollar Singapura";
-		break;
-		case "GBP":
-		muncul = "Pound";
-		break;
-		case "JPY":
-		muncul = "Yen";
-		break;
-		case "HKD":
-		muncul = "Dollar Hongkong";
-		break;
-		case "KRW":
-		muncul = "Won";
-		break;
-
-		default:
-		muncul = "";
-		}
-		
-		if(hasil<0){
-			kalimat="(" + kalimat + ") ";
-		}
-		if(hasil==0){
-			kalimat="Nol ";
-		}
-		
-		document.getElementById("terbilang3").value=kalimat+muncul;
-		
 	}
-
+	
 	function gettotalvendor(){
 		var itotal1=0;
 		var itotal2=0;
@@ -2097,7 +2111,7 @@ function AddIndeks(){
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
       
-			if(kdvX.substr(0,1)!="1"){
+			/*if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
@@ -2105,10 +2119,10 @@ function AddIndeks(){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang yang dipilih Harus Sama!";
+					errmsg="Mata Uang Harus Dipilih!";
 					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 				}
-			}
+			}*/
 			
 			if(errmsg=="0"){
 				
@@ -2194,7 +2208,7 @@ function AddIndeks(){
 	}else if($('#tujuanPenggunaan').val()==""){
 		alert('Tujuan Penggunaan belum di input');
 	}else if($('#Select').val()==""){
-		alert('Mata Uang Pertama belum dipilih');
+		alert('Mata Uang Harus Dipilih');
 	}else if($('#rupiah').val()==""){
 		alert('Nominal Jumlah Pertama belum di input');
 	}else if ($.trim($('#jns_pembayaran').val())=="2" && $('#perkiraanSelesai').val()==""){
@@ -2225,6 +2239,23 @@ function AddIndeks(){
 				}
 			};
 			if(inps5[i].value=="" && skdvendor.substring(0, 1)!="1"){
+				errmsg="Mata Uang baris ke " + (i+1) + " Harus Dipilih";
+				break;
+				/*if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
+					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
+					break;
+				};
+				
+				if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
+					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
+					break;
+				};
+				
+				if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
+					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
+					break;
+				};*/
+			}else {
 				if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
 					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
 					break;
@@ -2434,7 +2465,7 @@ function drpbank(param1,param2,param3){
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
       
-			if(kdvX.substr(0,1)!="1"){
+			/*if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
@@ -2442,10 +2473,10 @@ function drpbank(param1,param2,param3){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang yang dipilih Harus Sama!";
+					errmsg="Mata Uang Harus Dipilih!";
 					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 				}
-			}
+			}*/
 			
 			if(errmsg=="0"){
 				

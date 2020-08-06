@@ -219,7 +219,7 @@
                       <tr>
                         <td width="35%"><b>- Tujuan Penggunaan <font color="red"> * </font> </b></td>
                         <td><b> : </b></td>
-                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" rows="5" class="form-control" name="label1" <?php echo $readonly; ?>><?php echo $row->label1; ?></textarea></td>
+                        <td colspan="8"><textarea type="text" id="tujuanPenggunaan" rows="5" class="form-control" name="label1" ><?php echo $row->label1; ?></textarea></td>
                         <td>
                       </tr>
                       <tr>
@@ -227,7 +227,7 @@
                         <td><b> : </b></td>
                         <td><select id="Select" onchange="mycurrency1()" name="currency" class="form-control" <?php echo $readonly; ?>>
                                 <option value="<?php echo $row->currency; ?>"> <?php echo $row->currency; ?></option>
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->currency; ?>"<?php echo $get->currency==bank? 'selected':''?>><?php echo $get->currency; ?></option>
                               <?php } ?>
@@ -238,7 +238,7 @@
                         
                         <td><select id="currency2" name="currency2" onchange="mycurrency2()" class="form-control" <?php echo $readonly; ?>>
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
@@ -249,7 +249,7 @@
 
                         <td><select id="currency3" name="currency3" onchange="mycurrency3()" class="form-control" <?php echo $readonly; ?>>
                                 <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                 <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
@@ -382,7 +382,7 @@
 							<td><input style="height:28px" id="rekeningvendor1" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" >
 							</td> 
 							<td><select style="height:28px" id="currencyvendor1" name="currencyvendor[]" onchange="drpcurrency('1')" class="form-control">
-									<option value="">--Choose--</option>
+									<option value="">Pilih Mata Uang</option>
 									<?php foreach ($currency as $cur) {?>
 									<option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
 
@@ -463,7 +463,7 @@
 							<td><input style="height:28px" id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>></td> 
 							<td><select style="height:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" onchange="drpcurrency('<?php echo $vendorrow; ?>')" class="form-control" <?php echo $currencyvendor; ?>>
 										<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
-										<option value="">--Choose--</option>
+										<option value="">Pilih Mata Uang</option>
 										<?php foreach ($currency as $cur) {?>
 										<option value="<?php echo $cur->currency; ?>"><?php echo $cur->currency; ?></option>
 
@@ -673,7 +673,7 @@
                         <td colspan="2">&nbsp;</td>
                         <td><select id="curr1"  name="curr1" class="form-control">
 									              <option value="<?php echo $row->curr_settlement1;?>"><?php echo $row->curr_settlement1;?></option>                                      
-                                <option value="">--Choose--</option>
+                                <option value="">Pilih Mata Uang</option>
                                 <?php foreach ($currency as $get) {?>
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
@@ -682,7 +682,7 @@
                         <td><input id="biaya" onkeyup="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
                         <td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="<?php echo $row->curr_settlement2;?>"><?php echo $row->curr_settlement2;?></option>                                      
-                                      <option value="">--Choose--</option>
+                                      <option value="">Pilih Mata Uang</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
@@ -692,7 +692,7 @@
                         <td><input id="biayaa" onkeyup="penjumlahana()" type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"></input></td>
                         <td><select id="curr3" name="curr3" class="form-control">
                                       <option value="<?php echo $row->curr_settlement3;?>"><?php echo $row->curr_settlement3;?></option>                                      
-                                      <option value="">--Choose--</option>
+                                      <option value="">Pilih Mata Uang</option>
                                       <?php foreach ($currency as $get) {?>
                                       <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
 
@@ -1621,7 +1621,7 @@ function AddIndeks(){
 		strhtml=strhtml + '<td><input style="height:28px" id="rekeningvendor'+szcountervendor+'" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" ></td> ' ;
 		
 		strhtml=strhtml + '<td><select style="height:28px" id="currencyvendor'+szcountervendor+'" class="form-control" onchange="drpcurrency('+szcountervendor+')" name="currencyvendor[]" > ' ;
-		strhtml=strhtml + '<option value="">--Choose--</option> ';
+		strhtml=strhtml + '<option value="">Pilih Mata Uang</option> ';
 		strcurrency =document.getElementById("strcurrency").value;
 		arrcurrency = strcurrency.split(";");
 	
@@ -1662,7 +1662,11 @@ function AddIndeks(){
 		var jml1 = document.getElementsByName('label2');
 		
 		var errmsg = '0';
-		for (var i = 0; i <jml1.length; i ++){
+		var curr= document.getElementById('Select').value;		
+		if (curr.trim()==''){
+			alert("Mata Uang Harus Dipilih!");
+		}else{
+			for (var i = 0; i <jml1.length; i ++){
 			var inp1=jml1[i];
 			var xj1=inp1.value.trim();
 
@@ -1793,13 +1797,17 @@ function AddIndeks(){
 		}
 		
 		document.getElementById("terbilang").value=kalimat+muncul;
+		}
 	}
-
 	function get2nominal2(){
 		var jml2 = document.getElementsByName('jumlah2');
 		
 		var errmsg = '0';
-		for (var a = 0; a <jml2.length; a ++){
+		var curr= document.getElementById('currency2').value;		
+		if (curr.trim()==''){
+			alert("Mata Uang Harus Dipilih!");
+		}else{
+			for (var a = 0; a <jml2.length; a ++){
 			var inp2=jml2[a];
 			var xj2=inp2.value.trim();
 
@@ -1931,13 +1939,18 @@ function AddIndeks(){
 		
 		document.getElementById("terbilang2").value=kalimat+muncul;
 		
+		}
 	}
-
+	
 	function getnominal3(){
 		var jml3 = document.getElementsByName('jumlah3');
 		
 		var errmsg = '0';
-		for (var d = 0; d <jml3.length; d ++){
+		var curr= document.getElementById('currency3').value;		
+		if (curr.trim()==''){
+			alert("Mata Uang Harus Dipilih!");
+		}else{
+			for (var d = 0; d <jml3.length; d ++){
 			var inp3=jml3[d];
 			var xj3=inp3.value.trim();
 
@@ -2069,8 +2082,9 @@ function AddIndeks(){
 		
 		document.getElementById("terbilang3").value=kalimat+muncul;
 		
+		}
 	}
-
+	
 	function gettotalvendor(){
 		var itotal1=0;
 		var itotal2=0;
@@ -2095,7 +2109,7 @@ function AddIndeks(){
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
       
-			if(kdvX.substr(0,1)!="1"){
+			/*if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
@@ -2103,10 +2117,10 @@ function AddIndeks(){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang yang dipilih Harus Sama!";
+					errmsg="Mata Uang Harus Dipilih!";
 					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 				}
-			}
+			}*/
 			
 			if(errmsg=="0"){
 				
@@ -2223,6 +2237,23 @@ function AddIndeks(){
 				}
 			};
 			if(inps5[i].value=="" && skdvendor.substring(0, 1)!="1"){
+				errmsg="Mata Uang baris ke " + (i+1) + " Harus Dipilih";
+				break;
+				/*if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
+					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
+					break;
+				};
+				
+				if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
+					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
+					break;
+				};
+				
+				if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
+					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
+					break;
+				};*/
+			}else {
 				if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
 					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
 					break;
@@ -2433,7 +2464,7 @@ function drpbank(param1,param2,param3){
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
       
-			if(kdvX.substr(0,1)!="1"){
+			/*if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
@@ -2441,10 +2472,10 @@ function drpbank(param1,param2,param3){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang yang dipilih Harus Sama!";
+					errmsg="Mata Uang Harus Dipilih!";
 					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
 				}
-			}
+			}*/
 			
 			if(errmsg=="0"){
 				
