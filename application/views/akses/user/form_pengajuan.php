@@ -1446,15 +1446,15 @@ function savedraft() {
 		for (var i = 0; i <inps1.length; i++) {
 			skdvendor = inps1[i].value;
 			if(inps1[i].value==""){
-				errmsg="Nama Vendor baris ke " + (i+1) + " belum di pilih";
+				errmsg="Penerima Pembayaran baris ke " + (i+1) + " belum di pilih";
 				break;
 			};
-   
+			
 			if(inps2[i].value==""){
 				if (skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2"){
 					errmsg="0";
 				}else{
-					errmsg="Bank Vendor baris ke " + (i+1) + " belum di pilih";
+					errmsg="Kolom Tunai/Transfeer baris ke " + (i+1) + " belum di pilih";
 					break;
 				}
 			};
@@ -1467,7 +1467,7 @@ function savedraft() {
 				}
 			};
 			if(inps5[i].value=="" && skdvendor.substring(0, 1)!="1"){
-				errmsg="Mata Uang baris ke " + (i+1) + " Harus Dipilih";
+				errmsg="Mata Uang baris ke " + (i+1) + " Tidak Sesuai";
 				break;
 			}else {
 				if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
@@ -1479,20 +1479,18 @@ function savedraft() {
 				};
 				
 				if (currcheck=="1"){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
+					errmsg="Mata Uang pada baris ke " + (i+1) + " tidak sesuai";
 					break;
 				};
-				
-				
 			};
 								
 			if(inps4[i].value=="" && skdvendor.substring(0, 1)!="1"){
-				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
+				errmsg="Nominal baris ke " + (i+1) + " belum di input";
 				break;
 			};
 			
 			if(inps4[i].value=="0" && skdvendor.substring(0, 1)!="1"){
-				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
+				errmsg="Nominal baris ke " + (i+1) + " belum di input";
 				break;
 			};
 		}
