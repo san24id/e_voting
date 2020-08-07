@@ -27,7 +27,7 @@
     <!-- Select2 -->
   <link rel="stylesheet" href="assets/admin/bower_components/select2/dist/css/select2.min.css">
 </head>
-<body class="hold-transition skin-blue sidebar-mini" style="background-image: url('assets/login/images/header1.png');">
+<body class="hold-transition skin-blue sidebar-mini" style="background-image: url('assets/login/images/header2.png');">
 <style type="text/css">
 /*
 .cbx {
@@ -122,16 +122,16 @@
   <header class="main-header"  > 
 
     <!-- Logo -->
-    <a href="Dashboard" class="logo" style="background-image: url('assets/login/images/header1.png');background-repeat: no-repeat;
+    <a href="Dashboard" class="logo" style="background-image: url('assets/login/images/header2.png');background-repeat: no-repeat;
   background-size: 300px 100px;">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>SF</span>
       <!-- logo for regular state and mobile devices -->
-      <span><img width="180px" height="140px;" src="<?=base_url('assets/login/images/header.png');?>" /></span>
+      <span><img src="<?=base_url('assets/login/images/headerr.png');?>" /></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" style="background-image: url('assets/login/images/header1.png');background-repeat: repeat;
+    <nav class="navbar navbar-static-top" style="background-image: url('assets/login/images/header2.png');background-repeat: repeat;
   background-size: 1200px 100px;">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -193,7 +193,7 @@
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   
-  <aside class="main-sidebar" style="background-image: url('assets/login/images/side_bar.png');">
+  <aside class="main-sidebar" style="background-image: url('assets/login/images/side_bar2.png');">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar" >
       <!-- Sidebar user panel -->
