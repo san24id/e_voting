@@ -2174,11 +2174,12 @@ function AddIndeks(){
 	var strhasilb=$('#hasilb').val();
 	
 	var $scur1=$.trim($('#curr1').val());
-			var $scur2=$.trim($('#curr2').val());
-			var $scur3=$.trim($('#curr3').val());
-			var lblcur1 = $.trim($('#Select').val());
-			var lblcur2 = $.trim($('#currency2').val());
-			var lblcur3 = $.trim($('#currency3').val());
+	var $scur2=$.trim($('#curr2').val());
+	var $scur3=$.trim($('#curr3').val());
+	var lblcur1 = $.trim($('#Select').val());
+	var lblcur2 = $.trim($('#currency2').val());
+	var lblcur3 = $.trim($('#currency3').val());
+	var currcheck=="0";
 	
 	if(strrupiah==""){
 		strrupiah="0";
@@ -2238,32 +2239,16 @@ function AddIndeks(){
 			if(inps5[i].value=="" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Mata Uang baris ke " + (i+1) + " Harus Dipilih";
 				break;
-				/*if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};
-				
-				if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};
-				
-				if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};*/
 			}else {
 				if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
+					if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
+						if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
+							currcheck=="1";
+						};
+					};
 				};
 				
-				if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};
-				
-				if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
+				if (currcheck=="1"){
 					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
 					break;
 				};
@@ -2276,9 +2261,22 @@ function AddIndeks(){
 			if(inps4[i].value=="0" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
 				break;
-			};
+			};			
 			
-			var val1 = document.getElementById('rupiah').value;
+		}
+		var schk=lbl4.length-1;
+		/*if (errmsg=="0"){
+			for (var x = 0; x <lbl4.length; x++) {
+				if(lbl4[x].checked){
+					errmsg="0";
+					break;
+				}else{
+					errmsg="Dokumen Lampiran belum di pilih";
+				};
+			}*/
+			
+			if (errmsg=="0"){
+				var val1 = document.getElementById('rupiah').value;
 			var val2 = document.getElementById('rupiah2').value;
 			var val3 = document.getElementById('rupiah3').value;
 			
@@ -2331,28 +2329,15 @@ function AddIndeks(){
 			if (skdvendor.substring(0, 1)!="1"){
 				if(val1>0 && val1!=nomvendor1){
 					errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
-					break;
-				};
-				if(val2>0 && val2!=nomvendor2){
+					//break;
+				}else if(val2>0 && val2!=nomvendor2){
 					errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
-					break;
-				};
-				if(val3>0 && val3!=nomvendor3){
+					//break;
+				}else if(val3>0 && val3!=nomvendor3){
 					errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
-					break;
+					//break;
 				};
 			}
-		}
-		var schk=lbl4.length-1;
-		/*if (errmsg=="0"){
-			for (var x = 0; x <lbl4.length; x++) {
-				if(lbl4[x].checked){
-					errmsg="0";
-					break;
-				}else{
-					errmsg="Dokumen Lampiran belum di pilih";
-				};
-			}*/
 			
 			if (errmsg=="0"){
 					if(lbl4[schk].checked && $.trim($('#text1').val())==""){
@@ -2396,6 +2381,9 @@ function AddIndeks(){
 						  }
 						});
 					}
+				}else{
+					alert(errmsg);
+				}
 			}else{
 				alert(errmsg);
 			}

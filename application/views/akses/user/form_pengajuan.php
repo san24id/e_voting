@@ -1356,7 +1356,7 @@ function showInput() {
 			$('#rupiah').prop('readonly',false);
 			$('#rupiah2').prop('readonly',false);
 			$('#rupiah3').prop('readonly',false);
-			}
+		}
 		
 		
 	});	
@@ -1408,8 +1408,9 @@ function savedraft() {
 	var strhasil=$('#hasil').val();
 	var strhasila=$('#hasila').val();
 	var strhasilb=$('#hasilb').val();
+	var currcheck="0";
 	
-	
+ 
 	if(strrupiah==""){
 		strrupiah="0";
 	}	
@@ -1448,7 +1449,7 @@ function savedraft() {
 				errmsg="Nama Vendor baris ke " + (i+1) + " belum di pilih";
 				break;
 			};
-			
+   
 			if(inps2[i].value==""){
 				if (skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2"){
 					errmsg="0";
@@ -1468,35 +1469,21 @@ function savedraft() {
 			if(inps5[i].value=="" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Mata Uang baris ke " + (i+1) + " Harus Dipilih";
 				break;
-				/*if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};
-				
-				if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};
-				
-				if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};*/
 			}else {
 				if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
+					if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
+						if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
+							currcheck=="1";
+						};
+					};
+				};
+				
+				if (currcheck=="1"){
 					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
 					break;
 				};
 				
-				if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};
 				
-				if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
-					errmsg="Mata Uang Vendor baris ke " + (i+1) + " tidak sesuai";
-					break;
-				};
 			};
 								
 			if(inps4[i].value=="" && skdvendor.substring(0, 1)!="1"){
@@ -1508,78 +1495,9 @@ function savedraft() {
 				errmsg="Nominal Vendor baris ke " + (i+1) + " belum di input";
 				break;
 			};
-			
-			var val1 = document.getElementById('rupiah').value;
-			var val2 = document.getElementById('rupiah2').value;
-			var val3 = document.getElementById('rupiah3').value;
-			
-			var $scur1=$.trim($('#curr1').val());
-			var $scur2=$.trim($('#curr2').val());
-			var $scur3=$.trim($('#curr3').val());
-			var lblcur1 = $.trim($('#Select').val());
-			var lblcur2 = $.trim($('#currency2').val());
-			var lblcur3 = $.trim($('#currency3').val());
-			
-			var nomvendor1 = $('#lbltotalvendor').text();
-			var nomvendor2 = $('#lbltotalvendor2').text();
-			var nomvendor3 = $('#lbltotalvendor3').text();
-			
-			if(val1==""){val1="0";};			
-			if(val2==""){val2="0";};			
-			if(val3==""){val3="0";};
-			
-			if (val1.substr(0,1)=="(" && val1.substr(val1.length-1,1)==")"){
-				val1 = val1.replace(/\D+/g, '');
-				val1= -Math.abs(val1);	
-			}else if (val1.substr(0,1)=="-"){
-				val1 = val1.replace(/\D+/g, '');
-				val1= -Math.abs(val1);	
-			}else{
-				val1 = val1.replace(/\D+/g, '');
-				val1= Math.abs(val1);	
-			}
-			
-			if (val2.substr(0,1)=="(" && val2.substr(val2.length-1,1)==")"){
-				val2 = val2.replace(/\D+/g, '');
-				val2= -Math.abs(val2);	
-			}else if (val2.substr(0,1)=="-"){
-				val2 = val2.replace(/\D+/g, '');
-				val2= -Math.abs(val2);	
-			}else{
-				val2 = val2.replace(/\D+/g, '');
-				val2= Math.abs(val2);	
-			}
-			
-			if (val3.substr(0,1)=="(" && val3.substr(val3.length-1,1)==")"){
-				val3 = val3.replace(/\D+/g, '');
-				val3= -Math.abs(val3);	
-			}else if (val3.substr(0,1)=="-"){
-				val3 = val3.replace(/\D+/g, '');
-				val3= -Math.abs(val3);	
-			}else{
-				val3 = val3.replace(/\D+/g, '');
-				val3= Math.abs(val3);	
-			}
-			
-			nomvendor1 = nomvendor1.replace(/\D+/g, '');
-			nomvendor2 = nomvendor2.replace(/\D+/g, '');
-			nomvendor3 = nomvendor3.replace(/\D+/g, '');
-			
-			if (skdvendor.substring(0, 1)!="1"){
-				if(val1>0 && val1!=nomvendor1){
-					errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
-					break;
-				};
-				if(val2>0 && val2!=nomvendor2){
-					errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
-					break;
-				};
-				if(val3>0 && val3!=nomvendor3){
-					errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
-					break;
-				};
-			}
 		}
+		
+			
 		var schk=lbl4.length-1;
 		/*if (errmsg=="0"){
 			for (var x = 0; x <lbl4.length; x++) {
@@ -1593,57 +1511,130 @@ function savedraft() {
 			}*/
 			
 			if (errmsg=="0"){
-					if(lbl4[schk].checked && $.trim($('#text1').val())==""){
-						alert('Dokumen Lampiran Lainnya belum di input');
-					}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
-							alert('Nomor ARF Terkait belum di input');
-					}else if ($('#jns_pembayaran').val()=="3" && ($("#chkarf").prop('checked') == false)){						
-							alert('Lampiran copy ARF belum di beri tanda ceklist');
-					}else if($('#jns_pembayaran').val()=="3" && lblcur1!=$scur1){
-						alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
-					}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
-							alert('Jumlah Biaya belum di input');
-					}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
-							alert('Jumlah Uang Muka belum di input');
-					}else if($('#jns_pembayaran').val()=="3" && strrupiah!=strhasil){
-						alert('Selisih Kurang/(Lebih) Mata Uang Pertama tidak sama dengan Nilai pada kolom Jumlah diatas');
-					}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur2){
-						alert('Jenis Mata Uang Penggunaan Uang Muka Kedua tidak sama dengan Mata Uang pada kolom Jumlah diatas');
-					}else if($('#jns_pembayaran').val()=="3" && strrupiah2!=strhasila){
-						alert('Selisih Kurang/(Lebih) Mata Uang Kedua tidak sama dengan Nilai pada kolom Jumlah diatas');
-					}else if($('#jns_pembayaran').val()=="3" && lblcur3!=$scur3){
-						alert('Jenis Mata Uang Penggunaan Uang Muka Ketiga tidak sama dengan Mata Uang pada kolom Jumlah diatas');
-					}else if($('#jns_pembayaran').val()=="3" && strrupiah3!=strhasilb){
-						alert('Selisih Kurang/(Lebih) Mata Uang Ketiga tidak sama dengan Nilai pada kolom Jumlah diatas');
-					}else{
-						<?php foreach ($getID as $key) { ?>
-						  var link = "<?php echo base_url('Home/formfinished/'.$key->id_payment);?>";
-						<?php } ?>
-						  
-						if(save_method=="edit"){
-							url = "<?php echo base_url('Home/saveeditpayment')?>";  
+				var val1 = document.getElementById('rupiah').value;
+				var val2 = document.getElementById('rupiah2').value;
+				var val3 = document.getElementById('rupiah3').value;
+					
+				var $scur1=$.trim($('#curr1').val());
+				var $scur2=$.trim($('#curr2').val());
+				var $scur3=$.trim($('#curr3').val());
+				var lblcur1 = $.trim($('#Select').val());
+				var lblcur2 = $.trim($('#currency2').val());
+				var lblcur3 = $.trim($('#currency3').val());
+					
+				var nomvendor1 = $('#lbltotalvendor').text();
+				var nomvendor2 = $('#lbltotalvendor2').text();
+				var nomvendor3 = $('#lbltotalvendor3').text();
+					
+				if(val1==""){val1="0";};			
+				if(val2==""){val2="0";};			
+				if(val3==""){val3="0";};
+					
+				if (val1.substr(0,1)=="(" && val1.substr(val1.length-1,1)==")"){
+					val1 = val1.replace(/\D+/g, '');
+					val1= -Math.abs(val1);	
+				}else if (val1.substr(0,1)=="-"){
+					val1 = val1.replace(/\D+/g, '');
+					val1= -Math.abs(val1);	
+				}else{
+					val1 = val1.replace(/\D+/g, '');
+					val1= Math.abs(val1);	
+				}
+					
+				if (val2.substr(0,1)=="(" && val2.substr(val2.length-1,1)==")"){
+					val2 = val2.replace(/\D+/g, '');
+					val2= -Math.abs(val2);	
+				}else if (val2.substr(0,1)=="-"){
+					val2 = val2.replace(/\D+/g, '');
+					val2= -Math.abs(val2);	
+				}else{
+					val2 = val2.replace(/\D+/g, '');
+					val2= Math.abs(val2);	
+				}
+					
+				if (val3.substr(0,1)=="(" && val3.substr(val3.length-1,1)==")"){
+					val3 = val3.replace(/\D+/g, '');
+					val3= -Math.abs(val3);	
+				}else if (val3.substr(0,1)=="-"){
+					val3 = val3.replace(/\D+/g, '');
+					val3= -Math.abs(val3);	
+				}else{
+					val3 = val3.replace(/\D+/g, '');
+					val3= Math.abs(val3);	
+				}
+					
+				nomvendor1 = nomvendor1.replace(/\D+/g, '');
+				nomvendor2 = nomvendor2.replace(/\D+/g, '');
+				nomvendor3 = nomvendor3.replace(/\D+/g, '');
+					
+				if (skdvendor.substring(0, 1)!="1"){
+					if(val1>0 && val1!=nomvendor1){
+						errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
+						//break;
+					}else if(val2>0 && val2!=nomvendor2){
+						errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
+						//break;
+					}else if(val3>0 && val3!=nomvendor3){
+						errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
+						//break;
+					};
+				}
+					
+					if (errmsg=="0"){
+						if(lbl4[schk].checked && $.trim($('#text1').val())==""){
+							alert('Dokumen Lampiran Lainnya belum di input');
+						}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
+								alert('Nomor ARF Terkait belum di input');
+						}else if ($('#jns_pembayaran').val()=="3" && ($("#chkarf").prop('checked') == false)){						
+								alert('Lampiran copy ARF belum di beri tanda ceklist');
+						}else if($('#jns_pembayaran').val()=="3" && lblcur1!=$scur1){
+							alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+						}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
+								alert('Jumlah Biaya belum di input');
+						}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
+								alert('Jumlah Uang Muka belum di input');
+						}else if($('#jns_pembayaran').val()=="3" && strrupiah!=strhasil){
+							alert('Selisih Kurang/(Lebih) Mata Uang Pertama tidak sama dengan Nilai pada kolom Jumlah diatas');
+						}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur2){
+							alert('Jenis Mata Uang Penggunaan Uang Muka Kedua tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+						}else if($('#jns_pembayaran').val()=="3" && strrupiah2!=strhasila){
+							alert('Selisih Kurang/(Lebih) Mata Uang Kedua tidak sama dengan Nilai pada kolom Jumlah diatas');
+						}else if($('#jns_pembayaran').val()=="3" && lblcur3!=$scur3){
+							alert('Jenis Mata Uang Penggunaan Uang Muka Ketiga tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+						}else if($('#jns_pembayaran').val()=="3" && strrupiah3!=strhasilb){
+							alert('Selisih Kurang/(Lebih) Mata Uang Ketiga tidak sama dengan Nilai pada kolom Jumlah diatas');
 						}else{
-							url = "<?php echo base_url('Home/saveaddpayment')?>";  
+							<?php foreach ($getID as $key) { ?>
+							  var link = "<?php echo base_url('Home/formfinished/'.$key->id_payment);?>";
+							<?php } ?>
+							  
+							if(save_method=="edit"){
+								url = "<?php echo base_url('Home/saveeditpayment')?>";  
+							}else{
+								url = "<?php echo base_url('Home/saveaddpayment')?>";  
+							}
+						   
+							$.ajax({
+							  url : url,
+							  type : "POST",
+							  data: $("#formadd").serialize(),
+							  dataType: "JSON",
+							  success: function(data){ // Ketika proses pengiriman berhasil          
+								alert('Data Berhasil Di simpan');   
+								save_method="edit";
+								$("#id_payment").val(data);
+								//window.location = link;
+								window.location ="<?php echo base_url('Home/formfinished');?>/"+data;
+							},      
+							  error: function (data)
+							  {
+								console.log(data);
+								alert('Error adding / update data');
+							  }
+							});
 						}
-					   
-						$.ajax({
-						  url : url,
-						  type : "POST",
-						  data: $("#formadd").serialize(),
-						  dataType: "JSON",
-						  success: function(data){ // Ketika proses pengiriman berhasil          
-							alert('Data Berhasil Di simpan');   
-							save_method="edit";
-							$("#id_payment").val(data);
-							//window.location = link;
-							window.location ="<?php echo base_url('Home/formfinished');?>/"+data;
-						},      
-						  error: function (data)
-						  {
-							console.log(data);
-							alert('Error adding / update data');
-						  }
-						});
+					}else{
+						alert(errmsg);
 					}
 			}else{
 				alert(errmsg);
@@ -2210,7 +2201,7 @@ function AddIndeks(){
 		var itotal2=0;
 		var itotal3=0;
 		var inps = document.getElementsByName('nominalvendor[]');
-		var inpscur = document.getElementsByName('scurrencyvendor[]');//document.getElementsByName('currencyvendor[]');
+		var inpscur = document.getElementsByName('currencyvendor[]');
 		var curr1 = document.getElementById('Select').value;
 		var curr2 = document.getElementById('currency2').value;
 		var curr3 = document.getElementById('currency3').value;
@@ -2258,8 +2249,7 @@ function AddIndeks(){
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
 				}else{
-					errmsg="Mata Uang Harus Dipilih!";
-					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
+					errmsg="Mata Uang pada baris ke "+ (i+1) +" Harus Dipilih";
 				}
 			}
 			if(errmsg=="0"){
