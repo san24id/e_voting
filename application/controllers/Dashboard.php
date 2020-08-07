@@ -2953,7 +2953,36 @@ class Dashboard extends CI_Controller {
 			$this->session->set_userdata('titleHeader','Paid');
 			$this->session->set_userdata('filter','6');
 			break;
-
+		  case "7":
+			$data['payment'] = $this->Dashboard_model->getMonitoringTax($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Under Processing Tax');
+			$this->session->set_userdata('filter','7');
+			break;
+		  case "8":
+			$data['payment'] = $this->Dashboard_model->getMonitoringReview($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting For Review');
+			$this->session->set_userdata('filter','8');
+			break;
+		  case "9":
+			$data['payment'] = $this->Dashboard_model->getMonitoringWApproval($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting For Approval');
+			$this->session->set_userdata('filter','9');
+			break;
+		  case "10":
+			$data['payment'] = $this->Dashboard_model->getMonitoringFinance($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Under Processing Finance');
+			$this->session->set_userdata('filter','10');
+			break;
+		  case "11":
+			$data['payment'] = $this->Dashboard_model->getMonitoringWVerif($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting For Verification');
+			$this->session->set_userdata('filter','11');
+			break;
+		  case "12":
+			$data['payment'] = $this->Dashboard_model->getMonitoringWPaid($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting For Paid');
+			$this->session->set_userdata('filter','12');
+			break;
 		  default:
 			$data['payment'] = $this->Dashboard_model->monitoring();
 		}

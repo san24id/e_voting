@@ -208,7 +208,7 @@
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/tax.png"></i></span>
                               <br>
                               <?php foreach ($tax as $tax){ ?>
-                                <a href="<?php echo base_url('dashboard/List_upt/')?>"><font size='3' color="white"><center><?php echo $tax->tax;?></center></font></a>
+                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/7/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $tax->tax;?></center></font></a>
                               <?php } ?>
                               <center><font size='3' color="white">Under Processing <br> Tax </center>
                           </div>
@@ -218,7 +218,7 @@
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/review.png"></i></span>
                               <br>
                               <?php foreach ($review as $review) { ?>
-                                <a href="<?php echo base_url('dashboard/List_wfr/')?>"><font size='3' color="white"><center><?php echo $review->wreview; ?></center></font></a>
+                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/8/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $review->wreview; ?></center></font></a>
                               <?php } ?>
                               <center><font size='3' color="white">Waiting For <br> Review </center>
                           </div>
@@ -228,7 +228,7 @@
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approval.png"></i></span>
                               <br>
                               <?php foreach ($wApproval as $wApproval) { ?>
-                                <a href="<?php echo base_url('dashboard/List_wfa/')?>"><font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font></a>
+                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/9/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font></a>
                               <?php } ?>
                               <center><font size='3' color="white">Waiting For <br> Approval </center>
                           </div>
@@ -240,7 +240,7 @@
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/finance.png"></i></span>
                               <br>
                               <?php foreach ($finance as $finance){ ?>
-                                <a href="<?php echo base_url('dashboard/List_upf/')?>"><font size='3' color="white"><center><?php echo $finance->finance;?></center></font></a>
+                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/10/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $finance->finance;?></center></font></a>
                               <?php } ?>
                               <center><font size='3' color="white">Under Processing <br>Finance </center>
                           </div>
@@ -250,7 +250,7 @@
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified1.png"></i></span>
                               <br>
                               <?php foreach ($wverifikasi as $wverifikasi) { ?>
-                                <a href="<?php echo base_url('dashboard/List_wfv/')?>"><font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font></a>
+                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/11/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font></a>
                               <?php } ?>
                               <center><font size='3' color="white">Waiting For <br> Verification</center>
                           </div>
@@ -260,7 +260,7 @@
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid.png"></i></span>
                               <br>
                               <?php foreach ($wPaid as $wPaid) { ?>
-                                <a href="<?php echo base_url('dashboard/List_wfp/')?>"><font size='3' color="white"><center><?php echo $wPaid->wpaid; ?></center></font></a>
+                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/12/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wPaid->wpaid; ?></center></font></a>
                               <?php } ?>
                               <center><font size='3' color="white">Waiting For <br> Payment</center>
                           </div>
