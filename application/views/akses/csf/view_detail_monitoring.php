@@ -228,32 +228,34 @@
                         ?>
                     <tr>
                     <td><?php echo $i++; ?></td>
-                    <td><?php if($row->status == 0){
+                    <td><center><?php if($row->status == 0){
                             echo "<img src='assets/dashboard/images/legend/draft.png'>";  
                           }else if($row->status == 1){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
                           }else if($row->status == 11){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
+                          }else if($row->status == 99){
+                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>"; 
                           }else if($row->status == 2){
                             echo "<img src='assets/dashboard/images/legend/submitted.png'>";
                           }else if($row->status == 3){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
                           }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
                           }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_checklist.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_user.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid.png'>"; 
                           }   
-                        ?>
+                        ?></center>
                     </td>                  
                     <td><?php echo $row->tanggal_new; ?></td>
                     <td><?php                     
@@ -327,6 +329,36 @@
                 case "6":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
                   echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp;Paid</div>";
+
+                break;
+                case "7":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_tax.png'> &nbsp;Under Processing Tax</div>";
+
+                break;
+                case "8":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_file.png'> &nbsp;Waiting For Review</div>";
+
+                break;
+                case "9":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_user.png'> &nbsp;Waiting For Approval</div>";
+
+                break;
+                case "10":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_finance.png'> &nbsp;Under Processing Finance</div>";
+
+                break;
+                case "11":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_checklist.png'> &nbsp;Waiting For Verification</div>";
+
+                break;
+                case "12":
+                  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/paid2.png'> &nbsp;Waiting For Paid</div>";
 
                 break;
 							  default:
