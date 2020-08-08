@@ -2108,18 +2108,19 @@ function AddIndeks(){
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
       
-			/*if(kdvX.substr(0,1)!="1"){
+			if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
+				}else if(inpcurX.trim()==""){
+					errmsg="Mata Uang pada baris ke "+ (i+1) +" Harus Dipilih";
 				}else{
-					errmsg="Mata Uang Harus Dipilih!";
-					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
+					errmsg="Mata Uang pada baris ke "+ (i+1) +" Tidak Sesuai";
 				}
-			}*/
+			}
 			
 			if(errmsg=="0"){
 				
@@ -2179,7 +2180,7 @@ function AddIndeks(){
 	var lblcur1 = $.trim($('#Select').val());
 	var lblcur2 = $.trim($('#currency2').val());
 	var lblcur3 = $.trim($('#currency3').val());
-	var currcheck ="0";
+	var currcheck="0";
 	
 	if(strrupiah==""){
 		strrupiah="0";
@@ -2224,7 +2225,7 @@ function AddIndeks(){
 				if (skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2"){
 					errmsg="0";
 				}else{
-					errmsg="Kolom Tunai/Transfeer baris ke " + (i+1) + " belum di pilih";
+					errmsg="Kolom Tunai/Transfer baris ke " + (i+1) + " belum di pilih";
 					break;
 				}
 			};
@@ -2232,26 +2233,28 @@ function AddIndeks(){
 				if(skdvendor.substring(0, 1)=="1" || skdvendor.substring(0, 1)=="2"){// || skdvendor.substring(0, 1)=="3"
 					errmsg="0";
 				}else{
-					errmsg="Nomor Rekening Vendor baris ke " + (i+1) + " belum di input";
+					errmsg="Nomor Rekening baris ke " + (i+1) + " belum di input";
 					break;
 				}
 			};
 			if(inps5[i].value=="" && skdvendor.substring(0, 1)!="1"){
-				errmsg="Mata Uang baris ke " + (i+1) + " Tidak Sesuai";
+				errmsg="Mata Uang baris ke " + (i+1) + " Harus Dipilih";
 				break;
 			}else {
-				if(inps5[i].value!=$('#curr1').val() && $('#curr1').val()!=""){
-					if(inps5[i].value!=$('#curr2').val() && $('#curr2').val()!=""){
-						if(inps5[i].value!=$('#curr3').val() && $('#curr3').val()!=""){
-							currcheck=="1";
+				if(inps5[i].value!=$('#Select').val()){				
+					if(inps5[i].value!=$('#currency2').val()){
+						if(inps5[i].value!=$('#currency3').val()){
+							currcheck = "1";
 						};
 					};
-				};
+				}
 				
 				if (currcheck=="1"){
-					errmsg="Mata Uang pada baris ke " + (i+1) + " tidak sesuai";
+					errmsg="Mata Uang Baris ke " + (i+1) + " Tidak Sesuai";
 					break;
 				};
+				
+				
 			};
 			if(inps4[i].value=="" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Nominal baris ke " + (i+1) + " belum di input";
@@ -2261,7 +2264,8 @@ function AddIndeks(){
 			if(inps4[i].value=="0" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Nominal baris ke " + (i+1) + " belum di input";
 				break;
-			};
+			};			
+			
 		}
 		var schk=lbl4.length-1;
 		/*if (errmsg=="0"){
@@ -2449,18 +2453,19 @@ function drpbank(param1,param2,param3){
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
       
-			/*if(kdvX.substr(0,1)!="1"){
+			if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr2.trim() && curr2.trim()!=""){
 					errmsg="0";
 				}else if(inpcurX.trim()==curr3.trim() && curr3.trim()!=""){
 					errmsg="0";
+				}else if(inpcurX.trim()==""){
+					errmsg="Mata Uang Pada Baris ke "+ (i+1) +" Harus Dipilih";
 				}else{
-					errmsg="Mata Uang Harus Dipilih!";
-					// errmsg="Mata Uang yang dipilih pada baris ke "+ (i+1) +" tidak sama dengan Mata Uang pada kolom Jumlah diatas";
+					errmsg="Mata Uang Pada Baris ke "+ (i+1) +" Tidak Sesuai!";
 				}
-			}*/
+			}
 			
 			if(errmsg=="0"){
 				
