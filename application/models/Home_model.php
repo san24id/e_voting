@@ -47,7 +47,7 @@ class Home_model extends CI_Model{
         $end_date = date('Y-m-d');
         
         $sql = "SELECT a.status, a.tanggal2, b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b 
-                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.status in ('0','1','2','3','4','5','6','7','8','9','10') AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
+                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.status in ('0','1','2','4','5','6','7','8','9','10') AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
                 AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' GROUP BY b.jenis_pembayaran";
                
             //    var_dump($sql);exit;
