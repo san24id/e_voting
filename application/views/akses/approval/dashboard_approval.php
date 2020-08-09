@@ -247,12 +247,12 @@
                           <td align="center" width="25%"><div class="info-box box1">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Upcoming Overdue <br> </font> 
-                            <a href="<?php echo base_url('Approval/all_detail_payment/4')?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
+                            <a href="<?php echo base_url('Approval/all_detail_payment/4/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_upcoming; ?> </font></a></center></div>
                           </td>                          
                           <td align="center" width="25%"><div class="info-box box2">
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/calender.png"></i></span>
                             <center><font size='3' color="white">ADVANCE<br> Overdue <br> </font>
-                            <a href="<?php echo base_url('Approval/all_detail_payment/5')?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
+                            <a href="<?php echo base_url('Approval/all_detail_payment/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><?php echo $count_overdue; ?> </font></a> </center></div>
                           </td>
 
                           <td align="center" width="25%"><div class="info-box box3">
@@ -459,7 +459,7 @@
 
                       <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                       <?php if($row->status=="0" || $row->status=="1"){ 
-						            if($this->session->userdata("display_name")==$row->display_name){ ?>
+						            if($this->session->userdata("id_user")==$row->id_user){ ?>
                         <!--<button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>-->
                         <button type="button" data-toggle="modal" data-target="#mdldelete" class="btn btn-danger btn-sm" title="Delete" ><i class="glyphicon glyphicon-trash"></i></button>
                           <div class="modal fade" id="mdldelete" tabindex="-1" role="dialog" aria-hidden="true">

@@ -635,7 +635,7 @@
 
                       <?php }else{ ?>
                         <a class="btn btn-warning" href="Dashboard" role="button">Exit</a>
-                        <?php if ($row->display_name == $this->session->userdata("display_name") && $row->status == 0 || $row->status == 3) { ?>
+                        <?php if ($row->id_user == $this->session->userdata("id_user") && $row->status == 0 || $row->status == 3) { ?>
                           
                             <a class="btn btn-primary" href="Dashboard/formfinished/<?php echo $row->id_payment; ?>" role="button">Edit</a>
 
@@ -700,7 +700,7 @@
                               </div>
                             <?php } ?>
 
-                        <?php if($row->display_name == $this->session->userdata("display_name") && $row->status != 0 && $row->status != 3 && $row->status != 99){ ?>
+                        <?php if($row->id_user == $this->session->userdata("id_user") && $row->status != 0 && $row->status != 3 && $row->status != 99){ ?>
                             <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6 ) { ?>
                                                       
                               <a class="btn btn-primary" href="Dashboard/report_dp/<?php echo $row->id_payment; ?>" target="_blank" role="button" >Print</a>
@@ -713,7 +713,7 @@
                          <?php } ?>
 
                         <?php if($row->status=="0" || $row->status=="1"){ 
-                          if($this->session->userdata("display_name")==$row->display_name){ ?>
+                          if($this->session->userdata("id_user")==$row->id_user){ ?>
                             <button class="btn btn-danger" data-toggle="modal" data-target="#mdldelete" >Delete</button>
                               <div class="modal fade" id="mdldelete" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-xl" role="document">

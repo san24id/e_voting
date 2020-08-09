@@ -257,7 +257,11 @@
                         </td>
                         <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" <?php echo $readonly; ?> onkeyup="getnominal3()" value="<?php echo $row->jumlah3; ?>" > </td>          
                         <input type="hidden" id="terbilang3" name="terbilang3" value="<?php echo $row->terbilang3;?> "> 
-                      </tr>                                                 
+                      </tr>     
+					  <tr>
+                        <td colspan="2">&nbsp;</td>
+                        <td colspan="8" style="text-align:end"><b><i>Nilai(+) = Pembayaran, Nilai(-) = Pengembalian</i></b></td>
+                      </tr>                                            
                       </tbody>
                     </table>
 
