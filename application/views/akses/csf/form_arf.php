@@ -388,13 +388,13 @@ td[rowspan="6"] {
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr><?php if ($row->akun_bank == 'Tunai') {$ceklis="checked"; 
-                        }else{
-                              $ceklis=" ";
+                        }else if ($row->akun_bank != 'Tunai'){
+                              $ceklis1="checked";
                         } ?>
                           <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" <?php echo $ceklis;?> name="metode_pembayaran" value="Tunai" readonly> Tunai </font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" readonly> Transfer Ke : </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" <?php echo $ceklis1;?> name="metode_pembayaran" value="Transfer" readonly> Transfer Ke : </center></td>
                           <td><font size="+1"> Bank : 
                               &nbsp;<input type="text" name="bank" class="form-control" value="<?php echo $row->akun_bank;?>" readonly> </font>
                           </td> 
