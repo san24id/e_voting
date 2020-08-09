@@ -2706,6 +2706,22 @@ class Dashboard extends CI_Controller {
 			echo json_encode($data);
 	}
 
+	public function caridatadashboard2()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabysearch2($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
 	public function exportdashboard()
 	{
 		$data['dashboard'] = 'active';

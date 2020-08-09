@@ -335,16 +335,44 @@
                           <div class="form-group">
                             <label class="col-md-1">Criteria</label>
                             <div class="col-md-2">
-                                <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+                              <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
                                 <option value='0'>== Pilih ==</option>
-                                <option value='1'> Tanggal </option>
+                                <option value='1'> Status </option>
                                 <option value='2'> Jenis Pembayaran </option>
-                                <option value='3'> Nomor Surat </option>
+                                <!-- <option value='3'> Nomor Surat </option>
                                 <option value='4'> Pemohon </option>
+                                <option value='5'> Penerima </option> -->
                               </select>
                             </div> 	
-                            <div class="col-md-6">
-                              <input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
+                            <div class="col-md-3">
+                              <!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+                              <select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+                                <option value=''>== Pilih ==</option>
+                                <!-- <option value='0'> Draft </option>
+                                <option value='1'> Draft Print </option> -->
+                                <option value='2'> Submitted </option>
+                                <!-- <option value='3'> Rejected </option>
+                                <option value='4'> Processing Tax </option>
+                                <option value='5'> Processing Finance </option>
+                                <option value='6'> Waiting for Review </option>
+                                <option value='7'> Waiting for Verivication </option> -->
+                                <option value='4'> Processing</option>
+                                <option value='8'> Verified </option>
+                                <option value='9'> Approved </option>
+                                <option value='10'> Paid </option>
+                              </select>
+                              
+                              <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+                                <option value=''>== Pilih ==</option>
+                                <option value='4'> Direct Payment </option> 
+                                <option value='2'> Advance Request </option>
+                                <option value='3'> Advance Settlement </option>
+                                <option value='5'> Cash Received </option>
+                              </select>
+                              
+                              <select class="form-control" id="selblank" name="selblank"  >
+                                <option value=''>== Pilih ==</option>
+                              </select>
                             </div>		
                               
                             <div class="col-md-3">
@@ -577,6 +605,25 @@
     $( "#end_date" ).datepicker();
     $( "#start_date" ).datepicker();
   } );
+
+  $(document).ready(function() { 
+		$('#selsearch').change(function() {
+		  if( $(this).val() == '1') {
+				$('#selblank').css("display", "none");
+				$('#selstatus').css("display", "block");
+				$('#seljnspembayaran').css("display", "none");
+		  } else if( $(this).val() == '2'){   
+			$('#selblank').css("display", "none");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "block");
+		  }else{
+			$('#selblank').css("display", "block");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "none");
+		  }
+		})
+		
+		});
 </script>
 
 <script>
@@ -679,22 +726,22 @@ $(function () {
 							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
 							break;
                           case "4":
-							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_tax.png">';
 							break;
                           case "5":
-							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							istatus ='<img src="assets/dashboard/images/legend/icon_finance.png">';
 							break;
                           case "6":
-							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							istatus ='<img src="assets/dashboard/images/legend/icon_file.png">';
 							break;
                           case "7":
-							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_checklist.png">';
 							break;
                           case "8":
-							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_user.png">';
 							break;
                           case "9":
-							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							istatus = '<img src="assets/dashboard/images/legend/paid2.png">';
 							break; 
                           case "10":
 							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
