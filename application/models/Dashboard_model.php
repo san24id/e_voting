@@ -501,7 +501,7 @@ class Dashboard_model extends CI_Model{
     }						   
 
     function getDataVendor(){
-        $sql = "SELECT * FROM m_honorarium_konsultan";
+        $sql = "SELECT * FROM m_honorarium_konsultan ORDER BY kode_vendor ASC";
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;
         return $query;
@@ -894,7 +894,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function getVendor(){
-        $sql = "SELECT * FROM m_honorarium_konsultan";
+        $sql = "SELECT * FROM `m_honorarium_konsultan` ORDER BY kode_vendor ASC";
 
         $query = $this->db->query($sql)->result();
 
