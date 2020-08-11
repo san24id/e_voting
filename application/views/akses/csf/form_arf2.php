@@ -97,11 +97,11 @@ td[rowspan="6"] {
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
-                              <input type="text" name="nomor_pr" size="1%" value="---">
+                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" value="---"/>
                               <input type="text" name="pii" size="3%" value="/PII/" readonly>
-                              <input type="text" name="bulan" size="2%" value="--">
+                              <input type="text" name="bulan" size="5%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="2" min="1" max="12" placeholder="Bulan"/>
                               <input type="text" name="slash" size="1%"value="/" readonly>
-                              <input type="text" name="tahun" size="2%"value="--">
+                              <input type="text" name="tahun" size="5%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="4" min="1" max="9999" placeholder="Tahun"/>
                           </td>
                           <td> &nbsp;</td>
                           <td><font size="+1">Kode Proyek : <br> <i>Project Code</i><font></td>
@@ -1789,6 +1789,23 @@ url="<?php echo base_url('Dashboard/addpay')?>"
 
 </script>
 
+<script>
+function maxLengthCheck(object) {
+    if (object.value.length > object.maxLength)
+      object.value = object.value.slice(0, object.maxLength)
+  }
+    
+  function isNumeric (evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode (key);
+    var regex = /[0-9]|\./;
+    if ( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
+</script>
 <!-- <script charset="utf-8" type="text/javascript">
 function penyebut(){
     var bilangan=document.getElementById("ulang1").value;

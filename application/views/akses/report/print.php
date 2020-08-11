@@ -285,12 +285,12 @@
 														<table id="show1" class="table table-bordered table-striped" width="100%"> 
 														  <thead>
 															<tr>
-																<th colspan="3"><font size="1">Nama Vendor  </font></th>
-																<th colspan="3"><font size="1">Nama Bank  </font></th>
+																<th colspan="3"><font size="1">Penerima Pembayaran  </font></th>
+																<th colspan="3"><font size="1">Tunai/Transfer  </font></th>
 																<th colspan="3"><font size="1">Nomor Rekening  </font></th>
 																<th colspan="3"><font size="1">Mata Uang  </font></th>
 																<th colspan="4"><font size="1"><center>Nominal</center></th>
-															 </tr>
+                              </tr>
 														  </thead>
 														  <tbody>
 														  <b><p>- <font size="1">Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
@@ -347,18 +347,19 @@
 														  <tfoot>
 															<tr>
 																<th>
-																<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
-																  <i class="glyphicon glyphicon-plus"></i></span>
-																</div>
-																<div class="col-md-10"><span class="col-md-11" style="text-align:end"><font size="1">Total</span></div>
-																  </th>
+																  <div class="col-md-10"><span class="col-md-5" style="text-align:end"><font size="1">Total</span></div>
+                                </th>
 																<th colspan="5">
-																<label class="control-label col-md-1" id="lblcur1" ><font size="1"><?php echo $row->currency; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor"><font size="1"><?php echo $row->label2; ?></label>
-																<label class="control-label col-md-1" id="lblcur2" ><font size="1"><?php echo $row->currency2; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor2"><font size="1"><?php echo $row->jumlah2; ?></label>
-																<label class="control-label col-md-1" id="lblcur3" ><font size="1"><?php echo $row->currency3; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor3"><font size="1"><?php echo $row->jumlah3; ?></label>
+                                  <label class="control-label col-md-1" id="lblcur1" ><font size="1"><?php echo $row->currency; ?></label>
+                                  <label class="control-label col-md-3" id="lbltotalvendor"><font size="1"><?php echo $row->label2; ?></label>
+                                </th> 
+                                <th colspan="3"> 
+                                  <label class="control-label col-md-2" id="lblcur2" ><font size="1"><?php echo $row->currency2; ?></label>
+                                  <label class="control-label col-md-3" id="lbltotalvendor2"><font size="1"><?php echo $row->jumlah2; ?></label>
+                                </th>
+                                <th colspan="3">
+                                  <label class="control-label col-md-3" id="lblcur3" ><font size="1"><?php echo $row->currency3; ?></label>
+                                  <label class="control-label col-md-3" id="lbltotalvendor3"><font size="1"><?php echo $row->jumlah3; ?></label>
 																</th>
 															</tr>
 														  </tfoot>

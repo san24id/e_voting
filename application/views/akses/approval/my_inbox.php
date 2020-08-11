@@ -47,7 +47,30 @@
                   <td><?php echo $row->note;?> </td>
                   <td>
                     <!-- <a href="Approval/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>            
+                    <?php if($this->session->userdata("id_user")==$row->id_user){ ?>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#mdldelete" >Delete</button>
+                              <div class="modal fade" id="mdldelete" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h3 class="modal-title">Message Box</h3>
+                                  </div>
+
+                                  <div class="modal-body">
+                                  <form>
+                                  <p align="justify">Apa anda yakin akan menghapus Form SP3 ini : <?=$row->nomor_surat?></p>
+                                  </div>
+                                  <div class="modal-footer">                        
+                                  <button type="button" class="btn btn-success bye" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </form>
+                                  </div>
+                                </div>
+                                </div>
+                              </div> 
+                        <?php } ?>        
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -213,6 +236,23 @@ $(function () {
     });
   });
 
+function deletedraftpayment(id,$vscreen)
+  {
+  $.ajax({
+      url : "<?php echo base_url('Approval/draftpaymentdelete')?>/"+id,
+      type: "POST",
+      dataType: "JSON",
+      success: function(data)
+      {
+        location.href=$vscreen;
+        //location.reload();
+      },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        alert('Error deleting data');
+      }
+    });
+  }
 </script>
 </body>
 </html>

@@ -706,7 +706,7 @@
                             <?php } ?>
                         <?php } ?>
 
-                        <?php if($row->status=="0" || $row->status=="1"){ 
+                        <?php if($row->status=="0" || $row->status=="1" || $row->status=="3"){ 
                           if($this->session->userdata("id_user")==$row->id_user){ ?>
                             <button class="btn btn-danger" data-toggle="modal" data-target="#mdldelete" >Delete</button>
                               <div class="modal fade" id="mdldelete" tabindex="-1" role="dialog" aria-hidden="true">

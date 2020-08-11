@@ -42,7 +42,32 @@
                   <td><?php echo $row->display_name;?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>                    
-                    <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>  
+                    <?php 
+						            if($this->session->userdata("id_user")==$row->id_user){ ?>
+                        <!--<button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>-->
+                        <button type="button" data-toggle="modal" data-target="#mdldelete" class="btn btn-danger btn-sm" title="Delete" ><i class="glyphicon glyphicon-trash"></i></button>
+                          <div class="modal fade" id="mdldelete" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h3 class="modal-title">Message Box</h3>
+                              </div>
+
+                              <div class="modal-body">
+                              <form>
+                              <p align="justify">Apa anda yakin akan menghapus Form SP3 ini : <?=$row->nomor_surat?></p>
+                              </div>
+                              <div class="modal-footer">                        
+                              <button type="button" class="btn btn-success bye" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                            </div>
+                          </div> 
+                      <?php } ?>                  
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -132,6 +157,22 @@ $(function () {
     });
   });
 
+  function deletedraftpayment(id)
+    {
+		$.ajax({
+				url : "<?php echo base_url('Tri/draftpaymentdelete')?>/"+id,
+				type: "POST",
+				dataType: "JSON",
+				success: function(data)
+				{ 
+					location.reload();
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
+			});
+    }
 </script>
 </body>
 </html>

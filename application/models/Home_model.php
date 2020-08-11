@@ -440,7 +440,8 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
 
         $sql = "select a1.apf_doc,a1.description, a2.label1 FROM t_payment_l a1, t_payment a2 WHERE a1.id_payment=a2.id_payment and a1.division_id ='$dvs' AND a1.status='10' AND a1.apf_doc LIKE '%ARF%' ";
-		$sql .="and a2.jenis_pembayaran=2 and a1.apf_doc not in (select a1.apf_doc FROM t_payment_l a1, t_payment a2 WHERE a1.id_payment=a2.id_payment and a1.division_id ='CSF' AND a1.status='1' AND a1.apf_doc LIKE '%ARF%' and a2.jenis_pembayaran=3) "; 
+		$sql .="and a2.jenis_pembayaran=2 and a1.apf_doc not in (select a3.label5 FROM t_payment a3 WHERE a3.division_id ='$dvs' AND a3.status='1'  and a3.jenis_pembayaran=3) "; 
+        //$sql .="and a2.jenis_pembayaran=2 and a1.apf_doc not in (select a1.apf_doc FROM t_payment_l a1, t_payment a2 WHERE a1.id_payment=a2.id_payment and a1.division_id ='CSF' AND a1.status='1' AND a1.apf_doc LIKE '%ARF%' and a2.jenis_pembayaran=3) "; 
         
 		$query = $this->db->query($sql)->result();
         return $query;
@@ -552,7 +553,8 @@ class Home_model extends CI_Model{
     var $table ="t_payment";
     public function buat_kode()  {   
         $dvs = $this->session->userdata('division_id');  
-		$where = "division_id='".$dvs."' and substring(nomor_surat,length(nomor_surat)-3,4)='".date('my')."'";
+		$where = "division_id='".$dvs."' and substring(nomor_surat,length(nomor_surat)-1,2)='".date('y')."'";
+        //$where = "division_id='".$dvs."' and substring(nomor_surat,length(nomor_surat)-3,4)='".date('my')."'";
         $this->db->select('LEFT(t_payment.nomor_surat,4) as kode', FALSE);
         $this->db->where($where);
 		//$this->db->where('division_id', $dvs);
