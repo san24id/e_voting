@@ -1665,22 +1665,32 @@ function AddIndeks(){
 	
 	function getnominal1(){
 		var jml1 = document.getElementsByName('label2');
-		var curr= document.getElementById('Select').value;
+		var x = document.getElementById('rupiah').value;
+		var get_x = x.replace(/\D+/g, '');
+			if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
+				get_x= -Math.abs(get_x);		
+			}else{
+				get_x= Math.abs(get_x);		
+			}
 		
 		var errmsg = '0';
+		var curr= document.getElementById('Select').value;		
 		if (curr.trim()==''){
 			alert("Mata Uang Harus Dipilih!");
 		}else{
 			for (var i = 0; i <jml1.length; i ++){
 				var inp1=jml1[i];
 				var xj1=inp1.value.trim();
+
 				if(xj1.substr(0,1)=="0" && xj1.length >1){
 					xj1=xj1.substr(1,xj1.length);
 					jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
 				}
 			}
 			
-			var bilangan= document.getElementById('rupiah').value;
+			var bilangan= ''+Math.abs(get_x)+'';
+	  
+		// alert(bilangan);
 			var kalimat="";
 			var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
 			var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
@@ -1801,11 +1811,16 @@ function AddIndeks(){
 			document.getElementById("terbilang").value=kalimat+muncul;
 		}
 	}
-	
-
 	function get2nominal2(){
 		var jml2 = document.getElementsByName('jumlah2');
-		
+		var x2 = document.getElementById('rupiah2').value;
+		var get_x2 = x2.replace(/\D+/g, '');
+			if ((x2.substr(0,1)=="(" && x2.substr(x2.length-1,1)==")")|| x2.substr(0,1)=="-"){		
+				get_x2= -Math.abs(get_x2);		
+			}else{
+				get_x2= Math.abs(get_x2);		
+			}
+
 		var errmsg = '0';
 		var curr= document.getElementById('currency2').value;		
 		if (curr.trim()==''){
@@ -1821,7 +1836,7 @@ function AddIndeks(){
 				}
 			}
 
-			var bilangan= document.getElementById('rupiah2').value;
+			var bilangan= ''+Math.abs(get_x2)+'';
 	  
 		// alert(bilangan);
 			var kalimat="";
@@ -1940,13 +1955,19 @@ function AddIndeks(){
 			if(hasil==0){
 				kalimat="Nol ";
 			}
-			
-			document.getElementById("terbilang2").value=kalimat+muncul;
-			
+			document.getElementById("terbilang2").value=kalimat+muncul;			
 		}
 	}
+	
 	function getnominal3(){
 		var jml3 = document.getElementsByName('jumlah3');
+		var x3 = document.getElementById('rupiah3').value;
+		var get_x3 = x3.replace(/\D+/g, '');
+			if ((x3.substr(0,1)=="(" && x3.substr(x3.length-1,1)==")")|| x3.substr(0,1)=="-"){		
+				get_x3= -Math.abs(get_x3);		
+			}else{
+				get_x3= Math.abs(get_x3);		
+			}
 		
 		var errmsg = '0';
 		var curr= document.getElementById('currency3').value;		
@@ -1963,7 +1984,7 @@ function AddIndeks(){
 				}
 			}
 
-			var bilangan= document.getElementById('rupiah3').value;
+			var bilangan= ''+Math.abs(get_x3)+'';
 	  
 		// alert(bilangan);
 			var kalimat="";
