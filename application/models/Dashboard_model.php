@@ -1426,7 +1426,7 @@ class Dashboard_model extends CI_Model{
     }							
 
 	public function getDataVendorByPayment($id) {
-        $sql = "select a1.id_payment,a2.kode_vendor,a2.nama,a1.v_bank,a1.v_account,replace(a1.v_nominal,'.','') nominal,a3.penerima,a1.v_currency ";
+        $sql = "select a1.id_payment,a2.kode_vendor,a2.nama,a1.v_bank,a1.v_account,replace(replace(replace(a1.v_nominal,'.',''),'(',''),')','') nominal,a3.penerima,a1.v_currency,v_nominal ";
 		$sql .= "from t_vendor a1, m_honorarium_konsultan a2 , t_payment a3 where a1.kode_vendor=a2.kode_vendor and a1.id_payment=a3.id_payment and a1.id_payment = '$id' order by a1.id_vendor asc ";
 		$query = $this->db->query($sql)->result();
         return $query;

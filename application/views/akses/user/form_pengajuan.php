@@ -53,7 +53,7 @@
                         <tr>                       
                         <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td> 
                           <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
-                            <input type="hidden" id="id_payment" name="id_payment" >  
+                            <input type="hidden" id="id_payment" name="id_payment" >
 						<input type="hidden" id="cr1" name="cr1" >
 						<input type="hidden" id="cr2" name="cr2" >
 						<input type="hidden" id="cr3" name="cr3" >
@@ -168,7 +168,7 @@
                               </select>
                           </td>
                         <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" onkeyup="getnominal1()" placeholder="Jumlah" > </td>
-						<input type="hidden" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang">
+						<input type="hidden" id="terbilang" name="terbilang" placeholder="Terbilang">
 
                         <td><select id="currency2" onchange="mycurrency2()" name="currency2" class="form-control">
                                       <option value="">Pilih Mata Uang</option>
@@ -315,7 +315,7 @@
 									</select>
 									<input id="scurrencyvendor1" type="hidden" name="scurrencyvendor[]"  />
 								</td>							  
-								<td><input style="height:28px"  class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>																
+								<td><input style="height:28px"  class="form-control" id="nominalvendor1" name="nominalvendor[]" onblur="formatnominalvendor('1')" onkeyup="gettotalvendor()" type="text" value="0"></td>																
 								<td>&nbsp;</td>
 								</tr>
 							<?php	
@@ -356,7 +356,7 @@
 									<?php } ?>
 									</select><input id="<?php echo 'scurrencyvendor'.$vendorrow; ?>" type="hidden" name="scurrencyvendor[]"  />
 								</td>
-							<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
+							<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onblur="formatnominalvendor('<?php echo $vendorrow; ?>')" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
 							
 							<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$vendorrow; ?>')"> 
 									<i class="glyphicon glyphicon-minus"></i>
@@ -1410,6 +1410,9 @@ function savedraft() {
 	var strhasilb=$('#hasilb').val();
 	var currcheck="0";
 	
+	var struangmuka1=$('#uangmuka').val().replace(/[^,\d]/g, '').toString();
+	var struangmuka2=$('#uangmukaa').val().replace(/[^,\d]/g, '').toString();
+	var struangmuka3=$('#uangmukab').val().replace(/[^,\d]/g, '').toString();
  
 	if(strrupiah==""){
 		strrupiah="0";
@@ -1514,22 +1517,22 @@ function savedraft() {
 				var val1 = document.getElementById('rupiah').value;
 				var val2 = document.getElementById('rupiah2').value;
 				var val3 = document.getElementById('rupiah3').value;
-					
+				
 				var $scur1=$.trim($('#curr1').val());
 				var $scur2=$.trim($('#curr2').val());
 				var $scur3=$.trim($('#curr3').val());
 				var lblcur1 = $.trim($('#Select').val());
 				var lblcur2 = $.trim($('#currency2').val());
 				var lblcur3 = $.trim($('#currency3').val());
-					
+				
 				var nomvendor1 = $('#lbltotalvendor').text();
 				var nomvendor2 = $('#lbltotalvendor2').text();
 				var nomvendor3 = $('#lbltotalvendor3').text();
-					
+				
 				if(val1==""){val1="0";};			
 				if(val2==""){val2="0";};			
 				if(val3==""){val3="0";};
-					
+				
 				if (val1.substr(0,1)=="(" && val1.substr(val1.length-1,1)==")"){
 					val1 = val1.replace(/\D+/g, '');
 					val1= -Math.abs(val1);	
@@ -1567,7 +1570,7 @@ function savedraft() {
 				nomvendor2 = nomvendor2.replace(/\D+/g, '');
 				nomvendor3 = nomvendor3.replace(/\D+/g, '');
 					
-				if (skdvendor.substring(0, 1)!="1"){
+				/*if (skdvendor.substring(0, 1)!="1"){
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
 						//break;
@@ -1578,8 +1581,24 @@ function savedraft() {
 						errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
 						//break;
 					};
-				}
-					
+				}*/
+				if($('#jns_pembayaran').val()=="3"){
+					if(val1!=nomvendor1){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
+					}else if(val2>0 && val2!=nomvendor2){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur2 + " tidak sama dengan Jumlah diatas!";
+					}else if(val3>0 && val3!=nomvendor3){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
+					};	
+				}else{
+					if(val1>0 && val1!=nomvendor1){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
+					}else if(val2>0 && val2!=nomvendor2){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur2 + " tidak sama dengan Jumlah diatas!";
+					}else if(val3>0 && val3!=nomvendor3){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
+					};
+				}					
 					if (errmsg=="0"){
 						if(lbl4[schk].checked && $.trim($('#text1').val())==""){
 							alert('Dokumen Lampiran Lainnya belum di input');
@@ -1590,9 +1609,13 @@ function savedraft() {
 						}else if($('#jns_pembayaran').val()=="3" && lblcur1!=$scur1){
 							alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
 						}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
-								alert('Jumlah Biaya belum di input');
+								alert('Jumlah Biaya Mata Uang Pertama belum di input');
 						}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
 								alert('Jumlah Uang Muka belum di input');
+						}else if($('#jns_pembayaran').val()=="3" && struangmuka2!="" && $('#biayaa').val()==""){
+							alert('Jumlah Biaya Mata Uang Kedua belum di input');
+						}else if($('#jns_pembayaran').val()=="3" && struangmuka3!="" && $('#biayab').val()==""){
+							alert('Jumlah Biaya Mata Uang Ketiga belum di input');
 						}else if($('#jns_pembayaran').val()=="3" && strrupiah!=strhasil){
 							alert('Selisih Kurang/(Lebih) Mata Uang Pertama tidak sama dengan Nilai pada kolom Jumlah diatas');
 						}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur2){
@@ -1737,7 +1760,7 @@ function AddIndeks(){
 		strhtml=strhtml + '</select><input id="scurrencyvendor'+szcountervendor+'" type="hidden" name="scurrencyvendor[]"  /></td>';
 		
 		
-		strhtml=strhtml + '<td><input style="height:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
+		strhtml=strhtml + '<td><input style="height:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onblur="formatnominalvendor('+szcountervendor+')" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
 		
@@ -2097,7 +2120,7 @@ function AddIndeks(){
 
 			var bilangan= ''+Math.abs(get_x3)+'';
 	  
-		// alert(bilangan);
+			// alert(bilangan);
 			var kalimat="";
 			var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
 			var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
@@ -2250,19 +2273,9 @@ function AddIndeks(){
 
 			if(xj.substr(0,1)=="0" && xj.length >1){
 				xj=xj.substr(1,xj.length);
-				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
+				//inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
-			if(xj1.substr(0,1)=="0" && xj1.length >1){
-				xj1=xj1.substr(1,xj1.length);
-				jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
-			}
-			if(xj2.substr(0,1)=="0" && xj2.length >1){
-				xj2=xj2.substr(1,xj2.length);
-				jml2[i].value=formatRupiah(xj2.replace(/[^,\d]/g, '').toString());
-			}if(xj3.substr(0,1)=="0" && xj3.length >1){
-				xj3=xj3.substr(1,xj3.length);
-				jml3[i].value=formatRupiah(xj3.replace(/[^,\d]/g, '').toString());
-			}
+			
 			if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
@@ -2277,7 +2290,19 @@ function AddIndeks(){
 				}
 			}
 			if(errmsg=="0"){
-				var yz=xj.replace(/[^,\d]/g, '').toString();
+				//var yz=xj.replace(/[^,\d]/g, '').toString();
+				var yz=0;
+				if(xj.substr(0,1)=="-" && xj.length >1){
+					yz=-Math.abs(xj.replace(/[^,\d]/g, '').toString());
+					inps[i].value="-" + formatRupiah(yz.toString());
+				}else if(xj.substr(0,1)=="-" && xj.length==1){
+					yz=0;
+					inps[i].value=xj;
+				}else{
+					yz=Math.abs(xj.replace(/[^,\d]/g, '').toString());
+					inps[i].value=formatRupiah(yz.toString());
+				}
+				
 				if(inpcurX.trim()==curr1.trim() && inpcurX.trim()!=""){
 					if (yz==""){
 						itotal1 = itotal1+0;
@@ -2297,16 +2322,27 @@ function AddIndeks(){
 						itotal3 = itotal3+parseFloat(yz);
 					}
 				}
-				inps[i].value=formatRupiah(yz.toString());
+				//inps[i].value=formatRupiah(yz.toString());
 			}else{
 				alert(errmsg);
 				break;
 			}				
 		}
-		$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
-		$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
-		$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
-				
+		if(itotal1<0){
+			$('#lbltotalvendor').text("(" + formatRupiah(itotal1.toString()) + ")");
+		}else{
+			$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
+		}
+		if(itotal2<0){
+			$('#lbltotalvendor2').text("(" + formatRupiah(itotal2.toString()) + ")");
+		}else{
+			$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
+		}
+		if(itotal3<0){
+			$('#lbltotalvendor3').text("(" + formatRupiah(itotal3.toString()) + ")");
+		}else{
+			$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
+		}		
     }
 	
 	function drpbank(param1,param2,param3){
@@ -2328,9 +2364,9 @@ function AddIndeks(){
 	  
 	}
 	
-	function drpcurrency(param1){
+	function drpcurrency_old(param1){
 		
-	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	  
+	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());
 		//gettotalvendor();
 		var itotal1=0;
 		var itotal2=0;
@@ -2362,7 +2398,7 @@ function AddIndeks(){
 				xj=xj.substr(1,xj.length);
 				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
-			if(xj1.substr(0,1)=="0" && xj1.length >1){
+			/*if(xj1.substr(0,1)=="0" && xj1.length >1){
 				xj1=xj1.substr(1,xj1.length);
 				jml1[i].value=formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
 			}
@@ -2372,7 +2408,7 @@ function AddIndeks(){
 			}if(xj3.substr(0,1)=="0" && xj3.length >1){
 				xj3=xj3.substr(1,xj3.length);
 				jml3[i].value=formatRupiah(xj3.replace(/[^,\d]/g, '').toString());
-			}
+			}*/
 			if(kdvX.substr(0,1)!="1"){
 				if(inpcurX.trim()==curr1.trim() && curr1.trim()!=""){
 					errmsg="0";
@@ -2416,8 +2452,20 @@ function AddIndeks(){
 		$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
 		$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
 		$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
-	}						  
+	}	
+
+	function formatnominalvendor(param1){
+		var fnom=$("#nominalvendor"+param1).val();
+		if(fnom.substring(0, 1)=="-"){
+			$("#nominalvendor"+param1).val("(" + fnom.substring(1, fnom.length) + ")");
+		}
+	}	
 		
+	function drpcurrency(param1){
+		$("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	  
+		gettotalvendor();
+	}	
+	
 	function drpcurrencyvendor(param){
 		
 		var curr1 = document.getElementById('Select').value;

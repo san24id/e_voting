@@ -1317,14 +1317,22 @@ class Tri extends CI_Controller {
 		
 		$id = $insert;
 		for($i=0; $i<$strcounter; $i++){
-			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
+			$nominalvendor=$_POST['nominalvendor'][$i];
+			$nominal=preg_replace("/[^0-9]/", "", $nominalvendor );
+			if(substr($nominalvendor,0,1)=="-"){
+				$nominal="(".number_format($nominal,0,",","."). ")";			
+			}elseif(substr($nominalvendor,0,1)=="(" && substr($nominalvendor,strlen($nominalvendor)-1,1)==")"){
+				$nominal="(" .number_format($nominal,0,",","."). ")" ;	
+			}else{
+				$nominal=number_format($nominal,0,",",".");
+			}
 			//if($nominal != ""){
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['sbankvendor'][$i],//$_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => number_format($nominal,0,",","."),
+						'v_nominal' => $nominal,
 						'v_currency' => $_POST['scurrencyvendor'][$i] //$_POST['currencyvendor'][$i]						
 					
 					);
@@ -1350,14 +1358,23 @@ class Tri extends CI_Controller {
 		$id = $_POST['id_payment'];
 		$this->Dashboard_model->delete_vendorpayment($id);
 		for($i=0; $i<$strcounter; $i++){
-			$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
+			//$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
+			$nominalvendor=$_POST['nominalvendor'][$i];
+			$nominal=preg_replace("/[^0-9]/", "", $nominalvendor );
+			if(substr($nominalvendor,0,1)=="-"){
+				$nominal="(".number_format($nominal,0,",","."). ")";			
+			}elseif(substr($nominalvendor,0,1)=="(" && substr($nominalvendor,strlen($nominalvendor)-1,1)==")"){
+				$nominal="(" .number_format($nominal,0,",","."). ")" ;	
+			}else{
+				$nominal=number_format($nominal,0,",",".");
+			}
 			//if($nominal != ""){
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['sbankvendor'][$i], //$_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => number_format($nominal,0,",","."),
+						'v_nominal' => $nominal, //number_format($nominal,0,",","."),
 						'v_currency' => $_POST['scurrencyvendor'][$i]
 					);
 					

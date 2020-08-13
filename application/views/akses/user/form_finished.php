@@ -32,6 +32,13 @@
         <!-- Main content -->
 		
 		<?php
+		$totvendor1=0;
+		$totvendor2=0;
+		$totvendor3=0;
+		$strtotvendor1="";	
+		$strtotvendor2="";
+		$strtotvendor3="";			
+			
 		$arrvendor="";
 		$strvendor="";
 		$counter=0;
@@ -261,8 +268,8 @@
 					  <tr>
                         <td colspan="2">&nbsp;</td>
                         <td colspan="8" style="text-align:end"><b><i>Nilai(+) = Pembayaran, Nilai(-) = Pengembalian</i></b></td>
-                      </tr>                                                 
-                      </tbody>
+                      </tr>
+					  </tbody>
                     </table>
 
                     <?php if ($row->jenis_pembayaran == 3 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6) { $choosed="style='display: none'" ;
@@ -370,10 +377,10 @@
                                     <?php foreach ($data_vendor as $nama){?> 
                                       <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
                                       
-                                    <?php } ?>
-                                    </select>
-                                    <input id="kodevendor1" type="hidden" name="kodevendor[]"  />
-                                    <input id="namavendor1" type="hidden" name="namavendor[]"  />
+                               <?php } ?>
+                               </select>
+                               <input id="kodevendor1" type="hidden" name="kodevendor[]"  />
+                               <input id="namavendor1" type="hidden" name="namavendor[]"  />
                                   </td>
                                   
                                   <td class="col-md-2"><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onchange="drpbank('bankvendor1','rekeningvendor1','1')">
@@ -393,7 +400,7 @@
                                     <?php } ?>
                                     </select>
                                     </td>	
-                                  <td><input style="height:28px" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text"></td>																
+                                  <td><input style="height:28px" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" onblur="formatnominalvendor('1')" type="text"></td>																
                                   <td>&nbsp;</td>
 								</tr>
 							<?php	
@@ -403,8 +410,29 @@
 								$rekeningvendor='';
 								$currencyvendor='';
 								$nominalvendor='';
-							foreach($getdatavendor as $gvendor){
+							foreach($getdatavendor as $gvendor){								
 								$nomvendor=str_replace(".","",$gvendor->nominal);
+								if($gvendor->v_currency==$row->currency){
+									if(substr($gvendor->v_nominal,0,1)=="("){
+										$totvendor1=$totvendor1-intval($nomvendor);
+									}else{
+										$totvendor1=$totvendor1+intval($nomvendor);
+									}
+								}
+								if($gvendor->v_currency==$row->currency2){
+									if(substr($gvendor->v_nominal,0,1)=="("){
+										$totvendor2=$totvendor2-intval($nomvendor);
+									}else{
+										$totvendor2=$totvendor2+intval($nomvendor);
+									}
+								}
+								if($gvendor->v_currency==$row->currency3){
+									if(substr($gvendor->v_nominal,0,1)=="("){
+										$totvendor3=$totvendor3-intval($nomvendor);
+									}else{
+										$totvendor3=$totvendor3+intval($nomvendor);
+									}
+								}
 								$ttlnomvendor=$ttlnomvendor+(float)$nomvendor;
 								$vendorrow++;
 								if($gvendor->v_bank=="Tunai"){
@@ -435,7 +463,7 @@
 									$currencyvendor='';
 									$nominalvendor='';
 								}
-							?>
+								?>
 							<tr id="tr<?php echo $vendorrow; ?>">
 								<td class="col-md-4" ><select id="<?php echo 'penerimavendor'.$vendorrow; ?>" onchange="fung('<?php echo 'penerimavendor'.$vendorrow; ?>','<?php echo 'kodevendor'.$vendorrow; ?>','<?php echo 'namavendor'.$vendorrow; ?>','<?php echo $vendorrow; ?>')" class="form-control select2" name="penerimavendor[]" >
 									<!--<option value="<?php echo $gvendor->kode_vendor; ?>"> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></option>-->
@@ -463,8 +491,8 @@
 									</select>
 									<input id="<?php echo 'sbankvendor'.$vendorrow; ?>" type="hidden" name="sbankvendor[]" value="<?php echo $gvendor->v_bank; ?>"  />
 									
-								</td>
-								<td><input style="height:28px" id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>>
+									</td>
+									<td><input style="height:28px" id="<?php echo 'rekeningvendor'.$vendorrow; ?>" type="text" class="form-control" name="rekeningvendor[]" placeholder="Enter Text" value="<?php echo $gvendor->v_account; ?>" <?php echo $rekeningvendor; ?>>
 								</td> 
 								<td><select style="height:28px" id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" onchange="drpcurrency('<?php echo $vendorrow; ?>')" class="form-control" <?php echo $currencyvendor; ?>>
 											<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
@@ -477,7 +505,7 @@
 									<input id="<?php echo 'scurrencyvendor'.$vendorrow; ?>" type="hidden" name="scurrencyvendor[]" value="<?php echo $gvendor->v_currency; ?>"  />
 									
 								</td>		
-								<td ><input style="height:28px" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" <?php echo $nominalvendor; ?>></td>
+								<td ><input style="height:28px" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onblur="formatnominalvendor('<?php echo $vendorrow; ?>')" onkeyup="gettotalvendor()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" <?php echo $nominalvendor; ?>></td>
 															
                                 <td>
                                 <?php
@@ -489,7 +517,23 @@
                                 <?php } ?>
                                 </td>
 							</tr>
-							<?php } }?>
+							<?php } 
+								if($totvendor1<0){
+									$strtotvendor1="(" .number_format(substr(strval($totvendor1),1,strlen(strval($totvendor1))-1),0,",","."). ")"; 
+								}else{
+									$strtotvendor1=strval(number_format($totvendor1,0,",",".")); 
+								}
+								if($totvendor2<0){
+									$strtotvendor2="(" .number_format(substr(strval($totvendor2),1,strlen(strval($totvendor2))-1),0,",","."). ")";
+								}else{
+									$strtotvendor2=strval(number_format($totvendor2,0,",","."));  
+								}
+								if($totvendor3<0){
+									$strtotvendor3="(" .number_format(substr(strval($totvendor3),1,strlen(strval($totvendor3))-1),0,",","."). ")"; 
+								}else{
+									$strtotvendor3=strval(number_format($totvendor3,0,",",".")); ; 
+								}
+							}?>
 							<input type="hidden" id="txtcountervendor" name="txtcountervendor" value="<?php echo $vendorrow; ?>" />
 						
 							</tbody>
@@ -500,14 +544,14 @@
 									<i class="glyphicon glyphicon-plus"></i></span>
 								</div>
 								<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
-									</th>
+								</th>
 								<th colspan="5">
 								<label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
-								<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $row->label2; ?></label>
+								<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label>
 								<label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
-								<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $row->jumlah2; ?></label>
+								<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label>
 								<label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
-								<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $row->jumlah3; ?></label>
+								<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
 								</th>
 							</tr>
 							
@@ -628,7 +672,7 @@
                     <br>
                     
                     <?php if ($row->jenis_pembayaran == 2 || $row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 5 || $row->jenis_pembayaran == 6) { 
-						$showed="style='display: none'" ;						  
+						$showed="style='display: none'" ;
                     }else{
                           $showed="style=''" ;
                     } ?>
@@ -684,7 +728,7 @@
                                   <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
                                 <?php } ?>
                               </select>
-						            </td>
+						</td>
                         <td><input id="biaya" onkeyup="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
                         <td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="<?php echo $row->curr_settlement2;?>"><?php echo $row->curr_settlement2;?></option>                                      
@@ -694,7 +738,7 @@
 
                                 <?php } ?>
                               </select>
-						            </td>
+						</td>
                         <td><input id="biayaa" onkeyup="penjumlahana()" type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"></input></td>
                         <td><select id="curr3" name="curr3" class="form-control">
                                       <option value="<?php echo $row->curr_settlement3;?>"><?php echo $row->curr_settlement3;?></option>                                      
@@ -704,7 +748,7 @@
 
                                 <?php } ?>
                               </select>
-            						</td>
+            			</td>
                         <td><input id="biayab" onkeyup="penjumlahanb()" type="text" class="form-control" name="label7b" value="<?php echo $row->label7b;?>"></input></td>
                       </tr>
                       <tr>
@@ -712,14 +756,14 @@
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td><input id="uangmuka" onkeyup="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
+                        <td><input id="uangmuka" onkeyup="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>" readonly></input> </td>     
 						<td>&nbsp;</td>
-                        <td><input id="uangmukaa" onkeyup="penjumlahana()" type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"></input></td>     
+                        <td><input id="uangmukaa" onkeyup="penjumlahana()" type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>" readonly></input></td>     
 						<td>&nbsp;</td>
-                        <td><input id="uangmukab" onkeyup="penjumlahanb()" type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"></input></td>     
+                        <td><input id="uangmukab" onkeyup="penjumlahanb()" type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>" readonly></input></td>     
                       </tr>
                       <tr>
-					              <td>Selisih Kurang/(Lebih)</td>  
+					    <td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
 						            <td>&nbsp;</td>
@@ -851,7 +895,7 @@ function penjumlahan(){
   var reva = a.replace(/[^,\d]/g,'').toString();;
   var revb = b.replace(/[^,\d]/g,'').toString();;
   // var revc = c.replace(".","");
-  // alert(reva);
+  
   var hasil = parseInt(reva)-parseInt(revb);
   // var aa = parseInt(rev).value;
   // var b = parseInt(document.getElementById("uangmuka").value);
@@ -1637,7 +1681,7 @@ function AddIndeks(){
 		strhtml=strhtml + '</select><input id="scurrencyvendor'+szcountervendor+'" type="hidden" name="scurrencyvendor[]"  /></td>';
 		
 		
-		strhtml=strhtml + '<td><input style="height:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
+		strhtml=strhtml + '<td><input style="height:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onblur="formatnominalvendor('+szcountervendor+')" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
 		
@@ -1987,7 +2031,7 @@ function AddIndeks(){
 
 			var bilangan= ''+Math.abs(get_x3)+'';
 	  
-		// alert(bilangan);
+			// alert(bilangan);
 			var kalimat="";
 			var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
 			var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
@@ -2104,7 +2148,7 @@ function AddIndeks(){
 			if(hasil==0){
 				kalimat="Nol ";
 			}			
-			document.getElementById("terbilang3").value=kalimat+muncul;			
+			document.getElementById("terbilang3").value=kalimat+muncul;
 		}
 	}
 	
@@ -2129,7 +2173,7 @@ function AddIndeks(){
 
 			if(xj.substr(0,1)=="0" && xj.length >1){
 				xj=xj.substr(1,xj.length);
-				inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
+				//inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
 			}
       
 			if(kdvX.substr(0,1)!="1"){
@@ -2146,9 +2190,27 @@ function AddIndeks(){
 				}
 			}
 			
-			if(errmsg=="0"){
-				
-				var yz=xj.replace(/[^,\d]/g, '').toString();
+			if(errmsg=="0"){				
+				//var yz=xj.replace(/[^,\d]/g, '').toString();
+				var yz=0;
+				if(xj.substr(0,1)=="-" && xj.length >1){
+					yz=-Math.abs(xj.replace(/[^,\d]/g, '').toString());
+					inps[i].value="-" + formatRupiah(yz.toString());
+				}else if(xj.substr(0,1)=="-" && xj.length==1){
+					yz=0;
+					inps[i].value=xj;
+				}else if(xj.substr(0,1)=="(" && xj.substr(xj.length-1,1)==")" && xj.length >2){
+					yz=xj.replace(/[^,\d]/g, '').toString();
+					if(yz==0){
+						inps[i].value="0";
+					}else{
+						yz=-Math.abs(xj.replace(/[^,\d]/g, '').toString());
+						inps[i].value="(" + formatRupiah(yz.toString()) + ")";
+					}
+				}else{
+					yz=Math.abs(xj.replace(/[^,\d]/g, '').toString());
+					inps[i].value=formatRupiah(yz.toString());
+				}
 				if(inpcurX.trim()==curr1.trim() && inpcurX.trim()!=""){
 					if (yz==""){
 						itotal1 = itotal1+0;
@@ -2168,15 +2230,27 @@ function AddIndeks(){
 						itotal3 = itotal3+parseFloat(yz);
 					}
 				}
-				inps[i].value=formatRupiah(yz.toString());
+				//inps[i].value=formatRupiah(yz.toString());
 			}else{
 				alert(errmsg);
 				break;
 			}				
 		}
-		$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
-		$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
-		$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
+		if(itotal1<0){
+			$('#lbltotalvendor').text("(" + formatRupiah(itotal1.toString()) + ")");
+		}else{
+			$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
+		}
+		if(itotal2<0){
+			$('#lbltotalvendor2').text("(" + formatRupiah(itotal2.toString()) + ")");
+		}else{
+			$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
+		}
+		if(itotal3<0){
+			$('#lbltotalvendor3').text("(" + formatRupiah(itotal3.toString()) + ")");
+		}else{
+			$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
+		}	
 				
     }
 	
@@ -2206,6 +2280,10 @@ function AddIndeks(){
 	var lblcur3 = $.trim($('#currency3').val());
 	var currcheck="0";
 	
+	var struangmuka1=$('#uangmuka').val().replace(/[^,\d]/g, '').toString();
+	var struangmuka2=$('#uangmukaa').val().replace(/[^,\d]/g, '').toString();
+	var struangmuka3=$('#uangmukab').val().replace(/[^,\d]/g, '').toString();
+	
 	if(strrupiah==""){
 		strrupiah="0";
 	}	
@@ -2231,7 +2309,7 @@ function AddIndeks(){
 	}else if($('#tujuanPenggunaan').val()==""){
 		alert('Tujuan Penggunaan belum di input');
 	}else if($('#Select').val()==""){
-		alert('Mata Uang Harus Dipilih');
+		alert('Mata Uang Pertama Harus Dipilih');
 	}else if($('#rupiah').val()==""){
 		alert('Nominal Jumlah Pertama belum di input');
 	}else if ($.trim($('#jns_pembayaran').val())=="2" && $('#perkiraanSelesai').val()==""){
@@ -2288,7 +2366,7 @@ function AddIndeks(){
 			if(inps4[i].value=="0" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Nominal baris ke " + (i+1) + " belum di input";
 				break;
-			};			
+			};
 			
 		}
 		var schk=lbl4.length-1;
@@ -2304,69 +2382,87 @@ function AddIndeks(){
 			
 			if (errmsg=="0"){
 				var val1 = document.getElementById('rupiah').value;
-			var val2 = document.getElementById('rupiah2').value;
-			var val3 = document.getElementById('rupiah3').value;
+				var val2 = document.getElementById('rupiah2').value;
+				var val3 = document.getElementById('rupiah3').value;
+				
+				
+				var nomvendor1 = $('#lbltotalvendor').text();
+				var nomvendor2 = $('#lbltotalvendor2').text();
+				var nomvendor3 = $('#lbltotalvendor3').text();
+				
+				if(val1==""){val1="0";};			
+				if(val2==""){val2="0";};			
+				if(val3==""){val3="0";};
 			
+				if (val1.substr(0,1)=="(" && val1.substr(val1.length-1,1)==")"){
+					val1 = val1.replace(/\D+/g, '');
+					val1= -Math.abs(val1);	
+				}else if (val1.substr(0,1)=="-"){
+					val1 = val1.replace(/\D+/g, '');
+					val1= -Math.abs(val1);	
+				}else{
+					val1 = val1.replace(/\D+/g, '');
+					val1= Math.abs(val1);	
+				}
 			
-			var nomvendor1 = $('#lbltotalvendor').text();
-			var nomvendor2 = $('#lbltotalvendor2').text();
-			var nomvendor3 = $('#lbltotalvendor3').text();
+				if (val2.substr(0,1)=="(" && val2.substr(val2.length-1,1)==")"){
+					val2 = val2.replace(/\D+/g, '');
+					val2= -Math.abs(val2);	
+				}else if (val2.substr(0,1)=="-"){
+					val2 = val2.replace(/\D+/g, '');
+					val2= -Math.abs(val2);	
+				}else{
+					val2 = val2.replace(/\D+/g, '');
+					val2= Math.abs(val2);	
+				}
 			
-			if(val1==""){val1="0";};			
-			if(val2==""){val2="0";};			
-			if(val3==""){val3="0";};
+				if (val3.substr(0,1)=="(" && val3.substr(val3.length-1,1)==")"){
+					val3 = val3.replace(/\D+/g, '');
+					val3= -Math.abs(val3);	
+				}else if (val3.substr(0,1)=="-"){
+					val3 = val3.replace(/\D+/g, '');
+					val3= -Math.abs(val3);	
+				}else{
+					val3 = val3.replace(/\D+/g, '');
+					val3= Math.abs(val3);	
+				}
+				
+				nomvendor1 = nomvendor1.replace(/\D+/g, '');
+				nomvendor2 = nomvendor2.replace(/\D+/g, '');
+				nomvendor3 = nomvendor3.replace(/\D+/g, '');
 			
-			if (val1.substr(0,1)=="(" && val1.substr(val1.length-1,1)==")"){
-				val1 = val1.replace(/\D+/g, '');
-				val1= -Math.abs(val1);	
-			}else if (val1.substr(0,1)=="-"){
-				val1 = val1.replace(/\D+/g, '');
-				val1= -Math.abs(val1);	
-			}else{
-				val1 = val1.replace(/\D+/g, '');
-				val1= Math.abs(val1);	
-			}
+				/*if (skdvendor.substring(0, 1)!="1"){
+					if(val1>0 && val1!=nomvendor1){
+						errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
+						//break;
+					}else if(val2>0 && val2!=nomvendor2){
+						errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
+						//break;
+					}else if(val3>0 && val3!=nomvendor3){
+						errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
+						//break;
+					};
+				}*/
 			
-			if (val2.substr(0,1)=="(" && val2.substr(val2.length-1,1)==")"){
-				val2 = val2.replace(/\D+/g, '');
-				val2= -Math.abs(val2);	
-			}else if (val2.substr(0,1)=="-"){
-				val2 = val2.replace(/\D+/g, '');
-				val2= -Math.abs(val2);	
-			}else{
-				val2 = val2.replace(/\D+/g, '');
-				val2= Math.abs(val2);	
-			}
+				if($('#jns_pembayaran').val()=="3"){
+					if(val1!=nomvendor1){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
+					}else if(val2>0 && val2!=nomvendor2){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur2 + " tidak sama dengan Jumlah diatas!";
+					}else if(val3>0 && val3!=nomvendor3){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
+					};	
+				}else{
+					if(val1>0 && val1!=nomvendor1){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
+					}else if(val2>0 && val2!=nomvendor2){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur2 + " tidak sama dengan Jumlah diatas!";
+					}else if(val3>0 && val3!=nomvendor3){
+						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
+					};
+				}	
 			
-			if (val3.substr(0,1)=="(" && val3.substr(val3.length-1,1)==")"){
-				val3 = val3.replace(/\D+/g, '');
-				val3= -Math.abs(val3);	
-			}else if (val3.substr(0,1)=="-"){
-				val3 = val3.replace(/\D+/g, '');
-				val3= -Math.abs(val3);	
-			}else{
-				val3 = val3.replace(/\D+/g, '');
-				val3= Math.abs(val3);	
-			}
-			
-			nomvendor1 = nomvendor1.replace(/\D+/g, '');
-			nomvendor2 = nomvendor2.replace(/\D+/g, '');
-			nomvendor3 = nomvendor3.replace(/\D+/g, '');
-			
-			if (skdvendor.substring(0, 1)!="1"){
-				if(val1>0 && val1!=nomvendor1){
-					errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
-					//break;
-				}else if(val2>0 && val2!=nomvendor2){
-					errmsg="Jumlah Nominal Mata Uang " + lblcur2 + " tidak sama...!";
-					//break;
-				}else if(val3>0 && val3!=nomvendor3){
-					errmsg="Jumlah Nominal Mata Uang " + lblcur3 + " tidak sama...!";
-					//break;
-				};
-			}
-			
-			if (errmsg=="0"){
+				if (errmsg=="0"){
 					if(lbl4[schk].checked && $.trim($('#text1').val())==""){
 						alert('Dokumen Lampiran Lainnya belum di input');
 					}else if ($.trim($('#jns_pembayaran').val())=="3" && $('#arf_number').val()==""){
@@ -2374,11 +2470,15 @@ function AddIndeks(){
 					}else if($.trim($('#jns_pembayaran').val())=="3" && $("#chkarf").prop('checked')==false){						
 							alert('Lampiran copy ARF belum di beri tanda ceklist');
 					}else if($.trim($('#jns_pembayaran').val())=="3" && lblcur1!=$scur1){
-						alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+						alert('Jenis Mata Uang Penggunaan Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
 					}else if ($.trim($('#jns_pembayaran').val())=="3" && $('#biaya').val()==""){
-							alert('Jumlah Biaya belum di input');
+							alert('Jumlah Biaya Mata Uang Pertama belum di input');
 					}else if ($.trim($('#jns_pembayaran').val())=="3" && $('#uangmuka').val()==""){
 							alert('Jumlah Uang Muka belum di input');
+					}else if($('#jns_pembayaran').val()=="3" && struangmuka2!="" && $('#biayaa').val()==""){
+						alert('Jumlah Biaya Mata Uang Kedua belum di input');
+					}else if($('#jns_pembayaran').val()=="3" && struangmuka3!="" && $('#biayab').val()==""){
+						alert('Jumlah Biaya Mata Uang Ketiga belum di input');
 					}else if($.trim($('#jns_pembayaran').val())=="3" && strrupiah!=strhasil){
 						alert('Selisih Kurang/(Lebih) Mata Uang Pertama tidak sama dengan Nilai pada kolom Jumlah diatas');
 					}else if($.trim($('#jns_pembayaran').val())=="3" && lblcur2!=$scur2){
@@ -2449,8 +2549,18 @@ function drpbank(param1,param2,param3){
 		
 	}
 	
+	function formatnominalvendor(param1){
+		var fnom=$("#nominalvendor"+param1).val();
+		if(fnom.substring(0, 1)=="-"){
+			$("#nominalvendor"+param1).val("(" + fnom.substring(1, fnom.length) + ")");
+		}
+	}
 	
 	function drpcurrency(param1){
+		$("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());
+	}
+	
+	function drpcurrency_old(param1){
 		
 	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());
 		//gettotalvendor();

@@ -30,6 +30,12 @@
 
           <?php 
 			$nosurat='';
+			$totvendor1=0;
+			$totvendor2=0;
+			$totvendor3=0;
+			$strtotvendor1="";	
+			$strtotvendor2="";
+			$strtotvendor3="";			
 			foreach ($ppayment as $row){ 
 			$nosurat = $row->nomor_surat;
 			?>          
@@ -86,7 +92,7 @@
                           <td> </td>						
                           <td align="center"><b><font size="4" style="font-family: calibri;">&nbsp;</b></td>						
                           <td align="center"><b><font size="4" style="font-family: calibri;">No   : <?php echo $row->nomor_surat;?></b></td>                        
-                        </tr>   
+                        </tr>
                       </tbody>
                     </table>
 
@@ -187,7 +193,7 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <input id="checksettlement" onclick="checkUangMuka2()"type="checkbox" name="jenis_pembayaran[]" value="3" <?php echo $chk3; ?> disabled>Pertanggungjawaban Uang Muka/<i>Advance Settlement<br>                            
                         </td>
-                      </tr>                        
+                      </tr>
                     </table>
 
                     <br>
@@ -361,6 +367,28 @@
 															}else{
 															foreach($getdatavendor as $gvendor){
 																$nomvendor=str_replace(".","",$gvendor->nominal);
+																if($gvendor->v_currency==$row->currency){
+																	if(substr($gvendor->v_nominal,0,1)=="("){
+																		$totvendor1=$totvendor1-intval($nomvendor);
+																	}else{
+																		$totvendor1=$totvendor1+intval($nomvendor);
+																	}
+																}
+																if($gvendor->v_currency==$row->currency2){
+																	if(substr($gvendor->v_nominal,0,1)=="("){
+																		$totvendor2=$totvendor2-intval($nomvendor);
+																	}else{
+																		$totvendor2=$totvendor2+intval($nomvendor);
+																	}
+																}
+																if($gvendor->v_currency==$row->currency3){
+																	if(substr($gvendor->v_nominal,0,1)=="("){
+																		$totvendor3=$totvendor3-intval($nomvendor);
+																	}else{
+																		$totvendor3=$totvendor3+intval($nomvendor);
+																	}
+																}
+																
 																$ttlnomvendor=$ttlnomvendor+(float)$nomvendor;
 																$vendorrow++;
 															?>
@@ -382,11 +410,27 @@
 						
 																	</select>
 																</td>
-															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" readonly></td>
+															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" readonly></td>
 															
 															
 															</tr>
-															<?php } }?>
+															<?php } //number_format($nominal,0,",",".")
+																if($totvendor1<0){
+																	$strtotvendor1="(" .number_format(substr(strval($totvendor1),1,strlen(strval($totvendor1))-1),0,",","."). ")"; 
+																}else{
+																	$strtotvendor1=strval(number_format($totvendor1,0,",",".")); 
+																}
+																if($totvendor2<0){
+																	$strtotvendor2="(" .number_format(substr(strval($totvendor2),1,strlen(strval($totvendor2))-1),0,",","."). ")";
+																}else{
+																	$strtotvendor2=strval(number_format($totvendor2,0,",","."));  
+																}
+																if($totvendor3<0){
+																	$strtotvendor3="(" .number_format(substr(strval($totvendor3),1,strlen(strval($totvendor3))-1),0,",","."). ")"; 
+																}else{
+																	$strtotvendor3=strval(number_format($totvendor3,0,",",".")); ; 
+																}
+															}?>
 															
 														  </tbody>
 														  <tfoot>
@@ -395,15 +439,15 @@
 																																	  
 																 
 					  
-																<div class="col-md-12"><span class="col-md-12" style="text-align:end">Total</span></div>
-																  </th>
+															<div class="col-md-12"><span class="col-md-12" style="text-align:end">Total</span></div>
+															</th>
 																<th colspan="4">
 																<label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $row->label2; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label>
 																<label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $row->jumlah2; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label>
 																<label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $row->jumlah3; ?></label>
+																<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
 																</th>
 															</tr>
 														</tfoot>
