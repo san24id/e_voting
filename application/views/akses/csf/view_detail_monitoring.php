@@ -281,7 +281,7 @@
                     <td><?php echo $buka; ?></td>
                     <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
                     <td>
-                      <a href="dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> &nbsp;
+                      <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> &nbsp;
 					  <?php if($row->status=="0" || $row->status=="1"){ 
 					  if($this->session->userdata("id_user")==$row->id_user){  ?>
 					  <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
@@ -618,7 +618,7 @@ $(function () {
 						  item.display_name,
 						  item.akun_bank,
 						  item.penerima,
-						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+						  '<a href="dashboard/form_sp3/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  

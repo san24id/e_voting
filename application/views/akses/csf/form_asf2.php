@@ -776,9 +776,9 @@ function nominal(){
   var hasil_jumlah3 = jumlah9+jumlah10+jumlah11+jumlah12;
 
 // Jumlah Pembayaran - Jumlah Uang Muka
-  var hasil = hasil_jumlah1-negatif;
-  var hasil2 = hasil_jumlah2-negatif2;
-  var hasil3 = hasil_jumlah3-negatif3;
+  var hasil = hasil_jumlah1+negatif;
+  var hasil2 = hasil_jumlah2+negatif2;
+  var hasil3 = hasil_jumlah3+negatif3;
 
   // Total Expense   
   if (hasil_jumlah1<0){

@@ -763,7 +763,7 @@
 
                                   <div class="modal-body">
                                   <form>
-                                  <p align="justify">Apa anda yakin akan menghapus Form SP3 ini : <?=$row->nomor_surat?></p>
+                                  <p align="justify">Apa anda yakin akan menghapus Form SP3 ini : <?=$row->nomor_surat?> ?</p>
                                   </div>
                                   <div class="modal-footer">                        
                                   <button type="button" class="btn btn-success bye" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>','<?php echo $this->session->userdata("currentview"); ?>')">Yes</button>
@@ -805,7 +805,7 @@
                                     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">  
                                     <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                     <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                    <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                    <p align="justify">Apa anda yakin akan menyetujui Form SP3 ini :  <?=$row->nomor_surat?> ?</p>
                                   <div class="modal-footer">                        
                                     <button type="submit" class="btn btn-success bye">Yes</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -828,7 +828,7 @@
                                   <div class="modal-body">
                                   <form id="rejected" method="post" action="Approval/rejected">
                                     <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-                                    <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?></p>
+                                    <p align="justify">Apa anda yakin akan me-rejected Form SP3 ini : <?=$row->nomor_surat?> ?</p>
                                     <label>Notes :</label>                
                                     <textarea type="text" class="form-control" name="note" required></textarea>
                                     <input type="hidden" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">
@@ -861,7 +861,7 @@
                                   <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
                                     <input type="hidden" name="submit_date" value="<?php echo date("d-M-Y"); ?>">
                                   <input type="hidden" name="handled_by" value="n.prasetyaningrum">
-                                  <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?></p>
+                                  <p align="justify">Apa anda yakin akan mengirim Form SP3 ini :  <?=$row->nomor_surat?> ?</p>
                                 </div>
                                 <div class="modal-footer">                        
                                 <button type="submit" class="btn btn-success bye">Yes</button>

@@ -707,7 +707,7 @@ function nominal(){
   var sum_m = Number(get_m) + 0 ;
 
   var hasil_jumlah = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
-  var hasil = hasil_jumlah-sum_m;
+  var hasil = hasil_jumlah+sum_m;
   // if(x && b){
     // document.getElementById("ulang").value = hasil_jumlah ;
   // } 
