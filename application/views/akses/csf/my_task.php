@@ -114,7 +114,11 @@
     
     <section class="content-header">
       <h1>
+      <?php if($this->session->userdata("role_id") == 4){ ?>
+        Waiting For Verification
+      <?php }else { ?>
         Waiting For APF Processing
+      <?php } ?>
       </h1>
     </section>
 
@@ -188,8 +192,7 @@
                     <?php 
                       if ($row->status <= 5) { ?>
                         <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                    <?php } ?>
-                     <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
+                    <?php } else if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
                         <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                       <?php } ?>
@@ -226,14 +229,29 @@
               </tbody>
               </table>
             </div>
-            <div class="box-footer">  
+            <div class="box-footer">
+            <?php if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>  
+              <div class="form-group">
+                <label class="control-label col-md-1"><i>Note : </i></label>
+                <div class='col-md-5'> &nbsp;Jika Tombol View APF Muncul, menandakan Form APF telah direject/direturn</div>
+              </div>
+              <br>
               <div class="form-group">
                 <label class="control-label col-md-1"><i>Legend</i></label> <br>
                 <div class='col-md-2'><img src='assets/dashboard/images/legend/tax12.png'> &nbsp;Processing Tax</div>
                 <div class='col-md-2'><img src='assets/dashboard/images/legend/finance12.png'> &nbsp;Processing Finance</div>
                 <div class='col-md-2'><img src='assets/dashboard/images/legend/review12.png'> &nbsp;Waiting For Review</div>
                 <div class='col-md-2'><img src='assets/dashboard/images/legend/verified12.png'> &nbsp;Waiting For Verified</div>
-              </div>  
+              </div>
+            <?php } else { ?>  
+              <div class="form-group">
+                <label class="control-label col-md-1"><i>Legend</i></label> <br>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/tax12.png'> &nbsp;Processing Tax</div>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/finance12.png'> &nbsp;Processing Finance</div>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/review12.png'> &nbsp;Waiting For Review</div>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/verified12.png'> &nbsp;Waiting For Verified</div>
+              </div>
+            <?php } ?>
             </div>
             </div>
             <!-- /.box-body -->

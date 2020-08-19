@@ -212,7 +212,7 @@
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
                       <th>Penerima Pembayaran</th>
-					  <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
+					            <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
 												 
                       <th>Action</th>
                     </tr>
@@ -222,7 +222,7 @@
                         $i = 1;
                         foreach ($payment as $row){                          
                         // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->jenis_pembayaran;                        
+                        $test1 = $row->dsc;                        
                         $test2 = explode(";", $test1);
                         $test3 = count($test2);                        
                         ?>
@@ -281,13 +281,30 @@
                     <td><?php echo $buka; ?></td>
                     <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
                     <td>
-                      <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> &nbsp;
-					  <?php if($row->status=="0" || $row->status=="1"){ 
-					  if($this->session->userdata("id_user")==$row->id_user){  ?>
-					  <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
-					  <?php }} ?>
-					</td>      
-                    </tr>
+                        <?php 
+                          if ($row->status <= 5) { ?>
+                            <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
+                          <?php if ($row->jenis_pembayaran == 2) { ?> 
+                            <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                          <?php } ?>
+                          <?php if ($row->jenis_pembayaran == 3) { ?> 
+                            <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                          <?php } ?>
+                          <?php if ($row->jenis_pembayaran == 4) { ?>   
+                            <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                          <?php } ?>
+                          <?php if ($row->jenis_pembayaran == 5) { ?> 
+                            <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                          <?php } ?>
+                        <?php } ?>
+                      <!-- <?php if($row->status=="0" || $row->status=="1"){ 
+                      if($this->session->userdata("id_user")==$row->id_user){  ?>
+                      <button class="btn btn-danger btn-sm" title="Delete" onclick="deletedraftpayment('<?php echo $row->id_payment; ?>')"><i class="glyphicon glyphicon-trash"></i></button>
+                      <?php }} ?> -->
+                    </td>      
+                  </tr>
                 <?php  } ?>
                 </tbody>
                 </table>
