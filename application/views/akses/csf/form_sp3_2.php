@@ -67,7 +67,9 @@
 		$disablednilai='disabled';
 		$divtax='style="display:none;"';
 		$nilai='0';
+		$vobjekpajak='';
 		foreach($getdatataxFlag as $gtaxFlag){
+			$vobjekpajak=$gtaxFlag->objek_pajak;
 			switch ($gtaxFlag->objek_pajak) {
 			  case "0":
 				$chkN='checked';
@@ -158,15 +160,17 @@
 							<br>
 							<!-- <form id="form" method="post" action="Dashboard/procees_tax" onsubmit="tambah()">  -->
 							<form id="form" action="#"> 
-							<table style="font-family: calibri;" width="50%">
+							<table style="font-family: calibri;" width="100%">
 							  <tr>
-								<td width="30%"><b>Deductible Expense?</b></td>
-								<td width="10%">
+								<td width="15%"><b>Deductible Expense?</b></td>
+								<td width="5%">
 								  <input type="checkbox" id="chkdeY" name="de" value="1" <?php echo $chkDY; ?>> Ya<br>
 								</td>
-								<td width="20%">
+								<td width="10%">
+								
 								  <input type="checkbox" id="chkdeN" name="de" value="0" <?php echo $chkDN; ?> > Tidak</input><br>
 								</td>
+								<td></td>
 								</tr>  
 								<tr>
 								  <td></td>
@@ -174,6 +178,7 @@
 								  <td>
 									&nbsp; &nbsp; <input type="checkbox" id="chkNDE" name="opsional[]" value="1" <?php echo $chkopsi1 .'  '.$disabled1; ?> > NDE</input><br>
 								  </td>
+								  <td></td>
 								</tr>  
 								<tr>
 								<td></td>
@@ -181,17 +186,30 @@
 								<td>
 								  &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="opsional[]" value="2" <?php echo $chkopsi2.'  '.$disabled2;?>> NDE50</input><br>                            
 								</td>
+								<td></td>
 								</tr> 
 								<tr>
 								<td></td>
 								<td></td>
-								<td width="8%">
+								<td width="4%">
 								  &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="opsional[]" value="3" <?php echo $chkopsi3.'  '.$disabled3;?>> PARTNDE</input><br>                            
 								</td>
-								<td width="5%"><font size="3">Rp</font></td>
-								<td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
+								<td width="3%"><font size="3">Rp</font></td>
+								<td width="20%"><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value="<?php echo $nilai; ?>" <?php echo $disablednilai; ?> ></td>
+								<td>&nbsp;</td>
 								</tr>
-
+								<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td width="5%">Keterangan</td>
+								<td colspan="2"><textarea rows="2" cols="50" type="text" class="form-control" id="partndedesc" <?php echo $disablednilai; ?> ></textarea></td>
+								</tr>
+								
+								<input type="hidden" name="vdeductible" id="vdeductible" value="1"  />
+								<input type="hidden" name="voptional" id="voptional"   />
+								<input type="hidden" name="vobjekpajak" id="vobjekpajak" value="<?php echo $vobjekpajak; ?>"  />
+					
 							</table>
 								<br>
 							<table width=50%>   
@@ -622,10 +640,14 @@ $("#chkdeY").on( "click", function() {
 	  $('#chkNDE50').attr("disabled", "disabled"); 
 	  $('#chkPARTNDE').attr("disabled", "disabled"); 	  
 	  $("#nilai").attr("disabled", "disabled"); 
-	  $("#vdeductible").val('1');
+	  $("#partndedesc").attr("disabled", "disabled"); 
+	  $("#vdeductible").val('1');	  
 	}else{
 		$("#vdeductible").val('');
 	}
+	$("#voptional").val('');
+	$("#nilai").val('0');
+	$("#partndedesc").val('');
 });
 
 $("#chkdeN").on( "click", function() {
@@ -635,6 +657,7 @@ $("#chkdeN").on( "click", function() {
 	  $('#chkNDE50').removeAttr("disabled"); 
 	  $('#chkPARTNDE').removeAttr("disabled"); 	  
 	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#partndedesc").attr("disabled", "disabled"); 
 	  $("#vdeductible").val('0');
 	}else{
 	  $('#chkNDE').attr("disabled", "disabled"); 
@@ -645,7 +668,13 @@ $("#chkdeN").on( "click", function() {
 	  $('#chkPARTNDE').prop('checked', false);		  
 	  $("#nilai").attr("disabled", "disabled"); 
 	  $("#vdeductible").val('');
+	  $("#partndedesc").attr("disabled", "disabled"); 
+	  
 	}
+	$("#voptional").val('');
+	$("#nilai").val('0');
+	$("#partndedesc").val('');
+	  
 });
 
 $("#chkNDE").on( "click", function() {
@@ -654,11 +683,14 @@ $("#chkNDE").on( "click", function() {
 	  $('#chkNDE50').prop('checked', false);
 	  $('#chkPARTNDE').prop('checked', false);	  
 	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#partndedesc").attr("disabled", "disabled"); 
 	  $("#voptional").val('1');
 	}else{
 	  $('#chkdeN').prop('checked', false);
 	  $("#voptional").val('');
 	}
+	$("#nilai").val('0');
+	$("#partndedesc").val('');
 });
 
 $("#chkNDE50").on( "click", function() {
@@ -667,11 +699,15 @@ $("#chkNDE50").on( "click", function() {
 	  $('#chkNDE').prop('checked', false);	 
 	  $('#chkPARTNDE').prop('checked', false);	 
 	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#partndedesc").attr("disabled", "disabled"); 	  
 	  $("#voptional").val('2');
 	}else{
 	  $('#chkdeN').prop('checked', false);
 	  $("#voptional").val('');
 	}
+	$("#nilai").val('0');
+	$("#partndedesc").val('');
+	  
 });
 
 $("#chkPARTNDE").on( "click", function() {
@@ -680,11 +716,15 @@ $("#chkPARTNDE").on( "click", function() {
 	  $('#chkNDE').prop('checked', false);	 
 	  $('#chkNDE50').prop('checked', false);	 
 	  $("#nilai").removeAttr("disabled"); 
+	  $("#partndedesc").prop('disabled',false); 
 	  $("#voptional").val('3');
 	}else{
 	  $('#chkdeN').prop('checked', false);
 	  $("#nilai").attr("disabled", "disabled"); 
+	  $("#partndedesc").prop('disabled',true); 
 	  $("#voptional").val('');
+	  $("#nilai").val('0');
+	  $("#partndedesc").val('');
 	}
 });
 
@@ -697,6 +737,7 @@ $("#chkObjPjkY").on( "click", function() {
 	  $('#vobjekpajak').val('1');
 	}else{
 	  $('#divObjPjk').hide();
+	  $('#vobjekpajak').val('');
 	}
 });
 
@@ -707,6 +748,8 @@ $("#chkObjPjkN").on( "click", function() {
 	  $('#chkObjPjkT').prop('checked', false);
 	  $('#divObjPjk').hide();
 	  $('#vobjekpajak').val('0');
+	}else{
+		$('#vobjekpajak').val('');
 	}
 });
 
@@ -717,6 +760,8 @@ $("#chkObjPjkE").on( "click", function() {
 	  $('#chkObjPjkT').prop('checked', false);
 	  $('#divObjPjk').hide();
 	  $('#vobjekpajak').val('2');
+	}else{
+		$('#vobjekpajak').val('');
 	}
 });
 
@@ -727,6 +772,8 @@ $("#chkObjPjkT").on( "click", function() {
 	  $('#chkObjPjkE').prop('checked', false);
 	  $('#divObjPjk').hide();
 	  $('#vobjekpajak').val('3');
+	}else{
+		$('#vobjekpajak').val('');
 	}
 });
 
@@ -793,22 +840,26 @@ function submittax()
 		}else if ($('#voptional').val()=="3" && $('#nilai').val()==""){			
 			alert("Nilai PARTNDE belum di isi");
 		}else if ($('#voptional').val()=="3" && $('#nilai').val()=="0"){			
-			alert("Nilai PARTNDE belum di isi");
+			alert("Nilai PARTNDE belum di isi"); 
+		}else if ($('#voptional').val()=="3" && $('#partndedesc').val()==""){			
+			alert("Keterangan PARTNDE belum di isi");
 		}else if ($('#vobjekpajak').val()==""){
 			alert("Objek Pajak belum di pilih");
+		}else if ($('#lbltotaldpp').text()=="" || $('#lbltotaldpp').text()=="0"){
+			alert("Detil dari Objek Pajak belum di Input");
 		}else{
 			var ntax=$('#txttotnontax').val();//$('#lbltotalnontax').text();
 			var ndpp=$('#lbltotaldpp').text();
 			var intax = ntax.replace(/[^,\d]/g, '').toString();
 			var indpp = ndpp.replace(/[^,\d]/g, '').toString();
 			var ntot=parseFloat(intax)+parseFloat(indpp);
-			var totpay=$('#txttotpayment').val();
-			var itotpay = totpay.replace(/[^,\d]/g, '').toString();
-			var balance=parseFloat(itotpay)-parseFloat(ntot);
+			//var totpay=$('#txttotpayment').val();
+			//var itotpay = totpay.replace(/[^,\d]/g, '').toString();
+			//var balance=parseFloat(itotpay)-parseFloat(ntot);
 			balance=0;
-			if(balance != 0){
-				alert("Jumlah Transaksi tidak sama dengan Jumlah pengajuan");
-			}else if(balance == 0){			
+			//if(balance != 0){
+			//	alert("Jumlah Transaksi tidak sama dengan Jumlah pengajuan");
+			//}else if(balance == 0){			
 				var url = "<?php echo base_url('dashboard/submittax')?>";
 				$.ajax({
 					url : url,
@@ -823,10 +874,10 @@ function submittax()
 					error: function (data)
 					{
 						console.log(data);
-					  alert('Error adding / update data');
+						alert('Error adding / update data');
 					}
 				  });				 
-			}			 
+			//}			 
 		}
 		
 	}
@@ -924,7 +975,8 @@ function edit_tax(id)
 			$('[name="vobjekpajak"]').val(data[0].objek_pajak);
 			$('[name="vjnspjk"]').val(data[0].jenis_pajak);
 			$('[name="selJnsPjk"]').val(data[0].id_jenis_pjk).change();
-			$('[name="txtnamanpwp"]').val(data[0].nama);			
+			$('[name="txtnamanpwp"]').val(data[0].id_honor);			
+			$('[name="txtnamanpwp_old"]').val(data[0].nama);			
 			$('[name="txtnonpwp"]').val(data[0].npwp);			
 			$('[name="txtalamat"]').val(data[0].alamat);			
 			$strid=data[0].jenis_pajak;
@@ -1100,13 +1152,13 @@ function savetaxdraft()
 		alert("Deductible Expense belum di pilih");
 	}else if ($('#selJnsPjk').val()==""){
 		alert("Jenis Pajak belum di pilih");
-	}else if ($('#txtnamanpwp').val()==""){
+	}else if ($jnspajak=='PPh Pasal 21' && $('#txtnamanpwp_old').val()==""){
 		alert("Nama NPWP belum di input");
-	}else if ($('#txtnonpwp').val()==""){
+	}else if ($jnspajak=='PPh Pasal 21' && $('#txtnonpwp').val()==""){
 		alert("Nomor NPWP belum di input");
 	}else if ($tarif=="0" || $tarif==""){
 		alert("Tarif Pajak belum di pilih");		  
-	}else if ($('#txtdpp').val()==""){
+	}else if ($('#txtdpp').val()=="" || $('#txtdpp').val()=="0"){
 		alert("DPP belum di input");		  
 	}else if ($('#txtdppgross').val()==""){
 		alert("DPP Gross Up kosong");		  
@@ -1310,6 +1362,7 @@ function showed() {
 	$('#selKdPjk').select2();
 $('#selKdMap').select2();
 $('#selJnsPjk').select2();
+$('#txtnamanpwp').select2();
 
 		$('#jenis_pajak').change(function() {
       if( $(this).val() == 'PPh Pasal 21') {
@@ -1327,49 +1380,81 @@ $('#selJnsPjk').select2();
 		$("#vkdmap").val($("#selKdMap option:selected").val());
 	});
 	
+	$('#txtnamanpwp').change(function() {
+		var $idhonor = $("#txtnamanpwp option:selected").val();
+		if($idhonor==''){
+			$idhonor='0';
+		}
+		$.ajax({
+		url : "<?php echo base_url('dashboard/getdetilnpwpbyvendor/')?>/" + $idhonor,
+        type: "GET",
+		dataType: "JSON",
+        success: function(data)
+			{
+				$("#txtnonpwp").val(data[0].npwp);
+				$("#txtnamanpwp_old").val(data[0].nama);
+				$("#txtalamat").val(data[0].alamat);  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+	});
 	
 	$('#selJnsPjk').change(function() {
-	  var $strid = $("#selJnsPjk option:selected").text();
-	  $("#vjnspjk").val($strid);
+		var $strid = $("#selJnsPjk option:selected").text();
+		$("#vjnspjk").val($strid);
 	  
-	  var $id = $(this).val();
-	 
-	  if( $strid.trim() == 'PPh Pasal 21') {
-		  $('#divKdMap').show(); 
-		    $("#txtnamanpwp").prop('readonly', false);
-            //$('#txtnamanpwp').removeAttr("disabled"); 
+		var $id = $(this).val();
+	    //if( $strid.trim() == 'PPh Pasal 21') {
+		if( $strid.trim().substring(0,9) == 'PPh Pasal') {
+			if( $strid.trim() == 'PPh Pasal 23') {
+				$('#divKdPjk').show(); 			
+			}else{
+				$('#divKdPjk').hide(); 
+			}
+			$('#divKdMap').show(); 
+			//$("#txtnamanpwp").prop('readonly', false);
+            $('#txtnamanpwp').prop('disabled', false); 
+			//$('#txtnamanpwp').removeAttr("disabled"); 
 			$('#txtnonpwp').prop('readonly', false);	
 			$('#txtalamat').prop('readonly', false);		
 			$('#divmasappn').hide();
-			$('#divKdPjk').hide(); 
-      } else{
-		  $("#txtnamanpwp").prop('readonly', true);
-            //$('#txtnamanpwp').removeAttr("disabled"); 
+			//$('#divKdPjk').hide(); 
+		} else{
+			$('#txtnamanpwp').val('').change();
+			$('#txtnamanpwp_old').val('');	
+			$('#txtnonpwp').val('');	
+			$('#txtalamat').val('');	
+			//$("#txtnamanpwp").prop('readonly', true);
+            $('#txtnamanpwp').prop('disabled', true); 
 			$('#txtnonpwp').prop('readonly', true);	
 			$('#txtalamat').prop('readonly', true);	
-			
-			if($strid.substring(0, 3)=='PPN'){
+			$('#divKdMap').hide();
+			/*if($strid.substring(0, 3)=='PPN'){
 				$('#divKdMap').hide();
 			}else{
 				$('#divKdMap').show(); 
-			};
-		  if( $strid == 'PPN' || $strid == 'PPN WAPU' || $strid == 'PPN PKP') {
+			};*/
+			if( $strid == 'PPN' || $strid == 'PPN WAPU' || $strid == 'PPN PKP') {
 				$('#divmasappn').show();
 			}else{
 				$('#divmasappn').hide();
 			}
 			
-			if( $strid == 'PPh Pasal 23') {
+			/*if( $strid == 'PPh Pasal 23') {
 				$('#divKdPjk').show(); 			
 			}else{
 				$('#divKdPjk').hide(); 
-			}
+			}*/
 		/*$("#txtnamanpwp").attr("disabled", "disabled"); 
 		$("#txtnonpwp").attr("disabled", "disabled"); 
 		$("#txtalamat").attr("disabled", "disabled"); */
-	  }
+		}
 	  
-	  $.ajax({
+		$.ajax({
         /*url : "<?php echo base_url('dashboard/gettarifbytax/')?>/" + $id,
         type: "GET",*/
         url : "<?php echo base_url('dashboard/gettarifbytax')?>",
@@ -1440,13 +1525,22 @@ $('#selJnsPjk').select2();
 		  $('#chktarifnormal').prop('readonly', true);			
 		  $('#chktarifnormal').prop('disabled', "disabled");
 		  $('#divtarifnormal').hide();  
+		  $('#chktarifspesial').prop('checked', true);
+		  $('#divtarifspesial').show();
 		}else{
 			$('#divfasilitas').hide();
 			$('#chktarifnormal').prop('readonly', false);
 			$('#chktarifnormal').removeAttr("disabled"); 
 			$('#seltarif').prop('readonly', false);
 			$('#seltarif').removeAttr("disabled"); 
-			$('#divtarifnormal').show();  
+			//$('#divtarifnormal').show();  
+			if($("#chktarifspesial").is(':checked')){
+				$('#divtarifspesial').show();
+				$('#divtarifnormal').hide();
+			}else{
+				$('#divtarifspesial').hide();
+				$('#divtarifnormal').show();  		  
+			}
 		}
 		$('#seltarif').val('').change();
 		$('#vtarif').val('');
@@ -1534,6 +1628,7 @@ function PajakTerhutang(){
 	$('#txtrealtrf').val(trf);
 	var intrf = (parseFloat(trf)/100);
 	var pjkutang = parseFloat(dpp)*intrf;
+	//alert(pjkutang);
 	if (trf && dpp){
 		if($("#chkgross").is(':checked')){
 			var trfgross = parseFloat(1-parseFloat(intrf));
@@ -1752,9 +1847,6 @@ function PajakTerhutang(){
 					<input type="hidden" name="nomor_surat" id="nomor_surat" value="<?php echo $row->nomor_surat; ?>" >
 					<?php } ?>
 					<input type="hidden" name="txtrealtrf" id="txtrealtrf" value='0' />
-					<input type="hidden" name="vdeductible" id="vdeductible"  />
-					<input type="hidden" name="voptional" id="voptional"   />
-					<input type="hidden" name="vobjekpajak" id="vobjekpajak"  />
 					<input type="hidden" name="vjnspjk" id="vjnspjk" />
 					<input type="hidden" name="vkdpjk" id="vkdpjk" />
 					<input type="hidden" name="vkdmap" id="vkdmap" />
@@ -1815,7 +1907,16 @@ function PajakTerhutang(){
 						<div class="form-group">
 								<label class="control-label col-md-3">Nama NPWP</label>
 								<div class="col-md-9">
-								  <input name="txtnamanpwp" id="txtnamanpwp" value="<?php echo $namanpwp ; ?>"  placeholder="Nama NPWP" class="form-control" type="text" >
+									<select class="form-control select2" id="txtnamanpwp" name="txtnamanpwp" style="width: 100%;" disabled>
+										<option value=''>== Pilih ==</option>	
+										<?php 										
+										foreach($getallnpwp as $allnpwp)
+										  { 
+											echo '<option value="'.$allnpwp->id_honor.'" >'.$allnpwp->nama.'</option>';
+										  }
+										?> 
+									</select>
+								  <input name="txtnamanpwp_old" id="txtnamanpwp_old" type="hidden" > 
 								</div>
 							</div>
 

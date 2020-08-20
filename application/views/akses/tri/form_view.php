@@ -435,21 +435,20 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th>
-																																	  
-																 
-					  
-															<div class="col-md-12"><span class="col-md-12" style="text-align:end">Total</span></div>
-															</th>
-																<th colspan="4">
-																<label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label>
-																<label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label>
-																<label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
-																<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
-																</th>
-															</tr>
+                                  <th colspan="3">
+                                    <div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
+                                  </th>
+                                  <th>
+                                    <label class="control-label" id="lblcur1" ><?php echo $row->currency; ?></label><br>
+                                    <label class="control-label" id="lblcur2" ><?php echo $row->currency2; ?></label><br>
+                                    <label class="control-label" id="lblcur3" ><?php echo $row->currency3; ?></label>
+                                  </th>
+                                  <th>
+                                    <label class="control-label" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label><br>
+                                    <label class="control-label" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label><br>
+                                    <label class="control-label" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
+                                  </th>
+                              </tr>
 														</tfoot>
 														</table>
 														</div> 

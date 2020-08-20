@@ -1142,6 +1142,17 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 	
+	public function getAllDataNPWP() {
+        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m WHERE ifnull(m.npwp,'')<>''";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getdetilnpwpbyhonor($id) {
+        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m WHERE id_honor=".$id;
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
 	public function getDataTax($id) {
         $sql = "select id_tax,id_payment,ifnull(no_urut,1) no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan FROM t_tax where id_payment = '$id' order by no_urut";
 		$query = $this->db->query($sql)->result();
@@ -1393,7 +1404,7 @@ class Dashboard_model extends CI_Model{
 		$sql = "select t.id_tax,t.id_payment,ifnull(t.no_urut,1) no_urut, t.nomor_surat, t.jenis_pajak,t.kode_pajak,t.kode_map,t.nama,t.npwp,t.alamat,t.tarif,";
 		$sql .= "t.special_tarif,t.fas_pajak,t.gross,t.dpp,t.dpp_gross,t.pajak_terutang,t.masa_pajak,t.tahun,t.keterangan,p.id_jenis_pjk , ";		
 		$sql .= "(select id_map from m_kode_map where trim(kode_map)=trim(t.kode_map)) id_map,";
-		$sql .= "t.de,t.opsional,t.nilai,t.objek_pajak  ";		
+		$sql .= "t.de,t.opsional,t.nilai,t.objek_pajak, t.id_honor  ";		
 		$sql .="FROM t_tax t, m_jenis_pajak p where trim(t.jenis_pajak)=trim(p.jenis_pajak) and t.id_tax = ".$id;
 		$query = $this->db->query($sql)->result();
         return $query;

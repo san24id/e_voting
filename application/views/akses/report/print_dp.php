@@ -279,8 +279,8 @@
 																<th colspan="3"><font size="1">Penerima Pembayaran  </font></th>
 																<th colspan="3"><font size="1">Tunai/Transfer  </font></th>
 																<th colspan="3"><font size="1">Nomor Rekening  </font></th>
-																<th colspan="3"><font size="1">Mata Uang  </font></th>
-																<th colspan="4"><font size="1"><center>Nominal</center></th>
+																<th colspan="2"><font size="1">Mata Uang  </font></th>
+																<th colspan="6"><font size="1"><center>Nominal</center></th>
                               </tr>
 														  </thead>
 														  <tbody>
@@ -324,12 +324,11 @@
 																$vendorrow++;
 															?>
 															<tr id="tr<?php echo $vendorrow; ?>">
-															<td colspan="3" width="35%" class="kolom"><font size="1"><center> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></td>
-															<td colspan="3" width="20%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_bank;?>				</td>
-                              <td colspan="3" width="15%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_account; ?>	</td>   
-                              <td colspan="3" width="10%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_currency; ?>	</td>   
-															<td colspan="4" width="20%" class="kolom"><font size="1"><center> <?php echo number_format($gvendor->nominal,0,",","."); ?></td>
-															
+                                <td colspan="3" width="35%" class="kolom"><font size="1"><center> <?php echo $gvendor->nama;?> &nbsp; - <?php echo $gvendor->kode_vendor;?></td>
+                                <td colspan="3" width="20%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_bank;?>	</td>
+                                <td colspan="3" width="15%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_account; ?>	</td>   
+                                <td colspan="2" width="10%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_currency; ?>	</td>   
+                                <td colspan="6" width="20%" class="kolom"><font size="1"><center> <?php echo number_format($gvendor->nominal,0,",","."); ?></td>															
 															
 															</tr>
 															<?php } }?>
@@ -337,21 +336,20 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
+																<th colspan="6">
+                                  <td><center><font size="1">Total</td>
+                                  <td> </td>
+                                </th>
 																<th>
-																  <div class="col-md-10"><span class="col-md-5" style="text-align:end"><font size="1">Total</span></div>
-                                </th>
-																<th colspan="5">
-                                  <label class="control-label col-md-1" id="lblcur1" ><font size="1"><?php echo $row->currency; ?></label>
-                                  <label class="control-label col-md-3" id="lbltotalvendor"><font size="1"><?php echo $row->label2; ?></label>
+                                  <td><center><font size="1"><?php echo $row->currency; ?></label></td>
+                                  <td><center><font size="1"><?php echo $row->currency2; ?></label></td>
+                                  <td><center><font size="1"><?php echo $row->currency3; ?></label></td>
                                 </th> 
-                                <th colspan="3"> 
-                                  <label class="control-label col-md-2" id="lblcur2" ><font size="1"><?php echo $row->currency2; ?></label>
-                                  <label class="control-label col-md-3" id="lbltotalvendor2"><font size="1"><?php echo $row->jumlah2; ?></label>
+                                <th> 
+                                  <td><center><font size="1"><?php echo $row->jumlah2; ?></label></td>
+                                  <td><center><font size="1"><?php echo $row->label2; ?></label></td>
+                                  <td><center><font size="1"><?php echo $row->jumlah3; ?></label></td>
                                 </th>
-                                <th colspan="3">
-                                  <label class="control-label col-md-3" id="lblcur3" ><font size="1"><?php echo $row->currency3; ?></label>
-                                  <label class="control-label col-md-3" id="lbltotalvendor3"><font size="1"><?php echo $row->jumlah3; ?></label>
-																</th>
 															</tr>
 														  </tfoot>
 														</table>

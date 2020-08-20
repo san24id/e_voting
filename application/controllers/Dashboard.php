@@ -1159,6 +1159,7 @@ class Dashboard extends CI_Controller {
 		$data['vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['persen'] = $this->Dashboard_model->getTarif();
 		$data['getnpwp'] = $this->Dashboard_model->getDataNPWP($id_payment);
+		$data['getallnpwp'] = $this->Dashboard_model->getAllDataNPWP();
 		$data['getdatatax'] = $this->Dashboard_model->getDataTax($id_payment);
 		$data['getdatanontax'] = $this->Dashboard_model->getDataNonTax($id_payment);
 		$data['getnouruttax'] = $this->Dashboard_model->getUrutTax($id_payment);
@@ -2616,7 +2617,7 @@ class Dashboard extends CI_Controller {
 				'jenis_pajak' => $this->input->post('vjnspjk'),
 				'kode_pajak' => $this->input->post('vkdpjk'),
 				'kode_map' => $this->input->post('selKdMap'),
-				'nama' => $this->input->post('txtnamanpwp'),
+				'nama' => $this->input->post('txtnamanpwp_old'),
 				'npwp' => $this->input->post('txtnonpwp'),
 				'alamat' => $this->input->post('txtalamat'),
 				'tarif' => $this->input->post('vtarif'),
@@ -2629,7 +2630,8 @@ class Dashboard extends CI_Controller {
 				'masa_pajak' => $this->input->post('selmasappn'),
 				'keterangan' => $this->input->post('txtketerangan'),
 				'tahun' => $this->input->post('seltahunppn'),
-				'no_urut' => $this->input->post('txtnourut')
+				'no_urut' => $this->input->post('txtnourut'),
+				'id_honor' => $this->input->post('txtnamanpwp')
 			);
 		$insert = $this->Dashboard_model->drafttax_add($data);
 		$data = $this->Dashboard_model->getDataTax($id);
@@ -2880,7 +2882,7 @@ class Dashboard extends CI_Controller {
 				'jenis_pajak' => $this->input->post('vjnspjk'),
 				'kode_pajak' => $this->input->post('vkdpjk'),
 				'kode_map' => $this->input->post('selKdMap'),
-				'nama' => $this->input->post('txtnamanpwp'),
+				'nama' => $this->input->post('txtnamanpwp_old'),
 				'npwp' => $this->input->post('txtnonpwp'),
 				'alamat' => $this->input->post('txtalamat'),
 				'tarif' => $this->input->post('vtarif'),
@@ -2893,7 +2895,8 @@ class Dashboard extends CI_Controller {
 				'masa_pajak' => $this->input->post('selmasappn'),
 				'keterangan' => $this->input->post('txtketerangan'),
 				'tahun' => $this->input->post('seltahunppn'),
-				'no_urut' => $this->input->post('txtnourut')
+				'no_urut' => $this->input->post('txtnourut'),
+				'id_honor' => $this->input->post('txtnamanpwp')				
 			);
 		
 		
@@ -3405,6 +3408,12 @@ class Dashboard extends CI_Controller {
 	public function getdetilarf($id)
 	{
 		$data = $this->Home_model->getdetilarf(urldecode($id));
+		echo json_encode($data);
+	}
+	
+	public function getdetilnpwpbyvendor($id_honor)
+	{
+		$data= $this->Dashboard_model->getdetilnpwpbyhonor($id_honor);
 		echo json_encode($data);
 	}
 
