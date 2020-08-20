@@ -135,19 +135,19 @@
                         }else if($row->status == 3){
                           echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
                         }else if($row->status == 4){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "<img src='assets/dashboard/images/legend/processing.png'> Processing On Tax";
                         }else if($row->status == 5){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "<img src='assets/dashboard/images/legend/processing.png'> Processing On Finance";
                         }else if($row->status == 6){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "<img src='assets/dashboard/images/legend/processing.png'> Waiting For Review";
                         }else if($row->status == 7){
-                          echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                          echo "<img src='assets/dashboard/images/legend/processing.png'> Waiting For Verification";
                         }else if($row->status == 8){
-                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                          echo "<img src='assets/dashboard/images/legend/verified.png'> Waiting For Approval";
                         }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                          echo "<img src='assets/dashboard/images/legend/approved.png'> Waiting For Payment"; 
                         }else if($row->status == 10){
-                          echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                          echo "<img src='assets/dashboard/images/legend/paid1.png'> Paid"; 
                         }
                       ?>
                     </p>
@@ -191,20 +191,27 @@
                     </td>
                   </tr>  
                   <tr>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled> NDE50</input><br>                            
-                  </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      &nbsp; &nbsp; <input type="checkbox" id="chkNDE50" name="chkNDE50" <?php echo $nde50; ?>  disabled> NDE50</input><br>                            
+                    </td>
                   </tr> 
                   <tr>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled> PARTNDE</input><br>                            
-                  </td>
-                  <td><font size="3">Rp</font></td>
-                  <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='<?php echo $nilai; ?>' disabled></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      &nbsp; &nbsp; <input type="checkbox" id="chkPARTNDE" name="chkPARTNDE" <?php echo $part; ?>  disabled> PARTNDE</input><br>                            
+                    </td>
+                    <td><font size="3">Rp</font></td>
+                    <td><input type="text" class="form-control" id="nilai" name="nilai" placeholder="Enter Text" value='<?php echo $nilai; ?>' disabled></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td width="5%">Keterangan</td>
+                    <td colspan="2"><textarea rows="2" cols="50" type="text" class="form-control" id="partndedesc" <?php echo $disablednilai; ?> readonly></textarea></td>
                   </tr>
               </table>
               <br>

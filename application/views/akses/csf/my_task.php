@@ -166,11 +166,11 @@
                           }else if($row->status == 6){
                             echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
                           }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
+                              echo "<img src='assets/dashboard/images/legend/icon_checklist.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/icon_checklist.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_user.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/icon_user.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid2.png'>"; 
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }
