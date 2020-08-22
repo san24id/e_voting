@@ -2255,7 +2255,6 @@ class Dashboard extends CI_Controller {
 
 	}
 
-	
 	function updpay(){
 		$c_jp = count($_POST['type']);
 		$type = "";
@@ -2268,6 +2267,7 @@ class Dashboard extends CI_Controller {
 			'id' => $_POST['id'],
 			'status' => $_POST['status'],
 			'nomor_surat' => $_POST['nomor_surat'],
+			'verified_date' => $_POST['verified_date'],
 			'handled_by' => $_POST['handled_by'],
 
 		);

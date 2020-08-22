@@ -443,16 +443,22 @@
                     <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                          $query = $this->db->query($sql)->result();
-                          // return $query;
-                          // var_dump($query[0]->nama);exit; 
-                          if ($query[0]->nama) { $buka = $query[0]->nama;
-                          }else{
-                            $buka = $row->penerima;
-                          }
-                        ?>
+                      <?php 
+                          //$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                            $sql = "SELECT count(*) ttlvendor FROM t_vendor WHERE id_payment='$row->id_payment'";
+                            $query = $this->db->query($sql)->result();
+                        if ($query[0]->ttlvendor=="1") { 
+                          $buka = $row->penerima;
+                                      }else{
+                                        $buka = $row->penerima ." ,.......";
+                                      }
+                        // return $query;
+                                      // var_dump($query[0]->nama);exit; 
+                                      /*if ($query[0]->nama) { $buka = $query[0]->nama;
+                                      }else{
+                                        $buka = $row->penerima;
+                                      }*/
+                      ?>  
                     <td><?php echo $buka; ?></td>
                     <td><?php echo $row->submit_date; ?></td>
                     <td>

@@ -1088,10 +1088,11 @@ class Dashboard_model extends CI_Model{
     }
 
     function updpay($upd){
-        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`nomor_surat`='".$upd['nomor_surat']."',
+        $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`handled_by`='".$upd['handled_by']."',`nomor_surat`='".$upd['nomor_surat']."',`verified_date`='".$upd['verified_date']."',
                 `rejected_by`='".$upd['rejected_by']."',`rejected_date`='".$upd['rejected_date']."',`note`='".$upd['note']."' WHERE `id`='".$upd['id']."'"; 
         
         $query = $this->db->query($sql);
+        // var_dump($sql);exit;
 
         return $query;
     }

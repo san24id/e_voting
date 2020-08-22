@@ -417,16 +417,22 @@
 															<?php } //number_format($nominal,0,",",".")
 																if($totvendor1<0){
 																	$strtotvendor1="(" .number_format(substr(strval($totvendor1),1,strlen(strval($totvendor1))-1),0,",","."). ")"; 
+																}else if($totvendor1==0){
+																	$strtotvendor1=""; 
 																}else{
 																	$strtotvendor1=strval(number_format($totvendor1,0,",",".")); 
 																}
 																if($totvendor2<0){
 																	$strtotvendor2="(" .number_format(substr(strval($totvendor2),1,strlen(strval($totvendor2))-1),0,",","."). ")";
+																}else if($totvendor2==0){
+																	$strtotvendor2=""; 
 																}else{
 																	$strtotvendor2=strval(number_format($totvendor2,0,",","."));  
 																}
 																if($totvendor3<0){
 																	$strtotvendor3="(" .number_format(substr(strval($totvendor3),1,strlen(strval($totvendor3))-1),0,",","."). ")"; 
+																}else if($totvendor3==0){
+																	$strtotvendor3=""; 
 																}else{
 																	$strtotvendor3=strval(number_format($totvendor3,0,",",".")); ; 
 																}

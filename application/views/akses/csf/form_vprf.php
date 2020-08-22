@@ -356,7 +356,7 @@ td[rowspan="6"] {
                         </div>
                     <?php } ?>
                    
-                    <?php if($get->status == 6){ ?>  
+                    <?php if($get->status == 6 && $this->session->userdata("username") == "i.akmal"){ ?>  
                       <?php if ($get->currency4 == "" && $get->currency8 == "") { ?>                                  
                           <a href="Dashboard/form_eprf/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a>
                         <?php } else if ($get->currency4 != "" || $get->currency8 != ""){ ?>
@@ -457,41 +457,39 @@ td[rowspan="6"] {
                       </div>   
                     <?php } ?>
 
-                    <?php if($get->status == 7){ ?>  
+                    <?php if($get->status == 7 && $this->session->userdata("username") == "h.harlina"){ ?>  
                         <?php if ($get->currency4 == "" && $get->currency8 == "") { ?>                                  
                           <a href="Dashboard/form_eprf/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a>
                         <?php } else if ($get->currency4 != "" || $get->currency8 != ""){ ?>
                           <a href="Dashboard/form_eprf2/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a> 
                         <?php } ?>
-                    <?php if($get->verified_date == NULL){ ?>  
-
-                    <?php }else{ ?>
-                      <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Proceed For Approval</button>
-                      <!--Modal SendApproval-->
-                      <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-xl" role="document">
-                          <div class="modal-content"> 
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <h3 class="modal-title">Message Box</h3>
-                            </div>                                       
-                            <div class="modal-body">
-                            <form id="processed1" method="post" action="dashboard/updpay">
-                              <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                              <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
-                              <input type="hidden" name="status" value="8">
-                              <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
-                              <label>Kepada Approval? </label>                        
-                            </div>
-                            <div class="modal-footer">                        
-                                <button type="submit" class="btn btn-success bye">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </form>
-                            </div>
+                    
+                    <button type="submit" data-toggle="modal" data-target="#verificator<?php echo $get->id; ?>" class="btn btn-success">Proceed For Approval</button>
+                    <!--Modal SendApproval-->
+                    <div class="modal fade" id="verificator<?php echo $get->id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content"> 
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title">Message Box</h3>
+                          </div>                                       
+                          <div class="modal-body">
+                          <form id="processed1" method="post" action="dashboard/updpay">
+                            <input type="hidden" name="id" value="<?php echo $get->id; ?>">
+                            <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
+                            <input type="hidden" name="status" value="8">
+                            <input type="hidden" name="verified_date" value="<?php echo date('d-M-Y'); ?>">
+                            <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                            <label>Kepada Approval? </label>                        
+                          </div>
+                          <div class="modal-footer">                        
+                              <button type="submit" class="btn btn-success bye">Yes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </form>
                           </div>
                         </div>
                       </div>
-                    <?php } ?>
+                    </div>
                     
                     <button type="submit" data-toggle="modal" data-target="#rejectreq<?php echo $get->id; ?>" class="btn btn-danger">Rejected to Requestor</button>
                     <!---Modal RejectRequestor-->
