@@ -24,18 +24,33 @@
 								<div class="form-group">
 									<label class="col-md-1">Criteria</label>
 									<div class="col-md-2">
-										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+                    <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Tanggal </option>
+											<option value='1'> Status </option>
 											<!-- <option value='2'> Jenis Pembayaran </option> -->
-											<option value='3'> Nomor Surat </option>
+											<!-- <option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
-											<option value='5'> Penerima </option>
+											<option value='5'> Penerima </option> -->
 										</select>
 									</div> 	
-									<div class="col-md-6">
-										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
-									</div>		
+									<div class="col-md-3">
+										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+										<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='0'> Draft </option>
+											<option value='1'> Draft Print </option>
+											<option value='2'> Submitted </option>
+											<option value='4'> Processing</option>
+											<option value='8'> Verified </option>
+											<option value='9'> Approved </option>
+											<option value='10'> Paid </option>
+										</select>
+                    
+										<select class="form-control" id="selblank" name="selblank"  >
+											<option value=''>== Pilih ==</option>
+										</select>
+
+                  </div> 		
 										
 									<div class="col-md-3">
 								<!-- <div class="form-group">
@@ -235,12 +250,30 @@ $(function () {
     });
   });
 
+$(document).ready(function() { 
+  $('#selsearch').change(function() {
+    if( $(this).val() == '1') {
+      $('#selblank').css("display", "none");
+      $('#selstatus').css("display", "block");
+      $('#seljnspembayaran').css("display", "none");
+    } else if( $(this).val() == '2'){   
+    $('#selblank').css("display", "none");
+    $('#selstatus').css("display", "none");
+    $('#seljnspembayaran').css("display", "block");
+    }else{
+    $('#selblank').css("display", "block");
+    $('#selstatus').css("display", "none");
+    $('#seljnspembayaran').css("display", "none");
+    }
+  })
+  
+});
 </script>
 
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('dashboard/caridatadashboard') ?>";
+	  url = "<?php echo base_url('home/caridataCR') ?>";
       $.ajax({
             url : url,
             type: "POST",

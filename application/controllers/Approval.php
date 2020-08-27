@@ -353,7 +353,7 @@ class Approval extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/report/export_ar', $data);
+		$this->load->view('akses/approval/export_ar', $data);
 
 	}
 
@@ -368,7 +368,7 @@ class Approval extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/report/export_asr', $data);
+		$this->load->view('akses/approval/export_asr', $data);
 
 	}
 
@@ -386,7 +386,7 @@ class Approval extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/report/export_dp', $data);
+		$this->load->view('akses/approval/export_dp', $data);
 
 	}
 
@@ -404,7 +404,7 @@ class Approval extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/report/export_dr', $data);
+		$this->load->view('akses/approval/export_dr', $data);
 
 	}
 
@@ -422,7 +422,7 @@ class Approval extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/report/export_op', $data);
+		$this->load->view('akses/approval/export_op', $data);
 
 	}
 
@@ -441,7 +441,7 @@ class Approval extends CI_Controller {
 		$data['surat'] = $this->Home_model->buat_kode();
 
 		$this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/report/export_cr', $data);
+		$this->load->view('akses/approval/export_cr', $data);
 
 	}
 	
@@ -1064,6 +1064,86 @@ class Approval extends CI_Controller {
 		$this->Dashboard_model->updateaccept($upd);
 
 		redirect('Approval');
+	}
+
+	public function caridataAR()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			// $jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->getdatabyAR($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridataASR()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			// $jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->getdatabyASR($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridataPR()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			// $jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->getdatabyPR($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridataCR()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			// $jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->getdatabyCR($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridataOP()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->getdatabysearch($profileid,$txtsearch);
+			echo json_encode($data);
 	}
 
 	public function caridatadashboard()

@@ -8,6 +8,69 @@
     </section>
 
     <section class="content">
+    <div class="box box-default">
+			<div class="box-header with-border">
+				<!-- <h3 class="box-title">Pencarian</h3> -->
+				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
+        <a href="home/export_asr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
+				
+			</div>
+			<!-- /.box-header -->
+			<div id="cari" class="collapse">
+				<div class="box-body">
+					<div class="row">
+						<form id="formCari">		
+							<div class="col-md-12">
+								<div class="form-group">
+									<label class="col-md-1">Criteria</label>
+									<div class="col-md-2">
+                    <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+											<option value='0'>== Pilih ==</option>
+											<option value='1'> Status </option>
+											<!-- <option value='2'> Jenis Pembayaran </option> -->
+											<!-- <option value='3'> Nomor Surat </option>
+											<option value='4'> Pemohon </option>
+											<option value='5'> Penerima </option> -->
+										</select>
+									</div> 	
+									<div class="col-md-3">
+										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+										<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='0'> Draft </option>
+											<option value='1'> Draft Print </option>
+											<option value='2'> Submitted </option>
+											<option value='4'> Processing</option>
+											<option value='8'> Verified </option>
+											<option value='9'> Approved </option>
+											<option value='10'> Paid </option>
+										</select>
+                    
+										<select class="form-control" id="selblank" name="selblank"  >
+											<option value=''>== Pilih ==</option>
+										</select>
+
+                  </div> 		
+										
+									<div class="col-md-3">
+								<!-- <div class="form-group">
+									<label>&nbsp;</label>      -->        
+									<span class="input-group-btn">
+										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+									</span>   
+
+								<!-- </div> -->
+								<!-- /.form-group -->
+							</div>
+								</div>     
+								
+							</div>
+						</form>
+						<!-- /.col -->
+					 </div>
+				  <!-- /.row -->
+				</div>
+			</div>
       <!-- Info boxes -->
       <div class="row">
         <div class="col-xs-12">
@@ -25,10 +88,10 @@
                   <th>Tanggal</th>
                   <th>Jenis Pembayaran</th>
                   <th>Nomor Surat</th>
-                  <th>Description</th>
+                  <th>Deskripsi</th>
                   <th>Pemohon</th>
                   <th>Bank Account</th>
-                  <th>Nama Penerima</th>
+                  <th>Penerima Pembayaran</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -36,7 +99,7 @@
                   <?php 
                     $i = 1;
                     foreach ($settlement as $row){
-                      $test1 = $row->dsc;                        
+                      $test1 = $row->jenis_pembayaran;                        
                       $test2 = explode(";", $test1);
                       $test3 = count($test2);                        
                   ?>
@@ -71,7 +134,7 @@
                           }   
                         ?></center>
                   </td>
-                  <td><?php echo $row->tanggal; ?></td>
+                  <td><?php echo $row->tanggal_new; ?></td>
                   <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -95,7 +158,8 @@
                       ?>
                   <td><?php echo $buka; ?></td>
                   <td>
-                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    
+                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -186,6 +250,110 @@ $(function () {
     });
   });
 
+$(document).ready(function() { 
+  $('#selsearch').change(function() {
+    if( $(this).val() == '1') {
+      $('#selblank').css("display", "none");
+      $('#selstatus').css("display", "block");
+      $('#seljnspembayaran').css("display", "none");
+    } else if( $(this).val() == '2'){   
+    $('#selblank').css("display", "none");
+    $('#selstatus').css("display", "none");
+    $('#seljnspembayaran').css("display", "block");
+    }else{
+    $('#selblank').css("display", "block");
+    $('#selstatus').css("display", "none");
+    $('#seljnspembayaran').css("display", "none");
+    }
+  })
+  
+});
+</script>
+
+<script type="text/javascript"> 
+ function caridata()
+    {
+	  url = "<?php echo base_url('Approval/caridataASR') ?>";
+      $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#formCari').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data);
+			    var status; 
+				var istatus;
+				var ino=1;
+				var tbl1 = $('#example1').DataTable(); 
+				tbl1.clear().draw();
+                $.each(data, function(key, item) 
+                      {       
+					    status =  item.status;
+						switch(status) {
+						  case "0":
+							istatus ='<img src="assets/dashboard/images/legend/draft.png">';  
+							break;
+						  case "1":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+						  case "11":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+                          case "2":
+							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
+							break;
+                          case "3":
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
+							break;
+                          case "4":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "5":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "6":
+							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "7":
+							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							break;
+                          case "8":
+							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							break;
+                          case "9":
+							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							break; 
+                          case "10":
+							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
+							break;  
+						  default:
+							istatus = '';
+						}
+						
+						tbl1.row.add( [
+						  ino,
+						  istatus,
+              item.tanggal,
+						  item.jenis_pembayaran,
+						  item.nomor_surat,
+						  item.label1,
+						  item.display_name,
+						  item.penerima,
+						  item.submit_date,
+						  '<a href="home/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+                        ] ).draw(false);
+						ino++; 
+                })  
+            },
+            error: function (data)
+            {
+              console.log(data);
+                alert('Error get data');
+            }
+        });
+    }
+	
 </script>
 </body>
 </html>

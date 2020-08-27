@@ -913,4 +913,414 @@ class Home_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
+
+    public function getdatabyAR($profileid,$txtsearch)
+	{
+		$filter = $this->session->userdata("filter");
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.jenis_pembayaran = '2'";
+		
+		switch ($filter) {
+			  case "1":
+				$sql .=" ";
+				break;
+			  case "2":
+				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				break;
+			  case "3":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "4":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) >= curdate()  ";
+				break;
+			  case "5":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;
+			  /*case "6":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;*/
+			  case "7":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "8":
+				$sql .=" and a.status ='1' ";
+				break;
+			  case "9":
+				$sql .=" and a.status ='2' ";
+				break;
+			  case "10":
+				$sql .=" and a.status in ('4','5','6','7') ";
+				break;
+			  case "11":
+				$sql .=" and a.status ='8' ";
+				break;
+			  case "12":
+				$sql .=" and a.status ='9' ";
+				break;
+			  case "13":
+				$sql .=" and a.status ='10' ";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+			
+		switch ($profileid) {
+			  case "1":
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7')";
+				}else{
+					$sql .=" and a.status = '" . $txtsearch . "'";
+				}
+				
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+				break;
+			  /*case "3":
+				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+				break;
+			  case "4":
+				$sql .=" and a.display_name like '%" . $txtsearch . "%'";
+				break;
+			  case "5":
+				$sql .=" and a.penerima like '%" . $txtsearch . "%'";
+				break;*/
+			  default:
+				$sql .=" ";
+				
+			}
+			
+        $query=$this->db->query($sql);
+		return $query->result();
+    }
+    
+    public function getdatabyASR($profileid,$txtsearch)
+	{
+		$filter = $this->session->userdata("filter");
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.jenis_pembayaran = '3'";
+		
+		switch ($filter) {
+			  case "1":
+				$sql .=" ";
+				break;
+			  case "2":
+				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				break;
+			  case "3":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "4":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) >= curdate()  ";
+				break;
+			  case "5":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;
+			  /*case "6":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;*/
+			  case "7":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "8":
+				$sql .=" and a.status ='1' ";
+				break;
+			  case "9":
+				$sql .=" and a.status ='2' ";
+				break;
+			  case "10":
+				$sql .=" and a.status in ('4','5','6','7') ";
+				break;
+			  case "11":
+				$sql .=" and a.status ='8' ";
+				break;
+			  case "12":
+				$sql .=" and a.status ='9' ";
+				break;
+			  case "13":
+				$sql .=" and a.status ='10' ";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+			
+		switch ($profileid) {
+			  case "1":
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7')";
+				}else{
+					$sql .=" and a.status = '" . $txtsearch . "'";
+				}
+				
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+				break;
+			  /*case "3":
+				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+				break;
+			  case "4":
+				$sql .=" and a.display_name like '%" . $txtsearch . "%'";
+				break;
+			  case "5":
+				$sql .=" and a.penerima like '%" . $txtsearch . "%'";
+				break;*/
+			  default:
+				$sql .=" ";
+				
+			}
+			
+        $query=$this->db->query($sql);
+		return $query->result();
+    }
+    
+    public function getdatabyPR($profileid,$txtsearch)
+	{
+		$filter = $this->session->userdata("filter");
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.jenis_pembayaran = '4'";
+		
+		switch ($filter) {
+			  case "1":
+				$sql .=" ";
+				break;
+			  case "2":
+				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				break;
+			  case "3":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "4":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) >= curdate()  ";
+				break;
+			  case "5":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;
+			  /*case "6":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;*/
+			  case "7":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "8":
+				$sql .=" and a.status ='1' ";
+				break;
+			  case "9":
+				$sql .=" and a.status ='2' ";
+				break;
+			  case "10":
+				$sql .=" and a.status in ('4','5','6','7') ";
+				break;
+			  case "11":
+				$sql .=" and a.status ='8' ";
+				break;
+			  case "12":
+				$sql .=" and a.status ='9' ";
+				break;
+			  case "13":
+				$sql .=" and a.status ='10' ";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+			
+		switch ($profileid) {
+			  case "1":
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7')";
+				}else{
+					$sql .=" and a.status = '" . $txtsearch . "'";
+				}
+				
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+				break;
+			  /*case "3":
+				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+				break;
+			  case "4":
+				$sql .=" and a.display_name like '%" . $txtsearch . "%'";
+				break;
+			  case "5":
+				$sql .=" and a.penerima like '%" . $txtsearch . "%'";
+				break;*/
+			  default:
+				$sql .=" ";
+				
+			}
+			
+        $query=$this->db->query($sql);
+		return $query->result();
+    }
+    
+    public function getdatabyCR($profileid,$txtsearch)
+	{
+		$filter = $this->session->userdata("filter");
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.jenis_pembayaran = '5'";
+		
+		switch ($filter) {
+			  case "1":
+				$sql .=" ";
+				break;
+			  case "2":
+				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				break;
+			  case "3":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "4":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) >= curdate()  ";
+				break;
+			  case "5":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;
+			  /*case "6":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;*/
+			  case "7":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "8":
+				$sql .=" and a.status ='1' ";
+				break;
+			  case "9":
+				$sql .=" and a.status ='2' ";
+				break;
+			  case "10":
+				$sql .=" and a.status in ('4','5','6','7') ";
+				break;
+			  case "11":
+				$sql .=" and a.status ='8' ";
+				break;
+			  case "12":
+				$sql .=" and a.status ='9' ";
+				break;
+			  case "13":
+				$sql .=" and a.status ='10' ";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+			
+		switch ($profileid) {
+			  case "1":
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7')";
+				}else{
+					$sql .=" and a.status = '" . $txtsearch . "'";
+				}
+				
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+				break;
+			  /*case "3":
+				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+				break;
+			  case "4":
+				$sql .=" and a.display_name like '%" . $txtsearch . "%'";
+				break;
+			  case "5":
+				$sql .=" and a.penerima like '%" . $txtsearch . "%'";
+				break;*/
+			  default:
+				$sql .=" ";
+				
+			}
+			
+        $query=$this->db->query($sql);
+		return $query->result();
+    }
+    
+    public function getdatabysearch($profileid,$txtsearch)
+	{
+		$filter = $this->session->userdata("filter");
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.status in ('4','5','6','7')";
+		
+		switch ($filter) {
+			  case "1":
+				$sql .=" ";
+				break;
+			  case "2":
+				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				break;
+			  case "3":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "4":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) >= curdate()  ";
+				break;
+			  case "5":
+				$sql .=" and a.jenis_pembayaran in ('2','3') and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;
+			  /*case "6":
+				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
+				break;*/
+			  case "7":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "8":
+				$sql .=" and a.status ='1' ";
+				break;
+			  case "9":
+				$sql .=" and a.status ='2' ";
+				break;
+			  case "10":
+				$sql .=" and a.status in ('4','5','6','7') ";
+				break;
+			  case "11":
+				$sql .=" and a.status ='8' ";
+				break;
+			  case "12":
+				$sql .=" and a.status ='9' ";
+				break;
+			  case "13":
+				$sql .=" and a.status ='10' ";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+			
+		switch ($profileid) {
+			  case "1":
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7')";
+				}else{
+					$sql .=" and a.status = '" . $txtsearch . "'";
+				}
+				
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+				break;
+			  /*case "3":
+				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+				break;
+			  case "4":
+				$sql .=" and a.display_name like '%" . $txtsearch . "%'";
+				break;
+			  case "5":
+				$sql .=" and a.penerima like '%" . $txtsearch . "%'";
+				break;*/
+			  default:
+				$sql .=" ";
+				
+			}
+			
+        $query=$this->db->query($sql);
+		return $query->result();
+	}
 }
