@@ -1151,7 +1151,7 @@ class Dashboard_model extends CI_Model{
     }
 	
 	public function getdetilnpwpbyhonor($id) {
-        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat,dpp_kumulatif FROM m_honorarium_konsultan m WHERE id_honor=".$id;
+        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat,m.dpp_kumulatif FROM m_honorarium_konsultan m WHERE id_honor=".$id;
         $query = $this->db->query($sql)->result();
         return $query;
     }
