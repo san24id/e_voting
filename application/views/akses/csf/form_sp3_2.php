@@ -1054,6 +1054,8 @@ function edit_tax(id)
 			}
 			$('[name="txtdpp"]').val(data[0].dpp);
 			$('[name="txtdppgross"]').val(data[0].dpp_gross);	
+			$('[name="txtdpp_old"]').val(data[0].dpp);
+			$('[name="txtdppgross_old"]').val(data[0].dpp_gross);	
 			$('#selmasappn').val(data[0].masa_pajak).change();
 			$('#seltahunppn').val(data[0].tahun).change();		
 			$('[name="txtketerangan"]').val(data[0].keterangan);	
@@ -1393,7 +1395,8 @@ $('#txtnamanpwp').select2();
 			{
 				$("#txtnonpwp").val(data[0].npwp);
 				$("#txtnamanpwp_old").val(data[0].nama);
-				$("#txtalamat").val(data[0].alamat);  
+				$("#txtalamat").val(data[0].alamat); 
+				$("#txtdppkumulatif").val(formatRupiah(data[0].dpp_kumulatif)); 
 			},
 			error: function (data)
 			{
@@ -1953,6 +1956,11 @@ function PajakTerhutang(){
 									</select>
 								</div>
 								
+								<label class="control-label col-md-2">DPP Kumulatif</label>								
+								<div id="divdppkumulatif" class="col-md-3" style="display:block;">
+									<input name="txtdppkumulatif" id="txtdppkumulatif"  class="form-control" type="text" readonly />
+								</div>
+								
 						</div>
 						
 						<div class="form-group">
@@ -1975,14 +1983,16 @@ function PajakTerhutang(){
 						<div class="form-group">
 								<label class="control-label col-md-3">DPP</label>
 								<div class="col-md-9">
-								  <input name="txtdpp" id="txtdpp" onkeyup="PajakTerhutang()" placeholder="DPP Kumulatif" value='0' class="form-control" type="text">
+								  <input name="txtdpp" id="txtdpp" onkeyup="PajakTerhutang()" placeholder="Amount (Before Gross Up)" value='0' class="form-control" type="text">
+								  <input name="txtdpp_old" id="txtdpp_old" type="hidden">
 								</div>
 						</div>
 						
 						<div class="form-group">
 								<label class="control-label col-md-3">DPP (Gross Up)</label>
 								<div class="col-md-9">
-								  <input name="txtdppgross" id="txtdppgross"  placeholder="DPP Kumulatif (Gross Up)" value='0' class="form-control" type="text">
+								  <input name="txtdppgross" id="txtdppgross"  placeholder="Amount (Gross Up)" value='0' class="form-control" type="text">
+								  <input name="txtdppgross_old" id="txtdppgross_old" type="hidden">
 								</div>
 						</div>
 						

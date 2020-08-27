@@ -2605,6 +2605,7 @@ class Dashboard extends CI_Controller {
 	public function savetaxdraft()
 	{
 		$id = $this->input->post('id_payment');
+				
 		$data = array(
 				'id_payment' => $this->input->post('id_payment'),
 				'status' => 999,
@@ -2634,6 +2635,23 @@ class Dashboard extends CI_Controller {
 				'id_honor' => $this->input->post('txtnamanpwp')
 			);
 		$insert = $this->Dashboard_model->drafttax_add($data);
+		
+		$jnspjk = $this->input->post('vjnspjk');
+		if(trim($jnspjk) == 'PPh Pasal 21') {
+			$dppkumulatif=floatval($this->input->post('txtdppkumulatif'));
+			$amountnett=floatval($this->input->post('txtdpp'));
+			$amountgross=floatval($this->input->post('txtdppgross'));
+			if($amountgross>$amountnett){
+				$dppkumulatif=$dppkumulatif+$amountgross;
+			}else{
+				$dppkumulatif=$dppkumulatif+$amountnett;
+			}
+			$dataH = array(
+				'dpp_kumulatif' => $dppkumulatif
+			);
+			$this->Dashboard_model->dppkumulatif_update('m_honorarium_konsultan',array('id_honor' => $this->input->post('txtnamanpwp')), $dataH);	
+		}
+		
 		$data = $this->Dashboard_model->getDataTax($id);
 		//echo json_encode(array("status" => TRUE));
 		echo json_encode($data);
@@ -2664,7 +2682,33 @@ class Dashboard extends CI_Controller {
 	public function delete_tax()
 	{
 		$id_payment=$this->input->post('id_payment');		
-		$id_tax=$this->input->post('id_tax');	
+		$id_tax=$this->input->post('id_tax');
+		
+		$dppnett = 0; 
+		$dppgross = 0; 
+		$dppkumulatif=0;		
+		$jnspjk="";
+		$cek_id_tax=$this->Dashboard_model->gettaxfordelete($id_tax);
+		if($cek_id_tax->num_rows() > 0){
+            foreach ($cek_id_tax->result() as $row) {
+           		$dppnett = floatval($row->dpp); 
+				$dppgross = floatval($row->dppgross);
+				$jnspjk = $row->jenis_pajak;
+				$dppkumulatif = floatval($row->dpp_kumulatif);
+				$id_honor=floatval($row->id_honor);
+			}
+			if(trim($jnspjk)=="PPh Pasal 21"){
+				if($dppgross>$dppnett){
+					$dppkumulatif=$dppkumulatif-$amountgross;
+				}else{
+					$dppkumulatif=$dppkumulatif-$amountnett;
+				}
+				$dataH = array(
+					'dpp_kumulatif' => $dppkumulatif
+				);
+				$this->Dashboard_model->dppkumulatif_update('m_honorarium_konsultan',array('id_honor' => $id_honor), $dataH);
+			}
+        }
 		
 		$this->Dashboard_model->delete_tax($id_tax);
 		$data = $this->Dashboard_model->getDataTax($id_payment);
@@ -2909,6 +2953,30 @@ class Dashboard extends CI_Controller {
 		
 		$this->Dashboard_model->tax_update('t_tax',array('id_tax' => $idtax), $data);		
 		$this->Dashboard_model->tax_update('t_tax',array('id_payment' => $id), $dataH);
+		
+		$jnspjk = $this->input->post('vjnspjk');
+		if(trim($jnspjk) == 'PPh Pasal 21') {
+			$dppkumulatif=floatval($this->input->post('txtdppkumulatif'));
+			$amountnett_old=floatval($this->input->post('txtdpp_old'));
+			$amountgross_old=floatval($this->input->post('txtdppgross_old'));
+			if($amountgross_old>$amountnett_old){
+				$dppkumulatif=$dppkumulatif-$amountgross_old;
+			}else{
+				$dppkumulatif=$dppkumulatif+$amountnett_old;
+			}
+			$amountnett=floatval($this->input->post('txtdpp'));
+			$amountgross=floatval($this->input->post('txtdppgross'));
+			if($amountgross>$amountnett){
+				$dppkumulatif=$dppkumulatif+$amountgross;
+			}else{
+				$dppkumulatif=$dppkumulatif+$amountnett;
+			}
+			$dataH = array(
+				'dpp_kumulatif' => $dppkumulatif
+			);
+			$this->Dashboard_model->dppkumulatif_update('m_honorarium_konsultan',array('id_honor' => $this->input->post('txtnamanpwp')), $dataH);	
+		}
+		
 		$data = $this->Dashboard_model->getDataTax($id);
 		
 		echo json_encode($data);

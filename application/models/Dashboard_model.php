@@ -1151,7 +1151,7 @@ class Dashboard_model extends CI_Model{
     }
 	
 	public function getdetilnpwpbyhonor($id) {
-        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m WHERE id_honor=".$id;
+        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat,dpp_kumulatif FROM m_honorarium_konsultan m WHERE id_honor=".$id;
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -1699,4 +1699,15 @@ class Dashboard_model extends CI_Model{
 		$this->db->insert('t_tax_header', $data);
 		return $this->db->insert_id();
 	}
+	
+	public function dppkumulatif_update($table,$where, $data)
+	{
+		$this->db->update($table, $data, $where);
+		return $this->db->affected_rows();
+	}
+	
+	function gettaxfordelete($idtax){
+        $query=$this->db->query("select a1.dpp,a1.dppgross,a2.dpp_kumulatif,a2.id_honor from t_tax a1, m_honorarium_konsultan a2 where a1.id_honor=a2.id_honor and id_tax='$idtax' ");
+        return $query;
+    }
 }
