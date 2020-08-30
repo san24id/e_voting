@@ -311,7 +311,15 @@ class Dashboard extends CI_Controller {
 		$data['d_vendor'] = 'active';
 		$data['active3'] = '';
 
+		$data['addvendor1'] = $this->Dashboard_model->addvendor1();
+		$data['addvendor2'] = $this->Dashboard_model->addvendor2();
+		$data['addvendor3'] = $this->Dashboard_model->addvendor3();
+		$data['addvendor9'] = $this->Dashboard_model->addvendor9();
 		$data['getVendor'] = $this->Dashboard_model->getVendor();
+		$data['getVendor1'] = $this->Dashboard_model->getVendor1();
+		$data['getVendor2'] = $this->Dashboard_model->getVendor2();
+		$data['getVendor3'] = $this->Dashboard_model->getVendor3();
+		$data['getVendor9'] = $this->Dashboard_model->getVendor9();
 		$data['notif_task'] = $this->Dashboard_model->notifTask();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
@@ -325,6 +333,7 @@ class Dashboard extends CI_Controller {
 		$add = array(
 
 			'id_honor' => $_POST['id_honor'],
+			'kpl_vendor' => $_POST['kpl_vendor'],
 			'kode_vendor' => $_POST['kode_vendor'],
 			'npwp' => $_POST['npwp'],
 			'nama' => $_POST['nama'],

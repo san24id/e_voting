@@ -902,10 +902,72 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function addvendor($add){
-        $sql = "INSERT INTO `m_honorarium_konsultan` (id_honor, kode_vendor, nama, npwp, alamat ) 
+    function addvendor1(){
+        $sql = "SELECT kode_vendor+1 as id_vendor FROM m_honorarium_konsultan WHERE kpl_vendor ='kpl_1' ORDER BY kode_vendor DESC LIMIT 1";
+        
+        $query = $this->db->query($sql)->result();
+        // var_dump($query);exit;
+        return $query;
+    }
 
-                VALUES ('".$add['id_honor']."','".$add['kode_vendor']."','".$add['nama']."','".$add['npwp']."','".$add['alamat']."')";
+    function addvendor2(){
+        $sql = "SELECT kode_vendor+1 as id_vendor FROM m_honorarium_konsultan WHERE kpl_vendor ='kpl_2' ORDER BY kode_vendor DESC LIMIT 1";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function addvendor3(){
+        $sql = "SELECT kode_vendor+1 as id_vendor FROM m_honorarium_konsultan WHERE kpl_vendor ='kpl_3' ORDER BY kode_vendor DESC LIMIT 1";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    function addvendor9(){
+        $sql = "SELECT kode_vendor+1 as id_vendor FROM m_honorarium_konsultan WHERE kpl_vendor ='kpl_9' ORDER BY kode_vendor DESC LIMIT 1";
+        
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+
+    function getVendor1(){
+        $sql = "SELECT * FROM `m_honorarium_konsultan` WHERE kpl_vendor = 'kpl_1' ORDER BY kode_vendor ASC";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function getVendor2(){
+        $sql = "SELECT * FROM `m_honorarium_konsultan` WHERE kpl_vendor = 'kpl_2' ORDER BY kode_vendor ASC";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function getVendor3(){
+        $sql = "SELECT * FROM `m_honorarium_konsultan` WHERE kpl_vendor = 'kpl_3' ORDER BY kode_vendor ASC";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function getVendor9(){
+        $sql = "SELECT * FROM `m_honorarium_konsultan` WHERE kpl_vendor = 'kpl_9' ORDER BY kode_vendor ASC";
+
+        $query = $this->db->query($sql)->result();
+
+        return $query;
+    }
+
+    function addvendor($add){
+        $sql = "INSERT INTO `m_honorarium_konsultan` (id_honor, kpl_vendor,kode_vendor, nama, npwp, alamat ) 
+
+                VALUES ('".$add['id_honor']."','".$add['kpl_vendor']."','".$add['kode_vendor']."','".$add['nama']."','".$add['npwp']."','".$add['alamat']."')";
         
         $query = $this->db->query($sql);
         // var_dump($sql);exit;

@@ -18,41 +18,185 @@
           <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="table-responsive">
-                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambah">Tambah</button>
-                <br><br>
-                <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Kode Vendor</th>
-                  <th>NPWP</th>
-                  <th>Nama</th>
-                  <th>Alamat</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($getVendor as $row){
-                   ?>
-                <tr>
-                  <td><?php echo $i++; ?></td>
-                  <td><?php echo $row->kode_vendor; ?></td>
-                  <td><?php echo $row->npwp; ?></td>
-                  <td><?php echo $row->nama; ?></td>
-                  <td><?php echo $row->alamat; ?></td>
-                  <td>
-                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_honor; ?>">Ubah</button>
-                    <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_honor; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_honor; ?>">Hapus</button>
-                  </td>
-                </tr>
-              <?php } ?>
-              </tbody>
-              </table>
-            </div>
+              <div class="box-header">
+                <div class="col-md-12">
+                <!-- Custom Tabs -->
+                  <div class="nav-tabs-custom">
+                    <ul class="nav nav-pills">
+                      <li class="active"><a class="nav-link active" href="#tab_1" data-toggle="tab"><b>LIST VENDOR 1</b></a></li>
+                      <li><a href="#tab_2" data-toggle="tab"><b>LIST VENDOR 2</b></a></li>
+                      <li><a href="#tab_3" data-toggle="tab"><b>LIST VENDOR 3</b></a></li>
+                      <li><a href="#tab_4" data-toggle="tab"><b>LIST VENDOR 9</b></a></li>
+                      <!-- <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li> -->
+                    </ul>
+                    <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">						  
+                      <div class="modal-body form">	
+                        <div class="box-body">
+                        <div class="table-responsive">
+                          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambah1">Tambah</button>
+                          <br><br>
+                          <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                              <tr>
+                                <th>NO.</th>
+                                <th>Kode Vendor</th>
+                                <th>NPWP</th>
+                                <th>Nama</th>
+                                <th>Alamat</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php 
+                                $i = 1;
+                                foreach ($getVendor1 as $row){
+                              ?>
+                              <tr>
+                                <td><?php echo $i++; ?></td>
+                                <td><?php echo $row->kode_vendor; ?></td>
+                                <td><?php echo $row->npwp; ?></td>
+                                <td><?php echo $row->nama; ?></td>
+                                <td><?php echo $row->alamat; ?></td>
+                                <td>
+                                  <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_honor; ?>">Ubah</button>
+                                  <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_honor; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
+                                  <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_honor; ?>">Hapus</button>
+                                </td>
+                              </tr>
+                              <?php } ?>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="tab_2">                
+                    <div class="modal-body form">
+                      <div class="box-body">
+                      <div class="table-responsive">
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambah2">Tambah</button>
+                        <br><br>
+                        <table id="example2" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>NO.</th>
+                              <th>Kode Vendor</th>
+                              <th>NPWP</th>
+                              <th>Nama</th>
+                              <th>Alamat</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php 
+                              $i = 1;
+                              foreach ($getVendor2 as $row){
+                            ?>
+                            <tr>
+                              <td><?php echo $i++; ?></td>
+                              <td><?php echo $row->kode_vendor; ?></td>
+                              <td><?php echo $row->npwp; ?></td>
+                              <td><?php echo $row->nama; ?></td>
+                              <td><?php echo $row->alamat; ?></td>
+                              <td>
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_honor; ?>">Ubah</button>
+                                <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_honor; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_honor; ?>">Hapus</button>
+                              </td>
+                            </tr>
+                            <?php } ?>
+                          </tbody>
+                        </table>
+                      </div>
+									    </div>
+								    </div>
+							    </div>
+
+                  <div class="tab-pane fade" id="tab_3">                
+                    <div class="modal-body form">
+                      <div class="box-body">
+                      <div class="table-responsive">
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambah3">Tambah</button>
+                        <br><br>
+                        <table id="example3" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>NO.</th>
+                              <th>Kode Vendor</th>
+                              <th>NPWP</th>
+                              <th>Nama</th>
+                              <th>Alamat</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php 
+                              $i = 1;
+                              foreach ($getVendor3 as $row){
+                            ?>
+                            <tr>
+                              <td><?php echo $i++; ?></td>
+                              <td><?php echo $row->kode_vendor; ?></td>
+                              <td><?php echo $row->npwp; ?></td>
+                              <td><?php echo $row->nama; ?></td>
+                              <td><?php echo $row->alamat; ?></td>
+                              <td>
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_honor; ?>">Ubah</button>
+                                <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_honor; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_honor; ?>">Hapus</button>
+                              </td>
+                            </tr>
+                            <?php } ?>
+                          </tbody>
+                        </table>
+                      </div>
+									    </div>
+								    </div>
+							    </div>
+
+                  <div class="tab-pane fade" id="tab_4">                
+                    <div class="modal-body form">
+                      <div class="box-body">
+                      <div class="table-responsive">
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambah4">Tambah</button>
+                        <br><br>
+                        <table id="example4" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>NO.</th>
+                              <th>Kode Vendor</th>
+                              <th>NPWP</th>
+                              <th>Nama</th>
+                              <th>Alamat</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php 
+                              $i = 1;
+                              foreach ($getVendor9 as $row){
+                            ?>
+                            <tr>
+                              <td><?php echo $i++; ?></td>
+                              <td><?php echo $row->kode_vendor; ?></td>
+                              <td><?php echo $row->npwp; ?></td>
+                              <td><?php echo $row->nama; ?></td>
+                              <td><?php echo $row->alamat; ?></td>
+                              <td>
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_honor; ?>">Ubah</button>
+                                <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_honor; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id_honor; ?>">Hapus</button>
+                              </td>
+                            </tr>
+                            <?php } ?>
+                          </tbody>
+                        </table>
+                      </div>
+									    </div>
+								    </div>
+							    </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -108,9 +252,9 @@
 <!-- ./wrapper -->
 
 <!-- Modal -->
-  <div class="modal fade" id="tambah" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+  <div class="modal fade" id="tambah1" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
-    
+      
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -119,12 +263,15 @@
         </div>
         <div class="modal-body">
           <h5>
-            <form id="acc" method="post" action="dashboard/addvendor">
+            <form id="acc1" method="post" action="dashboard/addvendor">
              <table class="table">
                 <tr>
                   <th>Kode Vendor</th>
                   <td>:</td>
-                  <td><input type="text" name="kode_vendor" class="form-control" required></td>
+                  <td>
+                  
+                    <input type="text" name="kode_vendor" class="form-control" value="<?= $addvendor1[0]->id_vendor ?>" readonly></td>
+                  <input type="hidden" name="kpl_vendor" value="kpl_1">
                 </tr>
                 <tr>
                   <th>Nama</th>
@@ -145,7 +292,148 @@
           </h5>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" id="nambah">Add</button>
+          <button type="submit" class="btn btn-success" id="nambah1">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="tambah2" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tambah Data Vendor</h4>
+        </div>
+        <div class="modal-body">
+          <h5>
+            <form id="acc2" method="post" action="dashboard/addvendor">
+             <table class="table">
+                <tr>
+                  <th>Kode Vendor</th>
+                  <td>:</td>
+                  <td><input type="text" name="kode_vendor" class="form-control" value="<?= $addvendor2[0]->id_vendor ?>" readonly></td>
+                  <input type="hidden" name="kpl_vendor" value="kpl_2">
+                </tr>
+                <tr>
+                  <th>Nama</th>
+                  <td>:</td>
+                  <td><input type="text" name="nama" class="form-control" required></td>
+                </tr>
+                <tr>
+                  <th>NPWP</th>
+                  <td>:</td>
+                  <td><input type="text" name="npwp" class="form-control" required></td>
+                </tr>
+                <tr>
+                  <th>Alamat</th>
+                  <td>:</td>
+                  <td><input type="text" name="alamat" class="form-control" required></td>
+                </tr>
+             </table>
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" id="nambah2">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="tambah3" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tambah Data Vendor</h4>
+        </div>
+        <div class="modal-body">
+          <h5>
+            <form id="acc3" method="post" action="dashboard/addvendor">
+             <table class="table">
+                <tr>
+                  <th>Kode Vendor</th>
+                  <td>:</td>
+                  <td><input type="text" name="kode_vendor" class="form-control" value="<?= $addvendor3[0]->id_vendor ?>" readonly></td>
+                  <input type="hidden" name="kpl_vendor" value="kpl_3">
+                </tr>
+                <tr>
+                  <th>Nama</th>
+                  <td>:</td>
+                  <td><input type="text" name="nama" class="form-control" required></td>
+                </tr>
+                <tr>
+                  <th>NPWP</th>
+                  <td>:</td>
+                  <td><input type="text" name="npwp" class="form-control" required></td>
+                </tr>
+                <tr>
+                  <th>Alamat</th>
+                  <td>:</td>
+                  <td><input type="text" name="alamat" class="form-control" required></td>
+                </tr>
+             </table>
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" id="nambah3">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="tambah4" role="dialog" aria-hidden="true"  tabindex="-1"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tambah Data Vendor</h4>
+        </div>
+        <div class="modal-body">
+          <h5>
+            <form id="acc4" method="post" action="dashboard/addvendor">
+             <table class="table">
+                <tr>
+                  <th>Kode Vendor</th>
+                  <td>:</td>
+                  <td><input type="text" name="kode_vendor" class="form-control" value="<?= $addvendor9[0]->id_vendor ?>" readonly></td>
+                  <input type="hidden" name="kpl_vendor" value="kpl_9">
+                </tr>
+                <tr>
+                  <th>Nama</th>
+                  <td>:</td>
+                  <td><input type="text" name="nama" class="form-control" required></td>
+                </tr>
+                <tr>
+                  <th>NPWP</th>
+                  <td>:</td>
+                  <td><input type="text" name="npwp" class="form-control" required></td>
+                </tr>
+                <tr>
+                  <th>Alamat</th>
+                  <td>:</td>
+                  <td><input type="text" name="alamat" class="form-control" required></td>
+                </tr>
+             </table>
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" id="nambah4">Add</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </form>
         </div>
@@ -243,9 +531,13 @@
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dashboard/dist/js/demo.js"></script>
 <script>
-  $(function () {
+ $(function () {
     $("#example1").DataTable();
-    $('#example2').DataTable({
+    $("#example2").DataTable();
+    $("#example3").DataTable();
+    $("#example4").DataTable();
+    $("#example5").DataTable();
+    $('#example6').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -258,19 +550,61 @@
 
 <script>
 
-  $("#nambah").on('click', function(){
-    var acc = $('#acc').val():
+  $("#nambah1").on('click', function(){
+    var acc = $('#acc1').val();
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
-          data: $("#acc").serialize(), // data yang akan dikirim ke file yang dituju        
+          data: $("#acc1").serialize(), // data yang akan dikirim ke file yang dituju        
           success: function(response){ // Ketika proses pengiriman berhasil          
-              $("#tambah").modal('hide'); // Sembunyikan loadingnya   
+              $("#tambah1").modal('hide'); // Sembunyikan loadingnya   
                location.reload();       
               alert('Create Vendor success')
           }      
       });
-    });
+  });
+
+  $("#nambah2").on('click', function(){
+    var acc = $('#acc2').val();
+      $.ajax({        
+          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
+          // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
+          data: $("#acc2").serialize(), // data yang akan dikirim ke file yang dituju        
+          success: function(response){ // Ketika proses pengiriman berhasil          
+              $("#tambah2").modal('hide'); // Sembunyikan loadingnya   
+               location.reload();       
+              alert('Create Vendor success')
+          }      
+      });
+  });
+
+  $("#nambah3").on('click', function(){
+    var acc = $('#acc3').val();
+      $.ajax({        
+          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
+          // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
+          data: $("#acc3").serialize(), // data yang akan dikirim ke file yang dituju        
+          success: function(response){ // Ketika proses pengiriman berhasil          
+              $("#tambah3").modal('hide'); // Sembunyikan loadingnya   
+               location.reload();       
+              alert('Create Vendor success')
+          }      
+      });
+  });
+
+  $("#nambah4").on('click', function(){
+    var acc = $('#acc4').val();
+      $.ajax({        
+          type: "POST", // Method pengiriman data bisa dengan GET atau POST        
+          // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
+          data: $("#acc4").serialize(), // data yang akan dikirim ke file yang dituju        
+          success: function(response){ // Ketika proses pengiriman berhasil          
+              $("#tambah4").modal('hide'); // Sembunyikan loadingnya   
+               location.reload();       
+              alert('Create Vendor success')
+          }      
+      });
+  });
 
   $(".rubah").on('click', function(){
       $.ajax({        
