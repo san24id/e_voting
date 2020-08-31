@@ -253,9 +253,9 @@
 														  <th>Fasilitas Pajak</th>
 														  <th>Special Tarif</th>
 														  <th>Gross Up</th>
-														  <th style="text-align:right;">DPP</th>
-														  <th style="text-align:right;">DPP <br>(Gross Up)</th>
-														  <th style="text-align:right;">Pajak Terutang</th>
+														  <th>DPP</th>
+														  <th>DPP <br>(Gross Up)</th>
+														  <th>Pajak Terutang</th>
 														  <th>Masa Pajak PPN</th>
 														  <th>Tahun</th>
 														  <th>Keterangan</th>
@@ -294,9 +294,9 @@
 															<td><?php echo $gtax->fas_pajak;?></td>
 															<td><?php echo $gtax->special_tarif;?></td>
 															<td><?php echo $gtax->gross;?></td>
-															<td style="text-align:right;"><?php echo $gtax->dpp;?></td>
-															<td style="text-align:right;"><?php echo $gtax->dpp_gross;?></td>
-															<td style="text-align:right;"><?php echo $gtax->pajak_terutang;?></td>
+															<td><?php echo $gtax->dpp;?></td>
+															<td><?php echo $gtax->dpp_gross;?></td>
+															<td><?php echo $gtax->pajak_terutang;?></td>
 															<td><?php echo $gtax->masa_pajak;?></td>
 															<td><?php echo $gtax->tahun;?></td>
 															<td><?php echo $gtax->keterangan;?></td>

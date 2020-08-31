@@ -1168,7 +1168,7 @@ class Dashboard extends CI_Controller {
 		$data['vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['persen'] = $this->Dashboard_model->getTarif();
 		$data['getnpwp'] = $this->Dashboard_model->getDataNPWP($id_payment);
-		$data['getallnpwp'] = $this->Dashboard_model->getAllDataNPWP();
+		$data['getallnpwp'] = $this->Dashboard_model->getAllDataNPWP($id_payment);
 		$data['getdatatax'] = $this->Dashboard_model->getDataTax($id_payment);
 		$data['getdatanontax'] = $this->Dashboard_model->getDataNonTax($id_payment);
 		$data['getnouruttax'] = $this->Dashboard_model->getUrutTax($id_payment);

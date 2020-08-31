@@ -375,12 +375,12 @@
 								<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
 									</th>
 								<th colspan="5">
-								<label class="control-label col-md-1" id="lblcur1" >Currency</label>
-								<label class="control-label col-md-3" id="lbltotalvendor"><?php echo number_format($ttlnomvendor,0,",","."); ?></label>
-								<label class="control-label col-md-1" id="lblcur2" >Currency</label>
-								<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo number_format($ttlnomvendor2,0,",","."); ?></label>
-								<label class="control-label col-md-1" id="lblcur3" >Currency</label>
-								<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo number_format($ttlnomvendor3,0,",","."); ?></label>
+								<label class="control-label col-md-1" id="lblcur1" ></label>
+								<label class="control-label col-md-3" id="lbltotalvendor"></label>
+								<label class="control-label col-md-1" id="lblcur2" ></label>
+								<label class="control-label col-md-3" id="lbltotalvendor2"></label>
+								<label class="control-label col-md-1" id="lblcur3" ></label>
+								<label class="control-label col-md-3" id="lbltotalvendor3"></label>
 								</th>
 							</tr>
 							<input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />
@@ -2330,16 +2330,34 @@ function AddIndeks(){
 		}
 		if(itotal1<0){
 			$('#lbltotalvendor').text("(" + formatRupiah(itotal1.toString()) + ")");
+		}else if(itotal1==0){
+			if($('#lblcur1').text()==""){
+				$('#lbltotalvendor').text("");
+			}else{
+				$('#lbltotalvendor').text("0");
+			}
 		}else{
 			$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
 		}
 		if(itotal2<0){
 			$('#lbltotalvendor2').text("(" + formatRupiah(itotal2.toString()) + ")");
+		}else if(itotal2==0){
+			if($('#lblcur2').text()==""){
+				$('#lbltotalvendor2').text("");
+			}else{
+				$('#lbltotalvendor2').text("0");
+			}
 		}else{
-			$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
+			$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));			
 		}
 		if(itotal3<0){
 			$('#lbltotalvendor3').text("(" + formatRupiah(itotal3.toString()) + ")");
+		}else if(itotal3==0){
+			if($('#lblcur3').text()==""){
+				$('#lbltotalvendor3').text("");
+			}else{
+				$('#lbltotalvendor3').text("0");
+			}
 		}else{
 			$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
 		}		

@@ -1206,8 +1206,8 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 	
-	public function getAllDataNPWP() {
-        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m WHERE ifnull(m.npwp,'')<>''";
+	public function getAllDataNPWP($id) {
+        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m, t_vendor v WHERE v.kode_vendor=m.kode_vendor and v.id_payment = '$id'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -1291,7 +1291,7 @@ class Dashboard_model extends CI_Model{
 				
 				break;
 			  case "2":
-				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "' and a.status in ('0','1','2','4','5','6','7','8','9')";
 				break;
 			  /*case "3":
 				$sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
