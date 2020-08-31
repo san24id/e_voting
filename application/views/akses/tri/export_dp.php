@@ -303,7 +303,7 @@ $(document).ready(function() {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('Tri/caridatadashboard') ?>";
+	  url = "<?php echo base_url('Tri/caridataPR') ?>";
       $.ajax({
             url : url,
             type: "POST",

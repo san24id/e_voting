@@ -12,7 +12,7 @@
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
 				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
-        <a href="home/export_dr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
+        <a href="tri/export_dr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
 				
 			</div>
 			<!-- /.box-header -->
@@ -26,8 +26,8 @@
 									<div class="col-md-2">
                     <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Status </option>
-											<!-- <option value='2'> Jenis Pembayaran </option> -->
+											<!-- <option value='1'> Status </option> -->
+											<option value='2'> Jenis Pembayaran </option>
 											<!-- <option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
 											<option value='5'> Penerima </option> -->
@@ -44,6 +44,14 @@
 											<option value='8'> Verified </option>
 											<option value='9'> Approved </option>
 											<option value='10'> Paid </option>
+										</select>
+
+                    <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='4'> Direct Payment </option> 
+											<option value='2'> Advance Request </option>
+											<option value='3'> Advance Settlement </option>
+											<option value='5'> Cash Received </option>
 										</select>
                     
 										<select class="form-control" id="selblank" name="selblank"  >
@@ -158,7 +166,7 @@
                       ?>
                   <td><?php echo $buka; ?></td>
                   <td>                    
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -272,7 +280,7 @@ $(document).ready(function() {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('Tri/caridataPR') ?>";
+	  url = "<?php echo base_url('tri/caridataDR') ?>";
       $.ajax({
             url : url,
             type: "POST",
@@ -340,7 +348,7 @@ $(document).ready(function() {
 						  item.display_name,
 						  item.penerima,
 						  item.submit_date,
-						  '<a href="home/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+						  '<a href="tri/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  

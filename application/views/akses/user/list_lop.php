@@ -24,18 +24,41 @@
 								<div class="form-group">
 									<label class="col-md-1">Criteria</label>
 									<div class="col-md-2">
-										 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+                    <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Tanggal </option>
-											<!-- <option value='2'> Jenis Pembayaran </option> -->
-											<option value='3'> Nomor Surat </option>
+											<option value='1'> Status </option>
+											<option value='2'> Jenis Pembayaran </option>
+											<!-- <option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
-											<option value='5'> Penerima </option>
+											<option value='5'> Penerima </option> -->
 										</select>
 									</div> 	
-									<div class="col-md-6">
-										<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >
-									</div>		
+									<div class="col-md-3">
+										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+										<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='0'> Draft </option>
+											<option value='1'> Draft Print </option>
+											<option value='2'> Submitted </option>
+											<option value='4'> Processing</option>
+											<option value='8'> Verified </option>
+											<option value='9'> Approved </option>
+											<option value='10'> Paid </option>
+										</select>
+
+                    <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='4'> Direct Payment </option> 
+											<option value='2'> Advance Request </option>
+											<option value='3'> Advance Settlement </option>
+											<option value='5'> Cash Received </option>
+										</select>
+                    
+										<select class="form-control" id="selblank" name="selblank"  >
+											<option value=''>== Pilih ==</option>
+										</select>
+
+                  </div>		
 										
 									<div class="col-md-3">
 								<!-- <div class="form-group">

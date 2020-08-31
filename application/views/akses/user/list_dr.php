@@ -26,8 +26,8 @@
 									<div class="col-md-2">
                     <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
 											<option value='0'>== Pilih ==</option>
-											<option value='1'> Status </option>
-											<!-- <option value='2'> Jenis Pembayaran </option> -->
+											<!-- <option value='1'> Status </option> -->
+											<option value='2'> Jenis Pembayaran </option>
 											<!-- <option value='3'> Nomor Surat </option>
 											<option value='4'> Pemohon </option>
 											<option value='5'> Penerima </option> -->
@@ -44,6 +44,14 @@
 											<option value='8'> Verified </option>
 											<option value='9'> Approved </option>
 											<option value='10'> Paid </option>
+										</select>
+
+                    <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+											<option value=''>== Pilih ==</option>
+											<option value='4'> Direct Payment </option> 
+											<option value='2'> Advance Request </option>
+											<option value='3'> Advance Settlement </option>
+											<option value='5'> Cash Received </option>
 										</select>
                     
 										<select class="form-control" id="selblank" name="selblank"  >
@@ -272,7 +280,7 @@ $(document).ready(function() {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('home/caridataPR') ?>";
+	  url = "<?php echo base_url('home/caridataDR') ?>";
       $.ajax({
             url : url,
             type: "POST",

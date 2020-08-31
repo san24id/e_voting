@@ -1770,7 +1770,7 @@ class Dashboard_model extends CI_Model{
 	}
 	
 	function gettaxfordelete($idtax){
-        $query=$this->db->query("select a1.dpp,a1.dppgross,a2.dpp_kumulatif,a2.id_honor from t_tax a1, m_honorarium_konsultan a2 where a1.id_honor=a2.id_honor and id_tax='$idtax' ");
+        $query=$this->db->query("select a1.dpp,a1.dpp_gross,a2.dpp_kumulatif,a2.id_honor from t_tax a1, m_honorarium_konsultan a2 where a1.id_honor=a2.id_honor and id_tax='$idtax' ");
         return $query;
     }
 }

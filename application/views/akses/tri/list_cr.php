@@ -12,7 +12,7 @@
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
 				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
-        <a href="home/export_cr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
+        <a href="tri/export_cr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
 				
 			</div>
 			<!-- /.box-header -->
@@ -159,7 +159,7 @@
                       ?>
                   <td><?php echo $buka; ?></td>
                   <td>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <a href="Tri/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -273,7 +273,7 @@ $(document).ready(function() {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('Tri/caridataCR') ?>";
+	  url = "<?php echo base_url('tri/caridataCR') ?>";
       $.ajax({
             url : url,
             type: "POST",
@@ -344,7 +344,7 @@ $(document).ready(function() {
 						  item.display_name,
 						  item.akun_bank,
 						  item.penerima,
-						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+						  '<a href="tri/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  

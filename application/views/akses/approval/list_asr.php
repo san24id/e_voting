@@ -12,7 +12,7 @@
 			<div class="box-header with-border">
 				<!-- <h3 class="box-title">Pencarian</h3> -->
 				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
-        <a href="home/export_asr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
+        <a href="approval/export_asr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a> 
 				
 			</div>
 			<!-- /.box-header -->
@@ -159,7 +159,7 @@
                   <td><?php echo $buka; ?></td>
                   <td>
                     
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <a href="Approval/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
@@ -273,7 +273,7 @@ $(document).ready(function() {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('Approval/caridataASR') ?>";
+	  url = "<?php echo base_url('approval/caridataASR') ?>";
       $.ajax({
             url : url,
             type: "POST",
@@ -341,7 +341,7 @@ $(document).ready(function() {
 						  item.display_name,
 						  item.penerima,
 						  item.submit_date,
-						  '<a href="home/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+						  '<a href="approval/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  

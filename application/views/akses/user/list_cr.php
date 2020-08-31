@@ -344,7 +344,7 @@ $(document).ready(function() {
 						  item.display_name,
 						  item.akun_bank,
 						  item.penerima,
-						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+						  '<a href="home/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  

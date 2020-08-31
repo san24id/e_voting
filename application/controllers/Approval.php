@@ -1146,6 +1146,22 @@ class Approval extends CI_Controller {
 			echo json_encode($data);
 	}
 
+	public function caridataDR()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->getdatabyDR($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
 	public function caridatadashboard()
 	{
 			$txtsearch="";
