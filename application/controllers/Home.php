@@ -1032,10 +1032,6 @@ class Home extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		
-		switch($id){
-			
-		}
-		
 		switch ($id) {
 		  case "1":
 			$data['payment'] = $this->Home_model->getPaymentDetail($sid,$start_date,$end_date);
