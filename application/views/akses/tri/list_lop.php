@@ -257,6 +257,24 @@ $(function () {
     });
   });
 
+  $(document).ready(function() { 
+  $('#selsearch').change(function() {
+    if( $(this).val() == '1') {
+      $('#selblank').css("display", "none");
+      $('#selstatus').css("display", "block");
+      $('#seljnspembayaran').css("display", "none");
+    } else if( $(this).val() == '2'){   
+    $('#selblank').css("display", "none");
+    $('#selstatus').css("display", "none");
+    $('#seljnspembayaran').css("display", "block");
+    }else{
+    $('#selblank').css("display", "block");
+    $('#selstatus').css("display", "none");
+    $('#seljnspembayaran').css("display", "none");
+    }
+  })
+  
+});
 </script>
 
 <script type="text/javascript"> 
