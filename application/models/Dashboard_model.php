@@ -1255,27 +1255,27 @@ class Dashboard_model extends CI_Model{
 			  /*case "6":
 				$sql .=" and a.jenis_pembayaran LIKE '%2%' and (label3 + INTERVAL '14' DAY) < curdate() ";
 				break;*/
-			//   case "7":
-			// 	$sql .=" and a.status ='0' ";
-			// 	break;
-			//   case "8":
-			// 	$sql .=" and a.status ='1' ";
-			// 	break;
-			//   case "9":
-			// 	$sql .=" and a.status ='2' ";
-			// 	break;
-			//   case "10":
-			// 	$sql .=" and a.status in ('4','5','6','7') ";
-			// 	break;
-			//   case "11":
-			// 	$sql .=" and a.status ='8' ";
-			// 	break;
-			//   case "12":
-			// 	$sql .=" and a.status ='9' ";
-			// 	break;
-			//   case "13":
-			// 	$sql .=" and a.status ='10' ";
-			// 	break;
+			  case "7":
+				$sql .=" and a.status ='0' ";
+				break;
+			  case "8":
+				$sql .=" and a.status ='1' ";
+				break;
+			  case "9":
+				$sql .=" and a.status ='2' ";
+				break;
+			  case "10":
+				$sql .=" and a.status in ('4','5','6','7') ";
+				break;
+			  case "11":
+				$sql .=" and a.status ='8' ";
+				break;
+			  case "12":
+				$sql .=" and a.status ='9' ";
+				break;
+			  case "13":
+				$sql .=" and a.status ='10' ";
+				break;
 			  default:
 				$sql .=" ";
 				

@@ -176,6 +176,22 @@ class Home extends CI_Controller {
 			echo json_encode($data);
 	}
 
+	public function caridataLOP()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->getdatabyLOP($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
 	public function caridatadashboard()
 	{
 			$txtsearch="";
@@ -871,7 +887,6 @@ class Home extends CI_Controller {
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
-		$data['dp'] = $this->Home_model->getVdp();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['submit'] = $this->Home_model->getSubmitted();
@@ -884,7 +899,7 @@ class Home extends CI_Controller {
 		$data['credit_card'] = $this->Home_model->CreditCard();
 		
 		$this->load->view('akses/user/header_user', $data);
-		$this->load->view('akses/report/data_export', $data);
+		$this->load->view('akses/user/data_export', $data);
 
 	}
 

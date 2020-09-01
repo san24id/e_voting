@@ -280,7 +280,7 @@ $(function () {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('approval/caridatadashboard') ?>";
+	  url = "<?php echo base_url('approval/caridataLOP') ?>";
       $.ajax({
             url : url,
             type: "POST",
