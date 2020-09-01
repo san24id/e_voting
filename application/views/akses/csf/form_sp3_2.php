@@ -1605,12 +1605,16 @@ function PajakTerhutang(){
 	var trf;
 	var dpp=$('#txtdpp').val();
 	
+	if(dpp.substr(0,1)=="0" && dpp.length >1){
+		dpp=dpp.substr(1,dpp.length);
+	}
 	$('#txtdppgross').val('0');
 	$('#txtpajakterhutang').val('0');	
 	$('#vpajakterhutang').val('0');	
 		
 	if(dpp){
-		dpp = $('#txtdpp').val().replace(/[^,\d]/g, '').toString();
+		//dpp = $('#txtdpp').val().replace(/[^,\d]/g, '').toString();
+		dpp = dpp.replace(/[^,\d]/g, '').toString();
 	}else{
 		dpp="0";
 	}
@@ -1670,7 +1674,17 @@ function PajakTerhutang(){
     // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
     rupiah.value = formatRupiah(this.value);
   });*/
-
+  function formatdppgross(){
+	var dppgross=$('#txtdppgross').val();
+	
+	if(dppgross.substr(0,1)=="0" && dppgross.length >1){
+		dppgross=dppgross.substr(1,dppgross.length);
+	}else{
+		dppgross="0";
+	}
+	$('#txtdppgross').val(formatRupiah(dppgross.toString()))
+  }
+ 
   /* Fungsi formatRupiah */
   function formatRupiah(angka, prefix){
 	  
@@ -1991,7 +2005,7 @@ function PajakTerhutang(){
 						<div class="form-group">
 								<label class="control-label col-md-3">DPP (Gross Up)</label>
 								<div class="col-md-9">
-								  <input name="txtdppgross" id="txtdppgross"  placeholder="Amount (Gross Up)" value='0' class="form-control" type="text">
+								  <input name="txtdppgross" id="txtdppgross" onkeyup="formatdppgross()" placeholder="Amount (Gross Up)" value='0' class="form-control" type="text">
 								  <input name="txtdppgross_old" id="txtdppgross_old" type="hidden">
 								</div>
 						</div>

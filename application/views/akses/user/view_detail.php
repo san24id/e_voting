@@ -212,7 +212,7 @@
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
                       <th>Penerima Pembayaran</th>
-                      <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
+                      <!-- <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th> -->
 												 
                       <th>Action</th>
                     </tr>
@@ -269,17 +269,24 @@
                     <td><?php echo $row->label1; ?></td>
                     <td><?php echo $row->display_name; ?></td>
                     <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                          $query = $this->db->query($sql)->result();
+                          $sql = "SELECT count(*) ttlvendor FROM t_vendor WHERE id_payment='$row->id_payment'";
+                            $query = $this->db->query($sql)->result();
+                            if ($query[0]->ttlvendor=="1") { 
+                              $buka = $row->penerima;
+                                          }else{
+                                            $buka = $row->penerima ." ,.......";
+                                          }
+						  //$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+                          //$query = $this->db->query($sql)->result();
                           // return $query;
                           // var_dump($query[0]->nama);exit; 
-                          if ($query[0]->nama) { $buka = $query[0]->nama;
+                          /*if ($query[0]->nama) { $buka = $query[0]->nama;
                           }else{
                             $buka = $row->penerima;
-                          }
+                          }*/
                         ?>
                     <td><?php echo $buka; ?></td>
-                    <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
+                    <!-- <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td> -->
                     <td>
                       <a href="home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a> 
                       <?php if($row->status=="0" || $row->status=="1"){ 
@@ -590,6 +597,7 @@ $(function () {
 			    var status; 
 				var istatus;
 				var ino=1;
+				var penerima;
 				var tbl1 = $('#example1').DataTable(); 
 				tbl1.clear().draw();
                 $.each(data, function(key, item) 
@@ -635,7 +643,11 @@ $(function () {
 						  default:
 							istatus = '';
 						}
-						
+						if(item.tot_vendor=="1"){
+							penerima=item.penerima;
+						}else{
+							penerima=item.penerima + " ,.......";
+						};
 						tbl1.row.add( [
 						  ino,
 						  istatus,
@@ -644,8 +656,8 @@ $(function () {
 						  item.nomor_surat,
 						  item.label1,
 						  item.display_name,
-						  item.akun_bank,
-						  item.penerima,
+						  //item.akun_bank,
+						  penerima, //item.penerima,
 						  '<a href="home/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 

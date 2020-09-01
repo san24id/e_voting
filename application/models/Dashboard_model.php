@@ -1233,7 +1233,7 @@ class Dashboard_model extends CI_Model{
 	{
 		$filter = $this->session->userdata("filter");
 		$dvs = $this->session->userdata('division_id');
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,(select count(*) FROM t_vendor WHERE id_payment=a.id_payment) tot_vendor FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
                 AND a.status not in ('3','99','XXX')";
 		
 		switch ($filter) {
