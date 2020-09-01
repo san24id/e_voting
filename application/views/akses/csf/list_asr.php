@@ -339,8 +339,8 @@ $(document).ready(function() {
 						  item.nomor_surat,
 						  item.label1,
 						  item.display_name,
+						  item.akun_bank,
 						  item.penerima,
-						  item.submit_date,
 						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
