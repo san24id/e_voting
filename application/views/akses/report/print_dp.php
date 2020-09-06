@@ -224,7 +224,7 @@
                         	<br>
                         </td>
                         <td align="right"><font size="1"><b> : </b></td>
-                        <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo date("d/m/Y", strtotime($row->label3)); ?></td>              
+                        <td colspan="8" width="65%" class="kolom"><font size="1"><?php echo date("d/M/Y", strtotime($row->label3)); ?></td>              
                       </tr>                                                                      
                       </tbody>
                     </table>

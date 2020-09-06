@@ -138,9 +138,7 @@ td[rowspan="6"] {
                           <td><select id="Select" class="form-control" onchange="myFunction()" name="currency">
                                 <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                                 <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency . " - " . $get->mata_uang ; ?> </option>
-                                <?php } ?>
+                                  <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                               </select>
                           </td>
                           <td><input id="nilai" onkeyup="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></td>
@@ -150,9 +148,7 @@ td[rowspan="6"] {
                           <td colspan="2"><input type="text" class="form-control" name="description2" ></td>
                           <td><select id="Select1" class="form-control" onchange="myFunction1()" name="currency1">
                                 <option value="">--Choose--</option>
-                                <?php foreach ($currency as $get) {?>
-                                <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-                                <?php } ?>
+                                  <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                               </select>
                           </td>
                           <td><input id="nilai1" onkeyup="nominal()" type="text" class="form-control" name="jumlah2"  ></td> 
@@ -162,10 +158,7 @@ td[rowspan="6"] {
                           <td colspan="2"><input type="text" class="form-control" name="description3" ></td>
                           <td><select id="Select2" class="form-control" onchange="myFunction2()" name="currency2">
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
                           <td><input id="nilai2" onkeyup="nominal()" type="text" class="form-control" name="jumlah3" ></td> 
@@ -175,10 +168,7 @@ td[rowspan="6"] {
                           <td colspan="2"><input type="text" class="form-control" name="description4" ></td>
                           <td><select id="Select3" class="form-control" onchange="myFunction3()" name="currency3">
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
                           <td><input id="nilai3" onkeyup="nominal()" type="text" class="form-control" name="jumlah4" > </td>
@@ -189,10 +179,7 @@ td[rowspan="6"] {
                           <td><select id="Select4" class="form-control" onchange="myFunction4()" name="currency4">
                             <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>                         
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>                         
                             </select>
                           </td>
                           <td><input id="nilai4" onkeyup="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $row->jumlah2;?>"> </td> 
@@ -203,10 +190,7 @@ td[rowspan="6"] {
                           <td><select id="Select5" class="form-control" onchange="myFunction5()" name="currency5">
                             <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>                         
                             </select>
                           </td>
                           <td><input id="nilai5" onkeyup="nominal()" type="text" class="form-control" name="jumlah6"></td> 
@@ -218,10 +202,7 @@ td[rowspan="6"] {
                           <td><select id="Select6" class="form-control" onchange="myFunction6()" name="currency6">
                             <!-- <option value="<?php echo $row->currency6; ?>"> <?php echo $row->currency6; ?></option>                               -->
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>                         
                             </select>
                           </td>
                           <td><input id="nilai6" onkeyup="nominal()" type="text" class="form-control" name="jumlah7">  </td> 
@@ -231,10 +212,7 @@ td[rowspan="6"] {
                           <td colspan="2"><input type="text" class="form-control" name="description8" ></td>
                           <td><select id="Select7" class="form-control" onchange="myFunction7()" name="currency7">
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>                         
                             </select>
                           </td>
                           <td><input id="nilai7" onkeyup="nominal()" type="text" class="form-control" name="jumlah8" ></td> 
@@ -246,10 +224,7 @@ td[rowspan="6"] {
                             <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
 
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
                             </select>
                           </td>
                           <td><input id="nilai8" onkeyup="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $row->jumlah3;?>"></td> 
@@ -259,10 +234,7 @@ td[rowspan="6"] {
                           <td colspan="2"><input type="text" class="form-control" name="description10" ></td>
                           <td><select id="Select9" class="form-control" onchange="myFunction9()" name="currency9">
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
                             </select>
                           </td>
                           <td><input id="nilai9" onkeyup="nominal()" type="text" class="form-control" name="jumlah10"></td> 
@@ -272,10 +244,7 @@ td[rowspan="6"] {
                           <td colspan="2"><input type="text" class="form-control" name="description11" ></td>
                           <td><select id="Select10" class="form-control" onchange="myFunction10()" name="currency10">
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
                             </select>
                           </td>
                           <td><input id="nilai10" onkeyup="nominal()" type="text" class="form-control" name="jumlah11"></td> 
@@ -285,17 +254,14 @@ td[rowspan="6"] {
                           <td colspan="2"><input type="text" class="form-control" name="description12" ></td>
                           <td><select id="Select11" class="form-control" onchange="myFunction11()" name="currency11">
                             <option value="">--Choose--</option>
-                            <?php foreach ($currency as $get) {?>
-                            <option value="<?php echo $get->currency; ?>"><?php echo $get->currency; ?></option>
-
-                            <?php } ?>
+                              <option value="<?php echo $row->currency3; ?>"> <?php echo $row->currency3; ?></option>                              
                             </select>
                           </td>
                           <td><input id="nilai11" onkeyup="nominal()" type="text" class="form-control" name="jumlah12"></td> 
                         </tr>
 
                         <tr>
-                          <td colspan="3"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
+                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
                           <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
                               <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
@@ -609,9 +575,9 @@ function nominal(){
   // alert(k);
   var l = document.getElementById("nilai11").value;
 
-  var m = document.getElementById("jumlahuangmuka").value;
-  var n = document.getElementById("jumlahuangmuka2").value;
-  var o = document.getElementById("jumlahuangmuka3").value;
+  var m = "0"; //document.getElementById("jumlahuangmuka").value;
+  var n = "0"; //document.getElementById("jumlahuangmuka2").value;
+  var o = "0"; //document.getElementById("jumlahuangmuka3").value;
     
   var get_x = x.replace(/\D+/g, '');
   if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
@@ -765,7 +731,7 @@ function nominal(){
 	  document.getElementById("ulang2").value = hasil_jumlah3 ;
   }
 // Negatif(piutang)
-  if (hasil<0){
+  /*if (hasil<0){
 	  var strhasil =Math.abs(hasil);
 	  document.getElementById("negatif").value = "(" + strhasil  + ")" ;
   }else{
@@ -784,7 +750,7 @@ function nominal(){
 	  document.getElementById("negatif3").value = "(" + strhasil3  + ")" ;
   }else{
 	  document.getElementById("negatif3").value = hasil3  ;
-  }
+  }*/
 
   // var pembayaran = currency+ ';' +currency2+ ';' +currency3;
   // var str = pembayaran.replace(/\./g,'');
@@ -871,13 +837,13 @@ function nominal(){
         }
     }
 
-    var matauang = document.getElementById("Select").value;
+    //var matauang = document.getElementById("Select").value;
     // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang){
+    /*switch(matauang){
       case "EUR":
       muncul = "Euro";
       break;
@@ -905,7 +871,7 @@ function nominal(){
 
       default:
       muncul = "";
-    }
+    }*/
 
     if (hasil<0){
 		  kalimat="( " + kalimat + ") ";
@@ -915,7 +881,7 @@ function nominal(){
 		  kalimat="Nol ";
 	  }
     
-    document.getElementById("terbilang").value=kalimat+ " " + muncul;
+    /*document.getElementById("terbilang").value=kalimat+ " " + muncul;*/
     
     // alert(kalimat);
 
@@ -995,13 +961,13 @@ function nominal(){
         }
     }
 
-    var matauang2 = document.getElementById("Select4").value;
+    //var matauang2 = document.getElementById("Select4").value;
     // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang2){
+    /*switch(matauang2){
       case "EUR":
       muncul2 = "EURO";
       break;
@@ -1029,7 +995,7 @@ function nominal(){
 
       default:
       muncul2 = "";
-    }
+    }*/
 
   if (hasil2<0){
 		kalimat2="( " + kalimat2 + ") ";
@@ -1039,7 +1005,7 @@ function nominal(){
 		  kalimat2="Nol ";
 	  }
 
-    document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;
+    /*document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;*/
     // alert(kalimat2);
 
     var bilangan3= ''+ Math.abs(hasil3)+'';
@@ -1118,13 +1084,13 @@ function nominal(){
         }
     }
 
-    var matauang3 = document.getElementById("Select8").value;
+    //var matauang3 = document.getElementById("Select8").value;
     // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang3){
+    /*switch(matauang3){
       case "EUR":
       muncul3 = "EURO";
       break;
@@ -1152,7 +1118,7 @@ function nominal(){
 
       default:
       muncul3 = "";
-    }
+    }*/
 
     if (hasil3<0){
 		kalimat3="( " + kalimat3 + ") ";
@@ -1161,7 +1127,7 @@ function nominal(){
 	if (hasil3==0){
 		  kalimat3="Nol ";
 	  }
-    document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;
+    /*document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;*/
     // alert(kalimat3);
 
     // document.getElementById("negatif").value = hasil ;
@@ -1241,6 +1207,50 @@ function nominal(){
 	}else{
 		ulang2.value = formatulang2(strulang2);
 	} 
+	
+	var muncul="";
+	var muncul2="";
+	var muncul3="";
+    $.ajax({
+        url : "<?php echo base_url('dashboard/getMultiCurrencyDesc')?>",
+        type: "POST",
+		data: $("#formadd").serialize(),
+        dataType: "JSON",
+        success: function(data)
+        {
+			console.log(data);
+			for (i=0;i<data.length; i++){
+				if(data[i].nomor=="1"){							
+					$('#terbilang').val(kalimat+ " " + data[i].mata_uang);
+				}
+				if(data[i].nomor=="2"){					
+					$('#terbilang2').val(kalimat2+ " " + data[i].mata_uang);
+				}
+				if(data[i].nomor=="3"){
+					$('#terbilang3').val(kalimat3+ " " + data[i].mata_uang);
+				}
+			}
+			//$(data).each(function(index, value){ 
+				/*if(value == starif){ 
+						$seltrf='selected';
+					}else{
+						$seltrf='';
+					}
+					options += '<option value="'+value.tarif+'" '+$seltrf+'>'+value.tarif+'</option>'; //add the option element as a string*/
+				//alert(data[index].mata_uang);	
+				//});
+			/*muncul=data[0].mata_uang; 
+			muncul2=data[1].mata_uang; 
+			muncul3=data[2].mata_uang; 
+			*/
+        },
+        error: function (data)
+        {
+            console.log(data);
+            alert('Error Get Currency');
+        }
+    });
+	
  
 }
 

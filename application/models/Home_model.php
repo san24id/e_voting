@@ -453,7 +453,27 @@ class Home_model extends CI_Model{
         $query = $this->db->query($sql)->result();
         return $query;
     }
-
+	
+	function getCurrencyByCode($code){
+        $sql = "select mata_uang from m_currency where currency='".$code."'";   
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	function getMultiCurrencyByCode($code1,$code2,$code3){
+		$sql = "select X.nomor,X.mata_uang from (";
+        $sql .= "select 1 as nomor,mata_uang from m_currency where currency='".$code1."'";  
+		$sql .= " union all ";
+		$sql .= "select 2 as nomor,mata_uang from m_currency where currency='".$code2."'"; 
+		$sql .= " union all ";
+		$sql .= "select 3 as nomor,mata_uang from m_currency where currency='".$code3."'";  
+		$sql .= ") X order by X.nomor";
+		//var_dump($sql);
+		//exit();
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
     public function getTotalDraft(){
         $dvs = $this->session->userdata('division_id');
         $start_date = date('Y-01-01');

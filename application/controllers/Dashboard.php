@@ -2726,10 +2726,14 @@ class Dashboard extends CI_Controller {
 	
 	public function submittax()
 	{
+		if ($_POST['rejected_by'] != NULL){
+			$rejected = "";
+		}
 		$data = array(
 					'status' => 5,
 					'handled_by' => $this->input->post('handled_by'),
-					'nomor_surat' => $this->input->post('nomor_surat')		
+					'nomor_surat' => $this->input->post('nomor_surat'),
+					'rejected_by' => $rejected
 					);
 		$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
 		$this->Dashboard_model->updatestatustax(array('id_payment' => $this->input->post('id_payment')), $data);
@@ -3604,6 +3608,21 @@ class Dashboard extends CI_Controller {
 	public function getdetilnpwpbyvendor($id_honor)
 	{
 		$data= $this->Dashboard_model->getdetilnpwpbyhonor($id_honor);
+		echo json_encode($data);
+	}
+	
+	public function getCurrencyDesc($code)
+	{
+		$data= $this->Home_model->getCurrencyByCode($code);
+		echo json_encode($data);
+	}
+	
+	public function getMultiCurrencyDesc()
+	{
+		$code1 = $_POST['currency'];
+		$code2 = $_POST['currency4'];
+		$code3 = $_POST['currency8'];
+		$data= $this->Home_model->getMultiCurrencyByCode($code1,$code2,$code3);
 		echo json_encode($data);
 	}
 

@@ -265,13 +265,9 @@
         <?php } ?>
             
         <?php foreach ($reject as $notif) { ?>
-          <?php if($this->session->userdata("role_id") == 4){ ?>
-            <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox & Outbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
-
-          <?php }else{ ?>
-            <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+          
+          <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
             
-          <?php } ?>
         <?php } ?>        
         <li class="treeview">
           <a href="">
@@ -331,8 +327,8 @@
     <div class="modal-body">
     <form id="activated" method="post" action="dashboard/activated">
       <p align="justify">Apakah anda ingin mengaktifkan/menon-aktifkan Approval Requestor Signature?</p>
-      <input type="radio" name="activate" value="ON" <?php echo $row->activate==ON? 'checked':''?>> ON</input><br>
-      <input type="radio" name="activate" value="OFF" <?php echo $row->activate==OFF? 'checked':''?>> OFF</input><br>
+      <input type="radio" name="activate" value="ONLINE" <?php echo $row->activate==ONLINE? 'checked':''?>> ONLINE</input><br>
+      <input type="radio" name="activate" value="OFFLINE" <?php echo $row->activate==OFFLINE? 'checked':''?>> OFFLINE</input><br>
     </div>
     <div class="modal-footer">                        
      <button type="submit" class="btn btn-success bye">Yes</button>

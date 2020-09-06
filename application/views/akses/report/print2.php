@@ -552,7 +552,7 @@
 
                     <br><br><br><br><br>         
                   
-                    <!-- <table width="100%">
+                    <table width="100%">
                     <tbody>
                       <tr>
                         <td><font size="1">Pemohon, <br><br><br><br><br></td>
@@ -570,7 +570,7 @@
                                                 echo "SVP"; } ?> <?php echo $divhead->division_id; ?> </td>
                       </tr>                            
                     </tbody>
-                    </table> -->
+                    </table>
                      
                     <!-- <hr style=" border: 0.5px solid #000;">
                     <h6>
