@@ -560,14 +560,11 @@
                       </tr>
                       <tr>
                         <td><font size="1">Nama : &nbsp; <?php echo $row->display_name?></td>
-                        <?php foreach ($divhead as $divhead) { ?>
-                        <td><font size="1">Nama : &nbsp; <?php echo $divhead->display_name; ?> </td>
-                        <?php } ?>                        
+                        <td><font size="1">Nama : &nbsp; <?php echo $row->div_head; ?> </td>
                       </tr>
                       <tr>
                         <td><font size="1">Jabatan : &nbsp; <?php echo $row->jabatan?></td>
-                        <td><font size="1">Jabatan : &nbsp;  <?php if($divhead->role_id == 4){
-                                                echo "SVP"; } ?> <?php echo $divhead->division_id; ?> </td>
+                        <td><font size="1">Jabatan : &nbsp; <?php echo "SVP" ?> <?php echo $row->jab_div_head; ?> </td>
                       </tr>                            
                     </tbody>
                     </table>

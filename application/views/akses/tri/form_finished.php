@@ -206,6 +206,8 @@
                       <tr>
                         <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $row->display_name;?></td>
                         <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name;?>">
+                        <input type="hidden" name="div_head" class="form-control" value="<?php echo $row->div_head;?>">
+                        <input type="hidden" name="jab_div_head" class="form-control" value="<?php echo $row->jab_div_head;?>">
                       </tr> 
                       <tr>
                         <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $row->division_id;?></td>

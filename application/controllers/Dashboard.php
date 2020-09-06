@@ -3371,7 +3371,9 @@ class Dashboard extends CI_Controller {
 			'label9a' => $_POST['label9a'],
 			'label7b' => $_POST['label7b'],
 			'label8b' => $_POST['label8b'],
-			'label9b' => $_POST['label9b']
+			'label9b' => $_POST['label9b'],
+			'div_head' => $_POST['div_head'],
+			'jab_div_head' => $_POST['jab_div_head'],
 		);
 
 		
@@ -3447,15 +3449,17 @@ class Dashboard extends CI_Controller {
 			'akun_bank' => $v_bank,
 			'no_rekening' =>$v_account,
 			'lainnya1' => $_POST['lainnya1'],
-			'curr_settlement1' => $cr1, //$_POST['curr1'],
-			'curr_settlement2' => $cr2, //$_POST['curr2'],
-			'curr_settlement3' => $cr3, //$_POST['curr3'],
+			'curr_settlement1' => $_POST['curr1'],
+			'curr_settlement2' => $_POST['curr2'],
+			'curr_settlement3' => $_POST['curr3'],
 			'label7a' => $_POST['label7a'],
 			'label8a' => $_POST['label8a'],
 			'label9a' => $_POST['label9a'],
 			'label7b' => $_POST['label7b'],
 			'label8b' => $_POST['label8b'],
-			'label9b' => $_POST['label9b']
+			'label9b' => $_POST['label9b'],
+			'div_head' => $_POST['div_head'],
+			'jab_div_head' => $_POST['jab_div_head'],
 		);
 
 		$insert = $this->Home_model->saveaddpayment($add);
@@ -3576,7 +3580,9 @@ class Dashboard extends CI_Controller {
 			'label9a' => $_POST['label9a'],
 			'label7b' => $_POST['label7b'],
 			'label8b' => $_POST['label8b'],
-			'label9b' => $_POST['label9b']
+			'label9b' => $_POST['label9b'],
+			'div_head' => $_POST['div_head'],
+			'jab_div_head' => $_POST['jab_div_head'],
 		);
 
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');

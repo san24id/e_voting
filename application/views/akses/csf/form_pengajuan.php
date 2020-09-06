@@ -138,6 +138,11 @@
                         <td>&nbsp;  Nama Pemohon : &nbsp; <?php echo $this->session->userdata('display_name') ?></td>
                         <input type="hidden" name="display_name" class="form-control" value="<?php echo $this->session->userdata('display_name') ?>">
                         <input type="hidden" name="jabatan" class="form-control" value="<?php echo $this->session->userdata('jabatan') ?>">
+						<?php foreach ($divhead as $divhead) { ?>
+	                        <input type="hidden" name="div_head" class="form-control" value="<?php echo $divhead->display_name; ?>">
+                        <?php } ?> 
+
+                        <input type="hidden" name="jab_div_head" class="form-control" value="<?php echo $this->session->userdata('division_id') ?>">
                       </tr> 
                       <tr>
                         <td>&nbsp;  Direktorat/Divisi Pemohon : &nbsp; <?php echo $this->session->userdata('division_id') ?></td>

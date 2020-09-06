@@ -1304,10 +1304,9 @@ class Approval extends CI_Controller {
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
-						'v_bank' => $_POST['sbankvendor'][$i],
+						'v_bank' => $_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => number_format($nominal,0,",","."),
-						'v_currency' => $_POST['scurrencyvendor'][$i] //
+						'v_nominal' => number_format($nominal,0,",",".")
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -1317,7 +1316,7 @@ class Approval extends CI_Controller {
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
 			$nama_vendor = $_POST['namavendor'][$i];
-			$v_bank = $_POST['sbankvendor'][$i];
+			$v_bank = $_POST['bankvendor'][$i];
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
 
@@ -1352,7 +1351,15 @@ class Approval extends CI_Controller {
 			'vendor' => $kode_vendor,
 			'akun_bank' => $v_bank,
 			'no_rekening' =>$v_account,
-			'lainnya1' => $_POST['lainnya1']
+			'lainnya1' => $_POST['lainnya1'],
+			'label7a' => $_POST['label7a'],
+			'label8a' => $_POST['label8a'],
+			'label9a' => $_POST['label9a'],
+			'label7b' => $_POST['label7b'],
+			'label8b' => $_POST['label8b'],
+			'label9b' => $_POST['label9b'],
+			'div_head' => $_POST['div_head'],
+			'jab_div_head' => $_POST['jab_div_head'],
 		);
 
 		
@@ -1376,7 +1383,7 @@ class Approval extends CI_Controller {
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
 			$nama_vendor = $_POST['namavendor'][$i];
-			$v_bank = $_POST['sbankvendor'][$i];//$_POST['bankvendor'][$i];
+			$v_bank = $_POST['sbankvendor'][$i];//$_POST['bankvendor'][$i]
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
 		
@@ -1428,21 +1435,24 @@ class Approval extends CI_Controller {
 			'akun_bank' => $v_bank,
 			'no_rekening' =>$v_account,
 			'lainnya1' => $_POST['lainnya1'],
-			'curr_settlement1' => $cr1, //$_POST['curr1'],
-			'curr_settlement2' => $cr2, //$_POST['curr2'],
-			'curr_settlement3' => $cr3, //$_POST['curr3'],
+			'curr_settlement1' => $_POST['curr1'],
+			'curr_settlement2' => $_POST['curr2'],
+			'curr_settlement3' => $_POST['curr3'],
 			'label7a' => $_POST['label7a'],
 			'label8a' => $_POST['label8a'],
 			'label9a' => $_POST['label9a'],
 			'label7b' => $_POST['label7b'],
 			'label8b' => $_POST['label8b'],
-			'label9b' => $_POST['label9b']
+			'label9b' => $_POST['label9b'],
+			'div_head' => $_POST['div_head'],
+			'jab_div_head' => $_POST['jab_div_head'],
 		);
 
 		$insert = $this->Home_model->saveaddpayment($add);
 		
 		$id = $insert;
 		for($i=0; $i<$strcounter; $i++){
+			//$nominal=preg_replace("/[^0-9]/", "", $_POST['nominalvendor'][$i] );
 			$nominalvendor=$_POST['nominalvendor'][$i];
 			$nominal=preg_replace("/[^0-9]/", "", $nominalvendor );
 			if(substr($nominalvendor,0,1)=="-"){
@@ -1452,15 +1462,15 @@ class Approval extends CI_Controller {
 			}else{
 				$nominal=number_format($nominal,0,",",".");
 			}
+			
 			//if($nominal != ""){
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
 						'v_bank' => $_POST['sbankvendor'][$i],//$_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
-						'v_nominal' => $nominal,
+						'v_nominal' =>  $nominal,
 						'v_currency' => $_POST['scurrencyvendor'][$i] //$_POST['currencyvendor'][$i]						
-					
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -1498,10 +1508,11 @@ class Approval extends CI_Controller {
 				$data = array(
 						'id_payment' => $id,
 						'kode_vendor' => $_POST['kodevendor'][$i],
-						'v_bank' => $_POST['sbankvendor'][$i], //$_POST['bankvendor'][$i],
+						'v_bank' => $_POST['sbankvendor'][$i],//$_POST['bankvendor'][$i],
 						'v_account' => $_POST['rekeningvendor'][$i],
 						'v_nominal' => $nominal, //number_format($nominal,0,",","."),
-						'v_currency' => $_POST['scurrencyvendor'][$i]
+						'v_currency' => $_POST['scurrencyvendor'][$i] //$_POST['currencyvendor'][$i]
+						
 					);
 					
 				$insert = $this->Dashboard_model->vendorpayment_add($data);
@@ -1511,7 +1522,7 @@ class Approval extends CI_Controller {
 		for($i=0; $i<1; $i++){
 			$kode_vendor = $_POST['kodevendor'][$i];
 			$nama_vendor = $_POST['namavendor'][$i];
-			$v_bank = $_POST['sbankvendor'][$i];//$_POST['bankvendor'][$i],
+			$v_bank = $_POST['sbankvendor'][$i];//$_POST['bankvendor'][$i];
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
 
@@ -1546,13 +1557,24 @@ class Approval extends CI_Controller {
 			'vendor' => $kode_vendor,
 			'akun_bank' => $v_bank,
 			'no_rekening' =>$v_account,
-			'lainnya1' => $_POST['lainnya1']
+			'lainnya1' => $_POST['lainnya1'],
+			'curr_settlement1' => $_POST['curr1'],
+			'curr_settlement2' => $_POST['curr2'],
+			'curr_settlement3' => $_POST['curr3'],
+			'label7a' => $_POST['label7a'],
+			'label8a' => $_POST['label8a'],
+			'label9a' => $_POST['label9a'],
+			'label7b' => $_POST['label7b'],
+			'label8b' => $_POST['label8b'],
+			'label9b' => $_POST['label9b'],
+			'div_head' => $_POST['div_head'],
+			'jab_div_head' => $_POST['jab_div_head'],
 		);
 
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
 		$this->Home_model->saveeditpayment(array('id_payment' => $id),$add);			
-
-		//redirect(site_url('Home/formfinished/'.$id));
+		
+		//redirect(site_url('Dashboard/formfinished/'.$id));
 		echo json_encode($id);
 	}
 	
