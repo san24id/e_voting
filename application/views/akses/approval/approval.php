@@ -92,7 +92,7 @@
 
                       <font size='5' color="white"><center><?php echo $tot_approved->tot_approved; ?></center></font>
                       <?php } ?>
-                      <center><font size='3' color="white">Total Approved </center>
+                      <center><font size='3' color="white">Approved </center>
                   </div>
                 </td>                                 
               </tr>

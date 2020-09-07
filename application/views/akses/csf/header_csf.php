@@ -298,7 +298,7 @@
           foreach ($query as $row)
           // var_dump($row);exit;
          if($this->session->userdata("role_id") == 4){ ?>
-        <li><center><button type="button" data-toggle="modal" data-target="#activate" class="btn btn-success"><i class="glyphicon glyphicon-wrench"></i>&nbsp;ACTIVATED APPROVAL <br> <?php echo $row->activate;?></button></a></center></li>
+        <li><center><button type="button" data-toggle="modal" data-target="#activate" class="btn btn-success"><i class="glyphicon glyphicon-wrench"></i>&nbsp;ONLINE APPROVAL <br> <?php echo $row->activate;?></button></a></center></li>
         <?php } ?> 
         <br>
         <br>
@@ -327,8 +327,8 @@
     <div class="modal-body">
     <form id="activated" method="post" action="dashboard/activated">
       <p align="justify">Apakah anda ingin mengaktifkan/menon-aktifkan Approval Requestor Signature?</p>
-      <input type="radio" name="activate" value="ONLINE" <?php echo $row->activate==ONLINE? 'checked':''?>> ONLINE</input><br>
-      <input type="radio" name="activate" value="OFFLINE" <?php echo $row->activate==OFFLINE? 'checked':''?>> OFFLINE</input><br>
+      <input type="radio" name="activate" value="ON" <?php echo $row->activate==ON? 'checked':''?>> ON</input><br>
+      <input type="radio" name="activate" value="OFF" <?php echo $row->activate==OFF? 'checked':''?>> OFF</input><br>
     </div>
     <div class="modal-footer">                        
      <button type="submit" class="btn btn-success bye">Yes</button>

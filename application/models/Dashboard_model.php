@@ -33,6 +33,17 @@ class Dashboard_model extends CI_Model{
     
     }
 
+    public function getRejectedTax(){
+        $dvs = $this->session->userdata('division_id');
+        // $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status = '4' AND a.rejected_by IS NOT NULL 
+                ORDER BY tanggal2 DESC";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getReturnedVerif(){
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
@@ -46,7 +57,7 @@ class Dashboard_model extends CI_Model{
 
     public function getReturnedApprov(){    
     
-        $sql = "SELECT * FROM t_payment_l WHERE status='5' AND rejected_by IS NOT NULL ";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status='5' AND rejected_by IS NOT NULL ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -759,7 +770,10 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function edit_pay($upd){
+    function edit_pay($data, $where){
+        // $this->db->update('t_payment_l', $data, $where);
+		// return $this->db->affected_rows();
+
         $sql = "UPDATE `t_payment_l` SET `status`='".$upd['status']."',`display_name`='".$upd['display_name']."',`tanggal`='".$upd['tanggal']."',`tanggal2`='".$upd['tanggal2']."',`pr_doc`='".$upd['pr_doc']."',`apf_doc`='".$upd['apf_doc']."',`apf1_doc`='".$upd['apf1_doc']."',
                 `nomor_surat`='".$upd['nomor_surat']."',`kode_proyek`='".$upd['kode_proyek']."',`tanggal_selesai`='".$upd['tanggal_selesai']."',`division_id`='".$upd['division_id']."',`label1`='".$upd['label1']."',`label2`='".$upd['label2']."',`cash_advance`='".$upd['cash_advance']."',
                 `piutang`='".$upd['piutang']."',`total_expenses`='".$upd['total_expenses']."',`total_expenses2`='".$upd['total_expenses2']."',`total_expenses3`='".$upd['total_expenses3']."',`description`='".$upd['description']."',`description2`='".$upd['description2']."',
@@ -773,7 +787,7 @@ class Dashboard_model extends CI_Model{
                 WHERE `id`='".$upd['id']."'";
 
         $query = $this->db->query($sql);
-        // var_dump($sql);exit;
+        var_dump($sql);exit;
         return $query;
     }
 

@@ -290,19 +290,19 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>" readonly> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>" readonly> </td>
+                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>" readonly> </td>
+                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>" readonly> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>" readonly> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
+                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
+                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
                         </tr>  
                       </tbody>
                     </table>

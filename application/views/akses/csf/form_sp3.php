@@ -308,7 +308,7 @@
                       </tbody>
                     </table>-->
 					
-					<form id="frmvendor" action="#"> 
+                    <form id="frmvendor" action="#"> 
 														<input type="hidden" id="txtcountervendor" name="txtcountervendor" value="1" />
 														<input type="hidden" id="strvendor" name="strvendor" value="<?php echo $strvendor; ?>">
 														<input type="hidden" id="strbank" name="strbank" value="<?php echo $strbank; ?>">
@@ -368,6 +368,28 @@
 															}else{
 															foreach($getdatavendor as $gvendor){
 																$nomvendor=str_replace(".","",$gvendor->nominal);
+																if($gvendor->v_currency==$row->currency){
+																	if(substr($gvendor->v_nominal,0,1)=="("){
+																		$totvendor1=$totvendor1-intval($nomvendor);
+																	}else{
+																		$totvendor1=$totvendor1+intval($nomvendor);
+																	}
+																}
+																if($gvendor->v_currency==$row->currency2){
+																	if(substr($gvendor->v_nominal,0,1)=="("){
+																		$totvendor2=$totvendor2-intval($nomvendor);
+																	}else{
+																		$totvendor2=$totvendor2+intval($nomvendor);
+																	}
+																}
+																if($gvendor->v_currency==$row->currency3){
+																	if(substr($gvendor->v_nominal,0,1)=="("){
+																		$totvendor3=$totvendor3-intval($nomvendor);
+																	}else{
+																		$totvendor3=$totvendor3+intval($nomvendor);
+																	}
+																}
+																
 																$ttlnomvendor=$ttlnomvendor+(float)$nomvendor;
 																$vendorrow++;
 															?>
@@ -387,31 +409,54 @@
 			
 																<td><select id="<?php echo 'currencyvendor'.$vendorrow; ?>" name="currencyvendor[]" class="form-control" readonly >
 																	<option value="<?php echo $gvendor->v_currency; ?>"> <?php echo $gvendor->v_currency;?> </option>
-																	
 																	</select>
 																</td>
 																
-															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>" readonly></td>
+															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" readonly></td>
 															
 															
 															</tr>
-															<?php } }?>
+															<?php } //number_format($nominal,0,",",".")
+																if($totvendor1<0){
+																	$strtotvendor1="(" .number_format(substr(strval($totvendor1),1,strlen(strval($totvendor1))-1),0,",","."). ")"; 
+																}else if($totvendor1==0){
+																	$strtotvendor1='';
+																}else{
+																	$strtotvendor1=strval(number_format($totvendor1,0,",",".")); 
+																}
+																if($totvendor2<0){
+																	$strtotvendor2="(" .number_format(substr(strval($totvendor2),1,strlen(strval($totvendor2))-1),0,",","."). ")";
+																}else if($totvendor2==0){
+																	$strtotvendor2='';
+																}else{
+																	$strtotvendor2=strval(number_format($totvendor2,0,",","."));  
+																}
+																if($totvendor3<0){
+																	$strtotvendor3="(" .number_format(substr(strval($totvendor3),1,strlen(strval($totvendor3))-1),0,",","."). ")"; 
+																}else if($totvendor3==0){
+																	$strtotvendor3='';
+																}else{
+																	$strtotvendor3=strval(number_format($totvendor3,0,",",".")); ; 
+																}
+															}?>
 															
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th>
-																  <div class="col-md-12"><span class="col-md-12" style="text-align:end">Total</span></div>
-                                </th>
-																<th colspan="5">
-                                  <label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
-                                  <label class="control-label col-md-3" id="lbltotalvendor"><?php echo $row->label2; ?></label>
-                                  <label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
-                                  <label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $row->jumlah2; ?></label>
-                                  <label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
-                                  <label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $row->jumlah3; ?></label>
-																</th>
-															</tr>
+                                  <th colspan="3">
+                                    <div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
+                                  </th>
+                                  <th>
+                                    <label class="control-label" id="lblcur1" ><?php echo $row->currency; ?></label><br>
+                                    <label class="control-label" id="lblcur2" ><?php echo $row->currency2; ?></label><br>
+                                    <label class="control-label" id="lblcur3" ><?php echo $row->currency3; ?></label>
+                                  </th>
+                                  <th>
+                                    <label class="control-label" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label><br>
+                                    <label class="control-label" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label><br>
+                                    <label class="control-label" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
+                                  </th>
+                              </tr>
 														</tfoot>
 														</table>
 														</div> 
@@ -886,7 +931,7 @@
       <div class="modal-body">
       <form id="processed" method="post" action="dashboard/processing">
         <input type="hidden" name="id_payment" value="<?php echo $row->id_payment; ?>">
-        <p align="justify">Apa anda yakin telah menerima Form SP3 ini :  <?=$row->nomor_surat?> ?</p>
+        <p align="justify">Apakah Form SP3 ini: <?=$row->nomor_surat?> telah diisi dengan benar dan diterima dengan lengkap?</p>
         <label>Dan akan mengirimkan Form SP3 ini Kepada CSF Tax?</label> 
         <input type="hidden" name="handled_by" value="a.ester">                       
         <!-- <select class="form-control" name="handled_by">

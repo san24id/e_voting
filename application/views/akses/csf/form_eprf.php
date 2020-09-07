@@ -284,19 +284,19 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>" readonly> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $get->persetujuan_pembayaran1;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>" readonly> </td>
+                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $get->persetujuan_pembayaran2;?>" readonly> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>" readonly> </td>
+                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $get->persetujuan_pembayaran3;?>" readonly> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>" readonly> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control" value="<?php echo $get->jabatan1;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
+                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control" value="<?php echo $get->jabatan2;?>" readonly> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
+                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control" value="<?php echo $get->jabatan3;?>" readonly> </td>
                         </tr>  
                       </tbody>
                     </table>
@@ -1238,8 +1238,8 @@ var save_method;
 var url;
 function saveapf() {
 
-url="<?php echo base_url('Dashboard/edit_pay')?>"
-
+  url="<?php echo base_url('Dashboard/edit_pay')?>"
+  
   $.ajax({
     url : url,
     type : "POST",
@@ -1248,9 +1248,9 @@ url="<?php echo base_url('Dashboard/edit_pay')?>"
     success: function(data){ // Ketika proses pengiriman berhasil          
     alert('Data Berhasil Di Simpan!');   
     // save_method="edit";
-    // $("#id_payment").val(data);
+    // $("#id").val(data);
     //window.location = link;
-    window.location ="<?php echo base_url('Dashboard/my_task');?>";
+    window.location ="<?php echo base_url('Dashboard/my_task');?>
   },      
     error: function (data)
     {

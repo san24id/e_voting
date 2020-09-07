@@ -23,10 +23,10 @@
 						 	<li class="active"><a class="nav-link active" href="#tab_33" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b></a></li>
 						<?php }else{ ?>
 							<li class="active"><a class="nav-link active" href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED (TO USERS)</b></a></li>
+							<li><a href="#tab_5" data-toggle="tab"><b>LIST OF REJECTED SP3</b></a></li>
 							<li><a href="#tab_2" data-toggle="tab"><b>LIST OF RETURNED (APF FORM)</b></a></li>
 							<li><a href="#tab_3" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b></a></li>
 							<li><a href="#tab_4" data-toggle="tab"><b>LIST OF REJECTED (AS VERIFICATOR TO USERS)</b></a></li>
-							<!-- <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li> -->
 						<?php } ?>
 						</ul>
 						<?php if($this->session->userdata("role_id") == 4){ ?>
@@ -254,6 +254,9 @@
 											<?php 
 												$i = 1;
 												foreach ($returnedapprov as $row){
+													$test11 = $row->type;                        
+													$test22 = explode(";", $test11);
+													$test33 = count($test22);
 											?>
 											<tr>
 											<td><?php echo $i++; ?></td>                  
@@ -275,16 +278,16 @@
 											<td><?php echo $row->note;?> </td>
 											<td>
 												<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-												<?php if ($row->jenis_pembayaran == 2) { ?> 
+												<?php if ($row->type == 2) { ?> 
 													<a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
 												<?php } ?>
-												<?php if ($row->jenis_pembayaran == 3) { ?> 
+												<?php if ($row->type == 3) { ?> 
 													<a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
 												<?php } ?>
-												<?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+												<?php if ($row->type == 4 || $row->type == 6) { ?>   
 													<a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
 												<?php } ?>
-												<?php if ($row->jenis_pembayaran == 5) { ?> 
+												<?php if ($row->type == 5) { ?> 
 													<a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
 												<?php } ?>                    
 											</td>      
@@ -343,36 +346,31 @@
 											<thead>
 											<tr>
 												<th>NO.</th>
-												<th>Tanggal</th>
-												<th>Jenis Pembayaran</th>
-												<th>Nomor Surat</th>
+												<th>Tanggal Reject</th>
+												<th>Reject Dari</th>
+												<th>Nomor SP3</th>
 												<th>Deskripsi</th>
-												<th>Nama Pemohon</th>
+												<!-- <th>Nama Pemohon</th> -->
 												<th>Penerima Pembayaran</th>
+												<th>Reason</th>
 												<th>Action</th>
-												</tr>
-												</thead>
-												<tbody>
+											</tr>	
+											</thead>
+											<tbody>
 												<?php 
 													$i = 1;
-													foreach ($deletedsp3 as $row){
+													foreach ($rejectedtax as $row){
 													$test1 = $row->jenis_pembayaran;                        
 													$test2 = explode(";", $test1);
 													$test3 = count($test2);                        
 												?>
 												<tr>
-												<td><?php echo $i++; ?></td>                  
-												<td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
-													<td><?php                     
-														for($a=0; $a<$test3; $a++){
-														if($test2[$a]){
-															echo $test2[$a]."<br>";
-														}
-														}  ?>
-													</td>
+													<td><?php echo $i++; ?></td>                  
+													<td><?php echo date('d-M-Y', strtotime($row->rejected_date)); ?></td>
+													<td><?php echo $row->rejected_by; ?></td>                  
 													<td><?php echo $row->nomor_surat; ?></td>
 													<td><?php echo $row->label1; ?></td>
-													<td><?php echo $row->display_name; ?></td>
+													<!-- <td><?php echo $row->display_name; ?><td> -->
 													<?php 
 														$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
 														$query = $this->db->query($sql)->result();
@@ -384,12 +382,13 @@
 														}
 														?>
 													<td><?php echo $buka; ?></td>
-												<td>
-													<a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-												</td>      
-											</tr>
+													<td><?php echo $row->note; ?></td>
+													<td>
+														<a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+													</td>      
+												</tr>
 												<?php } ?>      
-										</tbody>
+											</tbody>
 										</table>
 										</div>
 										</div>
@@ -425,9 +424,9 @@
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-pills">
 						  <li class="active"><a class="nav-link active" href="#tab_11" data-toggle="tab"><b>LIST OF REJECTED SP3 </b></a></li>
+						  <li><a href="#tab_55" data-toggle="tab"><b>LIST OF REJECTED SP3</b></a></li>
 						  <li><a href="#tab_22" data-toggle="tab"><b>LIST OF RETURNED (APF FORM)</b></a></li>
 						  <li><a href="#tab_44" data-toggle="tab"><b>LIST OF REJECTED (AS VERIFICATOR TO USERS)</b></a></li>
-						  <!-- <li><a href="#tab_5" data-toggle="tab"><b>DELETED FILE SP3</b></a></li> -->
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab_11">						  
@@ -603,66 +602,65 @@
 								</div>
 							</div>
 
-							<!-- <div class="tab-pane" id="tab_5">                
+							<div class="tab-pane" id="tab_55">                
 								<div class="modal-body form">
 									<div class="box-body">
 									<div class="table-responsive">
-										<table id="example5" class="table table-bordered table-striped">
+										<table id="example55" class="table table-bordered table-striped">
 										<thead>
 										<tr>
-											<th>NO.</th>
-											<th>Tanggal</th>
-											<th>Jenis Pembayaran</th>
-											<th>Nomor Surat</th>
-											<th>Deskripsi</th>
-											<th>Nama Pemohon</th>
-											<th>Penerima Pembayaran</th>
-											<th>Action</th>
-											</tr>
-											</thead>
-											<tbody>
+												<th>NO.</th>
+												<th>Tanggal Reject</th>
+												<th>Reject Dari</th>
+												<th>Nomor SP3</th>
+												<th>Deskripsi</th>
+												<th>Reason</th>
+												<th>Action</th>
+										</tr>	
+										</thead>
+										<tbody>
 											<?php 
-												$i = 1;
-												foreach ($deletedsp3 as $row){
-												$test1 = $row->jenis_pembayaran;                        
-												$test2 = explode(";", $test1);
-												$test3 = count($test2);                        
-											?>
-											<tr>
-											<td><?php echo $i++; ?></td>                  
-											<td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
-												<td><?php                     
-													for($a=0; $a<$test3; $a++){
-													if($test2[$a]){
-														echo $test2[$a]."<br>";
-													}
-													}  ?>
-												</td>
-												<td><?php echo $row->nomor_surat; ?></td>
-												<td><?php echo $row->label1; ?></td>
-												<td><?php echo $row->display_name; ?></td>
-												<?php 
-													$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-													$query = $this->db->query($sql)->result();
-													// return $query;
-													// var_dump($query[0]->nama);exit; 
-													if ($query[0]->nama) { $buka = $query[0]->nama;
-													}else{
-														$buka = $row->penerima;
-													}
-													?>
-												<td><?php echo $buka; ?></td>
-											<td>
-												<a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-											</td>      
-										  </tr>
-											<?php } ?>      
-									  </tbody>
-									  </table>
+													$i = 1;
+													foreach ($rejectedtax as $row){
+													$test1 = $row->jenis_pembayaran;                        
+													$test2 = explode(";", $test1);
+													$test3 = count($test2);                        
+												?>
+												<tr>
+													<td><?php echo $i++; ?></td>                  
+													<td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
+														<td><?php                     
+															for($a=0; $a<$test3; $a++){
+															if($test2[$a]){
+																echo $test2[$a]."<br>";
+															}
+															}  ?>
+														</td>
+														<td><?php echo $row->nomor_surat; ?></td>
+														<td><?php echo $row->label1; ?></td>
+														<td><?php echo $row->display_name; ?></td>
+														<?php 
+															$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+															$query = $this->db->query($sql)->result();
+															// return $query;
+															// var_dump($query[0]->nama);exit; 
+															if ($query[0]->nama) { $buka = $query[0]->nama;
+															}else{
+																$buka = $row->penerima;
+															}
+															?>
+														<td><?php echo $buka; ?></td>
+													<td>
+														<a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+													</td>      
+												</tr>
+												<?php } ?>      
+										</tbody>
+									  	</table>
 									</div>
 									</div>
 								</div>
-							</div> -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -711,10 +709,12 @@ $(function () {
     $("#example2").DataTable();
     $("#example3").DataTable();
     $("#example4").DataTable();
+    $("#example5").DataTable();
     $("#example11").DataTable();
     $("#example22").DataTable();
     $("#example33").DataTable();
     $("#example44").DataTable();
+    $("#example55").DataTable();
     $('#example6').DataTable({
       "paging": true,
       "lengthChange": false,

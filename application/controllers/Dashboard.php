@@ -1745,6 +1745,7 @@ class Dashboard extends CI_Controller {
 		$data['returnedverif'] = $this->Dashboard_model->getReturnedVerif();
 		$data['returnedapprov'] = $this->Dashboard_model->getReturnedApprov();
 		$data['deletedsp3'] = $this->Home_model->deletedsp3();
+		$data['rejectedtax'] = $this->Dashboard_model->getRejectedTax();
 		$data['returnedusr'] = $this->Dashboard_model->getReturnedUser();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -2172,6 +2173,8 @@ class Dashboard extends CI_Controller {
 		// echo $type;
 		$verified = date('d-m-Y', strtotime($this->input->post("verified_date")));
 		// var_dump(count($_POST['type']));exit;
+		// $id = $_POST['id_payment'];
+
 		$upd = array(
 			
 			'id' => $_POST['id'],
@@ -2242,9 +2245,11 @@ class Dashboard extends CI_Controller {
 		);
 		// var_dump($_POST['nomor_surat']);exit;
 
+		// $this->Dashboard_model->edit_pay(array('id_payment' => $id),$upd);
 		$this->Dashboard_model->edit_pay($upd);
 		$this->Dashboard_model->change_stat($upd,$upd[status],$upd[handled_by]);
 
+		// echo json_encode($id);
 		echo json_encode(array("status" => TRUE));
 		// redirect('Dashboard/my_task');
 	}

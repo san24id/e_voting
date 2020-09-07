@@ -261,9 +261,7 @@
         <!-- /.col -->
       </div>
     </section>  
-
-    <?php 
-      if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>                    
+                      
     <section class="content-header">
       <h1>
         APF READY TO PRINT
@@ -368,7 +366,6 @@
         </div>
         <!-- /.col -->
       </div>
-    <?php } ?>
     </section>
     <!-- /.content -->
   </div>
