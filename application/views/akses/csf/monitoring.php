@@ -438,13 +438,13 @@
                           }else if($row->status == 5){
                             echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
                           }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/icon_checklist.png'>";
+                              echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/icon_user.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/paid2.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }

@@ -245,15 +245,15 @@
                           }else if($row->status == 5){
                             echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/icon_file.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
                           }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/icon_checklist.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/icon_user.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/paid.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
                           }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
                         ?></center>
                     </td>                  
@@ -285,7 +285,7 @@
                           if ($row->status <= 5) { ?>
                             <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
-                        <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
+                        <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8 || $row->status == 9 || $row->status == 10) { ?>                         
                           <?php if ($row->jenis_pembayaran == 2) { ?> 
                             <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                           <?php } ?>
@@ -355,12 +355,12 @@
                 break;
                 case "8":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_file.png'> &nbsp;Waiting For Review</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_reviewer.png'> &nbsp;Waiting For Review</div>";
 
                 break;
                 case "9":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_user.png'> &nbsp;Waiting For Approval</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_approval.png'> &nbsp;Waiting For Approval</div>";
 
                 break;
                 case "10":
@@ -370,7 +370,7 @@
                 break;
                 case "11":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_checklist.png'> &nbsp;Waiting For Verification</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verification</div>";
 
                 break;
                 case "12":

@@ -56,17 +56,17 @@
                           }else if($row->status == 3){
                             echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
                           }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
                           }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
                           }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
                           }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
+                              echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
                           }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
+                            echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
                           }   
