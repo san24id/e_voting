@@ -21,10 +21,10 @@
                 <tr>
                   <th>NO.</th>
                   <th>Status</th>
-                  <th>Type</th>
-                  <th>Submitted Date</th>
+                  <th>Jenis Pembayaran</th>
+                  <th>Tanggal Submit</th>
                   <th>APF No</th>
-                  <th>Description</th>
+                  <th>Deskripsi</th>
                   <th>Pemohon</th>
                   <th>Action</th>
                 </tr>
@@ -33,6 +33,9 @@
                 <?php 
                   $i = 1;
                   foreach ($wApproval as $row){
+                    $test11 = $row->apf;                        
+                    $test22 = explode(";", $test11);
+                    $test33 = count($test22);
                 ?>
                 <tr>
                   <td><?php echo $i++; ?></td>

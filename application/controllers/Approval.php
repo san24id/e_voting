@@ -1284,6 +1284,50 @@ class Approval extends CI_Controller {
 		$this->load->view('akses/user/view_detail', $data);
 	}
 
+	public function all_detail_approval($id,$start_date,$end_date)
+	{
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
+		$this->session->set_userdata('statuspayment',$id);
+		$sid = $this->session->userdata("id_user");
+		$data['l_approval'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+		
+		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['approved'] = $this->Approval_model->getList();
+		$data['pembayaran'] = $this->Approval_model->getVPayment();
+		$data['tot_approved'] = $this->Approval_model->TotalApproved();
+		$data['wApproval'] = $this->Approval_model->getWaitApproval();
+
+		switch($id){
+			
+		}
+		
+		
+		switch ($id) {
+		  case "1":
+			$data['approval'] = $this->Approval_model->getMonitoringWaitApproval($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting for Approval');
+			$this->session->set_userdata('filter','1');
+			break;
+		  case "2":
+			$data['approval'] = $this->Approval_model->getMonitoringListApproved($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Approved');
+			$this->session->set_userdata('filter','2');
+			break;
+		  
+		  default:
+		  	$data['approval'] = $this->Approval_model->getList();
+		}
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/view_detail_approval', $data);
+	}
+
 	public function saveeditpayment(){
 		$jenis_pembayaran = $_POST['jns_pembayaran'];
 		$c_label4 = count($_POST['label4']);

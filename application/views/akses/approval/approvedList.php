@@ -21,10 +21,10 @@
                 <tr>
                   <th>NO.</th>
                   <th>Status</th>
-                  <th>Type</th>
-                  <th>Submitted Date</th>
+                  <th>Jenis Pembayaran</th>
+                  <th>Tanggal Submit</th>
                   <th>APF No</th>
-                  <th>Description</th>
+                  <th>Deskripsi</th>
                   <th>Pemohon</th>
                   <th>Action</th>
                 </tr>

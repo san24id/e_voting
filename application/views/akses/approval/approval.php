@@ -79,7 +79,7 @@
                     <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3verified.png"></i></span>
                       <br>
                       <?php foreach ($wApproval as $wApproval) { ?>
-                      <font size='5' color="white"><center><?php echo $wApproval->approval; ?></center></font>
+                        <a href="<?php echo base_url('Approval/all_detail_approval/1/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $wApproval->approval; ?></center></font></a>
                       <?php } ?>
                       <center><font size='3' color="white">Waiting for Approval </center>
                   </div>
@@ -90,7 +90,7 @@
                       <br>
                       <?php foreach ($tot_approved as $tot_approved) { ?>
 
-                      <font size='5' color="white"><center><?php echo $tot_approved->tot_approved; ?></center></font>
+                        <a href="<?php echo base_url('Approval/all_detail_approval/2/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $tot_approved->tot_approved; ?></center></font></a>
                       <?php } ?>
                       <center><font size='3' color="white">Approved </center>
                   </div>
