@@ -177,12 +177,12 @@
                 <div class="form-group">
                   <label class="control-label col-md-1"><i>Legend</i></label>
                   <!-- <div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submitted</div> -->
+                  <div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>-->
+                  <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submitted</div> 
                   <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>
-                  <!-- <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>
+                  <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>
                   <div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp; Paid</div>											   -->
+                  <!-- <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp; Paid</div>			   -->
                 </div>  
               </div>
             </div>
