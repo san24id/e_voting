@@ -337,10 +337,10 @@
 								break;
 							  case "2":
 								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
+								// echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>";
 								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
-								echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+								// echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
+								// echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
 								break;
 							  case "3":
 								echo "<label class='control-label col-md-1'><i>Legend</i></label>";								
