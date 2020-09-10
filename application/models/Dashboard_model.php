@@ -1232,7 +1232,7 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 	public function getDataTax($id) {
-        $sql = "select id_tax,id_payment,ifnull(no_urut,1) no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan FROM t_tax where id_payment = '$id' order by no_urut";
+        $sql = "select id_tax,id_payment,ifnull(no_urut,1) no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan,status FROM t_tax where id_payment = '$id' order by no_urut";
 		$query = $this->db->query($sql)->result();
         return $query;
     }								
@@ -1790,7 +1790,34 @@ class Dashboard_model extends CI_Model{
 	}
 	
 	function gettaxfordelete($idtax){
-        $query=$this->db->query("select a1.dpp,a1.dpp_gross,a2.dpp_kumulatif,a2.id_honor from t_tax a1, m_honorarium_konsultan a2 where a1.id_honor=a2.id_honor and id_tax='$idtax' ");
+		$query=$this->db->query("select a1.jenis_pajak,a1.dpp,a1.dpp_gross,a2.dpp_kumulatif,a2.id_honor from t_tax a1, m_honorarium_konsultan a2 where a1.id_honor=a2.id_honor and id_tax='$idtax' ");
+        return $query;
+    }
+	
+	function checklistnpwpvendor($idpayment){
+		$sql = "select m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m, t_vendor v WHERE v.kode_vendor=m.kode_vendor and trim(v.kode_vendor)='1000000' and v.id_payment = '$idpayment'";
+        $query=$this->db->query($sql);
+        return $query;
+    }
+	
+	public function getallnpwpvendor() {
+        $sql = "SELECT m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m ";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getTotalDataTax($id) {
+		$sql = "select jenis_pajak,sum(CAST(replace(replace(dpp,'.',''),',','.') AS decimal(10,0))) total_dpp, ";
+		$sql .= "sum(CAST(replace(replace(dpp_gross,'.',''),',','.') AS decimal(10,0))) total_dpp_gross, ";
+		$sql .= "sum(CAST(replace(replace(pajak_terutang,'.',''),',','.') AS decimal(10,0))) total_pajak_terhutang ";
+		$sql .= "from t_tax where id_payment='$id' group by jenis_pajak ";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }	
+	
+	function getststaxdraft($idpayment){
+		$sql = "select status from t_tax where status='777' and id_payment = '$idpayment'";
+        $query=$this->db->query($sql);
         return $query;
     }
 }

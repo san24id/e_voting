@@ -1163,13 +1163,19 @@ class Dashboard extends CI_Controller {
 		$data['gprocess'] = $this->Dashboard_model->getProcessing();
 		$data['tax'] = $this->Dashboard_model->getTax();
 		$data['jenispajak'] = $this->Dashboard_model->getJenisPajak();
-		$data['kodePajak']= $this->Dashboard_model->getKodePajak();
+		//$data['kodePajak']= $this->Dashboard_model->getKodePajak();
 		$data['kodeMap'] = $this->Dashboard_model->getKodeMap();
 		$data['vendor'] = $this->Dashboard_model->getDataVendor();
 		$data['persen'] = $this->Dashboard_model->getTarif();
 		$data['getnpwp'] = $this->Dashboard_model->getDataNPWP($id_payment);
-		$data['getallnpwp'] = $this->Dashboard_model->getAllDataNPWP($id_payment);
+		$ceklistvendor=$this->Dashboard_model->checklistnpwpvendor($id_payment);
+		if($ceklistvendor->num_rows() > 0){			
+			$data['getallnpwp'] = $this->Dashboard_model->getallnpwpvendor();		
+		}else{
+			$data['getallnpwp'] = $this->Dashboard_model->getAllDataNPWP($id_payment);
+		}
 		$data['getdatatax'] = $this->Dashboard_model->getDataTax($id_payment);
+		$data['gettotaldatatax'] = $this->Dashboard_model->getTotalDataTax($id_payment);
 		$data['getdatanontax'] = $this->Dashboard_model->getDataNonTax($id_payment);
 		$data['getnouruttax'] = $this->Dashboard_model->getUrutTax($id_payment);
 		$data['getdatataxFlag'] = $this->Dashboard_model->getDataTaxFlag($id_payment);
@@ -2616,6 +2622,61 @@ class Dashboard extends CI_Controller {
 		echo json_encode($data);
 	}
 	
+	public function savetaxdraftfirst()
+	{
+		$id = $this->input->post('id_payment');
+				
+		$data = array(
+				'id_payment' => $this->input->post('id_payment'),
+				'status' => 777,
+				'handled_by' => $this->input->post('handled_by'),
+				'nomor_surat' => $this->input->post('nomor_surat'),
+				'de' => $this->input->post('vdeductible'),
+				'opsional' => $this->input->post('voptional'),
+				'nilai' => $this->input->post('nilai'),
+				'objek_pajak' => $this->input->post('vobjekpajak'),
+				'jenis_pajak' => $this->input->post('vjnspjk'),
+				'kode_pajak' => $this->input->post('vkdpjk'),
+				'kode_map' => $this->input->post('selKdMap'),
+				'nama' => $this->input->post('txtnamanpwp_old'),
+				'npwp' => $this->input->post('txtnonpwp'),
+				'alamat' => $this->input->post('txtalamat'),
+				'tarif' => $this->input->post('vtarif'),
+				'fas_pajak' => $this->input->post('txtfasilitas'),
+				'special_tarif' => $this->input->post('vtarifspesial'),
+				'gross' => $this->input->post('vgross'),
+				'dpp' => $this->input->post('txtdpp'),
+				'dpp_gross' => $this->input->post('txtdppgross'),
+				'pajak_terutang' => $this->input->post('vpajakterhutang'),
+				'masa_pajak' => $this->input->post('selmasappn'),
+				'keterangan' => $this->input->post('txtketerangan'),
+				'tahun' => $this->input->post('seltahunppn'),
+				'no_urut' => $this->input->post('txtnourut'),
+				'id_honor' => $this->input->post('txtnamanpwp')
+			);
+		$insert = $this->Dashboard_model->drafttax_add($data);
+		
+		$jnspjk = $this->input->post('vjnspjk');
+		if(trim($jnspjk) == 'PPh Pasal 21') {
+			$dppkumulatif= str_replace(",",".",str_replace(".","",$this->input->post('txtdppkumulatif')));
+			$amountnett=str_replace(",",".",str_replace(".","",$this->input->post('txtdpp')));
+			$amountgross=str_replace(",",".",str_replace(".","",$this->input->post('txtdppgross')));
+			if(floatval($amountgross)>floatval($amountnett)){
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountgross);
+			}else{
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountnett);
+			}
+			$dataH = array(
+				'dpp_kumulatif' => $dppkumulatif
+			);
+			$this->Dashboard_model->dppkumulatif_update('m_honorarium_konsultan',array('id_honor' => $this->input->post('txtnamanpwp')), $dataH);	
+		}
+		
+		$data = $this->Dashboard_model->getDataTax($id);
+		//echo json_encode(array("status" => TRUE));
+		echo json_encode($data);
+	}
+	
 	public function savetaxdraft()
 	{
 		$id = $this->input->post('id_payment');
@@ -2652,13 +2713,13 @@ class Dashboard extends CI_Controller {
 		
 		$jnspjk = $this->input->post('vjnspjk');
 		if(trim($jnspjk) == 'PPh Pasal 21') {
-			$dppkumulatif=floatval($this->input->post('txtdppkumulatif'));
-			$amountnett=floatval($this->input->post('txtdpp'));
-			$amountgross=floatval($this->input->post('txtdppgross'));
-			if($amountgross>$amountnett){
-				$dppkumulatif=$dppkumulatif+$amountgross;
+			$dppkumulatif= str_replace(",",".",str_replace(".","",$this->input->post('txtdppkumulatif')));
+			$amountnett=str_replace(",",".",str_replace(".","",$this->input->post('txtdpp')));
+			$amountgross=str_replace(",",".",str_replace(".","",$this->input->post('txtdppgross')));
+			if(floatval($amountgross)>floatval($amountnett)){
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountgross);
 			}else{
-				$dppkumulatif=$dppkumulatif+$amountnett;
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountnett);
 			}
 			$dataH = array(
 				'dpp_kumulatif' => $dppkumulatif
@@ -2705,18 +2766,19 @@ class Dashboard extends CI_Controller {
 		$cek_id_tax=$this->Dashboard_model->gettaxfordelete($id_tax);
 		if($cek_id_tax->num_rows() > 0){
             foreach ($cek_id_tax->result() as $row) {
-           		$dppnett = floatval($row->dpp); 
-				$dppgross = floatval($row->dppgross);
+           		$dppnett = str_replace(",",".",str_replace(".","",$row->dpp)); 
+				$dppgross = str_replace(",",".",str_replace(".","",$row->dppgross));
 				$jnspjk = $row->jenis_pajak;
-				$dppkumulatif = floatval($row->dpp_kumulatif);
-				$id_honor=floatval($row->id_honor);
+				$dppkumulatif = str_replace(",",".",str_replace(".","",$row->dpp_kumulatif));
+				$id_honor=$row->id_honor;
 			}
 			if(trim($jnspjk)=="PPh Pasal 21"){
-				if($dppgross>$dppnett){
-					$dppkumulatif=$dppkumulatif-$amountgross;
+				if(floatval($dppgross)>floatval($dppnett)){
+					$dppkumulatif=floatval($dppkumulatif)-floatval($dppgross);
 				}else{
-					$dppkumulatif=$dppkumulatif-$amountnett;
-				}
+					$dppkumulatif=floatval($dppkumulatif)-floatval($dppnett);
+				}			
+				
 				$dataH = array(
 					'dpp_kumulatif' => $dppkumulatif
 				);
@@ -2731,27 +2793,32 @@ class Dashboard extends CI_Controller {
 	
 	public function submittax()
 	{
-		if ($_POST['rejected_by'] != NULL){
-			$rejected = "";
+		$cek_sts_tax=$this->Dashboard_model->getststaxdraft($this->input->post('id_payment'));
+		if($cek_sts_tax->num_rows() > 0){
+			echo json_encode(array("status" => FALSE));
+		}else{
+			if ($_POST['rejected_by'] != NULL){
+				$rejected = "";
+			}
+			$data = array(
+						'status' => 5,
+						'handled_by' => $this->input->post('handled_by'),
+						'nomor_surat' => $this->input->post('nomor_surat'),
+						'rejected_by' => $rejected
+						);
+			$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
+			$this->Dashboard_model->updatestatustax(array('id_payment' => $this->input->post('id_payment')), $data);
+			$data1 = array(
+							'id_payment' => $this->input->post('id_payment'),
+							'de' => $this->input->post('vdeductible'),
+							'opsional' => $this->input->post('voptional'),
+							'nilai' => $this->input->post('nilai'),
+							'objek_pajak' => $this->input->post('vobjekpajak')
+						);					
+			$insert = $this->Dashboard_model->addtaxheader($data1);
+			
+			echo json_encode(array("status" => TRUE));
 		}
-		$data = array(
-					'status' => 5,
-					'handled_by' => $this->input->post('handled_by'),
-					'nomor_surat' => $this->input->post('nomor_surat'),
-					'rejected_by' => $rejected
-					);
-		$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
-		$this->Dashboard_model->updatestatustax(array('id_payment' => $this->input->post('id_payment')), $data);
-		$data1 = array(
-						'id_payment' => $this->input->post('id_payment'),
-						'de' => $this->input->post('vdeductible'),
-						'opsional' => $this->input->post('voptional'),
-						'nilai' => $this->input->post('nilai'),
-						'objek_pajak' => $this->input->post('vobjekpajak')
-					);					
-		$insert = $this->Dashboard_model->addtaxheader($data1);
-		
-		echo json_encode(array("status" => TRUE));
 	}
 
 	public function caridataAR()
@@ -3039,17 +3106,12 @@ class Dashboard extends CI_Controller {
 		echo json_encode($data);
 	}
 	
-	public function updatetaxdraft()
+	public function updatetaxdraftfirst()
 	{
-		/*$id = $this->input->post('id_payment');
-		$idtax = $this->input->post('id_tax');
-		$urutnew = $this->input->post('txtnourut');						
-		$data = array(
-				'no_urut' => $urutnew,
-		);*/
 		$id = $this->input->post('id_payment');
 		$idtax = $this->input->post('id_tax');
 		$data = array(
+				'status' => 777,
 				'de' => $this->input->post('vdeductible'),
 				'opsional' => $this->input->post('voptional'),
 				'nilai' => $this->input->post('nilai'),
@@ -3087,20 +3149,96 @@ class Dashboard extends CI_Controller {
 		
 		$jnspjk = $this->input->post('vjnspjk');
 		if(trim($jnspjk) == 'PPh Pasal 21') {
-			$dppkumulatif=floatval($this->input->post('txtdppkumulatif'));
-			$amountnett_old=floatval($this->input->post('txtdpp_old'));
-			$amountgross_old=floatval($this->input->post('txtdppgross_old'));
-			if($amountgross_old>$amountnett_old){
-				$dppkumulatif=$dppkumulatif-$amountgross_old;
+			$dppkumulatif=str_replace(",",".",str_replace(".","",$this->input->post('txtdppkumulatif')));
+			$amountnett_old=str_replace(",",".",str_replace(".","",$this->input->post('txtdpp_old')));
+			$amountgross_old=str_replace(",",".",str_replace(".","",$this->input->post('txtdppgross_old')));
+			if(floatval($amountgross_old)>floatval($amountnett_old)){
+				$dppkumulatif=floatval($dppkumulatif)-floatval($amountgross_old);
 			}else{
-				$dppkumulatif=$dppkumulatif+$amountnett_old;
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountnett_old);
 			}
-			$amountnett=floatval($this->input->post('txtdpp'));
-			$amountgross=floatval($this->input->post('txtdppgross'));
-			if($amountgross>$amountnett){
-				$dppkumulatif=$dppkumulatif+$amountgross;
+			$amountnett=str_replace(",",".",str_replace(".","",$this->input->post('txtdpp')));
+			$amountgross=str_replace(",",".",str_replace(".","",$this->input->post('txtdppgross')));
+			if(floatval($amountgross)>floatval($amountnett)){
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountgross);
 			}else{
-				$dppkumulatif=$dppkumulatif+$amountnett;
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountnett);
+			}
+			$dataH = array(
+				'dpp_kumulatif' => $dppkumulatif
+			);
+			$this->Dashboard_model->dppkumulatif_update('m_honorarium_konsultan',array('id_honor' => $this->input->post('txtnamanpwp')), $dataH);	
+		}
+		
+		$data = $this->Dashboard_model->getDataTax($id);
+		
+		echo json_encode($data);
+	}
+	
+	
+	public function updatetaxdraft()
+	{
+		/*$id = $this->input->post('id_payment');
+		$idtax = $this->input->post('id_tax');
+		$urutnew = $this->input->post('txtnourut');						
+		$data = array(
+				'no_urut' => $urutnew,
+		);*/
+		$id = $this->input->post('id_payment');
+		$idtax = $this->input->post('id_tax');
+		$data = array(
+				'status' => 999,				
+				'de' => $this->input->post('vdeductible'),
+				'opsional' => $this->input->post('voptional'),
+				'nilai' => $this->input->post('nilai'),
+				'objek_pajak' => $this->input->post('vobjekpajak'),
+				'jenis_pajak' => $this->input->post('vjnspjk'),
+				'kode_pajak' => $this->input->post('vkdpjk'),
+				'kode_map' => $this->input->post('selKdMap'),
+				'nama' => $this->input->post('txtnamanpwp_old'),
+				'npwp' => $this->input->post('txtnonpwp'),
+				'alamat' => $this->input->post('txtalamat'),
+				'tarif' => $this->input->post('vtarif'),
+				'fas_pajak' => $this->input->post('txtfasilitas'),
+				'special_tarif' => $this->input->post('vtarifspesial'),
+				'gross' => $this->input->post('vgross'),
+				'dpp' => $this->input->post('txtdpp'),
+				'dpp_gross' => $this->input->post('txtdppgross'),
+				'pajak_terutang' => $this->input->post('vpajakterhutang'),
+				'masa_pajak' => $this->input->post('selmasappn'),
+				'keterangan' => $this->input->post('txtketerangan'),
+				'tahun' => $this->input->post('seltahunppn'),
+				'no_urut' => $this->input->post('txtnourut'),
+				'id_honor' => $this->input->post('txtnamanpwp')				
+			);
+		
+		
+		$dataH = array(
+				'de' => $this->input->post('vdeductible'),
+				'opsional' => $this->input->post('voptional'),
+				'nilai' => $this->input->post('nilai'),
+				'objek_pajak' => $this->input->post('vobjekpajak')
+			);
+		
+		$this->Dashboard_model->tax_update('t_tax',array('id_tax' => $idtax), $data);		
+		$this->Dashboard_model->tax_update('t_tax',array('id_payment' => $id), $dataH);
+		
+		$jnspjk = $this->input->post('vjnspjk');
+		if(trim($jnspjk) == 'PPh Pasal 21') {
+			$dppkumulatif=str_replace(",",".",str_replace(".","",$this->input->post('txtdppkumulatif')));
+			$amountnett_old=str_replace(",",".",str_replace(".","",$this->input->post('txtdpp_old')));
+			$amountgross_old=str_replace(",",".",str_replace(".","",$this->input->post('txtdppgross_old')));
+			if(floatval($amountgross_old)>floatval($amountnett_old)){
+				$dppkumulatif=floatval($dppkumulatif)-floatval($amountgross_old);
+			}else{
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountnett_old);
+			}
+			$amountnett=str_replace(",",".",str_replace(".","",$this->input->post('txtdpp')));
+			$amountgross=str_replace(",",".",str_replace(".","",$this->input->post('txtdppgross')));
+			if(floatval($amountgross)>floatval($amountnett)){
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountgross);
+			}else{
+				$dppkumulatif=floatval($dppkumulatif)+floatval($amountnett);
 			}
 			$dataH = array(
 				'dpp_kumulatif' => $dppkumulatif
@@ -3634,6 +3772,11 @@ class Dashboard extends CI_Controller {
 		$code2 = $_POST['currency4'];
 		$code3 = $_POST['currency8'];
 		$data= $this->Home_model->getMultiCurrencyByCode($code1,$code2,$code3);
+		echo json_encode($data);
+	}
+	
+	public function getKodePajak(){
+		$data['kodepajak'] = $this->Dashboard_model->getKodePajak();
 		echo json_encode($data);
 	}
 
