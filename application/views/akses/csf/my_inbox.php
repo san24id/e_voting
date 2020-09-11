@@ -254,7 +254,7 @@
 											<?php 
 												$i = 1;
 												foreach ($returnedapprov as $row){
-													$test11 = $row->type;                        
+													$test11 = $row->jenis_pembayaran;                        
 													$test22 = explode(";", $test11);
 													$test33 = count($test22);
 											?>
@@ -278,16 +278,16 @@
 											<td><?php echo $row->note;?> </td>
 											<td>
 												<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-												<?php if ($row->type == 2) { ?> 
+												<?php if ($row->jenis_pembayaran == 2) { ?> 
 													<a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
 												<?php } ?>
-												<?php if ($row->type == 3) { ?> 
+												<?php if ($row->jenis_pembayaran == 3) { ?> 
 													<a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
 												<?php } ?>
-												<?php if ($row->type == 4 || $row->type == 6) { ?>   
+												<?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
 													<a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
 												<?php } ?>
-												<?php if ($row->type == 5) { ?> 
+												<?php if ($row->jenis_pembayaran == 5) { ?> 
 													<a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
 												<?php } ?>                    
 											</td>      

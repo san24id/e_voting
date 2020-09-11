@@ -268,16 +268,16 @@
                             <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
                         <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8 || $row->status == 9 || $row->status == 10) { ?>                         
-                          <?php if ($row->type == 2) { ?> 
+                          <?php if ($row->jenis_pembayaran == 2) { ?> 
                             <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                           <?php } ?>
-                          <?php if ($row->type == 3) { ?> 
+                          <?php if ($row->jenis_pembayaran == 3) { ?> 
                             <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                           <?php } ?>
-                          <?php if ($row->type == 4) { ?>   
+                          <?php if ($row->jenis_pembayaran == 4) { ?>   
                             <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                           <?php } ?>
-                          <?php if ($row->type == 5) { ?> 
+                          <?php if ($row->jenis_pembayaran == 5) { ?> 
                             <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                           <?php } ?>
                         <?php } ?>
@@ -583,22 +583,22 @@ $(function () {
 							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
 							break;
                           case "4":
-							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_tax.png">';
 							break;
                           case "5":
-							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							istatus ='<img src="assets/dashboard/images/legend/icon_finance.png">';
 							break;
                           case "6":
-							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							istatus ='<img src="assets/dashboard/images/legend/icon_reviewer.png">';
 							break;
                           case "7":
-							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_verified.png">';
 							break;
                           case "8":
-							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_approval.png">';
 							break;
                           case "9":
-							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_payment.png">';
 							break; 
                           case "10":
 							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
@@ -610,13 +610,13 @@ $(function () {
 						tbl1.row.add( [
 						  ino,
 						  istatus,
-                          item.tanggal,
+                          item.nomor_surat,
 						  item.jenis_pembayaran,
-						  item.nomor_surat,
-						  item.label1,
+						  item.apf_doc,
+						  item.description,
 						  item.display_name,
-						  item.akun_bank,
-						  item.penerima,
+						  item.dibayar_kepada,
+						  item.jabatan1,
 						  '<a href="dashboard/form_sp3/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 

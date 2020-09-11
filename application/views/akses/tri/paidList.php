@@ -60,16 +60,16 @@
                   <td><?php echo $row->description;?> </td>
                   <td><?php echo $row->display_name;?> </td>
                   <td>
-                        <?php if ($row->type == 1) { ?>   
+                        <?php if ($row->jenis_pembayaran == 1) { ?>   
                           <a href="Tri/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
-                        <?php if ($row->type == 2) { ?> 
+                        <?php if ($row->jenis_pembayaran == 2) { ?> 
                           <a href="Tri/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
-                        <?php if ($row->type == 3) { ?> 
+                        <?php if ($row->jenis_pembayaran == 3) { ?> 
                           <a href="Tri/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>
-                        <?php if ($row->type == 4) { ?> 
+                        <?php if ($row->jenis_pembayaran == 4) { ?> 
                           <a href="Tri/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>                    
                   </td>      

@@ -92,7 +92,9 @@
 												  case "2":
 													echo "<option value='1'> Status </option>";										
 													break;
-												  
+												  case "3":
+                            echo "<option value='1'> Status </option>";										
+                          break;
 												  default:
 													echo "";										
 													
@@ -124,7 +126,13 @@
 													echo "<option value='9'> Approved </option>";											
 													echo "<option value='10'> Paid </option>";											
 													break;
-												  
+												  case "3":
+                            echo "<option value='4'> Processing On Tax </option>";
+                            echo "<option value='5'> Processing On Finance</option>";
+                            echo "<option value='6'> Waiting For Review </option>";
+                            echo "<option value='7'> Waiting For Verification </option>";											
+                            // echo "<option value='10'> Paid </option>";
+                          break;
 												  default:
 													echo "";											
 													
@@ -197,9 +205,9 @@
                     <tr>
                       <th>NO.</th>
                       <th>Status</th>
-                      <th>Nomor SP3</th>
+                      <th>Tanggal</th>
                       <th>Jenis Pembayaran</th>
-                      <th>Nomor ARF</th>
+                      <th>Nomor SP3</th>
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
                       <th>Penerima Pembayaran</th>
@@ -321,7 +329,10 @@
 								break;
 							  case "3":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_tax.png'> &nbsp;Processing On Tax</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_finance.png'> &nbsp;Processing On Finance</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_reviewer.png'> &nbsp;Waiting For Reviewer</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verificator</div>";
 
                 break;
                 case "4":
@@ -592,22 +603,22 @@ $(function () {
 							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
 							break;
                           case "4":
-							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_tax.png">';
 							break;
                           case "5":
-							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							istatus ='<img src="assets/dashboard/images/legend/icon_finance.png">';
 							break;
                           case "6":
-							istatus ='<img src="assets/dashboard/images/legend/processing.png">';
+							istatus ='<img src="assets/dashboard/images/legend/icon_reviewer.png">';
 							break;
                           case "7":
-							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_verified.png">';
 							break;
                           case "8":
-							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_approval.png">';
 							break;
                           case "9":
-							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_payment.png">';
 							break; 
                           case "10":
 							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
@@ -624,8 +635,8 @@ $(function () {
 						  item.nomor_surat,
 						  item.label1,
 						  item.display_name,
-						  item.akun_bank,
 						  item.penerima,
+						  item.submit_date,
 						  '<a href="dashboard/form_sp3/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 

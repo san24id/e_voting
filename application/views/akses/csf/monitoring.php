@@ -228,7 +228,7 @@
                             <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approval.png"></i></span>
                               <br>
                               <?php foreach ($wApproval as $wApproval) { ?>
-                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/9/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font></a>
+                                <a href="<?php echo base_url('dashboard/detail_approver/9/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font></a>
                               <?php } ?>
                               <center><font size='3' color="white">Waiting For <br> Approval </center>
                           </div>
@@ -351,12 +351,12 @@
                                 <!-- <option value='0'> Draft </option>
                                 <option value='1'> Draft Print </option> -->
                                 <option value='2'> Submitted </option>
-                                <!-- <option value='3'> Rejected </option>
+                                <!-- <option value='3'> Rejected </option> -->
                                 <option value='4'> Processing Tax </option>
                                 <option value='5'> Processing Finance </option>
                                 <option value='6'> Waiting for Review </option>
-                                <option value='7'> Waiting for Verivication </option> -->
-                                <option value='4'> Processing</option>
+                                <option value='7'> Waiting for Verification </option>
+                                <!-- <option value='4'> Processing</option> -->
                                 <option value='8'> Verified </option>
                                 <option value='9'> Approved </option>
                                 <option value='10'> Paid </option>
@@ -732,16 +732,16 @@ $(function () {
 							istatus ='<img src="assets/dashboard/images/legend/icon_finance.png">';
 							break;
                           case "6":
-							istatus ='<img src="assets/dashboard/images/legend/icon_file.png">';
+							istatus ='<img src="assets/dashboard/images/legend/icon_reviewer.png">';
 							break;
                           case "7":
-							istatus = '<img src="assets/dashboard/images/legend/icon_checklist.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_verified.png">';
 							break;
                           case "8":
-							istatus = '<img src="assets/dashboard/images/legend/icon_user.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_approval.png">';
 							break;
                           case "9":
-							istatus = '<img src="assets/dashboard/images/legend/paid2.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_payment.png">';
 							break; 
                           case "10":
 							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';

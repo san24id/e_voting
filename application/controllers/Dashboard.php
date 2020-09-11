@@ -2042,11 +2042,11 @@ class Dashboard extends CI_Controller {
 	}
 
 	function addpay(){
-		$c_jp = count($_POST['type']);
-		$type = "";
-		for($i=0; $i<=$c_jp; $i++){
-			$type .= $_POST['type'][$i].";";
-		}
+		// $c_jp = count($_POST['type']);
+		$type = $_POST['jenis_pembayaran'];
+		// for($i=0; $i<=$c_jp; $i++){
+		// 	$type .= $_POST['type'][$i].";";
+		// }
 
 		// echo $type;
 		// var_dump(count($_POST['type']));exit;
@@ -2066,7 +2066,7 @@ class Dashboard extends CI_Controller {
 			'id_payment' => $_POST['id_payment'],
 			'status' => $status,
 			'display_name' => $_POST['display_name'],
-			'type' => $type,
+			'jenis_pembayaran' => $type,
 			'tanggal' => $_POST['tanggal'],
 			'tanggal2' => $_POST['tanggal2'],
 			'pr_doc' => $_POST['pr_doc'].$_POST['nomor_pr'].$_POST['pii'].$_POST['bulan'].$_POST['slash'].$_POST['tahun'],
@@ -2276,11 +2276,11 @@ class Dashboard extends CI_Controller {
 	}
 
 	function updpay(){
-		$c_jp = count($_POST['type']);
-		$type = "";
-		for($i=0; $i<=$c_jp; $i++){
-			$type .= $_POST['type'][$i].";";
-		}
+		// $c_jp = count($_POST['jenis_pembayaran']);
+		$type = $_POST['jenis_pembayaran'];
+		// for($i=0; $i<=$c_jp; $i++){
+		// 	$type .= $_POST['jenis_pembayaran'][$i].";";
+		// }
 
 		$upd = array(
 			
@@ -2299,11 +2299,11 @@ class Dashboard extends CI_Controller {
 	}
 
 	function rejectapf(){
-		$c_jp = count($_POST['type']);
-		$type = "";
-		for($i=0; $i<=$c_jp; $i++){
-			$type .= $_POST['type'][$i].";";
-		}
+		// $c_jp = count($_POST['jenis_pembayaran']);
+		$type = $_POST['jenis_pembayaran'];
+		// for($i=0; $i<=$c_jp; $i++){
+		// 	$type .= $_POST['jenis_pembayaran'][$i].";";
+		// }
 
 		$upd = array(
 			
@@ -2324,11 +2324,11 @@ class Dashboard extends CI_Controller {
 	}
 
 	function rejectreq(){
-		$c_jp = count($_POST['type']);
-		$type = "";
-		for($i=0; $i<=$c_jp; $i++){
-			$type .= $_POST['type'][$i].";";
-		}
+		// $c_jp = count($_POST['jenis_pembayaran']);
+		$type = $_POST['jenis_pembayaran'];
+		// for($i=0; $i<=$c_jp; $i++){
+		// 	$type .= $_POST['jenis_pembayaran'][$i].";";
+		// }
 
 		$upd = array(
 			
@@ -3336,14 +3336,14 @@ class Dashboard extends CI_Controller {
 			$this->session->set_userdata('titleHeader','Waiting For Review');
 			$this->session->set_userdata('filter','8');
 			break;
-		  case "9":
-			$data['payment'] = $this->Dashboard_model->getMonitoringWApproval($sid,$start_date,$end_date);
-			$this->session->set_userdata('titleHeader','Waiting For Approval');
-			$this->session->set_userdata('filter','9');
-			//View Sendiri
-			$this->load->view('akses/csf/header_csf', $data);
-			$this->load->view('akses/csf/v_detail_approver', $data);
-			break;
+		//   case "9":
+		// 	$data['payment'] = $this->Dashboard_model->getMonitoringWApproval($sid,$start_date,$end_date);
+		// 	$this->session->set_userdata('titleHeader','Waiting For Approval');
+		// 	$this->session->set_userdata('filter','9');
+		// 	//View Sendiri
+		// 	$this->load->view('akses/csf/header_csf', $data);
+		// 	$this->load->view('akses/csf/v_detail_approver', $data);
+		// 	break;
 		  case "10":
 			$data['payment'] = $this->Dashboard_model->getMonitoringFinance($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Under Processing Finance');
@@ -3365,6 +3365,38 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/view_detail_monitoring', $data);
+	}
+
+	public function detail_approver($id,$start_date,$end_date)
+	{
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
+		$this->session->set_userdata('statuspayment',$id);
+		$sid = $this->session->userdata("id_user");
+		$data['monitoring'] = 'active';
+		$data['active2'] = '';
+		$data['active3'] = '';
+		
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+
+		switch ($id) {
+		  
+		  case "9":
+			$data['payment'] = $this->Dashboard_model->getMonitoringWApproval($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting For Approval');
+			$this->session->set_userdata('filter','9');
+			
+			break;
+		  
+		  default:
+			$data['payment'] = $this->Dashboard_model->monitoring();
+		}
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/v_detail_approver', $data);
 	}
 	
 	public function all_detail_payment($id,$start_date,$end_date)
