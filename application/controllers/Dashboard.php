@@ -2793,32 +2793,54 @@ class Dashboard extends CI_Controller {
 	
 	public function submittax()
 	{
-		$cek_sts_tax=$this->Dashboard_model->getststaxdraft($this->input->post('id_payment'));
-		if($cek_sts_tax->num_rows() > 0){
-			echo json_encode(array("status" => FALSE));
+		$objekpajak=$this->input->post('vobjekpajak');
+		if($objekpajak=="1"){
+			$cek_sts_tax=$this->Dashboard_model->getststaxdraft($this->input->post('id_payment'));
+			if($cek_sts_tax->num_rows() > 0){
+				echo json_encode(array("status" => "0"));
+			}else{
+				if ($_POST['rejected_by'] != NULL){
+					$rejected = "";
+				}
+				$data = array(
+							'status' => 5,
+							'handled_by' => $this->input->post('handled_by'),
+							'nomor_surat' => $this->input->post('nomor_surat'),
+							'rejected_by' => $rejected
+							);
+							
+				$datatax = array(
+							'status' => 5,
+							'handled_by' => $this->input->post('handled_by')
+							);
+				$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
+				$this->Dashboard_model->updatestatustax(array('id_payment' => $this->input->post('id_payment')), $datatax);
+				$data1 = array(
+								'id_payment' => $this->input->post('id_payment'),
+								'de' => $this->input->post('vdeductible'),
+								'opsional' => $this->input->post('voptional'),
+								'nilai' => $this->input->post('nilai'),
+								'objek_pajak' => $this->input->post('vobjekpajak')
+							);					
+				$insert = $this->Dashboard_model->addtaxheader($data1);
+				
+				echo json_encode(array("status" => "1"));
+			}
 		}else{
 			if ($_POST['rejected_by'] != NULL){
-				$rejected = "";
-			}
-			$data = array(
-						'status' => 5,
-						'handled_by' => $this->input->post('handled_by'),
-						'nomor_surat' => $this->input->post('nomor_surat'),
-						'rejected_by' => $rejected
-						);
-			$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
-			$this->Dashboard_model->updatestatustax(array('id_payment' => $this->input->post('id_payment')), $data);
-			$data1 = array(
-							'id_payment' => $this->input->post('id_payment'),
-							'de' => $this->input->post('vdeductible'),
-							'opsional' => $this->input->post('voptional'),
-							'nilai' => $this->input->post('nilai'),
-							'objek_pajak' => $this->input->post('vobjekpajak')
-						);					
-			$insert = $this->Dashboard_model->addtaxheader($data1);
-			
-			echo json_encode(array("status" => TRUE));
+					$rejected = "";
+				}
+				$data = array(
+							'status' => 5,
+							'handled_by' => $this->input->post('handled_by'),
+							'nomor_surat' => $this->input->post('nomor_surat'),
+							'rejected_by' => $rejected
+							);
+							
+				$this->Dashboard_model->updatepaytax(array('id_payment' => $this->input->post('id_payment')), $data);
+				echo json_encode(array("status" => "1"));
 		}
+		
 	}
 
 	public function caridataAR()
@@ -3273,7 +3295,6 @@ class Dashboard extends CI_Controller {
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 
-				
 		switch ($id) {
 		  case "1":
 			$data['payment'] = $this->Dashboard_model->getMonitoringWaitingProcessing($sid,$start_date,$end_date);

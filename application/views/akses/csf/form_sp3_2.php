@@ -208,7 +208,7 @@
 								
 								<input type="hidden" name="vdeductible" id="vdeductible" value="1"  />
 								<input type="hidden" name="voptional" id="voptional"   />
-								<input type="hidden" name="vobjekpajak" id="vobjekpajak" value="<?php echo $vobjekpajak; ?>"  />
+								<input type="hidden" name="vobjekpajak" id="vobjekpajak" value="<?php echo $vobjekpajak; ?>"  />								
 							</table>
 								<br>
 							<table width=50%>   
@@ -311,6 +311,7 @@
 													  </tbody> 
 														<tfoot align="right">
 														<?php $ttlrow=count($gettotaldatatax);?>
+														<input type="hidden" name="vttlrows" id="vttlrows" value="<?php echo $ttlrow;?>"   />
 														<tr><th colspan="6" rowspan="<?php echo $ttlrow;?>" style="text-align:center;"> Total</th>
 														<?php
 															foreach($gettotaldatatax as $gtottax){
@@ -869,7 +870,7 @@ function submittax()
 			alert("Keterangan PARTNDE belum di isi");
 		}else if ($('#vobjekpajak').val()==""){
 			alert("Objek Pajak belum di pilih");
-		}else if ($('#lbltotaldpp').text()=="" || $('#lbltotaldpp').text()=="0"){
+		}else if ($('#vobjekpajak').val()=="1" && $('#vttlrows').val()=="0"){
 			alert("Detil dari Objek Pajak belum di Input");
 		}else{
 			var ntax=$('#txttotnontax').val();//$('#lbltotalnontax').text();
@@ -893,7 +894,7 @@ function submittax()
 					success: function(data)
 					{ 
 					  console.log(data);
-					  if(status==false){
+					  if(data.status=="0"){
 						  alert("Data Pajak masih ada yang ber-status Draft");
 					  }else{
 						window.location = "<?php echo base_url('dashboard/my_task') ?>";    
@@ -966,9 +967,10 @@ function submittax()
 									  ] ).draw(false);
 
 							})
-							$('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
+							/*$('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
 							$('#lbltotalgross').text(formatRupiah($totgross.toString()));
-							$('#lbltotal').text(formatRupiah($totpjkx.toString()));
+							$('#lbltotal').text(formatRupiah($totpjkx.toString()));*/
+							location.reload();
 				  
 				},
 				error: function (data) //(jqXHR, textStatus, errorThrown)
@@ -1163,7 +1165,8 @@ function savenontax(){
               });
 }
 
-function savetaxdraftFirst() { 		
+function savetaxdraftFirst()
+{ 		
 	var $jnspajak=$("#selJnsPjk option:selected").text();	
 	var $kdmap=$('#selKdMap').val();
 	var $kdobjek=$('#selKdPjk').val();
@@ -1189,75 +1192,75 @@ function savetaxdraftFirst() {
 			url = "<?php echo base_url('dashboard/updatetaxdraftfirst')?>";
 		}
 		//var url = "<?php echo base_url('dashboard/savetaxdraft')?>";
-		$.ajax({
-			url : url,
-			type: "POST",
-			data: $("#form1,#form").serialize(),
-			dataType: "JSON",
-			success: function(data)
-			{ 
-				var $totpjk=0;
-					var pjktr;
-					var $totdpp=0;
-					var pjkdpp;
-					var $totgross=0;
-					var pjkgross;
-					var tbl1 = $('#show').DataTable(); 
-						tbl1.clear().draw();
-						$.each(data, function(key, item) 
-								{       
-								
-							pjktr=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
-							$totpjk=$totpjk+parseFloat(pjktr);
-							pjkdpp=item.dpp.replace(/[^,\d]/g, '').toString();
-							$totdpp=$totdpp+parseFloat(pjkdpp);
-							pjkgross=item.dpp_gross.replace(/[^,\d]/g, '').toString();
-							$totgross=$totgross+parseFloat(pjkgross);
-							tbl1.row.add( [
-								'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_tax +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_tax + ',' + item.id_payment + ')"><i class="glyphicon glyphicon-trash"></i></button>',
-								item.no_urut,
-									item.jenis_pajak,
-									item.kode_pajak,
-									item.kode_map,
-									item.nama,
-									item.npwp,
-									item.alamat,
-									item.tarif,
-									item.fas_pajak,
-									item.special_tarif,
-									item.gross,
-									item.dpp,
-									item.dpp_gross,
-									item.pajak_terutang,
-									item.masa_pajak,
-									item.tahun,
-									item.keterangan										
-									] ).draw(false);
+			$.ajax({
+                url : url,
+                type: "POST",
+                data: $("#form1,#form").serialize(),
+                dataType: "JSON",
+                success: function(data)
+                { 
+					var $totpjk=0;
+						var pjktr;
+						var $totdpp=0;
+						var pjkdpp;
+						var $totgross=0;
+						var pjkgross;
+						var tbl1 = $('#show').DataTable(); 
+						  tbl1.clear().draw();
+							$.each(data, function(key, item) 
+								  {       
+								  
+							  pjktr=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
+							  $totpjk=$totpjk+parseFloat(pjktr);
+							  pjkdpp=item.dpp.replace(/[^,\d]/g, '').toString();
+							  $totdpp=$totdpp+parseFloat(pjkdpp);
+							  pjkgross=item.dpp_gross.replace(/[^,\d]/g, '').toString();
+							  $totgross=$totgross+parseFloat(pjkgross);
+							  tbl1.row.add( [
+									'<button class="btn btn-default btn-xs" data-toggle="tooltip" title="Edit"  onclick="edit_tax(' + item.id_tax +')"><i class="glyphicon glyphicon-pencil"></i></button>&nbsp;<button class="btn btn-danger btn-xs" data-toggle="tooltip" title="Delete"  onclick="delete_tax(' + item.id_tax + ',' + item.id_payment + ')"><i class="glyphicon glyphicon-trash"></i></button>',
+                        			item.no_urut,
+									  item.jenis_pajak,
+									  item.kode_pajak,
+									  item.kode_map,
+									  item.nama,
+									  item.npwp,
+									  item.alamat,
+										item.tarif,
+										item.fas_pajak,
+										item.special_tarif,
+										item.gross,
+										item.dpp,
+										item.dpp_gross,
+										item.pajak_terutang,
+										item.masa_pajak,
+										item.tahun,
+										item.keterangan										
+									  ] ).draw(false);
 
-						})  
-					/*},
-					error: function (data)
-					{
-						console.log(data);
-						alert('Error adding / update data');
-					}
-				});*/
-				
-				$('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
-				$('#lbltotalgross').text(formatRupiah($totgross.toString()));
-						
-				$('#lbltotal').text(formatRupiah($totpjk.toString()));
-				$('#modal_tax').modal('hide');
-				//location.reload();   
-			},
-			error: function (data)
-			{
-				console.log(data);
-				alert('Error adding / update data');
-			}
-		});
-	}      
-}
+							})  
+						/*},
+						error: function (data)
+						{
+						  console.log(data);
+							alert('Error adding / update data');
+						}
+					});*/
+				  
+				  /*$('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
+					$('#lbltotalgross').text(formatRupiah($totgross.toString()));
+							
+				  $('#lbltotal').text(formatRupiah($totpjk.toString()));*/
+				  $('#modal_tax').modal('hide');
+				  location.reload();   
+                },
+                error: function (data)
+                {
+					console.log(data);
+                  alert('Error adding / update data');
+                }
+              });
+        }      
+    }
 	
 
 
@@ -1376,12 +1379,12 @@ function savetaxdraft()
 						}
 					});*/
 				  
-				  $('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
+				  /*$('#lbltotaldpp').text(formatRupiah($totdpp.toString()));
 					$('#lbltotalgross').text(formatRupiah($totgross.toString()));
 							
-				  $('#lbltotal').text(formatRupiah($totpjk.toString()));
+				  $('#lbltotal').text(formatRupiah($totpjk.toString()));*/
 				  $('#modal_tax').modal('hide');
-				  //location.reload();   
+				  location.reload();   
                 },
                 error: function (data)
                 {
@@ -2150,7 +2153,7 @@ function PajakTerhutang(){
 									<div class="input-group input-group-sm">
 									<input name="txtdppkumulatif" id="txtdppkumulatif"  class="form-control"  type="text" readonly />
 									<span class="input-group-btn">
-									<button type="button" id="btnhistorytax" class="btn btn-info btn-flat"  data-toggle="tooltip" title="Histori Pajak" onclick="gethistorytax(<?php echo $gtax->id_honor;?>)"><i class="glyphicon glyphicon-search"></i></button>
+									<button type="button" id="btnhistorytax" class="btn btn-info btn-flat"  data-toggle="tooltip" title="Histori Pajak" onclick="gethistorytax()"><i class="glyphicon glyphicon-search"></i></button>
 									</span>
 									</div>
 									
