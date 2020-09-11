@@ -203,7 +203,7 @@
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
                       <th>Penerima Pembayaran</th>
-					            <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
+                      <th>Approver</th>
 												 
                       <th>Action</th>
                     </tr>
@@ -248,7 +248,7 @@
                           }   
                         ?></center>
                     </td>                  
-                    <td><?php echo $row->tanggal_new; ?></td>
+                    <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -256,37 +256,28 @@
                           }
                         }  ?>
                     </td>
-                    <td><?php echo $row->nomor_surat; ?></td>
-                    <td><?php echo $row->label1; ?></td>
+                    <td><?php echo $row->apf_doc; ?></td>
+                    <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <?php 
-                          $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                          $query = $this->db->query($sql)->result();
-                          // return $query;
-                          // var_dump($query[0]->nama);exit; 
-                          if ($query[0]->nama) { $buka = $query[0]->nama;
-                          }else{
-                            $buka = $row->penerima;
-                          }
-                        ?>
-                    <td><?php echo $buka; ?></td>
-                    <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
+                    
+                    <td><?php echo $row->dibayar_kepada; ?></td>
+                    <td><?php echo $row->jabatan1;?></td>
                     <td>
                         <?php 
                           if ($row->status <= 5) { ?>
                             <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
                         <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8 || $row->status == 9 || $row->status == 10) { ?>                         
-                          <?php if ($row->jenis_pembayaran == 2) { ?> 
+                          <?php if ($row->type == 2) { ?> 
                             <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                           <?php } ?>
-                          <?php if ($row->jenis_pembayaran == 3) { ?> 
+                          <?php if ($row->type == 3) { ?> 
                             <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                           <?php } ?>
-                          <?php if ($row->jenis_pembayaran == 4) { ?>   
+                          <?php if ($row->type == 4) { ?>   
                             <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                           <?php } ?>
-                          <?php if ($row->jenis_pembayaran == 5) { ?> 
+                          <?php if ($row->type == 5) { ?> 
                             <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                           <?php } ?>
                         <?php } ?>
@@ -366,7 +357,7 @@
                 break;
                 case "12":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Paid</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/paid2.png'> &nbsp;Waiting For Paid</div>";
 
                 break;
 							  default:

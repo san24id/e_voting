@@ -3340,6 +3340,9 @@ class Dashboard extends CI_Controller {
 			$data['payment'] = $this->Dashboard_model->getMonitoringWApproval($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Waiting For Approval');
 			$this->session->set_userdata('filter','9');
+			//View Sendiri
+			$this->load->view('akses/csf/header_csf', $data);
+			$this->load->view('akses/csf/v_detail_approver', $data);
 			break;
 		  case "10":
 			$data['payment'] = $this->Dashboard_model->getMonitoringFinance($sid,$start_date,$end_date);
