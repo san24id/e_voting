@@ -323,10 +323,10 @@ td[rowspan="6"] {
                           <td colspan="4"><center><b>Diisi oleh Divisi Treasury <br> <i>For Treasury Use Only </i> </b></center></td>
                         </tr>
                         <tr>
-                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> readonly> Tunai</input></font></td>
+                          <td colspan="4"><font size="+1"> Metode Pembayaran : <input type="checkbox" name="metode_pembayaran" value="Tunai" <?php echo $get->metode_pembayaran=="Tunai"? 'checked':''?> disabled> Tunai</input></font></td>
                         </tr>
                         <tr>
-                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> > Transfer Ke :</input> </center></td>
+                          <td width="26%" colspan="2"><center> <input type="checkbox" name="metode_pembayaran" value="Transfer" <?php echo $get->metode_pembayaran=="Transfer"? 'checked':''?> disabled> Transfer Ke :</input> </center></td>
 
                           <td><font size="+1"> Bank : &nbsp;<input type="text" class="form-control" name="bank" value="<?php echo $get->bank; ?>" readonly> </input></font></td> 
                           <td><font size="+1"> No. Rek : &nbsp;<input type="text" class="form-control" name="no_rek" value="<?php echo $get->no_rek; ?>" readonly> </input></font></td>                        
