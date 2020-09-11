@@ -87,14 +87,12 @@
 												
 												switch ($criteria) {
 												  case "1":
-													echo "<option value='1'> Status </option>";									
+													// echo "<option value='1'> Status </option>";									
 													break;
 												  case "2":
 													echo "<option value='1'> Status </option>";										
 													break;
-												  case "3":
-													echo "<option value='1'> Status </option>";
-													break;
+												  
 												  default:
 													echo "";										
 													
@@ -117,23 +115,16 @@
 												
 												switch ($filter) {
 												  case "1":
-													echo "<option value='0'> Draft </option>";
-													echo "<option value='1'> Draft Print </option>";
 													echo "<option value='2'> Submitted </option>";
-													echo "<option value='4'> Processing</option>";
-													echo "<option value='8'> Verified </option>";
-													echo "<option value='9'> Approved </option>";										
 													break;
 												  case "2":
 													echo "<option value='2'> Submitted </option>";
 													echo "<option value='4'> Processing</option>";
 													echo "<option value='8'> Verified </option>";
 													echo "<option value='9'> Approved </option>";											
+													echo "<option value='10'> Paid </option>";											
 													break;
-												  case "3":
-													echo "<option value='0'> Draft </option>";
-													echo "<option value='1'> Draft Print  </option>";
-													break;
+												  
 												  default:
 													echo "";											
 													
@@ -567,7 +558,7 @@ $(function () {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('dashboard/caridatadashboard') ?>";
+	  url = "<?php echo base_url('dashboard/caridatadashboard2') ?>";
       $.ajax({
             url : url,
             type: "POST",

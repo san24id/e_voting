@@ -2177,7 +2177,7 @@ class Dashboard extends CI_Controller {
 		}
 
 		// echo $type;
-		$verified = date('d-m-Y', strtotime($this->input->post("verified_date")));
+		$verified = date('d-M-Y', strtotime($this->input->post("verified_date")));
 		// var_dump(count($_POST['type']));exit;
 		// $id = $_POST['id_payment'];
 
@@ -3273,11 +3273,7 @@ class Dashboard extends CI_Controller {
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 
-		switch($id){
-			
-		}
-		
-		
+				
 		switch ($id) {
 		  case "1":
 			$data['payment'] = $this->Dashboard_model->getMonitoringWaitingProcessing($sid,$start_date,$end_date);
@@ -3362,11 +3358,6 @@ class Dashboard extends CI_Controller {
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 
-		switch($id){
-			
-		}
-		
-		
 		switch ($id) {
 		  case "1":
 			$data['payment'] = $this->Home_model->getPaymentDetail($sid,$start_date,$end_date);

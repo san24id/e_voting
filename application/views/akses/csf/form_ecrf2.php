@@ -1676,7 +1676,7 @@ var save_method;
 var url;
 function saveapf() {
 
-url="<?php echo base_url('Dashboard/edit_pay')?>"
+  url="<?php echo base_url('Dashboard/edit_pay')?>";
 
   $.ajax({
     url : url,
@@ -1684,12 +1684,10 @@ url="<?php echo base_url('Dashboard/edit_pay')?>"
     data: $("#form_edit").serialize(),
     dataType: "JSON",
     success: function(data){ // Ketika proses pengiriman berhasil          
-    alert('Data Berhasil Di Simpan!');   
-    // save_method="edit";
-    // $("#id_payment").val(data);
-    //window.location = link;
-    window.location ="<?php echo base_url('Dashboard/my_task');?>";
-  },      
+      alert('Data Berhasil Di Simpan!');   
+      console.log(data);
+    
+    },      
     error: function (data)
     {
     console.log(data);

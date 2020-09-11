@@ -770,7 +770,7 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
-    function edit_pay($data, $where){
+    function edit_pay($upd){
         // $this->db->update('t_payment_l', $data, $where);
 		// return $this->db->affected_rows();
 
@@ -787,13 +787,13 @@ class Dashboard_model extends CI_Model{
                 WHERE `id`='".$upd['id']."'";
 
         $query = $this->db->query($sql);
-        var_dump($sql);exit;
+        // var_dump($sql);exit;
         return $query;
     }
 
-    function change_stat($upd,$status,$handled_by){
+    function change_stat($id,$upd,$status,$handled_by){
         
-        $sql = "UPDATE `t_payment` SET `status`='".$status."',`handled_by`='".$handled_by."'
+        $sql = "UPDATE `t_payment` SET `id_payment`='".$id."',`status`='".$status."',`handled_by`='".$handled_by."'
                 WHERE `nomor_surat`='".$upd['nomor_surat']."'";
         
         $query = $this->db->query($sql);
