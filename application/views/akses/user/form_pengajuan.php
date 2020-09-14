@@ -172,7 +172,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah" class="form-control" name="label2" onkeyup="getnominal1()" placeholder="Jumlah" > </td>
+                        <td colspan="2"><input type="text" style="text-align:right" id="rupiah" class="form-control" name="label2" onkeyup="getnominal1()" placeholder="Jumlah" > </td>
 						<input type="hidden" id="terbilang" name="terbilang" placeholder="Terbilang">
 
                         <td><select id="currency2" onchange="mycurrency2()" name="currency2" class="form-control">
@@ -183,7 +183,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" onkeyup="get2nominal2()" placeholder="Jumlah" > </td>
+                        <td colspan="2"><input type="text" style="text-align:right" id="rupiah2" class="form-control" name="jumlah2" onkeyup="get2nominal2()" placeholder="Jumlah" > </td>
 						<input type="hidden" id="terbilang2" name="terbilang2" class="form-control" placeholder="Terbilang">
 
                         <td><select id="currency3" onchange="mycurrency3()" name="currency3"  class="form-control">
@@ -194,7 +194,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" onkeyup="getnominal3()" placeholder="Jumlah" > </td>
+                        <td colspan="2"><input type="text" style="text-align:right" id="rupiah3" class="form-control" name="jumlah3" onkeyup="getnominal3()" placeholder="Jumlah" > </td>
 						<input type="hidden" id="terbilang3" name="terbilang3" class="form-control" placeholder="Terbilang">
                       </tr>
                       <tr>
@@ -320,7 +320,7 @@
 									</select>
 									<input id="scurrencyvendor1" type="hidden" name="scurrencyvendor[]"  />
 								</td>							  
-								<td><input style="height:28px"  class="form-control" id="nominalvendor1" name="nominalvendor[]" onblur="formatnominalvendor('1')" onkeyup="gettotalvendor()" type="text" value="0"></td>																
+								<td><input style="height:28px;text-align:right;"  class="form-control" id="nominalvendor1" name="nominalvendor[]" onblur="formatnominalvendor('1')" onkeyup="gettotalvendor()" type="text" value="0"></td>																
 								<td>&nbsp;</td>
 								</tr>
 							<?php	
@@ -361,7 +361,7 @@
 									<?php } ?>
 									</select><input id="<?php echo 'scurrencyvendor'.$vendorrow; ?>" type="hidden" name="scurrencyvendor[]"  />
 								</td>
-							<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onblur="formatnominalvendor('<?php echo $vendorrow; ?>')" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
+							<td ><input style="text-align:right" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onblur="formatnominalvendor('<?php echo $vendorrow; ?>')" onkeyup="gettotalnontax()" type="text" value="<?php echo number_format($gvendor->nominal,0,",",".");  ?>"></td>
 							
 							<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name='removeButton' onclick="RemoveIndeks('<?php echo 'tr'.$vendorrow; ?>')"> 
 									<i class="glyphicon glyphicon-minus"></i>
@@ -513,7 +513,7 @@
                                 <?php } ?>
                               </select>
 						            <center><p id="demo" style="display:none;"></p></td>
-                        <td><input id="biaya" onkeyup="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input></td>
+                        <td><input id="biaya" style="text-align:right" onkeyup="penjumlahan()" type="text" class="form-control" name="label7" placeholder="Enter Text"></input></td>
 						              <td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="">Pilih Mata Uang</option>
                                       <?php foreach ($currency as $get) {?>
@@ -522,7 +522,7 @@
                                 <?php } ?>
                               </select>
 						            <center><p id="demoa" style="display:none;"></p></td>
-                        <td><input id="biayaa" onkeyup="penjumlahana()" type="text" class="form-control" name="label7a" placeholder="Enter Text"></input></td>
+                        <td><input id="biayaa" style="text-align:right" onkeyup="penjumlahana()" type="text" class="form-control" name="label7a" placeholder="Enter Text"></input></td>
 						            <td><select id="curr3" name="curr3" class="form-control">
                                       <option value="">Pilih Mata Uang</option>
                                       <?php foreach ($currency as $get) {?>
@@ -531,29 +531,29 @@
                                 <?php } ?>
                               </select>
 						            <center><p id="demob" style="display:none;">  </p></td>
-                        <td><input id="biayab" onkeyup="penjumlahanb()" type="text" class="form-control" name="label7b" placeholder="Enter Text"></input><td>
+                        <td><input id="biayab" style="text-align:right" onkeyup="penjumlahanb()" type="text" class="form-control" name="label7b" placeholder="Enter Text"></input><td>
                       </tr>
 					  <tr>
                         <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
 						<td colspan="2">&nbsp;</td>
                         <td><center><p id="demo2" style="display:none;">  </p></td>
-                        <td><input id="uangmuka" onchange="penjumlahan()" readonly type="text" class="form-control" name="label8" placeholder="Enter Text"></input></td>     
+                        <td><input id="uangmuka" style="text-align:right" onchange="penjumlahan()" readonly type="text" class="form-control" name="label8" placeholder="Enter Text"></input></td>     
 						<td><center><p id="demo2a" style="display:none;">  </p></td>
-                        <td><input id="uangmukaa" onchange="penjumlahana()" readonly type="text" class="form-control" name="label8a" placeholder="Enter Text"></input></td>     
+                        <td><input id="uangmukaa" style="text-align:right" onchange="penjumlahana()" readonly type="text" class="form-control" name="label8a" placeholder="Enter Text"></input></td>     
 						<td><center><p id="demo2b" style="display:none;">  </p></td>
-                        <td><input id="uangmukab" onchange="penjumlahanb()" readonly type="text" class="form-control" name="label8b" placeholder="Enter Text"></input></td>     
+                        <td><input id="uangmukab" style="text-align:right" onchange="penjumlahanb()" readonly type="text" class="form-control" name="label8b" placeholder="Enter Text"></input></td>     
                       </tr>
 					  <tr>
                         <td>Selisih Kurang/(Lebih)</td> 
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td><center><p id="demo3" style="display:none;">  </p></td>
-                        <td><input type="text" id="hasil" class="form-control" name="label9" placeholder="Enter Text" readonly></input></td>                               
+                        <td><input type="text" style="text-align:right" id="hasil" class="form-control" name="label9" placeholder="Enter Text" readonly></input></td>                               
 						<td><center><p id="demo3a" style="display:none;">  </p></td>
-                        <td><input type="text" id="hasila" class="form-control" name="label9a" placeholder="Enter Text" readonly></input></td>                               
+                        <td><input type="text" style="text-align:right" id="hasila" class="form-control" name="label9a" placeholder="Enter Text" readonly></input></td>                               
 						<td><center><p id="demo3b" style="display:none;">  </p></td>
-                        <td><input type="text" id="hasilb" class="form-control" name="label9b" placeholder="Enter Text" readonly></input></td>                               
+                        <td><input type="text" style="text-align:right" id="hasilb" class="form-control" name="label9b" placeholder="Enter Text" readonly></input></td>                               
                       </tr>                              
                       </tbody>
                     </table>
@@ -1765,7 +1765,7 @@ function AddIndeks(){
 		strhtml=strhtml + '</select><input id="scurrencyvendor'+szcountervendor+'" type="hidden" name="scurrencyvendor[]"  /></td>';
 		
 		
-		strhtml=strhtml + '<td><input style="height:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onblur="formatnominalvendor('+szcountervendor+')" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
+		strhtml=strhtml + '<td><input style="height:28px;text-align:right;" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onblur="formatnominalvendor('+szcountervendor+')" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
 		

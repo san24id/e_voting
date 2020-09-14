@@ -141,7 +141,7 @@ td[rowspan="6"] {
                                   <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                               </select>
                           </td>
-                          <td><input id="nilai" onkeyup="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></td>
+                          <td><input id="nilai" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $row->label2;?>" required></td>
                         </tr>
                         <tr>
                           <td><center> 2 </center></td>
@@ -152,7 +152,7 @@ td[rowspan="6"] {
                                   <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>                                                              
                               </select>
                           </td>
-                          <td><input id="nilai1" onkeyup="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
+                          <td><input id="nilai1" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2;?>" ></td> 
                         </tr>
                         <tr>
                           <td><center> 3 </center></td>
@@ -164,7 +164,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai2" onkeyup="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3;?>" ></td> 
+                          <td><input id="nilai2" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3;?>" ></td> 
                         </tr>
                         <tr>
                           <td><center>4</center></td>
@@ -175,7 +175,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai3" onkeyup="nominal()" type="text" class="form-control" name="jumlah4" > </td>
+                          <td><input id="nilai3" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah4" > </td>
                         </tr>
                         <tr>
                           <td><center>5</center></td>
@@ -186,7 +186,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai4" onkeyup="nominal()" type="text" class="form-control" name="jumlah5" > </td> 
+                          <td><input id="nilai4" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah5" > </td> 
                         </tr>
                         <tr>
                           <td><center>6</center></td>
@@ -197,7 +197,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai5" onkeyup="nominal()" type="text" class="form-control" name="jumlah6"></td> 
+                          <td><input id="nilai5" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah6"></td> 
                         </tr>
                         
                         <tr>
@@ -209,7 +209,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai6" onkeyup="nominal()" type="text" class="form-control" name="jumlah7">  </td> 
+                          <td><input id="nilai6" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah7">  </td> 
                         </tr>
                         <tr>
                           <td><center>8</center></td>
@@ -220,7 +220,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai7" onkeyup="nominal()" type="text" class="form-control" name="jumlah8" ></td> 
+                          <td><input id="nilai7" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah8" ></td> 
                         </tr>
                         <tr>
                           <td><center>9</center></td>
@@ -231,7 +231,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai8" onkeyup="nominal()" type="text" class="form-control" name="jumlah9"></td> 
+                          <td><input id="nilai8" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah9"></td> 
                         </tr>
                         <tr>
                           <td><center>10</center></td>
@@ -242,7 +242,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai9" onkeyup="nominal()" type="text" class="form-control" name="jumlah10"></td> 
+                          <td><input id="nilai9" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah10"></td> 
                         </tr>
                         <tr>
                           <td><center>11</center></td>
@@ -253,7 +253,7 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai10" onkeyup="nominal()" type="text" class="form-control" name="jumlah11"></td> 
+                          <td><input id="nilai10" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah11"></td> 
                         </tr>
                         <tr>
                           <td><center>12</center></td>
@@ -264,13 +264,13 @@ td[rowspan="6"] {
                               <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                             </select>
                           </td>
-                          <td><input id="nilai11" onkeyup="nominal()" type="text" class="form-control" name="jumlah12"></td> 
+                          <td><input id="nilai11" style="text-align:right" onkeyup="nominal()" type="text" class="form-control" name="jumlah12"></td> 
                         </tr>
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><input id="ulang" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly></td>
+                          <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>

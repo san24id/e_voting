@@ -242,7 +242,7 @@
                               <?php } ?>
                             </select>
                         </td>
-                        <td colspan="2"><input type="text" id="rupiah" class="form-control" <?php echo $readonly; ?> name="label2" onkeyup="getnominal1()" value="<?php echo $row->label2; ?>"></td>
+                        <td colspan="2"><input type="text" style="text-align:right" id="rupiah" class="form-control" <?php echo $readonly; ?> name="label2" onkeyup="getnominal1()" value="<?php echo $row->label2; ?>"></td>
                         <input type="hidden" id="terbilang" name="terbilang" value="<?php echo $row->terbilang;?> "> 
                         
                         <td><select id="currency2" name="currency2" onchange="mycurrency2()" class="form-control" <?php echo $readonly; ?>>
@@ -253,7 +253,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text" id="rupiah2" class="form-control" name="jumlah2" <?php echo $readonly; ?> onkeyup="get2nominal2()" value="<?php echo $row->jumlah2; ?>" > </td>
+                        <td colspan="2"><input type="text" style="text-align:right" id="rupiah2" class="form-control" name="jumlah2" <?php echo $readonly; ?> onkeyup="get2nominal2()" value="<?php echo $row->jumlah2; ?>" > </td>
                         <input type="hidden" id="terbilang2" name="terbilang2" value="<?php echo $row->terbilang2;?> "> 
 
                         <td><select id="currency3" name="currency3" onchange="mycurrency3()" class="form-control" <?php echo $readonly; ?>>
@@ -264,7 +264,7 @@
                                 <?php } ?>
                               </select>
                         </td>
-                        <td colspan="2"><input type="text" id="rupiah3" class="form-control" name="jumlah3" <?php echo $readonly; ?> onkeyup="getnominal3()" value="<?php echo $row->jumlah3; ?>" > </td>          
+                        <td colspan="2"><input type="text" style="text-align:right" id="rupiah3" class="form-control" name="jumlah3" <?php echo $readonly; ?> onkeyup="getnominal3()" value="<?php echo $row->jumlah3; ?>" > </td>          
                         <input type="hidden" id="terbilang3" name="terbilang3" value="<?php echo $row->terbilang3;?> "> 
                       </tr>
 					  <tr>
@@ -402,7 +402,7 @@
                                     <?php } ?>
                                     </select>
                                     </td>	
-                                  <td><input style="height:28px" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" onblur="formatnominalvendor('1')" type="text"></td>																
+                                  <td><input style="height:28px;text-align:right;" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" onblur="formatnominalvendor('1')" type="text"></td>																
                                   <td>&nbsp;</td>
 							</tr>
 								<?php	
@@ -507,7 +507,7 @@
 									<input id="<?php echo 'scurrencyvendor'.$vendorrow; ?>" type="hidden" name="scurrencyvendor[]" value="<?php echo $gvendor->v_currency; ?>"  />
 									
 								</td>		
-								<td ><input style="height:28px" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]"  onblur="formatnominalvendor('<?php echo $vendorrow; ?>')"  onkeyup="gettotalvendor()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" <?php echo $nominalvendor; ?>></td>
+								<td ><input style="height:28px;text-align:right;" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]"  onblur="formatnominalvendor('<?php echo $vendorrow; ?>')"  onkeyup="gettotalvendor()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" <?php echo $nominalvendor; ?>></td>
 															
                                 <td>
                                 <?php
@@ -737,7 +737,7 @@
                                 <?php } ?>
                               </select>
 						</td>
-                        <td><input id="biaya" onkeyup="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
+                        <td><input id="biaya" style="text-align:right" onkeyup="penjumlahan()" type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>"></input></td>
                         <td><select id="curr2"  name="curr2" class="form-control">
                                       <option value="<?php echo $row->curr_settlement2;?>"><?php echo $row->curr_settlement2;?></option>                                      
                                       <option value="">Pilih Mata Uang</option>
@@ -747,7 +747,7 @@
                                 <?php } ?>
                               </select>
 						</td>
-                        <td><input id="biayaa" onkeyup="penjumlahana()" type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"></input></td>
+                        <td><input id="biayaa" style="text-align:right" onkeyup="penjumlahana()" type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"></input></td>
                         <td><select id="curr3" name="curr3" class="form-control">
                                       <option value="<?php echo $row->curr_settlement3;?>"><?php echo $row->curr_settlement3;?></option>                                      
                                       <option value="">Pilih Mata Uang</option>
@@ -757,29 +757,29 @@
                                 <?php } ?>
                               </select>
             			</td>
-                        <td><input id="biayab" onkeyup="penjumlahanb()" type="text" class="form-control" name="label7b" value="<?php echo $row->label7b;?>"></input></td>
+                        <td><input id="biayab" style="text-align:right" onkeyup="penjumlahanb()" type="text" class="form-control" name="label7b" value="<?php echo $row->label7b;?>"></input></td>
                       </tr>
                       <tr>
                         <td>Jumlah Uang Muka <font color="red"> * </font></td>
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td><input id="uangmuka" onchange="penjumlahan()" readonly type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
+                        <td><input id="uangmuka" style="text-align:right" onchange="penjumlahan()" readonly type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
 						<td>&nbsp;</td>
-                        <td><input id="uangmukaa" onchange="penjumlahana()" readonly type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"></input></td>     
+                        <td><input id="uangmukaa" style="text-align:right" onchange="penjumlahana()" readonly type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"></input></td>     
 						<td>&nbsp;</td>
-                        <td><input id="uangmukab" onchange="penjumlahanb()" readonly type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"></input></td>     
+                        <td><input id="uangmukab" style="text-align:right" onchange="penjumlahanb()" readonly type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"></input></td>     
                       </tr>
                       <tr>
 						<td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
 						            <td>&nbsp;</td>
-                        <td><input id="hasil" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
+                        <td><input id="hasil" style="text-align:right" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
                         <td>&nbsp;</td>
-                        <td><input type="text" id="hasila" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>" readonly></input></td>                               
+                        <td><input type="text" style="text-align:right" id="hasila" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>" readonly></input></td>                               
                         <td>&nbsp;</td>
-                        <td><input type="text" id="hasilb" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>" readonly></input></td>                               
+                        <td><input type="text" style="text-align:right" id="hasilb" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>" readonly></input></td>                               
                       </tr>                                
                       </tbody>
                     </table>
@@ -1689,7 +1689,7 @@ function AddIndeks(){
 		strhtml=strhtml + '</select><input id="scurrencyvendor'+szcountervendor+'" type="hidden" name="scurrencyvendor[]"  /></td>';
 		
 		
-		strhtml=strhtml + '<td><input style="height:28px" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onblur="formatnominalvendor('+szcountervendor+')" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
+		strhtml=strhtml + '<td><input style="height:28px;text-align:right;" class="form-control" id="'+xnominalvendor+'" name="nominalvendor[]" onblur="formatnominalvendor('+szcountervendor+')" onkeyup="gettotalvendor()" type="text" value="0"></td>' +
 						  '<td><span class="btn btn-danger btn-xs" title="Hapus Baris" name="removeButton" onclick="RemoveIndeks(' + zstr +')"> ' +
 						  '<i class="glyphicon glyphicon-minus"></i></span></td>';
 		

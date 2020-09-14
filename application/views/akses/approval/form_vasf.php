@@ -90,92 +90,92 @@ td[rowspan="6"] {
                           <td><center> 2 </center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description2" value="<?php echo $get->description2;?>" readonly></td>
                           <td><center><?php echo $get->currency1;?></center> </td>
-                          <td><input id="nilai1" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>" readonly></td> 
+                          <td><input id="nilai1" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah2" value="<?php echo $get->jumlah2;?>" readonly></td> 
                         </tr>
                         <tr>
                           <td><center> 3 </center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description3" value="<?php echo $get->description3;?>" readonly></td>
                           <td><center><?php echo $get->currency2;?> </center> </td>
-                          <td><input id="nilai2" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>" readonly></td> 
+                          <td><input id="nilai2" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah3" value="<?php echo $get->jumlah3;?>" readonly></td> 
                         </tr>
                         <tr>
                           <td><center>4</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description4" value="<?php echo $get->description4;?>" readonly></td>
                           <td><center>  <?php echo $get->currency3;?></center> </td>
-                          <td><input id="nilai3" onchange="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>" readonly> </td>
+                          <td><input id="nilai3" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah4" value="<?php echo $get->jumlah4;?>" readonly> </td>
                         </tr>
                         <tr>
                           <td><center>5</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description5" value="<?php echo $get->description5;?>" readonly></td>
                           <td><center>  <?php echo $get->currency4;?></center> </td>
-                          <td><input id="nilai4" onchange="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>" readonly> </td> 
+                          <td><input id="nilai4" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah5" value="<?php echo $get->jumlah5;?>" readonly> </td> 
                         </tr>
                         <tr>
                           <td><center>6</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description6" value="<?php echo $get->description6;?>" readonly></td>
                           <td><center>  <?php echo $get->currency5;?></center></td>
-                          <td><input id="nilai5" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>" readonly></td> 
+                          <td><input id="nilai5" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah6" value="<?php echo $get->jumlah6;?>" readonly></td> 
                         </tr>
                         
                         <tr>
                           <td><center>7</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description7" value="<?php echo $get->description7;?>" readonly></td>
                           <td><center>  <?php echo $get->currency6;?></center></td>
-                          <td><input id="nilai6" onchange="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>" readonly>  </td> 
+                          <td><input id="nilai6" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah7" value="<?php echo $get->jumlah7;?>" readonly>  </td> 
                         </tr>
                         <tr>
                           <td><center>8</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description8" value="<?php echo $get->description8;?>" readonly></td>
                           <td><center>  <?php echo $get->currency7;?></center></td>
-                          <td><input id="nilai7" onchange="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>" readonly ></td> 
+                          <td><input id="nilai7" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah8" value="<?php echo $get->jumlah8;?>" readonly ></td> 
                         </tr>
                         <tr>
                           <td><center>9</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description9" value="<?php echo $get->description9;?>" readonly></td>
                           <td><center>  <?php echo $get->currency8;?></center></td>
-                          <td><input id="nilai8" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>" readonly></td> 
+                          <td><input id="nilai8" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah9" value="<?php echo $get->jumlah9;?>" readonly></td> 
                         </tr>
                         <tr>
                           <td><center>10</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description10" value="<?php echo $get->description10;?>" readonly></td>
                           <td><center>  <?php echo $get->currency9;?></center></td>
-                          <td><input id="nilai9" onchange="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>" readonly></td> 
+                          <td><input id="nilai9" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah10" value="<?php echo $get->jumlah10;?>" readonly></td> 
                         </tr>
                         <tr>
                           <td><center>11</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description11" value="<?php echo $get->description11;?>" readonly></td>
                           <td><center>  <?php echo $get->currency10;?></center></td>
-                          <td><input id="nilai10" onchange="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>" readonly></td> 
+                          <td><input id="nilai10" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah11" value="<?php echo $get->jumlah11;?>" readonly></td> 
                         </tr>
                         <tr>
                           <td><center>12</center></td>
                           <td colspan="2"><input type="text" class="form-control" name="description12" value="<?php echo $get->description12;?>" readonly></td>
                           <td><center>  <?php echo $get->currency11;?></center></td>
-                          <td><input id="nilai11" onchange="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>" readonly></td> 
+                          <td><input id="nilai11" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah12" value="<?php echo $get->jumlah12;?>" readonly></td> 
                         </tr>
 
                         <tr>
                           <td colspan="3" > Jumlah Pembayaran/<i>Total Payment</i> </td>
                           <td><center>    </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> 
-                              <?php echo $get->currency4;?>&nbsp;<input id="ulang2" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
-                              <?php echo $get->currency8;?>&nbsp;<input id="ulang3" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" style="text-align:right" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="ulang2" style="text-align:right" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="ulang3" style="text-align:right" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
                           </td>
                         </tr>
                         <tr>
                           <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
                           <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="jumlah" onchange="nominal()" type="text" name="cash_advance" value="<?php echo $get->cash_advance; ?>" readonly> 
-                              <?php echo $get->currency4;?>&nbsp;<input id="jumlah2" onchange="nominal()" type="text" name="cash_advance2" value="<?php echo $get->cash_advance2; ?>" readonly>
-                              <?php echo $get->currency8;?>&nbsp;<input id="jumlah3" onchange="nominal()" type="text" name="cash_advance3" value="<?php echo $get->cash_advance3; ?>" readonly>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="jumlah" style="text-align:right" onchange="nominal()" type="text" name="cash_advance" value="<?php echo $get->cash_advance; ?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="jumlah2" style="text-align:right" onchange="nominal()" type="text" name="cash_advance2" value="<?php echo $get->cash_advance2; ?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="jumlah3" style="text-align:right" onchange="nominal()" type="text" name="cash_advance3" value="<?php echo $get->cash_advance3; ?>" readonly>
                           </td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
                           <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="negatif" type="text" name="piutang" value="<?php echo $get->piutang; ?>" readonly> 
-                              <?php echo $get->currency4;?>&nbsp;<input id="negatif2" type="text" name="piutang2" value="<?php echo $get->piutang2; ?>" readonly>
-                              <?php echo $get->currency8;?>&nbsp;<input id="negatif3" type="text" name="piutang3" value="<?php echo $get->piutang3; ?>" readonly>
+                          <td><?php echo $get->currency;?>&nbsp;<input id="negatif" style="text-align:right" type="text" name="piutang" value="<?php echo $get->piutang; ?>" readonly> 
+                              <?php echo $get->currency4;?>&nbsp;<input id="negatif2" style="text-align:right" type="text" name="piutang2" value="<?php echo $get->piutang2; ?>" readonly>
+                              <?php echo $get->currency8;?>&nbsp;<input id="negatif3" style="text-align:right" type="text" name="piutang3" value="<?php echo $get->piutang3; ?>" readonly>
                           </td>
                         </tr>
                         <tr> 

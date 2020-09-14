@@ -201,13 +201,13 @@
                         <td align="right"><font size="1"><b> : </b></td>
 
                         <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency;?> </td>
-                        <td width="10%" class="kolom"><font size="1"><?php echo $row->label2; ?></td>
+                        <td width="10%" class="kolom"><font size="1" style="text-align:right"><?php echo $row->label2; ?></td>
 
                         <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency2;?> </td>
-                        <td width="10%" class="kolom"><font size="1"><?php echo $row->jumlah2; ?></td>
+                        <td width="10%" class="kolom"><font size="1" style="text-align:right"><?php echo $row->jumlah2; ?></td>
 
                         <td width="2%" class="kolom"><font size="1"> <?php echo $row->currency3;?> </td>
-                        <td width="10%" class="kolom"><font size="1"><?php echo $row->jumlah3; ?></td>
+                        <td width="10%" class="kolom"><font size="1" style="text-align:right"><?php echo $row->jumlah3; ?></td>
                       </tr>
                       </tbody>
                     </table>
@@ -328,7 +328,7 @@
                                 <td colspan="3" width="20%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_bank;?>	</td>
                                 <td colspan="3" width="15%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_account; ?>	</td>   
                                 <td colspan="2" width="10%" class="kolom"><font size="1"><center> <?php echo $gvendor->v_currency; ?>	</td>   
-                                <td colspan="6" width="20%" class="kolom"><font size="1"><center> <?php echo number_format($gvendor->nominal,0,",","."); ?></td>															
+                                <td colspan="6" width="20%" class="kolom"><font size="1" style="text-align:right"><center> <?php echo number_format($gvendor->nominal,0,",","."); ?></td>															
 															
 															</tr>
 															<?php } }?>
@@ -346,9 +346,9 @@
                                   <td><center><font size="1"><?php echo $row->currency3; ?></label></td>
                                 </th> 
                                 <th> 
-                                  <td><center><font size="1"><?php echo $row->jumlah2; ?></label></td>
-                                  <td><center><font size="1"><?php echo $row->label2; ?></label></td>
-                                  <td><center><font size="1"><?php echo $row->jumlah3; ?></label></td>
+                                  <td><center><font size="1" style="text-align:right"><?php echo $row->label2; ?></label></td>
+                                  <td><center><font size="1" style="text-align:right"><?php echo $row->jumlah2; ?></label></td>
+                                  <td><center><font size="1" style="text-align:right"><?php echo $row->jumlah3; ?></label></td>
                                 </th>
 															</tr>
 														  </tfoot>
@@ -508,13 +508,13 @@
                         <td><font size="1">:</td>
                         <td colspan="2">&nbsp;</td>
                         <td align="center"><font size="1"><?php echo $row->curr_settlement1;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label7;?></td>
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label7;?></td>
                         
                         <td align="center"><font size="1"><?php echo $row->curr_settlement2;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label7a;?></td>
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label7a;?></td>
                         
                         <td align="center"><font size="1"><?php echo $row->curr_settlement3;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label7b;?></td>
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label7b;?></td>
                       </tr>
 
                       <tr>
@@ -522,26 +522,26 @@
                         <td><font size="1">:</td>
                         <td colspan="2">&nbsp;</td>
                         <td align="center"><font size="1"><?php echo $row->curr_settlement1;?></td>   
-                        <td class="kolom"><font size="1"><?php echo $row->label8; ?></td> 
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label8; ?></td> 
                         
                         <td align="center"><font size="1"><?php echo $row->curr_settlement2;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label8a; ?></td>  
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label8a; ?></td>  
                         
                         <td align="center"><font size="1"><?php echo $row->curr_settlement3;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label8b; ?></td>  
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label8b; ?></td>  
                       </tr>
                       <tr>
                         <td><font size="1">Selisih Kurang/(Lebih)</td>
                         <td><font size="1">:</td>
                         <td colspan="2">&nbsp;</td>
                         <td align="center"><font size="1"><?php echo $row->curr_settlement1;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label9; ?></td>  
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label9; ?></td>  
                         
                         <td align="center"><font size="1"><?php echo $row->curr_settlement2;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label9a; ?></td>  
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label9a; ?></td>  
                         
                         <td align="center"><font size="1"><?php echo $row->curr_settlement3;?></td>
-                        <td class="kolom"><font size="1"><?php echo $row->label9b; ?></td>  
+                        <td class="kolom"><font size="1" style="text-align:right"><?php echo $row->label9b; ?></td>  
                       </tr>                              
                       </tbody>
                     </table>

@@ -591,6 +591,20 @@ $('#show').DataTable({
 				 }],
     });
 	
+$('#tblhistorytax').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      //"info": false,
+      "autoWidth": false,
+	  'columnDefs': [
+				  {
+					  "targets": [2,3,4,5],
+					  "className": "text-right",
+				 }],
+    });
+	
 var table1=$('#show1').DataTable({
       "paging": false,
       "lengthChange": false,
@@ -1529,14 +1543,16 @@ $('#txtnamanpwp').select2();
 		dataType: "JSON",
         success: function(data)
 			{
-				console.log(data);
-				$("#txtnonpwp").val(data[0].npwp);
-				$("#txtnamanpwp_old").val(data[0].nama);
-				$("#txtalamat").val(data[0].alamat); 
-				$("#txtdppkumulatif").val(formatRupiah(data[0].dpp_kumulatif)); 
-				if( $strid.trim() == 'PPN Offshore') {
-					$("#txtnonpwp").val('');
-					$("#txtalamat").val('');
+				console.log(data.length);
+				if(data.length>0){
+					$("#txtnonpwp").val(data[0].npwp);
+					$("#txtnamanpwp_old").val(data[0].nama);
+					$("#txtalamat").val(data[0].alamat); 
+					$("#txtdppkumulatif").val(formatRupiah(data[0].dpp_kumulatif)); 
+					if( $strid.trim() == 'PPN Offshore') {
+						$("#txtnonpwp").val('');
+						$("#txtalamat").val('');
+					}
 				}
 			},
 			error: function (data)
@@ -2013,6 +2029,80 @@ function PajakTerhutang(){
 	}
 }
 
+function gethistorytax()
+{
+	var url = "<?php echo base_url('dashboard/gettaxhistory')?>";
+	$.ajax({
+        url : url,
+        type: "POST",
+        data: $("#form1,#form").serialize(),
+        dataType: "JSON",
+        success: function(data)
+            { 
+				var $totpjk=0;
+				var pjktr;
+				var $totdpp=0;
+				var pjkdpp;
+				var $totgross=0;
+				var pjkgross;
+				var $dppkumulatif=0;
+				
+				var tbl1 = $('#tblhistorytax').DataTable(); 
+				tbl1.destroy();
+				tbl1 = $('#tblhistorytax').DataTable({
+									  "paging": true,
+									  "lengthChange": true,
+									  "searching": true,
+									  "ordering": true,
+									  "info": false,
+									  "autoWidth": false,
+									  'columnDefs': [
+												  {
+													  "targets": [2,3,4,5],
+													  "className": "text-right",
+												 }],
+									});
+				var $no=0;
+				tbl1.clear().draw();
+				$.each(data, function(key, item) 
+				{      
+					$no++;
+					pjktr=item.pajak_terutang.replace(/[^,\d]/g, '').toString();
+					$totpjk=$totpjk+parseFloat(pjktr);
+					pjkdpp=item.dpp.replace(/[^,\d]/g, '').toString();
+					$totdpp=$totdpp+parseFloat(pjkdpp);
+					pjkgross=item.dpp_gross.replace(/[^,\d]/g, '').toString();
+					$totgross=$totgross+parseFloat(pjkgross);
+					$dppkumulatif=item.dpp_kumulatif.replace(/[^,\d]/g, '').toString();
+					/*if(pjkgross==0){
+						$dppkumulatif=$dppkumulatif+parseFloat(pjkdpp)
+					}else{
+						$dppkumulatif=$dppkumulatif+parseFloat(pjkgross)
+					}*/
+					
+					tbl1.row.add( [
+						$no,
+						item.paid_date,
+						item.dpp,
+						item.tarif,
+						item.pajak_terutang,
+						item.dpp_gross,
+						item.nomor_surat
+					] ).draw(false);
+
+				})  
+											
+				$('#lbltotalhistory').text(formatRupiah($dppkumulatif.toString()));
+				$('#modalTaxHistory').modal('show');
+            },
+            error: function (data)
+            {
+				console.log(data);
+                alert('Error adding / update data');
+            }
+    });
+	
+}
 
   //===========
   
@@ -2272,3 +2362,51 @@ function PajakTerhutang(){
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+  
+  
+  <div class="modal fade" id="modalTaxHistory" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:1200px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >Tax History</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+							<table id="tblhistorytax" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Tanggal Pembayaran</th>
+										<th>Sebelum Gross Up</th>
+										<th>Tarif</th>
+										<th>PPh 21</th>
+										<th>Setelah Gross Up</th>	
+										<th>Reference No</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td style="text-align:right;"></td>
+										<td style="text-align:right;"></td>
+										<td style="text-align:right;"></td>
+										<td style="text-align:right;"></td>
+										<td></td>
+									</tr>
+										 					   
+								</tbody> 
+								<tfoot align="right">
+									<tr>
+										<th colspan="5" style="text-align:right;">DPP Kumulatif</th>
+										<th style="text-align:left;"><label id="lbltotalhistory" style="text-align:left;"></label></th>
+										</th></tr>
+								</tfoot>
+							</table>
+						</div> 
+													
+                    </div>
+                </div>
+            </div>
+  </div>

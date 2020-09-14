@@ -1819,4 +1819,13 @@ class Dashboard_model extends CI_Model{
         $query=$this->db->query($sql);
         return $query;
     }
+	
+	public function gettaxhistorybyvendor($id) {
+        $sql = "select t1.id_tax,t1.id_payment,t1.no_urut, t1.tarif,t1.dpp,t1.dpp_gross,t1.pajak_terutang,t2.paid_date, t2.nomor_surat,t3.dpp_kumulatif ";
+		$sql .= "FROM t_tax t1, t_payment_l t2,m_honorarium_konsultan t3 where t1.id_payment=t2.id_payment and t1.id_honor=t3.id_honor and t2.status='10' ";
+		$sql .= "and right(t2.paid_date,4)=DATE_FORMAT(NOW(), '%Y') and t1.id_honor = '$id' order by t1.id_tax ";
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
 }

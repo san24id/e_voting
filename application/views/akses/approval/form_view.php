@@ -235,13 +235,13 @@
                         <td><b> : </b></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency;?>" readonly> </td>
-                        <td><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
+                        <td><input type="text" style="text-align:right" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency2;?>" readonly> </td>
-                        <td><input type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" readonly></td>
+                        <td><input type="text" style="text-align:right" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" readonly></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency3;?>" readonly></td>
-                        <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
+                        <td><input type="text" style="text-align:right" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
                       </tr>  
                       <tr>
                         <td colspan="2">&nbsp;</td>
@@ -360,7 +360,7 @@
 																	<?php } ?>
 																	</select>
 																</td>
-																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" readonly></td>																
+																<td><input class="form-control" style="text-align:right" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" readonly></td>																
 																<td>&nbsp;</td>
 																</tr>
 															<?php	
@@ -410,7 +410,7 @@
 						
 																	</select>
 																</td>
-															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" readonly></td>
+															<td ><input class="form-control" style="text-align:right" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" readonly></td>
 															
 															
 															</tr>
@@ -450,9 +450,9 @@
                                     <label class="control-label" id="lblcur3" ><?php echo $row->currency3; ?></label>
                                   </th>
                                   <th>
-                                    <label class="control-label" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label><br>
-                                    <label class="control-label" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label><br>
-                                    <label class="control-label" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
+                                    <p style="text-align:right" id="lbltotalvendor"><?php echo $strtotvendor1; ?></p><br>
+                                    <p style="text-align:right" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></p><br>
+                                    <p style="text-align:right" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></p>
                                   </th>
                               </tr>
 														</tfoot>
@@ -614,11 +614,11 @@
                           <td>:</td>
                           <td colspan="2">&nbsp;</td>
                           <td align="center"><?php echo $row->curr_settlement1;?></td>
-                          <td><input type="text" class="form-control" name="label7" value="<?php echo $row->label7;?>" readonly></input></td>
+                          <td><input type="text" style="text-align:right" class="form-control" name="label7" value="<?php echo $row->label7;?>" readonly></input></td>
                           <td align="center"><?php echo $row->curr_settlement2;?></td>
-                          <td><input type="text" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"readonly></input></td>
+                          <td><input type="text" style="text-align:right" class="form-control" name="label7a" value="<?php echo $row->label7a;?>"readonly></input></td>
                           <td align="center"><?php echo $row->curr_settlement3;?></td>
-                          <td><input type="text" class="form-control" name="label7b" value="<?php echo $row->label7b;?>"readonly></input></td>
+                          <td><input type="text" style="text-align:right" class="form-control" name="label7b" value="<?php echo $row->label7b;?>"readonly></input></td>
                         </tr>
 
                         <tr>
@@ -626,22 +626,22 @@
                           <td>:</td>
                           <td colspan="2">&nbsp;</td>
                           <td align="center"><?php echo $row->curr_settlement1;?></td>   
-                          <td><input type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td> 
+                          <td><input type="text" style="text-align:right" class="form-control" name="label8" value="<?php echo $row->label8; ?>"readonly></input> </td> 
                           <td align="center"><?php echo $row->curr_settlement2;?></td>
-                          <td><input type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"readonly></input> </td>  
+                          <td><input type="text" style="text-align:right" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"readonly></input> </td>  
                           <td align="center"><?php echo $row->curr_settlement3;?></td>
-                          <td><input type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"readonly></input> </td>  
+                          <td><input type="text" style="text-align:right" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"readonly></input> </td>  
                         </tr>
                         <tr>
                           <td>Selisih Kurang/(Lebih)</td>
                           <td>:</td>
                           <td colspan="2">&nbsp;</td>
                           <td align="center"><?php echo $row->curr_settlement1;?></td>
-                          <td><input type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>  
+                          <td><input type="text" style="text-align:right" class="form-control" name="label9" value="<?php echo $row->label9; ?>"readonly></input></td>  
                           <td align="center"><?php echo $row->curr_settlement2;?></td>
-                          <td><input type="text" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>"readonly></input></td>  
+                          <td><input type="text" style="text-align:right" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>"readonly></input></td>  
                           <td align="center"><?php echo $row->curr_settlement3;?></td>
-                          <td><input type="text" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>"readonly></input></td>  
+                          <td><input type="text" style="text-align:right" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>"readonly></input></td>  
                         </tr>                              
                         </tbody>
                       </table>

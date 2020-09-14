@@ -3826,5 +3826,11 @@ class Dashboard extends CI_Controller {
 		$data['kodepajak'] = $this->Dashboard_model->getKodePajak();
 		echo json_encode($data);
 	}
+	
+	public function gettaxhistory(){
+		$idhonor=$this->input->post('txtnamanpwp');
+		$data = $this->Dashboard_model->gettaxhistorybyvendor($idhonor);
+		echo json_encode($data);
+	}
 
 }
