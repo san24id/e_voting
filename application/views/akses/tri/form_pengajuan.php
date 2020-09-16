@@ -375,18 +375,24 @@
 							<tfoot>
 							<tr>
 								<th>
-								<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
-									<i class="glyphicon glyphicon-plus"></i></span>
-								</div>
-								<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
-									</th>
-								<th colspan="5">
-								<label class="control-label col-md-1" id="lblcur1" ></label>
-								<label class="control-label col-md-3" id="lbltotalvendor"></label>
-								<label class="control-label col-md-1" id="lblcur2" ></label>
-								<label class="control-label col-md-3" id="lbltotalvendor2"></label>
-								<label class="control-label col-md-1" id="lblcur3" ></label>
-								<label class="control-label col-md-3" id="lbltotalvendor3"></label>
+									<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
+										<i class="glyphicon glyphicon-plus"></i></span>
+									</div>
+								</th>
+							</tr>
+							<tr>	
+								<th colspan="3">	
+									<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
+								</th>
+								<th>
+									<p id="lblcur1" ></p>
+									<p id="lblcur2" ></p>
+									<p id="lblcur3" ></p>
+								</th>
+								<th>
+									<p id="lbltotalvendor"></p>
+									<p id="lbltotalvendor2"></p>
+									<p id="lbltotalvendor3"></p>
 								</th>
 							</tr>
 							<input type="text" style="display:none;" name="txttotalvendor" id="txttotalvendor"  value="<?php echo number_format($ttlnomvendor,0,",","."); ?>" />

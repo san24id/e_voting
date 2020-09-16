@@ -345,19 +345,18 @@
 														  </tbody>
 														  <tfoot>
 															<tr>
-																<th colspan="6">
-                                  <td><center><font size="1">Total</td>
-                                  <td> </td>
+																<th colspan="10">
+                                  <p><center><font size="1" >Total :</p>
                                 </th>
 																<th>
-                                  <td><center><font size="1"><?php echo $row->currency; ?></label></td>
-                                  <td><center><font size="1"><?php echo $row->currency2; ?></label></td>
-                                  <td><center><font size="1"><?php echo $row->currency3; ?></label></td>
+                                  <p><center><font size="1"><?php echo $row->currency; ?></p>
+                                  <p><center><font size="1"><?php echo $row->currency2; ?></p>
+                                  <p><center><font size="1"><?php echo $row->currency3; ?></p>
                                 </th> 
                                 <th> 
-                                  <td><center><font size="1" style="text-align:right"><?php echo $row->label2; ?></label></td>
-                                  <td><center><font size="1" style="text-align:right"><?php echo $row->jumlah2; ?></label></td>
-                                  <td><center><font size="1" style="text-align:right"><?php echo $row->jumlah3; ?></label></td>
+                                  <p><center><font size="1" style="text-align:right"><?php echo $row->label2; ?></p>
+                                  <p><center><font size="1" style="text-align:right"><?php echo $row->jumlah2; ?></p>
+                                  <p><center><font size="1" style="text-align:right"><?php echo $row->jumlah3; ?></p>
                                 </th>
 															</tr>
 														  </tfoot>

@@ -546,24 +546,30 @@
 						
 							</tbody>
 							<tfoot>
-							<tr>
-								<th>
-								<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
-									<i class="glyphicon glyphicon-plus"></i></span>
-								</div>
-								<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
-								</th>
-								<th colspan="5">
-								<label class="control-label col-md-1" id="lblcur1" ><?php echo $row->currency; ?></label>
-								<label class="control-label col-md-3" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label>
-								<label class="control-label col-md-1" id="lblcur2" ><?php echo $row->currency2; ?></label>
-								<label class="control-label col-md-3" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label>
-								<label class="control-label col-md-1" id="lblcur3" ><?php echo $row->currency3; ?></label>
-								<label class="control-label col-md-3" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
-								</th>
-							</tr>
+								<tr>
+									<th>
+										<div class="col-md-2"><span class="btn btn-success btn-xs" title="Tambah Baris" id='addButton' onclick="AddIndeks()"> 
+											<i class="glyphicon glyphicon-plus"></i></span>
+										</div>
+									</th>
+								</tr>
+								<tr>	
+									<th colspan="3">	
+										<div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
+									</th>
+									<th>
+										<p id="lblcur1" ><?php echo $row->currency; ?></p>
+										<p id="lblcur2" ><?php echo $row->currency2; ?></p> 
+										<p id="lblcur3" ><?php echo $row->currency3; ?></p>
+									</th>
+									<th>
+										<p style="text-align:right" id="lbltotalvendor"><?php echo $strtotvendor1; ?></p>
+										<p style="text-align:right" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></p>
+										<p style="text-align:right" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></p>
+									</th>
+								</tr>
 							
-						</tfoot>
+							</tfoot>
 						</table>
 						</div> 
 						<!--</form>-->
