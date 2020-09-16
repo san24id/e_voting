@@ -160,7 +160,7 @@
                           <td></td>
                           <td class="period"><font color="white" size="3"> Date </font></td>
                           <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo $start_date; ?>"></td>
-                          <td><font size="3">s/d</font></td>
+                          <td><font size="3">&nbsp; &nbsp;s/d</font></td>
                           <td class="period"><font color="white" size="3"> Date </font></td>
                           <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo $end_date; ?>"></td>
                           <td class="period"><input type="submit" name="search" value="Search" id="search"></td>

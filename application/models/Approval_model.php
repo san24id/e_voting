@@ -7,7 +7,7 @@ class Approval_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'
                 ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
@@ -25,7 +25,7 @@ class Approval_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('8', '9', '10') AND tanggal2 BETWEEN '$start_date' AND '$end_date'
                 ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
@@ -36,7 +36,7 @@ class Approval_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status ='8' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status ='8' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
                 ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
@@ -54,7 +54,7 @@ class Approval_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE  
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
                 status = '8' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
@@ -65,7 +65,7 @@ class Approval_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE status ='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status ='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
                 ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
@@ -83,7 +83,7 @@ class Approval_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.type = b.id_pay WHERE  
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
                 status = '9' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
@@ -131,8 +131,8 @@ class Approval_model extends CI_Model{
     }
 
     public function getVPayment() {
-        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, COUNT(a.type) as jmlpembayaran FROM t_payment_l a RIGHT JOIN t_pembayaran b ON a.type = b.id_pay 
-                WHERE b.jenis_pembayaran != '' AND a.type != 0 AND a.status in ('8','9','10') GROUP BY b.jenis_pembayaran";
+        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment_l a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+                WHERE b.jenis_pembayaran != '' AND a.jenis_pembayaran != 0 AND a.status in ('8','9','10') GROUP BY b.jenis_pembayaran";
 
         // $sql = "SELECT * FROM (SELECT a.status, b.dsc, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
         //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL AND otr.status in ('2','4','5','6','7','8','9','10')";
@@ -145,8 +145,8 @@ class Approval_model extends CI_Model{
         // $sql = "SELECT * FROM (SELECT b.dsc, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
         //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$test' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
 
-        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, COUNT(a.type) as jmlpembayaran FROM t_payment_l a RIGHT JOIN t_pembayaran b ON a.type = b.id_pay 
-                WHERE b.jenis_pembayaran != '' AND a.type != 0 AND a.status in ('8','9','10')
+        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment_l a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+                WHERE b.jenis_pembayaran != '' AND a.jenis_pembayaran != 0 AND a.status in ('8','9','10')
                 AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' GROUP BY b.jenis_pembayaran";
        
         $query = $this->db->query($sql)->result();

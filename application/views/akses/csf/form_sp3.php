@@ -235,13 +235,13 @@
                         <td><b> : </b></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency;?>" readonly> </td>
-                        <td><input type="text" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
+                        <td><input type="text" style="text-align:right" class="form-control" name="label2" value="<?php echo $row->label2; ?>" readonly></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency2;?>" readonly> </td>
-                        <td><input type="text" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" readonly></td>
+                        <td><input type="text" style="text-align:right" class="form-control" name="jumlah2" value="<?php echo $row->jumlah2; ?>" readonly></td>
 
                         <td width="5%"><input type="text" class="form-control" value="<?php echo $row->currency3;?>" readonly></td>
-                        <td><input type="text" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
+                        <td><input type="text" style="text-align:right" class="form-control" name="jumlah3" value="<?php echo $row->jumlah3; ?>" readonly></td>
                       </tr>  
                       <tr>
                         <td colspan="2">&nbsp;</td>
@@ -361,7 +361,7 @@
 																	<?php } ?>
 																	</select>
 																</td>
-																<td><input class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" readonly></td>																
+																<td><input class="form-control" style="text-align:right" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" type="text" readonly></td>																
 																<td>&nbsp;</td>
 																</tr>
 															<?php	
@@ -412,7 +412,7 @@
 																	</select>
 																</td>
 																
-															<td ><input class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" readonly></td>
+															<td ><input class="form-control" style="text-align:right" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onkeyup="gettotalnontax()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" readonly></td>
 															
 															
 															</tr>
@@ -447,14 +447,14 @@
                                     <div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
                                   </th>
                                   <th>
-                                    <label class="control-label" id="lblcur1" ><?php echo $row->currency; ?></label><br>
-                                    <label class="control-label" id="lblcur2" ><?php echo $row->currency2; ?></label><br>
-                                    <label class="control-label" id="lblcur3" ><?php echo $row->currency3; ?></label>
+                                    <p id="lblcur1" ><?php echo $row->currency; ?></p>
+                                    <p id="lblcur2" ><?php echo $row->currency2; ?></p>
+                                    <p id="lblcur3" ><?php echo $row->currency3; ?></p>
                                   </th>
                                   <th>
-                                    <label class="control-label" id="lbltotalvendor"><?php echo $strtotvendor1; ?></label><br>
-                                    <label class="control-label" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></label><br>
-                                    <label class="control-label" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></label>
+                                    <p style="text-align:right" id="lbltotalvendor"><?php echo $strtotvendor1; ?></p>
+                                    <p style="text-align:right" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></p>
+                                    <p style="text-align:right" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></p>
                                   </th>
                               </tr>
 														</tfoot>
@@ -886,7 +886,7 @@
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
       </div>
       <div class="modal-footer">                        
-        <button type="submit" class="btn btn-success bye">YES</button>
+        <button type="submit" class="btn btn-success bye">Yes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
       </div>
@@ -912,7 +912,7 @@
         <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
       </div>
       <div class="modal-footer">                        
-        <button type="submit" class="btn btn-success bye">YES</button>
+        <button type="submit" class="btn btn-success bye">Yes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
       </div>
@@ -942,7 +942,7 @@
         </select> -->
       </div>
       <div class="modal-footer">                        
-          <button type="submit" class="btn btn-success bye">YES</button>
+          <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>
       </div>

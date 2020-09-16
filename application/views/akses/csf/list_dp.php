@@ -51,8 +51,6 @@
 										</select>
 
                   </div>		
-									</div>		
-                  </div>		
 										
 									<div class="col-md-3">
 								<!-- <div class="form-group">
@@ -153,8 +151,6 @@
                         $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                         $query = $this->db->query($sql)->result();
                         // return $query;
-                        // var_dump($query[0]->nama);exit; 
-                          // var_dump($query[0]->nama);exit; 
                         // var_dump($query[0]->nama);exit; 
                         if ($query[0]->nama) { $buka = $query[0]->nama;
                         }else{

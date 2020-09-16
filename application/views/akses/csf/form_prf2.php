@@ -79,11 +79,11 @@ td[rowspan="6"] {
                           <!-- <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d'); ?>-<?php echo $monthList[$bulan_ing]; ?>-<?php echo date('Y'); ?>" readonly> </td> -->
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $prf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $prf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" required></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">SPPP Doc. No : </font></td>
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>" readonly>
@@ -98,7 +98,7 @@ td[rowspan="6"] {
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
-                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" value="---"/>
+                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" placeholder="---"/>
                               <input type="text" name="pii" size="3%" value="/PII/" readonly>
                               <input type="text" name="bulan" size="5%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="2" min="1" max="12" placeholder="Bulan"/>
                               <input type="text" name="slash" size="1%"value="/" readonly>
@@ -254,10 +254,13 @@ td[rowspan="6"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
-                          <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" style="text-align:right" type="text" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
-                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" style="text-align:right" type="text" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
-                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" style="text-align:right" type="text" name="total_expenses3" value="<?php echo $row->jumlah3;?>" readonly> 
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $row->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency2;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency3;?>" readonly> 
+                          </td>
+                          <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
+                              <input id="ulang1" style="text-align:right" type="text" class="form-control" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
+                              <input id="ulang2" style="text-align:right" type="text" class="form-control" name="total_expenses3" value="<?php echo $row->jumlah3;?>" readonly> 
                           </td>
                         </tr>
                         <tr> 

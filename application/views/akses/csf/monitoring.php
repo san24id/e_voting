@@ -93,391 +93,389 @@
         $end_date = 1;
     } ?>
     <section class="content">
-          <div class="col-md-7">
-            <div class="box-body">
-              <!-- USERS LIST -->
-              <div class="box box-success">
-                <div class="box-header with-border">
-                  <div class="box-tools pull-right">
-                    <span class="label label-success"></span>
-                  </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  <div class="row">
-                    <div class="col-md-12">
-                    <!-- Periode   -->
-                    <table width="100%">
-                    <?php echo form_open("Dashboard/periode_monitoring");?>
-                      <tr>
-                        <td class="period"><font color="white" size="3">Period: </font></td>
-                        <td></td>
-                        <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo $start_date; ?>"></td>
-                        <td><font size="3">s/d</font></td>
-                        <td class="period"><font color="white" size="3"> Date </font></td>
-                        <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo $end_date; ?>"></td>
-                        <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
-                      </tr>
-                    <?php echo form_close();?>  
-                    </table>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="box-body">      
-                  <div class="row">
-                    <div class="col-md-4"><!--Lingkaran-->
-                    <center>
-                      <div class="lingkaran1 panel panel-primary">
-                        <br><br><br>
-                        <?php foreach ($processing as $process) { ?>
-                        <a href="<?php echo base_url('dashboard/all_detail_monitoring/1/'.$start_date.'/'.$end_date)?>"><center><font size="10" color="black"> <?php echo $process->process; ?> </font></center></a>
-                        <?php } ?>
-                      </div>
-                      <div class="sembilan"><center><font size='5' color="white"> Waiting for Processing </font></center></div>
-                    </center>
-                    </div>
-
-                    <div class="col-md-8"><!--Status-->
-                      <!-- <?php foreach ($tot_pay_req as $tot_req) { ?>
-                      <font size='5'> TOTAL REQUEST : </font><font size="10"><?php echo $tot_req->totalreq; ?> </font><br>
-                      <?php } ?> -->
-                      <div>
-                        <table width="100%"> 
-                          <tr>
-                            <td><font size="5">&nbsp; &nbsp; <b>TOTAL REQUEST</b> </font></td>
-                            <?php foreach ($tot_pay_req as $tot_req) { ?>
-                            <td width="15%"><a href="<?php echo base_url('dashboard/all_detail_monitoring/2/'.$start_date.'/'.$end_date)?>"><center><b><font size='6' color="grey"><?php echo $tot_req->totalreq; ?><b></center></a></font> </td>                              
-                            <?php } ?>
-                          </tr>
-                          <tr> 
-                            <td colspan="2"><font size='5'> STATUS : </font> </td>
-                          </tr>
-                          
-                          <tr>
-                            <td><font size="3">&nbsp; &nbsp; Waiting for processing / Submitted by users </font></td>
-                            <?php foreach ($processing as $process) { ?>
-                            <td width="15%"><div class="satu"><a href="<?php echo base_url('dashboard/all_detail_monitoring/1/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $process->process; ?></center></a></div> </td>
-                            
-                            <?php } ?>
-                          </tr>
-                          <tr>
-                            <td><font size="3">&nbsp; &nbsp; Processing</font></td>
-                            <?php foreach ($gprocess as $tot_process) { ?>
-                            <td><div class="dua"><a href="<?php echo base_url('dashboard/all_detail_monitoring/3/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"><center><?php echo $tot_process->totalstatus; ?></center></a></div> </td>
-                              
-                            <?php } ?>
-                          </tr>
-                          <tr>
-                            <td><font size="3">&nbsp; &nbsp; Verified</font></td>
-                            <?php foreach ($verifikasi as $verifikasi) { ?>
-                            <td><div class="tiga"><a href="<?php echo base_url('dashboard/all_detail_monitoring/4/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"><center><?php echo $verifikasi->verifikasi; ?></center></a></div> </td>
-                            
-                            <?php } ?>
-                          </tr>
-                          <tr>
-                            <td><font size="3">&nbsp; &nbsp; Approved</font></td>
-                            <?php foreach ($approval as $approval) { ?>
-                            <td><div class="empat"><a href="<?php echo base_url('dashboard/all_detail_monitoring/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></a></div> </td>
-                                
-                            <?php } ?>
-                          </tr>
-                          <tr>
-                            <td><font size="3">&nbsp; &nbsp; Paid</font></td>
-                            <?php foreach ($Paid as $Paid) { ?>
-                            <td><div class="lima"><a href="<?php echo base_url('dashboard/all_detail_monitoring/6/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $Paid->paid;?></center></a></div> </td>
-                            <?php } ?>
-                          </tr>
-
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <!--row  -->
-                </div>
-                <!-- /.box-body -->
-
-                <div class="row">
-                  <div class="box-body">
-                  <div class="col-md-12"> <!--waiting for-->
-                    <table width="10%">                        
-                      <tr>
-                        <td align="center" width="10%">
-                          <div class="info-box box1">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/tax.png"></i></span>
-                              <br>
-                              <?php foreach ($tax as $tax){ ?>
-                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/7/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $tax->tax;?></center></font></a>
-                              <?php } ?>
-                              <center><font size='3' color="white">Under Processing <br> Tax </center>
-                          </div>
-                        </td>
-                        <td align="center" width="10%">
-                          <div class="info-box box1">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/review.png"></i></span>
-                              <br>
-                              <?php foreach ($review as $review) { ?>
-                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/8/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $review->wreview; ?></center></font></a>
-                              <?php } ?>
-                              <center><font size='3' color="white">Waiting For <br> Review </center>
-                          </div>
-                        </td>
-                        <td align="center" width="10%">
-                          <div class="info-box box1">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approval.png"></i></span>
-                              <br>
-                              <?php foreach ($wApproval as $wApproval) { ?>
-                                <a href="<?php echo base_url('dashboard/detail_approver/9/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font></a>
-                              <?php } ?>
-                              <center><font size='3' color="white">Waiting For <br> Approval </center>
-                          </div>
-                        </td>                    
-                      </tr>
-                      <tr>
-                        <td align="center" width="10%">
-                          <div class="info-box box1">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/finance.png"></i></span>
-                              <br>
-                              <?php foreach ($finance as $finance){ ?>
-                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/10/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $finance->finance;?></center></font></a>
-                              <?php } ?>
-                              <center><font size='3' color="white">Under Processing <br>Finance </center>
-                          </div>
-                        </td>
-                        <td align="center" width="10%">
-                          <div class="info-box box1">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified1.png"></i></span>
-                              <br>
-                              <?php foreach ($wverifikasi as $wverifikasi) { ?>
-                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/11/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font></a>
-                              <?php } ?>
-                              <center><font size='3' color="white">Waiting For <br> Verification</center>
-                          </div>
-                        </td>
-                        <td align="center" width="10%">
-                          <div class="info-box box1">
-                            <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid.png"></i></span>
-                              <br>
-                              <?php foreach ($wPaid as $wPaid) { ?>
-                                <a href="<?php echo base_url('dashboard/all_detail_monitoring/12/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wPaid->wpaid; ?></center></font></a>
-                              <?php } ?>
-                              <center><font size='3' color="white">Waiting For <br> Payment</center>
-                          </div>
-                        </td>
-
-                      </tr>
-                      <!-- <td colspan="6"><center><font size="5">Unde Processing</font></center></td> -->
-                      <!-- <tr>
-                        <td align="center"><font size="3"> Tax (A1)</font></td>
-                        <td align="center"><font size="3"> Finance (A2) </font></td>
-                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Review (B) </font></center></td>
-                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Verification (C) </font></center></td>
-                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Approval </font></center></td>
-                        <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Payment </font></center></td>
-                      </tr> -->
-                      <!-- <tr>
-                        <td colspan="2"><center><font size="3"> Under Processing (A) </font></center></td>
-                      </tr>                    -->
-                    </table>
-                  </div>  
-                  </div>  
-                </div>              
-                              
+      <div class="col-md-7">
+        <div class="box-body">
+          <!-- USERS LIST -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <div class="box-tools pull-right">
+                <span class="label label-success"></span>
               </div>
-              <!--/.box success-->
-            </div>            
-          </div>             
-
-          <div class="col-md-5"><!--PieChart-->
-            <div class="box-body">
-              <!-- USERS LIST -->
-              <div class="box box-success">
-                <div class="box-header with-border">
-                  <div class="box-tools pull-right">
-                    <span class="label label-success"></span>
-                  </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body no-padding">
-                <script src="https://code.highcharts.com/highcharts.js"></script>
-                <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
-                <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-                  <div class="col-md-9">
-                    <div id="pieChart" style="min-width: 580px; height: 400px; max-width: 400px; margin: 0 auto"></div>  
-                    <br><br><br>        
-                    
-                    </div>  
-                  </div>
-                <!-- /.box-body -->               
-              </div>
-              <!--/.box -->              
             </div>
-          </div>
-
-		      <div class="col-md-12"><!--Filter BY-->
+            <!-- /.box-header -->
             <div class="box-body">
-              <!-- USERS LIST -->
-              <div class="box box-success">           
-                <div class="box-header with-border">
-                  <!-- <h3 class="box-title">Pencarian</h3> -->
-                  <button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
+              <div class="row">
+                <div class="col-md-12">
+                <!-- Periode   -->
+                <table width="100%">
+                <?php echo form_open("Dashboard/periode_monitoring");?>
+                  <tr>
+                    <td class="period"><font color="white" size="3">Period: </font></td>
+                    <td></td>
+                    <td class="period"><font color="white" size="3"> Date </font></td>
+                    <td class="period"><input type="text" name="start_date" id="start_date" value="<?php echo $start_date; ?>"></td>
+                    <td><font size="3">s/d</font></td>
+                    <td class="period"><font color="white" size="3"> Date </font></td>
+                    <td class="period"><input type="text" name="end_date" id="end_date" value="<?php echo $end_date; ?>"></td>
+                    <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
+                  </tr>
+                <?php echo form_close();?>  
+                </table>
                 </div>
-                <!-- /.box-header -->
-                <div id="cari" class="collapse">
-                  <div class="box-body">
-                    <div class="row">
-                      <form id="formCari">		
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label class="col-md-1">Criteria</label>
-                            <div class="col-md-2">
-                              <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
-                                <option value='0'>== Pilih ==</option>
-                                <option value='1'> Status </option>
-                                <option value='2'> Jenis Pembayaran </option>
-                                <!-- <option value='3'> Nomor Surat </option>
-                                <option value='4'> Pemohon </option>
-                                <option value='5'> Penerima </option> -->
-                              </select>
-                            </div> 	
-                            <div class="col-md-3">
-                              <!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
-                              <select class="form-control" id="selstatus" name="selstatus" style="display:none" >
-                                <option value=''>== Pilih ==</option>
-                                <!-- <option value='0'> Draft </option>
-                                <option value='1'> Draft Print </option> -->
-                                <option value='2'> Submitted </option>
-                                <!-- <option value='3'> Rejected </option> -->
-                                <option value='4'> Processing Tax </option>
-                                <option value='5'> Processing Finance </option>
-                                <option value='6'> Waiting for Review </option>
-                                <option value='7'> Waiting for Verification </option>
-                                <!-- <option value='4'> Processing</option> -->
-                                <option value='8'> Verified </option>
-                                <option value='9'> Approved </option>
-                                <option value='10'> Paid </option>
-                              </select>
-                              
-                              <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
-                                <option value=''>== Pilih ==</option>
-                                <option value='4'> Direct Payment </option> 
-                                <option value='2'> Advance Request </option>
-                                <option value='3'> Advance Settlement </option>
-                                <option value='5'> Cash Received </option>
-                              </select>
-                              
-                              <select class="form-control" id="selblank" name="selblank"  >
-                                <option value=''>== Pilih ==</option>
-                              </select>
-                            </div>		
-                              
-                            <div class="col-md-3">
-                          <!-- <div class="form-group">
-                            <label>&nbsp;</label>      -->        
-                            <span class="input-group-btn">
-                              <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
-                            </span>   
+              </div>
+            </div>
 
-                          <!-- </div> -->
-                          <!-- /.form-group -->
-                        </div>
-                          </div>     
+            <div class="box-body">      
+              <div class="row">
+                <div class="col-md-4"><!--Lingkaran-->
+                <center>
+                  <div class="lingkaran1 panel panel-primary">
+                    <br><br><br>
+                    <?php foreach ($processing as $process) { ?>
+                    <a href="<?php echo base_url('dashboard/all_detail_monitoring/1/'.$start_date.'/'.$end_date)?>"><center><font size="10" color="black"> <?php echo $process->process; ?> </font></center></a>
+                    <?php } ?>
+                  </div>
+                  <div class="sembilan"><center><font size='5' color="white"> Waiting for Processing </font></center></div>
+                </center>
+                </div>
+
+                <div class="col-md-8"><!--Status-->
+                  <!-- <?php foreach ($tot_pay_req as $tot_req) { ?>
+                  <font size='5'> TOTAL REQUEST : </font><font size="10"><?php echo $tot_req->totalreq; ?> </font><br>
+                  <?php } ?> -->
+                  <div>
+                    <table width="100%"> 
+                      <tr>
+                        <td><font size="5">&nbsp; &nbsp; <b>TOTAL REQUEST</b> </font></td>
+                        <?php foreach ($tot_pay_req as $tot_req) { ?>
+                        <td width="15%"><a href="<?php echo base_url('dashboard/all_detail_monitoring/2/'.$start_date.'/'.$end_date)?>"><center><b><font size='6' color="grey"><?php echo $tot_req->totalreq; ?><b></center></a></font> </td>                              
+                        <?php } ?>
+                      </tr>
+                      <tr> 
+                        <td colspan="2"><font size='5'> STATUS : </font> </td>
+                      </tr>
+                      
+                      <tr>
+                        <td><font size="3">&nbsp; &nbsp; Waiting for processing / Submitted by users </font></td>
+                        <?php foreach ($processing as $process) { ?>
+                        <td width="15%"><div class="satu"><a href="<?php echo base_url('dashboard/all_detail_monitoring/1/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $process->process; ?></center></a></div> </td>
+                        
+                        <?php } ?>
+                      </tr>
+                      <tr>
+                        <td><font size="3">&nbsp; &nbsp; Processing</font></td>
+                        <?php foreach ($gprocess as $tot_process) { ?>
+                        <td><div class="dua"><a href="<?php echo base_url('dashboard/all_detail_monitoring/3/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"><center><?php echo $tot_process->totalstatus; ?></center></a></div> </td>
                           
-                        </div>
-                      </form>
-                      <!-- /.col -->
-                      </div>
-                    <!-- /.row -->
+                        <?php } ?>
+                      </tr>
+                      <tr>
+                        <td><font size="3">&nbsp; &nbsp; Verified</font></td>
+                        <?php foreach ($verifikasi as $verifikasi) { ?>
+                        <td><div class="tiga"><a href="<?php echo base_url('dashboard/all_detail_monitoring/4/'.$start_date.'/'.$end_date)?>"><font size='5' color="black"><center><?php echo $verifikasi->verifikasi; ?></center></a></div> </td>
+                        
+                        <?php } ?>
+                      </tr>
+                      <tr>
+                        <td><font size="3">&nbsp; &nbsp; Approved</font></td>
+                        <?php foreach ($approval as $approval) { ?>
+                        <td><div class="empat"><a href="<?php echo base_url('dashboard/all_detail_monitoring/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></a></div> </td>
+                            
+                        <?php } ?>
+                      </tr>
+                      <tr>
+                        <td><font size="3">&nbsp; &nbsp; Paid</font></td>
+                        <?php foreach ($Paid as $Paid) { ?>
+                        <td><div class="lima"><a href="<?php echo base_url('dashboard/all_detail_monitoring/6/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $Paid->paid;?></center></a></div> </td>
+                        <?php } ?>
+                      </tr>
+
+                    </table>
                   </div>
                 </div>
-                <!-- /.box-body -->  
+              </div>
+              <!--row  -->
+            </div>
+            <!-- /.box-body -->
+
+            <div class="row">
+              <div class="box-body">
+              <div class="col-md-12"> <!--waiting for-->
+                <table width="10%">                        
+                  <tr>
+                    <td align="center" width="10%">
+                      <div class="info-box box1">
+                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/tax.png"></i></span>
+                          <br>
+                          <?php foreach ($tax as $tax){ ?>
+                            <a href="<?php echo base_url('dashboard/all_detail_monitoring/7/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $tax->tax;?></center></font></a>
+                          <?php } ?>
+                          <center><font size='3' color="white">Under Processing <br> Tax </center>
+                      </div>
+                    </td>
+                    <td align="center" width="10%">
+                      <div class="info-box box1">
+                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/review.png"></i></span>
+                          <br>
+                          <?php foreach ($review as $review) { ?>
+                            <a href="<?php echo base_url('dashboard/all_detail_monitoring/8/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $review->wreview; ?></center></font></a>
+                          <?php } ?>
+                          <center><font size='3' color="white">Waiting For <br> Review </center>
+                      </div>
+                    </td>
+                    <td align="center" width="10%">
+                      <div class="info-box box1">
+                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approval.png"></i></span>
+                          <br>
+                          <?php foreach ($wApproval as $wApproval) { ?>
+                            <a href="<?php echo base_url('dashboard/detail_approver/9/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wApproval->wapproval; ?></center></font></a>
+                          <?php } ?>
+                          <center><font size='3' color="white">Waiting For <br> Approval </center>
+                      </div>
+                    </td>                    
+                  </tr>
+                  <tr>
+                    <td align="center" width="10%">
+                      <div class="info-box box1">
+                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/finance.png"></i></span>
+                          <br>
+                          <?php foreach ($finance as $finance){ ?>
+                            <a href="<?php echo base_url('dashboard/all_detail_monitoring/10/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $finance->finance;?></center></font></a>
+                          <?php } ?>
+                          <center><font size='3' color="white">Under Processing <br>Finance </center>
+                      </div>
+                    </td>
+                    <td align="center" width="10%">
+                      <div class="info-box box1">
+                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified1.png"></i></span>
+                          <br>
+                          <?php foreach ($wverifikasi as $wverifikasi) { ?>
+                            <a href="<?php echo base_url('dashboard/all_detail_monitoring/11/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font></a>
+                          <?php } ?>
+                          <center><font size='3' color="white">Waiting For <br> Verification</center>
+                      </div>
+                    </td>
+                    <td align="center" width="10%">
+                      <div class="info-box box1">
+                        <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid.png"></i></span>
+                          <br>
+                          <?php foreach ($wPaid as $wPaid) { ?>
+                            <a href="<?php echo base_url('dashboard/all_detail_monitoring/12/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wPaid->wpaid; ?></center></font></a>
+                          <?php } ?>
+                          <center><font size='3' color="white">Waiting For <br> Payment</center>
+                      </div>
+                    </td>
+
+                  </tr>
+                  <!-- <td colspan="6"><center><font size="5">Under Processing</font></center></td>
+                  <tr>
+                    <td align="center"><font size="3"> Tax (A1)</font></td>
+                    <td align="center"><font size="3"> Finance (A2) </font></td>
+                    <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Review (B) </font></center></td>
+                    <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Verification (C) </font></center></td>
+                    <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Approval </font></center></td>
+                    <td rowspan="2"><center><font size="3"> Waiting <br> For <br> Payment </font></center></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><center><font size="3"> Under Processing (A) </font></center></td>
+                  </tr>                    -->
+                </table>
               </div>  
-            </div>     
+              </div>  
+            </div>              
+                          
           </div>
-        
+          <!--/.box success-->
+        </div>            
+      </div>             
+
+      <div class="col-md-5"><!--PieChart-->
+        <div class="box-body">
+          <!-- USERS LIST -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <div class="box-tools pull-right">
+                <span class="label label-success"></span>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script> -->
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+              <div class="col-md-9">
+                <div id="pieChart" style="min-width: 580px; height: 400px; max-width: 400px; margin: 0 auto"></div>  
+                </div>  
+              </div>
+            <!-- /.box-body -->               
+          </div>
+          <!--/.box -->              
+        </div>
+      </div>
+      
+       
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-12">          
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <!-- <h3 class="box-title">Pencarian</h3> -->
+                <button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
+                <!-- <button class="btn btn-default" data-toggle="collapse" data-target="#export"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button> -->
+                
+              </div>
+            <!-- /.box-header -->
+            <div id="cari" class="collapse">
+              <div class="box-body">
+                <div class="row">
+                  <form id="formCari">		
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="col-md-1">Criteria</label>
+                        <div class="col-md-2">
+                          <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+                            <option value='0'>== Pilih ==</option>
+                            <option value='1'> Status </option>
+                            <option value='2'> Jenis Pembayaran </option>
+                            <!-- <option value='3'> Nomor Surat </option>
+                            <option value='4'> Pemohon </option>
+                            <option value='5'> Penerima </option> -->
+                          </select>
+                        </div> 	
+                        <div class="col-md-3">
+                          <!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
+                          <select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+                            <option value=''>== Pilih ==</option>
+                            <!--<option value='0'> Draft </option>
+                            <option value='1'> Draft Print </option>-->
+                            <option value='2'> Submitted </option>
+                            <!-- <option value='3'> Rejected </option>-->
+                            <option value='4'> Processing Tax </option>
+                            <option value='5'> Processing Finance </option>
+                            <option value='6'> Waiting for Review </option>
+                            <option value='7'> Waiting for Verification </option>
+                            <!-- <option value='4'> Processing</option> -->
+                            <option value='8'> Verified </option>
+                            <option value='9'> Approved </option>
+                            <option value='10'> Paid </option>
+                          </select>
+                          
+                          <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+                            <option value=''>== Pilih ==</option>
+                            <option value='4'> Direct Payment </option> 
+                            <option value='2'> Advance Request </option>
+                            <option value='3'> Advance Settlement </option>
+                            <option value='5'> Cash Received </option>
+                          </select>
+                          
+                          <select class="form-control" id="selblank" name="selblank"  >
+                            <option value=''>== Pilih ==</option>
+                          </select>
+                        </div>		
+                          
+                        <div class="col-md-3">
+                      <!-- <div class="form-group">
+                        <label>&nbsp;</label>      -->        
+                        <span class="input-group-btn">
+                          <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+                        </span>   
+
+                      <!-- </div> -->
+                      <!-- /.form-group -->
+                    </div>
+                      </div>     
+                      
+                    </div>
+                  </form>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+            </div>
+
+		
+        <div class="row">
+            <div class="col-xs-12">
             <!-- /.box -->
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
                 <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                    <th>NO.</th>
-                    <th>Status CSF</th>
-                    <th>Nomor SP3</th>
-                    <th>Type</th>
-                    <th>Tanggal SP3 Submit</th>
-                    <th>Deskripsi</th>
-                    <th>Pemohon</th>
-                    <th>Action</th>
-                    </tr>
+                      <tr>
+                      <th>NO.</th>
+                      <th>Status CSF</th>
+                      <th>Nomor SP3</th>
+                      <th>Type</th>
+                      <th>Tanggal SP3 Submit</th>
+                      <th>Deskripsi</th>
+                      <th>Pemohon</th>
+                      <th>Action</th>
+                      </tr>
                     </thead>
                     <tbody>
-                    <?php 
-                        $i = 1;
-                        foreach ($list_monitoring as $row){                          
-                        // $c_jp = count($row->jenis_pembayaran);
-                        $test1 = $row->jenis_pembayaran;                        
-                        $test2 = explode(";", $test1);
-                        $test3 = count($test2);                        
-                        ?>
-                    <tr>
-                    <td><center><?php echo $i++; ?></center></td>
-                    <td><center><?php 
-                          if($row->status == 2){
-                            echo "<img src='assets/dashboard/images/legend/submitted.png'>";
-                          }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
-                          }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
-                          }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
-                          }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
-                          }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
-                          }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
-                          }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                          }
-                        ?></center>
-                    </td>                  
-                    <td><?php echo $row->nomor_surat; ?></td>
-                    <td><?php                     
-                        for($a=0; $a<$test3; $a++){
-                          if($test2[$a]){
-                            echo $test2[$a]."<br>";
-                          }
-                        }  ?>
-                    </td>
-                    <td><?php echo $row->submit_date; ?></td>
-                    <td><?php echo $row->label1; ?></td>
-                    <td><?php echo $row->display_name; ?></td>
-                    <td>
-                        <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                          
-                    </td>      
-                    </tr>                    
-                <?php  } ?>
-                </tbody>
-                </table>
-                </div>
+                      <?php 
+                          $i = 1;
+                          foreach ($list_monitoring as $row){                          
+                          // $c_jp = count($row->jenis_pembayaran);
+                          $test1 = $row->jenis_pembayaran;                        
+                          $test2 = explode(";", $test1);
+                          $test3 = count($test2);                        
+                          ?>
+                      <tr>
+                      <td><center><?php echo $i++; ?></center></td>
+                      <td><center><?php 
+                            if($row->status == 2){
+                              echo "<img src='assets/dashboard/images/legend/submitted.png'>";
+                            }else if($row->status == 4){
+                              echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
+                            }else if($row->status == 5){
+                              echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
+                            }else if($row->status == 6){
+                              echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
+                            }else if($row->status == 7){
+                                echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
+                            }else if($row->status == 8){
+                              echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
+                            }else if($row->status == 9){
+                              echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
+                            }else if($row->status == 10){
+                              echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                            }
+                          ?></center>
+                      </td>                  
+                      <td><?php echo $row->nomor_surat; ?></td>
+                      <td><?php                     
+                          for($a=0; $a<$test3; $a++){
+                            if($test2[$a]){
+                              echo $test2[$a]."<br>";
+                            }
+                          }  ?>
+                      </td>
+                      <td><?php echo $row->submit_date; ?></td>
+                      <td><?php echo $row->label1; ?></td>
+                      <td><?php echo $row->display_name; ?></td>
+                      <td>
+                          <a href="dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                          
+                      </td>      
+                      </tr>                    
+                    <?php  } ?>
+                    </tbody>
+                  </table>
+                </div>                 
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-         </div>
-        <!-- /.col -->
-        </div>
-        
+            </div>
+            <!-- /.col -->
+        </div>  	
+		 
     </section>
+                
     <!-- /.content -->
 
     <!-- <section class="content">
@@ -669,6 +667,13 @@ $(function () {
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
+              },
+              point: {
+                events: {
+                    click: function() {
+                        location.href = this.options.link;
+                    }
+                }
               }
           }
       },
@@ -680,7 +685,8 @@ $(function () {
             <?php foreach ($pembayaran as $key) { ?>
               {
                 name: '<?php echo $key->jenis_pembayaran; ?>',
-                y: <?php echo $key->jmlpembayaran; ?>
+                y: <?php echo $key->jmlpembayaran; ?>,
+				        link:'<?php echo base_url('Dashboard/'.$key->link_mr.'/'.$start_date.'/'.$end_date);?> '
               },
             <?php } ?>
               ]

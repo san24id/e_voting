@@ -1573,6 +1573,77 @@ class Dashboard extends CI_Controller {
 		$this->load->view('akses/csf/monitoring', $data);
 	}
 
+	public function mr_ar($start_date,$end_date)
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['advancerequest'] = $this->Dashboard_model->getVar($start_date,$end_date);
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_ar', $data);
+	}
+
+	public function mr_asr($start_date,$end_date)
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['settlement'] = $this->Dashboard_model->getVasr($start_date,$end_date);
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_asr', $data);
+	}
+
+	public function mr_dp($start_date,$end_date)
+	{
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['directpayment'] 	= $this->Dashboard_model->getVdp($start_date,$end_date);	
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_dp', $data);
+	}
+
+	public function mr_cr($start_date,$end_date)
+	{
+		
+		$data['active1'] = '';
+		$data['active2'] = 'active';
+		$data['active3'] = '';
+
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['notif_task'] = $this->Dashboard_model->notifTask();
+		$data['cashreceived'] = $this->Dashboard_model->getVcr($start_date,$end_date);
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Home_model->getPayment($sid);
+		$data['surat'] = $this->Home_model->buat_kode();
+
+		$this->load->view('akses/csf/header_csf', $data);
+		$this->load->view('akses/csf/list_cr', $data);
+	}	
+	
 	public function List_or(){
 
 		$data['notif_task'] = $this->Dashboard_model->notifTask();

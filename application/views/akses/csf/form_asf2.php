@@ -103,7 +103,7 @@ td[rowspan="6"] {
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
-                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" value="---"/>
+                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" placeholder="---"/>
                               <input type="text" name="pii" size="3%" value="/PII/" readonly>
                               <input type="text" name="bulan" size="5%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="2" min="1" max="12" placeholder="Bulan"/>
                               <input type="text" name="slash" size="1%"value="/" readonly>
@@ -255,25 +255,34 @@ td[rowspan="6"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
-                          <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" style="text-align:right" type="text" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
-                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" style="text-align:right" type="text" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
-                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" style="text-align:right" type="text" name="total_expenses3" value="<?php echo $row->jumlah3;?>" readonly> 
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $row->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency2;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency3;?>" readonly> 
+                          </td>
+                          <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
+                              <input id="ulang1" style="text-align:right" type="text" class="form-control" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
+                              <input id="ulang2" style="text-align:right" type="text" class="form-control" name="total_expenses3" value="<?php echo $row->jumlah3;?>" readonly> 
                           </td>
                         </tr>
                         <tr>
-                            <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                            <td><center><p id="demo3"> </p> <p id="demo4"> </p> <p id="demo5"> </p> </center></td>
-                            <td><?php echo $row->currency;?>&nbsp;<input id="jumlahuangmuka" style="text-align:right" onkeyup="nominal()" type="text" name="cash_advance" value="<?php echo $row->label8;?>"> 
-                                <?php echo $row->currency2;?>&nbsp;<input id="jumlahuangmuka2" style="text-align:right" onkeyup="nominal()" type="text" name="cash_advance2">
-                                <?php echo $row->currency3;?>&nbsp;<input id="jumlahuangmuka3" style="text-align:right" onkeyup="nominal()" type="text" name="cash_advance3"></td>
+                          <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $row->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency2;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency3;?>" readonly> 
+                          </td>
+                          <td><input id="jumlahuangmuka" style="text-align:right" class="form-control"onkeyup="nominal()" type="text" name="cash_advance" value="<?php echo $row->label8;?>" readonly> 
+                              <input id="jumlahuangmuka2" style="text-align:right" class="form-control" onkeyup="nominal()" type="text" name="cash_advance2" value="<?php echo $row->label8a;?>" readonly>
+                              <input id="jumlahuangmuka3" style="text-align:right" class="form-control" onkeyup="nominal()" type="text" name="cash_advance3" value="<?php echo $row->label8b;?>" readonly></td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td><center><p id="demo6"> </p> <p id="demo7"> </p> <p id="demo8"> </p></center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="negatif" style="text-align:right" type="text" name="piutang" >
-                              <?php echo $row->currency2;?>&nbsp;<input id="negatif2" style="text-align:right" type="text" name="piutang2" > 
-                              <?php echo $row->currency3;?>&nbsp;<input id="negatif3" style="text-align:right" type="text" name="piutang3" ></td>
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $row->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency2;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency3;?>" readonly> 
+                          </td>
+                          <td><input id="negatif" style="text-align:right" class="form-control" type="text" name="piutang" value="<?php echo $row->label9;?>" readonly>
+                              <input id="negatif2" style="text-align:right" class="form-control" type="text" name="piutang2" value="<?php echo $row->label9a;?>"readonly>
+                              <input id="negatif3" style="text-align:right" class="form-control" type="text" name="piutang3" value="<?php echo $row->label9b;?>" readonly></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -717,10 +726,10 @@ function nominal(){
   }
 
   //Currency1
-  var jumlah1 = Number(get_x) + 0;
-  var jumlah2 = Number(get_b) + 0;
-  var jumlah3 = Number(get_c) + 0;
-  var jumlah4 = Number(get_d) + 0;
+  var jumlah1 = Number(get_x);
+  var jumlah2 = Number(get_b);
+  var jumlah3 = Number(get_c);
+  var jumlah4 = Number(get_d);
   // Currency2
   var jumlah5 = Number(get_e);
   var jumlah6 = Number(get_f);
@@ -767,6 +776,7 @@ function nominal(){
   }else{
 	  document.getElementById("ulang2").value = hasil_jumlah3 ;
   }
+
 // Negatif(piutang)
   if (hasil<0){
 	  var strhasil =Math.abs(hasil);

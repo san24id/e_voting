@@ -98,7 +98,7 @@ td[rowspan="3"] {
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
-                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" value="---"/>
+                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" placeholder="---"/>
                               <input type="text" name="pii" size="3%" value="/PII/" readonly>
                               <input type="text" name="bulan" size="5%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="2" min="1" max="12" placeholder="Bulan"/>
                               <input type="text" name="slash" size="1%"value="/" readonly>
@@ -257,18 +257,12 @@ td[rowspan="3"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
-                          <td><center><p id="demo"> </p> <p id="demo1"> </p> <p id="demo2"> </p> </center></td>
-                          <td><?php echo $row->currency;?>&nbsp;<input id="ulang" type="text" style="text-align:right" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
-                              <?php echo $row->currency2;?>&nbsp;<input id="ulang1" type="text" style="text-align:right" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
-                              <?php echo $row->currency3;?>&nbsp;<input id="ulang2" type="text" style="text-align:right" name="total_expenses3" value="<?php echo $row->jumlah3;?>" readonly> 
-                          </td>
+                          <td><center><?php echo $row->currency;?> </center></td>
+                          <td><input id="ulang" type="text" style="text-align:right" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
-                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?>" readonly>
-                                          <input type="text" id="terbilang2" name="terbilang2" class="form-control" placeholder="Terbilang" readonly>
-                                          <input type="text" id="terbilang3" name="terbilang3" class="form-control" placeholder="Terbilang" readonly>      
-                          </td>
+                          <td colspan="4"><input type="text" id="terbilang" name="terbilang" class="form-control" value="<?php echo $row->terbilang;?>" readonly> </td>
                         </tr>
                         <?php 
                           $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
@@ -423,7 +417,7 @@ td[rowspan="3"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>  
-                    <button type="submit" class="btn btn-primary third">Proceed For Review</button>
+                    <button type="button" id="buttonSave" onclick="sendapf()" class="btn btn-primary">Proceed For Review</button>
                   </div>
                 </div>                                                 
             </div>

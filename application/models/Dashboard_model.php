@@ -238,7 +238,7 @@ class Dashboard_model extends CI_Model{
     }
 
     public function getVPayment() {
-        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, b.link_mr, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
                 WHERE b.jenis_pembayaran != '' AND a.jenis_pembayaran != 0 AND a.status in ('2','4','5','6','7','8','9','10') GROUP BY b.jenis_pembayaran";
 
         // $sql = "SELECT * FROM (SELECT a.status, b.dsc, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
@@ -252,7 +252,7 @@ class Dashboard_model extends CI_Model{
         // $sql = "SELECT * FROM (SELECT b.dsc, a.divisi, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
         //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.dsc != '' AND otr.divisi = '$test' AND otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL";
 
-        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, b.link_mr, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
                 WHERE b.jenis_pembayaran != '' AND a.jenis_pembayaran != 0 AND a.status in ('2','4','5','6','7','8','9','10')
                 AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' GROUP BY b.jenis_pembayaran";
        
@@ -1827,5 +1827,76 @@ class Dashboard_model extends CI_Model{
 		$query = $this->db->query($sql)->result();
         return $query;
     }
-	
+    
+    public function getVar($start_date,$end_date){
+        $dvs = $this->session->userdata('division_id');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%2%' AND a.status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVasr($start_date,$end_date){
+        $dvs = $this->session->userdata('division_id');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%3%' AND a.status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVdp($start_date,$end_date){
+        $dvs = $this->session->userdata('division_id');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%4%' AND a.status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+    public function getVcr($start_date,$end_date){
+        $dvs = $this->session->userdata('division_id');
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.jenis_pembayaran like '%5%' AND a.status in ('2','4','5','6','7','8','9','10') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
 }

@@ -79,11 +79,11 @@ td[rowspan="6"] {
                           <!-- <td><input type="text" name="tanggal" class="form-control" value="<?php echo $dayList[$hari_ing]; ?>, <?php echo date('d'); ?>-<?php echo $monthList[$bulan_ing]; ?>-<?php echo date('Y'); ?>" readonly> </td> -->
                           <td> &nbsp;</td>
                           <td><font size="+1" style="font-family: calibri;">PRF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $prf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $prf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">Direktorat/<br>Divisi Pemohon :<font></td>
-                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" required></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $row->division_id;?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1">SPPP Doc. No : </font></td>
                           <td><input type="text" name="nomor_surat" class="form-control" value="<?php echo $row->nomor_surat;?>" readonly>
@@ -98,7 +98,7 @@ td[rowspan="6"] {
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
-                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" value="---"/>
+                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" placeholder="---"/>
                               <input type="text" name="pii" size="3%" value="/PII/" readonly>
                               <input type="text" name="bulan" size="5%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="2" min="1" max="12" placeholder="Bulan"/>
                               <input type="text" name="slash" size="1%"value="/" readonly>

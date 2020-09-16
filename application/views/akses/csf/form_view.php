@@ -453,13 +453,13 @@
                                     <div class="col-md-10"><span class="col-md-11" style="text-align:end">Total</span></div>
                                   </th>
                                   <th>
-                                    <label class="control-label" id="lblcur1" ><?php echo $row->currency; ?></label><br>
-                                    <label class="control-label" id="lblcur2" ><?php echo $row->currency2; ?></label><br>
-                                    <label class="control-label" id="lblcur3" ><?php echo $row->currency3; ?></label>
+                                    <p id="lblcur1" ><?php echo $row->currency; ?></p>
+                                    <p id="lblcur2" ><?php echo $row->currency2; ?></p>
+                                    <p id="lblcur3" ><?php echo $row->currency3; ?></p>
                                   </th>
                                   <th>
-                                    <p style="text-align:right" id="lbltotalvendor"><?php echo $strtotvendor1; ?></p><br>
-                                    <p style="text-align:right" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></p><br>
+                                    <p style="text-align:right" id="lbltotalvendor"><?php echo $strtotvendor1; ?></p>
+                                    <p style="text-align:right" id="lbltotalvendor2"><?php echo $strtotvendor2; ?></p>
                                     <p style="text-align:right" id="lbltotalvendor3"><?php echo $strtotvendor3; ?></p>
                                   </th>
                               </tr>

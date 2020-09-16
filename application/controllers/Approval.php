@@ -124,6 +124,7 @@ class Approval extends CI_Controller {
 		$data['active3'] = '';
 
 		$data['directpayment'] 	= $this->Home_model->getVldp();	
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
@@ -142,6 +143,7 @@ class Approval extends CI_Controller {
 
 		$data['directpayment'] 	= $this->Home_model->getVdp($start_date,$end_date);	
 		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -188,6 +190,23 @@ class Approval extends CI_Controller {
 		$this->load->view('akses/approval/list_cr', $data);
 	}
 
+	public function wait_for_approval(){
+
+		$data['active1'] = '';
+		$data['active2'] = '';
+		$data['waiting_approval'] = 'active';
+		$data['active4'] = '';
+
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['payment'] = $this->Home_model->getPayment($sid);		
+		$data['getApprovalDivHead'] = $this->Dashboard_model->getApprovalDivHead();
+		
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/wait_approval', $data);
+	}
+
 	public function lar()
 	{
 		
@@ -195,6 +214,7 @@ class Approval extends CI_Controller {
 		$data['active2'] = 'active';
 		$data['active3'] = '';
 
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['advancerequest'] = $this->Home_model->getVlar();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
@@ -214,6 +234,7 @@ class Approval extends CI_Controller {
 
 		$data['advancerequest'] = $this->Home_model->getVar($start_date,$end_date);
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -231,6 +252,7 @@ class Approval extends CI_Controller {
 
 		$data['settlement'] = $this->Home_model->getVlasr();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -249,6 +271,7 @@ class Approval extends CI_Controller {
 		$data['settlement'] = $this->Home_model->getVasr($start_date,$end_date);
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -265,6 +288,7 @@ class Approval extends CI_Controller {
 
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 
@@ -281,6 +305,7 @@ class Approval extends CI_Controller {
 		
 		$data['outstan'] = $this->Home_model->getOp();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -298,6 +323,7 @@ class Approval extends CI_Controller {
 		
 		$data['draftreq'] = $this->Home_model->getVdraftrequest();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
@@ -461,6 +487,7 @@ class Approval extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['approved'] = $this->Approval_model->getList();
 		$data['pembayaran'] = $this->Approval_model->getVPayment();
@@ -490,6 +517,7 @@ class Approval extends CI_Controller {
 		$data['pembayaran'] = $this->Approval_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
 
 		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
@@ -515,6 +543,7 @@ class Approval extends CI_Controller {
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['currency'] = $this->Home_model->getCurrency();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
@@ -536,6 +565,7 @@ class Approval extends CI_Controller {
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -556,6 +586,7 @@ class Approval extends CI_Controller {
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['ppayment'] = $this->Dashboard_model->getform($id);
 		$data['surat1'] = $this->Dashboard_model->nomorsurat();
@@ -573,6 +604,7 @@ class Approval extends CI_Controller {
 
 		// $sid = $this->session->userdata("id_user");
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
@@ -631,6 +663,7 @@ class Approval extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Dashboard_model->payment();
 		$data['wApproval'] = $this->Approval_model->getListWait();
 		$data['pembayaran'] = $this->Dashboard_model->getVPayment();
@@ -647,6 +680,7 @@ class Approval extends CI_Controller {
 
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['processing'] = $this->Dashboard_model->processing();
 		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['payment'] = $this->Dashboard_model->payment();
@@ -670,6 +704,7 @@ class Approval extends CI_Controller {
 		$data['rejected'] = $this->Home_model->getRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['rejectfinance'] = $this->Approval_model->getRejected();
 		
         $this->load->view('akses/approval/header_approval', $data);
@@ -988,6 +1023,7 @@ class Approval extends CI_Controller {
 		$data['tot_pay_req'] = $this->Home_model->getTotal();
 		$data['pembayaran'] = $this->Home_model->getVPayment();
 		$data['ppayment'] = $this->Home_model->getform($id_payment);
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
 		$data['divhead'] = $this->Home_model->getDivHead();
@@ -1295,6 +1331,7 @@ class Approval extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 		
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['payment'] = $this->Dashboard_model->payment();

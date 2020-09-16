@@ -102,7 +102,7 @@ td[rowspan="6"] {
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>
                           <td><input type="text" name="pr_doc" size="1%" value="PR -" readonly>
-                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" value="---"/>
+                              <input name="nomor_pr" size="1%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type="text" maxlength="3" min="1" max="999" placeholder="---"/>
                               <input type="text" name="pii" size="3%" value="/PII/" readonly>
                               <input type="text" name="bulan" size="5%" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="2" min="1" max="12" placeholder="Bulan"/>
                               <input type="text" name="slash" size="1%"value="/" readonly>
@@ -267,12 +267,12 @@ td[rowspan="6"] {
                         <tr>
                             <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
                             <td><center><p id="demo3"> </p> <p id="demo4"> </p> <p id="demo5"> </p> </center></td>
-                            <td><input id="jumlahuangmuka" style="text-align:right" onkeyup="nominal()" type="text" name="cash_advance" class="form-control" value="<?php echo $row->label8;?>"> </td>
+                            <td><input id="jumlahuangmuka" style="text-align:right" onkeyup="nominal()" type="text" name="cash_advance" class="form-control" value="<?php echo $row->label8;?>" readonly> </td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
                           <td><center><p id="demo6"> </p> <p id="demo7"> </p> <p id="demo8"> </p></center></td>
-                          <td><input id="negatif" style="text-align:right" type="text" name="piutang" class="form-control" readonly> </td>
+                          <td><input id="negatif" style="text-align:right" type="text" name="piutang" class="form-control" value="<?php echo $row->label9;?>" readonly> <br> </td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
