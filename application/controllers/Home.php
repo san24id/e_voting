@@ -1025,9 +1025,9 @@ class Home extends CI_Controller {
 
 			$myprofil = array(
 				'id_user' => $_POST['id_user'],
-				'nama_user' => $_POST['nama_user'],
+				'display_name' => $_POST['display_name'],
 				'jabatan' => $_POST['jabatan'],
-				'divisi' => $_POST['divisi'],
+				'division_id' => $_POST['division_id'],
 				'email' => $_POST['email'],
 				'username' => $_POST['username'],
 				'password' => $_POST['password'],

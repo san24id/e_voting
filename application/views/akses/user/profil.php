@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                   <label>3. Jabatan :</label>
-                  <input type="text" class="form-control" name="role_status" required="required" value="<?php echo $row->role_status; ?>">
+                  <input type="text" class="form-control" name="jabatan" required="required" value="<?php echo $row->jabatan; ?>">
                 </div>                
                 <div class="form-group">
                   <label>4. Alamat Email :</label>
