@@ -1023,7 +1023,7 @@ function edit_tax(id)
 			$('[name="vjnspjk"]').val(data[0].jenis_pajak);
 			$('[name="selJnsPjk"]').val(data[0].id_jenis_pjk).change();
 			$('[name="txtnamanpwp"]').val(data[0].id_honor).change();			
-			$('[name="txtnamanpwp_old"]').val(data[0].nama);			
+			$('[name="txtnamanpwp_old"]').val(data[0].nama);	
 			$('[name="txtnonpwp"]').val(data[0].npwp);			
 			$('[name="txtalamat"]').val(data[0].alamat);			
 			$strid=data[0].jenis_pajak;
@@ -1039,8 +1039,7 @@ function edit_tax(id)
 			} else{
 					$("#txtnamanpwp").prop('readonly', false);
 					$('#txtnonpwp').prop('readonly', false);	
-					$('#txtalamat').prop('readonly', false);	
-					
+					$('#txtalamat').prop('readonly', false);
 					if($strid.substring(0, 3)=='PPN'){
 						$('#divKdMap').hide();
 					}else{
@@ -1051,8 +1050,6 @@ function edit_tax(id)
 					}else{
 						$('#divmasappn').hide();
 					}
-					
-					
 			  }
 			  
 			
@@ -1097,8 +1094,8 @@ function edit_tax(id)
 				$('#chkgross').prop('checked', false);	
 			}
 			$('[name="txtdpp"]').val(data[0].dpp);
-			$('[name="txtdppgross"]').val(data[0].dpp_gross);	
 			$('[name="txtdpp_old"]').val(data[0].dpp);
+			$('[name="txtdppgross"]').val(data[0].dpp_gross);	
 			$('[name="txtdppgross_old"]').val(data[0].dpp_gross);	
 			$('#selmasappn').val(data[0].masa_pajak).change();
 			$('#seltahunppn').val(data[0].tahun).change();		
@@ -1540,6 +1537,7 @@ $('#txtnamanpwp').select2();
 		$.ajax({
 		url : "<?php echo base_url('dashboard/getdetilnpwpbyvendor/')?>/" + $idhonor,
         type: "GET",
+		async : false,		
 		dataType: "JSON",
         success: function(data)
 			{
@@ -1629,6 +1627,7 @@ $('#txtnamanpwp').select2();
         type: "GET",*/
         url : "<?php echo base_url('dashboard/gettarifbytax')?>",
         type: "POST",
+		async : false,
         data: $("#form1,#form").serialize(),
         dataType: "JSON",
         success: function(data)
@@ -1660,6 +1659,7 @@ $('#txtnamanpwp').select2();
         type: "GET",*/
         url : "<?php echo base_url('dashboard/getkodemapbytax')?>",
         type: "POST",
+		async : false,
         data: $("#form1,#form").serialize(),
         dataType: "JSON",
         success: function(data)
@@ -1784,10 +1784,10 @@ $('#txtnamanpwp').select2();
 		  $('#txtdppgross').val('0');
 		   $('#vgross').val('Ya');
 		   $('#txtdppgross').val('0');
-	  $('#vpajakterhutang').val('0');	
+		   $('#vpajakterhutang').val('0');	
 	  }else{
 		 $('#txtdppgross').val('0'); 
-		 $('#vgross').val('Ya');
+		 $('#vgross').val('');
 		  $('#txtdppgross').val('0');
 	  $('#txtpajakterhutang').val('0');	
 	  $('#vpajakterhutang').val('0');	
@@ -1810,7 +1810,6 @@ function PajakTerhutang(){
 	$('#txtdppgross').val('0');
 	$('#txtpajakterhutang').val('0');	
 	$('#vpajakterhutang').val('0');	
-		
 	if(dpp){
 		//dpp = $('#txtdpp').val().replace(/[^,\d]/g, '').toString();
 		dpp = dpp.replace(/[^,\d]/g, '').toString();
