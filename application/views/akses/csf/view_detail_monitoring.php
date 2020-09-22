@@ -211,7 +211,7 @@
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
                       <th>Penerima Pembayaran</th>
-					            <th <?php echo $trdisplay; ?>>Tanggal Submit SP3</th>
+					            <th>Tanggal Submit SP3</th>
 												 
                       <th>Action</th>
                     </tr>
@@ -278,7 +278,7 @@
                           }
                         ?>
                     <td><?php echo $buka; ?></td>
-                    <td <?php echo $trdisplay; ?>><?php echo $row->submit_date;?></td>
+                    <td><?php echo $row->submit_date;?></td>
                     <td>
                         <?php 
                           if ($row->status <= 5) { ?>
@@ -626,18 +626,37 @@ $(function () {
 						  default:
 							istatus = '';
 						}
+
+            var apax=document.getElementById("seljnspembayaran").value;
+              <?php if($row->status <= 5){ ?>
+                var apa = "form_sp3";
+
+              <?php } ?>
+              
+              <?php if($row->status == 6 || $row->status == 7 || $row->status == 8 || $row->status == 9 || $row->status == 10) { ?>
+
+                if(apax == 2){
+                  var apa = "form_varf";
+                }else if(apax == 3){
+                  var apa = "form_vasf";
+                }else if(apax == 4){
+                  var apa = "form_vprf";
+                }else if(apax == 5){
+                  var apa = "form_vcrf";
+                }
+              <?php } ?>  
 						
 						tbl1.row.add( [
 						  ino,
 						  istatus,
-                          item.tanggal,
+              item.tanggal,
 						  item.jenis_pembayaran,
 						  item.nomor_surat,
 						  item.label1,
 						  item.display_name,
 						  item.penerima,
 						  item.submit_date,
-						  '<a href="dashboard/form_sp3/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+              '<a href="dashboard/'+apa+'/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  
