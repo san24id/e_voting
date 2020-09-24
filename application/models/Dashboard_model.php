@@ -1331,9 +1331,9 @@ class Dashboard_model extends CI_Model{
 		$filter = $this->session->userdata("filter");
         $dvs = $this->session->userdata('division_id');
         if($filter=='9'){
-            $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+            $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
         }else{
-            $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+            $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
         }
 		
 		switch ($filter) {

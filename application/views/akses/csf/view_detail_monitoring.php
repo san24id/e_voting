@@ -337,7 +337,7 @@
                 break;
                 case "4":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>";
+                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/icon_approval.png'> &nbsp;Verified</div>";
 
                 break;
                 case "5":
@@ -581,6 +581,7 @@ $(function () {
 			    var status; 
 				var istatus;
 				var ino=1;
+				var strlink='';
 				var tbl1 = $('#example1').DataTable(); 
 				tbl1.clear().draw();
                 $.each(data, function(key, item) 
@@ -626,37 +627,32 @@ $(function () {
 						  default:
 							istatus = '';
 						}
-
-            var apax=document.getElementById("seljnspembayaran").value;
-              <?php if($row->status <= 5){ ?>
-                var apa = "form_sp3";
-
-              <?php } ?>
-              
-              <?php if($row->status == 6 || $row->status == 7 || $row->status == 8 || $row->status == 9 || $row->status == 10) { ?>
-
-                if(apax == 2){
-                  var apa = "form_varf";
-                }else if(apax == 3){
-                  var apa = "form_vasf";
-                }else if(apax == 4){
-                  var apa = "form_vprf";
-                }else if(apax == 5){
-                  var apa = "form_vcrf";
-                }
-              <?php } ?>  
+		
+						if(status.trim() == "6" || status.trim() == "7" || status.trim() == "8" || status.trim() == "9" || status.trim() == "10"){
+							if (item.id_pay == "2") { 
+								strlink="Dashboard/form_varf/";
+							}else if(item.id_pay == "3") { 
+								strlink='Dashboard/form_vasf/';
+							}else if(item.id_pay == "4") { 
+								strlink='Dashboard/form_vprf/';
+							}else if(item.id_pay == "5") { 
+								strlink='Dashboard/form_vcrf/';
+							}
+						}else{
+							strlink="Dashboard/form_sp3/";
+						}							
 						
 						tbl1.row.add( [
 						  ino,
 						  istatus,
-              item.tanggal,
+						  item.tanggal,
 						  item.jenis_pembayaran,
 						  item.nomor_surat,
 						  item.label1,
 						  item.display_name,
 						  item.penerima,
 						  item.submit_date,
-              '<a href="dashboard/'+apa+'/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+							'<a href="' + strlink + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  
