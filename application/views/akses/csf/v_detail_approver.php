@@ -197,8 +197,9 @@
                     <tr>
                       <th>NO.</th>
                       <th>Status</th>
-                      <th>Nomor SP3</th>
+                      <th>Tanggal</th>
                       <th>Jenis Pembayaran</th>
+                      <th>Nomor SP3</th>
                       <th>Nomor ARF</th>
                       <th>Deskripsi</th>
                       <th>Nama Pemohon</th>
@@ -248,7 +249,7 @@
                           }   
                         ?></center>
                     </td>                  
-                    <td><?php echo $row->nomor_surat; ?></td>
+                    <td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
                     <td><?php                     
                         for($a=0; $a<$test3; $a++){
                           if($test2[$a]){
@@ -256,6 +257,7 @@
                           }
                         }  ?>
                     </td>
+                    <td><?php echo $row->nomor_surat; ?></td>
                     <td><?php echo $row->apf_doc; ?></td>
                     <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->display_name; ?></td>
@@ -322,7 +324,7 @@
                 break;
                 case "5":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Paid</div>";
 
                 break;
                 case "6":
@@ -357,7 +359,7 @@
                 break;
                 case "12":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/paid2.png'> &nbsp;Waiting For Paid</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Paid</div>";
 
                 break;
 							  default:
@@ -595,10 +597,10 @@ $(function () {
 							istatus = '<img src="assets/dashboard/images/legend/icon_verified.png">';
 							break;
                           case "8":
-							istatus = '<img src="assets/dashboard/images/legend/icon_approval.png">';
+							istatus = '<center><img src="assets/dashboard/images/legend/icon_approval.png"><center>';
 							break;
                           case "9":
-							istatus = '<img src="assets/dashboard/images/legend/icon_payment.png">';
+							istatus = '<center><img src="assets/dashboard/images/legend/icon_payment.png"></center>';
 							break; 
                           case "10":
 							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
@@ -629,9 +631,10 @@ $(function () {
 						tbl1.row.add( [
 						  ino,
 						  istatus,
-              item.nomor_surat,
+						  item.tanggal,
 						  item.jenis_pembayaran,
-						  item.apf_doc,
+              item.nomor_surat,
+						  item.apf_doc, 
 						  item.description,
 						  item.display_name,
 						  item.dibayar_kepada,

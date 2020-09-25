@@ -179,7 +179,7 @@
                       <tr>
                         <td><font size="3">&nbsp; &nbsp; Approved</font></td>
                         <?php foreach ($approval as $approval) { ?>
-                        <td><div class="empat"><a href="<?php echo base_url('dashboard/all_detail_monitoring/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></a></div> </td>
+                        <td><div class="empat"><a href="<?php echo base_url('dashboard/detail_approver/5/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $approval->approval; ?></center></a></div> </td>
                             
                         <?php } ?>
                       </tr>

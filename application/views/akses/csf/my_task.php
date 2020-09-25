@@ -94,10 +94,10 @@
               <div class="form-group">
                 <label class="control-label col-md-1"><i>Legend</i></label> <br>
                 <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp;Submitted</div>
-                <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>
+                <!-- <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp;Processing</div>
                 <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Verified</div>
                 <div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>
-                <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp;Paid</div>	
+                <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp;Paid</div>	 -->
               </div>  
             </div>
             </div>
@@ -358,6 +358,13 @@
                     <?php } ?>      
               </tbody>
               </table>
+            </div>
+            <div class="box-footer">  
+              <div class="form-group">
+                <label class="control-label col-md-1"><i>Legend</i></label> <br>
+                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_approval.png'> &nbsp;Waiting For Approval</div>
+                
+              </div>  
             </div>
             </div>
             <!-- /.box-body -->

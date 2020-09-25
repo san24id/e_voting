@@ -3059,6 +3059,118 @@ class Dashboard extends CI_Controller {
 			echo json_encode($data);
 	}
 
+	public function caridatamonitoringtax()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabymonitoringtax($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridatamonitoringfinance()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabymonitoringfinance($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridatamonitoringwreview()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabymonitoringwreview($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridatamonitoringwverify()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabymonitoringwverify($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridatamonitoringwapprove()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabymonitoringwapprove($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridatamonitoringwpaid()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabymonitoringwpaid($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
+	public function caridatamonitoringpaid()
+	{
+		$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			//$txtsearch=$this->input->post('txtpencarian');
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Dashboard_model->getdatabymonitoringpaid($profileid,$txtsearch);
+			echo json_encode($data);
+	}
+
 	public function exportdashboard()
 	{
 		$data['dashboard'] = 'active';
@@ -3454,6 +3566,11 @@ class Dashboard extends CI_Controller {
 		$data['reject'] = $this->Home_model->notifRejected();
 
 		switch ($id) {
+		  case "5":
+			$data['payment'] = $this->Dashboard_model->getMonitoringApproved($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Approved');
+			$this->session->set_userdata('filter','5');
+			break;
 		  
 		  case "9":
 			$data['payment'] = $this->Dashboard_model->getMonitoringWApproval($sid,$start_date,$end_date);

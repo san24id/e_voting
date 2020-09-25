@@ -285,6 +285,7 @@
                             <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
                         <?php if ($row->status == 6 || $row->status == 7 || $row->status == 8 || $row->status == 9 || $row->status == 10) { ?>                         
+                          
                           <?php if ($row->jenis_pembayaran == 2) { ?> 
                             <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                           <?php } ?>
@@ -337,12 +338,12 @@
                 break;
                 case "4":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/icon_approval.png'> &nbsp;Verified</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_approval.png'> &nbsp;Waiting For Approval</div>";
 
                 break;
                 case "5":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Paid</div>";
 
                 break;
                 case "6":
@@ -598,31 +599,31 @@ $(function () {
 							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
 							break;
                           case "2":
-							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
+							istatus ='<center><img src="assets/dashboard/images/legend/submitted.png"></center>';
 							break;
                           case "3":
-							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
+							istatus ='<center><img src="assets/dashboard/images/legend/rejected.png"></center>';
 							break;
                           case "4":
-							istatus = '<img src="assets/dashboard/images/legend/icon_tax.png">';
+							istatus = '<center><img src="assets/dashboard/images/legend/icon_tax.png"></center>';
 							break;
                           case "5":
-							istatus ='<img src="assets/dashboard/images/legend/icon_finance.png">';
+							istatus ='<center><img src="assets/dashboard/images/legend/icon_finance.png"></center>';
 							break;
                           case "6":
-							istatus ='<img src="assets/dashboard/images/legend/icon_reviewer.png">';
+							istatus ='<center><img src="assets/dashboard/images/legend/icon_reviewer.png"></center>';
 							break;
                           case "7":
-							istatus = '<img src="assets/dashboard/images/legend/icon_verified.png">';
+							istatus = '<center><img src="assets/dashboard/images/legend/icon_verified.png"></center>';
 							break;
                           case "8":
-							istatus = '<img src="assets/dashboard/images/legend/icon_approval.png">';
+							istatus = '<center><img src="assets/dashboard/images/legend/icon_approval.png"></center>';
 							break;
                           case "9":
-							istatus = '<img src="assets/dashboard/images/legend/icon_payment.png">';
+							istatus = '<center><img src="assets/dashboard/images/legend/icon_payment.png"></center>';
 							break; 
                           case "10":
-							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';
+							istatus = '<center><img src="assets/dashboard/images/legend/paid1.png"><center>';
 							break;  
 						  default:
 							istatus = '';
