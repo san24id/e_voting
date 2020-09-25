@@ -2032,6 +2032,38 @@ class Dashboard_model extends CI_Model{
 	{
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment_l as a JOIN t_pembayaran as b 
+                ON a.jenis_pembayaran = b.id_pay WHERE a.status = '8'";
+          
+        switch ($profileid) {
+            case "1":
+              $sql .=" and a.status = '" . $txtsearch . "'";
+                            
+              break;
+            case "2":
+              $sql .=" and a.jenis_pembayaran like '%".$txtsearch."%' ORDER BY tanggal2 DESC";
+              break;
+            /*case "3":
+              $sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
+              break;
+            case "4":
+              $sql .=" and a.display_name like '%" . $txtsearch . "%'";
+              break;
+            case "5":
+              $sql .=" and a.penerima like '%" . $txtsearch . "%'";
+              break;*/
+            default:
+              $sql .=" ";
+              
+          }
+        // var_dump($sql);exit;    
+        $query=$this->db->query($sql);
+		return $query->result();
+    }
+
+    public function getdatabymonitoringwpaid($profileid,$txtsearch)
+	{
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment_l as a JOIN t_pembayaran as b 
                 ON a.jenis_pembayaran = b.id_pay WHERE a.status = '9'";
           
         switch ($profileid) {
@@ -2040,7 +2072,7 @@ class Dashboard_model extends CI_Model{
                             
               break;
             case "2":
-              $sql .=" and a.jenis_pembayaran like '%".$txtsearch."%'";
+              $sql .=" and a.jenis_pembayaran like '%".$txtsearch."%' ORDER BY tanggal2 DESC";
               break;
             /*case "3":
               $sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";

@@ -222,7 +222,7 @@
               <div class="box-footer">  
                 <div class="form-group">
                   <label class="control-label col-md-1"><i>Legend</i></label> <br>
-                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verificator</div>	
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verification</div>	
                 </div>  
               </div>
             </div>

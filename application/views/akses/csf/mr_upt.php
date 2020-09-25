@@ -321,7 +321,7 @@ $(function () {
 <script type="text/javascript"> 
  function caridata()
     {
-	  url = "<?php echo base_url('dashboard/caridatamonitoring') ?>";
+	  url = "<?php echo base_url('dashboard/caridatamonitoringtax') ?>";
       $.ajax({
             url : url,
             type: "POST",
@@ -397,7 +397,7 @@ $(function () {
 						tbl1.row.add( [
 						  ino,
 						  istatus,
-						  item.tanggal,
+						  item.tanggal_new,
 						  item.jenis_pembayaran,
 						  item.nomor_surat,
 						  item.label1,

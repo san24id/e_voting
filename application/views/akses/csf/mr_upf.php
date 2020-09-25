@@ -397,7 +397,7 @@ $(function () {
 						tbl1.row.add( [
 						  ino,
 						  istatus,
-						  item.tanggal,
+						  item.tanggal_new,
 						  item.jenis_pembayaran,
 						  item.nomor_surat,
 						  item.label1,

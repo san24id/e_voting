@@ -139,7 +139,7 @@
                   <th>Jenis Pembayaran</th>
                   <th>Nomor Surat</th>
                   <th>Nomor APF</th>
-                  <th>Description</th>
+                  <th>Deskripsi</th>
                   <th>Pemohon</th>
                   <th>Bank Account</th>
                   <th>Nama Penerima</th>
@@ -221,7 +221,7 @@
               <div class="box-footer">  
                 <div class="form-group">
                   <label class="control-label col-md-1"><i>Legend</i></label> <br>
-                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Paid</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Payment</div>
                 </div>  
               </div>
             </div>
