@@ -204,7 +204,7 @@
 												
 												<?php 
 												if($row->status == 5 && $row->rejected_by != NULL){ ?>
-													<?php if ($row->jenis_pembayaran == 1) { ?>   
+													<?php if ($row->jenis_pembayaran == 4) { ?>   
 														<a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
 													<?php } ?>
 													<?php if ($row->jenis_pembayaran == 2) { ?> 
@@ -218,7 +218,7 @@
 															<a class="btn btn-primary" href="Dashboard/form_easf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Edit</a> 
 														<?php } ?>                      
 													<?php } ?>                   
-													<?php if ($row->jenis_pembayaran == 4) { ?> 
+													<?php if ($row->jenis_pembayaran == 5) { ?> 
 														<a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>                    
 													<?php } ?>  
 												<?php } ?>                 
@@ -537,7 +537,7 @@
 											
 										   	<?php 
 											   if($row->status == 5 && $row->rejected_by != NULL){ ?>
-												<?php if ($row->jenis_pembayaran == 1) { ?>   
+												<?php if ($row->jenis_pembayaran == 2) { ?>   
 													<a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
 												<?php } ?>
 												<?php if ($row->jenis_pembayaran == 2) { ?> 
@@ -551,7 +551,7 @@
 														<a class="btn btn-primary" href="Dashboard/form_easf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Edit</a> 
 													<?php } ?>                      
 												<?php } ?>                   
-												<?php if ($row->jenis_pembayaran == 4) { ?> 
+												<?php if ($row->jenis_pembayaran == 5) { ?> 
 													<a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>                    
 												<?php } ?>  
 										   	<?php } ?>                 
