@@ -216,7 +216,7 @@ td[rowspan="3"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center><?php echo $get->currency;?>  <?php echo $get->currency1;?> <?php echo $get->currency2;?> </center></td>
+                          <td><center><?php echo $get->currency;?>  </center></td>
                           <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> </td>
                         </tr>
                         <tr> 

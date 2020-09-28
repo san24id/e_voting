@@ -223,18 +223,18 @@ td[rowspan="6"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" style="text-align:right" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly></td>
+                          <td><center> <?php echo $get->currency;?></center></td>
+                          <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly></td>
                         </tr>
                         <tr>
                           <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                          <td><center>  </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="jumlahuangmuka" style="text-align:right" onchange="nominal()" type="text" name="cash_advance" value="<?php echo $get->cash_advance; ?>" ></td>
+                          <td><center> <?php echo $get->currency;?> </center></td>
+                          <td>&nbsp;<input id="jumlahuangmuka" style="text-align:right" class="form-control" onchange="nominal()" type="text" name="cash_advance" value="<?php echo $get->cash_advance; ?>" ></td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="negatif" style="text-align:right" type="text" name="piutang" value="<?php echo $get->piutang; ?>" ></td>
+                          <td><center> <?php echo $get->currency;?></center></td>
+                          <td><input id="negatif" style="text-align:right" type="text" class="form-control" name="piutang" value="<?php echo $get->piutang; ?>" ></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
