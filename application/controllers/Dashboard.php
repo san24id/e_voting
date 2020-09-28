@@ -2723,7 +2723,10 @@ class Dashboard extends CI_Controller {
 				'keterangan' => $this->input->post('txtketerangan'),
 				'tahun' => $this->input->post('seltahunppn'),
 				'no_urut' => $this->input->post('txtnourut'),
-				'id_honor' => $this->input->post('txtnamanpwp')
+				'id_honor' => $this->input->post('txtnamanpwp'),
+				'noinvoice' => $this->input->post('txtnoinvoice'),
+				'tglinvoice' => $this->input->post('txttglinvoice'),
+				'nofaktur' => $this->input->post('txtfakturpajak')
 			);
 		$insert = $this->Dashboard_model->drafttax_add($data);
 		
@@ -2778,7 +2781,10 @@ class Dashboard extends CI_Controller {
 				'keterangan' => $this->input->post('txtketerangan'),
 				'tahun' => $this->input->post('seltahunppn'),
 				'no_urut' => $this->input->post('txtnourut'),
-				'id_honor' => $this->input->post('txtnamanpwp')
+				'id_honor' => $this->input->post('txtnamanpwp'),
+				'noinvoice' => $this->input->post('txtnoinvoice'),
+				'tglinvoice' => $this->input->post('txttglinvoice'),
+				'nofaktur' => $this->input->post('txtfakturpajak')
 			);
 		$insert = $this->Dashboard_model->drafttax_add($data);
 		
@@ -3338,7 +3344,10 @@ class Dashboard extends CI_Controller {
 				'keterangan' => $this->input->post('txtketerangan'),
 				'tahun' => $this->input->post('seltahunppn'),
 				'no_urut' => $this->input->post('txtnourut'),
-				'id_honor' => $this->input->post('txtnamanpwp')				
+				'id_honor' => $this->input->post('txtnamanpwp'),
+				'noinvoice' => $this->input->post('txtnoinvoice'),
+				'tglinvoice' => $this->input->post('txttglinvoice'),
+				'nofaktur' => $this->input->post('txtfakturpajak')				
 			);
 		
 		
@@ -3414,7 +3423,10 @@ class Dashboard extends CI_Controller {
 				'keterangan' => $this->input->post('txtketerangan'),
 				'tahun' => $this->input->post('seltahunppn'),
 				'no_urut' => $this->input->post('txtnourut'),
-				'id_honor' => $this->input->post('txtnamanpwp')				
+				'id_honor' => $this->input->post('txtnamanpwp'),
+				'noinvoice' => $this->input->post('txtnoinvoice'),
+				'tglinvoice' => $this->input->post('txttglinvoice'),
+				'nofaktur' => $this->input->post('txtfakturpajak')				
 			);
 		
 		

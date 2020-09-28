@@ -1,3 +1,10 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/> 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.6/css/rowReorder.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"/>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
 <style type="text/css">
 .period { border: 5px solid #008000; border-radius: 5px; background: #008000 }
 </style>
@@ -55,6 +62,8 @@
                     <th>Nama</th>
                     <th>No. NPWP/KTP</th>
                     <th>Alamat</th>
+                    <th>Nomor Invoice</th>
+                    <th>Tanggal Invoice</th>
                     <th>Mendapatkan Fasilitas ? (Y/N)</th>
                     <th>Nomor SKB</th>
                     <th>Tarif Pajak</th>
@@ -80,6 +89,8 @@
                     <td><?php echo $row->nama; ?></td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
+                    <td><?php echo $row->noinvoice; ?></td>
+                    <td><?php echo $row->tglinvoice; ?></td>
                     <?php
                       $sql = "SELECT fas_pajak FROM t_tax WHERE fas_pajak IS NOT NULL AND id_payment=$row->id_payment";
                       $query = $this->db->query($sql)->result();
@@ -133,7 +144,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="table-responsive">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example2" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>No.</th>
@@ -144,6 +155,9 @@
                     <th>NPWP tersedia? <br> (YA/NO)</th>
                     <th>No. NPWP/KTP</th>
                     <th>Alamat </th> 
+                    <th>Nomor Invoice</th> 
+                    <th>Tanggal Invoice</th> 
+                    <th>Nomor Faktur Pajak </th> 
                     <th>Tarif Pajak</th>
                     <th>DPP</th>
                     <th>Nilai Pajak Terutang</th>
@@ -178,6 +192,9 @@
                     <td><?php echo $npwp; ?></td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
+                    <td><?php echo $row->noinvoice; ?></td>
+				          	<td><?php echo $row->tglinvoice; ?></td>
+                    <td><?php echo $row->nofaktur; ?></td>
                     <td><?php echo $row->tarif; ?></td>
                     <td><?php echo $row->dpp; ?></td>
                     <td><?php echo $row->pajak_terutang; ?></td>
@@ -261,17 +278,49 @@
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dashboard/dist/js/demo.js"></script>
 
+<!-- Export DataTable -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+
 <script>
 $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+    //$("#example1").DataTable();
+	$('#example1').DataTable( {
+        dom: '<"html5buttons">Bfrtip',
+        lengthMenu: [
+          [10, 25, 50, -1],
+          [ '10 rows', '25 rows', '50 rows', 'Show All']
+        ],
+        buttons: [
+		{extend: 'excel', text: '<b>Export To Excel</b>', title:'List Of Report PPh',exportOptions: {columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]}},
+		
+					],
+		 //buttons: [ 'excel', 'pdf'],
+        responsive: true
+
+    } );
+    $('#example2').DataTable( {
+        dom: '<"html5buttons">Bfrtip',
+        lengthMenu: [
+          [10, 25, 50, -1],
+          [ '10 rows', '25 rows', '50 rows', 'Show All']
+        ],
+        buttons: [
+		{extend: 'excel', text: 'Export To Excel', title: 'List Of Report PPN',exportOptions: {columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}},
+		
+					],
+		 //buttons: [ 'excel', 'pdf'],
+        responsive: true
+
+    } );
+	
   });
 
 </script>

@@ -234,6 +234,8 @@
               <div class="form-group">
                 <label class="control-label col-md-1"><i>Note : </i></label>
                 <div class='col-md-5'> &nbsp;Jika Tombol View APF Muncul, menandakan Form APF telah direject/direturn</div>
+                <div class='col-md-5'> &nbsp;Untuk melihat Catatan telah direject/direturn, dapat di akses melalui Menu My Inbox</div>
+                <div class='col-md-5'> &nbsp;Pada Tab List Of Returned(APF FORM)</div>
               </div>
               <br>
               <div class="form-group">

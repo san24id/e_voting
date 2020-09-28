@@ -248,6 +248,8 @@
 														  <th>Nama</th>
 														  <th>NPWP/ID</th>
 														  <th>Alamat</th>
+														  <th>Nomor Invoice</th>
+														  <th>Tanggal Invoice</th>
 														  <th>Tarif</th>
 														  <th>Fasilitas Pajak</th>
 														  <th>Special Tarif</th>
@@ -257,6 +259,7 @@
 														  <th>Pajak Terutang</th>
 														  <th>Masa Pajak PPN</th>
 														  <th>Tahun</th>
+														  <th>Nomor Faktur Pajak</th>
 														  <th>Keterangan</th>
 														</tr>
 													  </thead>
@@ -295,6 +298,8 @@
 															<td><?php echo $gtax->nama;?></td>
 															<td><?php echo $gtax->npwp;?></td>
 															<td><?php echo $gtax->alamat;?></td>
+															<td><?php echo $gtax->noinvoice;?></td>
+															<td><?php echo $gtax->tglinvoice;?></td>
 															<td style="text-align:right;"><?php echo $gtax->tarif;?></td>
 															<td><?php echo $gtax->fas_pajak;?></td>
 															<td style="text-align:right;"><?php echo $gtax->special_tarif;?></td>
@@ -304,6 +309,7 @@
 															<td style="text-align:right;"><?php echo $gtax->pajak_terutang;?></td>
 															<td><?php echo $gtax->masa_pajak;?></td>
 															<td><?php echo $gtax->tahun;?></td>
+															<td><?php echo $gtax->nofaktur;?></td>
 															<td><?php echo $gtax->keterangan;?></td>
 														  </tr>
 														 <?php }?>
@@ -567,6 +573,7 @@ var chkPARTNDE = document.getElementById('nilai');
     return prefix == undefined ? chkPARTNDE : (chkPARTNDE? + chkPARTNDE : '');
   }
 
+
   </script>
 <script>
 
@@ -576,6 +583,8 @@ var skdpjk;
 var starif;
 var counternontax=3;
 var szcounternontax;
+
+
 	
 $('#show').DataTable({
       "paging": false,
@@ -1312,6 +1321,10 @@ function savetaxdraft()
 		alert("Kode MAP belum di pilih");		
 	}else if($kdobjek=="" && $jnspajak=='PPh Pasal 23'){
 		alert("Kode Objek Pajak belum di pilih");
+	}else if(($txtnoinvoice=="" || $txttglinvoice=="") && $jnspajak!='PPh Pasal 21'){
+		alert("Kode Objek Pajak belum di pilih");
+	}else if(($('#txtfakturpajak').val()=="") && ($jnspajak == 'PPN' || $jnspajak == 'PPN WAPU' || $jnspajak == 'PPN PKP')) {
+			alert("Masa Pajak PPN belum di pilih");		
 	}else if(($('#selmasappn').val()=="" || $('#seltahunppn').val()=="") && ($jnspajak == 'PPN' || $jnspajak == 'PPN WAPU' || $jnspajak == 'PPN PKP')) {
 			alert("Masa Pajak PPN belum di pilih");		
 	}else if($("#chkfasilitas").is(':checked') && $('#txtfasilitas').val()==""){
@@ -1505,6 +1518,17 @@ function showed() {
 
   $(document).ready(function() { 
   
+  $("#txttglinvoice" ).datepicker({
+		dateFormat: "dd/mm/yy",
+		setDate : new Date()
+	});
+	
+	$( "#txttglinvoice" ).datepicker('setDate', new Date());
+	
+	$('#txttglinvoice').keydown(function (event) {
+		event.preventDefault();
+	});
+	
 	$('#selKdPjk').select2();
 $('#selKdMap').select2();
 $('#selJnsPjk').select2();
@@ -1573,9 +1597,11 @@ $('#txtnamanpwp').select2();
 			if( $strid.trim() == 'PPh Pasal 21') {
 				$('#divdppkumulatif').show(); 
 				$('#lbldppkumulatif').show();
+				$('#divinvoice').hide();
 			}else{
 				$('#divdppkumulatif').hide(); 
 				$('#lbldppkumulatif').hide();
+				$('#divinvoice').show();
 			}
 			if( $strid.trim() == 'PPh Pasal 23') {
 				$('#divKdPjk').show(); 			
@@ -1608,8 +1634,10 @@ $('#txtnamanpwp').select2();
 			};*/
 			if( $strid == 'PPN' || $strid == 'PPN WAPU' || $strid == 'PPN PKP') {
 				$('#divmasappn').show();
+				$('#divfaktur').show();
 			}else{
 				$('#divmasappn').hide();
+				$('#divfaktur').hide();
 			}
 			
 			/*if( $strid == 'PPh Pasal 23') {
@@ -2217,8 +2245,6 @@ function gethistorytax()
 								  <textarea id="txtalamat" name="txtalamat"  value="<?php echo $alamatnpwp; ?>"  class="form-control" rows="3" placeholder="Alamat NPWP" ><?php echo $alamatnpwp; ?></textarea>
 								</div>
 						</div>
-						
-						
 						<div class="form-group">
 								<label class="control-label col-md-3">Tarif Pajak</label>
 								<div class="col-md-2">
@@ -2249,8 +2275,7 @@ function gethistorytax()
 													
 								</div>
 								
-						</div>
-						
+						</div>						
 						<div class="form-group">
 								<label class="control-label col-md-3">Fasilitas Pajak</label>
 								<div class="col-md-2">
@@ -2262,35 +2287,56 @@ function gethistorytax()
 						</div>
 						
 						<div class="form-group">
-								<label class="control-label col-md-3">Gross Up</label>
-								<div class="col-md-9">
+								<label class="control-label col-md-3">DPP</label>
+								<div class="col-md-3">
+								  <input name="txtdpp" id="txtdpp" onkeyup="PajakTerhutang()" placeholder="Amount (Before Gross Up)" value='0' class="form-control" type="text">
+								  <input name="txtdpp_old" id="txtdpp_old" type="hidden">
+								</div>
+								<label class="control-label col-md-1">Gross Up</label>
+								<div class="col-md-1">
 								  <input id="chkgross" type="checkbox" name="chkgross"  > Ya </input>
 								</div>
 						</div>
 						
-						<div class="form-group">
+						<!--<div class="form-group">
 								<label class="control-label col-md-3">DPP</label>
 								<div class="col-md-9">
 								  <input name="txtdpp" id="txtdpp" onkeyup="PajakTerhutang()" placeholder="Amount (Before Gross Up)" value='0' class="form-control" type="text">
 								  <input name="txtdpp_old" id="txtdpp_old" type="hidden">
 								</div>
-						</div>
+						</div> -->
 						
 						<div class="form-group">
 								<label class="control-label col-md-3">DPP (Gross Up)</label>
-								<div class="col-md-9">
+								<div class="col-md-3">
 								  <input name="txtdppgross" id="txtdppgross" onkeyup="formatdppgross()" placeholder="Amount (Gross Up)" value='0' class="form-control" type="text">
 								  <input name="txtdppgross_old" id="txtdppgross_old" type="hidden">
 								</div>
+								<label class="control-label col-md-2">Pajak Terhutang</label>
+								<div class="col-md-3">
+								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" value='0' class="form-control" type="text" readonly>
+								</div>
 						</div>
 						
-						<div class="form-group">
+						<!-- <div class="form-group">
 								<label class="control-label col-md-3">Pajak Terhutang</label>
 								<div class="col-md-9">
 								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" value='0' class="form-control" type="text" readonly>
 								</div>
-						</div>
+						</div>-->
 							
+						<div id="divinvoice" class="form-group" style="display:none;">
+								<label class="control-label col-md-3">Nomor Invoice</label>
+								<div class="col-md-3">
+									<input name="txtnoinvoice" id="txtnoinvoice" placeholder="Nomor Inovice" class="form-control" type="text">								  
+								</div>
+								<label class="control-label col-md-2">Tanggal Invoice</label>	
+								<div class="col-md-3">
+									<input name="txttglinvoice" id="txttglinvoice" placeholder="Tanggal Inovice" class="form-control" type="text">
+								</div>
+								
+						</div>
+						
 						<div id="divmasappn" class="form-group" style="display:none;">
 							<label class="control-label col-md-3">Masa Pajak (PPN)</label>
 								<div class="col-md-3">
@@ -2324,6 +2370,13 @@ function gethistorytax()
 										?> 
 									</select>
 								</div>
+						</div>
+						<div id="divfaktur" class="form-group" style="display:none;">
+								<label class="control-label col-md-3">Nomor Faktur Pajak</label>
+								<div class="col-md-9">
+									<input name="txtfakturpajak" id="txtfakturpajak" placeholder="Nomor Faktur Pajak" class="form-control" type="text">
+								</div>
+								
 						</div>
 						
 						<div class="form-group">
