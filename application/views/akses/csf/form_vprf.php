@@ -539,7 +539,7 @@ td[rowspan="6"] {
                           <div class="modal-body">
                           <form id="rejected2" method="post" action="dashboard/rejectapf">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
-                            <input type="hidden" name="status" value="4">
+                            <input type="hidden" name="status" value="5">
                             <p align="justify">Apa anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada CSF Finance:</label>                        
                             <input type="hidden" name="handled_by" value="n.prasetyaningrum">

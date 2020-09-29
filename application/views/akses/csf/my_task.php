@@ -189,8 +189,7 @@
                   <td><?php echo $row->display_name; ?></td>
                   <td>
 
-                    <?php 
-                      if ($row->status <= 5) { ?>
+                    <?php if ($row->status <= 5) { ?>
                         <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     <?php } else if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
@@ -207,8 +206,7 @@
                       <?php } ?>
                     <?php } ?>
 
-                    <?php 
-                        if($row->status == 5 && $row->rejected_by != NULL){ ?>                     
+                    <?php if($row->status == 5 && $row->rejected_by != NULL){ ?>                     
                       
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
                         <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
@@ -234,8 +232,8 @@
               <div class="form-group">
                 <label class="control-label col-md-1"><i>Note : </i></label>
                 <div class='col-md-5'> &nbsp;Jika Tombol View APF Muncul, menandakan Form APF telah direject/direturn</div>
-                <div class='col-md-5'> &nbsp;Untuk melihat Catatan telah direject/direturn, dapat di akses melalui Menu My Inbox</div>
-                <div class='col-md-5'> &nbsp;Pada Tab List Of Returned(APF FORM)</div>
+              <br>
+                <div class='col-md-8'> &nbsp;Untuk melihat Catatan telah direject/direturn, dapat di akses melalui Menu My Inbox. Pada Tab List Of Returned(APF FORM)</div>                
               </div>
               <br>
               <div class="form-group">

@@ -732,26 +732,28 @@
 
                         <?php if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>
                           <?php if ($row->jenis_pembayaran == 2) { ?> 
-                            <?php if ($row->status == 5) { ?> 
+                            <?php if ($row->status == 5 && $row->rejected_by != NULL) { ?> 
                               <!--FORM ARF-->
 
-                                <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
-                                  
-                                  <a class="btn btn-primary" href="Dashboard/form_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
-                                  <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
-                                <?php } ?>
-    
-                                <?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
-                                  <a class="btn btn-primary" href="Dashboard/form_arf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a> 
-                                  <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
-                                <?php } ?>
+                            <?php }else if ($row->status == 5){ ?>
+                              <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
+                                
+                                <a class="btn btn-primary" href="Dashboard/form_arf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
+                                <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
+                              <?php } ?>
+  
+                              <?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
+                                <a class="btn btn-primary" href="Dashboard/form_arf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a> 
+                                <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $row->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
+                              <?php } ?>
                             <?php } ?>                        
                           <?php } ?>
 
                           <?php if ($row->jenis_pembayaran == 3) { ?> 
-                            <?php if ($row->status == 5) { ?> 
+                            <?php if ($row->status == 5 && $row->rejected_by != NULL) { ?> 
                               <!--FORM ASF-->
 
+                            <?php }else if ($row->status == 5){ ?>
                               <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
                                   
                               <a class="btn btn-primary" href="Dashboard/form_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
@@ -765,10 +767,11 @@
                             <?php } ?>                       
                           <?php } ?>
                           
-                          <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?> 
-                            <?php if ($row->status == 5) { ?> 
+                          <?php if ($row->jenis_pembayaran == 4) { ?> 
+                            <?php if ($row->status == 5 && $row->rejected_by != NULL) { ?> 
                               <!--FORM PRF-->
 
+                            <?php }else if ($row->status == 5){ ?>
                               <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
                                   
                                   <a class="btn btn-primary" href="Dashboard/form_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
@@ -782,9 +785,10 @@
                             <?php } ?>                        
                           <?php } ?>
                           <?php if ($row->jenis_pembayaran == 5) { ?> 
-                            <?php if ($row->status == 5) { ?> 
+                            <?php if ($row->status == 5 && $row->rejected_by != NULL) { ?> 
                               <!--FORM CRF-->
 
+                            <?php }else if ($row->status == 5){ ?>
                               <?php if ($row->currency2 == "" && $row->currency3 == "") { ?>
                                   
                                   <a class="btn btn-primary" href="Dashboard/form_crf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Create APF Form</a>
