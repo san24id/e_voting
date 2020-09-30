@@ -249,7 +249,7 @@
 											<?php 
 												$i = 1;
 												foreach ($returnedapprov as $row){
-													$test11 = $row->jenis_pembayaran;                        
+													$test11 = $row->apf;                        
 													$test22 = explode(";", $test11);
 													$test33 = count($test22);
 											?>
@@ -279,7 +279,7 @@
 												<?php if ($row->jenis_pembayaran == 3) { ?> 
 													<a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
 												<?php } ?>
-												<?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+												<?php if ($row->jenis_pembayaran == 4) { ?>   
 													<a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
 												<?php } ?>
 												<?php if ($row->jenis_pembayaran == 5) { ?> 
@@ -418,7 +418,7 @@
 				<!-- Custom Tabs -->
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-pills">
-						  <li class="active"><a class="nav-link active" href="#tab_11" data-toggle="tab"><b>LIST OF REJECTED SP3 </b></a></li>
+						  <li class="active"><a class="nav-link active" href="#tab_11" data-toggle="tab"><b>LIST OF REJECTED (TO USER) </b></a></li>
 						  <li><a href="#tab_55" data-toggle="tab"><b>LIST OF REJECTED SP3</b></a></li>
 						  <li><a href="#tab_22" data-toggle="tab"><b>LIST OF RETURNED (APF FORM)</b></a></li>
 						  <li><a href="#tab_44" data-toggle="tab"><b>LIST OF REJECTED (AS VERIFICATOR TO USERS)</b></a></li>
@@ -528,29 +528,20 @@
 										  <td><?php echo $row->label1;?> </td>
 										  <td><?php echo $row->note;?> </td>
 										  <td>
-											<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
-											
-										   	<?php 
-											   if($row->status == 5 && $row->rejected_by != NULL){ ?>
-												<?php if ($row->jenis_pembayaran == 2) { ?>   
-													<a href="Dashboard/form_eprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
-												<?php } ?>
+												<!-- <a href="Dashboard/deletepayment/<?php echo $row->id_payment; ?>"><button class="btn btn-danger btn-sm">Clear</button></a> -->
 												<?php if ($row->jenis_pembayaran == 2) { ?> 
-													<a href="Dashboard/form_earf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>
+													<a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
 												<?php } ?>
 												<?php if ($row->jenis_pembayaran == 3) { ?> 
-													<?php if ($row->currency2 == "" && $row->currency3 == "") { ?>                                  
-														<a class="btn btn-primary" href="Dashboard/form_easf/<?php echo $row->id_payment; ?>" target="_blank" role="button">Edit</a>
-													<?php } ?>
-													<?php if ($row->currency2 != "" || $row->currency3 != ""){ ?>
-														<a class="btn btn-primary" href="Dashboard/form_easf2/<?php echo $row->id_payment; ?>" target="_blank" role="button">Edit</a> 
-													<?php } ?>                      
-												<?php } ?>                   
+													<a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+												<?php } ?>
+												<?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+													<a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+												<?php } ?>
 												<?php if ($row->jenis_pembayaran == 5) { ?> 
-													<a href="Dashboard/form_ecrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">Edit</button></a>                    
-												<?php } ?>  
-										   	<?php } ?>                 
-										  </td>      
+													<a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+												<?php } ?>                    
+											</td>      
 										  </tr>
 											<?php } ?>      
 									  </tbody>
@@ -603,53 +594,50 @@
 									<div class="table-responsive">
 										<table id="example55" class="table table-bordered table-striped">
 										<thead>
-										<tr>
+											<tr>
 												<th>NO.</th>
 												<th>Tanggal Reject</th>
 												<th>Reject Dari</th>
 												<th>Nomor SP3</th>
 												<th>Deskripsi</th>
+												<!-- <th>Nama Pemohon</th> -->
+												<th>Penerima Pembayaran</th>
 												<th>Reason</th>
 												<th>Action</th>
-										</tr>	
+											</tr>	
 										</thead>
 										<tbody>
 											<?php 
-													$i = 1;
-													foreach ($rejectedtax as $row){
-													$test1 = $row->jenis_pembayaran;                        
-													$test2 = explode(";", $test1);
-													$test3 = count($test2);                        
-												?>
-												<tr>
-													<td><?php echo $i++; ?></td>                  
-													<td><?php echo date('d-M-Y', strtotime($row->tanggal2)); ?></td>
-														<td><?php                     
-															for($a=0; $a<$test3; $a++){
-															if($test2[$a]){
-																echo $test2[$a]."<br>";
-															}
-															}  ?>
-														</td>
-														<td><?php echo $row->nomor_surat; ?></td>
-														<td><?php echo $row->label1; ?></td>
-														<td><?php echo $row->display_name; ?></td>
-														<?php 
-															$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-															$query = $this->db->query($sql)->result();
-															// return $query;
-															// var_dump($query[0]->nama);exit; 
-															if ($query[0]->nama) { $buka = $query[0]->nama;
-															}else{
-																$buka = $row->penerima;
-															}
-															?>
-														<td><?php echo $buka; ?></td>
-													<td>
-														<a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-													</td>      
-												</tr>
-												<?php } ?>      
+												$i = 1;
+												foreach ($rejectedtax as $row){
+												$test1 = $row->jenis_pembayaran;                        
+												$test2 = explode(";", $test1);
+												$test3 = count($test2);                        
+											?>
+											<tr>
+												<td><?php echo $i++; ?></td>                  
+												<td><?php echo date('d-M-Y', strtotime($row->rejected_date)); ?></td>
+												<td><?php echo $row->rejected_by; ?></td>                  
+												<td><?php echo $row->nomor_surat; ?></td>
+												<td><?php echo $row->label1; ?></td>
+												<!-- <td><?php echo $row->display_name; ?><td> -->
+												<?php 
+													$sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
+													$query = $this->db->query($sql)->result();
+													// return $query;
+													// var_dump($query[0]->nama);exit; 
+													if ($query[0]->nama) { $buka = $query[0]->nama;
+													}else{
+														$buka = $row->penerima;
+													}
+													?>
+												<td><?php echo $buka; ?></td>
+												<td><?php echo $row->note; ?></td>
+												<td>
+													<a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+												</td>      
+											</tr>
+											<?php } ?>      
 										</tbody>
 									  	</table>
 									</div>

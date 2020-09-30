@@ -68,7 +68,7 @@ class Dashboard_model extends CI_Model{
 
     public function getReturnedApprov(){    
     
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status='5' AND rejected_by IS NOT NULL 
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new ,b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status='5' AND rejected_by IS NOT NULL 
                 ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
