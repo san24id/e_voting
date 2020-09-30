@@ -19,7 +19,7 @@ td[rowspan="6"] {
         
         <form id="formadd" action="#">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $row->display_name;?>">
-          <input type="hidden" name="type" class="form-control" value="2"> 
+          <input type="hidden" name="jenis_pembayaran" class="form-control" value="2"> 
           <input type="hidden" name="id_payment" class="form-control" value="<?php echo $row->id_payment;?>">
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo date("Y-m-d")?>">
           <section class="content">
