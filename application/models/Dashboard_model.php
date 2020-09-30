@@ -37,18 +37,29 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status = '4' AND a.rejected_by IS NOT NULL 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status = '4' AND a.rejected_by !='' 
                 ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         return $query;
     }
 
+    function notifRejected(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT COUNT(status) as totrejected FROM t_payment WHERE division_id='$dvs' AND status='3' OR status='5' AND rejected_by !=''";
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+        return $query;
+
+    }
+
     public function getReturnedVerif(){
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status in ('4','5') AND a.rejected_by in ('h.harlina','i.akmal') 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status in ('5') AND a.rejected_by in ('Harlina Hunaida','Akmal Ibrahim Lubis') 
                 ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -57,7 +68,8 @@ class Dashboard_model extends CI_Model{
 
     public function getReturnedApprov(){    
     
-        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status='5' AND rejected_by IS NOT NULL ";
+        $sql = "SELECT a.*, b.jenis_pembayaran FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status='5' AND rejected_by IS NOT NULL 
+                ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -67,7 +79,7 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status='3' AND a.division_id='$dvs' AND a.rejected_by='h.harlina' 
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status='3' AND a.division_id='$dvs' AND a.rejected_by='Harlina Hunaida' 
                 ORDER BY tanggal2 DESC ";
 
         $query = $this->db->query($sql)->result();

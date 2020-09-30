@@ -343,7 +343,7 @@
                 break;
                 case "5":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Paid</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Payment</div>";
 
                 break;
                 case "6":
@@ -378,7 +378,7 @@
                 break;
                 case "12":
                   echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Paid</div>";
+                  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Payment</div>";
 
                 break;
 							  default:
