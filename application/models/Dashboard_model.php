@@ -59,8 +59,8 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         // $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status in ('5') AND a.rejected_by in ('Harlina Hunaida','Akmal Ibrahim Lubis') 
-                ORDER BY tanggal2 DESC";
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new FROM t_payment a WHERE a.status in ('5') AND a.rejected_by in 
+                ('Harlina Hunaida','Akmal Ibrahim Lubis')  ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -68,8 +68,8 @@ class Dashboard_model extends CI_Model{
 
     public function getReturnedApprov(){    
     
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new ,b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status='5' AND rejected_by IS NOT NULL 
-                ORDER BY tanggal2 DESC";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new ,b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE status='5' AND rejected_by in ('denbe3', 'Donny Hamdani', 'Salusra Satria', 'M. Wahid Sutopo', 'Andre Permana') ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -274,11 +274,14 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    //Buat ARF APF Number 
     var $table ="t_payment_l";
     public function buat_kode_arf()  {   
 
+		$where = "substring(apf_doc,length(apf_doc)-1,1)='".date('m')."'";
         $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
-        $this->db->order_by('apf_doc','DESC');    
+        $this->db->where($where);
+        $this->db->order_by('apf_doc','ASC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
         if($query->num_rows() <> 0){      
@@ -291,11 +294,12 @@ class Dashboard_model extends CI_Model{
          $kode = 1;    
         }
 
-        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
         $kodejadi = "ARF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
 
+    //Buat ASF APF Number 
     public function buat_kode_asf()  {   
 
         $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
@@ -312,14 +316,17 @@ class Dashboard_model extends CI_Model{
          $kode = 1;    
         }
 
-        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
         $kodejadi = "ASF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
 
+    //Buat PRF APF Number 
     public function buat_kode_prf()  {   
 
+        $where = "substring(apf_doc,length(apf_doc)-1,1)='".date('m')."'";
         $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
+        $this->db->where($where);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
         $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
@@ -333,11 +340,12 @@ class Dashboard_model extends CI_Model{
          $kode = 1;    
         }
 
-        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
         $kodejadi = "PRF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
 
+    //Buat CRF APF Number 
     public function buat_kode_crf()  {   
 
         $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
@@ -354,7 +362,7 @@ class Dashboard_model extends CI_Model{
          $kode = 1;    
         }
 
-        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+        $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
         $kodejadi = "CRF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
@@ -1244,7 +1252,8 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 	public function getDataTax($id) {
-        $sql = "select id_tax,id_payment,ifnull(no_urut,1) no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan,status FROM t_tax where id_payment = '$id' order by no_urut";
+        $sql = "select id_tax,id_payment,ifnull(no_urut,1) no_urut, jenis_pajak,kode_pajak,kode_map,nama,npwp,alamat,tarif,special_tarif,fas_pajak,
+                gross,dpp,dpp_gross,pajak_terutang,masa_pajak,tahun,keterangan,status,noinvoice,tglinvoice,nofaktur FROM t_tax where id_payment = '$id' order by no_urut";
 		$query = $this->db->query($sql)->result();
         return $query;
     }								
@@ -1500,7 +1509,7 @@ class Dashboard_model extends CI_Model{
 		$sql = "select t.id_tax,t.id_payment,ifnull(t.no_urut,1) no_urut, t.nomor_surat, t.jenis_pajak,t.kode_pajak,t.kode_map,t.nama,t.npwp,t.alamat,t.tarif,";
 		$sql .= "t.special_tarif,t.fas_pajak,t.gross,t.dpp,t.dpp_gross,t.pajak_terutang,t.masa_pajak,t.tahun,t.keterangan,p.id_jenis_pjk , ";		
 		$sql .= "(select id_map from m_kode_map where trim(kode_map)=trim(t.kode_map)) id_map,";
-		$sql .= "t.de,t.opsional,t.nilai,t.objek_pajak, t.id_honor  ";		
+		$sql .= "t.de,t.opsional,t.nilai,t.objek_pajak, t.id_honor,t.noinvoice,t.tglinvoice,t.nofaktur  ";		
 		$sql .="FROM t_tax t, m_jenis_pajak p where trim(t.jenis_pajak)=trim(p.jenis_pajak) and t.id_tax = ".$id;
 		$query = $this->db->query($sql)->result();
         return $query;

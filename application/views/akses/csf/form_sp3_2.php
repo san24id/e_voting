@@ -976,6 +976,8 @@ function submittax()
 									item.nama,
 									item.npwp,
 									item.alamat,
+									item.noinvoice,
+									item.tglinvoice,
 									item.tarif,
 									item.fas_pajak,
 									item.special_tarif,
@@ -985,8 +987,8 @@ function submittax()
 									item.pajak_terutang,
 									item.masa_pajak,
 									item.tahun,
-									item.keterangan
-										
+										item.nofaktur,
+									item.keterangan			
 									  ] ).draw(false);
 
 							})
@@ -1035,6 +1037,9 @@ function edit_tax(id)
 			$('[name="txtnamanpwp_old"]').val(data[0].nama);	
 			$('[name="txtnonpwp"]').val(data[0].npwp);			
 			$('[name="txtalamat"]').val(data[0].alamat);			
+			$('[name="txtnoinvoice"]').val(data[0].noinvoice);			
+			$('[name="txttglinvoice"]').val(data[0].tglinvoice);			
+			$('[name="txtfakturpajak"]').val(data[0].nofaktur);
 			$strid=data[0].jenis_pajak;
 			
 			if( $strid == 'PPh Pasal 21') {
@@ -1245,6 +1250,8 @@ function savetaxdraftFirst()
 									  item.nama,
 									  item.npwp,
 									  item.alamat,
+									  item.noinvoice,
+									  item.tglinvoice,
 										item.tarif,
 										item.fas_pajak,
 										item.special_tarif,
@@ -1254,6 +1261,7 @@ function savetaxdraftFirst()
 										item.pajak_terutang,
 										item.masa_pajak,
 										item.tahun,
+										item.nofaktur,
 										item.keterangan										
 									  ] ).draw(false);
 
@@ -1321,10 +1329,10 @@ function savetaxdraft()
 		alert("Kode MAP belum di pilih");		
 	}else if($kdobjek=="" && $jnspajak=='PPh Pasal 23'){
 		alert("Kode Objek Pajak belum di pilih");
-	}else if(($txtnoinvoice=="" || $txttglinvoice=="") && $jnspajak!='PPh Pasal 21'){
-		alert("Kode Objek Pajak belum di pilih");
+	}else if(($('#txtnoinvoice').val()=="" || $('#txttglinvoice').val()=="") && $jnspajak!='PPh Pasal 21'){
+		alert("Nomor Invoice belum di input");
 	}else if(($('#txtfakturpajak').val()=="") && ($jnspajak == 'PPN' || $jnspajak == 'PPN WAPU' || $jnspajak == 'PPN PKP')) {
-			alert("Masa Pajak PPN belum di pilih");		
+			alert("Nomor Faktur belum di input");		
 	}else if(($('#selmasappn').val()=="" || $('#seltahunppn').val()=="") && ($jnspajak == 'PPN' || $jnspajak == 'PPN WAPU' || $jnspajak == 'PPN PKP')) {
 			alert("Masa Pajak PPN belum di pilih");		
 	}else if($("#chkfasilitas").is(':checked') && $('#txtfasilitas').val()==""){
@@ -1382,6 +1390,8 @@ function savetaxdraft()
 									  item.nama,
 									  item.npwp,
 									  item.alamat,
+									  item.noinvoice,
+									  item.tglinvoice,
 										item.tarif,
 										item.fas_pajak,
 										item.special_tarif,
@@ -1391,6 +1401,7 @@ function savetaxdraft()
 										item.pajak_terutang,
 										item.masa_pajak,
 										item.tahun,
+										item.nofaktur,
 										item.keterangan										
 									  ] ).draw(false);
 
@@ -1608,7 +1619,7 @@ $('#txtnamanpwp').select2();
 			}else{
 				$('#divKdPjk').hide(); 
 			}
-			
+			$('#divfaktur').hide();
 			$('#divKdMap').show(); 
 			//$("#txtnamanpwp").prop('readonly', false);
             $('#txtnamanpwp').prop('disabled', false); 
@@ -1635,11 +1646,12 @@ $('#txtnamanpwp').select2();
 			if( $strid == 'PPN' || $strid == 'PPN WAPU' || $strid == 'PPN PKP') {
 				$('#divmasappn').show();
 				$('#divfaktur').show();
+				
 			}else{
 				$('#divmasappn').hide();
 				$('#divfaktur').hide();
 			}
-			
+			$('#divinvoice').show();
 			/*if( $strid == 'PPh Pasal 23') {
 				$('#divKdPjk').show(); 			
 			}else{
@@ -1860,7 +1872,7 @@ function PajakTerhutang(){
 	}
 	$('#txtrealtrf').val(trf);
 	var intrf = (parseFloat(trf)/100);
-	var pjkutang = parseFloat(dpp)*intrf;
+	var pjkutang = Math.round(parseFloat(dpp)*intrf);
 	//alert(pjkutang);
 	if (trf && dpp){
 		if($("#chkgross").is(':checked')){
