@@ -383,6 +383,9 @@ class Dashboard extends CI_Controller {
 		$data['report_ppn'] = $this->Dashboard_model->report_pajak_ppn();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
 
+		// $data['start_date'] = $this->input->post("start_date");
+		// $data['end_date'] = $this->input->post("end_date");
+
 		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
 		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
 
@@ -2452,14 +2455,14 @@ class Dashboard extends CI_Controller {
 
 		$this->SuperAdm_model->addcurr($add);
 
-		redirect('SuperAdm/currency');
+		redirect('Dashboard/currency');
 	}
 
 	public function deletecurr(){
 		
 		$this->SuperAdm_model->deletecurr($_POST['id_curr']);
 
-		redirect('SuperAdm/currency');
+		redirect('Dashboard/currency');
 
 	}
 
@@ -2473,7 +2476,7 @@ class Dashboard extends CI_Controller {
 
 		$this->SuperAdm_model->updatecurr($upd);
 
-		redirect('SuperAdm/currency');
+		redirect('Dashboard/currency');
 	}
 
 	public function bank(){

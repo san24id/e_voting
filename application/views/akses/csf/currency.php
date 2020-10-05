@@ -205,7 +205,7 @@
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletecurr">
-          <input type="hidden" name="id_curr" value="<?php echo $row->id_curr; ?> ?>">
+          <input type="hidden" name="id_curr" value="<?php echo $row->id_curr; ?>">
           <button type="submit" class="btn btn-success bye">Yes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </form>

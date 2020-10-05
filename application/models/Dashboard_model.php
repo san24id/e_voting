@@ -737,7 +737,8 @@ class Dashboard_model extends CI_Model{
     }
 
     function periode_tax($start_date,$end_date){
-        $sql = "SELECT * FROM t_tax WHERE masa_pajak BETWEEN '$start_date' AND '$end_date'";
+        // $sql = "SELECT * FROM t_tax WHERE masa_pajak BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT * FROM t_tax WHERE paid_date BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
@@ -1051,7 +1052,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function addcc($add){
-        $sql = "INSERT INTO `t_creditcard` (id_div, pemegang_kartu ,no_billing, division_id, id_user, nama_pic, target_submission, tempo, jatah)
+        $sql = "INSERT INTO `t_creditcard` (id_div, pemegang_kartu, no_billing, division_id, id_user, nama_pic, target_submission, tempo, jatah, status)
 
                 VALUES ('".$add['id_div']."','".$add['pemegang_kartu']."','".$add['no_billing']."','".$add['division_id']."','".$add['id_user']."','".$add['nama_pic']."',
                 '".$add['target_submission']."','".$add['tempo']."','".$add['jatah']."','".$add['status']."')"; 
@@ -1081,7 +1082,7 @@ class Dashboard_model extends CI_Model{
     }
 
     function report_pajak_pph(){
-        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPh%' GROUP BY nomor_surat";
+        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPh%' GROUP BY nomor_surat DESC";
 
         $query = $this->db->query($sql)->result();
 
@@ -1089,7 +1090,7 @@ class Dashboard_model extends CI_Model{
     }
     
     function report_pajak_ppn(){
-        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPN%' GROUP BY nomor_surat";
+        $sql = "SELECT * FROM `t_tax` WHERE jenis_pajak LIKE '%PPN%' GROUP BY nomor_surat DESC";
 
         $query = $this->db->query($sql)->result();
 

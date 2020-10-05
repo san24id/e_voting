@@ -167,12 +167,12 @@
                 <tr>
                   <th>Target Submission Credit Card</th>
                     <td>:</td>
-                    <td><input id="target" type="text" name="target_submission" class="form-control" required></td>
+                    <td><input id="target" type="date" name="target_submission" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Jatuh Tempo</th>
                     <td>:</td>
-                    <td><input id="tempo" type="text" name="tempo" class="form-control" required></td>
+                    <td><input id="tempo" type="date" name="tempo" class="form-control" required></td>
                 </tr>
                 <tr>
                   <th>Credit Card Submission</th>
@@ -256,12 +256,12 @@
                 <tr>
                   <th>Target Submission Credit Card</th>
                   <td>:</td>
-                  <td><input type="date" id="utarget" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
+                  <td><input type="text" id="utarget" name="target_submission" class="form-control" value="<?php echo $row->target_submission; ?>"></td>
                 </tr>
                 <tr>
                   <th>Jatuh Tempo</th>
                   <td>:</td>
-                  <td><input type="date" id="utempo" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
+                  <td><input type="text" id="utempo" name="tempo" class="form-control" value="<?php echo $row->tempo; ?>"></td>
                 </tr>
                 <tr>
                   <th>Credit Card Submission</th>

@@ -337,7 +337,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="10">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
-                          <input type="hidden" name="paid_date" value="<?php echo date("d-M-Y"); ?>">
+                          <input type="hidden" name="paid_date" value="<?php echo date("Y-m-d"); ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
                           <p align="justify">Apa anda yakin akan membayar : <?=$get->apf_doc?></p>
                                               

@@ -36,10 +36,10 @@
                     <td class="period"><font color="white" size="3">Period: </font></td>
                     <td></td>
                     <td class="period"><font color="white" size="3"> Date </font></td>
-                    <td class="period"><input type="text" name="start_date" id="start_date"></td>
+                    <td class="period"><input type="date" name="start_date" id="start_date"></td>
                     <td><font size="3">s/d</font></td>
                     <td class="period"><font color="white" size="3"> Date </font></td>
-                    <td class="period"><input type="text" name="end_date"></td>
+                    <td class="period"><input type="date" name="end_date"></td>
                     <td class="period"><input type="submit" name="search" value="Search" id="search"></td>
                   </tr>
                 <?php echo form_close();?>  
@@ -84,8 +84,18 @@
                     <td><?php echo $row->jenis_pajak; ?></td>
                     <td><?php echo $row->kode_pajak; ?></td>
                     <td><?php echo $row->kode_map; ?></td>
-                    <td><?php echo $row->paid_date;?></td>
-                    <td><?php echo date("M-Y", strtotime($row->paid_date));?></td>
+                    <td><?php if ($row->paid_date == ''){
+                          echo "";
+                        }else{
+                          echo date("d-M-Y", strtotime($row->paid_date));
+                        } 
+                          ?></td>
+                    <td><?php if ($row->paid_date == ''){
+                          echo "";
+                        }else{
+                          echo date("M Y", strtotime($row->paid_date));
+                        } 
+                          ?></td>
                     <td><?php echo $row->nama; ?></td>
                     <td><?php echo $row->npwp; ?></td>
                     <td><?php echo $row->alamat; ?></td>
