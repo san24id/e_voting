@@ -24,7 +24,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
+                  <th><center>NO.</center></th>
                   <th>Currency Code</th>
                   <th>Mata Uang</th>
                   <th>Kurs</th>
@@ -37,7 +37,7 @@
                     foreach ($currency as $row){
                    ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>
+                  <td><center><?php echo $i++; ?></center></td>
                   <td><?php echo $row->currency; ?></td>
                   <td><?php echo $row->mata_uang; ?></td>
                   <td><?php echo $row->kurs; ?></td>
@@ -113,7 +113,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Mata Uang</h4>
+          <h4 class="modal-title">Tambah Currency</h4>
         </div>
         <div class="modal-body">
           <h5>
@@ -132,7 +132,7 @@
                 <tr>
                   <th>Kurs</th>
                   <td>:</td>
-                  <td><input type="text" name="kurs" class="form-control" require></td>
+                  <td><input id="kursadd" type="text" name="kurs" class="form-control" require></td>
                 </tr>
              </table>
           </h5>
@@ -181,7 +181,7 @@
                 <tr>
                   <th>Kurs</th>
                   <td>:</td>
-                  <td><input type="text" name="kurs" class="form-control" value="<?php echo $row->kurs; ?>"></td>
+                  <td><input id="kursupdate" type="text" name="kurs" onkeyup="getSeparator()" class="form-control" value="<?php echo $row->kurs; ?>"></td>
                 </tr>
              </table>
           </h5>
@@ -201,7 +201,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus dengan Mata Uang ini :  <?=$row->mata_uang?></p>
+       <p align="justify">Apa Anda yakin akan menghapus data Currency ini:  <?=$row->mata_uang?> ?</p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletecurr">
@@ -247,7 +247,7 @@
 <script>
 
   $("#nambah").on('click', function(){
-    var acc = $('#acc').val():
+    // var acc = $('#acc').val():
       $.ajax({        
           type: "POST", // Method pengiriman data bisa dengan GET atau POST        
           // url: "<?php echo base_url("index.php/superadm/addcurr"); ?>", // Isi dengan url/path file php yang dituju       
@@ -284,6 +284,49 @@
               alert('Deleted Mata Uang success')
           }      
       });
-  });  
+  }); 
+</script>
+
+<script type="text/javascript">
+
+  var rupiah = document.getElementById('kursadd');
+  rupiah.addEventListener('keyup', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rupiah.value = formatRupiah(this.value);
+  });
+
+  /* Fungsi formatRupiah */
+  function formatRupiah(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    rupiah     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+    return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
+  }
+
+  function getSeparator(){
+    var x = document.getElementById('kursupdate').value;
+    var get_x = x.replace(/\D+/g, '');
+    alert(get_x);
+			if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
+				get_x= -Math.abs(get_x);		
+			}else{
+				get_x= Math.abs(get_x);		
+      }
+      
+      var xj1=x.trim();
+      
+      get_x.value= formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
+  }
 </script>
 </body>

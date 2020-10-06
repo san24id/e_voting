@@ -254,9 +254,9 @@ td[rowspan="6"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Expenses</i> </td>
-                          <td><input style="text-align:center" class="form-control" value="<?php echo $row->currency;?>" readonly> 
-                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency2;?>" readonly> 
-                              <input style="text-align:center" class="form-control" value="<?php echo $row->currency3;?>" readonly> 
+                          <td><input id="curr1X" style="text-align:center" class="form-control" value="<?php echo $row->currency;?>" readonly> 
+                              <input id="curr2X" style="text-align:center" class="form-control" value="<?php echo $row->currency2;?>" readonly> 
+                              <input id="curr3X" style="text-align:center" class="form-control" value="<?php echo $row->currency3;?>" readonly> 
                           </td>
                           <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $row->label2;?>" readonly>
                               <input id="ulang1" style="text-align:right" type="text" class="form-control" name="total_expenses2" value="<?php echo $row->jumlah2;?>" readonly>
@@ -323,6 +323,28 @@ td[rowspan="6"] {
                       </tbody>  
                     </table>    
 
+                    <?php 
+                      $nm1='';
+                      $jbt1='';
+                      $nm2='';
+                      $jbt2='';
+                      $nm3='';
+                      $jbt3='';
+                      foreach ($d_wewenang as $pejabat) { 
+                        if($pejabat->seq_limit=="1"){
+                          $nm1=$pejabat->nama_user;
+                          $jbt1=$pejabat->jabatan;
+                        }elseif($pejabat->seq_limit=="2"){
+                          $nm2=$pejabat->nama_user;
+                          $jbt2=$pejabat->jabatan;
+                        }elseif($pejabat->seq_limit=="3"){
+                          $nm3=$pejabat->nama_user;
+                          $jbt3=$pejabat->jabatan;
+                        }
+                        
+                      } 
+                    ?>
+
                     <table border="1" style="font-family: calibri;" width="100%">
                       <tbody>
                         <tr>
@@ -335,19 +357,19 @@ td[rowspan="6"] {
                         </tr>
                         <tr>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control" value="Donny Hamdani"> </td>
+                          <td><input id="approval1" type="text" name="persetujuan_pembayaran1" class="form-control" value="<?php echo $nm1; ?>"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control"> </td>
+                          <td><input id="approval2" type="text" name="persetujuan_pembayaran2" class="form-control" value="<?php echo $nm2; ?>"> </td>
                           <td width="10%">Nama/ <i>Name</i> </td>
-                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control"> </td>
+                          <td><input id="approval3" type="text" name="persetujuan_pembayaran3" class="form-control" value="<?php echo $nm3; ?>"> </td>
                         </tr>
                         <tr>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control" value="Deputi Direktur Keuangan"> </td>
+                          <td><input id="jabatan1" type="text" name="jabatan1" class="form-control" value="<?php echo $jbt1; ?>"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control"> </td>
+                          <td><input id="jabatan2" type="text" name="jabatan2" class="form-control" value="<?php echo $jbt2; ?>"> </td>
                           <td>Jabatan/ <i>Title</i> </td>
-                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control"> </td>
+                          <td><input id="jabatan3" type="text" name="jabatan3" class="form-control" value="<?php echo $jbt3; ?>"> </td>
                         </tr>  
                       </tbody>
                     </table>
@@ -725,6 +747,72 @@ function nominal(){
   }else{
 	  document.getElementById("ulang2").value = hasil_jumlah3 ;
   }
+
+  var curr1X = document.getElementById("curr1X").value;
+  var curr2X = document.getElementById("curr2X").value;
+  var curr3X = document.getElementById("curr3X").value;
+  var kurshasil1=0; 
+  var kurshasil2=0; 
+  var kurshasil3=0; 
+  var totkurshasil=0; 
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getkursmulticurrency')?>",
+        type: "POST",
+		data: $("#formadd").serialize(),
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				$(data).each(function(index, value){ 
+					if(curr1X==value.currency){
+						kurshasil1=hasil*(value.kurs);
+					}else if(curr2X==value.currency){
+						kurshasil2=hasil2*(value.kurs);
+					}else if(curr3X==value.currency){
+						kurshasil3=hasil3*(value.kurs);
+					}
+				});
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+		totkurshasil=kurshasil1+kurshasil2+kurshasil3;
+		if(totkurshasil<0){
+			totkurshasil=0;
+		}
+		
+		document.getElementById("approval1").value='';
+		document.getElementById("jabatan1").value='';
+		document.getElementById("approval2").value='';
+		document.getElementById("jabatan2").value='';
+		document.getElementById("approval3").value='';
+		document.getElementById("jabatan3").value='';
+				
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getapprovalbyamt/')?>/" + totkurshasil,
+        type: "GET",
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				var seqid=0;
+				$(data).each(function(index, value){ 
+				seqid++;
+				document.getElementById("approval"+seqid).value=value.nama_user;
+				document.getElementById("jabatan"+seqid).value=value.jabatan;
+				});				  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+	
 // Negatif(piutang)
   // if (hasil<0){
 	//   var strhasil =Math.abs(hasil);
@@ -1129,7 +1217,7 @@ function nominal(){
     // document.getElementById("negatif2").value = hasil2 ; 
     // document.getElementById("negatif3").value = hasil3 ;
   var a = hasil ;
-  if (a <= 100000000){
+  /*if (a <= 100000000){
     <?php foreach ($d_wewenang as $pejabat) { ?>
       <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
       document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
@@ -1161,7 +1249,7 @@ function nominal(){
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
   <?php }?>
 
-  }
+  }*/
     
   if (hasil_jumlah1<0){
 	  hasil_jumlah1=Math.abs(hasil_jumlah1);

@@ -24,7 +24,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
+                  <th><center>NO.</center></th>
                   <th>Nama Bank</th>
                   <th>Alias</th>
                   <th>Action</th>
@@ -36,7 +36,7 @@
                     foreach ($bank as $row){
                    ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>
+                  <td><center><?php echo $i++; ?></center></td>
                   <td><?php echo $row->nama_bank; ?></td>
                   <td><?php echo $row->singkatan; ?></td>
                   <td>
@@ -189,7 +189,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Bank Account ini :  <?=$row->nama_bank?></p>
+       <p align="justify">Apa Anda yakin akan menghapus Bank Account ini :  <?=$row->nama_bank?> ?</p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletebank">

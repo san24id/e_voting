@@ -2145,4 +2145,39 @@ class Dashboard_model extends CI_Model{
         $query=$this->db->query($sql);
 		return $query->result();
     }
+	
+	public function getapprovalbylimit($amt) {
+		$sql = "select tl.seq_limit,tl.id_limit,t.idapproval,t.nama_user,t.jabatan ";
+		$sql .= "from t_approval_limit tl, t_approval t where tl.idapproval=t.idapproval and t.activate='On' ";
+		//$sql .= "and tl.min_limit <=".$amt." and tl.max_limit >=".$amt." order by tl.seq_limit asc ";
+		$sql .= "and tl.min_limit <= CONVERT(".$amt.",SIGNED INTEGER) and tl.max_limit >=CONVERT(".$amt.",SIGNED INTEGER) order by tl.seq_limit asc ";
+		//var_dump($sql);
+		//exit();
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getlimitamt($id_payment){
+        $query=$this->db->query("select totalamount from t_payment where id_payment='$id_payment' ");
+        return $query;
+    }
+
+	public function getkurs(){
+        $query=$this->db->query("select trim(currency) as currency,trim(kurs) as kurs from m_currency ");
+        return $query;
+    }
+	
+	public function getcurscurrency($curr){
+        $sql = "select trim(kurs) as kurs from m_currency where trim(currency)='".$curr."' ";
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getmultikurs(){
+        $sql = "select trim(currency) as currency,trim(kurs) as kurs from m_currency ";
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	
 }

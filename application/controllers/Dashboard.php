@@ -488,9 +488,13 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-		// var_dump($data['d_wewenang']);exit;
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_arf', $data);
 	}
@@ -510,9 +514,13 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['divhead'] = $this->Dashboard_model->getDivHeadCSF();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-		// var_dump($data['d_wewenang']);exit;
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_arf2', $data);
 	}
@@ -618,8 +626,13 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf', $data);
 	}
@@ -640,8 +653,13 @@ class Dashboard extends CI_Controller {
 		$data['currency'] = $this->Home_model->getCurrency();
 		$data['asf_doc'] = $this->Dashboard_model->buat_kode_asf();
 		$data['arf_doc'] = $this->Dashboard_model->buat_kode_arf();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_asf2', $data);
 	}
@@ -751,8 +769,13 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['prf_doc'] = $this->Dashboard_model->buat_kode_prf();
 		$data['currency'] = $this->Home_model->getCurrency();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_prf', $data);
 	}
@@ -772,8 +795,13 @@ class Dashboard extends CI_Controller {
 		$data['payment'] = $this->Home_model->getform($id_payment);
 		$data['prf_doc'] = $this->Dashboard_model->buat_kode_prf();
 		$data['currency'] = $this->Home_model->getCurrency();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_prf2', $data);
 	}
@@ -878,8 +906,13 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['crf_doc'] = $this->Dashboard_model->buat_kode_crf();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_crf', $data);
 	}
@@ -899,8 +932,13 @@ class Dashboard extends CI_Controller {
 		$data['surat'] = $this->Dashboard_model->nomorsurat();
 		$data['csf'] = $this->Dashboard_model->getAdminCSF();
 		$data['crf_doc'] = $this->Dashboard_model->buat_kode_crf();
-		$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
-
+		//$data['d_wewenang'] = $this->Dashboard_model->getPejabat();
+		$getamt=$this->Dashboard_model->getlimitamt($id_payment);
+		foreach ($getamt->result() as $amt) {
+			$limitamt = floatval(preg_replace("/[^0-9]/", "", $amt->totalamount));
+		}
+		$data['d_wewenang'] = $this->Dashboard_model->getapprovalbylimit($limitamt);
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/form_crf2', $data);
 	}
@@ -3726,7 +3764,30 @@ class Dashboard extends CI_Controller {
 			$v_bank = $_POST['bankvendor'][$i];
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
-
+		
+		//=====================
+		$nom1=preg_replace("/[^0-9]/", "", $_POST['label2']);
+		$nom2=preg_replace("/[^0-9]/", "", $_POST['jumlah2']);
+		$nom3=preg_replace("/[^0-9]/", "", $_POST['jumlah3']);
+		$getkurs=$this->Dashboard_model->getkurs();
+		foreach ($getkurs->result() as $kurs) {
+			$kursvalue=preg_replace("/[^0-9]/", "", $kurs->kurs);
+			if($kurs->currency==$_POST['currency']){
+				$amt1=floatval($nom1)*floatval($kursvalue);
+			}
+			
+			if($kurs->currency==$_POST['currency2']){
+				$amt2=floatval($nom2)*floatval($kursvalue);
+			}
+			
+			if($kurs->currency==$_POST['currency3']){
+				$amt3=floatval($nom3)*floatval($kursvalue);
+			}
+		}
+		
+		$totamt=floatval($amt1)+floatval($amt2)+floatval($amt3);
+		//=====================
+		
 		$add = array(
 			'status' => 0,
 			'id_user' => $_POST['id_user'],
@@ -3767,6 +3828,7 @@ class Dashboard extends CI_Controller {
 			'label9b' => $_POST['label9b'],
 			'div_head' => $_POST['div_head'],
 			'jab_div_head' => $_POST['jab_div_head'],
+			'totalamount' => $totamt,
 		);
 
 		
@@ -3809,6 +3871,30 @@ class Dashboard extends CI_Controller {
 			$cr5=$_POST['curr2'];
 			$cr6=$_POST['curr3'];
 		}
+		
+		//=====================
+		$nom1=preg_replace("/[^0-9]/", "", $_POST['label2']);
+		$nom2=preg_replace("/[^0-9]/", "", $_POST['jumlah2']);
+		$nom3=preg_replace("/[^0-9]/", "", $_POST['jumlah3']);
+		$getkurs=$this->Dashboard_model->getkurs();
+		foreach ($getkurs->result() as $kurs) {
+			$kursvalue=preg_replace("/[^0-9]/", "", $kurs->kurs);
+			
+			if($kurs->currency==$cr1){
+				$amt1=floatval($nom1)*floatval($kursvalue);
+			}
+			
+			if($kurs->currency==$cr2){
+				$amt2=floatval($nom2)*floatval($kursvalue);
+			}
+			
+			if($kurs->currency==$cr3){
+				$amt3=floatval($nom3)*floatval($kursvalue);
+			}
+		}
+		
+		$totamt=floatval($amt1)+floatval($amt2)+floatval($amt3);
+		//=======================
 		
 		$add = array(			
 			'status' => 0,
@@ -3853,6 +3939,7 @@ class Dashboard extends CI_Controller {
 			'label9b' => $_POST['label9b'],
 			'div_head' => $_POST['div_head'],
 			'jab_div_head' => $_POST['jab_div_head'],
+			'totalamount' => $totamt,
 		);
 
 		$insert = $this->Home_model->saveaddpayment($add);
@@ -3933,6 +4020,29 @@ class Dashboard extends CI_Controller {
 			$v_account = $_POST['rekeningvendor'][$i];
 		}
 
+		//=====================
+		$nom1=preg_replace("/[^0-9]/", "", $_POST['label2']);
+		$nom2=preg_replace("/[^0-9]/", "", $_POST['jumlah2']);
+		$nom3=preg_replace("/[^0-9]/", "", $_POST['jumlah3']);
+		$getkurs=$this->Dashboard_model->getkurs();
+		foreach ($getkurs->result() as $kurs) {
+			$kursvalue=preg_replace("/[^0-9]/", "", $kurs->kurs);
+			if($kurs->currency==$_POST['currency']){
+				$amt1=floatval($nom1)*floatval($kursvalue);
+			}
+			
+			if($kurs->currency==$_POST['currency2']){
+				$amt2=floatval($nom2)*floatval($kursvalue);
+			}
+			
+			if($kurs->currency==$_POST['currency3']){
+				$amt3=floatval($nom3)*floatval($kursvalue);
+			}
+		}
+		
+		$totamt=floatval($amt1)+floatval($amt2)+floatval($amt3);
+		//=====================
+		
 		$add = array(
 			'status' => 0,
 			'id_user' => $_POST['id_user'],
@@ -3976,6 +4086,7 @@ class Dashboard extends CI_Controller {
 			'label9b' => $_POST['label9b'],
 			'div_head' => $_POST['div_head'],
 			'jab_div_head' => $_POST['jab_div_head'],
+			'totalamount' => $totamt,
 		);
 
 		$this->session->set_flashdata('msg', 'Berhasil disimpan!');
@@ -4033,6 +4144,24 @@ class Dashboard extends CI_Controller {
 	public function gettaxhistory(){
 		$idhonor=$this->input->post('txtnamanpwp');
 		$data = $this->Dashboard_model->gettaxhistorybyvendor($idhonor);
+		echo json_encode($data);
+	}
+	
+	public function getapprovalbyamt($amt)
+	{
+		$data= $this->Dashboard_model->getapprovalbylimit($amt);
+		echo json_encode($data);
+	}
+	
+	public function getkurscurrency($curr)
+	{
+		$data= $this->Dashboard_model->getcurscurrency($curr);
+		echo json_encode($data);
+	}
+	
+	public function getkursmulticurrency()
+	{
+		$data= $this->Dashboard_model->getmultikurs();
 		echo json_encode($data);
 	}
 

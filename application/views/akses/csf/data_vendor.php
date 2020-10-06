@@ -466,7 +466,7 @@
                 <tr>
                   <th>Kode Vendor</th>
                   <td>:</td>
-                  <td><input type="text" name="kode_vendor" class="form-control" value="<?php echo $row->kode_vendor; ?>"></td>
+                  <td><input type="text" name="kode_vendor" class="form-control" value="<?php echo $row->kode_vendor; ?>" readonly></td>
                 </tr>
                 <tr>
                   <th>Nama</th>
@@ -501,7 +501,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Data Vendor ini :  <?=$row->nama?></p>
+       <p align="justify">Apa Anda yakin akan menghapus Data Vendor ini : <?=$row->nama?> ?</p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletevendor">
