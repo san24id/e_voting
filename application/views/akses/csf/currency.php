@@ -166,8 +166,7 @@
           <h5>
             <form id="ganti" method="post" action="dashboard/updatecurr">
               <input type="hidden" name="id_curr" value="<?php echo $row->id_curr; ?> ?>">
-             <table class="table">
-             <table class="table">
+              <table class="table">
                 <tr>
                   <th>Currency</th>
                   <td>:</td>
@@ -230,6 +229,7 @@
 <script src="assets/dashboard/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dashboard/dist/js/demo.js"></script>
+
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -315,18 +315,14 @@
   }
 
   function getSeparator(){
-    var x = document.getElementById('kursupdate').value;
-    var get_x = x.replace(/\D+/g, '');
-    alert(get_x);
-			if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
-				get_x= -Math.abs(get_x);		
-			}else{
-				get_x= Math.abs(get_x);		
-      }
-      
-      var xj1=x.trim();
-      
-      get_x.value= formatRupiah(xj1.replace(/[^,\d]/g, '').toString());
+    var rupiah2 = document.getElementById('kursupdate');
+		// rupiah2.addEventListener('keyup', function(e){
+			// tambahkan 'Rp.' pada saat form di ketik
+			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+			rupiah2.value = formatRupiah(this.value);
+		// });
   }
+		
+
 </script>
 </body>

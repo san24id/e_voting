@@ -1652,6 +1652,7 @@ $('#txtnamanpwp').select2();
 				$('#divfaktur').hide();
 			}
 			$('#divinvoice').show();
+			$('#divKdPjk').hide(); 
 			/*if( $strid == 'PPh Pasal 23') {
 				$('#divKdPjk').show(); 			
 			}else{
