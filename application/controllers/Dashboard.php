@@ -2493,30 +2493,38 @@ class Dashboard extends CI_Controller {
 
 		$this->SuperAdm_model->addcurr($add);
 
-		redirect('Dashboard/currency');
+		//redirect('Dashboard/currency');
+		echo json_encode($add);
 	}
 
+	public function currency_edit($id_curr){
+		$data = $this->SuperAdm_model->get_curr_by_id($id_curr);
+		echo json_encode($data);
+	}
+	
 	public function deletecurr(){
 		
-		$this->SuperAdm_model->deletecurr($_POST['id_curr']);
-
-		redirect('Dashboard/currency');
-
+		$data=$_POST['id_curr'];
+		$this->SuperAdm_model->deletecurr($data);
+		//redirect('Dashboard/currency');
+		echo json_encode($data);
 	}
 
 	public function updatecurr(){
+		$curr_code=$_POST['curr_code'];
 		$upd = array(
-			'id_curr' => $_POST['id_curr'],
 			'mata_uang' => $_POST['mata_uang'],
 			'currency' => $_POST['currency'],
 			'kurs' => $_POST['kurs']
 		);
 
-		$this->SuperAdm_model->updatecurr($upd);
+		//$this->SuperAdm_model->updatecurr($upd);
 
-		redirect('Dashboard/currency');
+		//redirect('Dashboard/currency');
+		$this->SuperAdm_model->currency_update(array('id_curr' => $curr_code), $upd);
+		echo json_encode(array("status" => TRUE));
 	}
-
+	
 	public function bank(){
 		$data['active1'] = '';
 		$data['active2'] = '';

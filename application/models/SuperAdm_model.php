@@ -133,4 +133,19 @@ class SuperAdm_model extends CI_model {
 
         return $query;
     }
+	
+	public function get_curr_by_id($id)
+	{
+		$this->db->from('m_currency');
+		$this->db->where('id_curr',$id);
+		$query = $this->db->get();
+
+		return $query->row();
+	}
+	
+	public function currency_update($where, $data)
+	{
+		$this->db->update('m_currency', $data, $where);
+		return $this->db->affected_rows();
+	}
 }
