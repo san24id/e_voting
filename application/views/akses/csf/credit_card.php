@@ -32,7 +32,7 @@
                   <th>Nama PIC</th>
                   <th>Target Submission Credit Card</th>
                   <th>Jatuh Tempo</th>
-                  <th>Credit Card Submission</th>
+                  <th><center>Credit Card Submission</center></th>
                   <th>Status</th>
 				          <th>Action</th>
                 </tr>
@@ -52,7 +52,7 @@
                   <td><?php echo $row->target_submission;?></td>
 
                   <td><?php echo $row->tempo; ?></td>
-                  <td><?php echo $row->jatah; ?></td>
+                  <td><center><?php echo $row->jatah; ?></center></td>
 				          <td><?php echo $row->status; ?></td>                  
                   <td>
                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_div; ?>">Ubah</button>
@@ -82,7 +82,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong> Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -305,7 +305,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa anda yakin akan menghapus dengan Data Corporate Credit Card ini? </p>
+       <p align="justify">Apa Anda yakin akan menghapus dengan Data Corporate Credit Card ini? </p>
        <p> Divisi : <?=$row->division_id?> </p>
       </div>
       <div class="modal-footer">

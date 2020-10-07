@@ -201,7 +201,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Data Kode MAP ini :  <?=$row->kode_map?></p>
+       <p align="justify">Apa Anda yakin akan menghapus Data Kode MAP ini :  <?=$row->kode_map?> ?</p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletekodemap">

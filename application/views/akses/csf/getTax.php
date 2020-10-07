@@ -138,7 +138,7 @@
                     </tbody>
                     </table>
                     </h6>
-                    <p align="justify">Apa kamu yakin akan mengirimkan TAX Form Pengajuan ini :  <?=$row->nomor_surat?></p>
+                    <p align="justify">Apa Anda yakin                  akan mengirimkan TAX Form Pengajuan ini :  <?=$row->nomor_surat?></p>
                     <label>Kepada CSF Finance:</label>                        
                     <select name="handled_by">
                         <option>--- Choose ---</option>

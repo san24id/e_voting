@@ -39,8 +39,8 @@
                           <table id="example1" class="table table-bordered table-striped">
                             <thead>
                               <tr>
-                                <th>NO.</th>
-                                <th>Kode Vendor</th>
+                                <th><center>NO.</center></th>
+                                <th><center>Kode Vendor</center></th>
                                 <th>NPWP</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
@@ -53,8 +53,8 @@
                                 foreach ($getVendor1 as $row){
                               ?>
                               <tr>
-                                <td><?php echo $i++; ?></td>
-                                <td><?php echo $row->kode_vendor; ?></td>
+                                <td><center><?php echo $i++; ?></center></td>
+                                <td><center><?php echo $row->kode_vendor; ?></center></td>
                                 <td><?php echo $row->npwp; ?></td>
                                 <td><?php echo $row->nama; ?></td>
                                 <td><?php echo $row->alamat; ?></td>
@@ -81,8 +81,8 @@
                         <table id="example2" class="table table-bordered table-striped">
                           <thead>
                             <tr>
-                              <th>NO.</th>
-                              <th>Kode Vendor</th>
+                              <th><center>NO.</center></th>
+                              <th><center>Kode Vendor</center></th>
                               <th>NPWP</th>
                               <th>Nama</th>
                               <th>Alamat</th>
@@ -95,8 +95,8 @@
                               foreach ($getVendor2 as $row){
                             ?>
                             <tr>
-                              <td><?php echo $i++; ?></td>
-                              <td><?php echo $row->kode_vendor; ?></td>
+                              <td><center><?php echo $i++; ?></center></td>
+                              <td><center><?php echo $row->kode_vendor; ?></center></td>
                               <td><?php echo $row->npwp; ?></td>
                               <td><?php echo $row->nama; ?></td>
                               <td><?php echo $row->alamat; ?></td>
@@ -123,8 +123,8 @@
                         <table id="example3" class="table table-bordered table-striped">
                           <thead>
                             <tr>
-                              <th>NO.</th>
-                              <th>Kode Vendor</th>
+                              <th><center>NO.</center></th>
+                              <th><center>Kode Vendor</center></th>
                               <th>NPWP</th>
                               <th>Nama</th>
                               <th>Alamat</th>
@@ -137,8 +137,8 @@
                               foreach ($getVendor3 as $row){
                             ?>
                             <tr>
-                              <td><?php echo $i++; ?></td>
-                              <td><?php echo $row->kode_vendor; ?></td>
+                              <td><center><?php echo $i++; ?></center></td>
+                              <td><center><?php echo $row->kode_vendor; ?></center></td>
                               <td><?php echo $row->npwp; ?></td>
                               <td><?php echo $row->nama; ?></td>
                               <td><?php echo $row->alamat; ?></td>
@@ -165,8 +165,8 @@
                         <table id="example4" class="table table-bordered table-striped">
                           <thead>
                             <tr>
-                              <th>NO.</th>
-                              <th>Kode Vendor</th>
+                              <th><center>NO.</center></th>
+                              <th><center>Kode Vendor</center></th>
                               <th>NPWP</th>
                               <th>Nama</th>
                               <th>Alamat</th>
@@ -179,8 +179,8 @@
                               foreach ($getVendor9 as $row){
                             ?>
                             <tr>
-                              <td><?php echo $i++; ?></td>
-                              <td><?php echo $row->kode_vendor; ?></td>
+                              <td><center><?php echo $i++; ?></center></td>
+                              <td><center><?php echo $row->kode_vendor; ?></center></td>
                               <td><?php echo $row->npwp; ?></td>
                               <td><?php echo $row->nama; ?></td>
                               <td><?php echo $row->alamat; ?></td>

@@ -1275,7 +1275,7 @@ function saveapf() {
       <form id="processed" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="status" value="5">
-        <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
         <label>Kepada CSF Finance:</label>                        
         <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>

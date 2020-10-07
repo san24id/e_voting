@@ -155,7 +155,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus dengan Mata Uang ini : <span id="spancurrency"></span> </p>
+       <p align="justify">Apa Anda yakin akan menghapus dengan Mata Uang ini : <span id="spancurrency"></span> ?</p>
       </div>
       <div class="modal-footer">
       <form id="frmdeletecurrency" action="#">

@@ -230,7 +230,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Data Divisi ini :  <?=$row->division_name?></p>
+       <p align="justify">Apa Anda yakin akan menghapus Data Divisi ini :  <?=$row->division_name?></p>
        <p> Division ID : <?=$row->division_id?> </p>
       </div>
       <div class="modal-footer">

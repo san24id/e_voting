@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        DATA PAJAK
+        DATA JENIS PAJAK
         <small></small>
       </h1>
     </section>
@@ -24,7 +24,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
+                  <th><center>NO.</center></th>
                   <th>Jenis Pajak</th>
                   <th>Action</th>
                 </tr>
@@ -35,7 +35,7 @@
                     foreach ($getDataPajak as $row){
                    ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>
+                  <td><center><?php echo $i++; ?></center></td>
                   <td><?php echo $row->jenis_pajak; ?></td>
                   <td>
                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_jenis_pjk; ?>">Ubah</button>
@@ -66,7 +66,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong> Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -109,7 +109,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Data Pajak</h4>
+          <h4 class="modal-title">Tambah Data Jenis Pajak</h4>
         </div>
         <div class="modal-body">
           <h5>
@@ -145,7 +145,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Ubah Data Pajak</h4>
+          <h4 class="modal-title">Ubah Data Jenis Pajak</h4>
            
         </div>
         <div class="modal-body">
@@ -177,7 +177,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Data Pajak ini :  <?=$row->jenis_pajak?></p>
+       <p align="justify">Apa Anda yakin akan menghapus Data Jenis Pajak ini :  <?=$row->jenis_pajak?> ?</p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletepajak">

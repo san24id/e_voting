@@ -52,7 +52,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>No.</th>
+                    <th><center>No.</center></th>
                     <th>Nomor SP3 </th>
                     <th>Jenis Pajak </th>
                     <th>Kode Objek Pajak</th>
@@ -79,7 +79,7 @@
                     foreach ($report_pph as $row){
                   ?>
                   <tr>
-                    <td><?php echo $i++; ?></td>                  
+                    <td><center><?php echo $i++; ?></center></td>                  
                     <td><?php echo $row->nomor_surat;?> </td>
                     <td><?php echo $row->jenis_pajak; ?></td>
                     <td><?php echo $row->kode_pajak; ?></td>
@@ -157,7 +157,7 @@
                 <table id="example2" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>No.</th>
+                    <th><center>No.</center></th>
                     <th>Nomor SP3 </th>
                     <th>Jenis Pajak </th>
                     <th>Masa Pajak</th>
@@ -181,7 +181,7 @@
                     foreach ($report_ppn as $row){
                   ?>
                   <tr>
-                    <td><?php echo $i++; ?></td>                  
+                    <td><center><?php echo $i++; ?></center></td>                  
                     <td><?php echo $row->nomor_surat;?> </td>
                     <td><?php echo $row->jenis_pajak; ?></td>
                     <td><?php echo $row->masa_pajak;?></td>

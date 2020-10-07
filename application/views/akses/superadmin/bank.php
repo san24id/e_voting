@@ -68,7 +68,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong> Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -189,7 +189,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Bank Account ini :  <?=$row->nama_bank?></p>
+       <p align="justify">Apa Anda yakin akan menghapus Bank Account ini :  <?=$row->nama_bank?></p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="superadm/deletebank">

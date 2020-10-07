@@ -22,7 +22,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
+                  <th><center>NO.</center></th>
                   <th>Tanggal Reject</th>
                   <th>Reject Dari</th>
                   <th>Nomor SP3</th>
@@ -38,7 +38,7 @@
                     foreach ($rejected as $row){
                   ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>                  
+                  <td><center><?php echo $i++; ?></center></td>                  
                   <td><?php echo $row->rejected_date; ?></td>
                   <td><?php echo $row->rejected_by; ?>  </td>
                   <td><?php echo $row->nomor_surat; ?> </td>

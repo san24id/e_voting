@@ -328,7 +328,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="paid_date" value="<?php echo date("Y-m-d"); ?>">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa anda yakin akan membayar Form APF ini : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa Anda yakin akan membayar Form APF ini : <?=$get->apf_doc?></p>
                                          
                         </div>
                         <div class="modal-footer">                        

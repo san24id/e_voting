@@ -112,7 +112,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong> Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -468,7 +468,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus dengan Nama :  <?=$row->display_name?></p>
+       <p align="justify">Apa Anda yakin akan menghapus dengan Nama :  <?=$row->display_name?></p>
        <p> Username : <?=$row->username?> </p>
       </div>
       <div class="modal-footer">

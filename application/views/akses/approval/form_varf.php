@@ -337,7 +337,7 @@ td[rowspan="6"] {
                           <input type="hidden" name="status" value="9">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa Anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <p><b>Jika setuju, Form APF ini akan dilanjutkan ke Proses Pembayaran</b></p>                       
                         </div>
@@ -360,7 +360,7 @@ td[rowspan="6"] {
                         <form id="rejected" method="post" action="approval/rejected">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="5">
-                          <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa Anda yakin akan me-rejected Form APF kepada Finance : <?=$get->apf_doc?></p>
                           <label>Notes :</label>                
                           <textarea type="text" name="note" class="form-control" required></textarea>
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -471,7 +471,7 @@ function nominal(){
       <form id="processed" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="status" value="7">
-        <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
         <label>Kepada CSF Verificator:</label>                        
         <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>
@@ -496,7 +496,7 @@ function nominal(){
       <form id="processed1" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="status" value="8">
-        <p align="justify">Apa kamu yakin akan menyetujui Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan menyetujui Form Pengajuan ini : <?=$get->nomor_surat?></p>
         <label>Kepada Approval? </label>                        
       </div>
       <div class="modal-footer">                        
@@ -516,7 +516,7 @@ function nominal(){
       <form id="rejected" method="post" action="dashboard/rejected">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="id" value="3">
-        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
         <label>Notes :</label>                
         <input type="text" name="note"></input>
         <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
@@ -538,7 +538,7 @@ function nominal(){
       <form id="rejected2" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="id" value="4">
-        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
         <label>Kepada CSF Finance:</label>                        
         <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>

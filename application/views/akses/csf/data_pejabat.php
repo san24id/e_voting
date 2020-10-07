@@ -24,7 +24,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
+                  <th><center>NO.</center></th>
                   <th>Nama</th>
                   <th>Jabatan</th>
                   <th>Status</th>
@@ -37,7 +37,7 @@
                     foreach ($d_wewenang as $row){
                    ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>
+                  <td><center><?php echo $i++; ?></center></td>
                   <td><?php echo $row->nama_user; ?></td>
                   <td><?php echo $row->jabatan; ?></td>
                   <td><?php echo $row->activate; ?></td>
@@ -70,7 +70,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong> Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -194,7 +194,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Data Pejabat ini :  <?=$row->jenis_pajak?></p>
+       <p align="justify">Apa Anda yakin                  akan menghapus Data Pejabat ini :  <?=$row->jenis_pajak?></p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletepajak">

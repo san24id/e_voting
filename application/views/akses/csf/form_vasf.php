@@ -367,7 +367,7 @@ td[rowspan="6"] {
                                 <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                                 <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                                 <input type="hidden" name="status" value="6">
-                                <p align="justify">Apa anda yakin akan mengirim kembali Form APF ini : <?=$get->apf_doc?> ?</p>
+                                <p align="justify">Apa Anda yakin akan mengirim kembali Form APF ini : <?=$get->apf_doc?> ?</p>
                                 <label>Kepada CSF Reviewer:</label>    
                                 <input type="hidden" name="handled_by" value="i.akmal">                    
                                 <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
@@ -404,7 +404,7 @@ td[rowspan="6"] {
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                               <input type="hidden" name="status" value="7">
-                              <p align="justify">Apa anda yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
+                              <p align="justify">Apa Anda yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
                               <label>Kepada CSF Verificator:</label>    
                               <input type="hidden" name="handled_by" value="h.harlina">                 
                             </div>
@@ -430,7 +430,7 @@ td[rowspan="6"] {
                             <form id="rejected" method="post" action="dashboard/rejectreq">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="3">
-                              <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                              <p align="justify">Apa Anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                               <label>Notes :</label>                
                               <textarea type="text" class="form-control" name="note" required></textarea>
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -459,7 +459,7 @@ td[rowspan="6"] {
                             <form id="rejected2" method="post" action="dashboard/rejectapf">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="5">
-                              <p align="justify">Apa anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
+                              <p align="justify">Apa Anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
                               <label>Kepada CSF Finance:</label>
                               <br>
                               <input type="hidden" name="handled_by" value="n.prasetyaningrum">
@@ -502,7 +502,7 @@ td[rowspan="6"] {
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                             <input type="hidden" name="status" value="8">
                             <input type="hidden" name="verified_date" value="<?php echo date('d-M-Y'); ?>">
-                            <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                            <p align="justify">Apa Anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada Approval? </label>                        
                           </div>
                           <div class="modal-footer">                        
@@ -527,7 +527,7 @@ td[rowspan="6"] {
                           <form id="rejected" method="post" action="dashboard/rejectreq">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="3">
-                            <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                            <p align="justify">Apa Anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                             <label>Notes :</label>                
                             <textarea type="text" class="form-control" name="note" required></textarea>
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -556,7 +556,7 @@ td[rowspan="6"] {
                           <form id="rejected2" method="post" action="dashboard/rejectapf">
                             <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                             <input type="hidden" name="status" value="5">
-                            <p align="justify">Apa anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
+                            <p align="justify">Apa Anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada CSF Finance:</label>                        
                             <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -681,7 +681,7 @@ function nominal(){
       <form id="processed" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="status" value="7">
-        <p align="justify">Apa kamu yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan mengirim Form Pengajuan ini : <?=$get->nomor_surat?></p>
         <label>Kepada CSF Verificator:</label>                        
         <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>
@@ -706,7 +706,7 @@ function nominal(){
       <form id="processed1" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="status" value="8">
-        <p align="justify">Apa kamu yakin akan menyetujui Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan menyetujui Form Pengajuan ini : <?=$get->nomor_surat?></p>
         <label>Kepada Approval? </label>                        
       </div>
       <div class="modal-footer">                        
@@ -726,7 +726,7 @@ function nominal(){
       <form id="rejected" method="post" action="dashboard/rejected">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="id" value="3">
-        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan me-rejected Form Pengajuan kepada Requestor : <?=$get->nomor_surat?></p>
         <label>Notes :</label>                
         <input type="text" name="note"></input>
         <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
@@ -748,7 +748,7 @@ function nominal(){
       <form id="rejected2" method="post" action="dashboard/updpay">
         <input type="hidden" name="id" value="<?php echo $get->id; ?>">
         <input type="hidden" name="id" value="4">
-        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
+        <p align="justify">Apa Anda yakin akan me-rejected Form Pengajuan ini : <?=$get->nomor_surat?></p>
         <label>Kepada CSF Finance:</label>                        
         <select class="form-control" name="handled_by">
           <option>--- Choose ---</option>

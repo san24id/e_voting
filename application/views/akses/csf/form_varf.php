@@ -350,7 +350,7 @@ td[rowspan="6"] {
                                 <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                                 <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                                 <input type="hidden" name="status" value="6">
-                                <p align="justify">Apa anda yakin akan mengirim kembali Form APF ini : <?=$get->apf_doc?> ?</p>
+                                <p align="justify">Apa Anda yakin akan mengirim kembali Form APF ini : <?=$get->apf_doc?> ?</p>
                                 <label>Kepada CSF Reviewer:</label>    
                                 <input type="hidden" name="handled_by" value="i.akmal">                    
                                 <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
@@ -387,7 +387,7 @@ td[rowspan="6"] {
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="7">
-                              <p align="justify">Apa anda yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
+                              <p align="justify">Apa Anda yakin akan mengirim Form APF ini : <?=$get->apf_doc?></p>
                               <label>Kepada CSF Verificator:</label>    
                               <input type="hidden" name="handled_by" value="h.harlina">                    
                               
@@ -414,7 +414,7 @@ td[rowspan="6"] {
                             <form id="rejected" method="post" action="dashboard/rejectreq">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="3">
-                              <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                              <p align="justify">Apa Anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                               <label>Notes :</label>                
                               <textarea type="text" class="form-control" name="note" required></textarea>
                               <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -443,7 +443,7 @@ td[rowspan="6"] {
                             <form id="rejected2" method="post" action="dashboard/rejectapf">
                               <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                               <input type="hidden" name="status" value="5">
-                              <p align="justify">Apa anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
+                              <p align="justify">Apa Anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
                               <label>Kepada CSF Finance:</label>
                               <br>
                               <input type="hidden" name="handled_by" value="n.prasetyaningrum">
@@ -486,7 +486,7 @@ td[rowspan="6"] {
                             <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                             <input type="hidden" name="status" value="8">
                             <input type="hidden" name="verified_date" value="<?php echo date('d-M-Y'); ?>">
-                            <p align="justify">Apa anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
+                            <p align="justify">Apa Anda yakin akan menyetujui Form APF ini : <?=$get->apf_doc?></p>
                             <label>Kepada Approval? </label>                        
                           </div>
                           <div class="modal-footer">                        
@@ -511,7 +511,7 @@ td[rowspan="6"] {
                         <form id="rejected" method="post" action="dashboard/rejectreq">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="3">
-                          <p align="justify">Apa anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
+                          <p align="justify">Apa Anda yakin akan me-rejected Form APF kepada Requestor : <?=$get->nomor_surat?></p>
                           <label>Notes :</label>                
                           <textarea type="text" class="form-control" name="note" required></textarea>
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">
@@ -540,7 +540,7 @@ td[rowspan="6"] {
                         <form id="rejected2" method="post" action="dashboard/rejectapf">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="5">
-                          <p align="justify">Apa anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
+                          <p align="justify">Apa Anda yakin akan mengembalikan Form APF ini : <?=$get->apf_doc?></p>
                           <label>Kepada CSF Finance:</label>                        
                           <input type="hidden" name="handled_by" value="n.prasetyaningrum">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat;?>">

@@ -210,7 +210,7 @@
                       <div class="modal-body">
                       <form id="approved" method="post" action="approval/approve">
                         <input type="hidden" name="id_pay" value="<?php echo $row->id_pay; ?>">
-                        <p align="justify">Apa kamu yakin akan Menyetujui Form Pengajuan ini :  <?=$row->nomor_surat?></p>
+                        <p align="justify">Apa Anda yakin akan Menyetujui Form Pengajuan ini :  <?=$row->nomor_surat?></p>
                         <label>Kepada :</label>                        
                         <select class="form-control" name="handled_by">
                           <option>--- Choose ---</option>
@@ -234,7 +234,7 @@
                       <div class="modal-body">
                       <form id="rejected" method="post" action="approval/rejected">
                         <input type="hidden" name="id_pay" value="<?php echo $row->id_pay; ?>">
-                        <p align="justify">Apa kamu yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
+                        <p align="justify">Apa Anda yakin akan me-rejected Form Pengajuan ini : <?=$row->nomor_surat?></p>
                         <label>Notes :</label>                
                         <input type="text" name="note"></input>
                         <select class="form-control" name="handled_by">

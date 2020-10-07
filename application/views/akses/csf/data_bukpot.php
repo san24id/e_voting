@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        DATA KODE BUKPOT
+        DATA KODE BUKTI POTONG
         <small></small>
       </h1>
     </section>
@@ -24,9 +24,9 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
+                  <th><center>NO.</center></th>
                   <th>Nama Objek Pajak</th>
-                  <th>Kode Objek Pajak</th>
+                  <th><center>Kode Objek Pajak</center></th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -36,9 +36,9 @@
                     foreach ($getDatakode_bukpot as $row){
                    ?>
                 <tr>
-                  <td><?php echo $i++; ?></td>
+                  <td><center><?php echo $i++; ?></center></td>
                   <td><?php echo $row->nama_objek_pajak; ?></td>
-                  <td><?php echo $row->kode_objek_pajak; ?></td>
+                  <td><center><?php echo $row->kode_objek_pajak; ?></center></td>
                   <td>
                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubah<?php echo $row->id_bukpot; ?>">Ubah</button>
                     <!-- <a href="SuperAdm/deletehonor/<?php echo $row->id_bukpot; ?>"><button class="btn btn-danger btn-sm">Hapus</button> -->
@@ -68,7 +68,7 @@
     <div class="pull-right hidden-xs">
      
     </div>
-    <strong>Copyright &copy; 2019 </footer>
+    <strong> Copyright &copy; 2020 </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -190,7 +190,7 @@
     <div class="modal-content">
 
       <div class="modal-body">
-       <p align="justify">Apa kamu yakin akan menghapus Data Kode Bukpot ini :  <?=$row->kode_objek_pajak?></p>
+       <p align="justify">Apa Anda yakin akan menghapus Data Kode Bukpot ini : <?=$row->kode_objek_pajak?> ?</p>
       </div>
       <div class="modal-footer">
       <form id="deleted" method="post" action="dashboard/deletebukpot">
