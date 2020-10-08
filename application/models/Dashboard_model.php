@@ -278,40 +278,48 @@ class Dashboard_model extends CI_Model{
     var $table ="t_payment_l";
     public function buat_kode_arf()  {   
 
-		$where = "substring(apf_doc,length(apf_doc)-1,1)='".date('m')."'";
+		/*$where = "substring(apf_doc,length(apf_doc)-1,1)='".date('m')."'";
         $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->where($where);
         $this->db->order_by('apf_doc','ASC');    
-        $this->db->limit(1);    
-        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
+        $this->db->limit(1);
+		$query = $this->db->get('t_payment_l'); */     //cek dulu apakah ada sudah ada kode di tabel.    
+        $sql = "select max(convert(RIGHT(tl.apf_doc,3),SIGNED INTEGER)) as no_urut ";
+		$sql .= "from t_payment_l tl where substring(tl.apf_doc,7,4) ='".date('my')."' and substring(tl.apf_doc,1,3)='ARF' ";	
+        $query = $this->db->query($sql);
+		
         if($query->num_rows() <> 0){      
          //jika kode ternyata sudah ada.      
          $data = $query->row();      
-         $kode = intval($data->kode) + 1;    
-        }
-        else {      
+         //$kode = intval($data->kode) + 1; 
+		   $kode = intval($data->no_urut) + 1; 
+        }else {      
          //jika kode belum ada      
          $kode = 1;    
         }
 
         $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
         $kodejadi = "ARF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        // var_dump($kodejadi);exit;
         return $kodejadi;  
     }
 
     //Buat ASF APF Number 
     public function buat_kode_asf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
+        /*$this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
-        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
-        if($query->num_rows() <> 0){      
+        $query = $this->db->get('t_payment_l');   */   //cek dulu apakah ada sudah ada kode di tabel.    
+        $sql = "select max(convert(RIGHT(tl.apf_doc,3),SIGNED INTEGER)) as no_urut ";
+		$sql .= "from t_payment_l tl where substring(tl.apf_doc,9,2) ='".date('y')."' and substring(tl.apf_doc,1,3)='ASF' ";	
+        $query = $this->db->query($sql);
+		if($query->num_rows() <> 0){      
          //jika kode ternyata sudah ada.      
          $data = $query->row();      
-         $kode = intval($data->kode) + 1;    
-        }
-        else {      
+         //$kode = intval($data->kode) + 1;      
+         $kode = intval($data->no_urut) + 1;     
+        }else {      
          //jika kode belum ada      
          $kode = 1;    
         }
@@ -324,18 +332,21 @@ class Dashboard_model extends CI_Model{
     //Buat PRF APF Number 
     public function buat_kode_prf()  {   
 
-        $where = "substring(apf_doc,length(apf_doc)-1,1)='".date('m')."'";
+        /*$where = "substring(apf_doc,length(apf_doc)-1,1)='".date('m')."'";
         $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->where($where);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
-        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
-        if($query->num_rows() <> 0){      
+        $query = $this->db->get('t_payment_l'); */     //cek dulu apakah ada sudah ada kode di tabel.    
+        $sql = "select max(convert(RIGHT(tl.apf_doc,3),SIGNED INTEGER)) as no_urut ";
+		$sql .= "from t_payment_l tl where substring(tl.apf_doc,7,4) ='".date('my')."' and substring(tl.apf_doc,1,3)='PRF' ";	
+        $query = $this->db->query($sql);
+		if($query->num_rows() <> 0){      
          //jika kode ternyata sudah ada.      
          $data = $query->row();      
-         $kode = intval($data->kode) + 1;    
-        }
-        else {      
+         //$kode = intval($data->kode) + 1;         
+         $kode = intval($data->no_urut) + 1;    
+        }else {      
          //jika kode belum ada      
          $kode = 1;    
         }
@@ -348,16 +359,19 @@ class Dashboard_model extends CI_Model{
     //Buat CRF APF Number 
     public function buat_kode_crf()  {   
 
-        $this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
+        /*$this->db->select('RIGHT(t_payment_l.apf_doc,3) as kode', FALSE);
         $this->db->order_by('apf_doc','DESC');    
         $this->db->limit(1);    
-        $query = $this->db->get('t_payment_l');      //cek dulu apakah ada sudah ada kode di tabel.    
-        if($query->num_rows() <> 0){      
-         //jika kode ternyata sudah ada.      
-         $data = $query->row();      
-         $kode = intval($data->kode) + 1;    
-        }
-        else {      
+        $query = $this->db->get('t_payment_l');*/      //cek dulu apakah ada sudah ada kode di tabel.    
+        $sql = "select max(convert(RIGHT(tl.apf_doc,3),SIGNED INTEGER)) as no_urut ";
+		$sql .= "from t_payment_l tl where substring(tl.apf_doc,7,4) ='".date('my')."' and substring(tl.apf_doc,1,3)='CRF' ";	
+        $query = $this->db->query($sql);
+		if($query->num_rows() <> 0){      
+			//jika kode ternyata sudah ada.      
+			$data = $query->row();      
+			//$kode = intval($data->kode) + 1;
+			$kode = intval($data->no_urut) + 1;
+        }else {      
          //jika kode belum ada      
          $kode = 1;    
         }
