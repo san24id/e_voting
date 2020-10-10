@@ -573,7 +573,6 @@ var chkPARTNDE = document.getElementById('nilai');
     return prefix == undefined ? chkPARTNDE : (chkPARTNDE? + chkPARTNDE : '');
   }
 
-
   </script>
 <script>
 
@@ -1523,7 +1522,12 @@ function showed() {
 }
 
   
-  
+function formatpajakterhutang(){
+	var pjkterhutang = $('#txtpajakterhutang').val();
+	pjkterhutang = pjkterhutang.replace(/[^,\d]/g, '').toString();
+	$("#txtpajakterhutang").val(formatRupiah(pjkterhutang.toString()));
+	$("#vpajakterhutang").val(formatRupiah(pjkterhutang.toString()));
+}	
   
 
 
@@ -1893,14 +1897,14 @@ function PajakTerhutang(){
 		}else{
 			$('#txtdppgross').val('0');
 		}
-		$('#txtpajakterhutang').prop('readonly', false);
+		//$('#txtpajakterhutang').prop('readonly', false);
 	  $('#txtpajakterhutang').val('0');	
 	  $('#vpajakterhutang').val('0');	
 		$("#txtpajakterhutang").val(formatRupiah(pjkutang.toString()));	
 		//$('#txtpajakterhutang').prop('readonly', true);
 		$("#vpajakterhutang").val(formatRupiah(pjkutang.toString()));	
 		$('#txtdpp').val(formatRupiah(dpp.toString()))
-		$('#txtpajakterhutang').prop('readonly', true);
+		//$('#txtpajakterhutang').prop('readonly', true);
 	}
 	
 				
@@ -2327,7 +2331,7 @@ function gethistorytax()
 								</div>
 								<label class="control-label col-md-2">Pajak Terhutang</label>
 								<div class="col-md-3">
-								  <input name="txtpajakterhutang" id="txtpajakterhutang"  placeholder="Pajak Terhutang" value='0' class="form-control" type="text" readonly>
+								  <input name="txtpajakterhutang" id="txtpajakterhutang" onkeyup="formatpajakterhutang()"  placeholder="Pajak Terhutang" value='0' class="form-control" type="text">
 								</div>
 						</div>
 						

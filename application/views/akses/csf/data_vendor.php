@@ -375,12 +375,12 @@
                 <tr>
                   <th>NPWP</th>
                   <td>:</td>
-                  <td><input type="text" name="npwp" class="form-control" required></td>
+                  <td><input type="text" name="npwp" class="form-control" ></td>
                 </tr>
                 <tr>
                   <th>Alamat</th>
                   <td>:</td>
-                  <td><input type="text" name="alamat" class="form-control" required></td>
+                  <td><input type="text" name="alamat" class="form-control" ></td>
                 </tr>
              </table>
           </h5>
