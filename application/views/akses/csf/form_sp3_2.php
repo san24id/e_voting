@@ -1017,6 +1017,7 @@ function edit_tax(id)
       $.ajax({
         url : "<?php echo base_url('dashboard/tax_edit/')?>/" + id,
         type: "GET",
+		async : false,        
 		dataType: "JSON",
         success: function(data)
         {
@@ -1035,7 +1036,8 @@ function edit_tax(id)
 			$('[name="txtnamanpwp"]').val(data[0].id_honor).change();			
 			$('[name="txtnamanpwp_old"]').val(data[0].nama);	
 			$('[name="txtnonpwp"]').val(data[0].npwp);			
-			$('[name="txtalamat"]').val(data[0].alamat);			
+			$('[name="txtalamat"]').val(data[0].alamat);
+			$("#txtdppkumulatif").val(formatRupiah(data[0].dpp_kumulatif)); 								
 			$('[name="txtnoinvoice"]').val(data[0].noinvoice);			
 			$('[name="txttglinvoice"]').val(data[0].tglinvoice);			
 			$('[name="txtfakturpajak"]').val(data[0].nofaktur);
@@ -1565,8 +1567,9 @@ $('#txtnamanpwp').select2();
 		$("#vkdmap").val($("#selKdMap option:selected").val());
 	});
 	
-	$('#txtnamanpwp').change(function() {
-		var $idhonor = $("#txtnamanpwp option:selected").val();
+	//$('#txtnamanpwp').change(function() {
+	function txtnamanpwp_change1(){
+		var $idhonor = $("#txtnamanpwp option:selected").val();		
 		var $strid = $("#selJnsPjk option:selected").text();
 		var url;
 		if($idhonor==''){
@@ -1598,7 +1601,7 @@ $('#txtnamanpwp').select2();
 				alert('Error get data from ajax');
 			}
 		});
-	});
+	}; //);
 	
 	$('#selJnsPjk').change(function() {
 		var $strid = $("#selJnsPjk option:selected").text();
@@ -1845,6 +1848,42 @@ $('#txtnamanpwp').select2();
 	
   }); 
 
+function txtnamanpwp_change(){
+		//var $idhonor = $("#txtnamanpwp option:selected").val();		
+		var $idhonor = $("#txtnamanpwp").val();		
+		var $strid = $("#selJnsPjk option:selected").text();
+		var url;
+		if($idhonor==''){
+			$idhonor='0';
+		}
+		
+		$.ajax({
+		url : "<?php echo base_url('dashboard/getdetilnpwpbyvendor/')?>/" + $idhonor,
+        type: "GET",
+		async : false,		
+		dataType: "JSON",
+        success: function(data)
+			{
+				console.log(data.length);
+				if(data.length>0){
+					$("#txtnonpwp").val(data[0].npwp);
+					$("#txtnamanpwp_old").val(data[0].nama);
+					$("#txtalamat").val(data[0].alamat); 
+					$("#txtdppkumulatif").val(formatRupiah(data[0].dpp_kumulatif)); 
+					if( $strid.trim() == 'PPN Offshore') {
+						$("#txtnonpwp").val('');
+						$("#txtalamat").val('');
+					}
+				}
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+	};
+	
 function PajakTerhutang(){
 	var trf;
 	var dpp=$('#txtdpp').val();
@@ -2236,7 +2275,7 @@ function gethistorytax()
 						<div class="form-group">
 								<label class="control-label col-md-3">Nama NPWP</label>
 								<div class="col-md-9">
-									<select class="form-control select2" id="txtnamanpwp" name="txtnamanpwp" style="width: 100%;" disabled>
+									<select class="form-control select2" id="txtnamanpwp" name="txtnamanpwp" onchange="txtnamanpwp_change()" style="width: 100%;" disabled>
 										<option value=''>== Pilih ==</option>	
 										<?php 										
 										foreach($getallnpwp as $allnpwp)

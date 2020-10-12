@@ -161,11 +161,14 @@ td[rowspan="6"] {
                         </tr>
 
                         <tr>
-                          <td colspan="3" > Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center>    </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" style="text-align:right" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly> 
-                              <?php echo $get->currency4;?>&nbsp;<input id="ulang2" style="text-align:right" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
-                              <?php echo $get->currency8;?>&nbsp;<input id="ulang3" style="text-align:right" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
+                          <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $get->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency4;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency8;?>" readonly> 
+                          </td>
+                          <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly>
+                              <input id="ulang1" style="text-align:right" type="text" class="form-control" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
+                              <input id="ulang2" style="text-align:right" type="text" class="form-control" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly> 
                           </td>
                         </tr>
                         <tr> 

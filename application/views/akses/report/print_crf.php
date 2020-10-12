@@ -84,92 +84,89 @@ td[rowspan="6"] {
                       <tbody>                      
                       <tr>
                           <td><font size="1"><center> 1 </center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description;?></td>                  
-                          <td><center><font size="1"><?php echo $get->currency;?></center> </td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah;?></td>
+                          <td colspan="2" class="kolom1"><font size="1"><?php echo $get->description;?></td>                  
+                          <td class="kolom"><center><font size="1"><?php echo $get->currency;?></center> </td>
+                          <td align="right"><font size="1" ><?php echo $get->jumlah;?></td>
                         </tr>
                         <tr>
                           <td><font size="1"><center> 2 </center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description2;?></td>
-                          <td><center><font size="1"><?php echo $get->currency1;?></center> </td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah2;?> </td> 
+                          <td colspan="2" class="kolom"><font size="1"><?php echo $get->description2;?></td>
+                          <td class="kolom"><center><font size="1"><?php echo $get->currency1;?></center> </td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah2;?> </td> 
                         </tr>
                         <tr>
                           <td><font size="1"><center> 3 </center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description3;?> </td>
-                          <td><center><font size="1"><?php echo $get->currency2;?> </center> </td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah3;?> </td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description3;?> </td>
+                          <td class="kolom"><center><font size="1"><?php echo $get->currency2;?> </center> </td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah3;?> </td> 
                         </tr>
                         <tr>
                           <td><center><font size="1">4</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description4;?> </td>
-                          <td><center><font size="1">  <?php echo $get->currency3;?></center> </td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah4;?> </td>
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description4;?> </td>
+                          <td class="kolom"><center><font size="1">  <?php echo $get->currency3;?></center> </td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah4;?> </td>
                         </tr>
                         <tr>
                           <td><center><font size="1">5</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description5;?> </td>
-                          <td><center><font size="1">  <?php echo $get->currency4;?></center> </td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah5;?>  </td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description5;?> </td>
+                          <td class="kolom"><center><font size="1">  <?php echo $get->currency4;?></center> </td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah5;?>  </td> 
                         </tr>
                         <tr>
                           <td><font size="1"><center>6</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description6;?> </td>
-                          <td><center><font size="1">  <?php echo $get->currency5;?></center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah6;?> </td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description6;?> </td>
+                          <td class="kolom"><center><font size="1">  <?php echo $get->currency5;?></center></td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah6;?> </td> 
                         </tr>
                         
                         <tr>
                           <td><center><font size="1">7</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description7;?> </td>
-                          <td><center><font size="1">  <?php echo $get->currency6;?></center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah7;?>  </td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description7;?> </td>
+                          <td class="kolom"><center><font size="1">  <?php echo $get->currency6;?></center></td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah7;?>  </td> 
                         </tr>
                         <tr>
                           <td><center><font size="1">8</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description8;?> </td>
-                          <td><center><font size="1">  <?php echo $get->currency7;?></center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah8;?></td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description8;?> </td>
+                          <td class="kolom"><center><font size="1">  <?php echo $get->currency7;?></center></td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah8;?></td> 
                         </tr>
                         <tr>
                           <td><center><font size="1">9</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description9;?> </td>
-                          <td><center><font size="1">  <?php echo $get->currency8;?></center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah9;?> </td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description9;?> </td>
+                          <td class="kolom"><center><font size="1">  <?php echo $get->currency8;?></center></td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah9;?> </td> 
                         </tr>
                         <tr>
                           <td><center><font size="1">10</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description10;?> </td>
-                          <td><center><font size="1">  <?php echo $get->currency9;?></center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah10;?> </td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description10;?> </td>
+                          <td class="kolom"><center><font size="1">  <?php echo $get->currency9;?></center></td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah10;?> </td> 
                         </tr>
                         <tr>
                           <td><font size="1"><center>11</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description11;?></td>
-                          <td><font size="1"><center>  <?php echo $get->currency10;?></center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah11;?></td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description11;?></td>
+                          <td class="kolom"><font size="1"><center>  <?php echo $get->currency10;?></center></td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah11;?></td> 
                         </tr>
                         <tr>
                           <td><font size="1"><center>12</center></td>
-                          <td colspan="2"><font size="1"><?php echo $get->description12;?></td>
-                          <td><font size="1"><center>  <?php echo $get->currency11;?></center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->jumlah12;?></td> 
+                          <td class="kolom" colspan="2"><font size="1"><?php echo $get->description12;?></td>
+                          <td class="kolom"><font size="1"><center>  <?php echo $get->currency11;?></center></td>
+                          <td align="right" class="kolom"><font size="1" ><?php echo $get->jumlah12;?></td> 
                         </tr>
                         <tr>
-                          <td colspan="2" align="right"><font size="1"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center>    </center></td>
-                          <td><font size="1" style="text-align:right"><?php echo $get->currency;?>&nbsp;<?php echo $get->total_expenses;?> 
-                              <font size="1" style="text-align:right"><?php echo $get->currency4;?>&nbsp;<?php echo $get->total_expenses2;?>
-                              <font size="1" style="text-align:right"><?php echo $get->currency8;?>&nbsp;<?php echo $get->total_expenses3;?>
-                          </td>
+                          <td colspan="3" align="right"><font size="1"> Jumlah Pembayaran/<i>Total Payment</i> </td>
+                          <td><center> <font size="1"> <?php echo $get->currency;?>  <br> <?php echo $get->currency4;?> <br> <?php echo $get->currency8;?> </center></td>
+                          <td align="right"><font size="1" ><?php echo $get->total_expenses;?> <br> <?php echo $get->total_expenses2;?> <br> <font size="1" ><?php echo $get->total_expenses3;?> </td>
                         </tr>
                         <tr> 
                           <td><font size="1">Terbilang/ <i>Say :</i> </td>
-                          <td colspan="3"><font size="1"><?php echo $get->terbilang;?></td>
+                          <td colspan="4" ><font size="1"><?php echo $get->terbilang;?> <br ><?php echo $get->terbilang2;?> <br> <?php echo $get->terbilang3;?> </td>
                         </tr>
                         <tr> 
                           <td><font size="1">Dibayar Kepada/ <i>Paid To :</i> </td>
-                          <td colspan="3"><font size="1"><?php echo $get->dibayar_kepada;?></td>
+                          <td colspan="4"><font size="1"><?php echo $get->dibayar_kepada;?></td>
                         </tr>
                       </tbody>
                     </table>

@@ -340,7 +340,7 @@
                   <td>
                     
                     <?php if ($row->status == 8) { ?>   
-                      <?php if ($row->jenis_pembayaran == 1) { ?>   
+                      <?php if ($row->jenis_pembayaran == 4) { ?>   
                         <a href="Dashboard/report_prf/<?php echo $row->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>            
                       <?php } ?>
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
@@ -349,7 +349,7 @@
                       <?php if ($row->jenis_pembayaran == 3) { ?> 
                         <a href="Dashboard/report_asf/<?php echo $row->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
                       <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 4) { ?> 
+                      <?php if ($row->jenis_pembayaran == 5) { ?> 
                         <a href="Dashboard/report_crf/<?php echo $row->id_payment; ?>" target="_blank" role="button" class="btn btn-danger btn-sm">Print</a>                                
                       <?php } ?>
                     <?php } ?>  
