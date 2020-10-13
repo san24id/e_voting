@@ -1523,9 +1523,9 @@ class Dashboard_model extends CI_Model{
 	{
 		$sql = "select t.id_tax,t.id_payment,ifnull(t.no_urut,1) no_urut, t.nomor_surat, t.jenis_pajak,t.kode_pajak,t.kode_map,t.nama,t.npwp,t.alamat,t.tarif,";
 		$sql .= "t.special_tarif,t.fas_pajak,t.gross,t.dpp,t.dpp_gross,t.pajak_terutang,t.masa_pajak,t.tahun,t.keterangan,p.id_jenis_pjk , ";		
-		$sql .= "(select id_map from m_kode_map where trim(kode_map)=trim(t.kode_map)) id_map,";
+		$sql .= "(select id_map from m_kode_map where trim(kode_map)=trim(t.kode_map)) id_map,m.dpp_kumulatif,";
 		$sql .= "t.de,t.opsional,t.nilai,t.objek_pajak, t.id_honor,t.noinvoice,t.tglinvoice,t.nofaktur  ";		
-		$sql .="FROM t_tax t, m_jenis_pajak p where trim(t.jenis_pajak)=trim(p.jenis_pajak) and t.id_tax = ".$id;
+		$sql .="FROM t_tax t, m_jenis_pajak p, m_honorarium_konsultan m where trim(t.jenis_pajak)=trim(p.jenis_pajak) and t.id_honor=m.id_honor and t.id_tax = ".$id;
 		$query = $this->db->query($sql)->result();
         return $query;
 	}
