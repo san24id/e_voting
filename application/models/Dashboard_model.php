@@ -48,7 +48,7 @@ class Dashboard_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as totrejected FROM t_payment WHERE division_id='$dvs' AND status='3' OR status='5' AND rejected_by !=''";
+        $sql = "SELECT COUNT(status) as totrejected FROM t_payment WHERE division_id='$dvs' AND status='3' OR status='4' AND rejected_by !='' OR status='5' AND rejected_by !=''";
         $query = $this->db->query($sql)->result();
         // var_dump($sql);exit;
         return $query;
@@ -1830,7 +1830,7 @@ class Dashboard_model extends CI_Model{
     }
 	
 	function checklistnpwpvendor($idpayment){
-		$sql = "select m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m, t_vendor v WHERE v.kode_vendor=m.kode_vendor and trim(v.kode_vendor)='1000000' and v.id_payment = '$idpayment'";
+		$sql = "select m.id_honor,m.nama,m.npwp,m.alamat FROM m_honorarium_konsultan m, t_vendor v WHERE v.kode_vendor=m.kode_vendor and substring(trim(v.kode_vendor),1,1) in ('1','2','3') and v.id_payment = '$idpayment'";
         $query=$this->db->query($sql);
         return $query;
     }

@@ -244,7 +244,7 @@
                         </td>
                         <td colspan="2"><input type="text" style="text-align:right" id="rupiah" class="form-control" <?php echo $readonly; ?> name="label2" onkeyup="getnominal1()" value="<?php echo $row->label2; ?>"></td>
                         <input type="hidden" id="terbilang" name="terbilang" value="<?php echo $row->terbilang;?> "> 
-
+                        
                         <td><select id="currency2" name="currency2" onchange="mycurrency2()" class="form-control" <?php echo $readonly; ?>>
                                 <option value="<?php echo $row->currency2; ?>"> <?php echo $row->currency2; ?></option>
                                 <option value="">Pilih Mata Uang</option>
@@ -253,7 +253,7 @@
                                 <?php } ?>
                               </select>
                           </td>
-                        <td colspan="2"><input type="text"style="text-align:right"  id="rupiah2" class="form-control" name="jumlah2" <?php echo $readonly; ?> onkeyup="get2nominal2()" value="<?php echo $row->jumlah2; ?>" > </td>
+                        <td colspan="2"><input type="text" style="text-align:right" id="rupiah2" class="form-control" name="jumlah2" <?php echo $readonly; ?> onkeyup="get2nominal2()" value="<?php echo $row->jumlah2; ?>" > </td>
                         <input type="hidden" id="terbilang2" name="terbilang2" value="<?php echo $row->terbilang2;?> "> 
 
                         <td><select id="currency3" name="currency3" onchange="mycurrency3()" class="form-control" <?php echo $readonly; ?>>
@@ -347,42 +347,42 @@
                     </table>-->
 					
 					<!--<form id="frmvendor" action="#"> -->
-						<input type="hidden" id="strvendor" name="strvendor" value="<?php echo $strvendor; ?>">
-						<input type="hidden" id="strbank" name="strbank" value="<?php echo $strbank; ?>">
-						<input type="hidden" id="strcurrency" name="strcurrency" value="<?php echo $strcurrency; ?>">
+							<input type="hidden" id="strvendor" name="strvendor" value="<?php echo $strvendor; ?>">
+							<input type="hidden" id="strbank" name="strbank" value="<?php echo $strbank; ?>">
+							<input type="hidden" id="strcurrency" name="strcurrency" value="<?php echo $strcurrency; ?>">
 
-						<div class="table-responsive" >
-						<table id="show1" class="table table-bordered table-striped"> 
-							<thead>
-							<tr>
-								<th>Penerima Pembayaran <font color="red"> * </font></th>
-								<th>Tunai/Transfer <font color="red"> * </font></th>
-								<th>Nomor Rekening <font color="red"> * </font></th>
-								<th>Mata Uang <font color="red"> * </font></th>
-								<th>Nominal <font color="red"> * </font></th>
-								<th>&nbsp;</th>
-							</tr>
+							<div class="table-responsive" >
+							<table id="show1" class="table table-bordered table-striped"> 
+								<thead>
+								<tr>
+									<th>Penerima Pembayaran <font color="red"> * </font></th>
+									<th>Tunai/Transfer <font color="red"> * </font></th>
+									<th>Nomor Rekening <font color="red"> * </font></th>
+									<th>Mata Uang <font color="red"> * </font></th>
+									<th>Nominal <font color="red"> * </font></th>
+									<th>&nbsp;</th>
+                              	</tr>
 							</thead>
 							<tbody>
 							<b><p>- Penyedia Barang / Jasa Penerima Pembayaran</p></b> 
-							<?php 
-							$ttlnomvendor=0;
-							$ttlnomvendor2=0;
-							$ttlnomvendor3=0;
-							$nomvendor='';
-							$vendorrow=0;
-							$fvendor='';
-							if ($getdatavendor == null){ ?>
+								<?php 
+								$ttlnomvendor=0;
+								$ttlnomvendor2=0;
+								$ttlnomvendor3=0;
+								$nomvendor='';
+								$vendorrow=0;
+								$fvendor='';
+								if ($getdatavendor == null){ ?>
 								<tr id="tr1">
                                   <td class="col-md-4"><select id="penerimavendor1" onchange="fung('penerimavendor1','kodevendor1','namavendor1','1')" class="form-control select2" name="penerimavendor[]" >
                                     <option value="">--Choose--</option>
                                     <?php foreach ($data_vendor as $nama){?> 
                                       <option value="<?php echo $nama->kode_vendor;?>"><?php echo $nama->nama;?> &nbsp; - <?php echo $nama->kode_vendor;?></option>
                                       
-                               <?php } ?>
-                               </select>
-                               <input id="kodevendor1" type="hidden" name="kodevendor[]"  />
-                               <input id="namavendor1" type="hidden" name="namavendor[]"  />
+                                    <?php } ?>
+                                    </select>
+                                    <input id="kodevendor1" type="hidden" name="kodevendor[]"  />
+                                    <input id="namavendor1" type="hidden" name="namavendor[]"  />
                                   </td>
                                   
                                   <td class="col-md-2"><select id="bankvendor1" name="bankvendor[]" class="form-control select2" onchange="drpbank('bankvendor1','rekeningvendor1','1')">
@@ -404,15 +404,15 @@
                                     </td>	
                                   <td><input style="height:28px;text-align:right;" class="form-control" id="nominalvendor1" name="nominalvendor[]" onkeyup="gettotalvendor()" onblur="formatnominalvendor('1')" type="text"></td>																
                                   <td>&nbsp;</td>
-								</tr>
-							<?php	
-							}else{
+							</tr>
+								<?php	
+								}else{
 								$selected='';
 								$bankvendor='';
 								$rekeningvendor='';
 								$currencyvendor='';
 								$nominalvendor='';
-							foreach($getdatavendor as $gvendor){								
+								foreach($getdatavendor as $gvendor){
 								$nomvendor=str_replace(".","",$gvendor->nominal);
 								if($gvendor->v_currency==$row->currency){
 									if(substr($gvendor->v_nominal,0,1)=="("){
@@ -442,7 +442,7 @@
 								}else{
 									$fvendor='';
 								}
-								
+
 								if(substr($gvendor->kode_vendor,0,1)=="1"){
 									$bankvendor='disabled';
 									$rekeningvendor='readonly';
@@ -507,7 +507,7 @@
 									<input id="<?php echo 'scurrencyvendor'.$vendorrow; ?>" type="hidden" name="scurrencyvendor[]" value="<?php echo $gvendor->v_currency; ?>"  />
 									
 								</td>		
-								<td ><input style="height:28px;text-align:right;" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]" onblur="formatnominalvendor('<?php echo $vendorrow; ?>')" onkeyup="gettotalvendor()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" <?php echo $nominalvendor; ?>></td>
+								<td ><input style="height:28px;text-align:right;" class="form-control" id="<?php echo 'nominalvendor'.$vendorrow; ?>" name="nominalvendor[]"  onblur="formatnominalvendor('<?php echo $vendorrow; ?>')"  onkeyup="gettotalvendor()" type="text" value="<?php echo $gvendor->v_nominal;  ?>" <?php echo $nominalvendor; ?>></td>
 															
                                 <td>
                                 <?php
@@ -726,9 +726,9 @@
                         <td colspan="3">&nbsp;</td>
                         <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						<td><center><b> Curr</b></center></td>
+						            <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
-						<td><center><b> Curr</b></center></td>
+						            <td><center><b> Curr</b></center></td>
                         <td><b> Jumlah/<i>Amount</i></b></td>
                       </tr>
                       <tr>  
@@ -770,26 +770,26 @@
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td><input id="uangmuka" style="text-align:right" onkeyup="penjumlahan()" type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>" readonly></input> </td>     
+                        <td><input id="uangmuka" style="text-align:right" onchange="penjumlahan()" readonly type="text" class="form-control" name="label8" value="<?php echo $row->label8; ?>"></input> </td>     
 						<td>&nbsp;</td>
-                        <td><input id="uangmukaa" style="text-align:right" onkeyup="penjumlahana()" type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>" readonly></input></td>     
+                        <td><input id="uangmukaa" style="text-align:right" onchange="penjumlahana()" readonly type="text" class="form-control" name="label8a" value="<?php echo $row->label8a; ?>"></input></td>     
 						<td>&nbsp;</td>
-                        <td><input id="uangmukab" style="text-align:right" onkeyup="penjumlahanb()" type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>" readonly></input></td>     
+                        <td><input id="uangmukab" style="text-align:right" onchange="penjumlahanb()" readonly type="text" class="form-control" name="label8b" value="<?php echo $row->label8b; ?>"></input></td>     
                       </tr>
                       <tr>
-					    <td>Selisih Kurang/(Lebih)</td>  
+						<td>Selisih Kurang/(Lebih)</td>  
                         <td>:</td>
                         <td colspan="2">&nbsp;</td>
 						            <td>&nbsp;</td>
-                        <td><input id="hasil" type="text" style="text-align:right" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
+                        <td><input id="hasil" style="text-align:right" type="text" class="form-control" name="label9" value="<?php echo $row->label9; ?>" readonly></input></td>                               
                         <td>&nbsp;</td>
-                        <td><input type="text" id="hasila" style="text-align:right" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>" readonly></input></td>                               
+                        <td><input type="text" style="text-align:right" id="hasila" class="form-control" name="label9a" value="<?php echo $row->label9a; ?>" readonly></input></td>                               
                         <td>&nbsp;</td>
-                        <td><input type="text" id="hasilb" style="text-align:right" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>" readonly></input></td>                               
+                        <td><input type="text" style="text-align:right" id="hasilb" class="form-control" name="label9b" value="<?php echo $row->label9b; ?>" readonly></input></td>                               
                       </tr>                                
                       </tbody>
                     </table>
-					        </div>
+				</div>
                     <br>
                     <br>
                     <table style="font-family: calibri;" width="100%">
@@ -909,7 +909,7 @@ function penjumlahan(){
   var reva = a.replace(/[^,\d]/g,'').toString();;
   var revb = b.replace(/[^,\d]/g,'').toString();;
   // var revc = c.replace(".","");
-  
+  // alert(reva);
   var hasil = parseInt(reva)-parseInt(revb);
   // var aa = parseInt(rev).value;
   // var b = parseInt(document.getElementById("uangmuka").value);
@@ -1579,7 +1579,7 @@ function chgarf(param){
 	//var $id=param.replace(new RegExp(' ','g'),' ')
 	if (param){
 		$.ajax({
-		  url : "<?php echo base_url('home/getdetilarf')?>/"+param,
+		  url : "<?php echo base_url('tri/getdetilarf')?>/"+param,
 		  type : "GET",
 		  dataType: "JSON",
 		  success: function(data){
@@ -2161,11 +2161,11 @@ function AddIndeks(){
 			}
 			if(hasil==0){
 				kalimat="Nol ";
-			}			
+			}
+			
 			document.getElementById("terbilang3").value=kalimat+muncul;
 		}
 	}
-	
 	function gettotalvendor(){
 		var itotal1=0;
 		var itotal2=0;
@@ -2204,7 +2204,7 @@ function AddIndeks(){
 				}
 			}
 			
-			if(errmsg=="0"){				
+			if(errmsg=="0"){
 				//var yz=xj.replace(/[^,\d]/g, '').toString();
 				var yz=0;
 				if(xj.substr(0,1)=="-" && xj.length >1){
@@ -2323,7 +2323,7 @@ function AddIndeks(){
 	}else if($('#tujuanPenggunaan').val()==""){
 		alert('Tujuan Penggunaan belum di input');
 	}else if($('#Select').val()==""){
-		alert('Mata Uang Pertama Harus Dipilih');
+		alert('Mata Uang Pertama Harus dipilih');
 	}else if($('#rupiah').val()==""){
 		alert('Nominal Jumlah Pertama belum di input');
 	}else if ($.trim($('#jns_pembayaran').val())=="2" && $('#perkiraanSelesai').val()==""){
@@ -2372,6 +2372,7 @@ function AddIndeks(){
 				
 				
 			};
+			
 			if(inps4[i].value=="" && skdvendor.substring(0, 1)!="1"){
 				errmsg="Nominal baris ke " + (i+1) + " belum di input";
 				break;
@@ -2381,7 +2382,6 @@ function AddIndeks(){
 				errmsg="Nominal baris ke " + (i+1) + " belum di input";
 				break;
 			};
-			
 		}
 		var schk=lbl4.length-1;
 		/*if (errmsg=="0"){
@@ -2407,7 +2407,7 @@ function AddIndeks(){
 				if(val1==""){val1="0";};			
 				if(val2==""){val2="0";};			
 				if(val3==""){val3="0";};
-			
+				
 				if (val1.substr(0,1)=="(" && val1.substr(val1.length-1,1)==")"){
 					val1 = val1.replace(/\D+/g, '');
 					val1= -Math.abs(val1);	
@@ -2418,7 +2418,7 @@ function AddIndeks(){
 					val1 = val1.replace(/\D+/g, '');
 					val1= Math.abs(val1);	
 				}
-			
+				
 				if (val2.substr(0,1)=="(" && val2.substr(val2.length-1,1)==")"){
 					val2 = val2.replace(/\D+/g, '');
 					val2= -Math.abs(val2);	
@@ -2429,7 +2429,7 @@ function AddIndeks(){
 					val2 = val2.replace(/\D+/g, '');
 					val2= Math.abs(val2);	
 				}
-			
+				
 				if (val3.substr(0,1)=="(" && val3.substr(val3.length-1,1)==")"){
 					val3 = val3.replace(/\D+/g, '');
 					val3= -Math.abs(val3);	
@@ -2441,10 +2441,41 @@ function AddIndeks(){
 					val3= Math.abs(val3);	
 				}
 				
-				nomvendor1 = nomvendor1.replace(/\D+/g, '');
+				/*nomvendor1 = nomvendor1.replace(/\D+/g, '');
 				nomvendor2 = nomvendor2.replace(/\D+/g, '');
-				nomvendor3 = nomvendor3.replace(/\D+/g, '');
-			
+				nomvendor3 = nomvendor3.replace(/\D+/g, '');*/
+				if (nomvendor1.substr(0,1)=="(" && nomvendor1.substr(nomvendor1.length-1,1)==")"){
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= -Math.abs(nomvendor1);	
+					}else if (nomvendor1.substr(0,1)=="-"){
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= -Math.abs(nomvendor1);	
+					}else{
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= Math.abs(nomvendor1);	
+					}
+					
+					if (nomvendor2.substr(0,1)=="(" && nomvendor2.substr(nomvendor2.length-1,1)==")"){
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= -Math.abs(nomvendor2);	
+					}else if (nomvendor2.substr(0,1)=="-"){
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= -Math.abs(nomvendor2);	
+					}else{
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= Math.abs(nomvendor2);	
+					}
+					
+					if (nomvendor3.substr(0,1)=="(" && nomvendor3.substr(nomvendor3.length-1,1)==")"){
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= -Math.abs(nomvendor3);	
+					}else if (nomvendor3.substr(0,1)=="-"){
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= -Math.abs(nomvendor3);	
+					}else{
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= Math.abs(nomvendor3);	
+					}
 				/*if (skdvendor.substring(0, 1)!="1"){
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
@@ -2458,7 +2489,7 @@ function AddIndeks(){
 					};
 				}*/
 			
-				if($('#jns_pembayaran').val()=="3"){
+				/*if($('#jns_pembayaran').val()=="3"){
 					if(val1!=nomvendor1){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
 					}else if(val2>0 && val2!=nomvendor2){
@@ -2466,7 +2497,7 @@ function AddIndeks(){
 					}else if(val3>0 && val3!=nomvendor3){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};	
-				}else{
+				}else{*/
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
 					}else if(val2>0 && val2!=nomvendor2){
@@ -2474,7 +2505,7 @@ function AddIndeks(){
 					}else if(val3>0 && val3!=nomvendor3){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};
-				}	
+				//}	
 			
 				if (errmsg=="0"){
 					if(lbl4[schk].checked && $.trim($('#text1').val())==""){

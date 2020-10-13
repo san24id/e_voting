@@ -2441,10 +2441,41 @@ function AddIndeks(){
 					val3= Math.abs(val3);	
 				}
 				
-				nomvendor1 = nomvendor1.replace(/\D+/g, '');
+				/*nomvendor1 = nomvendor1.replace(/\D+/g, '');
 				nomvendor2 = nomvendor2.replace(/\D+/g, '');
-				nomvendor3 = nomvendor3.replace(/\D+/g, '');
-			
+				nomvendor3 = nomvendor3.replace(/\D+/g, '');*/
+				if (nomvendor1.substr(0,1)=="(" && nomvendor1.substr(nomvendor1.length-1,1)==")"){
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= -Math.abs(nomvendor1);	
+					}else if (nomvendor1.substr(0,1)=="-"){
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= -Math.abs(nomvendor1);	
+					}else{
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= Math.abs(nomvendor1);	
+					}
+					
+					if (nomvendor2.substr(0,1)=="(" && nomvendor2.substr(nomvendor2.length-1,1)==")"){
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= -Math.abs(nomvendor2);	
+					}else if (nomvendor2.substr(0,1)=="-"){
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= -Math.abs(nomvendor2);	
+					}else{
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= Math.abs(nomvendor2);	
+					}
+					
+					if (nomvendor3.substr(0,1)=="(" && nomvendor3.substr(nomvendor3.length-1,1)==")"){
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= -Math.abs(nomvendor3);	
+					}else if (nomvendor3.substr(0,1)=="-"){
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= -Math.abs(nomvendor3);	
+					}else{
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= Math.abs(nomvendor3);	
+					}
 				/*if (skdvendor.substring(0, 1)!="1"){
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
@@ -2458,7 +2489,7 @@ function AddIndeks(){
 					};
 				}*/
 			
-				if($('#jns_pembayaran').val()=="3"){
+				/*if($('#jns_pembayaran').val()=="3"){
 					if(val1!=nomvendor1){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
 					}else if(val2>0 && val2!=nomvendor2){
@@ -2466,7 +2497,7 @@ function AddIndeks(){
 					}else if(val3>0 && val3!=nomvendor3){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};	
-				}else{
+				}else{*/
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
 					}else if(val2>0 && val2!=nomvendor2){
@@ -2474,7 +2505,7 @@ function AddIndeks(){
 					}else if(val3>0 && val3!=nomvendor3){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};
-				}	
+				//}	
 			
 				if (errmsg=="0"){
 					if(lbl4[schk].checked && $.trim($('#text1').val())==""){

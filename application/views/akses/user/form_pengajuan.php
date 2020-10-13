@@ -54,6 +54,7 @@
                         <td align="center" width="50%"><b><font size="3" style="font-family: calibri;">No   : <?php echo $surat; ?></b></td> 
                           <input type="hidden" name="nomor_surat" class="form-control" value="<?php echo $surat; ?>">  
                             <input type="hidden" id="id_payment" name="id_payment" >
+
 						<input type="hidden" id="cr1" name="cr1" >
 						<input type="hidden" id="cr2" name="cr2" >
 						<input type="hidden" id="cr3" name="cr3" >
@@ -80,13 +81,13 @@
                       <tr>
                         <td><b>Jenis Pembayaran <font color="red"> * </font> (pilih salah satu):</b></td>
                         <td>
-							<input id="auto" type="checkbox" disabled> <b>Uang Muka/Advance</b><br>
+                          <input id="auto" type="checkbox" disabled> <b>Uang Muka/Advance</b><br>
                         </td>
                         <td>
-							<input id="checked"  type="checkbox" name="jenis_pembayaran[]" value="4"><b><i> Direct Payment</input><br>
+                          <input id="checked"  type="checkbox" name="jenis_pembayaran[]" value="4"><b><i> Direct Payment</input><br>
                         </td>
                         <td>
-							<input id="checked2"  type="checkbox" name="jenis_pembayaran[]" value="5"><b><i> Cash Received</input><br>
+                          <input id="checked2"  type="checkbox" name="jenis_pembayaran[]" value="5"><b><i> Cash Received</input><br>
                         </td>
                       </tr>  
                       <tr>
@@ -173,7 +174,7 @@
                               </select>
                           </td>
                         <td colspan="2"><input type="text" style="text-align:right" id="rupiah" class="form-control" name="label2" onkeyup="getnominal1()" placeholder="Jumlah" > </td>
-						<input type="hidden" id="terbilang" name="terbilang" placeholder="Terbilang">
+						<input type="hidden" id="terbilang" name="terbilang" class="form-control" placeholder="Terbilang">
 
                         <td><select id="currency2" onchange="mycurrency2()" name="currency2" class="form-control">
                                       <option value="">Pilih Mata Uang</option>
@@ -641,7 +642,7 @@
 <script src="assets/dashboard/dist/js/demo.js"></script>
 <script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
 
-<!--<script src="assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+<!-- <script src="assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
     <!-- Select2 -->
 <script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
@@ -1510,8 +1511,6 @@ function savedraft() {
 				break;
 			};
 		}
-		
-			
 		var schk=lbl4.length-1;
 		/*if (errmsg=="0"){
 			for (var x = 0; x <lbl4.length; x++) {
@@ -1554,7 +1553,7 @@ function savedraft() {
 					val1 = val1.replace(/\D+/g, '');
 					val1= Math.abs(val1);	
 				}
-					
+				
 				if (val2.substr(0,1)=="(" && val2.substr(val2.length-1,1)==")"){
 					val2 = val2.replace(/\D+/g, '');
 					val2= -Math.abs(val2);	
@@ -1565,7 +1564,7 @@ function savedraft() {
 					val2 = val2.replace(/\D+/g, '');
 					val2= Math.abs(val2);	
 				}
-					
+				
 				if (val3.substr(0,1)=="(" && val3.substr(val3.length-1,1)==")"){
 					val3 = val3.replace(/\D+/g, '');
 					val3= -Math.abs(val3);	
@@ -1576,11 +1575,42 @@ function savedraft() {
 					val3 = val3.replace(/\D+/g, '');
 					val3= Math.abs(val3);	
 				}
-					
-				nomvendor1 = nomvendor1.replace(/\D+/g, '');
+				
+				/*nomvendor1 = nomvendor1.replace(/\D+/g, '');
 				nomvendor2 = nomvendor2.replace(/\D+/g, '');
-				nomvendor3 = nomvendor3.replace(/\D+/g, '');
+				nomvendor3 = nomvendor3.replace(/\D+/g, '');*/
+				if (nomvendor1.substr(0,1)=="(" && nomvendor1.substr(nomvendor1.length-1,1)==")"){
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= -Math.abs(nomvendor1);	
+					}else if (nomvendor1.substr(0,1)=="-"){
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= -Math.abs(nomvendor1);	
+					}else{
+						nomvendor1 = nomvendor1.replace(/\D+/g, '');
+						nomvendor1= Math.abs(nomvendor1);	
+					}
 					
+					if (nomvendor2.substr(0,1)=="(" && nomvendor2.substr(nomvendor2.length-1,1)==")"){
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= -Math.abs(nomvendor2);	
+					}else if (nomvendor2.substr(0,1)=="-"){
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= -Math.abs(nomvendor2);	
+					}else{
+						nomvendor2 = nomvendor2.replace(/\D+/g, '');
+						nomvendor2= Math.abs(nomvendor2);	
+					}
+					
+					if (nomvendor3.substr(0,1)=="(" && nomvendor3.substr(nomvendor3.length-1,1)==")"){
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= -Math.abs(nomvendor3);	
+					}else if (nomvendor3.substr(0,1)=="-"){
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= -Math.abs(nomvendor3);	
+					}else{
+						nomvendor3 = nomvendor3.replace(/\D+/g, '');
+						nomvendor3= Math.abs(nomvendor3);	
+					}
 				/*if (skdvendor.substring(0, 1)!="1"){
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Jumlah Nominal Mata Uang " + lblcur1 + " tidak sama...!";
@@ -1593,7 +1623,7 @@ function savedraft() {
 						//break;
 					};
 				}*/
-				if($('#jns_pembayaran').val()=="3"){
+				/*if($('#jns_pembayaran').val()=="3"){
 					if(val1!=nomvendor1){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
 					}else if(val2>0 && val2!=nomvendor2){
@@ -1601,7 +1631,7 @@ function savedraft() {
 					}else if(val3>0 && val3!=nomvendor3){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};	
-				}else{
+				}else{*/
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
 					}else if(val2>0 && val2!=nomvendor2){
@@ -1609,67 +1639,79 @@ function savedraft() {
 					}else if(val3>0 && val3!=nomvendor3){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};
-				}					
+				//}					
 					if (errmsg=="0"){
-						if(lbl4[schk].checked && $.trim($('#text1').val())==""){
-							alert('Dokumen Lampiran Lainnya belum di input');
-						}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
-								alert('Nomor ARF Terkait belum di input');
+					if(lbl4[schk].checked && $.trim($('#text1').val())==""){
+						alert('Dokumen Lampiran Lainnya belum di input');
+					}else if ($('#jns_pembayaran').val()=="3" && $('#arf_number').val()==""){
+							alert('Nomor ARF Terkait belum di input');
+					}else if ($('#jns_pembayaran').val()=="3" && ($("#chkarf").prop('checked') == false)){						
 						}else if ($('#jns_pembayaran').val()=="3" && ($("#chkarf").prop('checked') == false)){						
-								alert('Lampiran copy ARF belum di beri tanda ceklist');
-						}else if($('#jns_pembayaran').val()=="3" && lblcur1!=$scur1){
-							alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
-						}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
-								alert('Jumlah Biaya Mata Uang Pertama belum di input');
-						}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
-								alert('Jumlah Uang Muka belum di input');
+					}else if ($('#jns_pembayaran').val()=="3" && ($("#chkarf").prop('checked') == false)){						
+							alert('Lampiran copy ARF belum di beri tanda ceklist');
+					}else if($('#jns_pembayaran').val()=="3" && lblcur1!=$scur1){
+						alert('Jenis Mata Uang Penggunaan Uang Muka Pertama tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+					}else if ($('#jns_pembayaran').val()=="3" && $('#biaya').val()==""){
+							alert('Jumlah Biaya Mata Uang Pertama belum di input');
+					}else if ($('#jns_pembayaran').val()=="3" && $('#uangmuka').val()==""){
+							alert('Jumlah Uang Muka belum di input');
 						}else if($('#jns_pembayaran').val()=="3" && struangmuka2!="" && $('#biayaa').val()==""){
 							alert('Jumlah Biaya Mata Uang Kedua belum di input');
 						}else if($('#jns_pembayaran').val()=="3" && struangmuka3!="" && $('#biayab').val()==""){
 							alert('Jumlah Biaya Mata Uang Ketiga belum di input');
 						}else if($('#jns_pembayaran').val()=="3" && strrupiah!=strhasil){
-							alert('Selisih Kurang/(Lebih) Mata Uang Pertama tidak sama dengan Nilai pada kolom Jumlah diatas');
-						}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur2){
-							alert('Jenis Mata Uang Penggunaan Uang Muka Kedua tidak sama dengan Mata Uang pada kolom Jumlah diatas');
-						}else if($('#jns_pembayaran').val()=="3" && strrupiah2!=strhasila){
-							alert('Selisih Kurang/(Lebih) Mata Uang Kedua tidak sama dengan Nilai pada kolom Jumlah diatas');
-						}else if($('#jns_pembayaran').val()=="3" && lblcur3!=$scur3){
-							alert('Jenis Mata Uang Penggunaan Uang Muka Ketiga tidak sama dengan Mata Uang pada kolom Jumlah diatas');
-						}else if($('#jns_pembayaran').val()=="3" && strrupiah3!=strhasilb){
-							alert('Selisih Kurang/(Lebih) Mata Uang Ketiga tidak sama dengan Nilai pada kolom Jumlah diatas');
-						}else{
-							<?php foreach ($getID as $key) { ?>
-							  var link = "<?php echo base_url('Home/formfinished/'.$key->id_payment);?>";
-							<?php } ?>
-							  
-							if(save_method=="edit"){
-								url = "<?php echo base_url('Home/saveeditpayment')?>";  
-							}else{
-								url = "<?php echo base_url('Home/saveaddpayment')?>";  
-							}
-						   
-							$.ajax({
-							  url : url,
-							  type : "POST",
-							  data: $("#formadd").serialize(),
-							  dataType: "JSON",
-							  success: function(data){ // Ketika proses pengiriman berhasil          
-								alert('Data Berhasil Di simpan');   
-								save_method="edit";
-								$("#id_payment").val(data);
-								//window.location = link;
-								window.location ="<?php echo base_url('Home/formfinished');?>/"+data;
-							},      
-							  error: function (data)
-							  {
-								console.log(data);
-								alert('Error adding / update data');
-							  }
-							});
-						}
+						alert('Selisih Kurang/(Lebih) Mata Uang Pertama tidak sama dengan Nilai pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && lblcur2!=$scur2){
+						alert('Jenis Mata Uang Penggunaan Uang Muka Kedua tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && strrupiah2!=strhasila){
+						alert('Selisih Kurang/(Lebih) Mata Uang Kedua tidak sama dengan Nilai pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && lblcur3!=$scur3){
+						alert('Jenis Mata Uang Penggunaan Uang Muka Ketiga tidak sama dengan Mata Uang pada kolom Jumlah diatas');
+					}else if($('#jns_pembayaran').val()=="3" && strrupiah3!=strhasilb){
+						alert('Selisih Kurang/(Lebih) Mata Uang Ketiga tidak sama dengan Nilai pada kolom Jumlah diatas');
 					}else{
-						alert(errmsg);
+						<?php foreach ($getID as $key) { ?>
+						  var link = "<?php echo base_url('Home/formfinished/'.$key->id_payment);?>";
+						<?php } ?>
+						  
+						if(save_method=="edit"){
+							url = "<?php echo base_url('Home/saveeditpayment')?>";  
+								url = "<?php echo base_url('Home/saveeditpayment')?>";  
+							url = "<?php echo base_url('Home/saveeditpayment')?>";  
+						}else{
+							url = "<?php echo base_url('Home/saveaddpayment')?>";  
+								url = "<?php echo base_url('Home/saveaddpayment')?>";  
+							url = "<?php echo base_url('Home/saveaddpayment')?>";  
+						}
+					   
+						$.ajax({
+						  url : url,
+						  type : "POST",
+						  data: $("#formadd").serialize(),
+						  dataType: "JSON",
+						  success: function(data){ // Ketika proses pengiriman berhasil          
+							  success: function(data){ // Ketika proses pengiriman berhasil          
+						  success: function(data){ // Ketika proses pengiriman berhasil          
+							alert('Data Berhasil Di simpan');   
+								alert('Data Berhasil Di simpan');   
+							alert('Data Berhasil Di simpan');   
+							save_method="edit";
+							$("#id_payment").val(data);
+							//window.location = link;
+							window.location ="<?php echo base_url('Home/formfinished');?>/"+data;
+						},      
+							},      
+						},      
+						  error: function (data)
+						  {
+							console.log(data);
+							alert('Error adding / update data');
+						  }
+						});
 					}
+				}else{
+					alert(errmsg);
+				}
 			}else{
 				alert(errmsg);
 			}
@@ -1684,7 +1726,7 @@ function chgarf(param){
 	//var $id=param.replace(new RegExp(' ','g'),' ')
 	if (param){
 		$.ajax({
-		  url : "<?php echo base_url('home/getdetilarf')?>/"+param,
+		  url : "<?php echo base_url('tri/getdetilarf')?>/"+param,
 		  type : "GET",
 		  dataType: "JSON",
 		  success: function(data){
@@ -2247,11 +2289,12 @@ function AddIndeks(){
 			}
 			if(hasil==0){
 				kalimat="Nol ";
-			}			
-			document.getElementById("terbilang3").value=kalimat+muncul;			
+			}
+			
+			document.getElementById("terbilang3").value=kalimat+muncul;
+			
 		}
 	}
-	
 	function gettotalvendor(){
 		var itotal1=0;
 		var itotal2=0;
@@ -2395,8 +2438,8 @@ function AddIndeks(){
 	
 	function drpcurrency_old(param1){
 		
-	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());
-		//gettotalvendor();
+	  $("#scurrencyvendor"+param1).val($("#currencyvendor"+param1).val());	  
+	   	//gettotalvendor();
 		var itotal1=0;
 		var itotal2=0;
 		var itotal3=0;
@@ -2481,8 +2524,6 @@ function AddIndeks(){
 		$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
 		$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
 		$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
-	}	
-
 	function formatnominalvendor(param1){
 		var fnom=$("#nominalvendor"+param1).val();
 		if(fnom.substring(0, 1)=="-"){
@@ -2602,4 +2643,4 @@ function AddIndeks(){
       </div>
     </div>
   </div>
-</div>	
+</div>

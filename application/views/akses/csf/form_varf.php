@@ -329,8 +329,7 @@ td[rowspan="6"] {
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
                     <!-- <a href="Dashboard/report_arf/<?php echo $get->id_payment; ?>" target="_blank" role="button" class="btn btn-danger">Print</a>             -->
 
-                    <?php 
-                        if($get->status == 5 && $get->rejected_by != NULL){ ?>
+                    <?php if($get->status == 5 && $get->rejected_by != NULL && $this->session->userdata("username") == "n.prasetyaningrum"){ ?>
                         <?php if ($get->currency4 == "" && $get->currency8 == "") { ?>                                  
                           <a href="Dashboard/form_earf/<?php echo $get->id_payment; ?>"><button class="btn btn-primary">Edit</button></a>
                         <?php } else if ($get->currency4 != "" || $get->currency8 != ""){ ?>
@@ -360,6 +359,34 @@ td[rowspan="6"] {
                               <div class="modal-footer">                        
                                   <button type="submit" class="btn btn-success bye">Yes</button>
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <button type="button" data-toggle="modal" data-target="#rejecttax<?php echo $get->id_payment; ?>" class="btn btn-danger">Returned To Tax</button>
+                        <!-- Rejected To Tax -->
+                        <div class="modal fade" id="rejecttax<?php echo $get->id_payment; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title">Message Box</h3>
+                              </div>
+                              <div class="modal-body">
+                              <form id="rejectedtax" method="post" action="dashboard/rejectedtax">
+                                <input type="hidden" name="id_payment" value="<?php echo $get->id_payment; ?>">
+                                <p align="justify">Apakah anda yakin akan mengembalikan Form SP3 ini : <?=$get->nomor_surat?> ke Bagian Tax?</p>
+                                <label>Notes :</label>                
+                                <textarea type="text" class="form-control" name="note" required></textarea>
+                                <input type="hidden" name="handled_by" value="a.ester">
+                                <input type="hidden" name="rejected_date" value="<?php echo date("d-M-Y"); ?>">
+                                <input type="hidden" name="rejected_by" value="<?php echo $this->session->userdata("display_name"); ?>">
+                              </div>
+                              <div class="modal-footer">                        
+                                <button type="submit" class="btn btn-success bye">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                               </form>
                               </div>
                             </div>
