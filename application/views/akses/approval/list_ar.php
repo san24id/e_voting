@@ -129,6 +129,10 @@
                             echo "<img src='assets/dashboard/images/legend/processing.png'>";
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                          }else if($row->status == 12){
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>"; 
+                          }else if($row->status == 13){
+                            echo "<img src='assets/dashboard/images/legend/verified.png'>";  
                           }else if($row->status == 9){
                             echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
                           }else if($row->status == 10){

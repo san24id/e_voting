@@ -35,7 +35,7 @@ class Home_model extends CI_Model{
         }
 
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
-                AND status in ('0','1','2','4','5','6','7','8','9') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+                AND status in ('0','1','2','4','5','6','7','8','12','13','9') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -47,7 +47,7 @@ class Home_model extends CI_Model{
         $end_date = date('Y-m-d');
         
         $sql = "SELECT a.status, a.tanggal2, b.dsc, b.link, a.division_id, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b 
-                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.status in ('0','1','2','4','5','6','7','8','9','10') AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
+                ON a.jenis_pembayaran = b.id_pay AND a.division_id = '$dvs' WHERE b.dsc != '' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10') AND a.division_id = '$dvs' AND a.jenis_pembayaran != 0 
                 AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' GROUP BY b.jenis_pembayaran";
                
             //    var_dump($sql);exit;
@@ -85,7 +85,7 @@ class Home_model extends CI_Model{
         $end_date = date('Y-m-d');
         
         $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%4%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%4%' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -104,7 +104,7 @@ class Home_model extends CI_Model{
         }
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%4%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%4%' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -119,7 +119,7 @@ class Home_model extends CI_Model{
         
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%2%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%2%' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -138,7 +138,7 @@ class Home_model extends CI_Model{
         }
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%2%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%2%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11','12','13')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -152,7 +152,7 @@ class Home_model extends CI_Model{
         $end_date = date('Y-m-d');
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%5%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%5%' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -171,7 +171,7 @@ class Home_model extends CI_Model{
         }
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%5%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%5%' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -184,7 +184,7 @@ class Home_model extends CI_Model{
         $end_date = date('Y-m-d');
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%3%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%3%' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -203,7 +203,7 @@ class Home_model extends CI_Model{
         }
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE a.jenis_pembayaran like '%3%' AND a.status in ('0','1','2','4','5','6','7','8','9','10','11')
+                WHERE a.jenis_pembayaran like '%3%' AND a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11')
                 AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
@@ -223,8 +223,8 @@ class Home_model extends CI_Model{
     public function getOp(){
         $dvs = $this->session->userdata('division_id');
 
-        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment  as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('4','5','6','7','8','9') 
-                AND division_id='$dvs' ORDER BY tanggal2 DESC";
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment  as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE status in ('4','5','6','7','8','12','13','9') AND division_id='$dvs' ORDER BY tanggal2 DESC";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -291,7 +291,7 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','9') AND division_id='$dvs'
+        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','12','13','9') AND division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -302,7 +302,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','9') AND division_id='$dvs'
+        $sql = "SELECT COUNT(status) as outstanding FROM t_payment WHERE status in ('4','5','6','7','8','12','13','9') AND division_id='$dvs'
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
 
         $query = $this->db->query($sql)->result();
@@ -338,7 +338,7 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status in ('8','12','13') AND division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -347,7 +347,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status='8' AND division_id='$dvs' 
+        $sql = "SELECT COUNT(status) as verifikasi FROM t_payment WHERE status in ('8','12','13') AND division_id='$dvs' 
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         
         $query = $this->db->query($sql)->result();
@@ -411,7 +411,7 @@ class Home_model extends CI_Model{
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','2','4','5','6','7','8','9','11')
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','2','4','5','6','7','8','12','13','9','11')
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
@@ -422,7 +422,7 @@ class Home_model extends CI_Model{
         $dvs = $this->session->userdata('division_id');
         $usr = $this->session->userdata('id_user');
 
-        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','2','4','5','6','7','8','9')
+        $sql = "SELECT COUNT(jenis_pembayaran) as totalreq FROM t_payment WHERE division_id='$dvs' AND status in ('0','1','11','2','4','5','6','7','8','12','13','9')
                 AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
                 
         $query = $this->db->query($sql)->result();
@@ -682,8 +682,8 @@ class Home_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('4','5','6','7','8','9') and division_id='$dvs'
-                AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE a.status in ('4','5','6','7','8','12','13','9') and division_id='$dvs' AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -946,7 +946,7 @@ class Home_model extends CI_Model{
 				$sql .=" ";
 				break;
 			  case "2":
-				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				$sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
 				break;
 			  case "3":
 				$sql .=" and a.status ='0' ";
@@ -1028,7 +1028,7 @@ class Home_model extends CI_Model{
           $sql .=" ";
           break;
           case "2":
-          $sql .=" and a.status in ('4','5','6','7','8','9') ";
+          $sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
           break;
           case "3":
           $sql .=" and a.status ='0' ";
@@ -1110,7 +1110,7 @@ class Home_model extends CI_Model{
 				$sql .=" ";
 				break;
 			  case "2":
-				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				$sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
 				break;
 			  case "3":
 				$sql .=" and a.status ='0' ";
@@ -1192,7 +1192,7 @@ class Home_model extends CI_Model{
 				$sql .=" ";
 				break;
 			  case "2":
-				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				$sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
 				break;
 			  case "3":
 				$sql .=" and a.status ='0' ";
@@ -1274,7 +1274,7 @@ class Home_model extends CI_Model{
       $sql .=" ";
       break;
       case "2":
-      $sql .=" and a.status in ('4','5','6','7','8','9') ";
+      $sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
       break;
       case "3":
       $sql .=" and a.status ='0' ";
@@ -1356,7 +1356,7 @@ class Home_model extends CI_Model{
 				$sql .=" ";
 				break;
 			  case "2":
-				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				$sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
 				break;
 			  case "3":
 				$sql .=" and a.status ='0' ";
@@ -1438,7 +1438,7 @@ class Home_model extends CI_Model{
 				$sql .=" ";
 				break;
 			  case "2":
-				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				$sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
 				break;
 			  case "3":
 				$sql .=" and a.status ='0' ";

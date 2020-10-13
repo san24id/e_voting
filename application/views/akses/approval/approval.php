@@ -167,6 +167,10 @@
                   <td> <?php 
                         if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/verified.png'>";  
+                        }else if($row->status == 12){
+                          echo "<img src='assets/dashboard/images/legend/verified.png'>"; 
+                        }else if($row->status == 13){
+                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
                         }else if($row->status == 3){
                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
                         }else if($row->status == 9){
@@ -189,7 +193,7 @@
                   <td><?php echo $row->display_name; ?></td>
                   <td>
                       <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
-                      <?php if ($row->jenis_pembayaran == 1) { ?>   
+                      <?php if ($row->jenis_pembayaran == 4) { ?>   
                         <a href="approval/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                       <?php } ?>
                       <?php if ($row->jenis_pembayaran == 2) { ?> 
@@ -198,7 +202,7 @@
                       <?php if ($row->jenis_pembayaran == 3) { ?> 
                         <a href="approval/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                       <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 4) { ?> 
+                      <?php if ($row->jenis_pembayaran == 5) { ?> 
                         <a href="approval/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                       <?php } ?>
                   </td>

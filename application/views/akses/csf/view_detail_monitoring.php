@@ -249,6 +249,10 @@
                             echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
                           }else if($row->status == 8){
                             echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
+                          }else if($row->status == 12){
+                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>"; 
+                          }else if($row->status == 13){
+                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
                           }else if($row->status == 9){
                             echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
                           }else if($row->status == 10){
