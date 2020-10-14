@@ -83,7 +83,7 @@
                     <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3approved.png"></i></span>
                       <br>
                       <?php foreach ($wPaid as $wPaid) { ?>
-                      <font size='5' color="white"><center><?php echo $wPaid->wpaid;?></center></font>
+                        <a href="<?php echo base_url('Tri/all_detail_wpaid/1/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $wPaid->wpaid;?></center></font></a>
                       <?php } ?>
                       <center><font size='3' color="white">Waiting for Payment </center>
                   </div>
@@ -94,7 +94,7 @@
                       <br>
                       <?php foreach ($L_Paid as $Paid) { ?>
 
-                      <font size='5' color="white"><center><?php echo $Paid->paid; ?></center></font>
+                        <a href="<?php echo base_url('Tri/all_detail_totalpaid/2/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $Paid->paid; ?></center></font></a>
                       <?php } ?>
                       <center><font size='3' color="white">Total Paid </center>
                   </div>
@@ -190,10 +190,15 @@
                     <td><?php echo $row->apf_doc;?></td>
                     <td><?php echo $row->description; ?></td>
                     <td><?php echo $row->display_name; ?></td>
-                    <td><?php echo $row->paid_date;?></td>
+                    <td><?php if ($row->paid_date == ''){
+                          echo "";
+                        }else{
+                          echo date("d-M-Y", strtotime($row->paid_date));
+                        } 
+                          ?></td>
                     <td>
                         <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
-                        <?php if ($row->jenis_pembayaran == 1) { ?>   
+                        <?php if ($row->jenis_pembayaran == 4) { ?>   
                           <a href="Tri/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
                         <?php if ($row->jenis_pembayaran == 2) { ?> 
@@ -202,7 +207,7 @@
                         <?php if ($row->jenis_pembayaran == 3) { ?> 
                           <a href="Tri/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>
-                        <?php if ($row->jenis_pembayaran == 4) { ?> 
+                        <?php if ($row->jenis_pembayaran == 5) { ?> 
                           <a href="Tri/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>
                     </td>     

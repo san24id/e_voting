@@ -75,7 +75,7 @@ td[rowspan="3"] {
                       <tbody>       
                         <tr>
                           <td><center> 1 </center></td>
-                          <td colspan="2"><textarea type="text" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
+                          <td colspan="2"><textarea type="text" rows="5" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
                           <td><center><?php echo $get->currency;?></center> </td>
                           <td><input id="nilai" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>" readonly></td>
                         </tr>
@@ -300,7 +300,16 @@ td[rowspan="3"] {
                   </div>                    
                 </div>
                      
-
+                <?php if ($get->note != ""){ ?>     
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <b>NOTE: </b> 
+                    <br>
+                    <textarea type="text" class="form-control" readonly><?php echo $get->note;?></textarea>
+                  </div>
+                </div>
+                <?php } ?>
+                
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>

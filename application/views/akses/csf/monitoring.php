@@ -250,7 +250,7 @@
                         <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/verified1.png"></i></span>
                           <br>
                           <?php foreach ($wverifikasi as $wverifikasi) { ?>
-                            <a href="<?php echo base_url('dashboard/all_detail_monitoring/11/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font></a>
+                            <a href="<?php echo base_url('dashboard/detail_approver/11/'.$start_date.'/'.$end_date)?>"><font size='3' color="white"><center><?php echo $wverifikasi->wverifikasi; ?></center></font></a>
                           <?php } ?>
                           <center><font size='3' color="white">Waiting For <br> Verification</center>
                       </div>

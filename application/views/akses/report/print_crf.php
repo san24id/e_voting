@@ -1,6 +1,10 @@
 <html>
 <body onload="window.print()">
 <style type="text/css">
+  .kolom { border: 1px solid gray;}
+  .kolom1 [rowspan="5"] { border: 1px solid gray;
+            vertical-align: top;
+  }
 @print {
     @page :footer {
         display: none

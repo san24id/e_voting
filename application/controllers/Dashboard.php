@@ -1820,6 +1820,7 @@ class Dashboard extends CI_Controller {
 		$data['mytask'] = $this->Dashboard_model->getmyTask();
 		$data['mytask1'] = $this->Dashboard_model->getmyTask1();
 		$data['mytask2'] = $this->Dashboard_model->getmyTask2();
+		$data['mytasklina'] = $this->Dashboard_model->getmyTaskLina();
 		$data['getApprovalDivHead'] = $this->Dashboard_model->getApprovalDivHead();
 
 		$this->load->view('akses/csf/header_csf', $data);
@@ -3636,8 +3637,12 @@ class Dashboard extends CI_Controller {
 		  case "9":
 			$data['payment'] = $this->Dashboard_model->getMonitoringWApproval($sid,$start_date,$end_date);
 			$this->session->set_userdata('titleHeader','Waiting For Approval');
-			$this->session->set_userdata('filter','9');
-			
+			$this->session->set_userdata('filter','9');			
+			break;
+		  case "11":
+			$data['payment'] = $this->Dashboard_model->getMonitoringWVerif($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting For Verification');
+			$this->session->set_userdata('filter','11');
 			break;
 		  
 		  default:

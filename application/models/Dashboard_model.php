@@ -426,6 +426,20 @@ class Dashboard_model extends CI_Model{
 
     }
 
+    function getmyTaskLina() {
+        $usr= $this->session->userdata("username");
+
+        // $sql ="SELECT a.*, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status in ('5','6','7')";
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.dsc FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE handled_by='$usr' 
+                AND status in ('4','5','6','7') ORDER BY tanggal2 DESC";
+        // var_dump($sql);exit;
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+
+    }
+
     function getmyTask2() {
         $usr= $this->session->userdata("username");
 
@@ -1366,7 +1380,7 @@ class Dashboard_model extends CI_Model{
 	{
 		$filter = $this->session->userdata("filter");
         $dvs = $this->session->userdata('division_id');
-        if($filter=='5' || $filter=='9'){
+        if($filter=='5' || $filter=='9' || $filter=='11'){
             $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
         }else{
             $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
@@ -1769,7 +1783,7 @@ class Dashboard_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.dsc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.dsc FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
                 status = 7 AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();

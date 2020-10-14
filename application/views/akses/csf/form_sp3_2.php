@@ -95,12 +95,14 @@
 			switch ($gtaxFlag->de) {
 			  case "0":
 				$chkDN='checked';
+				$chkDY='unchecked';
 				$disabled1='';
 				$disabled2='';
 				$disabled3='';
 				break;
 			  case "1":
 				$chkDY='checked';
+				$chkDN='unchecked';
 				$disabled1='disabled';
 				$disabled2='disabled';
 				$disabled3='disabled';
@@ -1117,6 +1119,15 @@ function edit_tax(id)
 			$('[name="txtketerangan"]').val(data[0].keterangan);	
             $('[name="txtrealtrf"]').val(data[0].tarif);
 			$('[name="vdeductible"]').val(data[0].de);
+			if(data[0].de=="1"){
+				$('#chkdeY').prop('checked', true);
+				$('#chkdeN').prop('checked', false);
+			}else{
+				$('#chkdeY').prop('checked', false);
+				$('#chkdeN').prop('checked', true);
+			}
+			
+	  
 			$('[name="voptional"]').val(data[0].opsional);
 			$('[name="vobjekpajak"]').val(data[0].objek_pajak);
 			$('[name="nomor_surat"]').val(data[0].nomor_surat);

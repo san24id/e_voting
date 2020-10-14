@@ -20,9 +20,72 @@ class Approval extends CI_Controller {
 		}else{
 			redirect('login/logout', 'refresh');
 		}
-    }
+	}
+	
+	public function index(){
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
+		$s = '01-01-'.Date('Y');
+		$date = strtotime($s);
+		$data['start_date']= date('d-m-Y', $date);
+		$data['end_date'] = date('d-m-Y');
+		
+		$data['active1'] = '';
+		$data['l_approval'] = 'active';
+		$data['inbox'] = '';
+
+		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['approved'] = $this->Approval_model->getList();
+		$data['pembayaran'] = $this->Approval_model->getVPayment();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+		$data['tot_approved'] = $this->Approval_model->TotalApproved();
+		$data['wApproval'] = $this->Approval_model->getWaitApproval();
+
+        $this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/approval', $data);
+	}
+
+	function periode_approval(){
+
+		$data['active1'] = '';
+		$data['l_approval'] = 'active';
+		$data['inbox'] = '';
+
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
+		
+		$data['approved'] = $this->Approval_model->periode($data['start_date'],$data['end_date']);
+		$data['processing'] = $this->Dashboard_model->processingPeriode($data['start_date'],$data['end_date']);
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotalPeriode($data['start_date'],$data['end_date']);
+		$data['tot_approved'] = $this->Approval_model->TotalApprovedPeriode($data['start_date'],$data['end_date']);
+		$data['wApproval'] = $this->Approval_model->getWaitApprovalPeriode($data['start_date'],$data['end_date']);
+
+		$data['pembayaran'] = $this->Approval_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+
+		$data['w_approval'] = $this->Approval_model->notifApproval();
+		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['payment'] = $this->Dashboard_model->payment();
+		$data['csf'] = $this->Dashboard_model->getAdminCSF();
+
+		$data['jumlah'] = count($data['approved']);
+		$data['jumlahprocessing'] = count($data['processing']);
+		$data['jumlahtotalpayment'] = count($data['tot_pay_req']);
+		$data['jumlahtot_approved'] = count($data['tot_approved']);
+		$data['jumlahwait_approval'] = count($data['wApproval']);
+		$data['jumlahpembayaran'] = count($data['pembayaran']);
+
+		$this->load->view('akses/approval/header_approval', $data);
+		$this->load->view('akses/approval/approval', $data);
+	}
     
-    public function index(){
+    public function my_dashboard(){
 		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$this->session->set_userdata('currentview',$actual_link);
 		
@@ -468,70 +531,7 @@ class Approval extends CI_Controller {
 		$this->load->view('akses/approval/header_approval', $data);
 		$this->load->view('akses/approval/export_cr', $data);
 
-	}
-	
-	public function listApproval(){
-		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-		$this->session->set_userdata('currentview',$actual_link);
-		
-		$s = '01-01-'.Date('Y');
-		$date = strtotime($s);
-		$data['start_date']= date('d-m-Y', $date);
-		$data['end_date'] = date('d-m-Y');
-		
-		$data['active1'] = '';
-		$data['l_approval'] = 'active';
-		$data['inbox'] = '';
-
-		$data['w_approval'] = $this->Approval_model->notifApproval();
-		$data['reject'] = $this->Home_model->notifRejected();
-		$data['processing'] = $this->Dashboard_model->processing();
-		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
-		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['payment'] = $this->Dashboard_model->payment();
-		$data['approved'] = $this->Approval_model->getList();
-		$data['pembayaran'] = $this->Approval_model->getVPayment();
-		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-		$data['tot_approved'] = $this->Approval_model->TotalApproved();
-		$data['wApproval'] = $this->Approval_model->getWaitApproval();
-
-        $this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/approval/approval', $data);
-	}
-
-	function periode_approval(){
-
-		$data['active1'] = '';
-		$data['l_approval'] = 'active';
-		$data['inbox'] = '';
-
-		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
-		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
-		
-		$data['approved'] = $this->Approval_model->periode($data['start_date'],$data['end_date']);
-		$data['processing'] = $this->Dashboard_model->processingPeriode($data['start_date'],$data['end_date']);
-		$data['tot_pay_req'] = $this->Dashboard_model->getTotalPeriode($data['start_date'],$data['end_date']);
-		$data['tot_approved'] = $this->Approval_model->TotalApprovedPeriode($data['start_date'],$data['end_date']);
-		$data['wApproval'] = $this->Approval_model->getWaitApprovalPeriode($data['start_date'],$data['end_date']);
-
-		$data['pembayaran'] = $this->Approval_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
-
-		$data['w_approval'] = $this->Approval_model->notifApproval();
-		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		$data['reject'] = $this->Home_model->notifRejected();
-		$data['payment'] = $this->Dashboard_model->payment();
-		$data['csf'] = $this->Dashboard_model->getAdminCSF();
-
-		$data['jumlah'] = count($data['approved']);
-		$data['jumlahprocessing'] = count($data['processing']);
-		$data['jumlahtotalpayment'] = count($data['tot_pay_req']);
-		$data['jumlahtot_approved'] = count($data['tot_approved']);
-		$data['jumlahwait_approval'] = count($data['wApproval']);
-		$data['jumlahpembayaran'] = count($data['pembayaran']);
-
-		$this->load->view('akses/approval/header_approval', $data);
-		$this->load->view('akses/approval/approval', $data);
-	}
+	}	
 
 	public function form_varf($id)
 	{
@@ -630,7 +630,7 @@ class Approval extends CI_Controller {
 		$this->Approval_model->updateapprove($upd);
 		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 
-		redirect('Approval/listApproval');
+		redirect('Approval/wfa');
 	}
 
 	public function rejected(){

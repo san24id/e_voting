@@ -126,7 +126,7 @@ td[rowspan="6"] {
                       <tbody>                      
                       <tr>
                           <td><center> 1 </center></td>
-                          <td colspan="2"><textarea type="text" class="form-control" name="description" required><?php echo $row->label1;?></textarea></td>                  
+                          <td colspan="2"><textarea type="text" rows="5" class="form-control" name="description" required><?php echo $row->label1;?></textarea></td>                  
                           <td><select id="Select" class="form-control" onchange="myFunction()" name="currency">
                                 <option value="<?php echo $row->currency; ?>"><?php echo $row->currency; ?> </option>
                                 <option value="">--Choose--</option>
@@ -947,7 +947,7 @@ function nominal(){
 				kalimat="(" + kalimat + ") ";
 			}
 			if(hasil==0){
-				kalimat="Nol ";
+				kalimat="Nihil";
 			}
 			$('#terbilang').val(kalimat+muncul);
         },

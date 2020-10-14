@@ -78,7 +78,7 @@ td[rowspan="6"] {
                       <tbody>
                         <tr>
                           <td><center> 1 </center></td>
-                          <td colspan="2"><textarea type="text" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
+                          <td colspan="2"><textarea type="text" rows="5" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
                           <td><center><?php echo $get->currency;?></center> </td>
                           <td><input id="nilai" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>" readonly></td>
                         </tr>

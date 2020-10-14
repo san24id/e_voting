@@ -82,7 +82,7 @@ td[rowspan="6"] {
                       <tbody>                      
                         <tr>
                           <td><center> 1 </center></td>
-                          <td colspan="2"><textarea type="text" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
+                          <td colspan="2"><textarea type="text" rows="5" class="form-control" name="description" readonly><?php echo $get->description;?></textarea></td>                  
                           <td><center><?php echo $get->currency;?></center> </td>
                           <td><input id="nilai" style="text-align:right" onchange="nominal()" type="text" class="form-control" name="jumlah" value="<?php echo $get->jumlah;?>" readonly></td>
                         </tr>
@@ -354,10 +354,10 @@ td[rowspan="6"] {
                         <form id="paid" method="post" action="tri/paid">
                           <input type="hidden" name="id" value="<?php echo $get->id; ?>">
                           <input type="hidden" name="status" value="10">
-                          <input type="hidden" name="paid_date" value="<?php echo date("Y-m-d"); ?>">
                           <input type="hidden" name="nomor_surat" value="<?php echo $get->nomor_surat; ?>">
                           <input type="hidden" name="handled_by" value="<?php echo $this->session->userdata("display_name"); ?>">
-                          <p align="justify">Apa Anda yakin akan membayar Form APF ini : <?=$get->apf_doc?></p>                                               
+                          <p align="justify">Apa Anda yakin akan membayar Form APF ini : <?=$get->apf_doc?> ?</p>
+                          <input type="date" class="form-control" name="paid_date" value="<?php echo date("Y-m-d"); ?>">                                      
                         </div>
                         <div class="modal-footer">                        
                             <button type="submit" class="btn btn-success bye">Yes</button>

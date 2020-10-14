@@ -265,9 +265,14 @@
         <?php } ?>
             
         <?php foreach ($reject as $notif) { ?>
+          <?php if($this->session->userdata("role_id") == 4){ ?>
           
-          <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+            <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox & Outbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+          
+          <?php }else{?>
+            <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
             
+          <?php } ?>        
         <?php } ?>        
         <li class="treeview">
           <a href="">

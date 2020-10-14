@@ -120,9 +120,27 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">        
-        <?php 
-         if($this->session->userdata("id_role_app") == 5){ ?>
-               <li class="<?php echo $index?>"><a href="Tri"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+        <?php if($this->session->userdata("id_role_app") == 5){ ?>
+          <?php foreach ($w_paid as $notifPaid) { ?>
+            <li class="<?php echo $l_payment?>"><a href="Tri"><i class="glyphicon glyphicon-list-alt"></i><span>Payment</span><small class="label pull-right bg-red"><?php echo $notifPaid->w_payment; ?> </small></a></li>
+          <?php } ?>
+        <li class="treeview">
+          <a href="">
+            <i class="glyphicon glyphicon-list"></i>
+            <span>Payment Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="<?php echo $wfp?>"><a href="Tri/wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
+            <li class="<?php echo $l_paid?>"><a href="Tri/paidList"><i class="fa fa-circle-o"></i>List of Paid</a></li>
+          </ul>  
+        </li> 
+        <?php foreach ($reject as $notif) { ?>
+        <li class="<?php echo $inbox?>"><a href="Tri/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+        <?php } ?>
+        <li class="<?php echo $index?>"><a href="Tri/my_dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
@@ -141,25 +159,7 @@
             <li><a href="Tri/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
-        <?php foreach ($w_paid as $notifPaid) { ?>
-        <li class="<?php echo $l_payment?>"><a href="Tri/listPayment"><i class="glyphicon glyphicon-list-alt"></i><span>Payment</span><small class="label pull-right bg-red"><?php echo $notifPaid->w_payment; ?> </small></a></li>
-        <?php } ?>
-        <li class="treeview">
-          <a href="">
-            <i class="glyphicon glyphicon-list"></i>
-            <span>Payment Report</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="<?php echo $wfp?>"><a href="Tri/wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
-            <li class="<?php echo $l_paid?>"><a href="Tri/paidList"><i class="fa fa-circle-o"></i>List of Paid</a></li>
-          </ul>  
-        </li> 
-        <?php foreach ($reject as $notif) { ?>
-        <li class="<?php echo $inbox?>"><a href="Tri/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
-        <?php } ?>
+        
         <br>
         <br>
         <br>

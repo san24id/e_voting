@@ -179,7 +179,7 @@
 		</div>
 		<?php 
 					  $trdisplay='';
-					  if($this->session->userdata("statuspayment")=="3" || $this->session->userdata("statuspayment")=="7" || $this->session->userdata("statuspayment")=="8"){
+					  if($this->session->userdata("statuspayment")=="11" || $this->session->userdata("statuspayment")=="7" || $this->session->userdata("statuspayment")=="8"){
 						  $trdisplay="style='display:none'";
 					  }else{
 						  $trdisplay='';

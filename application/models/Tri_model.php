@@ -78,6 +78,41 @@ class Tri_model extends CI_Model{
         return $query;
     }
 
+    public function getMonitoringWaitPayment($sid=0,$start_date,$end_date){
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status='9' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+                ORDER BY tanggal2 DESC";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+
+    }
+
+    public function getMonitoringTotalPaid($sid=0,$start_date,$end_date){
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+
+        $sql = "SELECT a.*, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE status='10' AND tanggal2 BETWEEN '$start_date' AND '$end_date'
+                ORDER BY tanggal2 DESC";
+                
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
     public function getListwfp() {
 
         $start_date = date('Y-01-01');

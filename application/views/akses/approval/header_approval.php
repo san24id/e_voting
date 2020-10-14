@@ -121,11 +121,31 @@
       <ul class="sidebar-menu">        
         <?php 
          if($this->session->userdata("id_role_app") == 4){ ?>
-        <li class="<?php echo $index?>"><a href="Approval"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+         <?php foreach ($w_approval as $notifApproval) { ?>
+        <li class="<?php echo $l_approval ?>"><a href="Approval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</span><small class="label pull-right bg-red"><?php echo $notifApproval->w_approval; ?> </small></a></li>
+        <?php } ?>
+        <li class="treeview">
+          <a href="">
+            <i class="glyphicon glyphicon-list"></i>
+            <span>Approval Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="<?php echo $wfa?>"><a href="Approval/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
+            <li class="<?php echo $approved?>"><a href="Approval/approvedList"><i class="fa fa-circle-o"></i>List of Approved</a></li>
+          </ul>  
+        </li> 
+
+        <?php foreach ($reject as $notif) { ?>
+        <li class="<?php echo $inbox ?>"><a href="Approval/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+
+        <li class="<?php echo $index?>"><a href="Approval/my_dashboard"><i class="fa fa-dashboard"></i><span>My SP3 Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
-            <span>My Report</span>
+            <span>My SP3 Report</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -158,26 +178,7 @@
                 <?php } ?> 
               <?php } ?> 
         <?php } ?>
-
-        <?php foreach ($w_approval as $notifApproval) { ?>
-        <li class="<?php echo $l_approval ?>"><a href="Approval/listApproval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</span><small class="label pull-right bg-red"><?php echo $notifApproval->w_approval; ?> </small></a></li>
-        <?php } ?>
-        <li class="treeview">
-          <a href="">
-            <i class="glyphicon glyphicon-list"></i>
-            <span>Approval Report</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="<?php echo $wfa?>"><a href="Approval/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
-            <li class="<?php echo $approved?>"><a href="Approval/approvedList"><i class="fa fa-circle-o"></i>List of Approved</a></li>
-          </ul>  
-        </li> 
-
-        <?php foreach ($reject as $notif) { ?>
-        <li class="<?php echo $inbox ?>"><a href="Approval/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
+                
         <br>
         <br>
         <br>

@@ -21,9 +21,70 @@ class Tri extends CI_Controller {
 		}else{
 			redirect('login/logout', 'refresh');
 		}
-    }
+	}
+	
+	public function index(){
+
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
+		$s = '01-01-'.Date('Y');
+		$date = strtotime($s);
+		$data['start_date']= date('d-m-Y', $date);
+		$data['end_date'] = date('d-m-Y');
+
+		$data['active1'] = '';
+		$data['l_payment'] = 'active';
+		$data['active3'] = '';
+
+		$data['w_paid'] = $this->Tri_model->notifPayment();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
+		$data['ppayment'] = $this->Dashboard_model->payment();
+		$data['pembayaran'] = $this->Tri_model->getVPayment();
+		$data['payment'] = $this->Tri_model->getList();
+		$data['wPaid'] = $this->Tri_model->getWaitPaid();
+		$data['L_Paid'] = $this->Tri_model->getPaid();
+		// var_dump($data['L_Paid']);exit;
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/payment', $data);
+
+	}
+
+	function periode_payment(){
+		$data['active1'] = '';
+		$data['l_payment'] = 'active';
+		$data['active3'] = '';
+
+		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
+		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
+
+		$data['payment'] = $this->Tri_model->periode($data['start_date'],$data['end_date']);
+		$data['processing'] = $this->Dashboard_model->processingPeriode($data['start_date'],$data['end_date']);
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotalPeriode($data['start_date'],$data['end_date']);
+		$data['wPaid'] = $this->Tri_model->getWaitPaidPeriode($data['start_date'],$data['end_date']);
+		$data['L_Paid'] = $this->Tri_model->getPaidPeriode($data['start_date'],$data['end_date']);
+
+		$data['pembayaran'] = $this->Tri_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
+
+		$data['w_paid'] = $this->Tri_model->notifPayment();
+		$data['reject'] = $this->Home_model->notifRejected();
+		$data['ppayment'] = $this->Dashboard_model->payment();
+		
+		$data['jumlah'] = count($data['payment']);
+		$data['jumlahprocessing'] = count($data['processing']);
+		$data['jumlahtotalpayment'] = count($data['tot_pay_req']);
+		$data['jumlahpembayaran'] = count($data['pembayaran']);
+		$data['jumlahwait_paid'] = count($data['wPaid']);
+		$data['jumlahlist_paid'] = count($data['L_Paid']);
+
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/payment', $data);
+	}
     
-    public function index(){
+    public function my_dashboard(){
 
 		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$this->session->set_userdata('currentview',$actual_link);
@@ -568,21 +629,18 @@ class Tri extends CI_Controller {
 		$this->load->view('akses/tri/export_cr', $data);
 
 	}
-	
-	public function listPayment(){
 
+	public function all_detail_wpaid($id,$start_date,$end_date)
+	{
 		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$this->session->set_userdata('currentview',$actual_link);
 		
-		$s = '01-01-'.Date('Y');
-		$date = strtotime($s);
-		$data['start_date']= date('d-m-Y', $date);
-		$data['end_date'] = date('d-m-Y');
-
-		$data['active1'] = '';
+		$this->session->set_userdata('statuspayment',$id);
+		$sid = $this->session->userdata("id_user");
 		$data['l_payment'] = 'active';
+		$data['active2'] = '';
 		$data['active3'] = '';
-
+		
 		$data['w_paid'] = $this->Tri_model->notifPayment();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['processing'] = $this->Dashboard_model->processing();
@@ -594,42 +652,58 @@ class Tri extends CI_Controller {
 		$data['L_Paid'] = $this->Tri_model->getPaid();
 		// var_dump($data['L_Paid']);exit;
 
-		$this->load->view('akses/tri/header_tri', $data);
-		$this->load->view('akses/tri/payment', $data);
+		switch ($id) {
+		  case "1":
+			$data['payment'] = $this->Tri_model->getMonitoringWaitPayment($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Waiting for Payment');
+			$this->session->set_userdata('filter','1');
+			break;
+		  
+		  default:
+		  	$data['payment'] = $this->Tri_model->getList();
+		}
 
+		$this->load->view('akses/tri/header_tri', $data);
+		$this->load->view('akses/tri/view_detail_wpaid', $data);
 	}
 
-	function periode_payment(){
-		$data['active1'] = '';
+	public function all_detail_totalpaid($id,$start_date,$end_date)
+	{
+		$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$this->session->set_userdata('currentview',$actual_link);
+		
+		$this->session->set_userdata('statuspayment',$id);
+		$sid = $this->session->userdata("id_user");
 		$data['l_payment'] = 'active';
+		$data['active2'] = '';
 		$data['active3'] = '';
-
-		$data['start_date'] = date('Y-m-d', strtotime($this->input->post("start_date")));
-		$data['end_date'] = date('Y-m-d', strtotime($this->input->post("end_date")));
-
-		$data['payment'] = $this->Tri_model->periode($data['start_date'],$data['end_date']);
-		$data['processing'] = $this->Dashboard_model->processingPeriode($data['start_date'],$data['end_date']);
-		$data['tot_pay_req'] = $this->Dashboard_model->getTotalPeriode($data['start_date'],$data['end_date']);
-		$data['wPaid'] = $this->Tri_model->getWaitPaidPeriode($data['start_date'],$data['end_date']);
-		$data['L_Paid'] = $this->Tri_model->getPaidPeriode($data['start_date'],$data['end_date']);
-
-		$data['pembayaran'] = $this->Tri_model->getVPaymentPeriode($data['start_date'],$data['end_date']);
-
+		
 		$data['w_paid'] = $this->Tri_model->notifPayment();
 		$data['reject'] = $this->Home_model->notifRejected();
+		$data['processing'] = $this->Dashboard_model->processing();
+		$data['tot_pay_req'] = $this->Dashboard_model->getTotal();
 		$data['ppayment'] = $this->Dashboard_model->payment();
-		
-		$data['jumlah'] = count($data['payment']);
-		$data['jumlahprocessing'] = count($data['processing']);
-		$data['jumlahtotalpayment'] = count($data['tot_pay_req']);
-		$data['jumlahpembayaran'] = count($data['pembayaran']);
-		$data['jumlahwait_paid'] = count($data['wPaid']);
-		$data['jumlahlist_paid'] = count($data['L_Paid']);
+		$data['pembayaran'] = $this->Tri_model->getVPayment();
+		$data['payment'] = $this->Tri_model->getList();
+		$data['wPaid'] = $this->Tri_model->getWaitPaid();
+		$data['L_Paid'] = $this->Tri_model->getPaid();
+		// var_dump($data['L_Paid']);exit;
+
+		switch ($id) {
+		  case "2":
+			$data['payment'] = $this->Tri_model->getMonitoringTotalPaid($sid,$start_date,$end_date);
+			$this->session->set_userdata('titleHeader','Total Paid');
+			$this->session->set_userdata('filter','2');
+			break;
+		  
+		  default:
+		  	$data['payment'] = $this->Tri_model->getList();
+		}
 
 		$this->load->view('akses/tri/header_tri', $data);
-		$this->load->view('akses/tri/payment', $data);
+		$this->load->view('akses/tri/view_detail_totpaid', $data);
 	}
-
+	
 	public function wfp(){
 
 		$data['active1'] = '';
@@ -1048,7 +1122,7 @@ class Tri extends CI_Controller {
 		$this->Dashboard_model->updatepay($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 		$this->Tri_model->approve($upd[paid_date],$upd[nomor_surat]);
 
-		redirect('Tri/listPayment');
+		redirect('Tri/wfp');
 	}
 
 	public function caridataAR()

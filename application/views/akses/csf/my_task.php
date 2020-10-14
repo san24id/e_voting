@@ -112,155 +112,285 @@
     </section>
     <?php } ?>
     
-    <section class="content-header">
+    <?php if($this->session->userdata("role_id") == 4){ ?>
+      <section class="content-header">
       <h1>
-      <?php if($this->session->userdata("role_id") == 4){ ?>
         Waiting For Verification
-      <?php }else { ?>
-        Waiting For APF Processing
-      <?php } ?>
       </h1>
-    </section>
+      </section>
 
-    <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
-        <div class="col-xs-12">
-          <!-- /.box -->
+      <section class="content">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-xs-12">
+            <!-- /.box -->
 
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table id="example2" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Status CSF</th>
-                  <th>Nomor SP3</th>
-                  <th>Jenis Pembayaran</th>
-                  <th>Tanggal Submit SP3</th>
-                  <th>Deskripsi</th>
-                  <th>Nama Pemohon</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i = 1;
-                    foreach ($mytask1 as $row){
-                      $test11 = $row->dsc;                        
-                      $test22 = explode(";", $test11);
-                      $test33 = count($test22);                        
-                      ?>  
+            <div class="box">
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="table-responsive">
+                  <table id="example2" class="table table-bordered table-striped">
+                  <thead>
                   <tr>
-                  <td><center><?php echo $i++; ?></center></td>
-                  <td><center><?php 
-                          // if($row->status == 2){
-                          //   echo "Waiting for processing/ Submitted by users";
-                          // }else 
-                          if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
-                          }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
-                          }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
-                          }else if($row->status == 7){
-                              echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
-                          }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
-                          }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
-                          }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                          }
-                        ?></center>
-                  </td>                        
-                  <td><?php echo $row->nomor_surat; ?> </td>
-                  <td><?php                     
-                        for($b=0; $b<$test33; $b++){
-                          if($test22[$b]){
-                            echo $test22[$b]."<br>";
-                          }
-                        }  ?> 
-                  </td>
-                  <td><?php echo $row->submit_date;?></td>
-                  <td><?php echo $row->label1; ?></td>
-                  <td><?php echo $row->display_name; ?></td>
-                  <td>
-
-                    <?php if ($row->status <= 5) { ?>
-                        <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                    <?php } else if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
-                      <?php if ($row->jenis_pembayaran == 2) { ?> 
-                        <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                      <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 3) { ?> 
-                        <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                      <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
-                        <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                      <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 5) { ?> 
-                        <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
-                      <?php } ?>
-                    <?php } ?>
-
-                    <?php if($row->status == 5 && $row->rejected_by != NULL){ ?>                     
-                      
-                      <?php if ($row->jenis_pembayaran == 2) { ?> 
-                        <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
-                      <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 3) { ?> 
-                        <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
-                      <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
-                        <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
-                      <?php } ?>
-                      <?php if ($row->jenis_pembayaran == 5) { ?> 
-                        <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
-                      <?php } ?>  
-                    <?php } ?>  
-                  </td>      
+                    <th>NO.</th>
+                    <th>Status CSF</th>
+                    <th>Nomor APF</th>
+                    <th>Jenis Pembayaran</th>
+                    <th>Tanggal APF</th>
+                    <th>Deskripsi</th>
+                    <th>Nama Pemohon</th>
+                    <th>Action</th>
                   </tr>
-                    <?php } ?>      
-              </tbody>
-              </table>
-            </div>
-            <div class="box-footer">
-            <?php if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>  
-              <div class="form-group">
-                <label class="control-label col-md-1"><i>Note : </i></label>
-                <div class='col-md-5'> &nbsp;Jika Tombol View APF Muncul, menandakan Form APF telah direject/direturn</div>
-              <br>
-                <div class='col-md-8'> &nbsp;Untuk melihat Catatan telah direject/direturn, dapat di akses melalui Menu My Inbox. Pada Tab List Of Returned(APF FORM)</div>                
+                  </thead>
+                  <tbody>
+                    <?php 
+                      $i = 1;
+                      foreach ($mytasklina as $row){
+                        $test11 = $row->dsc;                        
+                        $test22 = explode(";", $test11);
+                        $test33 = count($test22);                        
+                        ?>  
+                    <tr>
+                    <td><center><?php echo $i++; ?></center></td>
+                    <td><center><?php 
+                            // if($row->status == 2){
+                            //   echo "Waiting for processing/ Submitted by users";
+                            // }else 
+                            if($row->status == 4){
+                              echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
+                            }else if($row->status == 5){
+                              echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
+                            }else if($row->status == 6){
+                              echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
+                            }else if($row->status == 7){
+                                echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
+                            }else if($row->status == 8){
+                              echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
+                            }else if($row->status == 9){
+                              echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
+                            }else if($row->status == 10){
+                              echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                            }
+                          ?></center>
+                    </td>                        
+                    <td><?php echo $row->apf_doc; ?> </td>
+                    <td><?php                     
+                          for($b=0; $b<$test33; $b++){
+                            if($test22[$b]){
+                              echo $test22[$b]."<br>";
+                            }
+                          }  ?> 
+                    </td>
+                    <td><?php echo $row->tanggal;?></td>
+                    <td><?php echo $row->description; ?></td>
+                    <td><?php echo $row->display_name; ?></td>
+                    <td>
+
+                      <?php if ($row->status <= 5) { ?>
+                          <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                      <?php } else if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
+                        <?php if ($row->jenis_pembayaran == 2) { ?> 
+                          <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 3) { ?> 
+                          <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+                          <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 5) { ?> 
+                          <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                      <?php } ?>
+
+                      <?php if($row->status == 5 && $row->rejected_by != NULL){ ?>                     
+                        
+                        <?php if ($row->jenis_pembayaran == 2) { ?> 
+                          <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 3) { ?> 
+                          <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+                          <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 5) { ?> 
+                          <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
+                        <?php } ?>  
+                      <?php } ?>  
+                    </td>      
+                    </tr>
+                      <?php } ?>      
+                </tbody>
+                </table>
               </div>
-              <br>
-              <div class="form-group">
-                <label class="control-label col-md-1"><i>Legend</i></label> <br>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_tax.png'> &nbsp;Processing Tax</div>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_finance.png'> &nbsp;Processing Finance</div>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_reviewer.png'> &nbsp;Waiting For Review</div>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verification</div>
+              <div class="box-footer">
+                <div class="form-group">
+                  <label class="control-label col-md-1"><i>Legend</i></label> <br>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_tax.png'> &nbsp;Processing Tax</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_finance.png'> &nbsp;Processing Finance</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_reviewer.png'> &nbsp;Waiting For Review</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verification</div>
+                </div>
               </div>
-            <?php } else { ?>  
-              <div class="form-group">
-                <label class="control-label col-md-1"><i>Legend</i></label> <br>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_tax.png'> &nbsp;Processing Tax</div>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_finance.png'> &nbsp;Processing Finance</div>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_reviewer.png'> &nbsp;Waiting For Review</div>
-                <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verification</div>
               </div>
-            <?php } ?>
+              <!-- /.box-body -->
             </div>
-            </div>
-            <!-- /.box-body -->
+            <!-- /.box -->
           </div>
-          <!-- /.box -->
+          <!-- /.col -->
         </div>
-        <!-- /.col -->
-      </div>
-    </section>  
+      </section>
+
+    <?php }else{ ?>
+      
+      <section class="content-header">
+      <h1>
+        Waiting For APF Processing
+      </h1>
+      </section>
+
+      <section class="content">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-xs-12">
+            <!-- /.box -->
+
+            <div class="box">
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="table-responsive">
+                  <table id="example2" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>NO.</th>
+                    <th>Status CSF</th>
+                    <th>Nomor SP3</th>
+                    <th>Jenis Pembayaran</th>
+                    <th>Tanggal Submit SP3</th>
+                    <th>Deskripsi</th>
+                    <th>Nama Pemohon</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                      $i = 1;
+                      foreach ($mytask1 as $row){
+                        $test11 = $row->dsc;                        
+                        $test22 = explode(";", $test11);
+                        $test33 = count($test22);                        
+                        ?>  
+                    <tr>
+                    <td><center><?php echo $i++; ?></center></td>
+                    <td><center><?php 
+                            // if($row->status == 2){
+                            //   echo "Waiting for processing/ Submitted by users";
+                            // }else 
+                            if($row->status == 4){
+                              echo "<img src='assets/dashboard/images/legend/icon_tax.png'>";
+                            }else if($row->status == 5){
+                              echo "<img src='assets/dashboard/images/legend/icon_finance.png'>";
+                            }else if($row->status == 6){
+                              echo "<img src='assets/dashboard/images/legend/icon_reviewer.png'>";
+                            }else if($row->status == 7){
+                                echo "<img src='assets/dashboard/images/legend/icon_verified.png'>";
+                            }else if($row->status == 8){
+                              echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
+                            }else if($row->status == 9){
+                              echo "<img src='assets/dashboard/images/legend/icon_payment.png'>"; 
+                            }else if($row->status == 10){
+                              echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
+                            }
+                          ?></center>
+                    </td>                        
+                    <td><?php echo $row->nomor_surat; ?> </td>
+                    <td><?php                     
+                          for($b=0; $b<$test33; $b++){
+                            if($test22[$b]){
+                              echo $test22[$b]."<br>";
+                            }
+                          }  ?> 
+                    </td>
+                    <td><?php echo $row->submit_date;?></td>
+                    <td><?php echo $row->label1; ?></td>
+                    <td><?php echo $row->display_name; ?></td>
+                    <td>
+
+                      <?php if ($row->status <= 5) { ?>
+                          <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                      <?php } else if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
+                        <?php if ($row->jenis_pembayaran == 2) { ?> 
+                          <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 3) { ?> 
+                          <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+                          <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 5) { ?> 
+                          <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                        <?php } ?>
+                      <?php } ?>
+
+                      <?php if($row->status == 5 && $row->rejected_by != NULL){ ?>                     
+                        
+                        <?php if ($row->jenis_pembayaran == 2) { ?> 
+                          <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 3) { ?> 
+                          <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+                          <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 5) { ?> 
+                          <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
+                        <?php } ?>  
+                      <?php } ?>  
+                    </td>      
+                    </tr>
+                      <?php } ?>      
+                </tbody>
+                </table>
+              </div>
+              <div class="box-footer">
+              <?php if($this->session->userdata("username") == "n.prasetyaningrum"){ ?>  
+                <div class="form-group">
+                  <label class="control-label col-md-1"><i>Note : </i></label>
+                  <div class='col-md-5'> &nbsp;Jika Tombol View APF Muncul, menandakan Form APF telah direject/direturn</div>
+                <br>
+                  <div class='col-md-8'> &nbsp;Untuk melihat Catatan telah direject/direturn, dapat di akses melalui Menu My Inbox. Pada Tab List Of Returned(APF FORM)</div>                
+                </div>
+                <br>
+                <div class="form-group">
+                  <label class="control-label col-md-1"><i>Legend</i></label> <br>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_tax.png'> &nbsp;Processing Tax</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_finance.png'> &nbsp;Processing Finance</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_reviewer.png'> &nbsp;Waiting For Review</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verification</div>
+                </div>
+              <?php } else { ?>  
+                <div class="form-group">
+                  <label class="control-label col-md-1"><i>Legend</i></label> <br>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_tax.png'> &nbsp;Processing Tax</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_finance.png'> &nbsp;Processing Finance</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_reviewer.png'> &nbsp;Waiting For Review</div>
+                  <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_verified.png'> &nbsp;Waiting For Verification</div>
+                </div>
+              <?php } ?>
+              </div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+        </div>
+      </section>
+    <?php } ?>
+    
                       
     <section class="content-header">
       <h1>
