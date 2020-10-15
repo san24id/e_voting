@@ -20,13 +20,13 @@
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-pills">
 						<?php if($this->session->userdata("role_id") == 4){ ?>
-						 	<li class="active"><a class="nav-link active" href="#tab_33" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b></a></li>
+						 	<li class="active"><a class="nav-link active" href="#tab_33" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($returnedapprov);?> </small></a></li>
 						<?php }else{ ?>
-							<li class="active"><a class="nav-link active" href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED (TO USERS)</b></a></li>
-							<li><a href="#tab_5" data-toggle="tab"><b>LIST OF REJECTED SP3</b></a></li>
-							<li><a href="#tab_2" data-toggle="tab"><b>LIST OF RETURNED (APF FORM)</b></a></li>
-							<li><a href="#tab_3" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b></a></li>
-							<li><a href="#tab_4" data-toggle="tab"><b>LIST OF REJECTED (AS VERIFICATOR TO USERS)</b></a></li>
+							<li class="active"><a class="nav-link active" href="#tab_1" data-toggle="tab"><b>LIST OF REJECTED (TO USERS) </b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($rejected);?> </small></a></li>
+							<li><a href="#tab_5" data-toggle="tab"><b>LIST OF REJECTED SP3</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($rejectedtax);?> </small></a></li>
+							<li><a href="#tab_2" data-toggle="tab"><b>LIST OF RETURNED (APF FORM)</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($returnedverif);?> </small></a></li>
+							<li><a href="#tab_3" data-toggle="tab"><b>LIST OF REJECTED (BY APPROVER)</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($returnedapprov);?> </small></a></li>
+							<li><a href="#tab_4" data-toggle="tab"><b>LIST OF REJECTED (AS VERIFICATOR TO USERS)</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($returnedusr);?> </small></a></li>
 						<?php } ?>
 						</ul>
 						<?php if($this->session->userdata("role_id") == 4){ ?>
@@ -418,10 +418,10 @@
 				<!-- Custom Tabs -->
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-pills">
-						  <li class="active"><a class="nav-link active" href="#tab_11" data-toggle="tab"><b>LIST OF REJECTED (TO USER) </b></a></li>
-						  <li><a href="#tab_55" data-toggle="tab"><b>LIST OF REJECTED SP3</b></a></li>
-						  <li><a href="#tab_22" data-toggle="tab"><b>LIST OF RETURNED (APF FORM)</b></a></li>
-						  <li><a href="#tab_44" data-toggle="tab"><b>LIST OF REJECTED (AS VERIFICATOR TO USERS)</b></a></li>
+						  <li class="active"><a class="nav-link active" href="#tab_11" data-toggle="tab"><b>LIST OF REJECTED (TO USER) </b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($rejected);?> </small></a></li>
+						  <li><a href="#tab_55" data-toggle="tab"><b>LIST OF REJECTED SP3</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($rejectedtax);?> </small></a></li>
+						  <li><a href="#tab_22" data-toggle="tab"><b>LIST OF RETURNED (APF FORM)</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($returnedverif);?> </small></a></li>
+						  <li><a href="#tab_44" data-toggle="tab"><b>LIST OF REJECTED (AS VERIFICATOR TO USERS)</b>&nbsp;&nbsp;<small class="label pull-right bg-red"><?php echo count($returnedusr);?> </small></a></li>
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="tab_11">						  

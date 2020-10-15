@@ -326,7 +326,7 @@ td[rowspan="6"] {
 
                 <div class="box">
                   <div class="box-header with-border">
-                    <a class="btn btn-warning" href="Approval/listApproval" role="button">Cancel</a>
+                    <a class="btn btn-warning" href="Approval" role="button">Cancel</a>
 
                   <?php if ($get->status == 8 && $get->persetujuan_pembayaran1 == $this->session->userdata("display_name") && $get->persetujuan_pembayaran2 == NULL) { ?>
                     <button type="submit" data-toggle="modal" data-target="#approved<?php echo $get->id; ?>" class="btn btn-success">Proceed For Payment - Approved</button>
