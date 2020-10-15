@@ -45,14 +45,14 @@ td[rowspan="3"] {
                           <td><input type="text" name="tanggal" class="form-control" value="<?php echo $get->tanggal; ?>" readonly> </td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >ARF Doc. No : </font></td>
-                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>"></td>
+                          <td><input type="text" name="apf_doc" class="form-control" value="<?php echo $get->apf_doc; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1" >Dir/Sub/Div :<br><i>Dir/Sub/Div </i><font></td>
-                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $get->division_id; ?>"></td>
+                          <td><input type="text" name="division_id" class="form-control" value="<?php echo $get->division_id; ?>" readonly></td>
                           <td> &nbsp;</td>
                           <td><font size="+1" >Kode Proyek : <br> <i>Project Code</i><font></td>
-                          <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>"></td>
+                          <td><input type="text" name="kode_proyek" class="form-control" value="<?php echo $get->kode_proyek; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><font size="+1">PR Doc. No : </font></td>

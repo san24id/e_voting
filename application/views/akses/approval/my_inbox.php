@@ -134,7 +134,7 @@
                   <td><?php echo $row->description; ?> </td>
                   <td><?php echo $row->note;?> </td>
                   <td>
-                    <?php if ($row->jenis_pembayaran == 1) { ?>   
+                    <?php if ($row->jenis_pembayaran == 4) { ?>   
                       <a href="approval/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                     <?php } ?>
                     <?php if ($row->jenis_pembayaran == 2) { ?> 
@@ -143,7 +143,7 @@
                     <?php if ($row->jenis_pembayaran == 3) { ?> 
                       <a href="approval/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                     <?php } ?>
-                    <?php if ($row->jenis_pembayaran == 4) { ?> 
+                    <?php if ($row->jenis_pembayaran == 5) { ?> 
                       <a href="approval/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                     <?php } ?>                    
                   </td>      

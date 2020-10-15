@@ -535,7 +535,7 @@ class Approval extends CI_Controller {
 
 	public function form_varf($id)
 	{
-		$data['index'] = 'active';
+		$data['l_approval'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -556,7 +556,7 @@ class Approval extends CI_Controller {
 
 	public function form_vasf($id)
 	{
-		$data['index'] = 'active';
+		$data['l_approval'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -577,7 +577,7 @@ class Approval extends CI_Controller {
 
 	public function form_vprf($id)
 	{
-		$data['index'] = 'active';
+		$data['l_approval'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -598,7 +598,7 @@ class Approval extends CI_Controller {
 
 	public function form_vcrf($id)
 	{
-		$data['index'] = 'active';
+		$data['l_approval'] = 'active';
 		$data['active2'] = '';
 		$data['active3'] = '';
 
@@ -650,7 +650,7 @@ class Approval extends CI_Controller {
 		$this->Dashboard_model->updpay($upd);
 		$this->Dashboard_model->rejectapf($upd[status],$upd[nomor_surat],$upd[handled_by],$upd[rejected_by],$upd[rejected_date],$upd[note]);
 
-		redirect('Approval/listApproval');
+		redirect('Approval/wfa');
 	}
 
 	public function wfa(){
