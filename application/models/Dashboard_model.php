@@ -1305,7 +1305,7 @@ class Dashboard_model extends CI_Model{
 				$sql .=" ";
 				break;
 			  case "2":
-				$sql .=" and a.status in ('4','5','6','7','8','9') ";
+				$sql .=" and a.status in ('4','5','6','7','8','12','13','9') ";
 				break;
 			  case "3":
 				$sql .=" and a.status ='0' ";
@@ -1392,7 +1392,7 @@ class Dashboard_model extends CI_Model{
               $sql .="and a.status = '2' ";
               break;
             case "2":
-              $sql .=" and a.status in ('2','4','5','6','7','8','9','10') ";
+              $sql .=" and a.status in ('2','4','5','6','7','8','12','13','9','10') ";
               break;
             case "3":
               $sql .=" and a.status in ('4','5','6','7') ";
@@ -1432,11 +1432,11 @@ class Dashboard_model extends CI_Model{
           
         switch ($profileid) {
             case "1":
-              $sql .=" and a.status = '" . $txtsearch . "'";
+              $sql .=" WHERE a.status = '" . $txtsearch . "'";
                             
               break;
             case "2":
-              $sql .=" and a.jenis_pembayaran like '%".$txtsearch."%' ORDER BY tanggal2 DESC";
+              $sql .=" WHERE a.jenis_pembayaran like '%".$txtsearch."%' and a.status in ('2','4','5','6','7','8','12','13','9','10') ORDER BY tanggal2 DESC";
               break;
             /*case "3":
               $sql .=" and a.nomor_surat like '%" . $txtsearch . "%'";
