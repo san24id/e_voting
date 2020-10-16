@@ -649,7 +649,7 @@ function nominal(){
                 if(angka[i+2] == "1"){
                     kata1 = "Seratus";
                 }else{
-                    kata1 = kata[angka[i+2]] + " Ratus";
+                    kata1 = kata[angka[i+2]] + "Ratus";
                 }
             }
              
@@ -661,10 +661,10 @@ function nominal(){
                     }else if(angka[i] == "1"){
                         kata2 = "Sebelas";
                     }else{
-                        kata2 = kata[angka[i]] + " Belas";
+                        kata2 = kata[angka[i]] + "Belas";
                     }
                 }else{
-                    kata2 = kata[angka[i+1]] + " Puluh";
+                    kata2 = kata[angka[i+1]] + "Puluh";
                 }
             }
              

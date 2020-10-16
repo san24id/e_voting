@@ -1903,7 +1903,7 @@ function AddIndeks(){
 						if(angka[i+2] == "1"){
 							kata1 = "Seratus";
 						}else{
-							kata1 = kata[angka[i+2]] + " Ratus";
+							kata1 = kata[angka[i+2]] + "Ratus";
 						}
 					}
 					
@@ -1915,10 +1915,10 @@ function AddIndeks(){
 							}else if(angka[i] == "1"){
 								kata2 = "Sebelas";
 							}else{
-								kata2 = kata[angka[i]] + " Belas";
+								kata2 = kata[angka[i]] + "Belas";
 							}
 						}else{
-							kata2 = kata[angka[i+1]] + " Puluh";
+							kata2 = kata[angka[i+1]] + "Puluh";
 						}
 					}
 					
@@ -1986,7 +1986,7 @@ function AddIndeks(){
 				kalimat="(" + kalimat + ") ";
 			}
 			if(hasil==0){
-				kalimat="Nol ";
+				kalimat="Nihil";
 			}
 			
 			document.getElementById("terbilang").value=kalimat+muncul;
@@ -2051,7 +2051,7 @@ function AddIndeks(){
 						if(angka[i+2] == "1"){
 							kata1 = "Seratus";
 						}else{
-							kata1 = kata[angka[i+2]] + " Ratus";
+							kata1 = kata[angka[i+2]] + "Ratus";
 						}
 					}
 					
@@ -2063,10 +2063,10 @@ function AddIndeks(){
 							}else if(angka[i] == "1"){
 								kata2 = "Sebelas";
 							}else{
-								kata2 = kata[angka[i]] + " Belas";
+								kata2 = kata[angka[i]] + "Belas";
 							}
 						}else{
-							kata2 = kata[angka[i+1]] + " Puluh";
+							kata2 = kata[angka[i+1]] + "Puluh";
 						}
 					}
 					
@@ -2134,7 +2134,7 @@ function AddIndeks(){
 				kalimat="(" + kalimat + ") ";
 			}
 			if(hasil==0){
-				kalimat="Nol ";
+				kalimat="Nihil";
 			}
 			document.getElementById("terbilang2").value=kalimat+muncul;			
 		}
@@ -2199,7 +2199,7 @@ function AddIndeks(){
 						if(angka[i+2] == "1"){
 							kata1 = "Seratus";
 						}else{
-							kata1 = kata[angka[i+2]] + " Ratus";
+							kata1 = kata[angka[i+2]] + "Ratus";
 						}
 					}
 					
@@ -2211,10 +2211,10 @@ function AddIndeks(){
 							}else if(angka[i] == "1"){
 								kata2 = "Sebelas";
 							}else{
-								kata2 = kata[angka[i]] + " Belas";
+								kata2 = kata[angka[i]] + "Belas";
 							}
 						}else{
-							kata2 = kata[angka[i+1]] + " Puluh";
+							kata2 = kata[angka[i+1]] + "Puluh";
 						}
 					}
 					
@@ -2282,7 +2282,7 @@ function AddIndeks(){
 				kalimat="(" + kalimat + ") ";
 			}
 			if(hasil==0){
-				kalimat="Nol ";
+				kalimat="Nihil";
 			}
 			
 			document.getElementById("terbilang3").value=kalimat+muncul;
@@ -2322,17 +2322,7 @@ function AddIndeks(){
 			if(xj.substr(0,1)=="0" && xj.length >1){
 				xj=xj.substr(1,xj.length);
 				//inps[i].value=formatRupiah(xj.replace(/[^,\d]/g, '').toString());
-	
-											 
-								 
-																	  
-	
-											 
-								 
-																	  
-											  
-								 
-																	  
+													  
 			}
 			
 			if(kdvX.substr(0,1)!="1"){

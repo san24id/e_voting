@@ -773,7 +773,7 @@ function nominal(){
                 if(angka[i+2] == "1"){
                     kata1 = "Seratus";
                 }else{
-                    kata1 = kata[angka[i+2]] + " Ratus";
+                    kata1 = kata[angka[i+2]] + "Ratus";
                 }
             }
              
@@ -785,10 +785,10 @@ function nominal(){
                     }else if(angka[i] == "1"){
                         kata2 = "Sebelas";
                     }else{
-                        kata2 = kata[angka[i]] + " Belas";
+                        kata2 = kata[angka[i]] + "Belas";
                     }
                 }else{
-                    kata2 = kata[angka[i+1]] + " Puluh";
+                    kata2 = kata[angka[i+1]] + "Puluh";
                 }
             }
              
@@ -897,7 +897,7 @@ function nominal(){
                 if(angka[ix+2] == "1"){
                     kata12 = "Seratus";
                 }else{
-                    kata12 = katax[angka2[ix+2]] + " Ratus";
+                    kata12 = katax[angka2[ix+2]] + "Ratus";
                 }
             }
              
@@ -909,10 +909,10 @@ function nominal(){
                     }else if(angka2[ix] == "1"){
                         kata22 = "Sebelas";
                     }else{
-                        kata22 = katax[angka2[ix]] + " Belas";
+                        kata22 = katax[angka2[ix]] + "Belas";
                     }
                 }else{
-                    kata22 = katax[angka2[ix+1]] + " Puluh";
+                    kata22 = katax[angka2[ix+1]] + "Puluh";
                 }
             }
              
@@ -1020,7 +1020,7 @@ function nominal(){
                 if(angka[ixx+2] == "1"){
                     kata13 = "Seratus";
                 }else{
-                    kata13 = kataxx[angka3[ixx+2]] + " Ratus";
+                    kata13 = kataxx[angka3[ixx+2]] + "Ratus";
                 }
             }
              
@@ -1032,10 +1032,10 @@ function nominal(){
                     }else if(angka3[ixx] == "1"){
                         kata23 = "Sebelas";
                     }else{
-                        kata23 = kataxx[angka3[ixx]] + " Belas";
+                        kata23 = kataxx[angka3[ixx]] + "Belas";
                     }
                 }else{
-                    kata23 = kataxx[angka3[ixx+1]] + " Puluh";
+                    kata23 = kataxx[angka3[ixx+1]] + "Puluh";
                 }
             }
              
