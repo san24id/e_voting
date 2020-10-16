@@ -1383,7 +1383,8 @@ class Dashboard_model extends CI_Model{
         if($filter=='5' || $filter=='9' || $filter=='11'){
             $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
         }else{
-            $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+            $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay, c.apf_doc, c.tanggal FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                    LEFT JOIN t_payment_l as c ON a.id_payment= c.id_payment";
         }
 		
 		switch ($filter) {

@@ -732,6 +732,7 @@ $(function () {
               console.log(data);
 			    var status; 
 				var istatus;
+				var strlink='';
 				var ino=1;
 				var tbl1 = $('#example1').DataTable(); 
 				tbl1.clear().draw();
@@ -778,16 +779,32 @@ $(function () {
 						  default:
 							istatus = '';
 						}
+
+            if(status.trim() == "6" || status.trim() == "7" || status.trim() == "8" || status.trim() == "9" || status.trim() == "10"){
+							if (item.id_pay == "2") { 
+								strlink="Dashboard/form_varf/";
+							}else if(item.id_pay == "3") { 
+								strlink='Dashboard/form_vasf/';
+							}else if(item.id_pay == "4") { 
+								strlink='Dashboard/form_vprf/';
+							}else if(item.id_pay == "5") { 
+								strlink='Dashboard/form_vcrf/';
+							}
+						}else{
+							strlink="Dashboard/form_sp3/";
+						}
 						
 						tbl1.row.add( [
 						  ino,
 						  istatus,
 						  item.jenis_pembayaran,
 						  item.nomor_surat,
+						  item.apf_doc,
               item.submit_date,
+              item.tanggal,
 						  item.label1,
 						  item.display_name,
-						  '<a href="dashboard/form_sp3/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
+              '<a href="' + strlink + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
                 })  
