@@ -26,6 +26,9 @@
                   <th>APF No</th>
                   <th>Deskripsi</th>
                   <th>Pemohon</th>
+                  <th>Approver 1</th>
+                  <th>Approver 2</th>
+                  <th>Approver 3</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -67,7 +70,10 @@
                     <td><?php echo $row->tanggal; ?></td>
                     <td> <?php echo $row->apf_doc; ?> </td>
                     <td><?php echo $row->description; ?></td>
-                    <td><?php echo $row->division_id; ?></td>
+                    <td><?php echo $row->display_name; ?></td>
+                    <td><?php echo $row->persetujuan_pembayaran1; ?></td>
+                    <td><?php echo $row->persetujuan_pembayaran2; ?></td>
+                    <td><?php echo $row->persetujuan_pembayaran3; ?></td>
                     <td>
                         <!-- <a href="approval/form_view/<?php echo $row->id_pay; ?>"><button class="btn btn-primary btn-sm">View</button></a> -->
                         <?php if ($row->jenis_pembayaran == 4) { ?>   

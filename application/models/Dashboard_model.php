@@ -10,9 +10,9 @@ class Dashboard_model extends CI_Model{
     }
 
     public function monitoring() {
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
-                WHERE status in ('2','4','5','6','7','8','12','13','9','10') ORDER BY tanggal2 DESC";
-                
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.dsc, c.apf_doc,c.tanggal FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                LEFT JOIN t_payment_l as c ON a.id_payment= c.id_payment WHERE a.status in ('2','4','5','6','7','8','12','13','9','10') ORDER BY a.id_payment DESC";  
+                                    
         $query = $this->db->query($sql)->result();
         return $query;
     }

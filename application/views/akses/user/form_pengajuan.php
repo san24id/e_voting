@@ -1425,7 +1425,8 @@ function savedraft() {
 	var struangmuka1=$('#uangmuka').val().replace(/[^,\d]/g, '').toString();
 	var struangmuka2=$('#uangmukaa').val().replace(/[^,\d]/g, '').toString();
 	var struangmuka3=$('#uangmukab').val().replace(/[^,\d]/g, '').toString();
- 
+	var vendorvalidate="0";
+	
 	if(strrupiah==""){
 		strrupiah="0";
 	}	
@@ -1460,6 +1461,9 @@ function savedraft() {
 		var skdvendor='';
 		for (var i = 0; i <inps1.length; i++) {
 			skdvendor = inps1[i].value;
+			if (skdvendor.substring(0, 1)=="1"){
+				vendorvalidate="1";
+			}
 			if(inps1[i].value==""){
 				errmsg="Penerima Pembayaran baris ke " + (i+1) + " belum di pilih";
 				break;
@@ -1632,6 +1636,7 @@ function savedraft() {
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};	
 				}else{*/
+				if(vendorvalidate=="0"){
 					if(val1>0 && val1!=nomvendor1){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur1 + " tidak sama dengan Jumlah diatas!";
 					}else if(val2>0 && val2!=nomvendor2){
@@ -1639,6 +1644,7 @@ function savedraft() {
 					}else if(val3>0 && val3!=nomvendor3){
 						errmsg="Total Nominal Penerima Pembayaran Mata Uang " + lblcur3 + " tidak sama dengan Jumlah diatas!";
 					};
+				}
 				//}					
 					if (errmsg=="0"){
 					if(lbl4[schk].checked && $.trim($('#text1').val())==""){

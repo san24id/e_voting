@@ -328,11 +328,11 @@
 															$ttlpjk=$gtottax->total_pajak_terhutang;
 														?>
 																														
-															<th colspan="6" style="text-align:center;"> <?php echo $gtottax->jenis_pajak;?></th>
+															<th colspan="8" style="text-align:center;"> <?php echo $gtottax->jenis_pajak;?></th>
 														  <th style="text-align:right;"><label id="lbltotaldpp" style="text-align:right;"><?php echo number_format($ttldpp,0,",","."); ?></label></th>
 														  <th style="text-align:right;"><label id="lbltotaldppgross" style="text-align:right;"><?php echo number_format($ttlgross,0,",","."); ?></label></th>
 														  <th style="text-align:right;"><label id="lbltotal" style="text-align:right;"><?php echo number_format($ttlpjk,0,",","."); ?></label></th>
-														  <th colspan="3">
+														  <th colspan="4">
 														  </th></tr>
 														<?php }?>
 														</tfoot>
