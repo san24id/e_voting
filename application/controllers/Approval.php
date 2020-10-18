@@ -1241,11 +1241,7 @@ class Approval extends CI_Controller {
 		$data['w_approval'] = $this->Approval_model->notifApproval();
 		$data['reject'] = $this->Home_model->notifRejected();
 		$data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		
-		switch($id){
 			
-		}
-		
 		switch ($id) {
 		  case "1":
 			$data['payment'] = $this->Home_model->getPaymentDetail($sid,$start_date,$end_date);
@@ -1339,11 +1335,6 @@ class Approval extends CI_Controller {
 		$data['pembayaran'] = $this->Approval_model->getVPayment();
 		$data['tot_approved'] = $this->Approval_model->TotalApproved();
 		$data['wApproval'] = $this->Approval_model->getWaitApproval();
-
-		switch($id){
-			
-		}
-		
 		
 		switch ($id) {
 		  case "1":

@@ -44,7 +44,7 @@ class Approval_model extends CI_Model{
     }
 
     public function getMonitoringWaitApproval($sid=0,$start_date,$end_date) {
-        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('display_name');
         if ($start_date !=1 && $end_date !=1) {
             $start_date = $start_date;
             $end_date = $end_date;
@@ -54,8 +54,8 @@ class Approval_model extends CI_Model{
             $end_date = date('Y-m-d');
         }
 
-        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE  
-                status in ('8' ,'12', '13') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.apf FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay
+                WHERE persetujuan_pembayaran1='$usr' AND status in ('8' ,'12', '13') AND tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
                 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -104,11 +104,12 @@ class Approval_model extends CI_Model{
     }
 
     function getWaitApproval(){
+        $usr = $this->session->userdata('display_name');
 
         $start_date = date('Y-01-01');
         $end_date = date('Y-m-d');
 
-        $sql = "SELECT COUNT(status) as approval FROM t_payment_l WHERE status in ('8' ,'12', '13') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
+        $sql = "SELECT COUNT(status) as approval FROM t_payment_l WHERE persetujuan_pembayaran1='$usr' AND status in ('8' ,'12', '13') AND tanggal2 BETWEEN '$start_date' AND '$end_date'";
         $query = $this->db->query($sql)->result();
         return $query;
     }
@@ -184,9 +185,9 @@ class Approval_model extends CI_Model{
 
     function notifApproval(){
         $dvs = $this->session->userdata('division_id');
-        $usr = $this->session->userdata('id_user');
+        $usr = $this->session->userdata('display_name');
 
-        $sql = "SELECT COUNT(status) as w_approval FROM t_payment WHERE status in ('8' ,'12', '13')";
+        $sql = "SELECT COUNT(status) as w_approval FROM t_payment_l WHERE persetujuan_pembayaran1='$usr' AND status in ('8' ,'12', '13')";
         $query = $this->db->query($sql)->result();
         // var_dump($query);exit;
         return $query;

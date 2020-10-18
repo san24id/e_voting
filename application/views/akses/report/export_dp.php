@@ -34,7 +34,7 @@
 											<option value='0'>== Pilih ==</option>
 											<option value='1'> Tanggal </option>
 											<!-- <option value='2'> Jenis Pembayaran </option> -->
-											<option value='3'> Nomor Surat </option>
+											<option value='3'> Nomor SP3 </option>
 											<option value='4'> Pemohon </option>
 											<option value='5'> Penerima </option>
 										</select>
@@ -47,7 +47,7 @@
 								<!-- <div class="form-group">
 									<label>&nbsp;</label>      -->        
 									<span class="input-group-btn">
-										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
 									</span>   
 
 								<!-- </div> -->
@@ -77,9 +77,9 @@
                 <tr>
                   <th>NO.</th>
                   <th>Status</th>
-                  <th>Tanggal</th>
+                  <th>Tanggal SP3</th>
                   <th>Jenis Pembayaran</th>
-                  <th>Nomor Surat</th>
+                  <th>Nomor SP3</th>
                   <th>Description</th>
                   <th>Pemohon</th>
                   <th>Bank Account</th>

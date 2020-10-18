@@ -1656,6 +1656,9 @@ $('#txtnamanpwp').select2();
 			$('#txtnonpwp').prop('readonly', false);	
 			$('#txtalamat').prop('readonly', false);	
 			$('#divKdMap').hide();
+			$('#divdppkumulatif').hide(); 
+			$('#lbldppkumulatif').hide();
+				
 			/*if($strid.substring(0, 3)=='PPN'){
 				$('#divKdMap').hide();
 			}else{
@@ -2198,6 +2201,16 @@ function gethistorytax()
 	
 }
 
+function formatnourut(){
+	var nourut = document.getElementById('txtnourut');
+	var strnourut=nourut.value.trim();
+	if(strnourut.substr(0,1)=="0" && strnourut.length >1){
+		strnourut=strnourut.substr(1,strnourut.length);														  
+	}else if(strnourut.substr(0,1)=="0" && strnourut.length ==1){
+		strnourut='1';														  
+	}		
+	nourut.value=strnourut.replace(/[^,\d]/g, '').toString();
+}
   //===========
   
 </script>
@@ -2245,7 +2258,7 @@ function gethistorytax()
 						<div class="form-group">
 							<label class="control-label col-md-3">No Urut</label>
 								<div class="col-md-9">
-									<input name="txtnourut" id="txtnourut" value="<?php echo $nourut; ?>"  placeholder="No Urut" class="form-control" type="text" >
+									<input name="txtnourut" id="txtnourut" value="<?php echo $nourut; ?>" onkeyup="formatnourut()" placeholder="No Urut" class="form-control" type="text" >
 								</div>
 						</div>
 						<div class="form-group">

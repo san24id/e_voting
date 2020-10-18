@@ -22,12 +22,12 @@
                 <tr>
                   <th>NO.</th>
                   <th>Status</th>
-                  <th>Tanggal</th>
+                  <th>Tanggal SP3</th>
                   <th>Jenis Pembayaran</th>
-                  <th>Nomor Surat</th>
+                  <th>Nomor SP3</th>
                   <th>Description</th>
                   <th>Pemohon</th>
-                  <th>Bank Account</th>
+                  <th>Divisi</th>
                   <th>Nama Penerima</th>
                   <th>Submitted Date</th>
                   <th>Action</th>
@@ -86,7 +86,7 @@
                   </td>
                   <td><?php echo $row->nomor_surat; ?></td>
                   <td><?php echo $row->label1; ?></td>
-                  <td><?php echo $row->display_name; ?></td>
+                  <td><?php echo $row->division_id; ?></td>
                   <td><?php echo $row->akun_bank; ?></td>
                   <td><?php echo $row->penerima; ?></td>
                   <td><?php echo date("d-M-Y", strtotime($row->submit_date)); ?></td>

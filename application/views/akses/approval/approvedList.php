@@ -54,7 +54,7 @@
                           }else if($row->status == 3){
                               echo "<img src='assets/dashboard/images/legend/reject.png'>";
                           }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approved.png'>";
+                            echo "<img src='assets/dashboard/images/legend/icon_payment.png'>";
                           }else if($row->status == 10){
                             echo "<img src='assets/dashboard/images/legend/paid1.png'>";  
                           }

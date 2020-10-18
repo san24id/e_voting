@@ -44,7 +44,7 @@
                         <option value='2'> Jenis Pembayaran  </option>
                         <!--<option value='1'> Status </option>
                         <option value='2'> Jenis Pembayaran </option>
-                        <option value='3'> Nomor Surat </option>
+                        <option value='3'> Nomor SP3 </option>
                         <option value='4'> Pemohon </option>
                         <option value='5'> Penerima </option> -->
                       </select>
@@ -103,7 +103,7 @@
                   <!-- <div class="form-group">
                     <label>&nbsp;</label>      -->        
                     <span class="input-group-btn">
-                      <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+                      <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
                     </span>   
 
                   <!-- </div> -->
@@ -135,12 +135,12 @@
                 <tr>
                   <th>NO.</th>
                   <th>Status</th>
-                  <th>Tanggal</th>
+                  <th>Tanggal SP3</th>
                   <th>Jenis Pembayaran</th>
-                  <th>Nomor Surat</th>
+                  <th>Nomor SP3</th>
                   <th>Deskripsi</th>
                   <th>Pemohon</th>
-                  <th>Bank Account</th>
+                  <th>Divisi</th>
                   <th>Nama Penerima</th>
                   <th>Submitted Date</th>
                   <th>Action</th>
@@ -196,7 +196,7 @@
                   <td><?php echo $row->nomor_surat; ?></td>
                   <td><?php echo $row->label1; ?></td>
                   <td><?php echo $row->display_name; ?></td>
-                  <td><?php echo $row->akun_bank; ?></td>
+                  <td><?php echo $row->division_id; ?></td>
                   <td><?php echo $row->penerima; ?></td>
                   <td><?php echo date("d-M-Y", strtotime($row->submit_date)); ?></td>
                   <td>

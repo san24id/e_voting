@@ -99,15 +99,15 @@
                         <td><?php echo $i++; ?></td>
                         <td><center> <?php 
                                 if($row->status == 8){
-                                  echo "<img src='assets/dashboard/images/legend/verified.png'>";  
+                                  echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";  
                                 }else if($row->status == 12){
-                                  echo "<img src='assets/dashboard/images/legend/verified.png'>"; 
+                                  echo "<img src='assets/dashboard/images/legend/icon_approval.png'>"; 
                                 }else if($row->status == 13){
-                                  echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                                  echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
                                 }else if($row->status == 3){
                                   echo "<img src='assets/dashboard/images/legend/reject.png'>";
                                 }else if($row->status == 9){
-                                  echo "<img src='assets/dashboard/images/legend/approved.png'>";
+                                  echo "<img src='assets/dashboard/images/legend/icon_payment.png'>";
                                 }else if($row->status == 10){
                                   echo "<img src='assets/dashboard/images/legend/paid1.png'>";  
                                 }
@@ -153,11 +153,11 @@
 							switch ($filter) {
 							  case "1":
 								  echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-								  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Waiting For Approval</div>";
+								  echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_approval.png'> &nbsp;Waiting For Approval</div>";
 								break;
 							  case "2":
 							  	echo "<label class='control-label col-md-1'><i>Legend</i></label>";
-			  					echo "<div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Approved</div>";
+			  					echo "<div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Payment</div>";
 								break;
 							  
 							  default:
@@ -395,10 +395,10 @@ $(function () {
 							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
 							break;
                           case "8":
-							istatus = '<img src="assets/dashboard/images/legend/verified.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_approval.png">';
 							break;
                           case "9":
-							istatus = '<img src="assets/dashboard/images/legend/approved.png">';
+							istatus = '<img src="assets/dashboard/images/legend/icon_payment.png">';
 							break; 
                           case "10":
 							istatus = '<img src="assets/dashboard/images/legend/paid1.png">';

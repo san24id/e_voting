@@ -339,7 +339,7 @@
                             <option value='0'>== Pilih ==</option>
                             <option value='1'> Status </option>
                             <option value='2'> Jenis Pembayaran </option>
-                            <!-- <option value='3'> Nomor Surat </option>
+                            <!-- <option value='3'> Nomor SP3 </option>
                             <option value='4'> Pemohon </option>
                             <option value='5'> Penerima </option> -->
                           </select>
@@ -379,7 +379,7 @@
                       <!-- <div class="form-group">
                         <label>&nbsp;</label>      -->        
                         <span class="input-group-btn">
-                          <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+                          <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
                         </span>   
 
                       <!-- </div> -->
@@ -408,13 +408,14 @@
                       <tr>
                       <th>NO.</th>
                       <th>Status CSF</th>
-                      <th>Nomor SP3</th>
-                      <th>Nomor APF</th>
                       <th>Jenis Pembayaran</th>
+                      <th>Nomor SP3</th>
                       <th>Tanggal SP3 Submit</th>
+                      <th>Nomor APF</th>
                       <th>Tanggal APF</th>
                       <th>Deskripsi</th>
                       <th>Pemohon</th>
+                      <th>Divisi</th>
                       <th>Action</th>
                       </tr>
                     </thead>
@@ -454,7 +455,6 @@
                           ?></center>
                       </td>                  
                       <td><?php echo $row->nomor_surat; ?></td>
-                      <td><?php echo $row->apf_doc; ?></td>
                       <td><?php                     
                           for($a=0; $a<$test3; $a++){
                             if($test2[$a]){
@@ -463,13 +463,15 @@
                           }  ?>
                       </td>
                       <td><?php echo $row->submit_date; ?></td>
+                      <td><?php echo $row->apf_doc; ?></td>
                       <td><?php echo $row->tanggal; ?></td>
                       <td><?php echo $row->label1; ?></td>
                       <td><?php echo $row->display_name; ?></td>
+                      <td><?php echo $row->division_id; ?></td>
                       <td>
                       <?php if ($row->status <= 5) { ?>
                           <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
-                      <?php } else if ($row->status == 6 || $row->status == 7 || $row->status == 8) { ?>                         
+                      <?php } else if ($row->status == 6 || $row->status == 7 || $row->status == 8 || $row->status == 9) { ?>                         
                         <?php if ($row->jenis_pembayaran == 2) { ?> 
                           <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <?php } ?>
@@ -482,7 +484,25 @@
                         <?php if ($row->jenis_pembayaran == 5) { ?> 
                           <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
                         <?php } ?>
+
+                      <?php }else if($row->status == 10) { ?>
+                        <a href="Dashboard/form_sp3/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        
+                        <?php if ($row->jenis_pembayaran == 2) { ?> 
+                          <a href="Dashboard/form_varf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 3) { ?> 
+                          <a href="Dashboard/form_vasf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 4 || $row->jenis_pembayaran == 6) { ?>   
+                          <a href="Dashboard/form_vprf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>
+                        <?php } ?>
+                        <?php if ($row->jenis_pembayaran == 5) { ?> 
+                          <a href="Dashboard/form_vcrf/<?php echo $row->id_payment; ?>"><button class="btn btn-success btn-sm">View APF</button></a>                    
+                        <?php } ?>
+                        
                       <?php } ?>                          
+
                       </td>      
                       </tr>                    
                     <?php  } ?>

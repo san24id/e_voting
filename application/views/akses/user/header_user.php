@@ -157,9 +157,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/dashboard/dist/img/profile24.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">
-              <?php echo $this->session->userdata("display_name"); ?>
-              </span>
+              <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->

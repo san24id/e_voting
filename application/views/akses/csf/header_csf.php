@@ -150,7 +150,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/dashboard/dist/img/profile24.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
+              <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -158,7 +158,7 @@
                 <img src="assets/dashboard/dist/img/profile24.png" class="img-circle" alt="User Image">
 
                 <p>
-                 <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
+                 <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -201,45 +201,9 @@
       </form>    
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">        
-        
-        <li class="<?php echo $dashboard?>"><a href="Dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
-        <?php 
-          if($this->session->userdata("role_id") == 4){
-            $sql = "SELECT activate FROM m_status WHERE id_status=11";
-            $query = $this->db->query($sql)->result();
-            // return $query;
-            // var_dump($query);exit; 
-            $iya = "";
-            foreach ($query as $signature):
-              $iya.= $signature->activate;
-            endforeach;
+      <ul class="sidebar-menu">  
 
-              if ($iya == "ON"){
-                foreach ($notif_approval as $notifapproval) {?>
-                  <li class="<?php echo $waiting_approval?>"><a href="Dashboard/wait_for_approval"><i class="glyphicon glyphicon-print"></i><span>Waiting For Approval</span><small class="label pull-right bg-red"><?php echo $notifapproval->taskapproval; ?> </small></a></li>
-                <?php } ?> 
-              <?php } ?> 
-        <?php } ?> 
-        <li class="treeview">
-          <a href="">
-            <i class="glyphicon glyphicon-inbox"></i>
-            <span>My Report</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="Dashboard/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li><a href="Dashboard/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li><a href="Dashboard/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
-            <li><a href="Dashboard/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
-            <li><a href="Dashboard/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
-            <li><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
-          </ul>  
-        </li>
-        <li class="<?php echo $monitoring?>"><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-list-alt"></i><span>Monitoring</a></span></li>
+      <li class="<?php echo $monitoring?>"><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-list-alt"></i><span>Monitoring</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-th-list"></i>
@@ -273,7 +237,45 @@
             <li class="<?php echo $inbox?>"><a href="Dashboard/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
             
           <?php } ?>        
-        <?php } ?>        
+        <?php } ?>      
+        
+        <li class="<?php echo $dashboard?>"><a href="Dashboard"><i class="fa fa-dashboard"></i><span>My SP3 Dashboard</a></span></li>
+        <?php 
+          if($this->session->userdata("role_id") == 4){
+            $sql = "SELECT activate FROM m_status WHERE id_status=11";
+            $query = $this->db->query($sql)->result();
+            // return $query;
+            // var_dump($query);exit; 
+            $iya = "";
+            foreach ($query as $signature):
+              $iya.= $signature->activate;
+            endforeach;
+
+              if ($iya == "ON"){
+                foreach ($notif_approval as $notifapproval) {?>
+                  <li class="<?php echo $waiting_approval?>"><a href="Dashboard/wait_for_approval"><i class="glyphicon glyphicon-print"></i><span>Waiting For Approval</span><small class="label pull-right bg-red"><?php echo $notifapproval->taskapproval; ?> </small></a></li>
+                <?php } ?> 
+              <?php } ?> 
+        <?php } ?> 
+        <li class="treeview">
+          <a href="">
+            <i class="glyphicon glyphicon-inbox"></i>
+            <span>My SP3 Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Dashboard/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li><a href="Dashboard/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li><a href="Dashboard/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li><a href="Dashboard/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
+            <li><a href="Dashboard/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
+            <li><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+          </ul>  
+        </li>
+                
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-th-list"></i>

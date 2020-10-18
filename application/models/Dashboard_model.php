@@ -299,7 +299,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
-        $kodejadi = "ARF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        $kodejadi = "ARF-".date('my-').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         // var_dump($kodejadi);exit;
         return $kodejadi;  
     }
@@ -325,7 +325,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
-        $kodejadi = "ASF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        $kodejadi = "ASF-".date('my-').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
 
@@ -352,7 +352,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
-        $kodejadi = "PRF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        $kodejadi = "PRF-".date('my-').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
 
@@ -377,7 +377,7 @@ class Dashboard_model extends CI_Model{
         }
 
         $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 3 menunjukkan jumlah digit angka 0
-        $kodejadi = "CRF - ".date('my - ').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
+        $kodejadi = "CRF-".date('my-').$kodemax;    // hasilnya 0001/$dvs/SPPP/bulantahun dst.
         return $kodejadi;  
     }
 

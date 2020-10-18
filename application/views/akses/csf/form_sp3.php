@@ -969,7 +969,7 @@
             
 
             <div class="form-group" >
-              <label class="control-label col-md-3">Nomor Surat SP3</label>
+              <label class="control-label col-md-3">Nomor SP3 SP3</label>
               <div class="col-md-6">
                 <input name="mdl_no_surat" id="mdl_no_surat" readonly="" placeholder="No Surat Permohonan" class="form-control " type="text">
               </div>

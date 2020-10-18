@@ -62,7 +62,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/dashboard/dist/img/profile24.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
+              <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -70,7 +70,7 @@
                 <img src="assets/dashboard/dist/img/profile24.png" class="img-circle" alt="User Image">
 
                 <p>
-                 <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
+                 <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -140,11 +140,11 @@
         <?php foreach ($reject as $notif) { ?>
         <li class="<?php echo $inbox?>"><a href="Tri/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <?php } ?>
-        <li class="<?php echo $index?>"><a href="Tri/my_dashboard"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
+        <li class="<?php echo $index?>"><a href="Tri/my_dashboard"><i class="fa fa-dashboard"></i><span>My SP3 Dashboard</a></span></li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
-            <span>My Report</span>
+            <span>My SP3 Report</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -173,7 +173,7 @@
         <?php 
             } ?>
         <?php if($this->session->userdata("role_id") == 2 || $this->session->userdata("role_id") == 3){ ?>
-        <li><center><a href="Tri/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE SP3</button></a></center></li>    
+        <li><center><a href="Tri/form_add"><button type="button" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE SP3/CRF</button></a></center></li>    
         <?php }?>
       </ul>
     </section>

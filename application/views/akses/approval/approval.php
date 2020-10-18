@@ -76,7 +76,7 @@
               <tr>
                 <td align="center" width="10%">
                   <div class="info-box box1">
-                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3verified.png"></i></span>
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/approval.png"></i></span>
                       <br>
                       <?php foreach ($wApproval as $wApproval) { ?>
                         <a href="<?php echo base_url('Approval/all_detail_approval/1/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $wApproval->approval; ?></center></font></a>
@@ -88,13 +88,13 @@
                 </td>
                 <td align="center" width="10%">
                   <div class="info-box box1">
-                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/3approved.png"></i></span>
+                    <span class="info-box-icon"><img align="center" src="assets/dashboard/images/legend/paid.png"></i></span>
                       <br>
                       <?php foreach ($tot_approved as $tot_approved) { ?>
 
                         <a href="<?php echo base_url('Approval/all_detail_approval/2/'.$start_date.'/'.$end_date)?>"><font size='5' color="white"><center><?php echo $tot_approved->tot_approved; ?></center></font></a>
                       <?php } ?>
-                      <center><font size='3' color="white">Approved </center>
+                      <center><font size='3' color="white">Waiting For Payment</center>
                       <br>
                       <p><center><font size='3' color="black">*) Jumlah Form APF yang sudah di Approved, dan belum dibayarkan</center></p> 
                   </div>
@@ -173,15 +173,15 @@
                   <td><?php echo $i++; ?></td>
                   <td> <?php 
                         if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";  
+                            echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";  
                         }else if($row->status == 12){
-                          echo "<img src='assets/dashboard/images/legend/verified.png'>"; 
+                          echo "<img src='assets/dashboard/images/legend/icon_approval.png'>"; 
                         }else if($row->status == 13){
-                          echo "<img src='assets/dashboard/images/legend/verified.png'>";
+                          echo "<img src='assets/dashboard/images/legend/icon_approval.png'>";
                         }else if($row->status == 3){
                             echo "<img src='assets/dashboard/images/legend/reject.png'>";
                         }else if($row->status == 9){
-                          echo "<img src='assets/dashboard/images/legend/approved.png'>";
+                          echo "<img src='assets/dashboard/images/legend/icon_payment.png'>";
                         }else if($row->status == 10){
                           echo "<img src='assets/dashboard/images/legend/paid1.png'>";  
                         }
@@ -275,8 +275,8 @@
                 <div class="box-footer">  
                   <div class="form-group">
                     <label class="control-label col-md-1"><i>Legend</i></label> <br>
-                    <div class='col-md-2'><img src='assets/dashboard/images/legend/verified.png'> &nbsp;Waiting For Approval</div>
-                    <div class='col-md-2'><img src='assets/dashboard/images/legend/approved.png'> &nbsp;Total Approved</div>
+                    <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_approval.png'> &nbsp;Waiting For Approval</div>
+                    <div class='col-md-2'><img src='assets/dashboard/images/legend/icon_payment.png'> &nbsp;Waiting For Payment</div>
                     <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp;Paid</div>	
                   </div>  
                 </div> 

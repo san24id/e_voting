@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        LIST OF ADVANCE SETTLMENT REQUEST
+        <font color="#00008B"><b>LIST OF ADVANCE SETTLEMENT REQUEST</b></font>
       </h1>
     </section>
 
@@ -28,7 +28,7 @@
 											<option value='0'>== Pilih ==</option>
 											<option value='1'> Status </option>
 											<!-- <option value='2'> Jenis Pembayaran </option> -->
-											<!-- <option value='3'> Nomor Surat </option>
+											<!-- <option value='3'> Nomor SP3 </option>
 											<option value='4'> Pemohon </option>
 											<option value='5'> Penerima </option> -->
 										</select>
@@ -56,7 +56,7 @@
 								<!-- <div class="form-group">
 									<label>&nbsp;</label>      -->        
 									<span class="input-group-btn">
-										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
 									</span>   
 
 								<!-- </div> -->
@@ -85,13 +85,13 @@
                 <tr>
                   <th>NO.</th>
                   <th>Status</th>
-                  <th>Tanggal</th>
+                  <th>Tanggal SP3</th>
                   <th>Jenis Pembayaran</th>
-                  <th>Nomor Surat</th>
+                  <th>Nomor SP3</th>
                   <th>Deskripsi</th>
                   <th>Pemohon</th>
-                  <th>Bank Account</th>
-                  <th>Penerima Pembayaran</th>
+                  <!-- <th>Bank Account</th>
+                  <th>Penerima Pembayaran</th> -->
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -149,7 +149,7 @@
                   <td><?php echo $row->nomor_surat; ?></td>
                   <td><?php echo $row->label1; ?></td>
                   <td><?php echo $row->display_name; ?></td>
-                  <td><?php echo $row->akun_bank; ?></td>
+                  <!-- <td><?php echo $row->akun_bank; ?></td>
                   <?php 
                         $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
                         $query = $this->db->query($sql)->result();
@@ -160,7 +160,7 @@
                           $buka = $row->penerima;
                         }
                       ?>
-                  <td><?php echo $buka; ?></td>
+                  <td><?php echo $buka; ?></td> -->
                   <td>
                     
                     <a href="Dashboard/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
@@ -355,8 +355,8 @@ $(document).ready(function() {
 						  item.nomor_surat,
 						  item.label1,
 						  item.display_name,
-						  item.akun_bank,
-						  item.penerima,
+						  // item.akun_bank,
+						  // item.penerima,
 						  '<a href="dashboard/form_view/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 

@@ -60,7 +60,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/avatar5.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
+              <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -68,7 +68,7 @@
                 <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                 <span class="hidden-xs"><?php echo $this->session->userdata("display_name"); ?></span>
+                 <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
                 </p>
               </li>
               <!-- Menu Body -->
