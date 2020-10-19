@@ -819,11 +819,12 @@ $(function () {
 						  istatus,
 						  item.jenis_pembayaran,
 						  item.nomor_surat,
-						  item.apf_doc,
               item.submit_date,
+						  item.apf_doc,
               item.tanggal,
 						  item.label1,
 						  item.display_name,
+						  item.division_id,
               '<a href="' + strlink + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
 						ino++; 
