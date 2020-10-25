@@ -136,13 +136,73 @@
         </div>            
     </section>
 
-    <section class="content">
+    <section class="content">		
       <div class="row">
         <div class="col-xs-12">
           <!-- /.box -->
           <div class="box">
               <!-- /.box-header -->
-              <div class="box-body">
+				<div class="box-header with-border">
+					<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
+				</div>
+				
+					<div id="cari" class="collapse">
+						<div class="box-header with-border">
+							<div class="row">
+								<form id="formCari">		
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-1">Criteria</label>
+											<div class="col-md-2">
+												 <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
+													<option value='0'>== Pilih ==</option>
+													<option value='1'> Status </option>
+													<option value='2'> Jenis Pembayaran </option>
+												</select>
+											</div> 	
+											<div class="col-md-3">
+												<select class="form-control" id="selstatus" name="selstatus" style="display:none" >
+													<option value=''>== Pilih ==</option>
+													<option value='8'> Waiting For Approval </option>
+													<option value='9'> Waiting For Payment </option>
+													<option value='10'> Paid </option>
+												</select>
+												
+												<select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+													<option value=''>== Pilih ==</option>
+													<option value='4'> Direct Payment </option> 
+													<option value='2'> Advance Request </option>
+													<option value='3'> Advance Settlement </option>
+													<option value='5'> Cash Received </option>
+												</select>
+												
+												<select class="form-control" id="selblank" name="selblank"  >
+													<option value=''>== Pilih ==</option>
+												</select>
+											</div>		
+												
+											<div class="col-md-3">
+										<!-- <div class="form-group">
+											<label>&nbsp;</label>      -->        
+											<span class="input-group-btn">
+												<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
+											</span>   
+
+										<!-- </div> -->
+										<!-- /.form-group -->
+									</div>
+										</div>     
+										
+									</div>
+								</form>
+								<!-- /.col -->
+							 </div>
+						  <!-- /.row -->
+						</div>
+					</div>
+				
+				
+			  <div class="box-body">
               <div class="table-responsive">
                   <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -365,6 +425,22 @@
 
 <script>
 
+$('#selsearch').change(function() {
+		  if( $(this).val() == '1') {
+				$('#selblank').css("display", "none");
+				$('#selstatus').css("display", "block");
+				$('#seljnspembayaran').css("display", "none");
+		  } else if( $(this).val() == '2'){   
+			$('#selblank').css("display", "none");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "block");
+		  }else{
+			$('#selblank').css("display", "block");
+			$('#selstatus').css("display", "none");
+			$('#seljnspembayaran').css("display", "none");
+		  }
+		})
+		
 $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
@@ -406,6 +482,13 @@ $(function () {
               dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.y}'
+              },
+			   point: {
+					events: {
+                    click: function() {
+                        location.href = this.options.link;
+                    }
+                }
               }
           }
       },
@@ -417,7 +500,8 @@ $(function () {
             <?php foreach ($pembayaran as $key) { ?>
               {
                 name: '<?php echo $key->jenis_pembayaran; ?>',
-                y: <?php echo $key->jmlpembayaran; ?>
+                y: <?php echo $key->jmlpembayaran; ?>,
+				        link:'<?php echo base_url('Approval/'.$key->link.'_new/'.$start_date.'/'.$end_date);?> '
               },
             <?php } ?>
               ]
@@ -448,5 +532,87 @@ $(function () {
               alert('Accepted success')
           }      
       });
-  });      
+  }); 
+
+	function caridata()
+    {
+	  url = "<?php echo base_url('approval/caridataapproval') ?>";
+      $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#formCari').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data);
+			    var status; 
+				var istatus;
+				var ipmt;
+				var ino=1;
+				var tbl1 = $('#example1').DataTable(); 
+				tbl1.clear().draw();
+                $.each(data, function(key, item) 
+                      {       
+					    status =  item.status;
+						pmt = item.jenis_pembayaran;
+						switch(status) {						
+						  case "8":
+							istatus ='<img src="assets/dashboard/images/legend/icon_approval.png">';  
+							break;
+						  case "9":
+							istatus ='<img src="assets/dashboard/images/legend/icon_payment.png">';
+							break;
+						  case "10":
+							istatus ='<img src="assets/dashboard/images/legend/paid1.png">';
+							break;
+                          case "12":
+							istatus ='<img src="assets/dashboard/images/legend/icon_approval.png">';
+							break;
+                          case "13":
+							istatus ='<img src="assets/dashboard/images/legend/icon_approval.png">';
+							break;  
+						  default:
+							istatus = '';
+						}
+						
+						switch(pmt) {						
+						  case "2":
+							ipmt ='<a href="approval/form_varf/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>';  
+							break;
+						  case "3":
+							ipmt ='<a href="approval/form_vasf/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>';
+							break;
+						  case "4":
+							ipmt ='<a href="approval/form_vprf/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>';
+							break;
+                          case "5":
+							ipmt ='<a href="approval/form_vcrf/' + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>';
+							break;
+						  default:
+							ipmt = '';
+						}
+						
+						tbl1.row.add( [
+						  ino,
+						  istatus,
+						  item.jenis_pembayaran_desc,
+						  item.tanggal,
+						  item.apf_doc,
+						  item.description,
+						  item.display_name,
+						  item.persetujuan_pembayaran1,
+						  item.persetujuan_pembayaran2,
+						  item.persetujuan_pembayaran3,
+						  ipmt
+                        ] ).draw(false);
+						ino++; 
+                })  
+            },
+            error: function (data)
+            {
+              console.log(data);
+                alert('Error get data');
+            }
+        });
+    }
 </script>

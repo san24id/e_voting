@@ -1,3 +1,4 @@
+																<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -12,17 +13,20 @@
         <div class="box-header with-border">
           <!-- <h3 class="box-title">Pencarian</h3> -->
           <button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
-          
+          &nbsp;&nbsp;&nbsp;
+		<button class="btn btn-success" id="btnexcel" onclick="exportexcel()"><i class="fa fa-download"></i>&nbsp;&nbsp;Excel</button>
+		<button class="btn btn-success" id="btnpdf" onclick="exportpdf()"><i class="fa fa-download"></i>&nbsp;&nbsp;PDF</button>
         </div>
         <!-- /.box-header -->
         <div id="cari" class="collapse">
           <div class="box-body">
+			<form id="formCari">				  
             <div class="row">
-              <form id="formCari">		
+              	
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="col-md-1">Criteria</label>
-                    <div class="col-md-2">
+                    <label class="col-md-2" style="width: 15%;">Jenis Pembayaran</label>
+                    <div class="col-md-2" style="display:none" >
                       <select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
                         <option value='0'>== Pilih ==</option>
                         <?php
@@ -86,7 +90,7 @@
                         <option value='10'> Paid </option>-->
                       </select>
                       
-                      <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:none" >
+                      <select class="form-control" id="seljnspembayaran" name="seljnspembayaran" style="display:block;width: 73%;" >
                         <option value=''>== Pilih ==</option>
                         <option value='4'> Direct Payment </option> 
                         <option value='2'> Advance Request </option>
@@ -94,7 +98,7 @@
                         <option value='5'> Cash Received </option>
                       </select>
                       
-                      <select class="form-control" id="selblank" name="selblank"  >
+                      <select class="form-control" id="selblank" name="selblank" style="display:none" >
                         <option value=''>== Pilih ==</option>
                       </select>
                     </div>		
@@ -102,9 +106,9 @@
                     <div class="col-md-3">
                   <!-- <div class="form-group">
                     <label>&nbsp;</label>      -->        
-                    <span class="input-group-btn">
+                    <!-- <span class="input-group-btn">
                       <button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
-                    </span>   
+                    </span>-->    
 
                   <!-- </div> -->
                   <!-- /.form-group -->
@@ -112,9 +116,41 @@
                   </div>     
                   
                 </div>
-              </form>
+              
               <!-- /.col -->
             </div>
+			</br>
+					<div class="row">
+						<div class="col-md-12">
+								<div class="form-group">
+									<label class="col-md-2" style="width:15%">Periode</label>										
+									<div class="col-md-2">
+										<input type="text" id="periode1" name="periode1" placeholder="Start Date" class="form-control" ></input>
+									</div> 	
+									<label class="col-md-1" style="width:4%">to</label>			
+									<div class="col-md-2">
+										<input type="text" id="periode2" name="periode2" placeholder="End Date" class="form-control" ></input>
+									</div> 	
+									
+									<div class="col-md-3">
+								<!-- <div class="form-group">
+									<label>&nbsp;</label>             
+									<span class="input-group-btn"> -->
+										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
+									<!--</span>  
+									<span class="input-group-btn"> --> 
+										&nbsp;<button type="button" id="btnReset" class="btn btn-info btn-flat" onclick="resetdata()" ><i class="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Reset</button>
+									<!--</span>  
+
+									 </div> -->
+									<!-- /.form-group -->
+									</div>
+								</div>     
+								
+							</div>
+					</div>
+					<input type="hidden" id="txtprofile" name="txtprofile" value="7" ></input>
+			</form>
             <!-- /.row -->
           </div>
         </div>
@@ -139,7 +175,7 @@
                   <th>Jenis Pembayaran</th>
                   <th>Nomor SP3</th>
                   <th>Nomor APF</th>
-                  <th>Description</th>
+                  <th>Deskripsi</th>
                   <th>Pemohon</th>
                   <th>Divisi</th>
                   <th>Nama Penerima</th>
@@ -280,22 +316,42 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 2.2.3 -->
-<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
+    <!-- jQuery 2.2.3
+<script src="assets/dashboard/plugins/jQuery/jquery-2.2.3.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap 3.3.6 -->
 <script src="assets/dashboard/bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
+    <!-- DataTables -->
 <script src="assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/dashboard/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="assets/dashboard/plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="assets/dashboard/dist/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="assets/dashboard/dist/js/demo.js"></script>
 
+
+    <!-- SlimScroll -->
+<script src="assets/dashboard/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+<script src="assets/dashboard/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+<script src="assets/dashboard/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+<script src="assets/dashboard/dist/js/demo.js"></script>
+<script src="assets/dashboard/plugins/iCheck/icheck.min.js"></script>
+
+<!--<script src="assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+
+    <!-- Select2 -->
+<script src="assets/dashboard/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>  
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
+
+<script type="text/javascript">
+            $(document).ready(function(){
+				$('#li-monitoring').addClass("active");
+				$('#wfv').addClass("active");
+			});
+  </script>
 <script>
 $(function () {
     $("#example1").DataTable();
@@ -326,14 +382,43 @@ $(function () {
 		  }
 		})
 		
-		});
-
+ $( "#periode1" ).datepicker({
+		dateFormat: "dd/mm/yy"//,
+		//setDate : new Date()
+	});
+	
+	//$( "#periode1" ).datepicker('setDate', new Date());
+	
+	$('#periode1').keydown(function (event) {
+		event.preventDefault();
+	});
+	
+ $( "#periode2" ).datepicker({
+		dateFormat: "dd/mm/yy"//,
+		//setDate : new Date()
+	});
+	
+	//$( "#periode2" ).datepicker('setDate', new Date());
+	
+	$('#periode2').keydown(function (event) {
+		event.preventDefault();
+	});
+	
 </script>
 
 <script type="text/javascript"> 
+
+function resetdata()
+    {
+		$('#periode1').val('');
+		$('#periode2').val('');
+		$('#seljnspembayaran').val('');
+		caridata();
+	}
+	
  function caridata()
     {
-	  url = "<?php echo base_url('dashboard/caridatamonitoringwverify') ?>";
+	  url = "<?php echo base_url('dashboard/caridataMonitoring') ?>";//caridatamonitoringwverify
       $.ajax({
             url : url,
             type: "POST",
@@ -415,7 +500,7 @@ $(function () {
 						  item.apf_doc,
 						  item.description,
 						  item.display_name,
-						  item.bank,
+						  item.division_id,
 						  item.dibayar_kepada,
 							'<a href="' + strlink + item.id_payment + '"><button class="btn btn-primary btn-sm">View</button></a>'
                         ] ).draw(false);
@@ -426,6 +511,47 @@ $(function () {
             {
               console.log(data);
                 alert('Error get data');
+            }
+        });
+    }
+	
+	function exportexcel()
+    {
+		$.ajax({
+			url : "<?php echo base_url('dashboard/exportmonitoringlist')?>",
+			type: "POST",
+			data: $('#formCari').serialize(),
+			dataType: "JSON",
+			success: function(data)
+			{
+			  console.log(data);
+			},
+			error: function (data)
+			{
+			  console.log(data);
+				alert('Error Download data');
+				return;
+			}
+		});				
+		window.location.href="<?php echo base_url('dashboard/exportmonitoringexcel')?>";
+    }
+	
+	function exportpdf()
+    {
+		$.ajax({
+			url : "<?php echo base_url('dashboard/exportmonitoringlist')?>",
+			type: "POST",
+            data: $('#formCari').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data); 
+              window.location.href="<?php echo base_url('dashboard/exportmonitoringpdf')?>";
+            },
+            error: function (data)
+            {
+              console.log(data);
+                alert('Error export data');
             }
         });
     }

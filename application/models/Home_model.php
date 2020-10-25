@@ -400,7 +400,7 @@ class Home_model extends CI_Model{
         $usr = $this->session->userdata('id_user');
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay
-                WHERE status in ('0', '1') AND division_id='$dvs' AND id_user='$usr' ";
+                WHERE status in ('0', '1') AND division_id='$dvs' "; // AND id_user='$usr' ";
 
         $query = $this->db->query($sql)->result();
         return $query;
@@ -1098,12 +1098,16 @@ class Home_model extends CI_Model{
       return $query->result();
     }
     
-  public function getdatabyPR($profileid,$txtsearch){
+  public function getdatabyPR($profileid,$txtsearch,$start,$end){
 
 		$filter = $this->session->userdata("filter");
 		$dvs = $this->session->userdata('division_id');
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
                 AND a.jenis_pembayaran = '4'";
+		
+		if($start!="" && $end !=""){
+			$sql .=" and a.tanggal2 between str_to_date('" .$start."','%d/%m/%Y') and str_to_date('" .$end."','%d/%m/%Y') " ;
+		}
 		
 		switch ($filter) {
 			  case "1":
@@ -1155,7 +1159,7 @@ class Home_model extends CI_Model{
 				if($txtsearch=='4'){
 					$sql .=" and a.status in ('4','5','6','7')";
 				}else{
-					$sql .=" and a.status = '" . $txtsearch . "'";
+					$sql .=" and a.status like '" . $txtsearch . "'";
 				}
 				
 				break;
@@ -1175,6 +1179,7 @@ class Home_model extends CI_Model{
 				$sql .=" ";
 				
 			}
+			
 			
       $query=$this->db->query($sql);
       return $query->result();
@@ -1507,4 +1512,208 @@ class Home_model extends CI_Model{
       $query=$this->db->query($sql);
       return $query->result();
   }
+
+public function resetMyReport($profileid,$status,$start,$end){
+
+		$dvs = $this->session->userdata('division_id');
+		$start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+        $sql = "SELECT md.division_name,a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran ,";
+		$sql .= "ms.status_user,ms.status_laporan FROM t_payment as a inner join  t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .= "inner join m_division as md on a.division_id=md.division_id ";
+		$sql .= "inner join m_status as ms on a.status=ms.id_status ";
+		$sql .= "WHERE a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11') " ;
+		$sql .= "AND a.division_id='$dvs' AND a.jenis_pembayaran = '$profileid' ";
+		$sql .= "AND a.tanggal2 BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC";
+		
+		$query=$this->db->query($sql);
+      return $query->result();
+}
+
+	public function resetMyReportPayment(){
+
+		$dvs = $this->session->userdata('division_id');
+		$start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+		$sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' and a.status not in ('3', '99','XXX') AND tanggal2
+					BETWEEN '$start_date' AND '$end_date' ORDER BY a.tanggal2 DESC ";
+		
+		
+		$query=$this->db->query($sql);
+		  return $query->result();
+	}
+	
+	public function resetMyReportDraft(){
+        $dvs = $this->session->userdata('division_id');
+        $usr = $this->session->userdata('id_user');
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay
+                WHERE status in ('0', '1') AND division_id='$dvs' AND id_user='$usr' ";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function resetMyReportOutstanding(){
+        $dvs = $this->session->userdata('division_id');
+
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment  as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay 
+                WHERE status in ('4','5','6','7','8','12','13','9') AND division_id='$dvs' ORDER BY tanggal2 DESC";
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+
+  public function getdataMyReport($profileid,$status,$start,$end){
+
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT md.division_name,a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran ,";
+		$sql .= "ms.status_user,ms.status_laporan FROM t_payment as a inner join  t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .= "inner join m_division as md on a.division_id=md.division_id ";
+		$sql .= "inner join m_status as ms on a.status=ms.id_status ";
+		$sql .= "WHERE a.status in ('0','1','2','4','5','6','7','8','12','13','9','10','11') " ;
+		$sql .= "AND a.division_id='$dvs' AND a.jenis_pembayaran = '$profileid' ";
+		
+		if($start!="" && $end !=""){
+			$sql .=" and a.tanggal2 between str_to_date('" .$start."','%d/%m/%Y') and str_to_date('" .$end."','%d/%m/%Y') " ;
+		}
+		
+		if($status=='4'){
+			$sql .=" and a.status in ('4','5','6','7')";
+		}else if($status==''){
+			$status="%";
+		}else{
+			$sql .=" and a.status like '" . $status . "'";
+		}
+		
+		$sql .=" order by a.tanggal2 desc";
+		//var_dump($sql);
+		//exit();
+      $query=$this->db->query($sql);
+      return $query->result();
+  } 
+  
+  public function caridataMyReportPayment($profileid,$txtsearch,$start,$end){
+
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran, ";
+		$sql .="ms.status_user,ms.status_laporan FROM t_payment as a inner join t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .=" inner join m_status as ms on ms.id_status=a.status ";
+		$sql .="WHERE division_id='$dvs' AND a.status not in ('3','99','XXX') ";	
+					
+		if($start!="" && $end !=""){
+			$sql .=" and a.tanggal2 between str_to_date('" .$start."','%d/%m/%Y') and str_to_date('" .$end."','%d/%m/%Y') " ;
+		}
+				
+		if($txtsearch==""){
+			$txtsearch="%";
+		}
+			
+		  switch ($profileid) {
+			  case "1":
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7') ";
+				}else{
+					$sql .=" and a.status like '".$txtsearch."'";
+				}
+				
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '".$txtsearch."' ";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+			
+			$sql .=" order by a.tanggal2 desc ";
+			//var_dump($sql);
+			//exit();
+      $query=$this->db->query($sql);
+      return $query->result();
+  }
+
+  public function caridataMyReportDraft($profileid,$txtsearch,$start,$end)	{
+    
+    $dvs = $this->session->userdata('division_id');
+
+    $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.division_id='$dvs' and a.status in ('0','1') ";
+  
+		if($start!="" && $end !=""){
+			$sql .=" and a.tanggal2 between str_to_date('" .$start."','%d/%m/%Y') and str_to_date('" .$end."','%d/%m/%Y') " ;
+		}
+				
+		if($txtsearch==""){
+			$txtsearch="%";
+		}
+		
+    switch ($profileid) {
+      case "1":
+		  if($txtsearch=='4'){
+			$sql .=" and a.status in ('4','5','6','7')";
+		  }else{
+			$sql .=" and a.status = '" . $txtsearch . "'";
+		  }
+		  
+		  break;
+      case "2":
+		$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+		break;
+      default:
+      $sql .=" ";
+      
+    }
+    $sql .=" order by a.tanggal2 desc ";
+	
+	$query=$this->db->query($sql);
+    return $query->result();
+  }
+  
+  public function caridataMyReportOutstanding($profileid,$txtsearch,$start,$end){
+
+		$dvs = $this->session->userdata('division_id');
+        $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE division_id='$dvs' 
+                AND a.status in ('4','5','6','7')";
+		
+		if($start!="" && $end !=""){
+			$sql .=" and a.tanggal2 between str_to_date('" .$start."','%d/%m/%Y') and str_to_date('" .$end."','%d/%m/%Y') " ;
+		}
+		
+		if($txtsearch==""){
+			$txtsearch="%";
+		}
+		
+		  switch ($profileid) {
+			  case "1":
+				if($txtsearch=='4'){
+					$sql .=" and a.status in ('4','5','6','7')";
+				}else{
+					$sql .=" and a.status = '" . $txtsearch . "'";
+				}
+				
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "'";
+				break;
+			  default:
+				$sql .=" ";
+				
+			}
+			
+			$sql .=" order by a.tanggal2 desc ";
+			
+    $query=$this->db->query($sql);
+		return $query->result();
+  }
+  
+  public function getdivisionName(){
+
+		$dvs = $this->session->userdata('division_id');
+        $sql = "select division_name from m_division where division_id='$dvs'";
+		
+		//var_dump($sql);
+		//exit();
+      $query=$this->db->query($sql);
+      return $query->result();
+  } 
 }

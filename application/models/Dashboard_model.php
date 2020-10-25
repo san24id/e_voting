@@ -1956,7 +1956,10 @@ class Dashboard_model extends CI_Model{
 
         $sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay FROM t_payment as a JOIN t_pembayaran as b 
                 ON a.jenis_pembayaran = b.id_pay WHERE a.status = '4'";
-          
+         
+		if($txtsearch==""){
+			$txtsearch=="%";
+		}
         switch ($profileid) {
             case "1":
               $sql .=" and a.status = '" . $txtsearch . "'";
@@ -2208,5 +2211,51 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 	
+	public function get_exportdata()
+	{			
+		$sql1 ="select * ";
+		$sql1 .="from t_payment " ;	
+		return $this->db->query($sql1);
+	}
 	
+	public function getdatabymonitoring($profileid,$txtsearch,$txtstatus,$start,$end)
+	{
+		
+		if($txtstatus=="4" || $txtstatus=="5") {
+			$sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay, ";
+			$sql .= "ms.status_laporan FROM t_payment as a inner join t_pembayaran as b on a.jenis_pembayaran = b.id_pay ";
+			$sql .= "inner join m_status ms on a.status = ms.id_status ";
+			$sql .= "left join t_payment_l tl on a.id_payment = tl.id_payment ";
+			$sql .= "WHERE a.status = '".$txtstatus."' ";                            
+        }else{
+			$sql = "SELECT a.*, SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new,b.jenis_pembayaran,b.id_pay, ";
+			$sql .= "ms.status_laporan FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+			$sql .= "inner join m_status ms on a.status = ms.id_status ";
+			$sql .= "WHERE a.status = '".$txtstatus."' ";                            
+		}
+        
+		
+		if($start!="" && $end !=""){
+			$sql .=" and a.tanggal2 between str_to_date('" .$start."','%d/%m/%Y') and str_to_date('" .$end."','%d/%m/%Y') " ;
+		}
+		if($txtsearch==""){
+			$txtsearch=="%";
+		}
+        switch ($profileid) {
+            case "1":
+              $sql .=" and a.status = '" . $txtsearch . "'";
+                            
+              break;
+            case "2":
+              $sql .=" and a.jenis_pembayaran like '%".$txtsearch."%' ORDER BY tanggal2 DESC";
+              break;
+            default:
+              $sql .=" ";
+              
+          }
+        //var_dump($sql);exit;    
+        $query=$this->db->query($sql);
+		return $query->result();
+    }
+
 }

@@ -230,6 +230,13 @@
 <script src="assets/dashboard/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dashboard/dist/js/demo.js"></script>
+
+<script type="text/javascript">
+            $(document).ready(function(){
+				$('#li-masterdata').addClass("active");
+				$('#data-map').addClass("active");
+			});
+  </script>
 <script>
   $(function () {
     $("#example1").DataTable();

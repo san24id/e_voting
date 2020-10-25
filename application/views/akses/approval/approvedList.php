@@ -165,6 +165,12 @@
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dashboard/dist/js/demo.js"></script>
 
+<script type="text/javascript">
+            $(document).ready(function(){
+				$('#li-approval').addClass("active");
+				$('#apr').addClass("active");
+			});
+  </script>
 <script>
 $(function () {
     $("#example1").DataTable();

@@ -1383,7 +1383,7 @@ function showInput() {
 	
 	$('#perkiraanSelesai').keydown(function (event) {
 		event.preventDefault();
-	});
+	});	
 </script>
 
 
@@ -1681,12 +1681,8 @@ function savedraft() {
 						<?php } ?>
 						  
 						if(save_method=="edit"){
-							url = "<?php echo base_url('Home/saveeditpayment')?>";  
-								url = "<?php echo base_url('Home/saveeditpayment')?>";  
-							url = "<?php echo base_url('Home/saveeditpayment')?>";  
+							url = "<?php echo base_url('Home/saveeditpayment')?>"; 
 						}else{
-							url = "<?php echo base_url('Home/saveaddpayment')?>";  
-								url = "<?php echo base_url('Home/saveaddpayment')?>";  
 							url = "<?php echo base_url('Home/saveaddpayment')?>";  
 						}
 					   
@@ -1695,19 +1691,14 @@ function savedraft() {
 						  type : "POST",
 						  data: $("#formadd").serialize(),
 						  dataType: "JSON",
-						  success: function(data){ // Ketika proses pengiriman berhasil          
-							  success: function(data){ // Ketika proses pengiriman berhasil          
-						  success: function(data){ // Ketika proses pengiriman berhasil          
-							alert('Data Berhasil Di simpan');   
-								alert('Data Berhasil Di simpan');   
+						  success: function(data){ // Ketika proses pengiriman berhasil     
 							alert('Data Berhasil Di simpan');   
 							save_method="edit";
 							$("#id_payment").val(data);
 							//window.location = link;
 							window.location ="<?php echo base_url('Home/formfinished');?>/"+data;
 						},      
-							},      
-						},      
+							     
 						  error: function (data)
 						  {
 							console.log(data);
@@ -2530,6 +2521,8 @@ function AddIndeks(){
 		$('#lbltotalvendor').text(formatRupiah(itotal1.toString()));
 		$('#lbltotalvendor2').text(formatRupiah(itotal2.toString()));
 		$('#lbltotalvendor3').text(formatRupiah(itotal3.toString()));
+		
+	}
 	function formatnominalvendor(param1){
 		var fnom=$("#nominalvendor"+param1).val();
 		if(fnom.substring(0, 1)=="-"){

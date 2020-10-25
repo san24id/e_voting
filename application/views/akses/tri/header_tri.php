@@ -124,7 +124,7 @@
           <?php foreach ($w_paid as $notifPaid) { ?>
             <li class="<?php echo $l_payment?>"><a href="Tri"><i class="glyphicon glyphicon-list-alt"></i><span>Payment</span><small class="label pull-right bg-red"><?php echo $notifPaid->w_payment; ?> </small></a></li>
           <?php } ?>
-        <li class="treeview">
+        <li class="treeview" id="li-tri">
           <a href="">
             <i class="glyphicon glyphicon-list"></i>
             <span>Payment Report</span>
@@ -133,15 +133,15 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo $wfp?>"><a href="Tri/wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
-            <li class="<?php echo $l_paid?>"><a href="Tri/paidList"><i class="fa fa-circle-o"></i>List of Paid</a></li>
+            <li id="wfp" class="<?php echo $wfp?>"><a href="Tri/wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
+            <li id="lpaid" class="<?php echo $l_paid?>"><a href="Tri/paidList"><i class="fa fa-circle-o"></i>List of Paid</a></li>
           </ul>  
         </li> 
         <?php foreach ($reject as $notif) { ?>
         <li class="<?php echo $inbox?>"><a href="Tri/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
         <?php } ?>
         <li class="<?php echo $index?>"><a href="Tri/my_dashboard"><i class="fa fa-dashboard"></i><span>My SP3 Dashboard</a></span></li>
-        <li class="treeview">
+        <li class="treeview" id="li-report">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
             <span>My SP3 Report</span>
@@ -150,13 +150,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Tri/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li><a href="Tri/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li><a href="Tri/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
-            <li><a href="Tri/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
-            <li><a href="Tri/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li><a href="Tri/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
-            <li><a href="Tri/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+            <li id="ldp"><a href="Tri/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li id="lar"><a href="Tri/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li id="lasr"><a href="Tri/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li id="lcr"><a href="Tri/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
+            <li id="lop"><a href="Tri/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li id="op"><a href="Tri/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
+            <li id="dr"><a href="Tri/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
         

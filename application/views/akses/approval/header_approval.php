@@ -122,9 +122,9 @@
         <?php 
          if($this->session->userdata("id_role_app") == 4){ ?>
          <?php foreach ($w_approval as $notifApproval) { ?>
-        <li class="<?php echo $l_approval ?>"><a href="Approval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</span><small class="label pull-right bg-red"><?php echo $notifApproval->w_approval; ?> </small></a></li>
+        <li id="appr" class="<?php echo $l_approval ?>"><a href="Approval"><i class="glyphicon glyphicon-list-alt"></i><span>Approval</span><small class="label pull-right bg-red"><?php echo $notifApproval->w_approval; ?> </small></a></li>
         <?php } ?>
-        <li class="treeview">
+        <li class="treeview" id="li-approval">
           <a href="">
             <i class="glyphicon glyphicon-list"></i>
             <span>Approval Report</span>
@@ -133,8 +133,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo $wfa?>"><a href="Approval/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
-            <li class="<?php echo $approved?>"><a href="Approval/approvedList"><i class="fa fa-circle-o"></i>List of Approved</a></li>
+            <li id="wfa" class="<?php echo $wfa?>"><a href="Approval/wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
+            <li id="apr" class="<?php echo $approved?>"><a href="Approval/approvedList"><i class="fa fa-circle-o"></i>List of Approved</a></li>
           </ul>  
         </li> 
 
@@ -142,7 +142,7 @@
         <li class="<?php echo $inbox ?>"><a href="Approval/my_inbox"><i class="glyphicon glyphicon-envelope"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
 
         <li class="<?php echo $index?>"><a href="Approval/my_dashboard"><i class="fa fa-dashboard"></i><span>My SP3 Dashboard</a></span></li>
-        <li class="treeview">
+        <li class="treeview" id="li-report">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
             <span>My SP3 Report</span>
@@ -151,13 +151,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Approval/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li><a href="Approval/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li><a href="Approval/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
-            <li><a href="Approval/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
-            <li><a href="Approval/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li><a href="Approval/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
-            <li><a href="Approval/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+            <li id="ldp"><a href="Approval/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li id="lar"><a href="Approval/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li id="lasr"><a href="Approval/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li id="lcr"><a href="Approval/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
+            <li id="lop"><a href="Approval/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li id="op"><a href="Approval/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment Request</a></li>
+            <li id="dr"><a href="Approval/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
 

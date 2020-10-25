@@ -132,8 +132,8 @@ class Approval_model extends CI_Model{
     }
 
     public function getVPayment() {
-        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment_l a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
-                WHERE b.jenis_pembayaran != '' AND a.jenis_pembayaran != 0 AND a.status in ('8', '12', '13', '9','10') GROUP BY b.jenis_pembayaran";
+        $sql = "SELECT a.tanggal2, b.jenis_pembayaran, b.link, COUNT(a.jenis_pembayaran) as jmlpembayaran FROM t_payment_l a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
+                WHERE b.jenis_pembayaran != '' AND a.jenis_pembayaran != 0 AND a.status in ('8', '12', '13', '9','10') GROUP BY b.jenis_pembayaran,b.link ";
 
         // $sql = "SELECT * FROM (SELECT a.status, b.dsc, COUNT(a.jenis_pembayaran) AS jmlpembayaran FROM t_payment a RIGHT JOIN t_pembayaran b ON a.jenis_pembayaran = b.id_pay 
         //         GROUP by b.jenis_pembayaran ORDER by b.id_pay) otr WHERE otr.jmlpembayaran != 0 AND otr.dsc IS NOT NULL AND otr.status in ('2','4','5','6','7','8','9','10')";
@@ -194,4 +194,126 @@ class Approval_model extends CI_Model{
 
     }
     
+	public function getdatabysearch($profileid,$txtsearch)
+	{
+		$sql = "SELECT a.*, b.apf,b.jenis_pembayaran as jenis_pembayaran_desc FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('8', '12', '13', '9', '10')  ";
+					
+		if($txtsearch==""){
+			$txtsearch="%";
+		}
+		switch ($profileid) {
+			  case "1":
+				if($txtsearch=='8'){
+					$sql .=" and a.status in ('8','12','13') ";
+				}else{
+					$sql .=" and a.status like '" . $txtsearch . "' ";
+				}
+				break;
+			  case "2":
+				$sql .=" and a.jenis_pembayaran like '" . $txtsearch . "' ";
+				break;
+			  default:
+				$sql .=" ";				
+			}
+		
+		$sql .=" order by a.tanggal2 desc ";
+		$query=$this->db->query($sql);
+		return $query->result();
+	}
+	
+	public function getPaymentAll() {
+        $start_date = date('Y-01-01');
+        $end_date = date('Y-m-d');
+
+        $sql = "SELECT a.*,SUBSTRING_INDEX(SUBSTRING_INDEX(a.tanggal, ',', 2), ',', -1) as tanggal_new, b.jenis_pembayaran as jenis_pembayaran_desc FROM t_payment as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status not in ('3', '99','XXX') AND tanggal2
+                BETWEEN '$start_date' AND '$end_date' ORDER BY tanggal2 DESC ";
+                
+        $query = $this->db->query($sql)->result();
+        // var_dump($sql);exit;
+
+        return $query;
+    }
+	
+	public function getListAR_new($start_date,$end_date) {
+
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+                
+		$sql = "SELECT a.*, b.apf,b.jenis_pembayaran as paymenttype ";
+		$sql .= "FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .= "WHERE a.jenis_pembayaran ='2' AND a.status in ('8','9','10','12','13') ";
+		$sql .= "  ORDER BY a.tanggal2 DESC"; //AND a.tanggal2 BETWEEN '$start_date' AND '$end_date'
+
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getListASR_new($start_date,$end_date) {
+
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+                
+		$sql = "SELECT a.*, b.apf,b.jenis_pembayaran as paymenttype ";
+		$sql .= "FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .= "WHERE a.jenis_pembayaran ='3' AND a.status in ('8','9','10','12','13') ";
+		$sql .= "  ORDER BY a.tanggal2 DESC"; //AND a.tanggal2 BETWEEN '$start_date' AND '$end_date'
+
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getListCR_new($start_date,$end_date) {
+
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+                
+		$sql = "SELECT a.*, b.apf,b.jenis_pembayaran as paymenttype ";
+		$sql .= "FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .= "WHERE a.jenis_pembayaran ='5' AND a.status in ('8','9','10','12','13') ";
+		$sql .= "  ORDER BY a.tanggal2 DESC"; //AND a.tanggal2 BETWEEN '$start_date' AND '$end_date'
+
+
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
+	
+	public function getListDP_new($start_date,$end_date) {
+
+        if ($start_date !=1 && $end_date !=1) {
+            $start_date = $start_date;
+            $end_date = $end_date;
+        }
+            else{
+            $start_date = date('Y-01-01');
+            $end_date = date('Y-m-d');
+        }
+                
+		$sql = "SELECT a.*, b.apf,b.jenis_pembayaran as paymenttype  ";
+		$sql .= "FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .= "WHERE a.jenis_pembayaran ='4' AND a.status in ('8','9','10','12','13') ";
+		$sql .= "  ORDER BY a.tanggal2 DESC"; //AND a.tanggal2 BETWEEN '$start_date' AND '$end_date'
+
+
+		$query = $this->db->query($sql)->result();
+        return $query;
+    }
 }   

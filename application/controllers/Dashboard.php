@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+		use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+		
+		
 class Dashboard extends CI_Controller {
 
 	/**
@@ -1345,7 +1349,7 @@ class Dashboard extends CI_Controller {
 		$data['reject'] = $this->Dashboard_model->notifRejected();
 		$data['payment'] = $this->Home_model->getPayment($sid);
 		$data['surat'] = $this->Home_model->buat_kode();
-
+		
 		$this->load->view('akses/csf/header_csf', $data);
 		$this->load->view('akses/csf/list_dp', $data);
 	} 
@@ -3005,16 +3009,24 @@ class Dashboard extends CI_Controller {
 	public function caridataPR()
 	{
 			$txtsearch="";
-			$profileid=$this->input->post('selsearch');
+			$profileid="1"; //$this->input->post('selsearch');
 			$status=$this->input->post('selstatus');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
 			// $jnspembayaran=$this->input->post('seljnspembayaran');
 			//$txtsearch=$this->input->post('txtpencarian');
+			
+			if($status==""){
+				$status="%";
+			}
 			if($profileid=="1"){
 				$txtsearch=$status;
 			}elseif($profileid=="2"){
 				$txtsearch=$jnspembayaran;
 			}
-			$data = $this->Home_model->getdatabyPR($profileid,$txtsearch);
+			
+			
+			$data = $this->Home_model->getdatabyPR($profileid,$txtsearch,$periode1,$periode2);
 			echo json_encode($data);
 	}
 
@@ -3118,7 +3130,7 @@ class Dashboard extends CI_Controller {
 	public function caridatamonitoringtax()
 	{
 		$txtsearch="";
-			$profileid=$this->input->post('selsearch');
+			$profileid="2"; //$this->input->post('selsearch');
 			$status=$this->input->post('selstatus');
 			$jnspembayaran=$this->input->post('seljnspembayaran');
 			//$txtsearch=$this->input->post('txtpencarian');
@@ -3134,7 +3146,7 @@ class Dashboard extends CI_Controller {
 	public function caridatamonitoringfinance()
 	{
 		$txtsearch="";
-			$profileid=$this->input->post('selsearch');
+			$profileid="2"; //$this->input->post('selsearch');
 			$status=$this->input->post('selstatus');
 			$jnspembayaran=$this->input->post('seljnspembayaran');
 			//$txtsearch=$this->input->post('txtpencarian');
@@ -4177,5 +4189,552 @@ class Dashboard extends CI_Controller {
 		$data= $this->Dashboard_model->getmultikurs();
 		echo json_encode($data);
 	}
+	
+	public function resetMyReport()
+	{
+			$profileid=$this->input->post('txtprofile');
+			$status=$this->input->post('selstatus');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+			
+			if($status==""){
+				$status="%";
+			}
+			
+			$data = $this->Home_model->resetMyReport($profileid,$status,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
+	public function resetMyReportDraft()
+	{
+			$profileid=$this->input->post('txtprofile');
+			$status=$this->input->post('selstatus');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+			
+			if($status==""){
+				$status="%";
+			}
+			
+			$data = $this->Home_model->resetMyReportDraft($profileid,$status,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
+	public function resetMyReportOutstanding()
+	{
+			$profileid=$this->input->post('txtprofile');
+			$status=$this->input->post('selstatus');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+			
+			if($status==""){
+				$status="%";
+			}
+			
+			$data = $this->Home_model->resetMyReportOutstanding($profileid,$status,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
+	public function caridataMyReport()
+	{
+			$profileid=$this->input->post('txtprofile');
+			$status=$this->input->post('selstatus');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+			
+			if($status==""){
+				$status="%";
+			}
+			$data = $this->Home_model->getdataMyReport($profileid,$status,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
+	public function caridataMyReportOutstanding()
+	{
+			$txtsearch="";
+			$profileid="2";//$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+		
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}
+			$data = $this->Home_model->caridataMyReportOutstanding($profileid,$txtsearch,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
+	public function exportlist()
+	{
+		
+		$jdl=$this->input->post('txtprofile');
+		$status="";		
+		$seljnspembayaran="";
+		switch ($jdl) {
+			  case "1":
+				$title="List Of Payment";	
+				$status=$this->input->post('selstatus');
+				$seljnspembayaran=$this->input->post('seljnspembayaran');
+				$ses_mst['profileid']=$this->input->post('selsearch');	
+				$ses_mst['jnsreport']="0";	
+				break;
+			  case "2":
+				$title="List Of Advanced Request";
+				$status=$this->input->post('selstatus');
+				$ses_mst['profileid']=$jdl;	
+				$ses_mst['jnsreport']="1";					
+				break;
+			  case "3":
+				$title="List Of Advanced Settlement Request";
+				$status=$this->input->post('selstatus');
+				$ses_mst['profileid']=$jdl;	
+				$ses_mst['jnsreport']="1";
+				break;
+			  case "4":
+				$title="List Of Direct Payment Request";
+				$status=$this->input->post('selstatus');
+				$ses_mst['profileid']=$jdl;	
+				$ses_mst['jnsreport']="1";
+				break;
+			  case "5":
+				$title="List Of Cash Received Request";	
+				$status=$this->input->post('selstatus');
+				$ses_mst['profileid']=$jdl;	
+				$ses_mst['jnsreport']="1";
+				break;
+			  case "6":
+				$title="List Of Outstanding Payment Request";
+				$seljnspembayaran=$this->input->post('seljnspembayaran');
+				$ses_mst['profileid']="2";
+				$ses_mst['jnsreport']="2";
+				break;
+			  case "7":
+				$title="List Of Draft Request";	
+				$seljnspembayaran=$this->input->post('seljnspembayaran');
+				$ses_mst['profileid']="2";
+				$ses_mst['jnsreport']="2";
+				break;
+			  default:
+				$title =" ";				
+		}
+		
+		//$status=$this->input->post('selstatus');
+		if($status==""){
+			$status="%";
+		}
+		
+		if($seljnspembayaran==""){
+			$seljnspembayaran="%";
+		}
+		
+		$division_name="";
+		$division = $this->Home_model->getdivisionName();
+		foreach($division as $div) {	 
+			$division_name=$div->division_name;
+		}
+		$ses_mst['tgl1']=$this->input->post('periode1');
+		$ses_mst['tgl2']=$this->input->post('periode2');
+		$ses_mst['judul']=$title;
+		$ses_mst['status']=$status;		
+		$ses_mst['jnspembayaran']=$seljnspembayaran;		
+		$ses_mst['divisionname']=$division_name;
+		$ses_mst['jdl']=$jdl;				
+		$this->session->set_userdata($ses_mst);		
+		echo json_encode($ses_mst);
+	}
+	
+	public function exportexcelreport()
+	{
+		$profileid=$this->session->userdata('profileid');
+		$txtsearch=$this->session->userdata('status');
+		$periode1=$this->session->userdata('tgl1');
+		$periode2=$this->session->userdata('tgl2');
+		$judul=$this->session->userdata('judul');
+		$dvs = $this->session->userdata('divisionname');
+		$jnsreport=$this->session->userdata('jnsreport');
+		$jdl=$this->session->userdata('jdl');
+		if($jnsreport=="0"){
+			if($profileid=="1"){
+				$txtsearch=$this->session->userdata('status');
+			}elseif($profileid=="2"){
+				$txtsearch=$this->session->userdata('jnspembayaran');
+			}
+			$transactions = $this->Home_model->caridataMyReportPayment($profileid,$txtsearch,$periode1,$periode2);		
+		}elseif($jnsreport=="2"){
+			$txtsearch=$this->session->userdata('jnspembayaran');
+			if($jdl=="6"){
+				$transactions = $this->Home_model->caridataMyReportOutstanding($profileid,$txtsearch,$periode1,$periode2);	
+			}elseif($jdl=="7"){
+				$transactions = $this->Home_model->caridataMyReportDraft($profileid,$txtsearch,$periode1,$periode2);	
+			}				
+		}elseif($jnsreport=="1"){			
+			$txtsearch=$this->session->userdata('status');
+			$transactions = $this->Home_model->getdataMyReport($profileid,$txtsearch,$periode1,$periode2);
+		}
+		
+		
+		
+		$spreadsheet = new Spreadsheet;
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A1:I1')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A2:I2')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A3:I3')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A4:I4')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A5:I5')->getFont()->setBold(true);
+		if($jdl=="1" || $jdl=="6" || $jdl=="7" ){
+			$spreadsheet->setActiveSheetIndex(0)->mergeCells('A1:I1');
+			$spreadsheet->setActiveSheetIndex(0)->mergeCells('A2:I2');
+			$spreadsheet->setActiveSheetIndex(0)->mergeCells('A3:I3');
+			$spreadsheet->setActiveSheetIndex(0)
+					->setCellValue('H5', 'Bank Account')
+					->setCellValue('I5', 'Penerima Pembayaran');
+		}else{
+			$spreadsheet->setActiveSheetIndex(0)->mergeCells('A1:G1');
+			$spreadsheet->setActiveSheetIndex(0)->mergeCells('A2:G2');
+			$spreadsheet->setActiveSheetIndex(0)->mergeCells('A3:G3');
+		}
+		$spreadsheet->setActiveSheetIndex(0)
+					->setCellValue('A1', $judul)
+					->setCellValue('A2', 'Divisi      : '.$dvs)
+					->setCellValue('A3', 'Periode : '.$periode1.' - '.$periode2 )
+					->setCellValue('A5', 'No')
+					->setCellValue('B5', 'Status')
+					->setCellValue('C5', 'Tanggal SP3')
+					->setCellValue('D5', 'Nomor SP3')
+					->setCellValue('E5', 'Nilai SP3')
+					->setCellValue('F5', 'Deskripsi')
+					->setCellValue('G5', 'Pemohon');
+		
+		$kolom = 6;
+		$nomor = 1;
+		foreach($transactions as $data) {	 
+			$nom1=$data->currency.' - '.$data->label2;
+			$nom2='';
+			$nom3='';
+			$nominalAll='';
+			if ($data->currency2!=''){
+				$nom2 = ', '.$data->currency2.' - '.$data->jumlah2;
+			}
+						
+			if ($data->currency3!=''){
+				$nom3 = ', '.$data->currency3.' - '.$data->jumlah3;
+			}
+			 
+			$nominalAll=$nom1.$nom2.$nom3;
+			$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('A' . $kolom, $nomor)
+						->setCellValue('B' . $kolom, $data->status_laporan)
+						->setCellValue('C' . $kolom, $data->tanggal)
+						->setCellValue('D' . $kolom, $data->nomor_surat)
+						->setCellValue('E' . $kolom, $nominalAll)
+						->setCellValue('F' . $kolom, $data->label1)
+						->setCellValue('G' . $kolom, $data->display_name);
+			if($jdl=="1" || $jdl=="6" || $jdl=="7" ){
+				$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('H' . $kolom, $data->akun_bank)
+						->setCellValue('I' . $kolom, $data->penerima);
+			}
+	 
+			$kolom++;
+			$nomor++;
+	 
+		}
+		$writer = new Xlsx($spreadsheet);
+	 	header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'.$judul.'.xlsx"');
+		header('Cache-Control: max-age=0');
+	 
+		$writer->save('php://output');
+	}		
+	
+	public function exportpdf()
+	{
+		$profileid=$this->session->userdata('profileid');
+		$txtsearch=$this->session->userdata('status');
+		$periode1=$this->session->userdata('tgl1');
+		$periode2=$this->session->userdata('tgl2');
+		$judul=$this->session->userdata('judul');
+		$dvs = $this->session->userdata('divisionname');
+		$jnsreport=$this->session->userdata('jnsreport');
+		$jdl=$this->session->userdata('jdl');
+		if($jnsreport=="0"){
+			if($profileid=="1"){
+				$txtsearch=$this->session->userdata('status');
+			}elseif($profileid=="2"){
+				$txtsearch=$this->session->userdata('jnspembayaran');
+			}
+			$data['transactions'] = $this->Home_model->caridataMyReportPayment($profileid,$txtsearch,$periode1,$periode2);		
+		}elseif($jnsreport=="2"){
+			$txtsearch=$this->session->userdata('jnspembayaran');
+			if($jdl=="6"){
+				$data['transactions'] = $this->Home_model->caridataMyReportOutstanding($profileid,$txtsearch,$periode1,$periode2);	
+			}elseif($jdl=="7"){
+				$data['transactions'] = $this->Home_model->caridataMyReportDraft($profileid,$txtsearch,$periode1,$periode2);	
+			}				
+		}elseif($jnsreport=="1"){			
+			$txtsearch=$this->session->userdata('status');
+			$data['transactions'] = $this->Home_model->getdataMyReport($profileid,$txtsearch,$periode1,$periode2);
+		}
+		
+		$html=$this->load->view('akses/csf/vreportpdf', $data, true);
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = $judul.".pdf";
+ 
+        //load mPDF library
+        $this->load->library('m_pdf');
+ 
+        //generate the PDF from the given html
+        $this->m_pdf->pdf->AddPage('L');
+        $this->m_pdf->pdf->setFooter('{PAGENO}');
+        $this->m_pdf->pdf->WriteHTML($html);
 
+        //$this->m_pdf->pdf->Output(); 
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
+	}
+	
+	public function resetMyReportPayment()
+	{
+			$data = $this->Home_model->resetMyReportPayment();
+			echo json_encode($data);
+	}
+	
+	public function caridataMyReportPayment()
+	{
+			$txtsearch="";
+			$profileid=$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+		
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}else{
+				$txtsearch="%";
+			}
+			$data = $this->Home_model->caridataMyReportPayment($profileid,$txtsearch,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
+	public function caridataMyReportDraft()
+	{
+			$txtsearch="";
+			$profileid="2"; //$this->input->post('selsearch');
+			$status=$this->input->post('selstatus');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+		
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}else{
+				$txtsearch="%";
+			}
+			$data = $this->Home_model->caridataMyReportDraft($profileid,$txtsearch,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
+	public function exportmonitoringlist()
+	{
+		
+		$jdl=$this->input->post('txtprofile');
+		$status="";		
+		$seljnspembayaran=$this->input->post('seljnspembayaran');
+				
+		switch ($jdl) {
+			  case "4":
+				$title="List Of Under Processing (Tax)";	
+				$status="4";
+				break;
+			  case "5":
+				$title="List Of Under Processing (Finance)";	
+				$status="5";
+				break;
+			  case "6":
+				$title="List Of Waiting For Review";	
+				$status="6";
+				break;
+			  case "7":
+				$title="List Of Waiting For Verification";	
+				$status="7";
+				break;
+			  case "8":
+				$title="List Of Waiting For Approval";	
+				$status="8";
+				break;
+			  case "9":
+				$title="List Of Waiting For Payment";	
+				$status="9";
+				break;
+			  case "10":
+				$title="List Of Paid Request";	
+				$status="10";
+				break;
+			  default:
+				$title =" ";				
+		}
+		
+		if($seljnspembayaran==""){
+			$seljnspembayaran="%";
+		}
+		
+		$division_name="";
+		$division = $this->Home_model->getdivisionName();
+		foreach($division as $div) {	 
+			$division_name=$div->division_name;
+		}
+		$ses_mon['tgl1']=$this->input->post('periode1');
+		$ses_mon['tgl2']=$this->input->post('periode2');
+		$ses_mon['judul']=$title;
+		$ses_mon['status']=$status;		
+		$ses_mon['jnspembayaran']=$seljnspembayaran;		
+		$ses_mon['divisionname']=$division_name;
+		$ses_mon['jdl']=$jdl;
+		$this->session->set_userdata($ses_mon);		
+		echo json_encode($ses_mon);
+	}
+	
+	public function exportmonitoringexcel()
+	{
+		$txtstatus=$this->session->userdata('status');
+		$txtsearch=$this->session->userdata('jnspembayaran');
+		$periode1=$this->session->userdata('tgl1');
+		$periode2=$this->session->userdata('tgl2');
+		$judul=$this->session->userdata('judul');
+		$dvs = $this->session->userdata('divisionname');
+		$jdl=$this->session->userdata('jdl');
+		
+		$profileid="2";
+		
+		$transactions = $this->Dashboard_model->getdatabymonitoring($profileid,$txtsearch,$txtstatus,$periode1,$periode2);		
+		
+		$spreadsheet = new Spreadsheet;
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A1:J1')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A2:J2')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A3:J3')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A4:J4')->getFont()->setBold(true);
+		
+		$spreadsheet->setActiveSheetIndex(0)->mergeCells('A1:J1');
+		$spreadsheet->setActiveSheetIndex(0)->mergeCells('A2:J2');
+		$spreadsheet->setActiveSheetIndex(0)->mergeCells('A3:J3');
+		
+		$spreadsheet->setActiveSheetIndex(0)
+					->setCellValue('A1', $judul)
+					->setCellValue('A2', 'Periode : '.$periode1.' - '.$periode2 )
+					->setCellValue('A4', 'No')
+					->setCellValue('B4', 'Status')
+					->setCellValue('C4', 'Tanggal SP3')
+					->setCellValue('D4', 'Jenis Pembayaran')
+					->setCellValue('E4', 'Nomor SP3');
+		if($jdl=="4" || $jdl=="5"){			
+			$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('F4', 'Deskripsi')
+						->setCellValue('G4', 'Pemohon')
+						->setCellValue('H4', 'Divisi')
+						->setCellValue('I4', 'Nama Penerima')
+						->setCellValue('J4', 'Submitted Date');
+		}else{
+			$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('F4', 'Nomor APF')
+						->setCellValue('G4', 'Deskripsi')
+						->setCellValue('H4', 'Pemohon')
+						->setCellValue('I4', 'Divisi')
+						->setCellValue('J4', 'Nama Penerima');
+		}
+		
+		$kolom = 5;
+		$nomor = 1;
+		foreach($transactions as $data) {	 
+			$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('A' . $kolom, $nomor)
+						->setCellValue('B' . $kolom, $data->status_laporan)
+						->setCellValue('C' . $kolom, $data->tanggal_new)
+						->setCellValue('D' . $kolom, $data->jenis_pembayaran)
+						->setCellValue('E' . $kolom, $data->nomor_surat);
+			if($jdl=="4" || $jdl=="5"){				
+				$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('F' . $kolom, $data->label1)
+						->setCellValue('G' . $kolom, $data->display_name)
+						->setCellValue('H' . $kolom, $data->akun_bank)
+						->setCellValue('I' . $kolom, $data->penerima)
+						->setCellValue('J' . $kolom, $data->submit_date);
+			}else{
+				$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('F' . $kolom, $data->apf_doc)
+						->setCellValue('G' . $kolom, $data->description)
+						->setCellValue('H' . $kolom, $data->display_name)
+						->setCellValue('I' . $kolom, $data->division_id)
+						->setCellValue('J' . $kolom, $data->dibayar_kepada);
+			}
+			$kolom++;
+			$nomor++;
+	 
+		}
+		$writer = new Xlsx($spreadsheet);
+	 	header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'.$judul.'.xlsx"');
+		header('Cache-Control: max-age=0');
+	 
+		$writer->save('php://output');
+	}		
+	
+	public function exportmonitoringpdf()
+	{
+		$txtstatus=$this->session->userdata('status');
+		$txtsearch=$this->session->userdata('jnspembayaran');
+		$periode1=$this->session->userdata('tgl1');
+		$periode2=$this->session->userdata('tgl2');
+		$judul=$this->session->userdata('judul');
+		$dvs = $this->session->userdata('divisionname');
+		$jdl=$this->session->userdata('jdl');
+		
+		$profileid="2";
+		
+		$data['transactions'] = $this->Dashboard_model->getdatabymonitoring($profileid,$txtsearch,$txtstatus,$periode1,$periode2);
+		
+		$html=$this->load->view('akses/csf/vreportmonitoringpdf', $data, true);
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = $judul.".pdf";
+ 
+        //load mPDF library
+        $this->load->library('m_pdf');
+ 
+        //generate the PDF from the given html
+        $this->m_pdf->pdf->AddPage('L');
+        $this->m_pdf->pdf->setFooter('{PAGENO}');
+        $this->m_pdf->pdf->WriteHTML($html);
+
+        //$this->m_pdf->pdf->Output(); 
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
+	}
+	
+	public function caridataMonitoring()
+	{
+		$txtsearch="";
+			$profileid="2"; //$this->input->post('selsearch');
+			$status=$this->input->post('txtprofile');
+			$jnspembayaran=$this->input->post('seljnspembayaran');
+			$periode1=$this->input->post('periode1');
+			$periode2=$this->input->post('periode2');
+		
+			if($profileid=="1"){
+				$txtsearch=$status;
+			}elseif($profileid=="2"){
+				$txtsearch=$jnspembayaran;
+			}else{
+				$txtsearch="%";
+			}
+			
+			$data = $this->Dashboard_model->getdatabymonitoring($profileid,$txtsearch,$status,$periode1,$periode2);
+			echo json_encode($data);
+	}
+	
 }

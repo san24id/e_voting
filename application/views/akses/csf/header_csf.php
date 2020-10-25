@@ -204,7 +204,7 @@
       <ul class="sidebar-menu">  
 
       <li class="<?php echo $monitoring?>"><a href="Dashboard/monitoring"><i class="glyphicon glyphicon-list-alt"></i><span>Monitoring</a></span></li>
-        <li class="treeview">
+        <li class="treeview" id="li-monitoring">
           <a href="">
             <i class="glyphicon glyphicon-th-list"></i>
             <span>Monitoring Report</span>
@@ -214,13 +214,13 @@
           </a>
           <ul class="treeview-menu">
             <!-- <li><a href="Dashboard/List_or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li> -->
-            <li><a href="Dashboard/List_upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
-            <li><a href="Dashboard/List_upf"><i class="fa fa-circle-o"></i>List of Under <br>Processing (Finance)</a></li>
-            <li><a href="Dashboard/List_wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
-            <li><a href="Dashboard/List_wfv"><i class="fa fa-circle-o"></i>List of Waiting for Verification</a></li>
-            <li><a href="Dashboard/List_wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
-            <li><a href="Dashboard/List_wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
-            <li><a href="Dashboard/List_pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
+            <li id="upt"><a href="Dashboard/List_upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
+            <li id="upf"><a href="Dashboard/List_upf"><i class="fa fa-circle-o"></i>List of Under <br>Processing (Finance)</a></li>
+            <li id="wfr"><a href="Dashboard/List_wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
+            <li id="wfv"><a href="Dashboard/List_wfv"><i class="fa fa-circle-o"></i>List of Waiting for Verification</a></li>
+            <li id="wfa"><a href="Dashboard/List_wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
+            <li id="wfp"><a href="Dashboard/List_wfp"><i class="fa fa-circle-o"></i>List of Waiting for Payment</a></li>
+            <li id="pr"><a href="Dashboard/List_pr"><i class="fa fa-circle-o"></i>List of Paid Request</a></li>
           </ul>  
         </li>
         <?php 
@@ -257,7 +257,7 @@
                 <?php } ?> 
               <?php } ?> 
         <?php } ?> 
-        <li class="treeview">
+        <li class="treeview" id="li-report">
           <a href="">
             <i class="glyphicon glyphicon-inbox"></i>
             <span>My SP3 Report</span>
@@ -266,17 +266,17 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Dashboard/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li><a href="Dashboard/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li><a href="Dashboard/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
-            <li><a href="Dashboard/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
-            <li><a href="Dashboard/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
-            <li><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+            <li id="ldp"><a href="Dashboard/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
+            <li id="lar"><a href="Dashboard/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
+            <li id="lasr"><a href="Dashboard/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li id="lcr"><a href="Dashboard/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
+            <li id="lp"><a href="Dashboard/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
+            <li id="lop"><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment Request</a></li>
+            <li id="ldr"><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
                 
-        <li class="treeview">
+        <li class="treeview" id="li-masterdata">
           <a href="">
             <i class="glyphicon glyphicon-th-list"></i>
             <span>Master Data</span>
@@ -285,15 +285,15 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo $d_pejabat?> "><a href="Dashboard/d_pejabat"><i class="glyphicon glyphicon-user"></i><span>Data Pejabat Wewenang</a></span></li>
-            <li class="<?php echo $credit_card?>"><a href="Dashboard/credit_card"><i class="glyphicon glyphicon-list-alt"></i><span>Corporate Credit Card</a></span></li>
-            <li class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li>
-            <li class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="fa fa-dollar"></i><span>Currency</a></span></li>
-            <li class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-hdd"></i><span>Bank Account</a></span></li>
-            <li class="<?php echo $d_vendor?> "><a href="Dashboard/d_vendor"><i class="glyphicon glyphicon-user"></i><span>Data Vendor</a></span></li>
-            <li class="<?php echo $d_pajak?> "><a href="Dashboard/DataPajak"><i class="glyphicon glyphicon-folder-open"></i><span>Data Jenis Pajak</a></span></li>
-            <li class="<?php echo $d_kode_bukpot?> "><a href="Dashboard/kode_bukpot "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Bukpot</a></span></li>
-            <li class="<?php echo $d_kode_map?>"><a href="Dashboard/kode_map "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Map</a></span></li>
+            <li id="data-pejabat" class="<?php echo $d_pejabat?> "><a href="Dashboard/d_pejabat"><i class="glyphicon glyphicon-user"></i><span>Data Pejabat Wewenang</a></span></li>
+            <li id="data-creditcard" class="<?php echo $credit_card?>"><a href="Dashboard/credit_card"><i class="glyphicon glyphicon-list-alt"></i><span>Corporate Credit Card</a></span></li>
+            <li id="data-reportpajak" class="<?php echo $report_pajak?>" ><a href="Dashboard/report_pajak"><i class="glyphicon glyphicon-list-alt"></i><span>Report Pajak</a></span></li>
+            <li id="data-currency" class="<?php echo $currency?>"><a href="Dashboard/currency"><i class="fa fa-dollar"></i><span>Currency</a></span></li>
+            <li id="data-bank" class="<?php echo $bank?>"><a href="Dashboard/bank"><i class="glyphicon glyphicon-hdd"></i><span>Bank Account</a></span></li>
+            <li id="data-vendor" class="<?php echo $d_vendor?> "><a href="Dashboard/d_vendor"><i class="glyphicon glyphicon-user"></i><span>Data Vendor</a></span></li>
+            <li id="data-pajak" class="<?php echo $d_pajak?> "><a href="Dashboard/DataPajak"><i class="glyphicon glyphicon-folder-open"></i><span>Data Jenis Pajak</a></span></li>
+            <li id="data-bukpot" class="<?php echo $d_kode_bukpot?> "><a href="Dashboard/kode_bukpot "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Bukpot</a></span></li>
+            <li id="data-map" class="<?php echo $d_kode_map?>"><a href="Dashboard/kode_map "><i class="glyphicon glyphicon-folder-open"></i><span>Data Kode Map</a></span></li>
           </ul>
         <li>  
          
