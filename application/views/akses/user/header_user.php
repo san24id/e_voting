@@ -225,7 +225,7 @@
             <li id="lasr" class="<?php echo $asr?>"><a href="Home/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
             <li id="lcr"><a href="Home/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
             <li id="lop" class="<?php echo $lop?>"><a href="Home/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li id="op" class="<?php echo $op?>"><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment</a></li>
+            <li id="op" class="<?php echo $op?>"><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment <br> Request</a></li>
             <li id="dr" class="<?php echo $dr?>"><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>

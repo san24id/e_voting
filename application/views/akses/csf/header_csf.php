@@ -271,7 +271,7 @@
             <li id="lasr"><a href="Dashboard/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
             <li id="lcr"><a href="Dashboard/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
             <li id="lp"><a href="Dashboard/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li id="lop"><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment Request</a></li>
+            <li id="lop"><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment <br>Request</a></li>
             <li id="ldr"><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>
