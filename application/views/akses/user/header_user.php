@@ -222,10 +222,10 @@
           <ul class="treeview-menu">
             <li id="ldp" class="<?php echo $dp?>"><a href="Home/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
             <li id="lar" class="<?php echo $ar?>"><a href="Home/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li id="lasr" class="<?php echo $asr?>"><a href="Home/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li id="lasr" class="<?php echo $asr?>"><a href="Home/lasr"><i class="fa fa-circle-o"></i>List of Advance Settlement<br><i class="fa"></i>Request</a></li>
             <li id="lcr"><a href="Home/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
             <li id="lop" class="<?php echo $lop?>"><a href="Home/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li id="op" class="<?php echo $op?>"><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment <br> Request</a></li>
+            <li id="op" class="<?php echo $op?>"><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment<br><i class="fa"></i>Request</a></li>
             <li id="dr" class="<?php echo $dr?>"><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>

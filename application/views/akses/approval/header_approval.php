@@ -153,10 +153,10 @@
           <ul class="treeview-menu">
             <li id="ldp"><a href="Approval/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
             <li id="lar"><a href="Approval/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li id="lasr"><a href="Approval/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li id="lasr"><a href="Approval/lasr"><i class="fa fa-circle-o"></i>List of Advance Settlement<br><i class="fa"></i>Request</a></li>
             <li id="lcr"><a href="Approval/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
             <li id="lop"><a href="Approval/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li id="op"><a href="Approval/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment <br>Request</a></li>
+            <li id="op"><a href="Approval/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment<br><i class="fa"></i>Request</a></li>
             <li id="dr"><a href="Approval/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>

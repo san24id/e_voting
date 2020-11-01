@@ -196,7 +196,9 @@ class Approval_model extends CI_Model{
     
 	public function getdatabysearch($profileid,$txtsearch)
 	{
-		$sql = "SELECT a.*, b.apf,b.jenis_pembayaran as jenis_pembayaran_desc FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay WHERE a.status in ('8', '12', '13', '9', '10')  ";
+		$sql = "SELECT a.*, b.apf,b.jenis_pembayaran as jenis_pembayaran_desc ";
+		$sql .= "FROM t_payment_l as a JOIN t_pembayaran as b ON a.jenis_pembayaran = b.id_pay ";
+		$sql .= "WHERE a.status in ('8', '12', '13', '9', '10')  ";
 					
 		if($txtsearch==""){
 			$txtsearch="%";

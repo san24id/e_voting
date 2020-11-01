@@ -2116,4 +2116,123 @@ class Approval extends CI_Controller {
 		$this->load->view('akses/approval/list_cr_new', $data);
 	}
 	
+	public function exportapprovallist()
+	{		
+		$status="";		
+		$seljnspembayaran="";
+		$search=$this->input->post('selsearch');
+		$status=$this->input->post('selstatus');
+		$seljnspembayaran=$this->input->post('seljnspembayaran');
+		
+		if($status==""){
+			$status="%";
+		}
+		if($seljnspembayaran==""){
+			$seljnspembayaran="%";
+		}
+		
+		$ses_mst['profileid']=$search;
+		$ses_mst['judul']="List Of Payment Request Approval";
+		$ses_mst['status']=$status;		
+		$ses_mst['jnspembayaran']=$seljnspembayaran;
+		$this->session->set_userdata($ses_mst);		
+		echo json_encode($ses_mst);
+	}
+
+	public function exportexcelapprovalreport()
+	{
+		$profileid=$this->session->userdata('profileid');
+		$txtsearch=$this->session->userdata('status');
+		$judul=$this->session->userdata('judul');
+		if($profileid=="1"){
+			$txtsearch=$this->session->userdata('status');
+		}elseif($profileid=="2"){
+			$txtsearch=$this->session->userdata('jnspembayaran');
+		}
+		$transactions = $this->Approval_model->getdatabysearch($profileid,$txtsearch);
+		
+		
+		
+		$spreadsheet = new Spreadsheet;
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A1:J1')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A2:J2')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->getStyle('A4:J4')->getFont()->setBold(true);
+		$spreadsheet->setActiveSheetIndex(0)->mergeCells('A1:J1');
+		$spreadsheet->setActiveSheetIndex(0)->mergeCells('A2:J2');
+		
+		$spreadsheet->setActiveSheetIndex(0)
+					->setCellValue('A1', $judul)
+					->setCellValue('A2', 'Asof Date : '.date("d-F-Y"))
+					->setCellValue('A4', 'No')
+					->setCellValue('B4', 'Status')
+					->setCellValue('C4', 'Jenis Pembayaran')
+					->setCellValue('D4', 'Tanggal Submit')
+					->setCellValue('E4', 'APF No')
+					->setCellValue('F4', 'Deskripsi')
+					->setCellValue('G4', 'Pemohon')
+					->setCellValue('H4', 'Approver 1')
+					->setCellValue('I4', 'Approver 2')
+					->setCellValue('J4', 'Approver 3');
+		
+		$kolom = 5;
+		$nomor = 1;
+		foreach($transactions as $data) {
+			$sts="";
+			if ($data->status=="9"){
+				$sts = 'Waiting for Payment';
+			}elseif ($data->status=="10"){
+				$sts = 'Paid';
+			}else{
+				$sts = 'Waiting for Approval';
+			}
+			
+			$nominalAll=$nom1.$nom2.$nom3;
+			$spreadsheet->setActiveSheetIndex(0)
+						->setCellValue('A' . $kolom, $nomor)
+						->setCellValue('B' . $kolom, $sts)
+						->setCellValue('C' . $kolom, $data->jenis_pembayaran_desc)
+						->setCellValue('D' . $kolom, $data->tanggal)
+						->setCellValue('E' . $kolom, $data->apf_doc)
+						->setCellValue('F' . $kolom, $data->description)
+						->setCellValue('G' . $kolom, $data->display_name)
+						->setCellValue('H' . $kolom, $data->persetujuan_pembayaran1)
+						->setCellValue('I' . $kolom, $data->persetujuan_pembayaran2)
+						->setCellValue('J' . $kolom, $data->persetujuan_pembayaran3);
+	 
+			$kolom++;
+			$nomor++;
+	 
+		}
+		$writer = new Xlsx($spreadsheet);
+	 	header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'.$judul.'.xlsx"');
+		header('Cache-Control: max-age=0');
+	 
+		$writer->save('php://output');
+	}
+
+	public function exportapprovalpdf()
+	{
+		$profileid=$this->session->userdata('profileid');
+		$txtsearch=$this->session->userdata('status');
+		$judul=$this->session->userdata('judul');
+		if($profileid=="1"){
+			$txtsearch=$this->session->userdata('status');
+		}elseif($profileid=="2"){
+			$txtsearch=$this->session->userdata('jnspembayaran');
+		}
+		$data['transactions'] = $this->Approval_model->getdatabysearch($profileid,$txtsearch);
+		
+		$html=$this->load->view('akses/approval/vreportapprovalpdf', $data, true);
+        $pdfFilePath = $judul.".pdf";
+ 
+        $this->load->library('m_pdf');
+ 
+        $this->m_pdf->pdf->AddPage('L');
+        $this->m_pdf->pdf->setFooter('{PAGENO}');
+        $this->m_pdf->pdf->WriteHTML($html);
+
+        $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
+	}
+	
 }    

@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="assets/admin/plugins/iCheck/all.css">
     <!-- Select2 -->
   <link rel="stylesheet" href="assets/admin/bower_components/select2/dist/css/select2.min.css">
+  
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="background-image: url('assets/login/images/header2.png');">
 <style type="text/css">
@@ -118,6 +121,7 @@
 }
 */
 </style>
+
 <div class="wrapper" >
   <header class="main-header"  > 
 
@@ -215,7 +219,7 @@
           <ul class="treeview-menu">
             <!-- <li><a href="Dashboard/List_or"><i class="fa fa-circle-o"></i>List of Outstanding Request</a></li> -->
             <li id="upt"><a href="Dashboard/List_upt"><i class="fa fa-circle-o"></i>List of Under Processing (Tax)</a></li>
-            <li id="upf"><a href="Dashboard/List_upf"><i class="fa fa-circle-o"></i>List of Under <br>Processing (Finance)</a></li>
+            <li id="upf"><a href="Dashboard/List_upf"><i class="fa fa-circle-o"></i>List of Under Processing<br><i class="fa"></i>(Finance)</a></li>
             <li id="wfr"><a href="Dashboard/List_wfr"><i class="fa fa-circle-o"></i>List of Waiting for Review</a></li>
             <li id="wfv"><a href="Dashboard/List_wfv"><i class="fa fa-circle-o"></i>List of Waiting for Verification</a></li>
             <li id="wfa"><a href="Dashboard/List_wfa"><i class="fa fa-circle-o"></i>List of Waiting for Approval</a></li>
@@ -268,10 +272,10 @@
           <ul class="treeview-menu">
             <li id="ldp"><a href="Dashboard/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
             <li id="lar"><a href="Dashboard/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li id="lasr"><a href="Dashboard/lasr"><i class="fa fa-circle-o"></i>List of Advance <br>Settlement Request</a></li>
+            <li id="lasr"><a href="Dashboard/lasr"><i class="fa fa-circle-o"></i>List of Advance<br><i class="fa"></i>Settlement Request</a></li>
             <li id="lcr"><a href="Dashboard/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
             <li id="lp"><a href="Dashboard/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li id="lop"><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment <br>Request</a></li>
+            <li id="lop"><a href="Dashboard/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment<br><i class="fa"></i>Request</a></li>
             <li id="ldr"><a href="Dashboard/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
           </ul>  
         </li>

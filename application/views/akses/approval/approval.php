@@ -136,7 +136,8 @@
         </div>            
     </section>
 
-    <section class="content">		
+    <section class="content">
+		
       <div class="row">
         <div class="col-xs-12">
           <!-- /.box -->
@@ -144,6 +145,9 @@
               <!-- /.box-header -->
 				<div class="box-header with-border">
 					<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-success" id="btnexcel" onclick="exportexcel()"><i class="fa fa-download"></i>&nbsp;&nbsp;Excel</button>
+					<button class="btn btn-success" id="btnpdf" onclick="exportpdf()"><i class="fa fa-download"></i>&nbsp;&nbsp;PDF</button>
 				</div>
 				
 					<div id="cari" class="collapse">
@@ -612,6 +616,47 @@ $(function () {
             {
               console.log(data);
                 alert('Error get data');
+            }
+        });
+    }
+	
+	function exportexcel()
+    {
+		$.ajax({
+			url : "<?php echo base_url('approval/exportapprovallist')?>",
+			type: "POST",
+			data: $('#formCari').serialize(),
+			dataType: "JSON",
+			success: function(data)
+			{
+			  console.log(data);
+			},
+			error: function (data)
+			{
+			  console.log(data);
+				alert('Error Download data');
+				return;
+			}
+		});				
+		window.location.href="<?php echo base_url('approval/exportexcelapprovalreport')?>";
+    }
+	
+	function exportpdf()
+    {
+		$.ajax({
+			url : "<?php echo base_url('approval/exportapprovallist')?>",
+			type: "POST",
+            data: $('#formCari').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data); 
+              window.location.href="<?php echo base_url('approval/exportapprovalpdf')?>";
+            },
+            error: function (data)
+            {
+              console.log(data);
+                alert('Error export data');
             }
         });
     }
