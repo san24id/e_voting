@@ -8,10 +8,10 @@ td[rowspan="3"] {
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <?php foreach ($payment as $row){ ?>          
+            <section class="content-header">
           <h1>
-           <?php foreach ($payment as $row){ ?>          
-            <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+           <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
             <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
            <?php } ?>
           </h1>
@@ -23,6 +23,7 @@ td[rowspan="3"] {
           <input type="hidden" name="handled_by" class="form-control" value="<?php echo $get->handled_by; ?>">
           <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
+          <input type="hidden" id="id_payment" name="id_payment" value="<?php echo $get->id_payment?>">
           
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>">
@@ -367,13 +368,15 @@ td[rowspan="3"] {
                 <div class="box">
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
-                    <button type="button" id="buttonSave" onclick="saveapf()" class="btn btn-primary">Save</button>
+                    <button type="button" id="buttonSave" onclick="saveapf()" class="btn btn-primary">Save</button>                      
                   </div>
                 </div>                                                 
             </div>
+			</div>
           </section>    
-          <?php } ?>
+          
         </form>
+		<?php } ?>
         <!-- /.content -->
       </div>
 
@@ -446,8 +449,8 @@ function myPopup(myURL, myWidth, myHeight) {
 }
 
 // document.querySelector(".third").addEventListener('click', function(){
-//   swal("Data Successfully to Update!");
-//   function update() {
+//   swal("Data Successfully to Proceed For Review!");
+//   function tambah() {
 //   location.reload(true);
 //         tr.hide();
 //   }
@@ -458,6 +461,18 @@ function myFunction(){
   var x = document.getElementById("Select").value;
 
   document.getElementById("demo").innerHTML = x;
+}
+
+function myFunction1(){
+  var x = document.getElementById("Select1").value;
+
+  document.getElementById("demo1").innerHTML = x;
+}
+
+function myFunction2(){
+  var x = document.getElementById("Select2").value;
+
+  document.getElementById("demo2").innerHTML = x;
 }
 
 function nominal(){
@@ -596,13 +611,13 @@ function nominal(){
 
   var hasil = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
   
-  // alert(hasil)
+  // alert(b)
   // if(x && b && c){
     //document.getElementById("ulang").value = hasil ;
     // document.getElementById("ulang1").value = hasil ;
   // }  
   var bilangan= ''+Math.abs(hasil)+'';
-  // alert(bilangan)
+  
   
   // alert(bilangan);
     var kalimat="";
@@ -680,12 +695,12 @@ function nominal(){
     }
     
     var matauang = document.getElementById("Select").value;
-    var namamatauang =String(matauang);
+    // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang){
+    /*switch(matauang){
       case "EUR":
       muncul = "EURO";
       break;
@@ -719,31 +734,81 @@ function nominal(){
 		  kalimat="(" + kalimat + ") ";
 	  }
 	  if(hasil==0){
-		  kalimat="Nihil";
+		  kalimat="Nol ";
 	  }
 	  
-    document.getElementById("terbilang").value=kalimat+muncul;
+    document.getElementById("terbilang").value=kalimat+muncul;*/
     // alert(kalimat);  
 
-    var a = hasil ;
-
-// alert(a)
-
-  if (a <= 100000000){
+  var a = hasil ;
+  var kurshasil= hasil;
+  
+  
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getkurscurrency/')?>/" + matauang,
+        type: "GET",
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				kurshasil=kurshasil*(data[0].kurs);
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+		if(kurshasil<0){
+			kurshasil=0;
+		}
+		
+		document.getElementById("approval1").value = "";
+		document.getElementById("jabatan1").value = "";		
+		document.getElementById("approval2").value = "";
+		document.getElementById("jabatan2").value = ""; 
+		document.getElementById("approval3").value = "";
+		document.getElementById("jabatan3").value = "";  
+		
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getapprovalbyamt/')?>/" + kurshasil,
+        type: "GET",
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				var seqid=0;
+				$(data).each(function(index, value){ 
+				console.log(index);
+				console.log(value.jabatan);
+				seqid++;
+				document.getElementById("approval"+seqid).value=value.nama_user;
+				document.getElementById("jabatan"+seqid).value=value.jabatan;
+				});				  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+  /*if (a <= 100000000){
     <?php foreach ($d_wewenang as $pejabat) { ?>
       <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
-      document.getElementById("approval1").value = "<?= $pejabat->nama_user?> ";
-      document.getElementById("jabatan1").value = " <?= $pejabat->jabatan?>";
+      document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
+      document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
 
       <?php } else {  ?>
-        document.getElementById("approval1").value = "Salusra Satria";
+        document.getElementById("approval1").value = "Salusra Satria";;
         document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
       <?php } ?>
 
   }else if (a > 100000000 && a <= 500000000) {
     <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "2"){ ?>
-    document.getElementById("approval1").value = "<?= $pejabat->nama_user?>";
-    document.getElementById("jabatan1").value = "<?= $pejabat->jabatan?>";
+    document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
+    document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
 
     <?php } else {  ?>
       document.getElementById("approval1").value = "M. Wahid Sutopo";
@@ -761,15 +826,15 @@ function nominal(){
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
   <?php }?>
 
-  } 
+  }*/
 
-    // alert(a)
   if (hasil<0){
 	  hasil=Math.abs(hasil);
 	  document.getElementById("ulang").value = "(" + hasil + ")" ;
   }else{
 	  document.getElementById("ulang").value = hasil ;
   }
+  
   
   var strulang =ulang.value;
 	if (strulang.substr(0,1)=="(" && strulang.substr(strulang.length-1,1)==")"){
@@ -778,9 +843,32 @@ function nominal(){
 		ulang.value = "(" + formatulang(strulang.substr(1,strulang.length-1)) + ")";
 	}else{
 		ulang.value = formatulang(strulang);
-	}
-
-  
+	} 
+	
+	var muncul="";
+    $.ajax({
+        url : "<?php echo base_url('dashboard/getCurrencyDesc/')?>/" + matauang,
+        type: "GET",
+		dataType: "JSON",
+        success: function(data)
+        {
+			console.log(data);
+			muncul=data[0].mata_uang; 
+			if(hasil<0){
+				kalimat="(" + kalimat + ") ";
+			}
+			if(hasil==0){
+				kalimat="Nihil";
+			}
+			//document.getElementById("terbilang").value=kalimat+muncul;
+			$('#terbilang').val(kalimat+muncul);
+        },
+        error: function (data)
+        {
+            console.log(data);
+            alert('Error Get Currency');
+        }
+    });
 }
 
   // Format Separator Id Nilai 
@@ -1225,6 +1313,7 @@ var save_method;
 var url;
 function saveapf() {
 
+  $id=$('#id_payment').val();
   url="<?php echo base_url('Dashboard/edit_pay')?>";
 
   $.ajax({
@@ -1235,6 +1324,7 @@ function saveapf() {
     success: function(data){ // Ketika proses pengiriman berhasil          
       alert('Data Berhasil Di Simpan!');   
       console.log(data);
+    window.location = "<?php echo base_url('Dashboard/form_vcrf')?>/" + $id;   
     
     },      
     error: function (data)

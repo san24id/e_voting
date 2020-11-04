@@ -8,9 +8,10 @@ td[rowspan="6"] {
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+		<?php foreach ($payment as $row){ ?>  
         <section class="content-header">
           <h1>
-           <?php foreach ($payment as $row){ ?>          
+                   
             <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
             <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
            <?php } ?>
@@ -23,7 +24,8 @@ td[rowspan="6"] {
           <input type="hidden" name="handled_by" class="form-control" value="<?php echo $get->handled_by; ?>">
           <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
-
+			<input type="hidden" id="id_payment" name="id_payment" value="<?php echo $get->id_payment ?>">
+          
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name ?>">
           <section class="content">
@@ -395,12 +397,17 @@ td[rowspan="6"] {
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
                     <button type="button" id="buttonSave" onclick="saveapf()" class="btn btn-primary">Save</button>
+
+                      
+
                   </div>
                 </div>                                                 
             </div>
+			</div>
           </section>    
-        <?php } ?>
+       
         </form>
+		 <?php } ?>
         <!-- /.content -->
       </div>
 
@@ -466,6 +473,7 @@ td[rowspan="6"] {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script>
+
 function myPopup(myURL, myWidth, myHeight) {
             var left = (screen.width - myWidth) / 2;
             var top = (screen.height - myHeight) / 4;
@@ -473,8 +481,8 @@ function myPopup(myURL, myWidth, myHeight) {
 }
 
 // document.querySelector(".third").addEventListener('click', function(){
-//   swal("Data Successfully to Update!");
-//   function update() {
+//   swal("Data Successfully to Proceed For Review!");
+//   function tambah() {
 //   location.reload(true);
 //         tr.hide();
 //   }
@@ -483,50 +491,20 @@ function myPopup(myURL, myWidth, myHeight) {
 
 function myFunction(){
   var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
 
   document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
 }
 
 function myFunction1(){
-  var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
+  var x = document.getElementById("Select1").value;
 
-  document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
+  document.getElementById("demo1").innerHTML = x;
 }
 
 function myFunction2(){
-  var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
+  var x = document.getElementById("Select2").value;
 
-  document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
+  document.getElementById("demo2").innerHTML = x;
 }
 
 function nominal(){
@@ -553,101 +531,95 @@ function nominal(){
   var k = document.getElementById("nilai10").value;
   // alert(k);
   var l = document.getElementById("nilai11").value;
-  // alert(l);
-    
+
+  var m = document.getElementById("jumlahuangmuka").value;
+  // alert(j);
+
   var get_x = x.replace(/\D+/g, '');
-  if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
+  if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")") || x.substr(0,1)=="-") {		
 		get_x= -Math.abs(get_x);		
   }else{
 	  get_x= Math.abs(get_x);		
   }
   var get_b = b.replace(/\D+/g, '');
-  if ((b.substr(0,1)=="(" && b.substr(b.length-1,1)==")")|| b.substr(0,1)=="-"){		
+  if ((b.substr(0,1)=="(" && b.substr(b.length-1,1)==")") || b.substr(0,1)=="-") {		
 		get_b= -Math.abs(get_b);		
   }else{
 	  get_b= Math.abs(get_b);		
   }
   var get_c = c.replace(/\D+/g, '');
-  if ((c.substr(0,1)=="(" && c.substr(c.length-1,1)==")")|| c.substr(0,1)=="-"){		
+  if ((c.substr(0,1)=="(" && c.substr(c.length-1,1)==")") || c.substr(0,1)=="-") {		
 		get_c= -Math.abs(get_c);		
   }else{
 	  get_c= Math.abs(get_c);		
   }
   var get_d = d.replace(/\D+/g, ''); 
-  if ((d.substr(0,1)=="(" && d.substr(d.length-1,1)==")")|| d.substr(0,1)=="-"){		
+  if ((d.substr(0,1)=="(" && d.substr(d.length-1,1)==")") || d.substr(0,1)=="-") {		
 		get_d= -Math.abs(get_d);		
   }else{
 	  get_d= Math.abs(get_d);		
   }  
   var get_e = e.replace(/\D+/g, '');
-  if ((e.substr(0,1)=="(" && e.substr(e.length-1,1)==")")|| e.substr(0,1)=="-"){		
+  if ((e.substr(0,1)=="(" && e.substr(e.length-1,1)==")") || e.substr(0,1)=="-") {		
 		get_e= -Math.abs(get_e);		
   }else{
 	  get_e= Math.abs(get_e);		
   }
   var get_f = f.replace(/\D+/g, '');
-  if ((f.substr(0,1)=="" && f.substr(f.length-1,1)==")")|| f.substr(0,1)=="-"){		
+  if ((f.substr(0,1)=="" && f.substr(f.length-1,1)==")") || f.substr(0,1)=="-") {		
 		get_f= -Math.abs(get_f);		
   }else{
 	  get_f= Math.abs(get_f);		
   }
   
   var get_g = g.replace(/\D+/g, '');
-  if ((g.substr(0,1)=="(" && g.substr(g.length-1,1)==")")|| g.substr(0,1)=="-"){		
+  if ((g.substr(0,1)=="(" && g.substr(g.length-1,1)==")") || g.substr(0,1)=="-") {		
 		get_g= -Math.abs(get_g);		
   }else{
 	  get_g= Math.abs(get_g);		
   }
   
   var get_h = h.replace(/\D+/g, '');
-  if ((h.substr(0,1)=="(" && h.substr(h.length-1,1)==")")|| h.substr(0,1)=="-"){		
+  if ((h.substr(0,1)=="(" && h.substr(h.length-1,1)==")") || h.substr(0,1)=="-") {		
 		get_h= -Math.abs(get_h);		
   }else{
 	  get_h= Math.abs(get_h);		
   }
   
   var get_i = i.replace(/\D+/g, '');
-  if ((i.substr(0,1)=="(" && i.substr(i.length-1,1)==")")|| i.substr(0,1)=="-"){		
+  if ((i.substr(0,1)=="(" && i.substr(i.length-1,1)==")") || i.substr(0,1)=="-") {		
 		get_i= -Math.abs(get_i);		
   }else{
 	  get_i= Math.abs(get_i);		
   }
   
   var get_j = j.replace(/\D+/g, '');
-  if ((j.substr(0,1)=="(" && j.substr(j.length-1,1)==")")|| j.substr(0,1)=="-"){		
+  if ((j.substr(0,1)=="(" && j.substr(j.length-1,1)==")") || j.substr(0,1)=="-") {		
 		get_j= -Math.abs(get_j);		
   }else{
 	  get_j= Math.abs(get_j);		
   }
   
   var get_k = k.replace(/\D+/g, '');
-  if ((k.substr(0,1)=="(" && k.substr(k.length-1,1)==")")|| k.substr(0,1)=="-"){		
+  if ((k.substr(0,1)=="(" && k.substr(k.length-1,1)==")") || k.substr(0,1)=="-") {		
 		get_k= -Math.abs(get_k);		
   }else{
 	  get_k= Math.abs(get_k);		
   }
 
   var get_l = l.replace(/\D+/g, '');  
-  if ((l.substr(0,1)=="(" && l.substr(l.length-1,1)==")")|| l.substr(0,1)=="-"){		
+  if ((l.substr(0,1)=="(" && l.substr(l.length-1,1)==")") || l.substr(0,1)=="-") {		
 		get_l= -Math.abs(get_l);		
   }else{
 	  get_l= Math.abs(get_l);		
   }
-  
-  
-  /*var get_x = x.replace(/\./g,'');
-  // alert(get_x);
-  var get_b = b.replace(/\./g,'');
-  var get_c = c.replace(/\./g,'');
-  var get_d = d.replace(/\./g,''); 
-  var get_e = e.replace(/\./g,'');
-  var get_f = f.replace(/\./g,'');
-  var get_g = g.replace(/\./g,'');
-  var get_h = h.replace(/\./g,'');
-  var get_i = i.replace(/\./g,'');
-  var get_j = j.replace(/\./g,'');
-  var get_k = k.replace(/\./g,'');
-  var get_l = l.replace(/\./g,'');*/
+
+  var get_m = m.replace(/\D+/g, '');  
+  if ((m.substr(0,1)=="(" && m.substr(m.length-1,1)==")") || m.substr(0,1)=="-") {		
+		get_m= -Math.abs(get_m);		
+  }else{
+	  get_m= Math.abs(get_m);		
+  }
 
   var sum_x = Number(get_x) + 0 ;
   var sum_b = Number(get_b) + 0 ;
@@ -662,17 +634,15 @@ function nominal(){
   var sum_j = Number(get_j) + 0 ;
   var sum_k = Number(get_k) + 0 ;
   var sum_l = Number(get_l) + 0 ;
+  
+  var sum_m = Number(get_m) + 0 ;
 
-  var hasil = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
-  
-  // alert(hasil)
-  // if(x && b && c){
-    //document.getElementById("ulang").value = hasil ;
-    // document.getElementById("ulang1").value = hasil ;
-  // }  
+  var hasil_jumlah = sum_x+sum_b+sum_c+sum_d+sum_e+sum_f+sum_g+sum_h+sum_i+sum_j+sum_k+sum_l;
+  var hasil = hasil_jumlah+sum_m;
+  // if(x && b){
+    // document.getElementById("ulang").value = hasil_jumlah ;
+  // } 
   var bilangan= ''+Math.abs(hasil)+'';
-  // alert(bilangan)
-  
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -705,7 +675,7 @@ function nominal(){
                 if(angka[i+2] == "1"){
                     kata1 = "Seratus";
                 }else{
-                    kata1 = kata[angka[i+2]] + "Ratus";
+                    kata1 = kata[angka[i+2]] + " Ratus";
                 }
             }
              
@@ -717,10 +687,10 @@ function nominal(){
                     }else if(angka[i] == "1"){
                         kata2 = "Sebelas";
                     }else{
-                        kata2 = kata[angka[i]] + "Belas";
+                        kata2 = kata[angka[i]] + " Belas";
                     }
                 }else{
-                    kata2 = kata[angka[i+1]] + "Puluh";
+                    kata2 = kata[angka[i+1]] + " Puluh";
                 }
             }
              
@@ -747,14 +717,38 @@ function nominal(){
             kalimat = kalimat.replace("Satu Ribu","Seribu");
         }
     }
-    
+
     var matauang = document.getElementById("Select").value;
-    var namamatauang =String(matauang);
+    // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang){
+	var muncul="";
+    $.ajax({
+        url : "<?php echo base_url('dashboard/getCurrencyDesc/')?>/" + matauang,
+        type: "GET",
+		dataType: "JSON",
+        success: function(data)
+        {
+			console.log(data);
+			muncul=data[0].mata_uang; 
+			if(hasil<0){
+				kalimat="(" + kalimat + ") ";
+			}
+			if(hasil==0){
+				kalimat="Nihil ";
+			}
+			//document.getElementById("terbilang").value=kalimat+muncul;
+			$('#terbilang').val(kalimat+muncul);
+        },
+        error: function (data)
+        {
+            console.log(data);
+            alert('Error Get Currency');
+        }
+    });
+    /*switch(matauang){
       case "EUR":
       muncul = "EURO";
       break;
@@ -783,36 +777,89 @@ function nominal(){
       default:
       muncul = "";
     }
-	
-     if(hasil<0){
-		  kalimat="(" + kalimat + ") ";
-	  }
-	  if(hasil==0){
-		  kalimat="Nihil";
+    
+	if (hasil<0){
+		  kalimat="( " + kalimat + ") ";
 	  }
 	  
-    document.getElementById("terbilang").value=kalimat+muncul;
-    // alert(kalimat);  
+	  if (hasil==0){
+		  kalimat="Nol ";
+	  }
+    document.getElementById("terbilang").value=kalimat+muncul;*/
+    // alert(kalimat);
+  // if(c){
+    // document.getElementById("negatif").value = hasil ;
+  // }
 
-    var a = hasil ;
-
-// alert(a)
-
-  if (a <= 100000000){
+  var a = hasil ;
+  var kurshasil= hasil;
+  
+  
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getkurscurrency/')?>/" + matauang,
+        type: "GET",
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				kurshasil=kurshasil*(data[0].kurs);
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+		if(kurshasil<0){
+			kurshasil=0;
+		}
+		
+		document.getElementById("approval1").value = "";
+		document.getElementById("jabatan1").value = "";		
+		document.getElementById("approval2").value = "";
+		document.getElementById("jabatan2").value = ""; 
+		document.getElementById("approval3").value = "";
+		document.getElementById("jabatan3").value = "";  
+		
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getapprovalbyamt/')?>/" + kurshasil,
+        type: "GET",
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				var seqid=0;
+				$(data).each(function(index, value){ 
+				console.log(index);
+				console.log(value.jabatan);
+				seqid++;
+				document.getElementById("approval"+seqid).value=value.nama_user;
+				document.getElementById("jabatan"+seqid).value=value.jabatan;
+				});				  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+  /*if (a <= 100000000){
     <?php foreach ($d_wewenang as $pejabat) { ?>
       <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
-      document.getElementById("approval1").value = "<?= $pejabat->nama_user?> ";
-      document.getElementById("jabatan1").value = " <?= $pejabat->jabatan?>";
+      document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
+      document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
 
       <?php } else {  ?>
-        document.getElementById("approval1").value = "Salusra Satria";
+        document.getElementById("approval1").value = "Salusra Satria";;
         document.getElementById("jabatan1").value = "Direktur Eksekutif Keuangan & Penilaian Proyek / CFO";
       <?php } ?>
 
   }else if (a > 100000000 && a <= 500000000) {
     <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "2"){ ?>
-    document.getElementById("approval1").value = "<?= $pejabat->nama_user?>";
-    document.getElementById("jabatan1").value = "<?= $pejabat->jabatan?>";
+    document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
+    document.getElementById("jabatan1").value = '<?= $pejabat->jabatan?>';
 
     <?php } else {  ?>
       document.getElementById("approval1").value = "M. Wahid Sutopo";
@@ -830,14 +877,14 @@ function nominal(){
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
   <?php }?>
 
-  } 
+  }*/
 
-    // alert(a)
-  if (hasil<0){
-	  hasil=Math.abs(hasil);
-	  document.getElementById("ulang").value = "(" + hasil + ")" ;
+// Jumlah Uang Muka
+  if (hasil_jumlah<0){
+	  hasil_jumlah=Math.abs(hasil_jumlah);
+	  document.getElementById("ulang").value = "(" + hasil_jumlah + ")" ;
   }else{
-	  document.getElementById("ulang").value = hasil ;
+	  document.getElementById("ulang").value = hasil_jumlah ;
   }
   
   var strulang =ulang.value;
@@ -848,24 +895,38 @@ function nominal(){
 	}else{
 		ulang.value = formatulang(strulang);
 	}
-
+// 
+// Negatif(piutang)
+  if (hasil<0){
+	  hasil=Math.abs(hasil);
+	  document.getElementById("negatif").value = "(" + hasil + ")" ;
+  }else{
+	  document.getElementById("negatif").value = hasil ;
+  }
   
+  var strnegatif =negatif.value;
+	if (strnegatif.substr(0,1)=="(" && strnegatif.substr(strnegatif.length-1,1)==")"){
+		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-2)) + ")";
+	}else if (strnegatif.substr(0,1)=="-" ){
+		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-1)) + ")";
+	}else{
+		negatif.value = formatnegatif(strnegatif);
+	}  
 }
 
-  // Format Separator Id Nilai 
-  var nilai = document.getElementById('nilai');
+// Format Separator Id Nilai 
+var nilai = document.getElementById('nilai');
   nilai.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai() untuk mengubah angka yang di ketik menjadi format angka
     var strnilai =nilai.value;
-	if (strnilai.substr(0,1)=="(" && strnilai.substr(strnilai.length-1,1)==")"){
+	if (strnilai.substr(0,1)=="(" && strnilai.substr(strnilai.length-1,1)==")") {
 		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-2)) + ")";
 	}else if(strnilai.substr(0,1)=="-") {
 		nilai.value = "(" + formatnilai(strnilai.substr(1,strnilai.length-1)) + ")";
 	}else{
 		nilai.value = formatnilai(this.value);
 	}
-    //nilai.value = formatnilai(this.value);
   });
 
   /* Fungsi formatnilai */
@@ -891,15 +952,14 @@ function nominal(){
   nilai1.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
     // gunakan fungsi formatnilai1() untuk mengubah angka yang di ketik menjadi format angka
-	 var strnilai1 =nilai1.value;
-	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")") {
+    var strnilai1 =nilai1.value;
+	if (strnilai1.substr(0,1)=="(" && strnilai1.substr(strnilai1.length-1,1)==")"){
 		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-2)) + ")";
 	}else if(strnilai1.substr(0,1)=="-") {
 		nilai1.value = "(" + formatnilai1(strnilai1.substr(1,strnilai1.length-1)) + ")";
 	}else{
 		nilai1.value = formatnilai1(this.value);
 	}
-    //nilai1.value = formatnilai1(this.value);
   });
 
   /* Fungsi formatnilai1 */
@@ -920,8 +980,7 @@ function nominal(){
     return prefix == undefined ? nilai1 : (nilai1 ? + nilai1 : '');
   }
 
-
-  // // Format Separator Id Nilai 2
+  // Format Separator Id Nilai 2
   var nilai2 = document.getElementById('nilai2');
   nilai2.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
@@ -934,7 +993,6 @@ function nominal(){
 	}else{
 		nilai2.value = formatnilai2(this.value);
 	}
-    //nilai2.value = formatnilai2(this.value);
   });
 
   /* Fungsi formatnilai2 */
@@ -955,11 +1013,11 @@ function nominal(){
     return prefix == undefined ? nilai2 : (nilai2 ? + nilai2 : '');
   }
 
-  var nilai3 = document.getElementById('nilai3');  
+  var nilai3 = document.getElementById('nilai3');
   nilai3.addEventListener('focusout', function(e){
     // tambahkan 'Rp.' pada saat form di ketik
-    // gunakan fungsi formatnilai3() untuk mengubah angka yang di ketik menjadi format angka	
-	var strnilai3 =nilai3.value;
+    // gunakan fungsi formatnilai3() untuk mengubah angka yang di ketik menjadi format angka
+    var strnilai3 =nilai3.value;
 	if (strnilai3.substr(0,1)=="(" && strnilai3.substr(strnilai3.length-1,1)==")"){
 		nilai3.value = "(" + formatnilai3(strnilai3.substr(1,strnilai3.length-2)) + ")";
 	}else if(strnilai3.substr(0,1)=="-") {
@@ -967,13 +1025,11 @@ function nominal(){
 	}else{
 		nilai3.value = formatnilai3(this.value);
 	}
-    //nilai3.value = formatnilai3(this.value);
-    
   });
 
   /* Fungsi formatnilai3 */
-  function formatnilai3(angka, prefix){	  
-	var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
+  function formatnilai3(angka, prefix){
+    var number_string = angka.replace(/[^,\d,-]/g, '').toString(),
     split   		= number_string.split(','),
     sisa     		= split[0].length % 3,
     nilai3     		= split[0].substr(0, sisa),
@@ -1001,7 +1057,6 @@ function nominal(){
 	}else{
 		nilai4.value = formatnilai4(this.value);
 	}
-    //nilai4.value = formatnilai4(this.value);
   });
 
   /* Fungsi formatnilai4 */
@@ -1034,7 +1089,6 @@ function nominal(){
 	}else{
 		nilai5.value = formatnilai5(this.value);
 	}
-    //nilai5.value = formatnilai5(this.value);
   });
 
   /* Fungsi formatnilai5 */
@@ -1067,7 +1121,6 @@ function nominal(){
 	}else{
 		nilai6.value = formatnilai6(this.value);
 	}
-    //nilai6.value = formatnilai6(this.value);
   });
 
   /* Fungsi formatnilai6 */
@@ -1094,13 +1147,12 @@ function nominal(){
     // gunakan fungsi formatnilai7() untuk mengubah angka yang di ketik menjadi format angka
     var strnilai7 =nilai7.value;
 	if (strnilai7.substr(0,1)=="(" && strnilai7.substr(strnilai7.length-1,1)==")"){
-		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-2)) + ")";
+		nilai6.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-2)) + ")";
 	}else if(strnilai7.substr(0,1)=="-") {
 		nilai7.value = "(" + formatnilai7(strnilai7.substr(1,strnilai7.length-1)) + ")";
 	}else{
 		nilai7.value = formatnilai7(this.value);
 	}
-    //nilai7.value = formatnilai7(this.value);
   });
 
   /* Fungsi formatnilai7 */
@@ -1133,7 +1185,6 @@ function nominal(){
 	}else{
 		nilai8.value = formatnilai8(this.value);
 	}
-    //nilai8.value = formatnilai8(this.value);
   });
 
   /* Fungsi formatnilai8 */
@@ -1166,7 +1217,6 @@ function nominal(){
 	}else{
 		nilai9.value = formatnilai9(this.value);
 	}
-    //nilai9.value = formatnilai9(this.value);
   });
 
   /* Fungsi formatnilai9 */
@@ -1199,7 +1249,6 @@ function nominal(){
 	}else{
 		nilai10.value = formatnilai10(this.value);
 	}
-    //nilai10.value = formatnilai8(this.value);
   });
 
   /* Fungsi formatnilai10 */
@@ -1232,7 +1281,6 @@ function nominal(){
 	}else{
 		nilai11.value = formatnilai11(this.value);
 	}
-	//nilai11.value = formatnilai11(this.value);
   });
 
   /* Fungsi formatnilai11 */
@@ -1252,7 +1300,7 @@ function nominal(){
     nilai11 = split[1] != undefined ? nilai11 + ',' + split[1] : nilai11;
     return prefix == undefined ? nilai11 : (nilai11 ? + nilai11 : '');
   }
-  
+
   // Format Separator Id Ulang (Jumlah Pembayaran)
   var ulang = document.getElementById('ulang');
   ulang.addEventListener('mousemove', function(e){
@@ -1266,7 +1314,6 @@ function nominal(){
 	}else{
 		ulang.value = formatulang(this.value);
 	}
-	//ulang.value = formatulang(this.value);
   });
 
   /* Fungsi formatulang */
@@ -1287,6 +1334,72 @@ function nominal(){
     return prefix == undefined ? ulang : (ulang ? + ulang : '');
   }
 
+  // Format Separator Id Jumlah (Jumlah UangMuka)
+  var jumlahuangmuka = document.getElementById('jumlahuangmuka');
+  jumlahuangmuka.addEventListener('focusout', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatjumlahuangmuka() untuk mengubah angka yang di ketik menjadi format angka
+    var strjumlahuangmuka =jumlahuangmuka.value;
+	if (strjumlahuangmuka.substr(0,1)=="(" && strjumlahuangmuka.substr(strjumlahuangmuka.length-1,1)==")"){
+		jumlahuangmuka.value = "(" + formatjumlahuangmuka(strjumlahuangmuka.substr(1,strjumlahuangmuka.length-2)) + ")";
+	}else if(strjumlahuangmuka.substr(0,1)=="-") {
+		jumlahuangmuka.value = "(" + formatjumlahuangmuka(strjumlahuangmuka.substr(1,strjumlahuangmuka.length-1)) + ")";
+	}else{
+		jumlahuangmuka.value = formatjumlahuangmuka(this.value);
+	}
+  });
+
+  /* Fungsi formatjumlahuangmuka */
+  function formatjumlahuangmuka(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    jumlahuangmuka     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      jumlahuangmuka += separator + ribuan.join('.');
+    }
+
+    jumlahuangmuka = split[1] != undefined ? jumlahuangmuka + ',' + split[1] : jumlahuangmuka;
+    return prefix == undefined ? jumlahuangmuka : (jumlahuangmuka ? + jumlahuangmuka : '');
+  }
+
+  // Format Separator Id Negarif (Piutang)
+  var negatif = document.getElementById('negatif');
+  negatif.addEventListener('mousemove', function(e){
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatnegatif() untuk mengubah angka yang di ketik menjadi format angka
+    var strnegatif =negatif.value;
+	if (strnegatif.substr(0,1)=="(" && strnegatif.substr(strnegatif.length-1,1)==")"){
+		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-2)) + ")";
+	}else if(strnegatif.substr(0,1)=="-") {
+		negatif.value = "(" + formatnegatif(strnegatif.substr(1,strnegatif.length-1)) + ")";
+	}else{
+		negatif.value = formatnegatif(this.value);
+	}
+  });
+
+  /* Fungsi formatnegatif */
+  function formatnegatif(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split   		= number_string.split(','),
+    sisa     		= split[0].length % 3,
+    negatif     		= split[0].substr(0, sisa),
+    ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      negatif += separator + ribuan.join('.');
+    }
+
+    negatif = split[1] != undefined ? negatif + ',' + split[1] : negatif;
+    return prefix == undefined ? negatif : (negatif ? + negatif : '');
+  }
+
 </script>
 
 <script type="text/javascript">
@@ -1295,6 +1408,7 @@ var save_method;
 var url;
 function saveapf() {
 
+  $id=$('#id_payment').val();
   url="<?php echo base_url('Dashboard/edit_pay')?>";
 
   $.ajax({
@@ -1305,6 +1419,7 @@ function saveapf() {
     success: function(data){ // Ketika proses pengiriman berhasil          
       alert('Data Berhasil Di Simpan!');   
       console.log(data);
+    window.location = "<?php echo base_url('Dashboard/form_vasf')?>/" + $id;   
     
     },      
     error: function (data)

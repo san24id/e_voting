@@ -8,10 +8,10 @@ td[rowspan="3"] {
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <?php foreach ($payment as $row){ ?>          
+            <section class="content-header">
           <h1>
-           <?php foreach ($payment as $row){ ?>          
-            <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
+           <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
             <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
            <?php } ?>
           </h1>
@@ -23,6 +23,7 @@ td[rowspan="3"] {
           <input type="hidden" name="handled_by" class="form-control" value="<?php echo $get->handled_by; ?>">
           <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
+          <input type="hidden" id="id_payment" name="id_payment" value="<?php echo $get->id_payment ?>">
           
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name; ?>">
@@ -216,10 +217,13 @@ td[rowspan="3"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" style="text-align:right" type="text" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly>
-                              <?php echo $get->currency4;?>&nbsp;<input id="ulang1" style="text-align:right" type="text" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly> 
-                              <?php echo $get->currency8;?>&nbsp;<input id="ulang2" style="text-align:right" type="text" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $get->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency4;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency8;?>" readonly> 
+                          </td>
+                          <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly>
+                              <input id="ulang1" style="text-align:right" type="text" class="form-control" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
+                              <input id="ulang2" style="text-align:right" type="text" class="form-control" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly> 
                           </td>
                         </tr>
                         <tr> 
@@ -374,12 +378,16 @@ td[rowspan="3"] {
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
                     <button type="button" id="buttonSave" onclick="saveapf()" class="btn btn-primary">Save</button>
+
+                      
                   </div>
                 </div>                                                 
             </div>
+			</div>
           </section>    
-          <?php } ?>
+         
         </form>
+		 <?php } ?>
         <!-- /.content -->
       </div>
 
@@ -445,6 +453,7 @@ td[rowspan="3"] {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script>
+
 function myPopup(myURL, myWidth, myHeight) {
             var left = (screen.width - myWidth) / 2;
             var top = (screen.height - myHeight) / 4;
@@ -452,8 +461,8 @@ function myPopup(myURL, myWidth, myHeight) {
 }
 
 // document.querySelector(".third").addEventListener('click', function(){
-//   swal("Data Successfully to Update!");
-//   function update() {
+//   swal("Data Successfully to Proceed For Review!");
+//   function tambah() {
 //   location.reload(true);
 //         tr.hide();
 //   }
@@ -462,50 +471,20 @@ function myPopup(myURL, myWidth, myHeight) {
 
 function myFunction(){
   var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
 
   document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
 }
 
 function myFunction1(){
-  var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
+  var x = document.getElementById("Select1").value;
 
-  document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
+  document.getElementById("demo1").innerHTML = x;
 }
 
 function myFunction2(){
-  var x = document.getElementById("Select").value;
-  var x1 = document.getElementById("Select1").value;
-  var x2 = document.getElementById("Select2").value;
+  var x = document.getElementById("Select2").value;
 
-  document.getElementById("demo").innerHTML = x;
-  document.getElementById("demo1").innerHTML = x1;
-  document.getElementById("demo2").innerHTML = x2;
-  document.getElementById("demo3").innerHTML = x;
-  document.getElementById("demo4").innerHTML = x1;
-  document.getElementById("demo5").innerHTML = x2;
-  document.getElementById("demo6").innerHTML = x;
-  document.getElementById("demo7").innerHTML = x1;
-  document.getElementById("demo8").innerHTML = x2;
+  document.getElementById("demo2").innerHTML = x;
 }
 
 function nominal(){
@@ -533,9 +512,9 @@ function nominal(){
   // alert(k);
   var l = document.getElementById("nilai11").value;
 
-  // var m = document.getElementById("jumlahuangmuka").value;
-  // var n = document.getElementById("jumlahuangmuka2").value;
-  // var o = document.getElementById("jumlahuangmuka3").value;
+  var m = "0"; //document.getElementById("jumlahuangmuka").value;
+  var n = "0"; //document.getElementById("jumlahuangmuka2").value;
+  var o = "0"; //document.getElementById("jumlahuangmuka3").value;
     
   var get_x = x.replace(/\D+/g, '');
   if ((x.substr(0,1)=="(" && x.substr(x.length-1,1)==")")|| x.substr(0,1)=="-"){		
@@ -616,26 +595,26 @@ function nominal(){
 	  get_l= Math.abs(get_l);		
   }
 
-  // var get_m = m.replace(/\D+/g, '');  
-  // if ((m.substr(0,1)=="(" && m.substr(m.length-1,1)==")") || m.substr(0,1)=="-"){		
-	// 	get_m= -Math.abs(get_m);		
-  // }else{
-	//   get_m= Math.abs(get_m);		
-  // }
+  var get_m = m.replace(/\D+/g, '');  
+  if ((m.substr(0,1)=="(" && m.substr(m.length-1,1)==")") || m.substr(0,1)=="-"){		
+		get_m= -Math.abs(get_m);		
+  }else{
+	  get_m= Math.abs(get_m);		
+  }
 
-  // var get_n = n.replace(/\D+/g, '');
-  // if ((n.substr(0,1)=="(" && n.substr(n.length-1,1)==")") || n.substr(0,1)=="-"){		
-	// 	get_n= -Math.abs(get_n);		
-  // }else{
-	// get_n= Math.abs(get_n);		
-  // }
+  var get_n = n.replace(/\D+/g, '');
+  if ((n.substr(0,1)=="(" && n.substr(n.length-1,1)==")") || n.substr(0,1)=="-"){		
+		get_n= -Math.abs(get_n);		
+  }else{
+	get_n= Math.abs(get_n);		
+  }
 
-  // var get_o = o.replace(/\D+/g,'');
-  // if ((o.substr(0,1)=="(" && o.substr(o.length-1,1)==")") || o.substr(0,1)=="-"){		
-	// 	get_o= -Math.abs(get_o);		
-  // }else{
-	//   get_o= Math.abs(get_o);		
-  // }
+  var get_o = o.replace(/\D+/g,'');
+  if ((o.substr(0,1)=="(" && o.substr(o.length-1,1)==")") || o.substr(0,1)=="-"){		
+		get_o= -Math.abs(get_o);		
+  }else{
+	  get_o= Math.abs(get_o);		
+  }
 
   //Currency1
   var jumlah1 = Number(get_x) + 0;
@@ -653,9 +632,9 @@ function nominal(){
   var jumlah11 = Number(get_k);
   var jumlah12 = Number(get_l);
   
-  // var negatif = Number(get_m) + 0 ;
-  // var negatif2 = Number(get_n) + 0 ;
-  // var negatif3 = Number(get_o) + 0 ;
+  var negatif = Number(get_m) + 0 ;
+  var negatif2 = Number(get_n) + 0 ;
+  var negatif3 = Number(get_o) + 0 ;
 
 //Jumlah -> Jumlah Pembayaran
   var hasil_jumlah1 = jumlah1+jumlah2+jumlah3+jumlah4;
@@ -663,9 +642,9 @@ function nominal(){
   var hasil_jumlah3 = jumlah9+jumlah10+jumlah11+jumlah12;
 
 // Jumlah Pembayaran - Jumlah Uang Muka
-  // var hasil = hasil_jumlah1-negatif;
-  // var hasil2 = hasil_jumlah2-negatif2;
-  // var hasil3 = hasil_jumlah3-negatif3;
+  var hasil = hasil_jumlah1-negatif;
+  var hasil2 = hasil_jumlah2-negatif2;
+  var hasil3 = hasil_jumlah3-negatif3;
 
   // Total Expense   
   if (hasil_jumlah1<0){
@@ -688,6 +667,72 @@ function nominal(){
   }else{
 	  document.getElementById("ulang2").value = hasil_jumlah3 ;
   }
+
+  var curr1X = document.getElementById("curr1X").value;
+  var curr2X = document.getElementById("curr2X").value;
+  var curr3X = document.getElementById("curr3X").value;
+  var kurshasil1=0; 
+  var kurshasil2=0; 
+  var kurshasil3=0; 
+  var totkurshasil=0; 
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getkursmulticurrency')?>",
+        type: "POST",
+		data: $("#formadd").serialize(),
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				$(data).each(function(index, value){ 
+					if(curr1X==value.currency){
+						kurshasil1=hasil*(value.kurs);
+					}else if(curr2X==value.currency){
+						kurshasil2=hasil2*(value.kurs);
+					}else if(curr3X==value.currency){
+						kurshasil3=hasil3*(value.kurs);
+					}
+				});
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+		totkurshasil=kurshasil1+kurshasil2+kurshasil3;
+		if(totkurshasil<0){
+			totkurshasil=0;
+		}
+		
+		document.getElementById("approval1").value='';
+		document.getElementById("jabatan1").value='';
+		document.getElementById("approval2").value='';
+		document.getElementById("jabatan2").value='';
+		document.getElementById("approval3").value='';
+		document.getElementById("jabatan3").value='';
+				
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getapprovalbyamt/')?>/" + totkurshasil,
+        type: "GET",
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				var seqid=0;
+				$(data).each(function(index, value){ 
+				seqid++;
+				document.getElementById("approval"+seqid).value=value.nama_user;
+				document.getElementById("jabatan"+seqid).value=value.jabatan;
+				});				  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+	
 // Negatif(piutang)
   // if (hasil<0){
 	//   var strhasil =Math.abs(hasil);
@@ -719,7 +764,7 @@ function nominal(){
     // document.getElementById("ulang2").value = hasil_jumlah3 ;
     // alert(ulang);    
 
-    var bilangan= ''+Math.abs(hasil_jumlah1)+'';
+    var bilangan= ''+Math.abs(hasil)+'';
   // alert(bilangan);
     var kalimat="";
     var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -801,7 +846,7 @@ function nominal(){
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang){
+    /*switch(matauang){
       case "EUR":
       muncul = "Euro";
       break;
@@ -829,21 +874,21 @@ function nominal(){
 
       default:
       muncul = "";
-    }
+    }*/
 
-    if (hasil_jumlah1<0){
+    if (hasil<0){
 		  kalimat="( " + kalimat + ") ";
 	  }
 	 
-	 if (hasil_jumlah1==0){
+	 if (hasil==0){
 		  kalimat="Nihil";
 	  }
     
-    document.getElementById("terbilang").value=kalimat+ " " + muncul;
+    //document.getElementById("terbilang").value=kalimat+ " " + muncul;
     
     // alert(kalimat);
 
-    var bilangan2= ''+Math.abs(hasil_jumlah2)+'';
+    var bilangan2= ''+Math.abs(hasil2)+'';
   // alert(bilangan2);
     var kalimat2="";
     var angka2   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -925,7 +970,7 @@ function nominal(){
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang2){
+    /*switch(matauang2){
       case "EUR":
       muncul2 = "EURO";
       break;
@@ -953,20 +998,20 @@ function nominal(){
 
       default:
       muncul2 = "";
-    }
+    }*/
 
-  if (hasil_jumlah2<0){
+  if (hasil2<0){
 		kalimat2="( " + kalimat2 + ") ";
 	}
 	
-	if (hasil_jumlah2==0){
+	if (hasil2==0){
 		  kalimat2="Nihil";
 	  }
 
-    document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;
+    //document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;
     // alert(kalimat2);
 
-    var bilangan3= ''+ Math.abs(hasil_jumlah3)+'';
+    var bilangan3= ''+ Math.abs(hasil3)+'';
   // alert(bilangan3);
     var kalimat3="";
     var angka3   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
@@ -1048,7 +1093,7 @@ function nominal(){
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang3){
+    /*switch(matauang3){
       case "EUR":
       muncul3 = "EURO";
       break;
@@ -1076,23 +1121,23 @@ function nominal(){
 
       default:
       muncul3 = "";
-    }
+    }*/
 
-    if (hasil_jumlah3<0){
+    if (hasil3<0){
 		kalimat3="( " + kalimat3 + ") ";
 	}
 
-	if (hasil_jumlah3==0){
+	if (hasil3==0){
 		  kalimat3="Nihil";
 	  }
-    document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;
+    //document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;
     // alert(kalimat3);
 
     // document.getElementById("negatif").value = hasil ;
     // document.getElementById("negatif2").value = hasil2 ; 
     // document.getElementById("negatif3").value = hasil3 ;
-  var a = hasil_jumlah1 ;
-  if (a <= 100000000){
+  var a = hasil ;
+  /*if (a <= 100000000){
     <?php foreach ($d_wewenang as $pejabat) { ?>
       <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
       document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
@@ -1124,7 +1169,7 @@ function nominal(){
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
   <?php }?>
 
-  }
+  }*/
     
   if (hasil_jumlah1<0){
 	  hasil_jumlah1=Math.abs(hasil_jumlah1);
@@ -1166,6 +1211,32 @@ function nominal(){
 		ulang2.value = formatulang2(strulang2);
 	} 
  
+	$.ajax({
+        url : "<?php echo base_url('dashboard/getMultiCurrencyDesc')?>",
+        type: "POST",
+		data: $("#formadd").serialize(),
+        dataType: "JSON",
+        success: function(data)
+        {
+			console.log(data);
+			for (i=0;i<data.length; i++){
+				if(data[i].nomor=="1"){							
+					$('#terbilang').val(kalimat+ " " + data[i].mata_uang);
+				}
+				if(data[i].nomor=="2"){					
+					$('#terbilang2').val(kalimat2+ " " + data[i].mata_uang);
+				}
+				if(data[i].nomor=="3"){
+					$('#terbilang3').val(kalimat3+ " " + data[i].mata_uang);
+				}
+			}
+        },
+        error: function (data)
+        {
+            console.log(data);
+            alert('Error Get Currency');
+        }
+    });
 }
 
 // Format Separator Id Nilai 
@@ -1676,6 +1747,7 @@ var save_method;
 var url;
 function saveapf() {
 
+	$id=$('#id_payment').val();
   url="<?php echo base_url('Dashboard/edit_pay')?>";
 
   $.ajax({
@@ -1686,6 +1758,7 @@ function saveapf() {
     success: function(data){ // Ketika proses pengiriman berhasil          
       alert('Data Berhasil Di Simpan!');   
       console.log(data);
+    window.location = "<?php echo base_url('Dashboard/form_vcrf')?>/" + $id;   
     
     },      
     error: function (data)

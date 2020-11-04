@@ -8,9 +8,10 @@ td[rowspan="6"] {
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+		<?php foreach ($payment as $row){ ?>      
         <section class="content-header">
           <h1>
-           <?php foreach ($payment as $row){ ?>          
+               
             <a class="btn btn-warning" onclick="window.open('Dashboard/report2/<?php echo $row->id_payment; ?>', 'newwindow', 'width=640,height=720'); return false;"> Form SP3</a>
             <button type="button" id="btn_tax" class="btn btn-success" onclick="myPopup('Dashboard/form_info_tax/<?php echo $row->id_payment; ?>', 1050, 550);">View Tax</button>
            <?php } ?>
@@ -23,7 +24,8 @@ td[rowspan="6"] {
           <input type="hidden" name="handled_by" class="form-control" value="<?php echo $get->handled_by; ?>">
           <input type="hidden" name="status" value="<?php echo $get->status?>">
           <input type="hidden" name="rejected_by" value="<?php echo $get->rejected_by?>">
-
+			<input type="hidden" id="id_payment" name="id_payment" value="<?php echo $get->id_payment ?>">
+          
           <input type="hidden" name="tanggal2" class="form-control" value="<?php echo $get->tanggal2?>">
           <input type="hidden" name="display_name" class="form-control" value="<?php echo $get->display_name ?>">
           <section class="content">
@@ -223,27 +225,34 @@ td[rowspan="6"] {
 
                         <tr>
                           <td colspan="3" align="right"> Jumlah Pembayaran/<i>Total Payment</i> </td>
-                          <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="ulang" type="text" style="text-align:right" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly>
-                              <?php echo $get->currency4;?>&nbsp;<input id="ulang1" type="text" style="text-align:right" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly> 
-                              <?php echo $get->currency8;?>&nbsp;<input id="ulang2" type="text" style="text-align:right" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly>
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $get->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency4;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency8;?>" readonly> 
+                          </td>
+                          <td><input id="ulang" style="text-align:right" type="text" class="form-control" name="total_expenses" value="<?php echo $get->total_expenses;?>" readonly>
+                              <input id="ulang1" style="text-align:right" type="text" class="form-control" name="total_expenses2" value="<?php echo $get->total_expenses2;?>" readonly>
+                              <input id="ulang2" style="text-align:right" type="text" class="form-control" name="total_expenses3" value="<?php echo $get->total_expenses3;?>" readonly> 
                           </td>
                         </tr>
                         <tr>
                           <td colspan="3"> Jumlah Uang Muka/<i>Cash Advance</i> </td>
-                          <td><center>  </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="jumlahuangmuka" style="text-align:right" onchange="nominal()" type="text" name="cash_advance" value="<?php echo $get->cash_advance; ?>" >
-                              <?php echo $get->currency4;?>&nbsp;<input id="jumlahuangmuka2" style="text-align:right" onchange="nominal()" type="text" name="cash_advance2" value="<?php echo $get->cash_advance2; ?>" >
-                              <?php echo $get->currency8;?>&nbsp;<input id="jumlahuangmuka3" style="text-align:right" onchange="nominal()" type="text" name="cash_advance3" value="<?php echo $get->cash_advance3; ?>" >
+                          <td><input style="text-align:center" class="form-control" value="<?php echo $get->currency;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency4;?>" readonly> 
+                              <input style="text-align:center" class="form-control" value="<?php echo $get->currency8;?>" readonly> 
                           </td>
+                          <td><input id="jumlahuangmuka" style="text-align:right" class="form-control"onkeyup="nominal()" type="text" name="cash_advance" value="<?php echo $get->cash_advance;?>" readonly> 
+                              <input id="jumlahuangmuka2" style="text-align:right" class="form-control" onkeyup="nominal()" type="text" name="cash_advance2" value="<?php echo $get->cash_advance2;?>" readonly>
+                              <input id="jumlahuangmuka3" style="text-align:right" class="form-control" onkeyup="nominal()" type="text" name="cash_advance3" value="<?php echo $get->cash_advance3;?>" readonly></td>
                         </tr>
                         <tr>
                           <td colspan="3"> (Negatif) = Piutang/<i>Receivable</i> atau Positif = Hutang/<i>Payable</i> </td>
-                          <td><center> </center></td>
-                          <td><?php echo $get->currency;?>&nbsp;<input id="negatif" style="text-align:right" type="text" name="piutang" value="<?php echo $get->piutang; ?>" >
-                              <?php echo $get->currency4;?>&nbsp;<input id="negatif2" style="text-align:right" type="text" name="piutang2" value="<?php echo $get->piutang2; ?>" >
-                              <?php echo $get->currency8;?>&nbsp;<input id="negatif3" style="text-align:right" type="text" name="piutang3" value="<?php echo $get->piutang3; ?>" > 
+                          <td><input id="curr1X" style="text-align:center" class="form-control" value="<?php echo $get->currency;?>" readonly> 
+                              <input id="curr2X" style="text-align:center" class="form-control" value="<?php echo $get->currency4;?>" readonly> 
+                              <input id="curr3X" style="text-align:center" class="form-control" value="<?php echo $get->currency8;?>" readonly> 
                           </td>
+                          <td><input id="negatif" style="text-align:right" class="form-control" type="text" name="piutang" value="<?php echo $get->piutang;?>" readonly>
+                              <input id="negatif2" style="text-align:right" class="form-control" type="text" name="piutang2" value="<?php echo $get->piutang2;?>"readonly>
+                              <input id="negatif3" style="text-align:right" class="form-control" type="text" name="piutang3" value="<?php echo $get->piutang3;?>" readonly></td>
                         </tr>
                         <tr> 
                           <td>Terbilang/ <i>Say :</i> </td>
@@ -407,12 +416,16 @@ td[rowspan="6"] {
                   <div class="box-header with-border">
                     <a class="btn btn-warning" href="Dashboard/my_task" role="button">Cancel</a>
                     <button type="button" id="buttonSave" onclick="saveapf()" class="btn btn-primary">Save</button>
+
+                     
                   </div>
                 </div>                                                 
             </div>
+			</div>
           </section>    
-        <?php } ?>
+        
         </form>
+		<?php } ?>
         <!-- /.content -->
       </div>
 
@@ -478,6 +491,7 @@ td[rowspan="6"] {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script>
+
 function myPopup(myURL, myWidth, myHeight) {
             var left = (screen.width - myWidth) / 2;
             var top = (screen.height - myHeight) / 4;
@@ -485,8 +499,8 @@ function myPopup(myURL, myWidth, myHeight) {
 }
 
 // document.querySelector(".third").addEventListener('click', function(){
-//   swal("Data Successfully to Update!");
-//   function update() {
+//   swal("Data Successfully to Proceed For Review!");
+//   function tambah() {
 //   location.reload(true);
 //         tr.hide();
 //   }
@@ -671,10 +685,10 @@ function nominal(){
   }
 
   //Currency1
-  var jumlah1 = Number(get_x) + 0;
-  var jumlah2 = Number(get_b) + 0;
-  var jumlah3 = Number(get_c) + 0;
-  var jumlah4 = Number(get_d) + 0;
+  var jumlah1 = Number(get_x);
+  var jumlah2 = Number(get_b);
+  var jumlah3 = Number(get_c);
+  var jumlah4 = Number(get_d);
   // Currency2
   var jumlah5 = Number(get_e);
   var jumlah6 = Number(get_f);
@@ -696,9 +710,9 @@ function nominal(){
   var hasil_jumlah3 = jumlah9+jumlah10+jumlah11+jumlah12;
 
 // Jumlah Pembayaran - Jumlah Uang Muka
-  var hasil = hasil_jumlah1-negatif;
-  var hasil2 = hasil_jumlah2-negatif2;
-  var hasil3 = hasil_jumlah3-negatif3;
+  var hasil = hasil_jumlah1+negatif;
+  var hasil2 = hasil_jumlah2+negatif2;
+  var hasil3 = hasil_jumlah3+negatif3;
 
   // Total Expense   
   if (hasil_jumlah1<0){
@@ -721,6 +735,73 @@ function nominal(){
   }else{
 	  document.getElementById("ulang2").value = hasil_jumlah3 ;
   }
+  
+  var curr1X = document.getElementById("curr1X").value;
+  var curr2X = document.getElementById("curr2X").value;
+  var curr3X = document.getElementById("curr3X").value;
+  var kurshasil1=0; 
+  var kurshasil2=0; 
+  var kurshasil3=0; 
+  var totkurshasil=0; 
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getkursmulticurrency')?>",
+        type: "POST",
+		data: $("#formadd").serialize(),
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				$(data).each(function(index, value){ 
+					if(curr1X==value.currency){
+						kurshasil1=hasil*(value.kurs);
+					}else if(curr2X==value.currency){
+						kurshasil2=hasil2*(value.kurs);
+					}else if(curr3X==value.currency){
+						kurshasil3=hasil3*(value.kurs);
+					}
+				});
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+		
+		totkurshasil=kurshasil1+kurshasil2+kurshasil3;
+		if(totkurshasil<0){
+			totkurshasil=0;
+		}
+		
+		document.getElementById("approval1").value='';
+		document.getElementById("jabatan1").value='';
+		document.getElementById("approval2").value='';
+		document.getElementById("jabatan2").value='';
+		document.getElementById("approval3").value='';
+		document.getElementById("jabatan3").value='';
+				
+		$.ajax({
+        url : "<?php echo base_url('dashboard/getapprovalbyamt/')?>/" + totkurshasil,
+        type: "GET",
+		async : false,
+        dataType: "JSON",
+        success: function(data)
+			{
+				var seqid=0;
+				$(data).each(function(index, value){ 
+				seqid++;
+				document.getElementById("approval"+seqid).value=value.nama_user;
+				document.getElementById("jabatan"+seqid).value=value.jabatan;
+				});				  
+			},
+			error: function (data)
+			{
+				console.log(data);
+				alert('Error get data from ajax');
+			}
+		});
+	
+
 // Negatif(piutang)
   if (hasil<0){
 	  var strhasil =Math.abs(hasil);
@@ -828,13 +909,13 @@ function nominal(){
         }
     }
 
-    var matauang = document.getElementById("Select").value;
+    //var matauang = document.getElementById("Select").value;
     // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang){
+    /*switch(matauang){
       case "EUR":
       muncul = "Euro";
       break;
@@ -862,7 +943,7 @@ function nominal(){
 
       default:
       muncul = "";
-    }
+    }*/
 
     if (hasil<0){
 		  kalimat="( " + kalimat + ") ";
@@ -872,7 +953,7 @@ function nominal(){
 		  kalimat="Nihil";
 	  }
     
-    document.getElementById("terbilang").value=kalimat+ " " + muncul;
+    //document.getElementById("terbilang").value=kalimat+ " " + muncul;
     
     // alert(kalimat);
 
@@ -952,13 +1033,13 @@ function nominal(){
         }
     }
 
-    var matauang2 = document.getElementById("Select4").value;
+    //var matauang2 = document.getElementById("Select4").value;
     // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang2){
+    /*switch(matauang2){
       case "EUR":
       muncul2 = "EURO";
       break;
@@ -986,7 +1067,7 @@ function nominal(){
 
       default:
       muncul2 = "";
-    }
+    }*/
 
   if (hasil2<0){
 		kalimat2="( " + kalimat2 + ") ";
@@ -996,7 +1077,7 @@ function nominal(){
 		  kalimat2="Nihil";
 	  }
 
-    document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;
+    //document.getElementById("terbilang2").value=kalimat2+ " " + muncul2;
     // alert(kalimat2);
 
     var bilangan3= ''+ Math.abs(hasil3)+'';
@@ -1032,7 +1113,7 @@ function nominal(){
                 if(angka[ixx+2] == "1"){
                     kata13 = "Seratus";
                 }else{
-                    kata13 = kataxx[angka3[ixx+2]] + " Ratus";
+                    kata13 = kataxx[angka3[ixx+2]] + "Ratus";
                 }
             }
              
@@ -1044,10 +1125,10 @@ function nominal(){
                     }else if(angka3[ixx] == "1"){
                         kata23 = "Sebelas";
                     }else{
-                        kata23 = kataxx[angka3[ixx]] + " Belas";
+                        kata23 = kataxx[angka3[ixx]] + "Belas";
                     }
                 }else{
-                    kata23 = kataxx[angka3[ixx+1]] + " Puluh";
+                    kata23 = kataxx[angka3[ixx+1]] + "Puluh";
                 }
             }
              
@@ -1075,13 +1156,13 @@ function nominal(){
         }
     }
 
-    var matauang3 = document.getElementById("Select8").value;
+    //var matauang3 = document.getElementById("Select8").value;
     // var namamatauang =String(matauang);
 
     // var splitCur []  		= namamatauang.split("-");
     
     // alert(splitCur[1]);
-    switch(matauang3){
+    /*switch(matauang3){
       case "EUR":
       muncul3 = "EURO";
       break;
@@ -1109,7 +1190,7 @@ function nominal(){
 
       default:
       muncul3 = "";
-    }
+    }*/
 
     if (hasil3<0){
 		kalimat3="( " + kalimat3 + ") ";
@@ -1118,14 +1199,14 @@ function nominal(){
 	if (hasil3==0){
 		  kalimat3="Nihil";
 	  }
-    document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;
+    //document.getElementById("terbilang3").value=kalimat3+ " " + muncul3;
     // alert(kalimat3);
 
     // document.getElementById("negatif").value = hasil ;
     // document.getElementById("negatif2").value = hasil2 ; 
     // document.getElementById("negatif3").value = hasil3 ;
   var a = hasil ;
-  if (a <= 100000000){
+  /*if (a <= 100000000){
     <?php foreach ($d_wewenang as $pejabat) { ?>
       <?php if ($pejabat->activate == "On" && $pejabat->idapproval == "1"){ ?>
       document.getElementById("approval1").value = '<?= $pejabat->nama_user?>';
@@ -1157,7 +1238,7 @@ function nominal(){
     document.getElementById("jabatan3").value = "Direktur Utama / CEO";  
   <?php }?>
 
-  }
+  }*/
     
   if (hasil_jumlah1<0){
 	  hasil_jumlah1=Math.abs(hasil_jumlah1);
@@ -1198,6 +1279,33 @@ function nominal(){
 	}else{
 		ulang2.value = formatulang2(strulang2);
 	} 
+	
+	$.ajax({
+        url : "<?php echo base_url('dashboard/getMultiCurrencyDesc')?>",
+        type: "POST",
+		data: $("#formadd").serialize(),
+        dataType: "JSON",
+        success: function(data)
+        {
+			console.log(data);
+			for (i=0;i<data.length; i++){
+				if(data[i].nomor=="1"){							
+					$('#terbilang').val(kalimat+ " " + data[i].mata_uang);
+				}
+				if(data[i].nomor=="2"){					
+					$('#terbilang2').val(kalimat2+ " " + data[i].mata_uang);
+				}
+				if(data[i].nomor=="3"){
+					$('#terbilang3').val(kalimat3+ " " + data[i].mata_uang);
+				}
+			}
+        },
+        error: function (data)
+        {
+            console.log(data);
+            alert('Error Get Currency');
+        }
+    });
  
 }
 
@@ -1903,6 +2011,7 @@ var save_method;
 var url;
 function saveapf() {
 
+  $id=$('#id_payment').val();
   url="<?php echo base_url('Dashboard/edit_pay')?>";
 
   $.ajax({
@@ -1913,6 +2022,7 @@ function saveapf() {
     success: function(data){ // Ketika proses pengiriman berhasil          
       alert('Data Berhasil Di Simpan!');   
       console.log(data);
+    window.location = "<?php echo base_url('Dashboard/form_vasf')?>/" + $id;   
     
     },      
     error: function (data)
