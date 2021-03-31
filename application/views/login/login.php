@@ -59,7 +59,7 @@
 					</div>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+						Log in <br> E-Voting
 					</span>
 
 				<div class="row">
