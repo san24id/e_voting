@@ -90,7 +90,7 @@ class Login extends CI_Controller {
 
                 if($status == 'ACTIVE'){
                     if($akses == 3){
-                        //TR
+                        //TR ubah
                         redirect('login', 'refresh');
                     }else{
                         redirect('Home');

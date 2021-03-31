@@ -57,25 +57,9 @@ class Home extends CI_Controller {
 		$data['active2'] = '';
 		$data['active3'] = '';
 
-		// $data['reject'] = $this->Home_model->notifRejected();
-		// $data['notif_approval'] = $this->Dashboard_model->notifApproval();
-		// $data['draft'] = $this->Home_model->getTotalDraft();
-		// $data['draftprint'] = $this->Home_model->getDraftPrint();
-		// $data['draft1'] = $this->Home_model->getDraft();
-		// $data['outstanding'] = $this->Home_model->getOutstanding();
-		// $data['tot_pay_req'] = $this->Home_model->getTotal();
-		// $data['pembayaran'] = $this->Home_model->getVPayment();
-		// $data['ppayment'] = $this->Home_model->getform($id_payment);
 		// $data['payment'] = $this->Home_model->getPayment($sid);
 		// $data['surat'] = $this->Home_model->buat_kode();
-		// $data['submit'] = $this->Home_model->getSubmitted();
-		// $data['process'] = $this->Home_model->getProcessing();
-		// $data['verifikasi'] = $this->Home_model->getVerifikasi();
-		// $data['approval'] = $this->Home_model->getApproval();
-		// $data['paid'] = $this->Home_model->getPaid();
-		// $data['divhead'] = $this->Home_model->getDivHead();
-		// $data['upcoming_over'] = $this->Dashboard_model->getUpcomingOverdue();
-		// $data['credit_card'] = $this->Home_model->CreditCard();
+		
 
 		$this->load->view('user/header_user', $data);
 		$this->load->view('user/dashboard_user', $data);

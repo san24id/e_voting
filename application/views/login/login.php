@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<base href="<?php echo base_url() ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--==========================================================================================sss=====-->	
 	<link rel="icon" type="image/png" href="assets/login/images/logo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/login/vendor/bootstrap/css/bootstrap.min.css">

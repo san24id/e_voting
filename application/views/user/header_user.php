@@ -135,7 +135,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>E</b>Vote</span>
       <!-- logo for regular state and mobile devices -->
-      <!-- <span>
+      <!-- UBAH<span>
         <img src="<?=base_url('assets/login/images/headerr.png');?>" />
       </span> -->
     </a>
