@@ -6,7 +6,7 @@
 	<base href="<?php echo base_url() ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="assets/login/images/menu_app_logo2.png"/>
+	<link rel="icon" type="image/png" href="assets/login/images/logo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -46,14 +46,14 @@
 ?>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('assets/login/images/bg-01.png');">
+		<div class="container-login100" style="background-image: url('assets/login/images/background.jpg');">
 			<div class="wrap-login100">
 
 				<form class="login100-form validate-form" action="<?php echo site_url().'Login/auth'?>"  method="post">
 					<div class="row">
 						<center>
 							<div class="col-md-6">
-								<img width="250px" src="<?=base_url('assets/login/images/menu_app_logo.png');?>" >
+								<!-- <img width="250px" src="<?=base_url('assets/login/images/menu_app_logo.png');?>" > -->
 							</div>
 						</center>
 					</div>

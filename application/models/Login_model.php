@@ -3,12 +3,12 @@ class Login_model extends CI_Model{
      
     //cek nim dan password mahasiswa
     function auth_user($username,$password){
-        $query=$this->db->query("SELECT * FROM m_user WHERE username='$username' AND password= md5('$password') LIMIT 1");
+        $query=$this->db->query("SELECT * FROM app_user WHERE username='$username' AND password= md5('$password') LIMIT 1");
         return $query;
     }
 
     function auth_ldap($username){
-        $query=$this->db->query("SELECT * FROM m_user WHERE username='$username' LIMIT 1");
+        $query=$this->db->query("SELECT * FROM app_user WHERE username='$username' LIMIT 1");
         return $query;
     }
 

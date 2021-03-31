@@ -41,29 +41,29 @@ class Login extends CI_Controller {
         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
         $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
 		
-		$cek_notif=$this->Login_model->checknotification('1');
-		if($cek_notif->num_rows() == 0){
-			$send_notif=$this->Login_model->sendnotification();
-			foreach ($send_notif->result() as $notif) {
-				$to = $notif->email;
-				$subject = "Reminder For Submit SP3 (Corporate Credit Card)";
-				$message = "<html><head><title>Email Notification</title></head>";
-				$message .= "<body><p>Dear Bpk/Ibu. ".$notif->display_name." </p>";
-				$message .= "<p>Corporate Credit Card anda belum di proses pembayaran.";
-				$message .= "</br>Harap segera mengajukan SP3 sebelum jatuh tempo tanggal " .$notif->tempo;
-				$message .= "</p><table><tr><th>No. Kartu Kredit</th><th>Divisi</th></tr>";
-				$message .= "<tr><td>".$notif->credit_card_no."</td><td>".$notif->division_name."</td>";
-				$message .= "</tr></table></br><p><i>Hormat Kami</i></br></br><b><i>";
-				$message .= "Finance Administration</i></b></p></body></html>";
+		// $cek_notif=$this->Login_model->checknotification('1');
+		// if($cek_notif->num_rows() == 0){
+		// 	$send_notif=$this->Login_model->sendnotification();
+		// 	foreach ($send_notif->result() as $notif) {
+		// 		$to = $notif->email;
+		// 		$subject = "Reminder For Submit SP3 (Corporate Credit Card)";
+		// 		$message = "<html><head><title>Email Notification</title></head>";
+		// 		$message .= "<body><p>Dear Bpk/Ibu. ".$notif->display_name." </p>";
+		// 		$message .= "<p>Corporate Credit Card anda belum di proses pembayaran.";
+		// 		$message .= "</br>Harap segera mengajukan SP3 sebelum jatuh tempo tanggal " .$notif->tempo;
+		// 		$message .= "</p><table><tr><th>No. Kartu Kredit</th><th>Divisi</th></tr>";
+		// 		$message .= "<tr><td>".$notif->credit_card_no."</td><td>".$notif->division_name."</td>";
+		// 		$message .= "</tr></table></br><p><i>Hormat Kami</i></br></br><b><i>";
+		// 		$message .= "Finance Administration</i></b></p></body></html>";
 
-				$headers = "MIME-Version: 1.0" . "\r\n";
-				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-				$headers .= 'From: <webadmin@pii.co.id>' . "\r\n";
+		// 		$headers = "MIME-Version: 1.0" . "\r\n";
+		// 		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		// 		$headers .= 'From: <webadmin@pii.co.id>' . "\r\n";
 				
-				//mail($to,$subject,$message,$headers);
-			}
-			$this->Login_model->updatenotification();
-		}
+		// 		//mail($to,$subject,$message,$headers);
+		// 	}
+		// 	$this->Login_model->updatenotification();
+		// }
 		$cek_login=$this->Login_model->auth_user($username,$password);
 		
         session_start();
@@ -73,40 +73,41 @@ class Login extends CI_Controller {
                		$sess_data['id_user'] = $row->id_user;
                     // $sess_data['nomor_user'] = $row->nomor_user;
                     $sess_data['username'] = $row->username;
-                    $sess_data['role_id'] = $row->role_id;
-                    $sess_data['division_id'] = $row->division_id;                       
-               		$sess_data['display_name'] = $row->display_name;
-               		$sess_data['jabatan'] = $row->jabatan;
+                    $sess_data['refid'] = $row->refid;
+                    $sess_data['jenis'] = $row->jenis;                       
+               		$sess_data['nama'] = $row->nama;
+               		// $sess_data['jabatan'] = $row->jabatan;
                     $sess_data['status'] = $row->status;
-                    $sess_data['id_role_app'] = $row->id_role_app;
+                    // $sess_data['id_role_app'] = $row->id_role_app;
 
                     // console.log($row->division_id);
                     
                     $status = $row->status;
-                    $status1 = $row->status_1;
-                    $akses = $row->id_role_app;
+                    // $status1 = $row->status_1;
+                    $akses = $row->refid;
 					$this->session->set_userdata($sess_data);
 				}
 
-                if($status == 1){
-                    if($status1 != 1){
+                if($status == 'ACTIVE'){
+                    // if($status1 != 1){
                         // User
-                        if($akses == 3){
-                            redirect('Home');
+                    if($akses == 3){
+                        redirect('Home');
                         // SuperAdmin    
-                        }else if($akses == 1){
-                            redirect('SuperAdm');
-                        // Admin CSF    
-                        }else if($akses == 2){
-                            redirect('Dashboard');
-                        // Approval    
-                        }else if($akses == 4){
-                            redirect('Approval');
-                        // TRI                                
-                        }else if($akses == 5){
-                            redirect('Tri'); 
-                        }                        
+                        // }else if($akses == 1){
+                        //     redirect('SuperAdm');
+                        // // Admin CSF    
+                        // }else if($akses == 2){
+                        //     redirect('Dashboard');
+                        // // Approval    
+                        // }else if($akses == 4){
+                        //     redirect('Approval');
+                        // // TRI                                
+                        // }else if($akses == 5){
+                        //     redirect('Tri'); 
+                        // }                        
                     }else{
+                        $url=base_url();
                         echo $this->session->set_flashdata('msg','block');
                         redirect($url);
                     }
@@ -135,27 +136,29 @@ class Login extends CI_Controller {
         if($cek_login->num_rows() > 0){
                 $data=$cek_login->row_array();
 
-                    $this->session->set_userdata('id_user',$data['id_user']);
-                    $this->session->set_userdata('display_name',$data['display_name']);
+                    // $this->session->set_userdata('id_user',$data['id_user']);
+                    $this->session->set_userdata('nama',$data['nama']);
                     $this->session->set_userdata('username',$data['username']);
-                    $this->session->set_userdata('id_role_app',$data['id_role_app']);
+                    $this->session->set_userdata('refid',$data['refid']);
 
-                    if($this->session->userdata("id_role_app") == 1){
-                         redirect('SuperAdm');
-                    }else if($this->session->userdata("id_role_app") == 2){
-                        redirect('Dashboard');
-                    }else if($this->session->userdata("id_role_app") == 3){
+                    // if($this->session->userdata("refid") == 1){
+                    //      redirect('SuperAdm');
+                    // }else if($this->session->userdata("refid") == 2){
+                    //     redirect('Dashboard');
+                    // }else 
+                    if($this->session->userdata("refid") == 3){
                         redirect('Home');
-                    }else if($this->session->userdata("id_role_app") == 4){
-                        redirect('Approval');
-                    }else if($this->session->userdata("id_role_app") == 5){
-                        redirect('Tri');    
-                    }    
+                    // }else if($this->session->userdata("refid") == 4){
+                    //     redirect('Approval');
+                    // }else if($this->session->userdata("refid") == 5){
+                    //     redirect('Tri');    
+                    // }    
                     }else{  // jika username dan password tidak ditemukan atau salah
                             $url=base_url('login');
                             echo $this->session->set_flashdata('msg','Invalid username or password');
                             redirect($url);
                     }
+        }            
 
     }
 
@@ -174,11 +177,11 @@ class Login extends CI_Controller {
  
        if($cek_login->num_rows() > 0){
                foreach ($cek_login->result() as $row) {
-                    $sess_data['id_user'] = $row->id_user;
+                    // $sess_data['id_user'] = $row->id_user;
                     // $sess_data['nomor_user'] = $row->nomor_user;
-                    $sess_data['nama_user'] = $row->nama_user;
-                    $sess_data['jabatan'] = $row->jabatan;
-                    $sess_data['divisi'] = $row->divisi;
+                    $sess_data['username'] = $row->username;
+                    $sess_data['refid'] = $row->refid;
+                    $sess_data['jenis'] = $row->jenis;
                     $this->session->set_userdata($sess_data);
                 }
 
@@ -193,88 +196,88 @@ class Login extends CI_Controller {
  
     }
 
-    public function fpasword(){
-        $addfp = array(
-            'email' => $_POST['email'],
-            'password' => $_POST['password'],
-            'status' => $_POST['status']
-        );
+    // public function fpasword(){
+    //     $addfp = array(
+    //         'email' => $_POST['email'],
+    //         'password' => $_POST['password'],
+    //         'status' => $_POST['status']
+    //     );
 
-       $cek_mail =  $this->Login_model->auth_email($addfp);
+    //    $cek_mail =  $this->Login_model->auth_email($addfp);
 
-        foreach ($cek_mail as $val) {
-            $username = $val->username;
-            $status1 = $val->status_1;
-        }
+    //     foreach ($cek_mail as $val) {
+    //         $username = $val->username;
+    //         $status1 = $val->status_1;
+    //     }
 
-        if($status1 != 1){
+    //     if($status1 != 1){
 
-        if($cek_mail == TRUE){
-                 // Load PHPMailer library
-        $this->load->library('phpmailer_lib');
+    //     if($cek_mail == TRUE){
+    //              // Load PHPMailer library
+    //     $this->load->library('phpmailer_lib');
         
-        // PHPMailer object
-        $mail = $this->phpmailer_lib->load();
+    //     // PHPMailer object
+    //     $mail = $this->phpmailer_lib->load();
         
-        // SMTP configuration
-        $mail->isSMTP();
-        $mail->Host     = 'ssl://smtp.gmail.com:465';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'iigfirisk@gmail.com';
-        $mail->Password = 'R15k.2017';
-        //$mail->SMTPSecure = 'tls';
-        //$mail->Port     = 587;
+    //     // SMTP configuration
+    //     $mail->isSMTP();
+    //     $mail->Host     = 'ssl://smtp.gmail.com:465';
+    //     $mail->SMTPAuth = true;
+    //     $mail->Username = 'iigfirisk@gmail.com';
+    //     $mail->Password = 'R15k.2017';
+    //     //$mail->SMTPSecure = 'tls';
+    //     //$mail->Port     = 587;
         
-        $mail->setFrom('iigfirisk@gmail.com', 'PII CSF');
-        //$mail->addReplyTo('');
+    //     $mail->setFrom('iigfirisk@gmail.com', 'PII CSF');
+    //     //$mail->addReplyTo('');
         
-        // Add a recipient
-        $mail->addAddress($_POST['email']);
+    //     // Add a recipient
+    //     $mail->addAddress($_POST['email']);
         
-        // Add cc or bcc 
-        //$mail->addCC('cc@example.com');
-        //$mail->addBCC('bcc@example.com');
+    //     // Add cc or bcc 
+    //     //$mail->addCC('cc@example.com');
+    //     //$mail->addBCC('bcc@example.com');
         
-        // Email subject
-        $mail->Subject = 'Forget Your Password Payment Request Application';
+    //     // Email subject
+    //     $mail->Subject = 'Forget Your Password Payment Request Application';
         
-        // Set email format to HTML
-        $mail->isHTML(true);
+    //     // Set email format to HTML
+    //     $mail->isHTML(true);
         
-        // Email body content
-        $mailContent = "username&nbsp;:&nbsp;".$username."<br>new password&nbsp;:&nbsp;". $_POST['password']." <p>Konfirmasi Lupa Password dengan Link Berikut : <a href='http://application.iigf.co.id/pii_csf/login/loginconfirm'>Konfirmasi Login</a></p>";
-        $mail->Body = $mailContent;
+    //     // Email body content
+    //     $mailContent = "username&nbsp;:&nbsp;".$username."<br>new password&nbsp;:&nbsp;". $_POST['password']." <p>Konfirmasi Lupa Password dengan Link Berikut : <a href='http://application.iigf.co.id/pii_csf/login/loginconfirm'>Konfirmasi Login</a></p>";
+    //     $mail->Body = $mailContent;
         
-        // Send email
-        if(!$mail->send()){
-            //echo 'Message could not be sent.';
-            //echo 'Mailer Error: ' . $mail->ErrorInfo;
-             $url=base_url();
-             echo $this->session->set_flashdata('msg','gagal');
-             redirect($url);
-        }else{
+    //     // Send email
+    //     if(!$mail->send()){
+    //         //echo 'Message could not be sent.';
+    //         //echo 'Mailer Error: ' . $mail->ErrorInfo;
+    //          $url=base_url();
+    //          echo $this->session->set_flashdata('msg','gagal');
+    //          redirect($url);
+    //     }else{
 
-            $this->Login_model->update_fpassword($addfp);
-            redirect('Login/forgotpassword');
-        }
-        }else{
-              $url=base_url();
-              echo $this->session->set_flashdata('msg','terdaftar');
-              redirect($url);
-        }
-        }else{
-                $url=base_url();
-                echo $this->session->set_flashdata('msg','block');
-                redirect($url);
-        }
-
-
-    }
+    //         $this->Login_model->update_fpassword($addfp);
+    //         redirect('Login/forgotpassword');
+    //     }
+    //     }else{
+    //           $url=base_url();
+    //           echo $this->session->set_flashdata('msg','terdaftar');
+    //           redirect($url);
+    //     }
+    //     }else{
+    //             $url=base_url();
+    //             echo $this->session->set_flashdata('msg','block');
+    //             redirect($url);
+    //     }
 
 
-    public function forgotpassword(){
-        $this->load->view('login/forgot_login');
-    }
+    // }
+
+
+    // public function forgotpassword(){
+    //     $this->load->view('login/forgot_login');
+    // }
 
 
     public function logout(){
