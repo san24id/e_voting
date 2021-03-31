@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <base href="<?php echo base_url() ?>">
-   <title>Corporate Strategy and Finance</title>
+   <title>E-Voting Bellezza</title>
   
-  <link rel="icon" type="image/png" href="<?=base_url('assets/login/images/menu_app_logo2.png');?>"/>
+   <link rel="icon" type="image/png" href="assets/login/images/logo.png"/>
+
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="assets/dashboard/bootstrap/css/bootstrap.min.css">
@@ -132,9 +133,11 @@
     <a href="Home" class="logo" style="background-image: url('assets/login/images/header2.png');background-repeat: no-repeat;
   background-size: 300px 100px;">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>C</b>SF</span>
+      <span class="logo-mini"><b>E</b>Vote</span>
       <!-- logo for regular state and mobile devices -->
-      <span><img src="<?=base_url('assets/login/images/headerr.png');?>" /></span>
+      <!-- <span>
+        <img src="<?=base_url('assets/login/images/headerr.png');?>" />
+      </span> -->
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -157,7 +160,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="assets/dashboard/dist/img/profile24.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("display_name"); ?></font></span>
+              <span class="hidden-xs"><font color="black"><?php echo $this->session->userdata("nama"); ?></font></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -165,7 +168,7 @@
                 <img src="assets/dashboard/dist/img/profile24.png" class="img-circle" alt="User Image">
 
                 <p>
-                   <?php echo $this->session->userdata("display_name"); ?>
+                   <?php echo $this->session->userdata("nama"); ?>
                 </p>
               </li>
               <!-- Menu Body -->

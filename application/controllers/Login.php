@@ -70,7 +70,7 @@ class Login extends CI_Controller {
  
        if($cek_login->num_rows() > 0){
                foreach ($cek_login->result() as $row) {
-               		$sess_data['id_user'] = $row->id_user;
+               		// $sess_data['id_user'] = $row->id_user;
                     // $sess_data['nomor_user'] = $row->nomor_user;
                     $sess_data['username'] = $row->username;
                     $sess_data['refid'] = $row->refid;
@@ -80,7 +80,7 @@ class Login extends CI_Controller {
                     $sess_data['status'] = $row->status;
                     // $sess_data['id_role_app'] = $row->id_role_app;
 
-                    // console.log($row->division_id);
+                    var_dump($cek_login);
                     
                     $status = $row->status;
                     // $status1 = $row->status_1;
@@ -89,27 +89,11 @@ class Login extends CI_Controller {
 				}
 
                 if($status == 'ACTIVE'){
-                    // if($status1 != 1){
-                        // User
                     if($akses == 3){
-                        redirect('Home');
-                        // SuperAdmin    
-                        // }else if($akses == 1){
-                        //     redirect('SuperAdm');
-                        // // Admin CSF    
-                        // }else if($akses == 2){
-                        //     redirect('Dashboard');
-                        // // Approval    
-                        // }else if($akses == 4){
-                        //     redirect('Approval');
-                        // // TRI                                
-                        // }else if($akses == 5){
-                        //     redirect('Tri'); 
-                        // }                        
+                        //TR
+                        redirect('login', 'refresh');
                     }else{
-                        $url=base_url();
-                        echo $this->session->set_flashdata('msg','block');
-                        redirect($url);
+                        redirect('Home');
                     }
                 }else{
                             $url=base_url();
@@ -117,11 +101,11 @@ class Login extends CI_Controller {
                             redirect($url);
                 }
 
-                }else{  // jika username dan password tidak ditemukan atau salah
-                            $url=base_url();
-                            echo $this->session->set_flashdata('msg','Invalid username or password');
-                            redirect($url);
-            }
+        }else{  // jika username dan password tidak ditemukan atau salah
+                    $url=base_url();
+                    echo $this->session->set_flashdata('msg','Invalid username or password');
+                    redirect($url);
+        }
  
     }
 
