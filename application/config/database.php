@@ -74,7 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	
+	'dsn'	=> 'pgsql:host=testinglifescape.bellezza.id;port=5432;dbname=lifescapedev;user=postgres;password=w2e3r4t5',
+	'hostname' => 'testinglifescape.bellezza.id',
+	'username' => 'postgres',
+	'password' => 'w2e3r4t5',
+	'database' => 'public',
+	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
