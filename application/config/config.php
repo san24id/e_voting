@@ -379,7 +379,7 @@ $config['encryption_key'] = 'pii_csf';
 |
 */
 $config['sess_driver'] = 'files';
-$config['sess_cookie_name'] = 'pii_csf';
+$config['sess_cookie_name'] = 'e_vote';
 $config['sess_expiration'] = 7200;
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
