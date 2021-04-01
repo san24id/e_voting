@@ -18,8 +18,19 @@ class e_vote extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct(){
+		parent::__construct();
+        
+        $this->load->model('Home_model');
+        // $this->load->model('Dashboard_model');
+		
+	}
+
 	public function index()
 	{
-		$this->load->view('e_vote');
+		$data['question'] = $this->Home_model->getQuestion();
+
+		$this->load->view('e_vote', $data);
 	}
 }

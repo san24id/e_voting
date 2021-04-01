@@ -34,8 +34,9 @@
 		// $strcurrency=substr($arrcurrency,0,strlen($arrcurrency)-1);
 		?>
         <!-- Main content -->
+		<?php foreach ($question as $list){ ?>
 		
-        <form method="post" action="Home/addquestion" >
+        <form method="post" action="Home/updquestion" >
           <section class="content">
             <div class="row">
               <div class="col-xs-12">
@@ -49,42 +50,44 @@
                       <br>
                       <center><b><u><font size="+2" style="font-family: calibri;">VOTING QUESTION</font></u></b></center>
                     </h5>
-                    <legend>  FORM QUESTION</legend>
-					<table style="font-family: calibri;" width="50%">
-						<tr>
-							<td> VOTING TYPE  </td>
-							<td><select name='jenis'>
-									<option value=''>Choose</option>
-									<option value='1'>One Man One Vote</option>
-									<option value='2'>NPP</option>
-								</select>
-							</td>
-						</tr>
-						<br>
-						<tr>
-							<td>Question</td>
-							<td><textarea type="text" rows="5" class="form-control" name="question" ></textarea></td>
-						</tr>
-						<tr>
-							
-							<td> Status </td>
-							<td><select name='isactive'>
-									<option value=''>Pilih Status</option>
-									<option value='1'>Active</option>
-									<option value='0'>Not Active</option>
-								</select>
-							</td>
-						</tr>
-					</table>
-					<br><br><br>
-					<table class="center">
-						<tr>
-							<td><center><button class= "btn btn-success" type="submit" value="Save">Submit</button>
-										<button class= "btn btn-danger" href="Home/ldp">Cancel</button>
-								</center>
-							</td>
-						</tr>
-                	</table>
+                    <legend> EDIT FORM QUESTION</legend>
+						<input type="hidden" name="id_question" value="<?php echo $list->id_question;?>">
+						<table style="font-family: calibri;" width="50%">
+							<tr>
+								<td> VOTING TYPE  </td>
+								<td><select name='jenis'>
+										<option value=''>Choose</option>
+										<option value="1"<?php echo $list->jenis==1? 'selected':''?>>One Man One Vote</option>
+										<option value="2"<?php echo $list->jenis==2? 'selected':''?>>NPP</option>
+									</select>
+								</td>
+							</tr>
+							<br>
+							<tr>
+								<td>Question</td>
+								<td><textarea type="text" rows="5" class="form-control" name="question"><?php echo $list->question;?></textarea></td>
+							</tr>
+							<tr>
+								
+								<td> Status </td>
+								<td><select name='isactive'>
+										<option value=''>Pilih Status</option>
+										<option value="1"<?php echo $list->isactive==1? 'selected':''?>>Active</option>
+										<option value="0"<?php echo $list->isactive==0? 'selected':''?>>Not Active</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+						<br><br><br>
+						<table class="center">
+							<tr>
+								<td><center><button class= "btn btn-success" type="submit" value="Save">Submit</button>
+											<button class= "btn btn-danger" href="Home/ldp">Cancel</button>
+									</center>
+								</td>
+							</tr>
+						</table>
+					<?php } ?>
             </form>
           </section>  
 

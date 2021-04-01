@@ -36,96 +36,7 @@
   <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="background-image: url('assets/login/images/header2.png');">
-<style type="text/css">
-/*
-.cbx {
-  position: relative;
-  display: block;
-  float: left;
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  background-color: #606062;
-  background-image: linear-gradient(#474749, #606062);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -1px 1px rgba(0,0,0,0.15);
-  transition: all 0.15s ease;
-}
-.cbx svg {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke: #fff;
-  stroke-width: 2;
-  stroke-dasharray: 17;
-  stroke-dashoffset: 17;
-  transform: translate3d(0, 0, 0);
-}
-.rdo {
-  position: relative;
-  display: block;
-  float: left;
-  width: 18px;
-  height: 18px;
-  border-radius: 10px;
-  background-color: #606062;
-  background-image: linear-gradient(#474749, #606062);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -1px 1px rgba(0,0,0,0.15);
-  transition: all 0.15s ease;
-}
-.rdo:after {
-  content: "";
-  position: absolute;
-  display: block;
-  top: 6px;
-  left: 6px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #fff;
-  opacity: 0;
-  transform: scale(0);
-}
-.cbx + span,
-.rdo + span {
-  float: left;
-  margin-left: 6px;
-}
-.forms {
-  margin: auto;
-  user-select: none;
-}
-.forms label {
-  display: inline-block;
-  margin: 10px;
-  cursor: pointer;
-}
-.forms input[type="checkbox"],
-.forms input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-}
-.forms input[type="radio"]:checked + .rdo {
-  background-color: #606062;
-  background-image: linear-gradient(#255cd2, #1d52c1);
-}
-.forms input[type="radio"]:checked + .rdo:after {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 0.15s ease;
-}
-.forms input[type="checkbox"]:checked + .cbx {
-  background-color: #606062;
-  background-image: linear-gradient(#255cd2, #1d52c1);
-}
-.forms input[type="checkbox"]:checked + .cbx svg {
-  stroke-dashoffset: 0;
-  transition: all 0.15s ease;
-}
-*/
-  </style>
+
 <div class="wrapper">
   <header class="main-header">
 
@@ -215,7 +126,7 @@
         <li class="<?php echo $active1?>"><a href="Home"><i class="fa fa-dashboard"></i><span>My Dashboard</a></span></li>
         
         <li class="treeview" id="li-report">
-          <a href="">
+          <a href="Home">
             <i class="glyphicon glyphicon-inbox"></i>
             <span>My Report</span>
             <span class="pull-right-container">
@@ -223,38 +134,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li id="ldp" class="<?php echo $dp?>"><a href="Home/ldp"><i class="fa fa-circle-o"></i>List of Direct Payment Request</a></li>
-            <li id="lar" class="<?php echo $ar?>"><a href="Home/lar"><i class="fa fa-circle-o"></i>List of Advance Request</a></li>
-            <li id="lasr" class="<?php echo $asr?>"><a href="Home/lasr"><i class="fa fa-circle-o"></i>List of Advance Settlement<br><i class="fa"></i>Request</a></li>
-            <li id="lcr"><a href="Home/lcr"><i class="fa fa-circle-o"></i>List of Cash Received Request</a></li>
-            <li id="lop" class="<?php echo $lop?>"><a href="Home/lop"><i class="fa fa-circle-o"></i>List of Payment</a></li>
-            <li id="op" class="<?php echo $op?>"><a href="Home/op"><i class="fa fa-circle-o"></i>List of Outstanding Payment<br><i class="fa"></i>Request</a></li>
-            <li id="dr" class="<?php echo $dr?>"><a href="Home/dr"><i class="fa fa-circle-o"></i>List of Draft Request</a></li>
+            <li id="ldp" class="<?php echo $dp?>"><a href="Home/ldp"><i class="fa fa-circle-o"></i>List of Question</a></li>
+            <li id="lar" class="<?php echo $ar?>"><a href="Home/lar"><i class="fa fa-circle-o"></i>Attandance</a></li>
+            <!-- <li id="lasr" class="<?php echo $asr?>"><a href="Home/lasr"><i class="fa fa-circle-o"></i>List of Advance Settlement<br><i class="fa"></i>Request</a></li> -->
+            <li id="lcr"><a href="Home/lcr"><i class="fa fa-circle-o"></i>Result</a></li>
+            
           </ul>  
         </li>
 
-        <?php 
-          if($this->session->userdata("role_id") == 4){
-            $sql = "SELECT activate FROM m_status WHERE id_status=11";
-            $query = $this->db->query($sql)->result();
-            // return $query;
-            // var_dump($query);exit; 
-            $iya = "";
-            foreach ($query as $signature):
-              $iya.= $signature->activate;
-            endforeach;
-
-              if ($iya == "ON"){
-                foreach ($notif_approval as $notifapproval) {?>
-                  <li class="<?php echo $waiting_approval?>"><a href="Home/wait_for_approval"><i class="glyphicon glyphicon-print"></i><span>Waiting For Approval</span><small class="label pull-right bg-red"><?php echo $notifapproval->taskapproval; ?> </small></a></li>
-                <?php } ?> 
-              <?php } ?> 
-        <?php } ?>
-
-
-        <?php foreach ($reject as $notif) { ?>
-          <li class="<?php echo $active3?>"><a href="Home/my_inbox"><i class="glyphicon glyphicon-user"></i><span>My Inbox</span><small class="label pull-right bg-red"><?php echo $notif->totrejected; ?> </small></a></li>
-        <?php } ?>
         <br>
         <br>
         <br>

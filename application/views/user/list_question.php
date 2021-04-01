@@ -4,98 +4,15 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <font color="#00008B"><b>LIST OF CASH RECEIVED</b></font>
+        <font color="#00008B"><b>LIST OF QUESTION</b></font>
       </h1>
     </section>
 
     <section class="content">
     <div class="box box-default">
 			<div class="box-header with-border">
-				<!-- <h3 class="box-title">Pencarian</h3> -->
-				<button class="btn btn-default" data-toggle="collapse" data-target="#cari"><i class="fa fa-search"></i>&nbsp;&nbsp;Filter By</button>
-        <!--<a href="home/export_cr"><button class="btn btn-success"><i class="fa fa-download"></i>&nbsp;&nbsp;Export</button></a>-->
-		&nbsp;&nbsp;&nbsp;
-		<button class="btn btn-success" id="btnexcel" onclick="exportexcel()"><i class="fa fa-download"></i>&nbsp;&nbsp;Excel</button>
-		<button class="btn btn-success" id="btnpdf" onclick="exportpdf()"><i class="fa fa-download"></i>&nbsp;&nbsp;PDF</button>
 				
-			</div>
-			<!-- /.box-header -->
-			<div id="cari" class="collapse">
-				<div class="box-body">
-					<form id="formCari">		 
-					<div class="row">
-							
-							<div class="col-md-12">
-								<div class="form-group">
-									<label class="col-md-1">Status</label>
-									<!-- <div class="col-md-2">
-										<select class="form-control select2" id="selsearch" name="selsearch" style="width: 100%;">
-											<option value='0'>== Pilih ==</option>
-											<option value='1'> Status </option>
-																																														   
-																																							
-																							  
-																																		
-										</select>
-									</div> -->	
-									<div class="col-md-2">
-										<!--<input name="txtpencarian" id="txtpencarian" placeholder="Kata Pencarian" class="form-control" type="text" >-->
-										<select class="form-control" id="selstatus" name="selstatus" style="display:block" >
-											<option value=''>All Status</option>
-											<option value='0'> Draft </option>
-											<option value='1'> Draft Print </option>
-											<option value='2'> Submitted </option>
-											<option value='4'> Processing</option>
-											<option value='8'> Verified </option>
-											<option value='9'> Approved </option>
-											<option value='10'> Paid </option>
-										</select>
-                    
-										<select class="form-control" id="selblank" name="selblank" style="display:none"  >
-											<option value=''>== Pilih ==</option>
-										</select>
-                  </div>										
-								</div> 
-							</div>
-					</div>
-					</br>
-					<div class="row">	
-							<div class="col-md-12">
-								<div class="form-group">
-									<label class="col-md-1">Periode</label>										
-									<div class="col-md-2">
-										<input type="text" id="periode1" name="periode1" placeholder="Start Date" class="form-control" ></input>
-									</div> 	
-									<label class="col-md-1" style="width:4%">to</label>			
-									<div class="col-md-2">
-										<input type="text" id="periode2" name="periode2" placeholder="End Date" class="form-control" ></input>
-									</div> 	
-									
-									<div class="col-md-3">
-								<!-- <div class="form-group">
-									<label>&nbsp;</label>            
-									<span class="input-group-btn"> --> 
-										<button type="button" id="btnCari" class="btn btn-success btn-flat" onclick="caridata()" ><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Filter</button>
-									<!--</span>  
-									<span class="input-group-btn"> --> 
-										&nbsp;<button type="button" id="btnReset" class="btn btn-info btn-flat" onclick="resetdata()" ><i class="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;Reset</button>
-									<!--</span>  
-
-									 </div> -->
-									<!-- /.form-group -->
-									</div>
-								</div>
-								
-								
-							</div>
-						
-						<!-- /.col -->
-					 </div>
-					 
-					<input type="hidden" id="txtprofile" name="txtprofile" value="5" ></input>
-					</form>
-				  <!-- /.row -->
-				</div>
+				<a href="Home/form_add"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;CREATE QUESTION</button></a></center></li>	
 			</div>
 
       <!-- Info boxes -->
@@ -111,119 +28,41 @@
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Status</th>
-                  <th>Tanggal SP3</th>
-                  <!-- <th>Jenis Pembayaran</th>-->
-                  <th>Nomor SP3</th>
-                  <th>Deskripsi</th>
-                  <th>Pemohon</th>
-                  <!-- <th>Bank Account</th>
-                  <th>Penerima Pembayaran</th> -->
+                  <th>Jenis</th>
+                  <th>Pertanyaan</th>
+                  <th>Active</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
                     $i = 1;
-                    foreach ($cashreceived as $row){
-                      $test1 = $row->jenis_pembayaran;                        
-                      $test2 = explode(";", $test1);
-                      $test3 = count($test2);                        
+                    foreach ($question as $row){
+                                         
                   ?>
                 <tr>
                   <td><?php echo $i++; ?></td>                  
-                  <td><center><?php if($row->status == 0){
-                            echo "<img src='assets/dashboard/images/legend/draft.png'>";  
-                          }else if($row->status == 1){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                          }else if($row->status == 11){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";  
-                          }else if($row->status == 99){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>"; 
-                          }else if($row->status == 2){
-                            echo "<img src='assets/dashboard/images/legend/submitted.png'>";
-                          }else if($row->status == 3){
-                            echo "<img src='assets/dashboard/images/legend/draftprint.png'>";
-                          }else if($row->status == 4){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 5){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 6){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 7){
-                            echo "<img src='assets/dashboard/images/legend/processing.png'>";
-                          }else if($row->status == 8){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
-                          }else if($row->status == 12){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>"; 
-                          }else if($row->status == 13){
-                            echo "<img src='assets/dashboard/images/legend/verified.png'>";
-                          }else if($row->status == 9){
-                            echo "<img src='assets/dashboard/images/legend/approved.png'>"; 
-                          }else if($row->status == 10){
-                            echo "<img src='assets/dashboard/images/legend/paid1.png'>"; 
-                          }   
-                        ?></center>
-                  </td>
-                  <td><?php echo $row->tanggal_new; ?></td>
-                  <!-- <td><?php                     
-                        for($a=0; $a<$test3; $a++){
-                          if($test2[$a]){
-                            echo $test2[$a]."<br>";
-                          }
-                        }  ?>
-                  </td>-->
-                  <td><?php echo $row->nomor_surat; ?></td>
-				  <?php 
-						$nilai='';
-                        $sql = "SELECT currency,currency2,currency3, label2,jumlah2,jumlah3 from t_payment where id_payment='$row->id_payment'";
-                        $query = $this->db->query($sql)->result();
-                        if ($query[0]->currency) { 
-							$nilai = $query[0]->currency.' - '.$query[0]->label2;
-						}
-						if ($query[0]->currency2) { 
-							$nilai .= '</br>' .$query[0]->currency2.' - '.$query[0]->jumlah2;
-						}
-						
-						if ($query[0]->currency3) { 
-							$nilai .= '</br>' .$query[0]->currency3.' - '.$query[0]->jumlah3;
-						}
-                      ?>
-				  <td><?php echo $nilai; ?></td>
-                  <td><?php echo $row->label1; ?></td>
-                  <td><?php echo $row->display_name; ?></td>
-                  <!-- <td><?php echo $row->akun_bank; ?></td>
-                      <?php 
-                        $sql = "SELECT nama FROM m_honorarium_konsultan WHERE kode_vendor='$row->penerima'";
-                        $query = $this->db->query($sql)->result();
-                        // return $query;
-                        // var_dump($query[0]->nama);exit; 
-                        if ($query[0]->nama) { $buka = $query[0]->nama;
-                        }else{
-                          $buka = $row->penerima;
-                        }
-                      ?>
-                  <td><?php echo $buka; ?></td> -->
+                  <td><?php if ($row->jenis == '1') { 
+					  	echo "ONE MAN ONE VOTE";
+					  }else if ($row->jenis=='2') {
+						echo "NPP";
+					  }?></td>
+                  <td><?php echo $row->question;?></td>
+                  <td><?php if ($row->isactive == '1') { 
+					  	echo "ACTIVE";
+					  }else if ($row->isactive=='0') {
+						echo "NOT ACTIVE";
+					  }?></td>
                   <td>
-                    <a href="Home/form_view/<?php echo $row->id_payment; ?>"><button class="btn btn-primary btn-sm">View</button></a>                    
+                    <a href="Home/edit_form/<?php echo $row->id_question; ?>"><button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button></a>                    
+                    <a href="Home/change_stats/<?php echo $row->id_question; ?>"><button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button></a>                    
                   </td>      
                   </tr>
                     <?php } ?>      
               </tbody>
               </table>
             </div>
-              <div class="box-footer">  
-                <div class="form-group">
-                  <label class="control-label col-md-1"><i>Legend</i></label>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/draft.png'> &nbsp; Draft</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/draftprint.png'> &nbsp; Draft(Print)</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/submitted.png'> &nbsp; Submitted</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/processing.png'> &nbsp; Proceesing</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/verified.png'> &nbsp; Verified</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/approved.png'> &nbsp; Approved</div>
-                  <div class='col-md-1'><img src='assets/dashboard/images/legend/paid1.png'> &nbsp; Paid</div>											  
-                </div>  
-              </div>
+				
             </div>
             <!-- /.box-body -->
           </div>
@@ -312,7 +151,7 @@
 <script type="text/javascript">
             $(document).ready(function(){
 				$('#li-report').addClass("active");
-				$('#lcr').addClass("active");
+				$('#ldp').addClass("active");
 			});
   </script>
 <script>
@@ -343,11 +182,12 @@ $(document).ready(function() {
     $('#selstatus').css("display", "none");
     $('#seljnspembayaran').css("display", "none");
     }
-  })
+  });
   
 });
 
-$( "#periode1" ).datepicker({
+
+ $( "#periode1" ).datepicker({
 		dateFormat: "dd/mm/yy"//,
 		//setDate : new Date()
 	});
@@ -367,11 +207,11 @@ $( "#periode1" ).datepicker({
 	
 	$('#periode2').keydown(function (event) {
 		event.preventDefault();
-	}); 
+	});
 	
 </script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
 function resetdata()
     {
 		$('#selstatus').val('');
@@ -404,9 +244,6 @@ function resetdata()
 						  case "11":
 							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
 							break;
-						
-																																	  
-			 
                           case "2":
 							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
 							break;
@@ -473,11 +310,9 @@ function resetdata()
         });
 	}
 	
-  
-  
  function caridata()
     {
-	  url = "<?php echo base_url('home/caridataMyReport') ?>"; //caridataCR
+	  url = "<?php echo base_url('home/caridataMyReport') ?>";  //caridataPR
       $.ajax({
             url : url,
             type: "POST",
@@ -504,14 +339,11 @@ function resetdata()
 						  case "11":
 							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
 							break;
-              case "99":
-							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
-							break;
                           case "2":
 							istatus ='<img src="assets/dashboard/images/legend/submitted.png">';
 							break;
                           case "3":
-							istatus ='<img src="assets/dashboard/images/legend/rejected.png">';
+							istatus ='<img src="assets/dashboard/images/legend/draftprint.png">';
 							break;
                           case "4":
 							istatus = '<img src="assets/dashboard/images/legend/processing.png">';
