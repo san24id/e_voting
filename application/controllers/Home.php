@@ -95,6 +95,18 @@ class Home extends CI_Controller {
 
 	}
 
+	function change_active($id_question){
+		$upd = array(
+			'id_question' => $id_question,
+			'isactive' => 1
+		);
+		
+		$this->Home_model->updatestatsactive($upd);
+
+		redirect(site_url('Home/ldp'));
+
+	}
+
 	public function ldp()
 	{
 		$sid = $this->session->userdata("refid");

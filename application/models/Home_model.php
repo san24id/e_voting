@@ -30,6 +30,15 @@ class Home_model extends CI_Model{
 
       return $query;
     }
+    
+    public function updatestatsactive($upd){
+      $sql = "UPDATE t_question SET isactive='".$upd['isactive']."' WHERE id_question='".$upd['id_question']."'"; 
+      
+      $query = $this->db->query($sql);
+      // var_dump($sql);exit;
+
+      return $query;
+    }
 
     function addvoter($add){
       $sql = "INSERT INTO t_vote (nama, email, pin, choice, id_question) VALUES ('".$add['nama']."','".$add['email']."',

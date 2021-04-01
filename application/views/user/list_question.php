@@ -49,13 +49,20 @@
 					  }?></td>
                   <td><?php echo $row->question;?></td>
                   <td><?php if ($row->isactive == '1') { 
-					  	echo "ACTIVE";
-					  }else if ($row->isactive=='0') {
-						echo "NOT ACTIVE";
-					  }?></td>
+                          echo "ACTIVE";
+                        }else if ($row->isactive=='0') {
+                        echo "NOT ACTIVE";
+                        }?>
+                  </td>
                   <td>
                     <a href="Home/edit_form/<?php echo $row->id_question; ?>"><button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button></a>                    
-                    <a href="Home/change_stats/<?php echo $row->id_question; ?>"><button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button></a>                    
+                        
+                        <?php if ($row->isactive == '1') { ?>
+                          <a href="Home/change_stats/<?php echo $row->id_question; ?>"><button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button></a>
+                        <?php }else if ($row->isactive=='0') {?>
+                          <a href="Home/change_active/<?php echo $row->id_question; ?>"><button class="btn btn-success btn-sm"><i class="fa fa-check"></i></button></a>
+                        
+                        <?php }?>
                   </td>      
                   </tr>
                     <?php } ?>      
