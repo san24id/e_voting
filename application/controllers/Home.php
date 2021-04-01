@@ -194,4 +194,23 @@ class Home extends CI_Controller {
 
 	}
 
+	public function form_add()
+	{
+		$sid = $this->session->userdata("refid");
+
+		$data['active1'] = 'active';
+		$data['dp'] = '';
+		$data['active3'] = '';
+
+		// $data['directpayment'] 	= $this->Home_model->getVldp();	
+		// $data['notif_approval'] = $this->Dashboard_model->notifApproval();
+		// $data['reject'] = $this->Home_model->notifRejected();
+		// $data['payment'] = $this->Home_model->getPayment($sid);
+		// $data['surat'] = $this->Home_model->buat_kode();
+		$data['question'] = $this->Home_model->getList();
+
+		$this->load->view('user/header_user', $data);
+		$this->load->view('user/form_pengajuan', $data);
+	}
+
 }

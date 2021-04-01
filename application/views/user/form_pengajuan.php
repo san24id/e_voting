@@ -80,12 +80,11 @@
 					<table class="center">
 						<tr>
 							<td><center><button class= "btn btn-success" type="submit" value="Save">Submit</button>
-										<button class= "btn btn-danger" href="Home/ldp">Cancel</button>
+										<button class= "btn btn-danger" onclick="goBack()">Cancel</button>
 								</center>
 							</td>
 						</tr>
                 	</table>
-            </form>
           </section>  
 
         </form>
@@ -160,6 +159,12 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>  
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>  -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 
 <script>
 
